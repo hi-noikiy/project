@@ -1,0 +1,305 @@
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('transition'|ns_css)}}">
+<link rel="stylesheet" type="text/css" href="{{static_url('uploadfile'|ns_css)}}" >
+<script type="text/javascript" src="{{static_url('jquery.uploadfile.min'|ns_js)}}"></script>
+<script type="text/javascript" src="{{static_url('applysign'|ns_js)}}"></script>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<html style="overflow: visible;*overflow: auto;">
+ <body style="padding: 0;margin: 0;overflow: visible;height: auto;">
+   <div class="container-sign">
+       <div class="container-top">
+           <div class="container-top-img">
+               {% if webType['channelType']!=2 %}
+               <img src="{{static_url('web/cssimg/familyActivities/applysign.png')}}">
+               {% else %}
+               <img src="{{static_url('web/cssimg/familyActivities/applysigndz.png')}}">
+               {% endif %}
+           </div>
+           <!--<div class="container-top-bottom">-->
+               <!--<div class="container-bottom"></div>-->
+           <!--</div>-->
+       </div>
+       <div class="container-content">
+           <div class="content-group">
+               <div class="title">
+                   <p><i class="yuan r-left pull-left"></i> <i class="yuan r-right pull-right"></i></p>
+                   <p class="title-point">(<span style="color: red;">*</span>选项都为必选项)</p>
+                   <p><i class="title-line"></i></p>
+               </div>
+               <div class="applycon">
+                   <div class="appForm" style="width: 540px;">
+                           <input type="hidden" name="picurl" value="" id="poster_url">
+                           <dl>
+
+                               <dd class="clearfix">
+                                   <div class="ftit" > <span style="color: red;">*</span>真实姓名：</div>
+                                   <div class="finp" id="realname">
+                                       <label defaultdisplay="default" defaultvalue="限2-10个字">限2-10个字</label>
+                                       <input type="text" class="input_text cgname" name='pName' id="as_realName">
+                                       <span class="warning" id="as_realName_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>性别：</div>
+                                   <div class="finp">
+                                       <div id="sexid" class="appForm-boy" data="0" onclick="sex(true)" >男</div>
+                                       <div  class="appForm-girl girlactive" data="0" onclick="sex(false)">女</div>
+                                       <div class="warning" id="as_gender_tip"></div>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>生日：</div>
+                                   <div class="finp" style="float:left;">
+                                       <input type="text" class="birthinput" style="width: 72px;" id="birthYear" data="0" name='birthYear'><span style="margin-left: 7px;*margin-bottom: 5px;">年</span>
+                                       <input type="text" class="birthinput" style="width: 48px;" id="birthMonth" data="0" name='birthMonth'><span style="margin-left: 7px;*margin-bottom: 5px;">月</span>
+                                       <input type="text" class="birthinput" style="width: 48px;" id="birthDay" data="0" name='birthDay'><span style="margin-left: 7px;*margin-bottom: 5px;">日</span>
+                                       <span class="warning" id="timeMsg" style="float: right;margin-right: 60px;margin-top: 5px;*margin-top: -25px;"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit" > <span style="color: red;">*</span>籍贯：</div>
+                                   <div class="finp" id="city">
+                                       <label defaultdisplay="default" defaultvalue="限输入2~4个中文">限输入2~4个中文</label>
+                                       <input type="text" class="input_text cgname" name='snative' id="as_birth">
+                                       <span class="warning" id="as_birth_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit" > <span style="color: red;">*</span>当前所在地：</div>
+                                   <div class="finp" id="location">
+                                       <select id="as_city" name="as_province" style="height: 30px;*height: 23px; border: 1px solid #999999;">
+                                            {% set ns_only_one = true %}
+                                            {% for province in location %}
+                                                {% if ns_only_one %}
+                                                    {% set ns_only_one = false %}
+                                                    <option value="{{ province['id'] }}" selected='selected' data="{{ province['id'] }}">{{ province['name'] }}</option>
+                                                {% else %}
+                                                    <option value="{{ province['id'] }}" data="{{ province['id'] }}">{{ province['name'] }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                       </select>
+                                       <!-- <select id="as_city" name="as_city" style="height: 30px;*height: 23px; border: 1px solid #999;">
+                                            {% for cityInfo in city %}
+                                                <option value="{{ cityInfo['id'] }}"  class="_hide city{{ cityInfo['id'] }}" data="{{ cityInfo['id'] }}">{{ cityInfo['name'] }}</option>
+                                            {% endfor %}
+                                       </select> -->
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix" style="margin-top: 33px;">
+                                   <div class="ftit"> <span style="color: red;">*</span>身份证号：</div>
+                                   <div class="finp">
+                                       <label defaultdisplay="default" defaultvalue="必须为18位数字或字母">必须为18位数字或字母</label>
+                                       <input class="input_text" name="pID" id="as_idCard">
+                                       <span class="warning" id="as_idCard_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>电话：</div>
+                                   <div class="finp">
+                                       <label defaultdisplay="default" defaultvalue=""></label>
+                                       <input type="text" name="pTel" class="input_text" id="as_telephone">
+                                       <span class="warning" id="as_telephone_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>地址：</div>
+                                   <div class="finp">
+                                       <label defaultdisplay="default" defaultvalue="上限30个字">上限30个字</label>
+                                       <input type="text" name="pAddr" class="input_text" id="as_address">
+                                       <span class="warning" id="as_address_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>开户行：</div>
+                                   <div class="finp">
+                                       <label defaultdisplay="default" defaultvalue="限4-15个字">限4-15个字</label>
+                                       <input type="text" name="Sname" class="input_text" id="as_bank">
+                                       <span class="warning" id="as_bank_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>开户姓名：</div>
+                                   <div class="finp">
+                                       <label defaultdisplay="default" defaultvalue="限2-10个字">限2-10个字</label>
+                                       <input type="text" name="Sname" class="input_text" id="as_accountName">
+                                       <span class="warning" id="as_accountName_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>银行卡号：</div>
+                                   <div class="finp">
+                                       <label defaultdisplay="default" defaultvalue=""></label>
+                                       <input type="text" name="Scid" class="input_text" id="as_cardNumber">
+                                       <span class="warning" id="as_cardNumber_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>QQ：</div>
+                                   <div class="finp">
+                                       <label defaultdisplay="default" defaultvalue=""></label>
+                                       <input type="text" name="Sqq" class="input_text" id="as_qq">
+                                       <span class="warning" id="as_qq_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>生活照：</div>
+
+                                   <div class="finp" style="margin: 117px 0 0 117px;">
+                                       <iframe style="display:none" name='hidden_frame' id="hidden_frame"></iframe>
+                                       <ul class="signphoto clearfix">
+                                           <li>
+                                                <div class="signphoto-box" id="live_image_1"></div>
+                                                <div class="signphoto-upload">
+                                                    <form id="live_form_1" class="ns-upload-img-hidden" action="/userfamily/applySigningPic?type=live&id=1" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                                        <input type="file" value="上传" id="file_upload1" class="_upload_file ns-upload-img-hidden" name="file_upload1">
+                                                    </form>
+                                                    上传
+                                                </div>
+                                           </li>
+                                           <li>
+                                               <div class="signphoto-box" id="live_image_2"></div>
+                                               <div class="signphoto-upload">
+                                                    <form id="live_form_2" class="ns-upload-img-hidden" action="/userfamily/applySigningPic?type=live&id=2" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                                        <input type="file" value="上传" id="file_upload2" class="_upload_file ns-upload-img-hidden" name="file_upload2">
+                                                    </form>
+                                                    上传
+                                               </div>
+                                           </li>
+                                           <li>
+                                               <div class="signphoto-box" id="live_image_3"></div>
+                                               <div class="signphoto-upload">
+                                                    <form id="live_form_3" class="ns-upload-img-hidden" action="/userfamily/applySigningPic?type=live&id=3" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                                        <input type="file" value="上传" id="file_upload3" class="_upload_file ns-upload-img-hidden" name="file_upload3">
+                                                    </form>
+                                                    上传
+                                               </div>
+                                           </li>
+                                       </ul>
+                                           <p id="shz_tip" style="text-align:center;margin-top:10px;display:none;"><i class="ns_tip_f"></i>请上传3张生活照</p>
+                                       <div class="warning"></div>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>证件照：</div>
+                                   <div class="finp" style="margin: 117px 0 0 117px;">
+                                       <ul class="signphoto clearfix">
+                                           <li>
+                                               <div class="signphoto-box" id="id_image_1"></div>
+                                                <div class="signphoto-upload">
+                                                    <form id="id_from_1" class="ns-upload-img-hidden" action="/userfamily/applySigningPic?type=id&id=1" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                                        <input type="file" style="cursor:hand;" value="上传" id="file_upload4" class="_upload_file ns-upload-img-hidden" name="file_upload4">
+                                                    </form>
+                                                    上传
+                                                </div>
+                                           </li>
+                                           <li>
+                                                <div class="signphoto-box" id="id_image_2"></div>
+                                                <div class="signphoto-upload">
+                                                    <form id="id_from_2" class="ns-upload-img-hidden" action="/userfamily/applySigningPic?type=id&id=2" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                                        <input type="file" style="cursor:hand;" value="上传" id="file_upload5" class="_upload_file ns-upload-img-hidden" name="file_upload5">
+                                                    </form>
+                                                    上传
+                                                </div>
+                                           </li>
+                                       </ul>
+                                      <p id="zjz_tip" style="text-align:center;margin-top:10px;margin-left:65px;display:none;"><i class="ns_tip_f"></i>请上传2张证件照</p>
+                                       <div class="warning"></div>
+                                   </div>
+                               </dd>
+                               <dd class="clearfix" style="margin-top:-20px;width:684px;">
+                                    <p style="margin-top: 7px;color: #626262;font-size: 16px;margin-left:116px;">
+                                        <a style="color:#E70300">范例</a>：（证件照必须上传本人手持身份证正反面各一张）
+                                    </p>
+                                    <div class="_id_pic_dom _1"></div>
+                                    <div class="_id_pic_dom _2"></div>
+                               </dd>
+                               <dd class="clearfix" style="padding-bottom:60px; ">
+                                   <div class="ftit">
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                   </div>
+                                   <div class="finp" >
+                                       <input class="submbtn" style="margin-left: 66px;" type="button" name='creatSubmitBtn' value='提 交' id='applySubmitBtn'>
+                                   </div>
+                               </dd>
+
+                           </dl>
+                   </div>
+
+               </div>
+
+           </div>
+
+       </div>
+       <div style="padding-top: 80px;background-color: #170318;"></div>
+   </div>
+
+
+
+
+
+
+</div>
+        <div id="dialog-shade" style="display:block; z-index: 99;position:fixed; top:0;  left:0; width:100%; height:100%;background:#000;opacity:0.5;filter:alpha(opacity=50);"></div>
+        <div class="sign-dialog" style="display: block; ">
+            <div class="sign-title"><img style="margin-top: -20px;" src="{{static_url('web/cssimg/91ns/sign11.png')}}"></div>
+            <div>
+                <ul style="margin-top: 34px;margin-left: 60px;">
+                    <li>严禁表演或播放色情、低俗、粗口的伴奏或影音</li>
+                    <li>严禁非法气功表演</li>
+                    <li>严禁转接其他聊天站音视频</li>
+                    <li>严禁造谣诋毁秀场良好形象</li>
+                    <li>严禁聚众非法集会或扰乱秀场正常秩序</li>
+                    <li>严禁传播其他聊天站广告</li>
+                    <li>严禁煽动并传播不真事件造成恶劣影响</li>
+                    <li>严禁其他一切不利于秀场和谐发展的活动或事物</li>
+                    <li>族长有义务和权力管理好家族使之不发生以上所严禁情况</li>
+                    <li>族长无法管理制止如上严禁行为时，家族及家族房间亦作取消。</li>
+                    <li>族长保证申请时填写的所有个人资料真实有效，族长个人信息一旦填写，不可更改。</li>
+                    <li>家族长期处于无管理状态，官方有权撤销房间家族。</li>
+                    <li>其他秀场规范和准则（违之撤销家族）。</li>
+                    <li>其他政策性不可抗力。</li>
+                </ul>
+            </div>
+            <div style="margin-left: 60px;margin-top:20px;font-size: 14px;color: #e42f6f">备注：对于家族个人，各种恶意干扰直播间正常秩序的行为，一旦发现即做封号处理</div>
+            <div style="margin-top: 33px;text-align: center;line-height: 34px;">
+                <div class="signagree"  id="agreesign" ><i style="margin-right: 5px;"><img style="margin-bottom: -4px;" src="{{static_url('web/cssimg/91ns/agree.png')}}"></i>我已阅读并同意</div>
+                <div class="nosignagree"  id="cancelsign"><i style="margin-right: 5px;"><img style="margin-bottom: -4px;" src="{{static_url('web/cssimg/91ns/noagree.png')}}"></i>取消</div>
+            </div>
+
+
+        </div>
+
+
+</body>
+</html>
+{% endblock %}
+
+{% block end %}
+{% endblock %}

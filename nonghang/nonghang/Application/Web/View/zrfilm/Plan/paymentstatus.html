@@ -1,0 +1,253 @@
+<extend name='Public/base'/>
+
+<block name='body'>
+
+    <div id="main">
+        <div class="container wait"><span>正在出票，请稍候...</span>
+        </div>
+        <div class="container" id='success' style="display: none">
+            <p>预定成功，取票验证码<b id='printNo'></b></p>
+            <p>观影地点：{$order['cinemaName']}<a href="{:U('user/movieorder')}">查看订单></a></p>
+            <h2>来点美食吧！</h2>
+            <div class="scrollBox item i-7" style="margin:0 auto">
+                <div class="ohbox">
+                    <ul class="piclist time-list">
+                    <volist name='list' id='v'>
+                        <li>
+                            <label>
+                                <div class="package">
+                                    <div class="img-box">
+                                        <img src="{$v.goodsImg}">
+                                    </div>
+                                    <h4>{$v.goodsName}</h4>
+                                    <p><span>￥<i class="price"> {$v.price} </i></span><a> {$v.showPrice} </a></p>
+                                    <p class="psca"> {$v.detail}</p>
+                                </div>
+                                <div class="Spinner">
+                                    <a class="leftBtn"><i>-</i></a>
+                                     <input type="text"   goodsid='{$v.id}' goodsName='{$v.goodsName}' price='{$v.price}' showPrice='{$v.showPrice}'  detail='{$v.detail}'  >
+                                    <a class="rightBtn"><i>+</i></a>
+                                </div>
+                            </label>
+                        </li>
+                        </volist>
+                        <!--<li>
+                            <label>
+                                <div class="package">
+                                    <div class="img-box">
+                                        <img src="__IMG__/pic/d1.png">
+                                    </div>
+                                    <h4>单人套餐2</h4>
+                                    <p><span>￥<i class="price">25</i></span><a> 30 </a></p>
+                                    <p class="psca">一份大可+一份摇爆+一份甜品</p>
+                                </div>
+                                <div class="Spinner">
+                                    <a class="leftBtn"><i>-</i></a>
+                                    <input type="text">
+                                    <a class="rightBtn"><i>+</i></a>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <div class="package">
+                                    <div class="img-box">
+                                        <img src="__IMG__/pic/d1.png">
+                                    </div>
+                                    <h4>单人套餐3</h4>
+                                    <p><span>￥<i class="price">25</i></span><a> 30 </a></p>
+                                    <p class="psca">一份大可+一份摇爆+一份甜品</p>
+                                </div>
+                                <div class="Spinner">
+                                    <a class="leftBtn"><i>-</i></a>
+                                    <input type="text">
+                                    <a class="rightBtn"><i>+</i></a>
+                                </div>
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <div class="package">
+                                    <div class="img-box">
+                                        <img src="__IMG__/pic/d1.png">
+                                    </div>
+                                    <h4>单人套餐4</h4>
+                                    <p><span>￥<i class="price">25</i></span><a> 30 </a></p>
+                                    <p class="psca">一份大可+一份摇爆+一份甜品</p>
+                                </div>
+                                <div class="Spinner">
+                                    <a class="leftBtn"><i>-</i></a>
+                                    <input type="text">
+                                    <a class="rightBtn"><i>+</i></a>
+                                </div>
+                            </label>
+                        </li>
+
+                    --></ul>
+                </div>
+                <div class="pageBtn">
+                    <span class="prev">&lt;</span>
+                    <span class="next">&gt;</span>
+                    <ul class="list"></ul>
+                </div>
+            </div>
+            <div class="clearboth"></div>
+            <div class="submit-block">
+                <span>应付金额：￥<em id='goods_index_tall'>0</em></span>
+                <button id='setCinemaOrder' class="disabled" disabled>确认支付</button>
+            </div>
+        </div>
+        <div class="container fail" style="display: none" id='fail'>
+            <p>支付失败</p>
+            <p class="color-orange" onclick='location.href="{:U('index/index')}"'>返回></p>
+        </div>
+    </div>
+
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            //加减
+            $(".Spinner").Spinner({value:0, min:0, len:2, max:99});
+            //滚动
+            var num = Math.ceil($('.piclist li').length/3);
+            $('.list').empty();
+            for(i=1;i<=num;i++){
+                $('.list').append('<li></li>');
+            }
+            jQuery(".scrollBox").slide({ titCell:".list li",pnLoop:"false", mainCell:".piclist", effect:"left",vis:4,scroll:3,delayTime:800,trigger:"click",easing:"easeOutCirc"});
+
+            $('.item label').click(function(){
+            	var all_price = '0';        	  
+           	  	$('.item label').each(function(i){
+                     var num = $(this).find('input').val();
+                     var goodsid = $(this).find('input').attr('goodsid');
+                     var goodsName = $(this).find('input').attr('goodsName');
+                     var detail = $(this).find('input').attr('detail');
+                     var price = $(this).find('input').attr('price');           
+                    // console.log(package_price);
+	   				if(num!=0){
+	   					var tolprice=price*num;
+	   					 all_price=Number(all_price)+Number(tolprice);
+	   				}
+               	});
+               	if(all_price=='0'){
+               		$('#setCinemaOrder').addClass('disabled').attr("disabled", true);
+	            }else{
+                	$('#setCinemaOrder').removeClass('disabled').attr("disabled", false);
+	            }
+           		$('#goods_index_tall').html(all_price);
+            })
+
+
+          });
+var id=setInterval("getPayStatus()",3000);
+var orderid = "{$order['orderCode']}";
+function getPayStatus(){      
+    $.getJSON("{:U('getFilmStatus')}",{orderid:orderid},function(data){
+    	var msg=data.data;
+        if(msg.status != '0'){
+            clearInterval(id);
+        	$('.wait').hide();
+            if(msg.status =='3'){
+                $("#success b").text(msg['printNo']);
+                $("#success").show();
+            }else{
+            	$("#fail").show();
+            }   
+        }
+    });
+}
+
+
+
+$('#setCinemaOrder').on('click',function(){
+	  var mobile='{$order.mobile}';
+	  var all_price = '0';
+	  var package_price='';
+	  var oderdata='';       	  
+	  $('.item label').each(function(i){
+        var num = $(this).find('input').val();
+        var goodsid = $(this).find('input').attr('goodsid');
+        var goodsName = $(this).find('input').attr('goodsName');
+        var detail = $(this).find('input').attr('detail');
+        var price = $(this).find('input').attr('price');           
+       // console.log(package_price);
+		if(num!=0){
+			var tolprice=price*num;				
+			 package_price+='{"id":"'+goodsid+'","goodsName":"'+goodsName+'","num":"'+num+'","detail":"'+detail+'","price":"'+price+'" ,"tolprice":"'+tolprice+'"},';		
+			 //console.log(package_price);
+			 all_price=Number(all_price)+Number(tolprice);
+			 oderdata+=','+goodsid+':'+num;
+		}     
+    });
+	package_price = "[" + package_price.substring(0, package_price.length - 1) + "]";
+	console.log(package_price);
+	if(all_price==0){
+		layer.alert('请选择要购买的套餐');
+		return;
+	}
+	if(!mobile){
+		  layer.alert('请输入手机号码');
+  	  return;
+  } 
+
+
+	 var patrn=/^1\d{10}$/;
+  
+  // if (!patrn.exec(mobile){ 
+
+   // 		 layer.alert('请输入11手机号码!');
+    //  	  return;
+  	//}    	
+	  console.log(all_price);	  
+	  $.cookie('package_price', package_price, { path: '/' });
+	  $.cookie('all_price', all_price, { path: '/' });
+	  $.cookie('oderdata', oderdata.substr(1), { path: '/' });
+	var uid="{$user['id']}";
+    if(uid==''){
+  	  layer.open({
+            type: 2,
+            skin: 'service-theme',
+            title:'  ',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['480px', '532px'],
+            content: "{:U('User/login')}?url={:U('Goods/loginsetCinemaOrder')}"//iframe的url
+        });
+		return;
+    }else{
+
+  	  $.ajax({
+      	  type:'POST',
+            url:'{:U("Goods/setCinemaOrder")}',
+            data:'data='+oderdata.substr(1)+'&mobile='+mobile,
+            success:function(mag) {
+                if(mag.status==0){
+              	  layer.alert(mag.content);
+              	 window.location.href="{:U('Goods/pay')}?orderid="+mag.data;
+                }else{
+              	  	if(mag.content){
+              		  layer.alert(mag.content);
+                  	}else {
+                  		layer.alert(mag);
+                     	}
+                 		//alert(mag);
+                 }
+            }
+       })
+
+
+
+    }
+	 
+
+
+})
+    </script>
+
+</block>
+
+
+

@@ -1,0 +1,61 @@
+<link rel="stylesheet" type="text/css" href="{{static_url('commonheader'|ns_css)}}" />
+<style type="text/css" media="screen">
+    html, body  { height:100%; }
+    body { margin:0; padding:0; overflow:hidden;background-color: #000;}
+    #flashContent{
+        background-color:#000000;
+        font:400 20px 'Microsoft YaHei','微软雅黑',Tahoma,Arial,simsun,Verdana,sans-serif;
+        color:#ffffff;
+        text-align:center;
+        background:top center;
+        padding-top:330px;
+    }
+    object:focus { outline:none; }
+</style>
+<!--[if !IE]>--><!-->
+<script type="text/javascript" src="{{static_url('jq'|ns_js)}}"></script>
+<!--<![endif]-->
+<!--[if IE]>
+<script type="text/javascript" src="{{static_url('jquery'|ns_js)}}"></script>
+<![endif]-->
+<script type="text/javascript">
+    var jq=jQuery.noConflict()
+    var isbindEmail = 0
+</script>
+<script type="text/javascript" src="{{static_url('commonheader'|ns_js)}}"></script>
+<!-- Enable Browser History by replacing useBrowserHistory tokens with two hyphens -->
+<!-- BEGIN Browser History required section -->
+<link rel="stylesheet" type="text/css" href="{{static_url('')}}web/swf/{{roomFileName}}/history/history.css" />
+<script type="text/javascript" src="{{static_url('')}}web/swf/{{roomFileName}}/history/history.js"></script>
+<script type="text/javascript" src="{{static_url('room'|ns_js)}}"></script>
+<!-- END Browser History required section -->
+<script type="text/javascript" src="{{static_url('')}}web/swf/{{roomFileName}}/swfobject.js"></script>
+<script type="text/javascript">
+    // For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection.
+    var swfVersionStr = "11.1.0";
+    // To use express install, set to playerProductInstall.swf, otherwise the empty string.
+    var flashvars = {};
+    flashvars.hostressId = '{{ anchorInfo["uid"]|default("0") }}';
+    flashvars.isAnchor = '{{ userInfo["isAnchor"]|default("0") }}';
+    flashvars.loadingLogo = nsConfig.roomLoadingURL;
+    flashvars.logo = nsConfig.roomLogoURL;
+    flashvars.logoString = nsConfig.name;
+    flashvars.loggerLevel = '{{ loggerLevel }}';
+    var params = {};
+    params.quality = "high";
+    params.bgcolor = "#000000";
+    params.allowscriptaccess = "always";
+    params.allowfullscreen = "true";
+    params.wmode = "window";
+    var attributes = {};
+    attributes.id = "MainRoom";
+    attributes.name = "MainRoom";
+    attributes.align = "middle";
+    swfobject.embedSWF(
+            "{{static_url('')}}web/swf/{{roomFileName}}/mainroom.swf?vnew=12.6", "flashContent",
+            "100%", "100%",
+            swfVersionStr, "",
+            flashvars, params, attributes);
+    // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
+    swfobject.createCSS("#flashContent", "display:block;text-align:center;");
+</script>

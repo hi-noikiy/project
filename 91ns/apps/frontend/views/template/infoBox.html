@@ -1,0 +1,56 @@
+<div class="login-box js-id-maxTop">
+    {% if ns_userUid %}
+    <div class="login-user" id="initUserInfo">
+        <div class="user-main js-id-minTop">
+            <a href="/userapply" class="user-news sprite-icon-tz"></a>
+            <div class="user-headImg js-toggle-userInfo" id="userAvatarDiv"></div>
+            <div class="user-name clearfix">
+                <span class="txt name-row js-id-nameSpan" title=""></span>
+                <input class="input-name name-row js-id-nameInput" value="">
+                <div class="edit ico-main-8 js-modify-userName"></div>
+            </div>
+            <div class="user-id"></div>
+        </div>
+        <div class="user-info active">
+            <div class="info-vipGrade">
+                <span class="txt">VIP等级：</span>
+            </div>
+            <div class="info-wealthGrade">
+                <span class="txt">富豪等级：</span>
+            </div>
+            <div class="info-hostGrade">
+                <span class="txt">主播等级：</span>
+            </div>
+            <div class="info-coin">
+                <span class="tit">聊币：</span>
+                <span class="txt" title=""></span>
+                <a class="toPay" href="/charging">充值</a>
+            </div>
+            <div class="info-bean">
+                <span class="tit">聊豆：</span>
+                <span class="txt" title=""></span>
+            </div>
+            <div class="user-manage clearfix">
+                <!-- <a href="/user/modifyPassword">
+                    <div class="modify-pwd">修改密码</div>
+                </a> -->
+                <div class="clearfix">
+                    <a onclick="avatarModify();">
+                        <div class="modify-avatar">修改头像</div>
+                    </a>
+                    <i class="liners"></i>
+                    <a class="exit_" href="/user/loginOut">
+                        <div class="exit">登出</div>
+                        <i></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="login-block clearfix">
+        <div class="login-btn" id="login_home">登录</div>
+        <div class="register-btn" id="reg_home">注册</div>
+    </div>
+    {% endif %}
+</div>

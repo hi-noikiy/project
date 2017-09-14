@@ -1,0 +1,10 @@
+AddDefaultCharset UTF-8
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_HOST} ^91ns.com [NC]
+    RewriteRule ^(.*) http://www.91ns.com/ [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    #RewriteRule ^(.*)$ /frontend2.php?_url=/$1 [QSA,L]
+     RewriteRule ^(.*)$ /investigator.php?_url=/$1 [QSA,L]
+</IfModule>

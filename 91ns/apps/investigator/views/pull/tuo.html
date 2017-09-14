@@ -1,0 +1,286 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+              <ul class="nav nav-tabs">
+                  {% include "common/tab.html" %}
+              </ul>
+          </div>
+          <div id="encryptionDIV" class="widget-content tab-content hidden">
+            <div id="tab1" class="tab-pane active">
+              <div class="container-fluid">
+                  <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">
+                      <!-- <span style="font-size:20px;">“托”账号：此类账号送出的礼物等，计入成长值， 不计入收益</span> -->
+                  </div>
+                  <div class="row-fluid" style="margin-top: 20px;">
+                    <div class="content-box content-box-padding" >
+                      <span style="font-size:20px;">每日限额（所有推广员每天可送礼的聊币总额）：</span>
+                      <span id="totalCashNum" class="font font20 cr-ly"><input id="totalCash" value='{{ limitNum }}' style="display:none;" />
+                          {% if limitNum != '' %}
+                            {{ limitNum }}聊币
+                          {% else %}
+                            无
+                          {% endif %}
+                      </span>
+                      <button type="button" class="btn btn-purple pull-right" style="" onclick="totalCashRatio()">修改</button>
+                    </div>
+                  </div>
+                  <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">
+                    <form id="fiamlyform" class="form-search">
+                      <span class="find-search pull-right">
+                      <i class="icon-search icon-on-right bigger-110"></i>
+                      <input name="name" type="text" placeholder="用户名（uid）或昵称" >
+                      <button id="btn_search" type="button" class="btn btn-purple">搜索</button>
+                      </span>
+                    </form>
+                  </div>
+
+                  {% include "common/pagination.html" %}
+
+                <div class="row-fluid">
+                  <table id="tableList" class="table with-check table-purple">
+                    <thead>
+                      <tr>
+                        <th>托账号</th>
+                        <th>昵称</th>
+                        <th>富家等级&uarr;&darr;</th>
+                        <th class="cursor">账户余额(聊币)&uarr;&darr;</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+            
+         </div>
+        </div>
+    
+    </div>
+            
+    
+</div>
+<div id="enterPwd" style="display:none">
+    <!--class="ui-dialog"-->
+    <form id="enterPwdForm">
+        <div>
+            密码：
+            <input type="password" value='' id="pwd"></div>
+        <input id='hideuid' type="hidden"></form>
+</div>
+<script type="text/javascript">
+    $('#enterPwd').on('keypress',function(e){
+        e = e || window.event;
+        if(13 == e.keyCode){
+            var uid = $("#hideuid").attr('data');
+            aa(uid);
+            e.returnValue = false
+            return false
+        }
+    });
+    var uid = '{{info['uid']}}';
+    enterPwd(uid);
+    function enterPwd(uid){
+        var postData = {};
+        postData.type = 0;
+        $.ajax({
+            type:"POST",
+            data:postData,
+            url:'/ajax/checkHasAuth',
+            dataType:'json',
+            success:function(res){
+                if(res.code == 0){
+                    $("#encryptionDIV").removeClass('hidden');
+                }else{
+                    // var pwd = window.prompt("输入密码", "");
+                    // aa(uid,pwd);
+                    $('#enterPwd').dialog({
+                        autoOpen:true,
+                        width:320,
+                        height:180,
+                        title:'输入密码',
+                        resizable:false,
+                        modal:true,
+                        open:function(){
+                            $('#hideuid').attr('data',uid);
+                        },
+                        buttons: {
+                            "确定": function () {
+                                // $(".ui-dialog-titlebar-close").click();
+                                aa(uid);
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
+    function aa(uid,pwd){
+        var data={};
+        data.pwd = $('#pwd').val();
+        data.type = 0;
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/checkAnchorPwd',
+            dataType:'json',
+            success:function(res){
+                if(res.code == 0){
+                    location.reload();
+                }else{
+                    if(confirm(res.info) == false){
+                        $("#encryptionDIV").addClass('hidden');
+                    }else{
+                        $("#encryptionDIV").addClass('hidden');
+                    }
+                }
+            }
+        });
+    }
+</script>
+<div id="addTotalialog" style="display:none">
+    <form id="mofDialogDialogForm">
+        <div class="row-fluid">
+            <div style="padding-top: 40px;padding-left: 30px;"><input type="text" id="richRatio" onkeydown="onlyNum(this)"><span style="margin-left: 10px;">聊币</span></div>
+        </div>
+    </form>
+</div>
+
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+
+<script type="text/javascript">
+
+$(function(){
+    
+  getDataList();
+});
+
+var btn_search=global.doc('btn_search');
+utils.addEvent(btn_search,'click',function(){
+    getDataList();
+});
+
+function getDataList(index){
+    var form=global.doc('fiamlyform');
+    var data={};
+    data.userName=form.name.value;
+    data.sort=1;
+    data.page=index||1;
+    data.pageSize=global.pageSize;
+    data.type=2;
+    $.ajax({
+        type:"POST",
+        data:data,
+        url:'/ajax/userList',
+        dataType:'json',
+        success:function(res){
+            var data=res.data;
+            var tableList=document.getElementById("tableList");
+            var tbody= tableList.getElementsByTagName('tbody')[0];
+            dataTable.clearData(tbody);
+
+            var count=document.getElementById('count');
+            count.innerHTML=data.count;
+
+            for(var i=0;i<data.list.length;i++){
+                addRow(tbody,data.list[i]);
+            }
+            if(!index||index==0){
+                utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                    page_index+=1;
+                    getDataList(page_index);
+                });
+            }
+        }
+
+    });
+}
+
+
+function addRow(table,data){
+
+  var row=table.insertRow();
+  var cell=row.insertCell(0);
+  var cell1=row.insertCell(1);
+  var cell2=row.insertCell(2);
+  var cell3=row.insertCell(3);
+  var cell4=row.insertCell(4);
+
+  var div=document.createElement("div"),
+    img=document.createElement("img"),
+    span=document.createElement("span");
+
+    div.className="anchor-info";
+    img.src=global.contract+data.avatar;
+    span.innerHTML=data.uid;
+
+    div.appendChild(img);
+    div.appendChild(span);
+
+    cell.appendChild(div);
+
+    cell1.innerHTML=data.nickName;   
+
+    cell2.innerHTML=data.name;
+    cell3.innerHTML=data.cash;
+    
+    
+    var a=document.createElement("a");
+    a.href='/pull/supportinfo?uid='+data.uid;
+    a.innerHTML="查看";
+    a.className="a-edit font font18 cr-pe cursor-pointer";
+    cell4.appendChild(a);
+    return row;
+}
+
+
+function totalCashRatio(){
+    $("#addTotalialog").dialog({
+        autoOpen:true,
+        width:350,
+        height:250,
+        title:'修改每日限额',
+        resizable:false,
+        modal:true,
+        open:function(){
+            $('#richRatio').val($('#totalCash').attr('value'));
+        },
+        buttons: {
+            "确定": function () {
+
+                var data={};
+                data.limitNum = $('#richRatio').val();
+                data.type = 1;
+                $.ajax({
+                    type:"POST",
+                    data:data,
+                    url:'/ajax/setDayMaxLimit',
+                    dataType:'json',
+                    success:function(res){
+                        if(res.code == 0) {
+                            location.reload();
+                        }else{
+                            alert(res.info);
+                        }
+                    }
+                });
+
+            }
+        }
+    });
+}
+</script>

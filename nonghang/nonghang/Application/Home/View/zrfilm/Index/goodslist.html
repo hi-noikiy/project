@@ -1,0 +1,57 @@
+<extend name='Public/base'/>
+
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><a href="{:U('index/index')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center sliding">卖品</div>
+            <div class="right"><a href="{:U('index/cinemalist',array('op'=>'goods'))}">{$cinema['shortName']}</a></div>
+        </div>
+    </div>
+</block>
+
+<block name='body'>
+
+<div class="pages">
+  <div data-page="goods" class="page" id="page-goods">
+  <div style="display:none" id="confirmurl">{:U('user/confirmorder')}</div>
+      <link rel="stylesheet" href="__CSS__/goods.css?{:time()}">
+      <div class="content">
+          <form>
+              <div class="goods-section">
+              		<?php if(empty($goods)){ ?><div class="goodsBg">暂时还没有卖品上架</div><?php }else{ ?>
+              <foreach name='goods' item='vo'>
+              	  
+                  <div class="goods-list">
+                      <div class="images-box">
+                          <img  src="{$vo['goodsImg']}">
+                      </div>
+                      <h4>{$vo['goodsName']}</h4>
+                      <p class="price">
+                          <span class="current">￥{$vo['price']}</span>
+                          <span class="original">￥{$vo['showPrice']}</span>
+                      </p>
+                      <p class="meal">{$vo['detail']}</p>
+                      <div class="address">
+                          <div class="cinema">兑换地：{$cinema['shortName']}</div>
+                          <input type="hidden" value="{$vo['id']}" class='goodsid'>
+                          <div class="Spinner">
+                              <a class="leftBtn"><i>-</i></a>
+                              <input type="text">
+                              <a class="rightBtn"><i>+</i></a>
+                          </div>
+                      </div>
+                  </div>
+                  </foreach>
+                  <?php } ?>
+              </div>
+          </form>
+      </div>
+      <div class="price-info">
+          <span>套餐合计：</span><a class="total">￥0</a><a class='confirm' href='javascript:;'>确认购买</a>
+
+      </div>
+  </div>
+</div>
+
+</block>

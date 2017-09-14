@@ -1,0 +1,178 @@
+<link rel="stylesheet" href="__CSS__/common.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__CSS__/style.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/layer.js"></script>
+<script type="text/javascript" src="__JS__/jquery.form.js"></script> 
+
+<script type="text/javascript" src="__JS__/Validform_v5.3.2.js"></script> 
+
+<link rel="stylesheet" href="__JS__/skin/layer.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__JS__/skin/layer.ext.css" type="text/css" media="screen" />
+
+<div class="binding">
+<form method="post" action="{:U('')}" class="dataform" id="dataform" target="postPanel">
+        <table width="300" style="width:300px;" border="0" cellpadding="0" cellspacing="0">
+    		<thead>
+
+                <input type="hidden" name="uid" value="{$adminInfo.uid}" />
+
+         <tr><th colspan="4">用户信息</th></tr></thead>
+        <tbody>
+            <tr>
+                <td width="100" align="right">归属影院组：</td>
+                <td>
+                    <select name="data[cinemaGroup]" id="cinemaGroupId" onchange="setCinemaCode(this.value)">
+                        <foreach name="groupList" item="vo" key="k" >
+                            <option value="{$vo.id}">{$vo.groupName}</option>
+                        </foreach>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td width="100" align="right">归属影院：</td>
+                <td style="padding:3px">
+                    <select name="data[cinemaCodeList][]" style="height:70px;" id="cinemaCode" size="10" multiple="multiple" >
+                        <option value=""></option>
+                    </select>
+                </td>                
+            </tr>
+
+             <tr>
+                <td width="100" align="right">岗位选择：</td>
+                <td>
+                    <select name="data[roleId]" id="userGroupId">
+    
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td width="100" align="right">账户昵称：</td>
+                <td><input name="data[username]" type="text"  value="{$adminInfo.username}" placeholder="请输入用户名称"></td>
+            </tr>
+            <tr>
+                <td width="100" align="right">用户密码：</td>
+                <td><input name="data[password]" type="text"  id="text" value="" placeholder="请输入密码"></td>
+            </tr>
+            <tr>
+                <td width="100" align="right">真实姓名：</td>
+                <td> <input name="data[realName]" type="text"  value="{$adminInfo.realName}" placeholder="请输入真实姓名" ></td>
+            </tr>
+    
+            <tr>
+                <td width="100" align="right">手机号：</td>
+                <td><input name="data[mobile]" type="text"   value="{$adminInfo.mobile}" placeholder="请输入手机号" ></td>
+            </tr>
+
+        </tbody>
+    </table>
+    <div class="menuBtn">
+        <a href="javascript:submitInfo();" class="button"><if condition="$adminInfo['cinemaGroup']">更新<else />添加</if></a>
+        <input type="hidden" name="id" value="{$data.mid}" />
+    </div>
+        </form>  
+</div>
+<script type="text/javascript">
+function ck(b)
+{
+    var input = $("input[name='data[]']");
+
+    for (var i=0;i<input.length ;i++ )
+    {
+        if(input[i].type=="checkbox")
+            input[i].checked = b;
+    }
+}
+
+function submitInfo () {
+    $('#dataform').submit();
+}
+
+var loadi = '';
+var loadimsg = ''; 
+function setCinemaCode (cinemaGroupId) {
+    $('#cinemaGroupId').val(cinemaGroupId);
+    setUserGroupList(cinemaGroupId);
+    loadi = layer.load(1, {shade: [0.5,'#000']});
+    loadimsg = layer.msg('正在获取影院列表...',{icon: 16, time:60000000});
+    $.ajax({
+        url:"{:U()}",
+        data:{'cinemaGroupId':cinemaGroupId, 'action':'getCinemaList'},
+        dataType:'json',
+        type:'post',
+        success:function(json){
+            layer.close(loadi);
+            layer.close(loadimsg);
+            var cinemaCodeCheck = ''
+            $('#cinemaCode').html('');
+
+            $('#cinemaCode').append('<option value="-1" <if condition="$adminInfo['cinemaCodeList'] eq -1">selected="selected"</if>>全部影城</option>');
+            var cinemaCodeList = ',,{$adminInfo.cinemaCodeList},';
+            if(json.status=='0'){
+                $.each(json.data,function(k,v){
+                    
+                    cinemaCodeCheck = '';
+                    // alert(cinemaCodeList);
+                    if(cinemaCodeList.indexOf(','+v.cinemaCode+',') > 0 ){
+                        // alert(v.cinemaCode);
+                        cinemaCodeCheck = ' selected="selected"';
+                    }
+                    $('#cinemaCode').append('<option value="'+v.cinemaCode+'" '+cinemaCodeCheck+'>'+v.cinemaName+'</option>');
+                })
+            }else{
+                
+                // layer.msg(json.content);
+            }
+        },
+        error:function(msg){
+            layer.close(loadi);
+            layer.close(loadimsg);
+            layer.msg('网络错误，请稍候再试！');
+        }
+    });
+}
+
+
+function setUserGroupList (cinemaGroupId) {
+    loadi = layer.load(1, {shade: [0.5,'#000']});
+    loadimsg = layer.msg('正在获取权限组列表...',{icon: 16, time:60000000});
+    $.ajax({
+        url:"{:U()}",
+        data:{'cinemaGroupId':cinemaGroupId, 'action':'getUserGroupList'},
+        dataType:'json',
+        type:'post',
+        success:function(json){
+            layer.close(loadi);
+            layer.close(loadimsg);
+            
+            $('#userGroupId').html('');
+            if(json.status=='0'){
+                $.each(json.data,function(k,v){
+        
+                    cinemaCodeCheck = '';
+                    if('{$adminInfo.roleId}' == v.id){
+                        cinemaCodeCheck = ' selected="selected"';
+                    }
+                    $('#userGroupId').append('<option value="'+v.id+'" '+cinemaCodeCheck+'>'+v.roleName+'</option>');
+                })
+                 // layer.msg(json.content);
+            }else{
+                
+                layer.msg(json.content);
+            }
+        },
+        error:function(msg){
+            layer.close(loadi);
+            layer.close(loadimsg);
+            layer.msg('网络错误，请稍候再试！');
+        }
+    });
+}
+<if condition="$adminInfo['cinemaGroup']">
+    setCinemaCode({$adminInfo.cinemaGroup});
+<else />
+    setCinemaCode($('#cinemaGroupId').val());
+</if>
+
+</script> 

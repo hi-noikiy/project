@@ -1,0 +1,257 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+    <div class="container-fluid" style="padding: 0;">
+
+        <div class="widget-box tab-tabs" >
+            <div class="widget-title">
+                <ul class="nav nav-tabs">
+                    {% include "common/tab.html" %}
+                </ul>
+            </div>
+            <div class="widget-content tab-content" style="overflow: hidden;">
+
+                <div class="row-fluid" style="margin-top: 30px;">
+
+                    <div id="capita" class="countBox container-fluid" style="padding: 0;">
+
+                        <button id="btnSearch" type="button" class="btn btn-purple pull-right" style="margin-right: 40px;margin-bottom: 10px;" onclick="allWineDialog()">一键发放</button>
+                        <div class="row-fluid" style="margin-bottom: 50px;margin-top: 20px;">
+
+                            <table id="tableList" class="table with-check table-purple TS">
+
+                                <tbody>
+                                {% if wineList %}
+                                {% for i, data in wineList%}
+                                    <tr class="fs{{i}}" data="0" style="cursor: pointer" value="{{i}}" onclick="telescopic(this)">
+                                        <td style="width: 300px;"><i></i>{{data}}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div id="mofDialog" style="display:none"> <!--class="ui-dialog"-->
+    <form id="mofDialogDialogForm">
+        <div class="row-fluid">
+            <div style="padding-top: 20px;"><span style="width: 70px;display: inline-block;text-align: right;margin-right: 10px;">归属人ID:</span><input type="text" id="Belonging" onkeydown="onlyNum(this)"><span id="labelUid"></span></div>
+            <div style="padding-top: 20px;"><span style="width: 70px;display: inline-block;text-align: right;margin-right: 10px;">说明:</span><input type="text" id="explain"></div>
+        </div>
+    </form>
+</div>
+<div id="mofDialog1" style="display:none"> <!--class="ui-dialog"-->
+    <form id="mofDialogDialogForm1">
+        <div class="row-fluid">
+            <div style="padding-top: 20px;"><span style="width: 70px;display: inline-block;text-align: right;margin-right: 10px;">归属人ID:</span><input type="text" id="Belonging1" onkeydown="onlyNum(this)"><span id="labelUid1"></span></div>
+        </div>
+    </form>
+</div>
+<script>
+    $(function(){
+        $('body').css('overflow-x','auto');
+
+//        $('#tableList tr').on('click',telescopic);
+    });
+
+    function telescopic(e){
+
+        var t=$(e).attr('value');
+        getWineList(t, function(data){
+            var _html='';
+            if(data.length>0){
+                _html+='<tr name="children"><td>商品名称</td><td>商品ID</td><td>说明</td><td>商品总注数</td><td>归属人</td><td>操作</td></tr>';
+            }
+
+
+            var a=$(e);
+            var ntr = a.next();
+            var b=$(e).attr('data');
+
+            $(e).children().children('i').addClass('active');
+
+            if(b==1){
+                if(ntr.attr('name')=='children'){
+                    removeNext(ntr);
+                    $(e).attr('data',0);
+                }
+                $(e).children().children('i').removeClass('active');
+            }
+            else{
+                for(var i=0;i<data.length;i++){
+                    _html+='<tr name="children"><td>'+data[i].name+'</td>';
+                    _html+='<td>'+data[i].id+'</td><td>'+data[i].description+'</td><td>'+data[i].totalNums+'</td>';
+                    if(data[i].type!=0){
+                        _html+='<td><span>'+data[i].nickName+'</span><span>('+data[i].type+')</span></td>';
+                    }
+                    else{
+                        _html+='<td>无</td>';
+                    }
+                    _html+='<td><a onclick="WineDialog('+data[i].type+',\''+data[i].description+'\','+data[i].id+','+t+')" class="a-edit font font18 cr-pe cursor-pointer">修改</a></td>';
+                    _html+='</tr>';
+                }
+                a.after(_html);
+                $(e).attr('data',1);
+            }
+        })
+    }
+
+    function removeNext(a){
+        if(a.attr('name')=='children'||a.attr('name')=='smallChild'||a.attr('name')=='smallChild1'){
+            var next = a.next();
+            a.remove();
+            return removeNext(next);
+        }
+        return 0;
+    }
+
+    function getWineList(t, callback){
+
+        var data={};
+        data.price=t;
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/getWineList',
+            dataType:'json',
+            success:function(res){
+                var data=res.data;
+                callback && callback(data);
+            }
+        });
+    }
+
+    //  修改商品归属
+    function WineDialog(uid,c,id,t){
+
+        $('#mofDialog').dialog({
+            autoOpen:true,
+            width:350,
+            height:260,
+            title:'修改商品归属',
+            resizable:false,
+            modal:true,
+            open:function(){
+                if(uid==0){
+                    uid='';
+                }
+                $('#Belonging').val(uid);
+                $('#explain').val(c);
+            },
+            buttons: {
+                "确定": function () {
+
+                    var data={};
+
+                    data.uid=$('#Belonging').val();
+                    data.id=id;
+                    data.description=$('#explain').val();
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/editWineInfo',
+                        dataType:'json',
+                        success:function(res){
+                            if(res.code!=0){
+                                alert(res.info);
+                            }
+//                            location.reload();
+                            $('.ui-icon-closethick').click();
+                            ji(t);
+                        }
+
+                    });
+
+                }
+            }
+        });
+    }
+
+    function ji(t){
+        $('.fs'+t).click();
+        getWineList(t, function(data){
+            var _html='';
+            if(data.length>0){
+                _html+='<tr name="children"><td>商品名称</td><td>商品ID</td><td>说明</td><td>商品总注数</td><td>归属人</td><td>操作</td></tr>';
+            }
+            for(var i=0;i<data.length;i++){
+                _html+='<tr name="children"><td>'+data[i].name+'</td>';
+                _html+='<td>'+data[i].id+'</td><td>'+data[i].description+'</td><td>'+data[i].totalNums+'</td>';
+                if(data[i].type!=0){
+                    _html+='<td><span>'+data[i].nickName+'</span><span>('+data[i].type+')</span></td>';
+                }
+                else{
+                    _html+='<td>无</td>';
+                }
+                _html+='<td><a onclick="WineDialog('+data[i].type+',\''+data[i].description+'\','+data[i].id+','+t+')" class="a-edit font font18 cr-pe cursor-pointer">修改</a></td>';
+                _html+='</tr>';
+            }
+            $('.fs'+t).after(_html);
+            $('.fs'+t).attr('data',1);
+        })
+    }
+
+    //  一键发放
+    function allWineDialog(){
+
+        $('#mofDialog1').dialog({
+            autoOpen:true,
+            width:350,
+            height:200,
+            title:'一键发放',
+            resizable:false,
+            modal:true,
+            open:function(){
+
+            },
+            buttons: {
+                "确定": function () {
+
+                    var data={};
+
+                    data.uid=$('#Belonging1').val();
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/onedollar/akeySend',
+                        dataType:'json',
+                        success:function(res){
+                            if(res.code!=0){
+                                alert(res.info);
+                            }
+                            else{
+                                alert(res.info);
+                                location.reload();
+                            }
+                        }
+
+                    });
+
+                }
+            }
+        });
+    }
+</script>
+

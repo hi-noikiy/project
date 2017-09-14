@@ -1,0 +1,380 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+              <ul class="nav nav-tabs">
+                  {% include "common/tab.html" %}
+              </ul>
+          </div>
+          <div class="widget-content tab-content">
+
+            <div id="tab4" class="tab-pane active">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">  
+                  <span style="font-size:20px;">配置默认的主播的聊币兑换下限</span>
+                </div>
+                
+                <div class="row-fluid">
+                  <div class="content-box content-box-padding" >
+                    <span id="limitNum" class=" font font56 cr-ly">{{limitNum}}</span>
+                    <span class="font font20">聊币</span> 
+                    <button type="button" class="btn btn-purple pull-right" style="margin-top: 18px;" onclick="exchangeDilog()">修改</button>                  
+                  </div>                  
+                </div>
+                
+                
+                <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">  
+                  <span style="font-size:20px;">
+                  例外的主播（单独配置TA的兑换下限）
+                  </span>
+                </div>
+
+                  <div class="row-fluid">
+                <div class="content-box" >
+                  <form id="exceptionSearch" class="form-search">
+                    <div class="fontsize20" style="margin: 10px 0 10px 1.32766%;">
+                      <button class="btn btn-purple"  onclick="addExceptionDialog('添加例外的主播')" type="button">添加</button>
+                      
+                      <span class="find-search pull-right" style="margin-right: 20px;">
+                      <i class="icon-search icon-on-right bigger-110"></i>
+                      <input name="name" type="text" placeholder="用户名或昵称" >
+                      <button id="btnsearch" type="button" class="btn btn-purple">查询&nbsp;</button>
+                      </span>
+                    </div>
+                </form>
+                  
+                  <ul id="exceptionList" class="thumbnails">
+
+                  </ul>
+                </div>
+                      
+                  <div class="row-fluid" style="margin-top: 10px;">
+                    <div id="pagination2" class="pagination alternate pull-right">
+                    </div>
+                  </div>
+
+                </div>
+                  
+              </div>
+            </div>
+
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+
+
+<div id="exchangeDilog" style="display:none">
+  <div class="content-box" style="padding: 20px 20px 10px;">
+   <form >
+    <input id="exchenge-modfiy" type="text" >
+    </form>
+  </div>
+</div>
+
+{% include "common/rule_dialog.html" %}
+{% include "common/addanchor_dialog.html" %}
+{% include "common/addexception_dialog.html" %}
+{% include "common/changescale_dialog2.html" %}
+
+
+<link rel="stylesheet" href="{{static_url('web/css/jquery.range.css')}}">
+<script type="text/javascript" src="{{static_url('web/js/jquery.range.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js/91ns.anchor.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js/91ns.exchange.js')}}"></script>
+<script type="text/javascript">
+
+$(function(){
+
+
+    /*getDataApplyList();
+
+    applyTeb();
+
+    anchornavaformtab();
+    anchornavaRuleformtab();
+
+    //
+    getDataListRule();
+
+    getDataExceptionRuleList();
+
+    getSymbol();
+    getAnchorLevel();
+
+    $('.single-slider').jRange({
+      from: 0,
+      to: 70,
+      step: 1,
+      scale: [0,10,20,30,40,50,60,70],
+      format: '%s',
+      width: 665,
+      showLabels: true,
+      showScale: true
+
+    });*/
+    /*$('.range-slider').jRange({
+      from: 0,
+      to: 70,
+      step: 1,
+      scale: [0,10,20,30,40,50,60,70],
+      format: '%s',
+      width:665,
+      showLabels: true,
+      isRange : true
+    });
+
+    $("#g1").click(function(){
+      var aa = $(".single-slider").val();
+      alert(aa);
+    });
+    $("#g2").click(function(){
+      var aa = $(".range-slider").val();
+      alert(aa);
+    });*/
+
+
+  });
+
+
+
+
+ /* function getDataExceptionList(index){
+      var exceptionSearch= document.getElementById('exceptionSearch'),
+      data={};
+      data.page=index||1;
+      data.pageSize=global.pageSize;
+      data.name=exceptionSearch.name.value;
+      data.type=2;
+
+      $.ajax({
+          type:"POST",
+          data:data,
+          url:'/ajax/getException',
+          dataType:'json',
+          success:function(res){
+            var data=res.data.data,
+             eul=document.getElementById('exceptionList');
+
+            for (var i = 0; i <data.list.length; i++) {
+             addRowException(eul,data.list[i]);
+            };
+
+            if(!index||index==0){
+              paginationException(data.count);
+            }
+
+
+          }
+      });
+
+  }*/
+
+  function paginationException(page){
+      $("#paginationException").pagination(page, {
+          callback: pageselectCallback,
+          items_per_page:global.pagesize, // 每页只显示一条记录
+          num_display_entries : 3,
+          num_edge_entries : 1,
+          prev_text : "上一页",
+          next_text : "下一页"
+      });
+  }
+
+  function addRowException(per,data){
+    /*var oCloneNode=oList.cloneNode(true); 
+    cloneArea.appendChild(oCloneNode); */
+
+    var li =document.createElement('li'),
+    div=document.createElement('div'),
+    div2=document.createElement('div'),
+    div3=document.createElement('div');
+
+
+    div.className="th-header clearfix";
+    var img=document.createElement('img');
+    img.className="pull-left";
+    img.cssText="width:50px;";
+    img.src=data.avatar;
+
+    div.appendChild(img);
+
+    var div4=document.createElement('div');
+    div4.className="th-h-text pull-left";
+    div4.innerHTML='<p><span>主播号:</span><span>'+data.uid+'</span></p><p><span>昵称：</span><span>'+data.nickName+'</span></p>';
+
+    div.appendChild(div4);
+    
+    div2.className='th-content';
+    div2.innerHTML='<p>分成比例：'+data.value+'%</p>';
+
+    div3.className='th-edit';
+    div3.innerHTML="<p><a onclick='changescale()'>修改</a>|<a>删除</a></p>";
+
+    li.className="span2";
+    li.appendChild(div);
+    li.appendChild(div2);
+    li.appendChild(div3);
+
+    per.appendChild(li);
+  }
+
+
+
+
+
+    function exchangeDilog(){
+      $('#exchangeDilog').dialog({
+          autoOpen:true,
+          width:320,
+          height:220,
+          title:'配置默认的主播的聊币兑换下限',
+          resizable:false,
+          modal:true,
+          open:function(){
+             var limitNum= $('#limitNum').text();
+              $('#exchenge-modfiy').val(limitNum);
+
+          },
+          buttons: {
+            "确定": function () {
+
+              var data={};
+              data.value=$('#exchenge-modfiy').val();
+ 
+              $.ajax({
+                type:"POST",
+                data:data,
+                url:'/ajax/editExchange',
+                dataType:'json',
+                success:function(res){
+                  var data=res.data;
+                  if(res.code==0){
+                    location.reload();
+                  }else{
+                    alert(res.info)
+                  }
+
+                }
+              });
+
+            }
+
+          }
+      });
+    }
+
+    function applyTeb () {
+      $('#applySearch .tabs-group').click(function(){
+        $('#applySearch .tabs-group').removeClass('active');
+        $(this).addClass('active');
+        var applySearch= document.getElementById('applySearch');
+        applySearch.status.value=$(this).attr('status');
+        getDataApplyList();
+      })
+    }
+
+  //获得签约主播数据集
+  function getDataApplyList(index){
+    var applySearch= document.getElementById('applySearch'),
+    data={};
+    data.status=applySearch.status.value==''?'0':applySearch.status.value;
+    data.namelike='';
+    data.page=index||1;
+    data.pageSize=global.pageSize;
+    $.ajax({
+      type:"POST",
+      data:data,
+      url:'/ajax/anchorApplyList',
+      dataType:'json',
+      success:function(res){
+        var data=res.data.data;
+
+        var tableList=document.getElementById("tableListApply");
+        var tbody= tableList.getElementsByTagName('tbody')[0];
+        dataTable.clearData(tbody);
+
+        var applyCount=document.getElementById('applyCount');
+        applyCount.innerHTML=data.count;
+
+        for(var i=0;i<data.list.length;i++){
+          addRowApply(tbody,'',data.list[i]);
+        }
+
+        if(!index||index==0){
+          initPaginationApply(data.count);
+        }
+
+      }
+    });
+
+  }
+
+  function initPaginationApply(page){
+    $("#paginationApply").pagination(page, {
+          callback: applyCallback,
+          items_per_page:global.pagesize, // 每页只显示一条记录
+          num_display_entries : 3,
+          num_edge_entries : 1, 
+          prev_text : "上一页",  
+          next_text : "下一页"
+      });
+  }
+
+  function applyCallback(page_index, jq){
+      getDataApplyList(page_index)
+      return false;
+  }
+
+  function addRowApply(table,index,data){
+    var row=table.insertRow();
+    var cell=row.insertCell(0);
+    var cell1=row.insertCell(1);
+    var cell2=row.insertCell(2);
+    var cell3=row.insertCell(3);
+    var cell4=row.insertCell(4);
+    var cell5=row.insertCell(5);
+    var cell6=row.insertCell(6);
+    
+    cell.innerHTML=data.uid;
+
+    var div=document.createElement("div"),
+    img=document.createElement("img"),
+    span=document.createElement("span");
+
+    div.className="anchor-info";
+    img.src=global.contract+data.avatar;
+    span.innerHTML=data.uid;
+
+    div.appendChild(img);
+    div.appendChild(span);
+
+    cell1.appendChild(div);
+
+    cell2.innerHTML=data.level2;
+    cell3.innerHTML=data.fans;
+    
+    cell4.innerHTML=data.createTime;
+    
+    //0.申请中 1.同意 2.取消 3.拒绝
+    cell5.innerHTML=data.status=='0'?'申请中...':data.status==1?'同意':data.status==2?'取消申请':data.status==3?'拒绝':'';
+
+    var a=document.createElement("a");
+    a.href='/anchor/applyinfo?id='+data.id;
+    a.innerHTML="查看";
+    a.className="a-edit font font18 cr-pe cursor-pointer";
+    cell6.appendChild(a);
+  return row;
+}
+</script>

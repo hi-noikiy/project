@@ -1,0 +1,130 @@
+<extend name='Public/base'/>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/plan')}" class="external link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">订单确认</div>
+    <div class="right"></div>
+  </div>
+</div>
+  </block>
+
+
+<block name='body'>
+<div data-page="userIndent" class="page">
+    <div class="page-content">
+
+
+    	<foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+      <div id="orderstatus" style="display:none">{$plan.orderstatus}</div>
+      <div id="gourl" style="display:none">{:U('User/pay',array('orderid'=>$plan['orderstatus']))}</div>
+      <div id="cancelurl" style="display:none">{:U('User/cancelOrder',array('orderid'=>$plan['orderstatus']))}</div>
+      <div id="hsc" style="display:none">{$plan.hsc}</div>
+      <div id="featureAppNo" style="display:none">{$plan.featureAppNo}</div>
+      <div id="mydata" style="display:none">{$mydata}</div>
+
+      <div id="payUrl" style="display:none"><?php if(!$user['cardNum']&&($user['mmoney']<$seat['num'])){ ?>{:U('Wechatpay/pay')}<?php }else{ ?>{:U('User/pay')}<?php }?></div>
+
+    <div class="content">
+        <div class="firmOrder">
+           <div class="firmOrderInfo" id="firmOrder" style="display:none;">
+           		<p class="cinemaName">{$plan['cinemaName']}</p>
+                <div class="line"></div>
+                <div class="orderImg"><img src="<?php if(!empty($plan['film']['image'])){ ?>__UPLOAD__/{$plan['film']['image']}<?php }else{ ?>__IMG__/movie/default.jpg<?php } ?>" height="120" /></div>
+                <div class="orderInfo">
+                	<h2>{$plan['filmName']}</h2><em class="style3D">{$plan['copyType']}</em>
+                    <p>{$plan['hallName']}</p>
+                   	<p>{$plan['m']}  星期六  {$plan['d']}</p>
+                    <p> {$plan['seatstr']}</p> 
+                </div>
+                <div class="clear"></div>
+                <div class="line"></div>
+                <div class="inputBox">
+                	<input class="phone" name="mobile" type="tel" placeholder="请输入接收手机" value=""  />
+                	<em></em>
+                </div>
+                <div class="tips">交易信息提示：确认订单后，请在<span>15</span>分钟内完成支付，否则系统自动释放座位！</div>
+           </div>
+           <div class="firmOrderbtm"></div>
+        </div>
+        <div class="firmBtm">
+        	<span>应付总额：<b>￥{$plan['num']}</b></span>
+			<a class="confirm-ok-cancel" href="javascript:;">确认订单</a>
+		</div>
+    </div>
+    </div>
+    </div>
+  </block>
+
+    <block name='script'>
+<script>
+
+$(function(){ 
+ var userSeatLock = $('#userSeatLock').html();
+    var orderstatus = $('#orderstatus').html();
+
+        if(orderstatus != '0'){
+        var gourl=$('#gourl').html();;
+        var cancelurl=$('#cancelurl').html();
+
+
+        myApp.confirm('您之前有一笔未支付订单，去支付？', 
+        function () {
+          window.location.href=gourl;
+        },
+        function () {
+            $.get(cancelurl,{},function(msg){});
+        }
+    ); 
+        }
+
+
+
+        var hsc=$('#hsc').html();;
+        $(".firmBtm").bind("click",function(){
+            function isMobil(s) {   //验证手机号 
+                var patrn=/^1\d{10}$/; 
+                if (!patrn.exec(s)){
+                    return false 
+                }else{
+                    return true
+                }
+            }
+            if(hsc !='ok'){
+                alert("您最多可再买"+hsc+"张本场次影票!");
+                return false;
+            }
+            var mobile=$("input[name='mobile']").val();
+            if(mobile==""){
+                alert("手机号码不能为空！");
+                return false;
+            }
+            if(!isMobil(mobile)){
+                alert("请正确输入手机号码！");
+                return false;
+            }
+            var featureAppNo=$('#featureAppNo').html();
+            var datas=$('#mydata').html();
+            myApp.showIndicator();
+            $.get(userSeatLock,{datas:datas,featureAppNo:featureAppNo,mobile:mobile},function(msg){
+                myApp.hideIndicator();
+                var data=JSON.parse(msg);
+
+                url = $('#payUrl').html();
+
+
+                if(data['ResultCode']=='0'){
+                    location.href=url + "?orderid="+data['OrderCode'];      
+                }else{
+                    myApp.alert(data['ResultCode']);   
+                }
+            });
+        });
+        
+    });
+        $("#firmOrder").slideDown(1000);
+
+  </script>
+  </block>

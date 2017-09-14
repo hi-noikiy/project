@@ -1,0 +1,77 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<!--js、css引入-->
+{% if ns_sonType == 'info' %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('personal.info'|ns_css)}}">
+{% elseif ns_sonType == 'center' %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('safecenter'|ns_css)}}">
+    <link rel="stylesheet" type="text/css" href="{{static_url('personal'|ns_css)}}" />
+    <link rel="stylesheet" type="text/css" href="{{static_url('icon/personalicon'|ns_css)}}" />
+{% endif %}
+
+{% endblock %}
+
+{% block title %}
+账户安全
+{% endblock %}
+
+{% block titleList %}
+<ul class="nav">
+    <li class="{% if ns_sonType == 'center' %}active{% endif %}">
+        <a href="/usersecurity?sonType=center">安全中心</a>
+    </li>
+    <li class="{% if ns_sonType == 'info' %}active{% endif %}">
+        <a href="/usersecurity?sonType=info">个人资料</a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent">
+    <div class="center-box-content">
+        <div class="center-box main-background-body" bottompadding="42">
+            <div class="center-top">
+                <div class="rope-left"> <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+
+                <div class="rope-right"> <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+            </div>
+            <div class="center-content">
+                <div class="widget-box accountSecurity">
+                    <div id="accountSecurity">
+                        <!-- <div class="as-top-border">
+                        </div> -->
+                        <div class="as-content">
+                            {% if ns_sonType == 'center' %}
+                                {% include "usersecurity/security/safecenter.html" %}
+                            {% elseif ns_sonType == 'info' %}
+                                {% include "usersecurity/security/info.html" %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center-bottom"></div>
+        </div>
+        <div class="center-footer-bg" ></div>
+        {% include "template/background.html" %}
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript">
+    $ = jq;
+</script>
+{% if ns_sonType == 'center' %}
+<script type="text/javascript" src="{{static_url('safecenter'|ns_js)}}"></script>
+{% elseif ns_sonType == 'info' %}
+<script type="text/javascript" src="{{static_url('personal.info'|ns_js)}}"></script>
+{% endif %}
+{% endblock %}

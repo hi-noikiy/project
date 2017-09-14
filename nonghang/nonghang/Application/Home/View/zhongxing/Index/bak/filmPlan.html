@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>微信2.0</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+	<meta name="author" content="" /> 
+	<meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <link type="text/css" rel="stylesheet" href="stylesheet/common.css">
+	<link type="text/css" rel="stylesheet" href="stylesheet/style.css">
+    <link rel="stylesheet" href="stylesheet/swiper.css">
+	<script type="text/javascript" src="javascript/jquery.js"></script>
+    <script type="text/javascript" src="javascript/swiper.min.js"></script> 
+</head>
+<body>
+<div class="page">
+	<div class="headerNav">
+       <div class="headerLeft"><a href="javascript:window.history.back(-1);"><img src="image/common/back.png" height="100%" /></a></div>
+        <div class="title"><span>影片排期</span></div>
+        <div class="headerRight"></div>
+    </div>
+    <div class="content">
+    	<div class="planFilm">
+        	<a class="filmLink" href="details.html" >
+            	<div class="filmImg">
+            		<img src="pic/1232.jpg" height="100%"  />
+                </div>
+                <div class="filmInfo">
+                	<h2>新少林寺</h2><span>9.5</span>
+                	<p>片长：115分</p>
+                </div>
+            </a>
+        </div>
+    	<div class="dateBox">
+            <ul class="dateBody"  id="dateBody">
+                <li class="cur">今天3月11日</li>
+                <li>明天3月12日</li>
+                <li>后天3月13日</li>
+                <li>周六3月14日</li>
+                <li>周日3月15日</li>
+            </ul>
+        </div>
+        <div class="showPlan">
+            <ul onclick="javascript:window.location.href='seat.html'">
+                <li class="tal">
+                    <div class="ledTime">13:05</div>
+                    <p>15:00结束</p>
+                </li>
+                <li class="tac">
+                    <div  class="planStyle">国语/2D</div>
+                    <p>1号厅</p>
+                </li>
+                <li class="tar">
+                    <div class="planStop">停止售票</div>
+                    <p >￥100</p>
+                </li>
+            </ul>
+            <ul onclick="javascript:window.location.href='seat.html'">
+                <li  class="tal">
+                    <div class="ledTime">13:05</div>
+                    <p>15:00结束</p>
+                </li>
+                <li class="tac">
+                    <div  class="planStyle">国语/2D</div>
+                    <p>1号厅</p>
+                </li>
+                <li class="tar">
+                    <div class="planPirce">￥75</div>
+                    <p><span class="tline">￥100</span></p>
+                </li>
+            </ul>
+            <ul onclick="javascript:window.location.href='seat.html'">
+                <li  class="tal">
+                    <div class="ledTime">13:05</div>
+                    <p>15:00结束</p>
+                </li>
+                <li class="tac">
+                    <div  class="planStyle">国语/2D</div>
+                    <p>1号厅</p>
+                </li>
+                <li class="tar">
+                    <div class="planPirce">￥75</div>
+                    <p><span class="tline">￥100</span></p>
+                </li>
+            </ul>
+            <ul onclick="javascript:window.location.href='seat.html'">
+                <li  class="tal">
+                    <div class="ledTime">13:05</div>
+                    <p>15:00结束</p>
+                </li>
+                <li class="tac">
+                    <div  class="planStyle">国语/2D</div>
+                    <p>1号厅</p>
+                </li>
+                <li class="tar">
+                    <div class="planPirce">￥75</div>
+                    <p><span class="tline">￥100</span></p>
+                </li>
+            </ul>
+            <ul onclick="javascript:window.location.href='seat.html'">
+                <li  class="tal">
+                    <div class="ledTime">13:05</div>
+                    <p>15:00结束</p>
+                </li>
+                <li class="tac">
+                    <div  class="planStyle">国语/2D</div>
+                    <p>1号厅</p>
+                </li>
+                <li class="tar">
+                    <div class="planPirce">￥75</div>
+                    <p><span class="tline">￥100</span></p>
+                </li>
+            </ul>
+		</div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	 var w = $("body").width();
+	 var i = $("#dateBody > li").length;
+	 var n = $("#dateBody > li").width();
+		$("#dateBody").width((parseInt(n*i)));
+		$("#dateBody > li").width(w*0.33);
+		$("#dateBody > li").click(function(){
+			$(this).addClass("cur").siblings().removeClass("cur")}
+		)
+
+
+$(".tar").click(function(){
+		var cardStyle = $(this).parent().next("div.cardPrice").css('display');
+		$(this).parent().next("div.cardPrice").slideToggle("slow").siblings(".cardPrice:visible").slideUp("slow");
+		
+		
+		$(".tar").find("em").removeClass("cur");
+		
+		 if(cardStyle == 'none'){
+			 $(this).find("em").addClass("cur");
+		}
+		
+		
+		});
+</script>    
+</body>
+</html>

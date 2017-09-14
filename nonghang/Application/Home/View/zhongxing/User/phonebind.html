@@ -1,0 +1,34 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">绑定手机号</div>
+    <div class="right"></div>
+  </div>
+</div>
+<div class="pages">
+  <div data-page="bind" class="page">
+    <div class="page-content">
+
+        <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+        </foreach>
+		<div class="content">
+            <div class="phoneBind">
+             	<?php if($flag=='1'){ ?><div class="noPhone">您暂时未绑定手机号<a href="{:U('addphone')}" class="addPhone"><em></em><span>添加手机号</span></a></div> 
+             	<?php }else{ ?><div class="bindSuccess">
+                	<div class="bindphone">成功绑定手机号：{$user['mobile']}</div>
+                    <a href="{:U('unbind')}" class="bindBtn" >解除绑定</a>
+                </div><?php } ?>
+            </div>
+    	</div>
+
+
+    </div>
+  </div>
+</div>
+<block name='script'>
+<script>
+
+</script>  
+</block>

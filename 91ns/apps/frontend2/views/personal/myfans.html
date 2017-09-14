@@ -1,0 +1,90 @@
+{% extends "template/personal_body.html" %}
+{% block title %}
+我的粉丝
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('myfans'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('personal.myfans'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+
+<!--我的粉丝头部-->
+<div class="fans-head-div">
+	<div class="fans-txt">我的粉丝</div>
+	<div class="fans-menu">
+		<div fanstype="superfans" value="tb-superfans" class="me-super menu-li pull-left cu-a on-menu-li">超级粉丝</div>
+		<div fanstype="dayfans" value="tb-sanday"    class="me-sday menu-li pull-left cu-a">30天内的粉丝</div>
+		<div value="tb-roomgurd"  class="me-myroom menu-li pull-left cu-a">
+		   <div class="myroom-txt">我的房间守护</div>
+           (<div class="myroom-num font-num"></div>)
+		</div>
+	</div>
+</div>
+
+<!--超级粉丝表格-->
+<table class="tb-superfans">
+	<tr class="tb-head">
+		<td class="su-tb-ranking">排名</td>
+		<td class="su-tb-superfans">超级粉丝</td>
+		<td class="su-tb-contribute">贡献财富</td>
+	</tr>
+
+  <tbody id="superfans-tbody">
+	<tr class="div-hiden">   <!--第一-->
+		<td class="su-tb-rank su-tb-li">
+			<div class="sprite-rank rank-no1 " ></div>
+		</td>
+		<td class="su-tb-fans">
+			<div class="tb-su-div">
+			<div class="tb-super-pic pull-left"></div>
+			<div class="tb-super-txt pull-left">半个西瓜半个夏</div>
+			<div class="tb-super-le sprite-fh_level fh1 "></div>
+		  </div>
+		</td>
+		<td class="su-tb-con">
+			<div class="tb-con-txt">8999403</div>
+		</td>
+	</tr>
+
+  </tbody>
+</table>
+<!--30天内的粉丝-->
+<table class="tb-sanday div-hiden">
+	<tr class="tb-head">
+		<td class="su-tb-ranking">排名</td>
+		<td class="su-tb-superfans">超级粉丝</td>
+		<td class="su-tb-contribute">贡献财富</td>
+	</tr>
+	<tbody id="dayfans-tbody">
+	</tbody>
+</table>
+<!--我的房间守护-->
+<table class="tb-roomgurd div-hiden">
+	<tr class="tb-head">  <!--表头-->
+		<td class="tb-ranking">排名</td>
+		<td class="tb-gurd">守护</td>
+		<td class=" tb-su-td">超级粉丝</td>
+		<td class="tb-contribute">贡献财富</td>
+	</tr>
+<tbody id="roomgurd-tbody">
+	<tr class="gurd-no1 div-hiden">
+		<td class="tb-rank-no1 tb-no1 tb-ranking">
+			<div class="sprite-rank rank-no1 " ></div>
+		</td>
+		<td class="tb-no1 tb-gurd">
+			<div class=" sprite-guard_level guard2"></div>
+		</td>
+		<td class="tb-su-td">
+		  <div class="tb-su-div">
+			<img class="tb-super-pic pull-left">
+			<div class="tb-super-txt pull-left">半个西瓜半个夏</div>
+			<div class="tb-super-le sprite-fh_level fh4 "></div>
+		  </div>
+		</td>
+		<td class="tb-contribute">
+			<div class="tb-con-txt">8999403</div>
+		</td>
+	</tr>
+</tbody>
+</table>
+{% endblock %}

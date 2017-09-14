@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "template/meta.html" %}
+	<title>91NS—美女视频</title>
+	{% include "template/link.html" %}
+	{% block head %}
+	{% endblock %}
+</head>
+<body>
+<div class="wrap">
+	{% include "template/header.html" %}
+	<div class="wrapNav">
+	    <div class="w_1200">
+	        <a href="/shop/vip" class="{%if ns_type|default('vk') == 'vip'%}cur{%endif%}">V卡</a>
+	        <a href="/shop/car" class="{%if ns_type|default('vk') == 'car'%}cur{%endif%}">座驾</a>
+	        <a href="/shop/guard" class="{%if ns_type|default('vk') == 'guard'%}cur{%endif%}">守护</a>
+	    </div>
+	</div>
+	<div class="wrapBd">
+		<div class="w_1200">
+	    {% block body %}
+		{% endblock %}
+		</div>
+	</div>
+	{% include "template/footer.html" %}
+	<script type="text/javascript" src="{{static_url('mall'|ns_js)}}"></script>
+</div>
+</body>
+</html>

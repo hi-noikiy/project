@@ -1,0 +1,84 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+           <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title">如何上传头像</div><a class="Helpreturn" href="help.php"></a>
+
+
+                              <div class="HAL-content-c">
+                                  <div class="HP-content">
+                                      <div class="HAL-text">
+                                          <p><span style="color: #cb5494; ">1.</span>登录后，点击个人信息下方的“修改头像”按钮</p>
+                                          <p style="text-align: center; ">
+                                              {% if webType['channelType']!=2 %}
+                                              <img style="margin-top:30px;" src="{{static_url('web/cssimg/help/help10.png')}}">
+                                              {% else %}
+                                              <img style="margin-top:30px;" src="{{static_url('web/cssimg/help/help10dz.png')}}">
+                                              {% endif %}
+                                          </p>
+                                      </div>
+
+                                      <div class="HAL-text">
+                                          <p><span style="color: #cb5494; ">2.</span>点击“本地照片”是从电脑中上传一张图片，点击“自拍头像”可以通过电脑的摄像头现场拍摄照片。</p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px;" src="{{static_url('web/cssimg/help/help11.png')}}">
+                                          </p>
+                                          <p style="color: red"> （头像保存后，用户可能需要刷新一下本页面（F按5键），才能查看最新的头像效果。）</p>
+                                      </div>
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+
+
+
+

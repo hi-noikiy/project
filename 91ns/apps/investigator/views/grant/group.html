@@ -1,0 +1,274 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+    <div class="container-fluid" style="padding: 0;">
+
+        <div class="widget-box tab-tabs" >
+            <div class="widget-title">
+                <ul class="nav nav-tabs">
+                    {% include "common/tab.html" %}
+                </ul>
+            </div>
+            <div class="widget-content tab-content" style="overflow: hidden;">
+
+                <div class="row-fluid" style="margin-top: 30px;">
+
+                    <div id="capita" class="countBox container-fluid" style="padding: 0;">
+
+                        <div class="row-fluid" style="margin-bottom: 50px;margin-top: 20px;">
+                            <button  type="button" class="btn btn-purple pull-right" style="margin:-10px 20px 10px;" onclick="editGroup('add', this)">添加军团&nbsp;</button>
+                        	<!--<div style="color:red;cursor: pointer;float:right;margin-right:200px;" >添加军团</div>-->
+                            <table id="tableList" class="table with-check table-purple TS">
+                            	<thead>
+                            		<tr>
+                            			<th>军团名称</th>
+                            			<th>徽章</th>
+                                        <th></th>
+                                        <th>操作</th>
+                                        <th></th>
+                            		</tr>
+                            	</thead>
+                                <tbody id="dataGroupList"></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div id="mofDialog" style="display:none"> <!--class="ui-dialog"-->
+    <form id="mofDialogDialogForm">
+        <div class="row-fluid">
+            <div style="padding-top: 20px;">
+            	<span style="width: 70px;display: inline-block;text-align: right;margin-right: 10px;">军团名称:</span>
+            	<input type="text" id="newGroupName" placeholder="2~6个字">
+            	<span id="labelUid"></span>
+            </div>
+            <div style="padding-top: 20px;">
+            	<span style="width: 70px;display: inline-block;text-align: right;margin-right: 10px;">军团徽章:</span>
+            	<input type="text" id="newGroupShortName" placeholder="两个字（需要两个字）">
+            </div>
+        </div>
+    </form>
+</div>
+<div id="addGroupUser" style="display:none"> <!--class="ui-dialog"-->
+    <form id="addGroupUserFrom">
+        <div class="row-fluid">
+            <div style="padding-top: 20px;">
+            	<span style="width: 70px;display: inline-block;text-align: right;margin-right: 10px;">团员ID:</span>
+            	<input type="text" id="addGroupUserUID" onkeydown="onlyNum(this)">
+            	<span id="labelUid"></span>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $(function(){
+        $('body').css('overflow-x','auto');
+    });
+    var groupData = [];
+    getGroupList();
+    function getGroupList(){
+        $.post('/ajax/groupList', function(res){
+        	if(res.code == 0){
+        		groupData = res.data;
+        		renderList();
+        	}
+        }, 'json');
+    }
+    function renderList(){
+		var $table = $('#dataGroupList');
+		var ctd = [];
+		for(var i=0,len=groupData.length;i<len;i++){
+			var $current = groupData[i];
+			ctd.push('<tr groupindex="',i,'">');
+			ctd.push('<td style="width: 300px;cursor:pointer;" onclick="renderChildList(this, ', i, ');"><i></i>', $current.name, '</td>');
+			ctd.push('<td>', $current.shortName, '</td>');
+			ctd.push('<td></td>');
+			ctd.push('<td><a class="a-edit font font18 cr-pe cursor-pointer" onclick="editGroup(\'edit\', this)">编辑</a>&nbsp;&nbsp;&nbsp;<a class="a-edit font font18 cr-pe cursor-pointer" onclick="addGroupUser(this)">添加团员</a></td>');
+			ctd.push('<td></td>');
+			ctd.push('</tr>');
+		}
+		$table.html(ctd.join(''));
+    }
+    function renderChildList(a, k){
+    	a = $(a);
+    	var data = groupData[k].memberList;
+    	if(clearChildren(a.parent().next())){
+    		a.find('i').removeClass('active');
+    		return;
+    	}
+        var leaderStr = '设为军团长';
+        for(var i=0,len=data.length;i<len;i++){
+            if(data[i].isLeader){
+                leaderStr = '';
+            }
+        }
+    	var _html = [];
+    		_html.push('<tr name="children"><td>团员</td><td></td><td>ID</td><td></td><td></td></tr>');
+    	for(var i=0,len=data.length;i<len;i++){
+    		_html.push('<tr groupindex="',k,'" groupchildindex="',i,'" name="children" uid="', data[i].uid,'">');
+    		_html.push('<td>', data[i].nickName, '</td>');
+    		_html.push('<td></td>');
+    		_html.push('<td>', data[i].uid, '</td>');
+    		_html.push('<td><a class="a-edit font font18 cr-pe cursor-pointer" onclick="delGroupUser(this)">踢出</a>&nbsp;&nbsp;&nbsp;<a class="a-edit font font18 cr-pe cursor-pointer" isleader="this" onclick="editGroupLeader(this)">', data[i].isLeader?'撤销军团长':leaderStr, '</a></td>');
+    		_html.push('<td></td>');
+    		_html.push('</tr>');
+    	}
+    	a.find('i').addClass('active');
+    	a.parent().after(_html.join(''));
+    }
+    function clearChildren(a){
+    	if(a.attr('name') == 'children'){
+    		var next = a.next();
+    		a.remove();
+    		clearChildren(next);
+    		return true;
+    	}
+    	return false;
+    }
+
+    function editGroup(isAdd, a){
+    	var id = 0;
+    	var $newGroupName = $('#newGroupName');
+    	var $newGroupShortName = $('#newGroupShortName');
+    	var selfData;
+    	if(isAdd == 'edit'){
+    		a = $(a);
+    		selfData = groupData[a.parent().parent().attr('groupindex')];
+    		id = selfData.id;
+    	}
+        $('#mofDialog').dialog({
+            autoOpen:true,
+            width:350,
+            height:260,
+            title:isAdd == 'edit'?'编辑军团':'添加军团',
+            resizable:false,
+            modal:true,
+            open:function(){
+    			if(isAdd == 'edit'){
+    				$newGroupName.val(selfData.name);
+    				$newGroupShortName.val(selfData.shortName);
+            	}
+            },
+            buttons: {
+                "确定": function () {
+                	var data = {
+                		id:id,
+                		name:$newGroupName.val(),
+                		shortName:$newGroupShortName.val()
+                	};
+                	if(data.name.length < 2 || data.name.length > 6){
+                		alert('军团名称：2~6个字');
+                		return;
+                	}
+                	if(data.shortName.length != 2){
+                		alert('军团徽章：两个字（需要两个字）');
+                		return;
+                	}
+
+                	$.post('/ajax/editGroup', data, function(res){
+                		if(res.code == 0){
+                			location.reload();
+                		}else{
+                			alert(res.info);
+                		}
+                	}, 'json');
+                }
+            }
+        });
+    }
+    function addGroupUser(a){
+    	a = $(a);
+    	var selfData = groupData[a.parent().parent().attr('groupindex')];
+
+	    $('#addGroupUser').dialog({
+	        autoOpen:true,
+	        width:350,
+	        height:260,
+	        title:'添加团员',
+	        resizable:false,
+	        modal:true,
+	        open:function(){
+	        },
+	        buttons: {
+	            "确定": function () {
+	            	var data = {
+	            		id: selfData.id,
+	            		uid: $('#addGroupUserUID').val()
+	            	};
+	            	if(parseInt(data.uid) != data.uid){
+	            		alert('id需要是数字');
+	            		return;
+	            	}
+	            	$.post('/ajax/addGroupMember', data, function(res){
+	            		if(res.code == 0){
+                            alert('添加成功');
+	            			location.reload();
+	            		}else{
+	            			alert(res.info);
+	            		}
+	            	}, 'json');
+	            }
+	        }
+	    });
+    }
+    function delGroupUser(a){
+    	a = $(a);
+    	var selfData = groupData[a.parent().parent().attr('groupindex')];
+    	var data = {
+    		id : selfData.id,
+    		uid : a.parent().parent().attr('uid')
+    	};
+        if(confirm('确定踢出吗？')){
+            $.post('/ajax/delGroupMember', data, function(res){
+                if(res.code == 0){
+                    selfData.memberList.splice(a.parent().attr('groupchildindex'), 1);
+                    a.parent().remove();
+                }else{
+                    alert(res.info);
+                }
+            }, 'json');
+        }
+    }
+    function editGroupLeader(a){
+    	a = $(a);
+    	var selfData = groupData[a.parent().parent().attr('groupindex')];
+    	var userData = selfData.memberList[a.parent().parent().attr('groupchildindex')];
+    	var data = {
+    		id: selfData.id,
+    		uid: a.parent().parent().attr('uid'),
+    		type: userData.isLeader?2:1
+    	};
+
+    	$.post('/ajax/setGroupLeader', data, function(res){
+    		if(res.code == 0){
+    			if(data.type === 1){//设置
+                    a.parent().parent().find('[isleader="this"]').html('');
+    				a.html('撤销军团长');
+    				userData.isLeader = 1;
+    			}else{
+                    a.parent().parent().find('[isleader="this"]').html('设为军团长');
+    				userData.isLeader = 0;
+    			}
+    		}else{
+    			alert(res.info);
+    		}
+    	}, 'json');
+    }
+
+</script>
+

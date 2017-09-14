@@ -1,0 +1,78 @@
+<extend name='Public/bookbase'/>
+<block name='title'>确认订单</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="{:U('Bookwhole/service')}" class="external link" >
+                <!-- <a href="#" class="back link"> -->
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">确认订单</div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+    <div class="pages">
+        <div data-page="confirmOrder" class="page">
+            <div class="main" id="page-confirmOrder">
+                <form>
+                    <div class="tip">
+                        *请在15分钟内完成支付，超时系统将自动取消！
+                    </div>
+                    <div class="itemBlock base-info">                       
+                        <h1>{$Think.cookie.filmName}</h1>
+                        <p><span>影城：</span>南华店</p>
+                        <p><span>影厅：</span>{$Think.cookie.videoCode}号{$Think.cookie.topicName}</p>
+                        <p>
+                        <span>时段：</span>{$Think.cookie.viewingDate|date="Y-m-d",###}&nbsp;{$Think.cookie.viewingDate|date="H:i",###}-{$Think.cookie.endTime|date="H:i",###}
+                        <a><span>小计：</span>¥{$Think.cookie.index_price}</a>
+                        </p>
+                        <!--<p>-->
+                            <!--<a><span>票数： {$Think.cookie.detail}</span>{$Think.session.confirmOrder.votesNum}张<b>({$Think.session.confirmOrder.file_ord_price}元/张)</b></a>-->
+                            <!--<a><span>小计：</span>¥{$Think.cookie.index_price}</a>-->
+                        <!--</p>-->
+                    </div>
+                    <?php if($list):?>
+                    <div class="itemBlock  set-meal">
+                        <h4>套餐饮品</h4>
+                        <volist name='list' id='v'>
+                        <p><span>{$v.name}</span><span><em>￥{$v.price}</em><em>×{$v.num}</em></span><span><i>小计：</i>¥{$v.tolprice}</span></p>
+                        </volist>                     
+                    </div>
+                    <?php endif;?>
+                    <?php if($list1||$_COOKIE['detail']):?>
+                    <div class="itemBlock  service">
+                        <h4>附加服务</h4>
+                         <volist name='list1' id='v'>
+                        <p><span>{$v.name}</span><span><em>￥{$v.price}</em><em>×{$v.num}</em></span><span><i>小计：</i>¥{$v.tolprice}</span></p>
+                         </volist>
+
+                         <?php if($_COOKIE['detail']):?>
+                         <p class="remark"><span>备注：</span>{$Think.cookie.detail}</p>
+                        <?php endif;?>
+                    </div>
+                    <?php endif;?>
+                    <div class="itemBlock numPeople">
+                        <div>人</div>
+                        <input type="tel" placeholder="输入观影人数"  id='confirmOrder_num'>
+                    </div>
+
+                    <div class="itemBlock  tel">
+                        <input type="tel" placeholder="请输入接收验证码的手机号 " id='confirmOrder_tel' value='{$Think.session.confirmOrder.confirmOrder_tel}'>
+                    </div>
+                </form>
+
+                <div style="display:none" id="confirmOrder_thisUrl">{:U('bookwhole/payoff')}</div>
+            </div>
+
+            <div class="submitBlock confirmOrder">
+                <p>总额：<em><span class="price">￥{$Think.cookie.all_price}</span><i><!-- （含已优惠￥0） --></i></em>
+                    <a href="javascript:confirmOrder_payoff();">提交订单</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</block>
+</body></html>

@@ -1,0 +1,269 @@
+<extend name='Public/base'/>
+<block name='body'>
+<div id="main">
+    <div class="film-box" style="background:url({$film_list.prevsImg}) no-repeat center top ">
+        <div class="playBtn"></div>
+    </div>
+    <div class="shade"></div>
+        <div class="container">
+            <div class="baseInfo">
+                <div class="img-box">
+                    <img src="{$film_list.image}" >
+                </div>
+                <h1><span>{$film_list.filmName}</span></h1>
+                <p><i>片长：{$film_list.duration}分钟</i><!--<i>今天上映<b id='goon'></b></i>--></p>
+                <h4><span>{$film_list.simpleword}</span></h4>
+                <ul>
+                    <li>导演：{$film_list.director} </li>
+                    <li>主演：{$film_list.cast}</li>
+                    <li class="last">类型：{$film_list.type}</li>
+                </ul>
+                <div class="score1">8.</div>
+                <div class="score2">5</div>
+                <!--<div class="degreeHeat"><i>照片</i><em>{$film_list.lookNum}想看</em></div>-->
+            </div>
+            <!--未上映-->
+            <?php if($id):?>
+            <div class="nonePlan"></div>
+            <?php else:?>
+            <div class="plandata">
+                <div class="cinema-select">
+                    <div id="dropdown">
+                        <p></p>
+                        <ul>
+                        	<volist name='cinema_list' id='v'>
+                            <li><a  rel="{$v.cinemaCode}">{$v.cinemaName}</a><p>地址：{$v.address}</p></li>
+                            </volist>
+                            <div class="triangle-character tc-border">◆</div>
+                            <div class="triangle-character tc-background">◆</div>
+                        </ul>
+                        <input id="result" type="hidden">
+                        <div class="cinema-address">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="scrollBox" style="margin:0 auto">
+                    <div class="ohbox">
+                        <ul class="piclist time-list">
+                        </ul>
+                    </div>
+                    <div class="pageBtn">
+                        <span class="prev">&lt;</span>
+                        <span class="next">&gt;</span>
+                        <ul class="list"></ul>
+                    </div>
+                </div>
+            </div>
+            <!--场次-->
+            <div class="play-time  clearfix">
+                <table class="table">
+                <thead>
+                    <tr><th>场次</th><th>影厅</th><th>语言</th><th>制式</th><th>片长</th>
+                    <!-- <th>余座</th> -->
+                    <th>标准价</th><th>网购价</th><th>选座购票</th></tr>
+                  </thead>  
+                    <tbody id='filminfo_index'>           
+                    
+                    </tbody>
+                </table>
+                <div class="th-bg"></div>
+                <div class="todayNone" style="display: none"></div>
+                <div class="timesign" style="display: none">
+                    <div class="morning"></div>
+                    <div class="noon"></div>
+                    <div class="night"></div>
+                </div>
+            </div>
+            <!--/场次-->
+            <?php endif;?>
+        </div>
+    </div>
+</div>
+
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+//影城下拉选择显示
+
+            //默认显示第一个
+            $("#dropdown > p").append($("#dropdown ul li:eq(0) a").clone().text());
+            $(".cinema-address > p").append($("#dropdown ul li:eq(0)").find('p').clone().text());
+            getPlanlist($("#dropdown ul li:eq(0) a").attr('rel'),0);
+
+            $("#dropdown > p").click(function(e){
+                e.stopPropagation();
+                var ul = $("#dropdown ul");
+                if(ul.css("display")=="none"){
+                    ul.slideDown("fast");
+                }else{
+                    ul.slideUp("fast");
+                }
+            });
+
+            $('.cinema-address > p').eq(0).show();
+            $("#dropdown ul li").each(function(i){
+                $(this).click(function(){
+                	if($(this).find('a').attr('rel') != $("#dropdown > p").attr('cinemaCode')){
+    					var txt = $(this).find('a').text();
+                        $("#dropdown > p").html(txt).attr('cinemaCode',$(this).find('a').attr('rel'));
+                        $(".cinema-address > p").empty().append($("#dropdown ul li").eq(i).find('p').clone().text());
+                        //切换影院
+                        getPlanlist($(this).find('a').attr('rel'),0);
+    				}
+                    $("#dropdown ul").hide();
+
+                });
+
+            });
+
+            $(document).click(function(){
+                $("#dropdown ul").hide();
+            });
+
+            $('.movie-listItem').last().css({'border-bottom':'none'});
+
+			
+
+//播放键点击时弹出详情
+            $('.playBtn').click(function(){
+                	 //iframe层
+                    layer.open({
+                        type: 2,
+                        title: false,
+                        shade: 0.8,
+                        area: ['856px', '638px'],
+                        content: 'filmdetail.html?id={$film_list.id}' //iframe的url
+                    });
+
+               
+            });
+
+        });
+        $('.todayNone').show();
+		var film_cinemaCode='{$cinemaCode}';
+		var film_time='{$time}';       
+		var filmNo='{$filmNo}';
+        function getPlanlist(cinemaCode,planDate){
+    	 	$('.movie-lists').html('');
+    	    $.getJSON("{:U('search_filmplan')}",{
+    	        cinemaCode:cinemaCode,
+    	        startTime:planDate,
+    	        filmNo:filmNo,
+    	        random:Math.random()
+    	        }, function(data) {
+    	        	$('.todayNone').show();
+    	        	$('#filminfo_index').empty();
+    	        	$('.timesign').hide();
+    	            if(data){
+    	            	if(data.planTime||data.planTime===null){
+    	            	 	$('.piclist').html('');
+    	            		var timestr='';
+    	            		$.each(data.planTime,function(k,value){
+    	            			timestr+='<li at='+value['time']+' onclick="getPlanlist(0,'+value['time']+')"';
+    	            			if(k=='0'){
+    	            				timestr+=' class="active"';
+    	            			}
+    	            			timestr+='><a>'+value['instr']+value['dtime']+'</a></li>';
+    	            		});
+    	            		$('.piclist').html(timestr);
+                        //日期滚动
+                            var num = Math.ceil($('.piclist li').length/4);
+                            $('.list').empty();
+                            for(i=1;i<=num;i++){
+                                $('.list').append('<li></li>');
+                            }
+                            jQuery(".scrollBox").slide({ titCell:".list li",pnLoop:"false", mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
+
+    	            	}else{
+    	            		if(cinemaCode=='0'){
+    	            			$('li[at='+planDate+']').attr('class','active').siblings().removeClass('active');
+    	            		}
+    	            	}
+    	            	$('#goon').html(data.count);
+    	            	
+    	            	
+    	            	
+    	            	
+    	            	
+    					if(data.films){
+    						$('.todayNone').hide();
+    						var html='';
+    						var indexSeat="{:U('plan/seat')}";
+    						 $.each(data.films,function(key,plan){
+    	                        	html+='<tr>';
+	    	       		              html+='    <td class="time">'+plan.start+'</td>';
+	    	       		              html+='    <td>'+plan.hallName+'</td>';
+	    	       		              html+='    <td>'+plan.copyLanguage+'</td>';
+	    	       		              html+='    <td>'+plan.copyType+'</td>';
+	    	       		              html+='    <td>'+plan.totalTime+'分钟</td>';
+	    	       		             // html+='    <td>余座：<b id="'+plan['featureAppNo']+'">'+plan.remain+'</b></td>';
+	    	       		              html+='    <td class="price1">￥'+plan.listingPrice+'</td>';
+	    	       		              html+='    <td class="price2">￥'+plan.memberPrice;
+	    	       		              if(data.hasuser!='1'){
+	    	       		            	html+='起';   		          
+	    	       		              }
+	    	       		              if(plan['classesd']){
+	    	       		            	 html+='</td>    <td><a href="javascript:" class="'+plan['classesd']+'">停止购票</a></td>'; 
+		    	       		          }else{
+		    	       		        	 html+='</td>    <td><a href="'+indexSeat+'?featureAppNo='+plan['featureAppNo']+'" class="btn1">立即购票</a></td>'; 
+			    	       		      }
+	    	       		              	
+	    	       		              html+='</tr>';
+	    	       		             /* if(plan.remain=='统计中'){
+	    	       		            	$.getJSON("{:U('public/remain')}",{featureAppNo:plan.featureAppNo},function(json){
+		    	       		            	$('#'+plan.featureAppNo).html(json.data);
+		    	       		              });
+	    	       		              }*/
+    						 });
+
+
+    						 $('.timesign').show();
+    						 $('#filminfo_index').empty().html(html);
+							 $('.btn1').click(function(){
+								 //loading层
+									var index = layer.load(2, {
+										shade: [0.1,'#000'] //0.1透明度的白色背景
+									});
+								 })
+    						//场次左侧时间段标志显示位置
+    				            var flag1 = true,
+    				                flag2 = true,
+    				                flag3 = true,
+    				           morningIndex = -999,
+    				           noonIndex = -999,
+    				           nightIndex = -999;
+
+    				            $('.time').each(function(i){
+    				               var a = $(this).text();
+    				                   a =parseInt(a.substr(0,2));
+    				               if(flag3&&a>=6&&a<12){ //早
+    				                    console.log(i);
+    				                    flag3 = false;
+    				                    morningIndex = i;
+    				                } else if(flag1&&a>=12&&a<18){ //中
+    				                    console.log(i);
+    				                    flag1 = false;
+    				                    noonIndex = i;
+    				                }else if(flag2&&(a>=18||(a>=0&&a<6))){ //晚
+    				                    console.log(i);
+    				                    flag2 = false;
+    				                    nightIndex = i
+    				                }
+    				            });
+    				          $('.morning').css('top',70*morningIndex);
+    				          $('.noon').css('top',70*noonIndex);
+    				          $('.night').css('top',70*nightIndex);
+    	            	}
+    	            }
+    	    }) ; 
+    	}
+    </script>
+
+
+</block>
+
+
+

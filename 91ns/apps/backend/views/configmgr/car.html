@@ -1,0 +1,517 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a> 
+        <a href="#" class="tip-bottom" data-original-title="">配置管理</a> 
+        <a href="#" class="current">座驾配置</a> 
+    </div>
+    
+   <!--  <h1>Tables</h1> -->
+  </div>
+  <div class="container-fluid">
+   <!--  <hr> -->
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+            <button id="btnadd" class="btn btn-success pull-right">添&nbsp;加</button>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>座驾配置</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table id="dataList" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>座驾类别</th>
+                  <th>座驾Id</th>
+                  <th>座驾名称</th>
+                  <th>价格(每月)</th>
+                  <th>描述</th>
+                  <!-- <th>状态</th> -->
+                  <th>配置名称</th>
+                  <th>是否有大座驾</th>
+                  <th>小座驾X轴位置</th>
+                  <th>小座驾Y轴位置</th>
+                  <th>大座驾X轴位置</th>
+                  <th>大座驾Y轴位置</th>
+                  <th>排序</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="pagination" class="pagination alternate pull-right">
+              
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="dialog-form" title="Create new user" style=" display: none;">
+  <p class="validateTips"></p>
+  <div id="userinfoedit">
+   <form id="submitform" action="#" method="get" class="form-horizontal">
+      <input type="hidden" id="d_uid"> 
+
+      <table >
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">座驾类别 :</label>
+              <div class="controls">
+                <!--<input id="typeId" type="text" class="span11">-->
+                <select name="typeId" id="typeId" style="width:190px">
+                  <option value="">选择座驾类型</option>
+                </select>
+
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="control-group">
+              <label class="control-label">座驾名称 :</label>
+              <div class="controls">
+                <input id="name" name="name" type="text" class="span11" placeholder="">
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">价格 :</label>
+              <div class="controls">
+                <input id="price" name="price" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">描述 :</label>
+              <div class="controls">
+                <input id="description" name="description" type="text" class="span11" placeholder="">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="control-group">
+              <label class="control-label">配置名称 :</label>
+              <div class="controls">
+                <input id="configName" name="configName" type="text" class="span11" placeholder="">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">是否有大座驾 :</label>
+              <div class="controls">
+                <input id="hasBigCar" name="hasBigCar" type="text" class="span11" placeholder="">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="control-group">
+              <label class="control-label">排序 :</label>
+              <div class="controls">
+                <input id="sort" name="sort" type="text" class="span11" placeholder="">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">小座驾X轴位置 :</label>
+              <div class="controls">
+                <input id="positionX1" name="positionX1" type="text" class="span11" placeholder="">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="control-group">
+              <label class="control-label">小座驾Y轴位置 :</label>
+              <div class="controls">
+                <input id="positionY1" name="positionY1" type="text" class="span11" placeholder="">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">大座驾X轴位置 :</label>
+              <div class="controls">
+                <input id="positionX2" name="positionX2" type="text" class="span11" placeholder="">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="control-group">
+              <label class="control-label">大座驾Y轴位置 :</label>
+              <div class="controls">
+                <input id="positionY2" name="positionY2" type="text" class="span11" placeholder="">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+      </table>  
+      
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+$(function(){
+    getDataList();
+
+    getCarTypeData();
+});
+
+function getCarTypeData(index){
+    //basePath
+    var data={};
+    data.page=index||0;
+    data.numPerPage=pagesize;
+    $.ajax({
+      type:"post",
+      url:"/configmgr/getCarType",
+      data:data,
+      dataType:'json',   
+      success:function(res){
+        
+        var data=res.data;
+        var carid=document.getElementById('typeId');
+        
+        for(var i=0; i<data.list.length;i++){
+          var option=document.createElement('option');
+          option.value=data.list[i].typeId;
+          option.innerText=data.list[i].name;
+          carid.appendChild(option);
+        }
+
+
+      }
+    });
+
+  }
+
+/**
+* 初始化为空
+*/
+function Initialization(){
+
+  var submitform=document.getElementById('submitform');
+    
+    submitform.typeId.value='';
+    submitform.name.value='';
+    submitform.price.value='';
+    submitform.description.value='';
+    //submitform.status.value='';
+    submitform.configName.value='';
+    submitform.hasBigCar.value='';
+    submitform.positionX1.value='';
+    submitform.positionX2.value='';
+    submitform.positionY1.value='';
+    submitform.positionY2.value='';
+    submitform.sort.value='';
+}
+  
+ var btnadd=document.getElementById('btnadd');
+ utils.addEvent(btnadd,'click',addData);
+
+ function addData(){
+  $( "#dialog-form" ).dialog({
+      width: 700,
+      title:'添加座驾信息',
+      modal:true,
+      closeOnEscape:true,
+      resizable:false,
+      open:function(res){
+          Initialization();
+        },
+      buttons:{
+        "添加":function(){
+
+          var submitform=document.getElementById('submitform'),
+          data={};
+
+          data.action="add";
+
+          data.typeId=submitform.typeId.value;
+          data.name=submitform.name.value;
+          data.price=submitform.price.value;
+          data.description=submitform.description.value;
+          data.status=0;//submitform.status.value;
+          data.configName=submitform.configName.value;
+          data.hasBigCar=submitform.hasBigCar.value;
+          data.sort=submitform.sort.value;
+          data.positionX1=submitform.positionX1.value;
+          data.positionX2=submitform.positionX2.value;
+          data.positionY1=submitform.positionY1.value;
+          data.positionY2=submitform.positionY2.value;
+
+          $.ajax({
+              type:"post",
+              url:"/configmgr/updateCar",
+              data:data,
+              dataType:'json',
+              success:function(res){
+                if(res.code==0){
+                  getDataList();
+                  $("#dialog-form" ).dialog("close");
+                }else{
+                  alert(res.info);
+                }
+              }
+          });
+
+          
+        },
+        "取消":function(){
+          $(this).dialog("close");
+        }
+
+      }
+  });
+ }
+
+ function getDataList(index){
+  var data={};
+  data.page=index||0;
+  data.numPerPage=pagesize;
+  $.ajax({
+    type:"post",
+    url:"/configmgr/getCar",
+    data:data,
+    dataType:'json',   
+    success:function(res){
+      
+      var data=res.data;
+      var table=document.getElementById("dataList");
+      var tbody= table.getElementsByTagName('tbody')[0];
+
+      dataTable.clearData(tbody);
+      
+      for(var i=0;i<data.list.length;i++){
+        addRow(tbody,'',data.list[i]);
+      }
+      
+      if(!index||index==0){
+        initPagination(data.count);
+      }
+
+    }
+  });
+}
+
+function initPagination(page) {
+  $("#pagination").pagination(page, {
+      callback: pageselectCallback,
+      items_per_page:pagesize, // 每页只显示一条记录
+      num_display_entries : 3,
+      num_edge_entries : 1, 
+      prev_text : "上一页",  
+      next_text : "下一页", 
+  });
+}
+
+function pageselectCallback(page_index, jq){
+    getDataList(page_index);
+    return false;
+}
+
+function addRow(table,index,data){
+  var row=table.insertRow();
+  var cell=row.insertCell(0);
+  var cell1=row.insertCell(1);
+  var cell2=row.insertCell(2);
+  var cell3=row.insertCell(3);
+  var cell4=row.insertCell(4);
+  var cell5=row.insertCell(5);
+  var cell6=row.insertCell(6);
+  var cell7=row.insertCell(7);
+  var cell8=row.insertCell(8);
+  var cell9=row.insertCell(9);
+  var cell10=row.insertCell(10);
+  var cell11=row.insertCell(11);
+  var cell12=row.insertCell(12);
+
+  
+  cell.innerHTML=data.typeName;
+  cell1.innerHTML=data.id;
+  cell2.innerHTML=data.name;
+  cell3.innerHTML=data.price;
+  cell4.innerHTML=data.description;
+  //cell6.innerHTML=data.status==0?"正常":"禁用";
+  cell5.innerHTML=data.configName;
+  cell6.innerHTML=data.hasBigCar;
+  cell7.innerHTML=data.positionX1;
+  cell8.innerHTML=data.positionX2;
+  cell9.innerHTML=data.positionY1;
+  cell10.innerHTML=data.positionY2;
+  cell11.innerHTML=data.sort;
+
+  var deit=document.createElement("a"),
+  del=document.createElement("a");
+  
+  deit.innerHTML='编辑';
+  deit.className="table-edit";
+  deit.data=data.id;
+  utils.addEvent(deit,'click',dataEdit);
+
+  del.innerHTML='删除';
+  del.data=data.id; 
+  utils.addEvent(del,'click',dataDelete); 
+
+  cell12.appendChild(deit);
+  cell12.appendChild(del);
+    
+  return row;
+}
+
+
+function dataEdit(){
+  var btn=this;  
+  var url="/configmgr/updateCar/"+btn.data;
+  
+   $( "#dialog-form" ).dialog({
+        width: 700,
+        title:'修改座驾信息',
+        modal:true,
+        closeOnEscape:true,
+        resizable:false,
+        open:function(){
+          var data={};
+          data.action='';
+
+          Initialization();
+
+          $.ajax({
+            type:"post",
+            data:data,
+            url:url,
+            dataType:'json',
+            success:function(res){
+              var data= res.data;
+
+              var submitform=document.getElementById('submitform');
+              submitform.typeId.value=data.typeId;
+              submitform.name.value=data.name;
+              submitform.price.value=data.price;
+              submitform.description.value=data.description;
+              // submitform.status.value=data.status;
+              submitform.configName.value=data.configName;
+              submitform.hasBigCar.value=data.hasBigCar;
+              submitform.sort.value=data.sort;
+              submitform.positionX1.value=data.positionX1;
+              submitform.positionX2.value=data.positionX2;
+              submitform.positionY1.value=data.positionY1;
+              submitform.positionY2.value=data.positionY2;
+            }
+          });
+        },
+        buttons:{
+          "修改":function(){
+            var submitform=document.getElementById('submitform'),
+            data={};
+
+            data.action="update";
+
+            data.typeId=submitform.typeId.value;
+            data.name=submitform.name.value;
+            data.price=submitform.price.value;
+            data.description=submitform.description.value;
+            // data.status=submitform.status.value;
+            data.configName=submitform.configName.value;
+            data.hasBigCar=submitform.hasBigCar.value;
+            data.sort=submitform.sort.value;
+            data.positionX1=submitform.positionX1.value;
+            data.positionY1=submitform.positionY1.value;
+            data.positionX2=submitform.positionX2.value;
+            data.positionY2=submitform.positionY2.value;
+
+            $.ajax({
+              type:"post",
+              data:data,
+              url:url,
+              dataType:'json',
+              success:function(res){
+                if(res.code==0){
+                  getDataList();
+                  $("#dialog-form" ).dialog("close");
+                }else{
+                  alert(res.info);
+                }       
+              }
+            });
+            
+          },
+          "取消":function(){
+            $(this).dialog("close");
+          }
+
+        }
+   });
+
+  
+
+}
+
+function dataDelete(){
+  if(confirm("确定要删除该数据")){
+    var btn=this;  
+    var url="/configmgr/updateCar/"+btn.data,
+    data={};
+    data.action="del";
+    $.ajax({
+      type:"post",
+      data:data,
+      url:url,
+      dataType:'json',
+      success:function(res){
+        if(res.code==0){
+          getDataList();
+         //dataTable.delTableRow(btn);
+        }else{
+          alert(res.info);
+        }       
+      }
+    });
+  }
+}
+
+</script>

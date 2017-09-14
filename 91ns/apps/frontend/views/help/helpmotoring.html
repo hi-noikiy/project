@@ -1,0 +1,70 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+           <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title">如何获得座驾</div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div  style=" margin:50px auto 0; min-height:520px;">
+                                      <div >
+                                          <h3></h3>
+                                          <p style=" padding-left:50px;padding-right: 50px;">登陆后，可以去商城购买座驾，选定座驾后，点击“购买”，当一个用户拥有多台座驾时，可以去“我的道具”页面，选择座驾专栏后面的有效期下方有个当前状态。如果当前状态为开启，则点击关闭按钮，即关闭该座驾。反之点击，开启按钮，即开启该座驾。</p>
+                                          <p style="text-align: center; margin-top:20px; ">
+                                              <img style="margin-top:20px; width:750px;" src="{{static_url('web/cssimg/help/help7.png')}}">
+                                          </p>
+                                      </div>
+
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+

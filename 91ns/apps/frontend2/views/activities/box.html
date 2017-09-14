@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities.box'|ns_css)}}">
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+    <div class="wrapBd">
+        <ul>
+            <li class="help" style="position: relative;">
+                <div class="aheader">开箱秘籍</div>
+                <ul>
+                    <li><span>1、</span>所有的登录用户/主播，在线观看5分钟，即可开宝箱1次，每天限5次，直接在直播间打开；</li>
+                    <li><span>2、</span>普通VIP用户每天可额外增加1次开宝箱机会；</li>
+                    <li><span>3、</span>至尊VIP用户每天可额外增加2次开宝箱机会；</li>
+                    <li><span>4、</span>APP登录用户每天可额外增加2次开宝箱机会；</li>
+                    <li><span>5、</span>活动期间每天累计充值额每满100元，可额外增加1次开宝箱机会，每天上限10次（<span>只限当日使用</span>）；</li>
+                    <li><span>6、</span>抽中宝箱的礼物可在背包或我的道具中查看。</li>
+                </ul>
+                <div class="pic">
+                    <img src="{{static_url('web/cssimg/91ns/QRcode.png')}}">
+                    <span>扫我下载APP，获得更多开启宝箱机会</span>
+                </div>
+            </li>
+            <li class="cts clearfix">
+                <div class="aheader">宝物预览</div>
+                <ul class="preview">
+                    <li>
+                        <i class="bg"></i>
+                        <img src="{{static_url('web/cssimg2/activities/box/xcqs.png')}}">
+                        <span>星辰骑士 x2天</span>
+                    </li>
+                    <li>
+                        <i class="bg"></i>
+                        <img src="{{static_url('web/cssimg2/activities/box/lb.png')}}">
+                        <span>聊币 x1000</span>
+                    </li>
+                    <li>
+                        <i class="bg"></i>
+                        <img src="{{static_url('web/cssimg2/activities/box/black_bear.png')}}">
+                        <span>黑熊 x5天</span>
+                    </li>
+                    <li>
+                        <i class="bg"></i>
+                        <img src="{{static_url('web/cssimg2/activities/box/jlbk.png')}}">
+                        <span>金喇叭卡 x1</span>
+                    </li>
+                    <li>
+                        <i class="bg"></i>
+                        <img src="{{static_url('web/cssimg2/activities/box/ylbk.png')}}">
+                        <span>银喇叭卡 x1</span>
+                    </li>
+                    <li>
+                        <i class="bg"></i>
+                        <img src="{{static_url('web/cssimg2/activities/box/bsyjx.png')}}">
+                        <span>白色郁金香 x1</span>
+                    </li>
+                    <li>
+                        <i class="bg"></i>
+                        <img src="{{static_url('web/cssimg2/activities/box/ttq.png')}}">
+                        <span>甜甜圈 x1</span>
+                    </li>
+                    <li>
+                        <i class="bg"></i>
+                        <img src="{{static_url('web/cssimg2/activities/box/cm.png')}}">
+                        <span>草莓 x3</span>
+                    </li>
+                    <li>
+                        <i class="bg"></i>
+                        <img src="{{static_url('web/cssimg2/activities/box/ld.png')}}">
+                        <span>聊豆 x20</span>
+                    </li>
+                </ul>
+                <div class="list">
+                    <i class="bg"></i>
+                    <div class="header">宝箱名单</div>
+                    <div id="boxListShow" class="hasScroll">
+                        <div class="no-wh g-scroll">
+                            <div class="scroll-bg"></div>
+                            <div id="scrollBan" class="scroll-ban"></div>
+                        </div>
+                        <ul class="scroll-body clearfix">
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <li class="help tips">
+                <div class="aheader">温馨提示</div>
+                <ul>
+                    <li><span>1、</span>只有在线观看签约主播的直播才会出现宝箱任务；</li>
+                    <li class="bloder"><span>2、</span>每日最大开启宝箱次数为20次；</li>
+                    <li><span>3、</span>本日宝箱开启完毕，次日00:00刷新可开启宝箱次数；</li>
+                    <li><span>4、</span>本活动最终解释权归91NS所有。</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+    <script type="text/javascript" defer async data-main="{{static_url('activities.box'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</body>
+</html>

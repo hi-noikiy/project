@@ -1,0 +1,28 @@
+{% extends "template/help_body.html" %}
+{% block title %}
+帮助中心
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('help'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+<div class="personal-div getpresents clearfix">
+    <div class="get-head pull-re pull-re" style="display: block">
+        <div class="_help-head">如何在直播间点节目</div>
+        <div class="_help-contend">
+            <div class="div1">1.进入直播间后，点击聊天区域上方的“节目”按钮。</div>
+            <img style="margin-top:30px;" src="{{static_url('web/cssimg2/help/1.png')}}">
+            <div class="div1">2.进入节目系统之后，用户可以选中节目单中主播预设好的节目，进行点歌，也可自选节目。点节目需花费一定数量的聊币或者点歌卡。</div>
+            <img style="margin-top:30px;" src="{{static_url('web/cssimg2/help/2.png')}}">
+            <img style="margin-top:30px;margin-left: 58px;" src="{{static_url('web/cssimg2/help/3.png')}}">
+            <div class="div1">3.点节目成功后，需等待主播同意，在已点节目里可浏览状态。</div>
+            <img style="margin-top:30px;" src="{{static_url('web/cssimg2/help/4.png')}}">
+            <div class="div1">4.点节目成功，则消耗聊币和节目卡，如果主播拒绝，则返还对应价值的节目卡。</div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock%}

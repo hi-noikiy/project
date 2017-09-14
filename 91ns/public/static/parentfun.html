@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		(function() {
+			function getUrlParam(name){
+			    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			    var r = window.location.search.substr(1).match(reg);
+			    if (r!=null) return unescape(r[2]); return null;
+			}
+			window.parent.openWinOfCharging(getUrlParam('orderId'));
+		})();
+	</script>
+</head>
+<body>
+
+</body>
+</html>

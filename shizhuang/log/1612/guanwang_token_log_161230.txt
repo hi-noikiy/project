@@ -1,0 +1,6 @@
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:1:"1";s:4:"sign";s:32:"93f7d089a503dad95f5c5fdc7c07c099";s:8:"username";s:6:"test32";}, 2016-12-30 09:15:46
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:1:"1";s:4:"sign";s:32:"be7808f198140f0f1b7e0b75ed0c3368";s:8:"username";s:7:"test144";}, 2016-12-30 09:27:47
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:0:"";s:4:"sign";s:32:"1fc96513fa468a763461b8ec45fa4d3d";s:8:"username";s:10:"1483063372";}, 2016-12-30 10:03:00
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:0:"";s:4:"sign";s:32:"b3f33d7004ee8af99d446044facde40e";s:8:"username";s:10:"1483063562";}, 2016-12-30 10:06:09
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:1:"1";s:4:"sign";s:32:"be2cef20a4f855cd096c0e5361a573ed";s:8:"username";s:6:"test20";}, 2016-12-30 15:34:57
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:1:"1";s:4:"sign";s:32:"90b6ff1aa795315a8b44b399956a4feb";s:8:"username";s:8:"test1101";}, 2016-12-30 16:41:54

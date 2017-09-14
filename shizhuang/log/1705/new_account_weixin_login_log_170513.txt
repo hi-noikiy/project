@@ -1,0 +1,5 @@
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wIxVDFJBBJETe3yhFI0e9KU";s:4:"sign";s:32:"d160466cd3c41558b19b0f7078e7f9a2";s:7:"game_id";s:1:"9";}, return=1 1654522, 2017-05-13 01:46:18
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wAP5_-Xu0Plp6nBwKtIVuWM";s:4:"sign";s:32:"dbc3facd85ed490f3045e86e245550ae";s:7:"game_id";s:1:"9";}, return=1 1654548, 2017-05-13 10:41:26
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wLeoPBDMrv1ntVSCs1id0Dw";s:4:"sign";s:32:"f0e2362590e4e043751bf586836069d0";s:7:"game_id";s:1:"9";}, return=1 1654553, 2017-05-13 11:19:45
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wFAHL5JKGGhZgVzoqMHS-X8";s:4:"sign";s:32:"46c0bb2ce07eb24c178072fd662a6b96";s:7:"game_id";s:1:"9";}, return=1 1654569, 2017-05-13 13:13:14
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wJqlfwSZNFW8eh_xG-3ApFc";s:4:"sign";s:32:"b7085f822ccb156b3ad3c47522576a1d";s:7:"game_id";s:1:"9";}, return=1 1654659, 2017-05-13 23:50:33

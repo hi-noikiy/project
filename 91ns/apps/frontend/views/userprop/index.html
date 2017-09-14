@@ -1,0 +1,258 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<!--js、css引入-->
+{% endblock %}
+
+{% block title %}
+我的道具
+{% endblock %}
+
+{% block titleList %}
+<ul class="nav">
+    <li class="{% if ns_sonType == 'all' %}active{% endif %}" ><a href="/userprop">全部道具({{ allData['carList']|default(false)|length + allData['vipList']|default(false)|length + allData['hornList']|default(false)|length + allData['guardList']|default(false)|length + allData['badgeList']|default(false)|length}})</a></li>
+    <li class="{% if ns_sonType == 'normal' %}active{% endif %}"><a href="/userprop?action=normal">常规({{ allData['vipList']|default(false)|length + allData['hornList']|default(false)|length}})</a></li>
+    <li class="{% if ns_sonType == 'car' %}active{% endif %}"><a href="/userprop?action=car">座驾({{ allData['carList']|default(false)|length }})</a></li>
+    <li class="{% if ns_sonType == 'guard' %}active{% endif %}"><a href="/userprop?action=guard">守护({{ allData['guardList']|default(false)|length }})</a></li>
+    <li class="{% if ns_sonType == 'badge' %}active{% endif %}"><a href="/userprop?action=badge">徽章({{ allData['badgeList']|default(false)|length }})</a></li>
+</ul>
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent ">
+    <div class="center-box-content">
+        <div class="center-box main-background-body" bottompadding="42">
+            <div class="center-top">
+                <div class="rope-left">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+                <div class="rope-right">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+            </div>
+            <div class="center-content">
+                <div class="widget-box">
+                    <table class="table purple prop-body">
+                        <thead>
+                        <tr>
+                            <th class="-name">道具</th>
+                            <th class="-content">效果</th>
+                            <th class="-time">有效期</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- vip/喇叭-->
+                        {% if ns_sonType == 'all' or ns_sonType == 'normal' %}
+                            {% for vip in allData['vipList']|default([]) %}
+                                <tr class="item-vip">
+                                    <td class="-name">
+                                        <i class="sprite-vip_level VIP{{ vip['vipLevel'] }}"></i>
+                                    </td>
+                                    <td class="-content">
+                                        <div>
+                                            {{ vip['description'] }}
+                                        </div>
+                                    </td>
+                                    <td class="-time">
+                                    {% if severTime > vip['itemExpireTime'] %}
+                                        <span style="color:red;font-weight: bold;">{{ vip['itemExpireTime']|ns_date }}</span>
+                                    {% else %}
+                                        {{ vip['itemExpireTime']|ns_date }}
+                                    {% endif %}
+                                        </br>
+                                        <a href="/shop"><div class="-continue">续费</div></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            {% for horn in allData['hornList']|default([]) %}
+                                <tr class="item-guard">
+                                    <td class="-name">
+                                        <i class="sprite-icon {{ horn['configName'] }}"></i>
+                                        <span>{{ horn['name'] }}</span>
+                                    </td>
+                                    <td class="-content -guard">
+                                        {{ horn['description'] }}
+                                    </td>
+                                    <td class="-time">
+                                        <div class="-num clearfix">
+                                            <span>剩余：</span>{{ horn['itemCount'] }}
+                                        </div>
+                                        <div class="-timeOut">有效期至：永久</div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                        <!-- 座驾 -->
+                        {% if ns_sonType == 'all' or ns_sonType == 'car' %}
+                            {% for car in allData['carList']|default([]) %}
+                                <tr class="item-car">
+                                    <td class="-name">
+                                        <i class="sprite-car_ico_big {{ car['configName'] }}"></i>
+                                        <span>{{ car['carName'] }}</span>
+                                    </td>
+                                    <td class="-content">
+                                        进入主播房间时在公聊框提示<br/>
+                                        {% if car['carTypeDescription']>0%}
+                                        （{{ car['carTypeDescription'] }}）
+                                        {% endif %}
+                                        <!-- （并携带炫丽的进场动画 -->
+                                    </td>
+                                    <td class="-time">
+                                        <div class="-now clearfix" style="margin-left: 12px;*margin-left: 65px;">
+                                            <div>当前状态：</div>
+                                            <div class="-sub -open {% if car['status']==1 %}active{% endif %}" onclick="openCar({{ car['itemId'] }},this);">
+                                                <div>开启</div>
+                                            </div>
+                                            <div class="-sub -close {% if car['status']==0 %}active{% endif %}" onclick="closeCar({{ car['itemId'] }},this);">
+                                                <div>关闭</div>
+                                            </div>
+                                        </div>
+                                        {% if car['carTypeId'] != 4 %}
+                                        <div class="-timeOut">有效期至：
+                                            {% if severTime > car['itemExpireTime'] %}
+                                                <span style="color:red;font-weight: bold;">{{ car['itemExpireTime']|ns_date }}</span>
+                                            {% else %}
+                                                {{ car['itemExpireTime']|ns_date }}
+                                            {% endif %}
+                                        </div>
+                                        {% else %}
+                                        <div class="-timeOut" style="color:#25DA35;">富豪专属</div>
+                                        <div class="-timeOut">若不是VIP则无法开启</div>
+                                        {% endif %}
+                                        {% if car['carTypeId']<4%}
+                                        <a href="/shop/car"><div class="-continue">续费</div></a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                        <!-- 守护 -->
+                        {% if ns_sonType == 'all' or ns_sonType == 'guard' %}
+                            {% for guard in allData['guardList']|default([]) %}
+                                <tr class="item-guard">
+                                    <td class="-name">
+                                        守护的主播
+                                    </td>
+                                    <td class="-content -guard">
+                                        <i class="sprite guard{{ guard['level'] }}"></i></br>专属坐席，进场提示，守护表情，守护礼物，房间特权
+                                    </td>
+                                    <td class="-time">
+                                        <div class="-num clearfix">
+                                            <span>守护的主播：</span>{{ guard['beGuardedName'] }}
+                                        </div>
+                                        <div class="-timeOut">有效期至：
+                                        {% if severTime > guard['expireTime'] %}
+                                            <span style="color:red;font-weight: bold;">{{ guard['expireTime']|ns_date }}</span>
+                                        {% else %}
+                                            {{ guard['expireTime']|ns_date }}
+                                        {% endif %}
+                                        </div>
+                                        <div class="-line3" style="margin-left: 12px;*margin-left: 65px;">
+                                            <a href="/{{ guard['beGuardedUid'] }}" target='_blank'><div class="-goRoom"><i></i>进入房间</div></a>
+                                            <a href="/shop/guard?uid={{ guard['beGuardedUid'] }}"><div class="-continue">续费</div></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                        <!-- 徽章 -->
+                        {% if ns_sonType == 'all' or ns_sonType == 'badge' %}
+                            {% for badge in allData['badgeList']|default([]) %}
+                                <tr class="item-guard">
+                                    <td class="-name">
+                                        {% if badge['isSignBadge']==1 %}
+                                        <i class="sprite-icon {{ badge['configName'] }}{{ badge['itemCount'] }}"></i>
+                                        {% else %}
+                                        <i class="sprite-icon {{ badge['configName'] }}"></i>
+                                        {% endif %}
+
+                                        <span>{{ badge['name'] }}</span>
+                                    </td>
+                                    <td class="-content -guard">
+                                        {{ badge['description'] }}
+                                    </td>
+                                    <td class="-time">
+                                        {% if badge['isSignBadge']==1 %}
+                                        <div class="-num clearfix">
+                                            <span>当前等级：</span>{{ badge['itemCount'] }}
+                                        </div>
+                                        {% endif %}
+                                        {% if !badge['itemExpireTime'] or badge['itemExpireTime']==0%}
+                                        <div class="-timeOut">有效期至：永久</div>
+                                        {% else %}
+                                            {% if severTime > badge['itemExpireTime'] %}
+                                            <div class="-timeOut" style="color: red;font-weight: bold;">有效期至：{{ badge['itemExpireTime']|ns_date }}</div>
+                                            {% else %}
+                                            <div class="-timeOut">有效期至：{{ badge['itemExpireTime']|ns_date }}</div>
+                                            {% endif %}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        {% endif %}
+
+                        <!-- 守护自己的主播 -->
+                        <tr class="item-guarder" style='display:none;'>
+                            <td class="-name">
+                                守护您的用户
+                            </td>
+                            <td class="-content">
+                                显示当前守护您的用户之一
+                            </td>
+                            <td class="-time">
+                                <div class="-num clearfix">
+                                    <span>守护者：</span>哇哈哈
+                                </div>
+                                <div class="-timeOut">有效期至：2015年11月18日</div>
+                                <a href="" ><div class="-personal">个人主页</div></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- 若为空，则提示。 -->
+                    {% if ns_sonType == 'all' %}
+                        {% if (allData['carList']|default(false)|length + allData['vipList']|default(false)|length + allData['guardList']|default(false)|length + allData['badgeList']|default(false)|length) == 0 %}
+                        <div class="no-prop"><span></span>对不起，您还没有相关道具！</div>
+                        {% endif %}
+                    {% elseif ns_sonType == 'normal' %}
+                        {% if (allData['vipList']|default(false)|length + allData['hornList']|default(false)|length) == 0 %}
+                        <div class="no-prop"><span></span>对不起，您还没有相关道具！</div>
+                        {% endif %}
+                        
+                    {% elseif ns_sonType == 'car' %}
+                        {% if (allData['carList']|default(false)|length) == 0 %}
+                        <div class="no-prop"><span></span>对不起，您还没有相关道具！</div>
+                        {% endif %}
+                    {% elseif ns_sonType == 'guard' %}
+                        {% if (allData['guardList']|default(false)|length) == 0 %}
+                        <div class="no-prop"><span></span>对不起，您还没有相关道具！</div>
+                        {% endif %}
+                    {% elseif ns_sonType == 'badge' %}
+                        {% if (allData['badgeList']|default(false)|length) == 0 %}
+                        <div class="no-prop"><span></span>对不起，您还没有相关道具！</div>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+            <div class="center-bottom">
+            </div>
+        </div>
+        <div class="center-footer-bg" ></div>
+        {% include "template/background.html" %}
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript" src="{{static_url('91ns.userprop'|ns_js)}}"></script>
+{% endblock %}

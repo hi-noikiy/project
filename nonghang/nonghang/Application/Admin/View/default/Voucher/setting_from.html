@@ -1,0 +1,157 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<style type="text/css">
+.sublist{display: none}
+.show{display: block;}
+</style>
+<form method="post" action="{:U()}" class="" id="dataform">
+
+		<div class="formBody">
+			<div class="queryBox">
+				<div class="inputText" > <span>方案名称</span>
+					<input type="text" name="configName" placeholder="请输入方案名称" value="{$setingInfo.configName}">
+				</div>
+			</div>
+			<ul class="tabbtn" id="tabs">
+				<foreach name="voucherTypeList" item="vo" key="k">
+					<li><a data="tab{$vo.typeId}" href="#" <if condition="$k eq 0 ">id="current"</if>>{$vo.typeName}</a></li>
+				</foreach>
+			</ul>
+			<div class="tabcon" id="tablist">
+				<foreach name="voucherTypeList" item="vo" key="k">
+					<div class="sublist <if condition="$k eq 0 ">show</if>" id="tab{$vo.typeId}">
+					<input name="configValue[{$vo.typeId}][typeCalss]" type="hidden" value="{$vo.typeClass}"/>
+	
+						<if condition="empty($setingInfo['configValue'][$vo['typeId']])">
+
+						<foreach name="weekList" item="wvo" key="wk" >
+						<div>
+						<div class="subitem"> <span>{$wvo}&nbsp;时段：</span>
+							<input type="text" name="configValue[{$vo.typeId}][{$wk}][start][]" value="" class="time"	/>-<input type="text" name="configValue[{$vo.typeId}][{$wk}][end][]" value="" class="time"	/>
+							<span>2D价格：</span><input name="configValue[{$vo.typeId}][{$wk}][2d][]" type="text" /><span>3D价格：</span><input name="configValue[{$vo.typeId}][{$wk}][3d][]" type="text" /><span>IMAX价格：</span><input name="configValue[{$vo.typeId}][{$wk}][max][]" type="text" /><span style=" font-size: 14px;"><span onclick="delItem(this)" style=" cursor: pointer;">-</span><span onclick="addItem(this);" style="cursor: pointer;">+</span></span>
+							<hr />
+						</div>
+					</div>
+					</foreach>
+
+					<else />
+<foreach name="setingInfo['configValue'][$vo['typeId']]" item="wvo" key="wk" >
+						<div>
+
+						<foreach name="wvo.start" item="weekItem" key="weekKey">
+						<div class="subitem"> 
+						<span>{$weekList[$wk]}&nbsp;时段：</span>
+						<input type="text" name="configValue[{$vo.typeId}][{$wk}][start][]" value="{$wvo['start'][$weekKey]}" class="time"	/>-<input type="text" name="configValue[{$vo.typeId}][{$wk}][end][]" value="{$wvo['end'][$weekKey]}" class="time"	/>
+							<span>2D价格：</span><input name="configValue[{$vo.typeId}][{$wk}][2d][]" type="text" value="{$wvo['2d'][$weekKey]}"/>
+							<span>3D价格：</span><input name="configValue[{$vo.typeId}][{$wk}][3d][]" type="text" value="{$wvo['3d'][$weekKey]}"/>
+							<span>IMAX价格：</span><input name="configValue[{$vo.typeId}][{$wk}][max][]" type="text" value="{$wvo['max'][$weekKey]}"/>
+
+							<span style=" font-size: 14px;"><span onclick="delItem(this)" style=" cursor: pointer;">-</span><span onclick="addItem(this);" style="cursor: pointer;">+</span></span>
+							<hr />
+						</div>
+					</foreach>
+					</div>
+					</foreach>
+				</if>
+
+
+
+					</div>
+				</foreach>
+			</div>
+			<div class="formBtn"> <a href="javascript:ajaxSubmit();" class="button">确认</a> <a href="javascript:parent.layer.closeAll();" class="cancel">取消</a> </div>
+		</div>
+		    <input type="hidden" name="id" value="{$setingInfo.id}">
+
+	</form>
+</block>
+<block name="script"> 
+	<script type="text/javascript" src="__STATIC__/jqdatetiem/jquery.datetimepicker.js"></script> 
+	<script type="text/javascript">
+$(document).ready(function() {
+		// $("#tablist div.sublist").hide(); // Initially hide all content
+		$("#tabs li:first").attr("id","current"); // Activate first tab
+		// $("#tablist div:first").show(); // Show first tab content
+		
+		$('#tabs a').click(function(e) {
+				e.preventDefault();				
+				$("#tablist div.sublist").hide(); //Hide all content
+				$("#tabs li").attr("id",""); //Reset id's
+				$(this).parent().attr("id","current"); // Activate this
+				$('#' + $(this).attr('data')).show(); // Show content for current tab
+		});
+});
+		
+//左右滑动选项卡切换
+//	$("#tab").tabso({
+//			cntSelect:"#tablist",
+//			tabEvent:"mouseover",
+//			tabStyle:"normal"
+//	});
+
+
+function ajaxSubmit () {
+				$("#dataform").ajaxSubmit({	
+						type:"post",	//提交方式	
+						dataType:"json", //数据类型	
+						url:"{:U()}", //请求url 
+						success:function(json){ //提交成功的回调函数 
+							if (json.status == 1) {
+										layer.alert(json.content);
+								}else if(json.status == 0){
+
+
+										layer.confirm(json.content, {
+										btn: ['返回列表','<?php if(intval($cinemaInfo['cinemaCode']) == 0){echo '继续添加';}else{echo '继续修改';}?>'], //按钮
+										shade: false //不显示遮罩
+								}, function(){
+										parent.location.reload();
+								}, function(){
+										location.reload();
+								});
+								}
+						 
+						}	
+				});
+		}
+
+function delItem (obj) {
+	var nowNums = $($(obj).parent().parent().parent().find('div')).length;
+	if (nowNums > 1) {
+			$(obj).parent().parent().remove();
+	}else{
+		layer.alert('无法删除');
+	}
+
+}
+
+function addItem (obj) {
+	$(obj).parent().parent().parent().append($(obj).parent().parent().parent().html());
+	$('.time').datetimepicker({
+		datepicker:false,
+		format:'H:i',
+		step:5
+});
+	set_lay_height();
+}
+		
+$('.time').datetimepicker({
+		datepicker:false,
+		format:'H:i',
+		step:5
+});
+
+function set_lay_height () {
+	height = parseInt($("#dataform").css("height"));
+	// alert(height);
+
+	parent.$(".layui-layer-iframe").css('height',(height + 26) +"px");
+	parent.$(".layui-layer-content").css('height',(height + 26) +"px");
+	parent.$(".layui-layer-content iframe").css('height',(height + 26) +"px");
+	// $("#dataform").css('height',(height - 26) +"px");
+	
+	// $(".layui-layer-iframe").css('height',(height + 26) +"px");
+}
+set_lay_height();
+</script> 
+</block>

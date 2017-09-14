@@ -1,0 +1,280 @@
+<div id="breadcrumb">
+    <a onclick="javascript:history.go(-1);" class="go-to-home tip-bottom font font18" style="cursor: pointer;">
+        <i class="icon-arrow-left"></i> 返回 &nbsp;
+    </a>
+    <a onclick="javascript:history.go(-1);" class="font font18" style="cursor: pointer;"> &nbsp;&nbsp;<span>代理 &gt</span></a>
+    <a onclick="javascript:history.go(-1);" class="font font18" style="cursor: pointer;"> <span>家族&gt</span></a>
+    <a href="/agent/familyinfo?id={{info['id']}}" class="current font font18"> <span>家族详情</span></a>
+    <input type="hidden" id="familyId" value="{{info['id']}}">
+</div>
+
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <div class="user-info">
+        <img alt="" src="{{info['logo']}}">
+        <input id="_familyid" type="hidden" data="{{info['id']}}">
+        <p>
+            <span class="font font20 cr-dpe">{{info['name']}}</span>
+        </p>
+    </div>
+    <div class="progtrckr-box">
+        <div class="progtrckrline" style="height: 192px;"></div>
+        <ul class="progtrckr">
+            <li><i class="custom-icon custom-icon-point"></i><a href="/agent/familyinfo?id={{info['id']}}">基本资料</a></li>
+            <li><i class="custom-icon custom-icon-point"></i><a href="/agent/familyanchor?id={{info['id']}}">旗下主播</a></li>
+            <li><i class="custom-icon custom-icon-point"></i><a href="/agent/familyincome?id={{info['id']}}">收益</a></li>
+            <li class="active"><i class="custom-icon custom-icon-point"></i><a href="/agent/familytrend?id={{info['id']}}">趋势分析</a></li>
+        </ul>
+    </div>
+</div>
+<!--end sidebar-menu-->
+
+
+<div id="content">
+
+<div class="container-fluid">
+
+	<div class="content-box" style="background: #FFF; text-align: left; margin-top:20px;  padding-bottom: 40px;">
+		<ul class="tab-nav clearfix">
+            <!--<li class="tabs-nav active"><a href="#box1">直播室在线人数</a></li>-->
+            <li class="tabs-nav active" id="tabs-long"><a href="#box2">播出时长</a></li>
+		</ul>
+		<div class="hr-d7"></div>
+        <div class="center-content">
+            <div id="box1" class="box-pane" style="display:none">
+                <div class="row-fluid">
+                    <div class="container-fluid">
+                        <div class="nav-line">
+                            <a class="boxinfo active" href="#tab-box1">按时</a>
+                            <a class="boxinfo" href="#tab-box2">按日</a>
+                            <a>按周</a>
+                            <a>按月</a>
+                            <!--<input id="dete" type="text" value="4/23/99" id="rangeA" />-->
+                            <!--<a class="date-calendar"><i class=" icon-calendar"></i> <input id="mydate"  placeholder="请输入日期"  value="2015-04-13"></a>-->
+                        </div>
+                    </div>
+                </div>
+                <div id="tab-box1" class="tab-box">
+                    <div class="row-fluid">
+                        <div class="container-fluid">
+                            <div style="background-color:#95a7ff; " class="clearfix">
+                                <ul style="margin-left: 50px;font-size: 16px;">
+                                    <li style="width:500px;height: 67px;list-style: none;float: left;">
+                                        <div style="margin-left: 30px;">
+                                            <div style="margin-top: 10px;">最多</div>
+                                            <div style="margin-top: 10px;">3158</div>
+                                        </div>
+                                    </li>
+                                    <li style="width:500px;height: 67px;border-left: 1px dashed #767676;border-right: 1px dashed #767676; list-style: none;float: left;">
+                                        <div style="margin-left: 30px;">
+                                            <div style="margin-top: 10px;">最少</div>
+                                            <div style="margin-top: 10px;">0</div>
+                                        </div>
+                                    </li>
+                                    <li style="width:500px;height: 67px; list-style: none;float: left;">
+                                        <div style="margin-left: 30px;">
+                                            <div style="margin-top: 10px;">平均</div>
+                                            <div style="margin-top: 10px;">31587</div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid" style="margin-top: 20px;">
+                        <div class="container-fluid">
+                            <!--<div id="render-chart" style="height: 500px">-->
+
+                            <!--</div>-->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="box2" class="box-pane active" >
+                <div class="row-fluid">
+                    <div class="container-fluid">
+                        <div class="nav-line">
+                            <a class="boxinfo active" onclick="TabNavline(this,'day','天')">按日</a>
+                            <a class="boxinfo" onclick="TabNavline(this,'week','周')">按周</a>
+                            <a class="boxinfo" onclick="TabNavline(this,'month','月')">按月</a>
+
+                            <!--<input id="dete" type="text" value="4/23/99" id="rangeA" />-->
+                            <a class="date-calendar pull-right"><i class=" icon-calendar"></i> <input id="mydate"  placeholder="请输入日期"  value="" style="height: 34px;"></a>
+                        </div>
+                    </div>
+                </div>
+                <div  class="tab-box">
+                    <div class="row-fluid">
+                        <div class="container-fluid">
+                            <div style="background-color:#95a7ff; " class="clearfix">
+                                <ul style="margin-left: 50px;font-size: 16px;">
+                                    <li style="width:33%;height: 67px;list-style: none;float: left;">
+                                        <div style="margin-left: 30px;">
+                                            <div style="margin-top: 10px;">最多</div>
+                                            <div id="maxval" style="margin-top: 10px;">0</div>
+                                        </div>
+                                    </li>
+                                    <li style="width:33%;height: 67px;border-left: 1px dashed #767676;border-right: 1px dashed #767676; list-style: none;float: left;">
+                                        <div style="margin-left: 30px;">
+                                            <div style="margin-top: 10px;">最少</div>
+                                            <div id="minval" style="margin-top: 10px;">0</div>
+                                        </div>
+                                    </li>
+                                    <li style="width:33%;height: 67px; list-style: none;float: left;">
+                                        <div style="margin-left: 30px;">
+                                            <div style="margin-top: 10px;">平均</div>
+                                            <div id="meanval" style="margin-top: 10px;">0</div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid" style="margin-top: 20px;">
+                        <div class="container-fluid">
+                            <div id="render-chart" style="height: 500px">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+
+
+     
+</div>
+
+</div>
+
+<script src="{{static_url('web/js/flotr2.js')}}"></script>
+<script src="{{static_url('web/laydate/laydate.js')}}"></script>
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<script src="{{static_url('web/js/jquery.ui.datepicker-zh-CN.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+
+<script type="text/javascript">
+
+$(function(){
+    $('body').addClass('anchorinfo');
+
+    $('.tabs-nav').click(function(){
+        $('.tabs-nav.active').removeClass('active');
+        $(this).addClass('active');
+        var id=$(this).children('a').attr('href');
+        $('.box-pane').hide();
+        $(id).show();
+        return false;
+    });
+
+    $('.nav-line a').click(function(){
+        $('.nav-line a.active').removeClass('active');
+        $(this).addClass('active');
+        return false;
+    });
+
+    TabNavline('','day','天');
+
+});
+
+$('#mydate').daterangepicker({
+            presetRanges:[
+                //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+                //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+                //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+            ],
+            presets:{
+                dateRange:'自定义时间'
+            },
+            rangeStartTitle:'起始日期',
+            rangeEndTitle:'结束日期',
+            nextLinkText:'下月',
+            prevLinkText:'上月',
+            doneButtonText:'确定',
+            cancelButtonText:'取消',
+            earliestDate:'',
+            latestDate:Date.parse('today'),
+            constrainDates:true,
+            rangeSplitter:'-',
+            dateFormat:'yy-mm-dd',
+            closeOnSelect:false,
+            onOpen:function(){
+                $('.ui-daterangepicker-dateRange').click().parent().hide();
+                $('.ui-daterangepickercontain').css({left:($('#mydate').offset().left-300)+'px'});
+                $('.ui-daterangepickercontain').css({top:($('#mydate').offset().top-30)+'px'});
+
+            },
+            onClose:function(){
+                var typer=$('#mydate').attr('data');
+                if(typer=='day'){
+                    TabNavline('',typer,'天');
+                    return false;
+                }
+                if(typer=='week'){
+                    TabNavline('',typer,'周');
+                    return false;
+                }
+                else{
+                    TabNavline('',typer,'月');
+                    return false;
+
+                }
+            }
+        }
+);
+
+
+function TabNavline(a,typer,title){
+    $('#mydate').attr('data',typer);
+    var b=$('#mydate').val();
+    var timeBegin= b.substring(0,10);
+    var timeEnd= b.substring(12,23);
+    var familyid=$('#_familyid').attr('data');
+    var data={};
+    data.type=typer;
+    data.familyId=familyid;
+    data.timeBegin=timeBegin;
+    data.timeEnd=timeEnd;
+    $.ajax({
+        type: "POST",
+        data: data,
+        url: '/ajax/broadcastTime',
+        dataType: 'json',
+        success: function (res) {
+            var data = res.data;
+            var datalist = res.data.list;
+
+            if(data.max>=60){
+                var hourmax=(Math.floor(data.max/3600)+"小时"+Math.floor((data.max%3600)/60)+"分钟");
+            }
+            else{
+                var hourmax='0';
+            }
+            if(data.min>=60){
+                var hourmin=(Math.floor(data.min/3600)+"小时"+Math.floor((data.min%3600)/60)+"分钟");
+            }
+            else{
+                var hourmin='0';
+            }
+            if(data.mean>=60){
+                var hourmean=(Math.floor(data.mean/3600)+"小时"+Math.floor((data.mean%3600)/60)+"分钟");
+            }
+            else{
+                var hourmean='0';
+            }
+
+            $('#maxval').html(hourmax);
+            $('#minval').html(hourmin);
+            $('#meanval').html(hourmean);
+            justDraw(datalist, {yTitle:'分钟',xTitle:title});
+        }
+    })
+}
+</script>
+

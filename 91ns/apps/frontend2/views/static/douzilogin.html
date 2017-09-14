@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <script type="text/javascript" defer async data-main="{{static_url('douzilogin'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</head>
+<body>
+<div class="dialog-login _register" id="loginbox" style="display:block;margin-left:-210px;margin-top:-178px;">
+    <div class="dialog-content clearfix">
+        <div class="d-l-left" style="height:345px;">
+            <!--登录-->
+            <div id="login_user_box" class="login_user_box" style="display:block;">
+                <div class="row _texts d_focus clearfix">
+                    <span class="_login_title">现在登录,</span>
+                    <span class="_login_title">您就可以与主播聊天互动了！</span>
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>用户名</span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <input class="login_username_input _regLogin _loginInput" type="text" name="lf_usernames" id="lf_usernames" autocomplete="off" size="12" fwin="login">
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>密码</span>
+                    <span class="_loginmsg status-tips lb-tips" style="float:right;"></span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <input class="login_pwd_input _regLogin _loginInput" type="password" id="lf_passwords" name="lf_passwords" size="30" class="px p_fre" fwin="login">
+                </div>
+                <div class="row btn">
+                    <div class="login-btn">
+                        <div id="loginSubmitByLogin" class="_btn _loginSub" onselectstart="return false">登 录</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="JS-ALERT-BACKGROUND"></div>
+<div class="ns-alert js-id-alert">
+    <div class="win">
+        <div class="header">
+            <!-- <i class="ico-main-12 alert-logo"></i> -->
+            <span class="_title">{{ webType['name'] }}</span><span class="_tip">提示您</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body"></div>
+        <div class="bottom"></div>
+    </div>
+</div>
+<div class="reg-avatar-upload" id="reg-avatar-upload">
+    <div class="reg-avatar-flash" id="reg-avatar-flash"></div>
+</div>
+<!--dialog-login-->
+<div id="theDayFirstLogin" style="height:0px;width:0px;overflow: visible;"></div>
+<div class="dialog-mask"></div>
+</body>
+</html>

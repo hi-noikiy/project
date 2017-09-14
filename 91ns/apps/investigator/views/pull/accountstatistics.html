@@ -1,0 +1,280 @@
+<div id="breadcrumb">
+    <a onclick="javascript:history.go(-1);" class="go-to-home tip-bottom font font18" style="cursor: pointer;">
+        <i class="icon-arrow-left"></i> 返回 &nbsp;
+    </a>
+    <a onclick="javascript:history.go(-1);" class="font font18" style="cursor: pointer;"> &nbsp;&nbsp;<span>水军 &gt</span></a>
+    <a href="/agent/familyinfo?id={{info['id']}}" class="current font font18"> <span>账号详情</span></a>
+    <input type="hidden" id="familyId" value="{{info['id']}}">
+</div>
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <div class="user-info">
+        <img alt="" src="{{userInfo['avatar']}}">
+
+        <p>
+            <span class="font font20 cr-dpe">{{userInfo['nickName']}}</span>
+        </p>
+        <p>
+            <span class="font font20 cr-dpe">（{{userInfo['uid']}}）</span>
+            <input id="in_uid" type="hidden" value="{{userInfo['uid']}}">
+        </p>
+        <p>
+            <span class="i-actor sprite-fh_level fh{{userInfo['level']}}" style="margin-top: 5px;"></span><span class="font font20 cr-dpe" style="vertical-align: text-bottom;">{{userInfo['name']}}</span>
+        </p>
+    </div>
+    <div class="progtrckr-box" style="top: 245px;">
+        <div class="progtrckrline" style="height: 70px;"></div>
+        <ul class="progtrckr">
+            <li><i class="custom-icon custom-icon-point"></i><a href="/pull/accountinfo?uid={{userInfo['uid']}}">聊天记录</a></li>
+            <li class="active"><i class="custom-icon custom-icon-point"></i><a href="/pull/accountstatistics?uid={{userInfo['uid']}}">统计</a></li>
+        </ul>
+    </div>
+</div>
+<!--end sidebar-menu-->
+
+<div id="applyinfo_content" style="  margin-left: 230px;">
+    <div class="container-fluid" style="padding: 0;">
+        <div class="widget-box tab-tabs" >
+            <div class="widget-title">
+
+            </div>
+            <div class="widget-content tab-content">
+                <div id="tab1" class="tab-pane active">
+                    <div class="container-fluid">
+                        <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">
+                            <form action="/ajax/statistics" method="post">
+                                <input type="hidden" value="1" name="isExcel">
+                                <input type="hidden" value="{{userInfo['uid']}}" name="uid">
+                                <input type="hidden" value="" name="startTime" id="_startTime">
+                                <input type="hidden" value="" name="stopTime" id="_stopTime">
+                                <input type="hidden" value="1" name="page" id="_page">
+                                <input type="hidden" value="20" name="pageSize">
+                                <input type="hidden" value="1" name="type" id="_typer">
+                                <button type="submit" class="btn btn-purple pull-right">导出表格</button>
+                                <a class="date-calendar pull-right" style="margin-right: 10px;"><i class=" icon-calendar"></i> <input name="excelTime" id="mydate" placeholder="请输入日期" value="" style="height: 34px;"></a>
+                            </form>
+                        </div>
+
+                        <div class="row-fluid">
+                            <table id="tableList" class="table with-check table-purple" data="1">
+                                <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>时段</th>
+                                    <th>时长（分钟）</th>
+                                    <th>发言数</th>
+                                    <!--<th onclick="dialog()" data="1">发言频率<b class="caret" style="margin-top: 8px;"></b></th>-->
+                                    <th class="nav nav-pills dropdown" id="droptest">
+                                        <a id="droptest" href="#droptest" role="button" class="dropdown-toggle" data-toggle="dropdown">发言频率<b class="caret"></b></a>
+                                        <ul class="dropdown-menu" role="menu" aria-labeledby="droptest" style="top: 67%;right: 23%;min-width: 100px;padding: 0;margin-left:125px;;width: 5px;">
+                                            <li onclick="minute(1)"><a href="#">条/分钟</a></li>
+                                            <li onclick="munber(2)"><a href="#">分钟/条</a></li>
+                                        </ul>
+                                    </th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <!--<tr>-->
+                                        <!--<td rowspan="4">1</td>-->
+                                        <!--<td>1</td>-->
+                                        <!--<td>1</td>-->
+                                        <!--<td>1</td>-->
+                                        <!--<td>1</td>-->
+                                        <!--<td rowspan="4">1</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td>1</td>-->
+                                        <!--<td>1</td>-->
+                                        <!--<td>1</td>-->
+                                        <!--<td>1</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td>1</td>-->
+                                        <!--<td>1</td>-->
+                                        <!--<td>1</td>-->
+                                        <!--<td>1</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr>-->
+                                        <!--<td>总计：</td>-->
+                                        <!--<td>435</td>-->
+                                        <!--<td>543</td>-->
+                                        <!--<td>979条/分钟</td>-->
+                                    <!--</tr>-->
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                        <div class="row-fluid">
+                            <div id="pagination" class="pagination alternate pull-right">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<script src="{{static_url('web/js/jquery.ui.datepicker-zh-CN.js')}}"></script>
+<script type="text/javascript">
+
+    $(function(){
+        $('body').addClass('anchorinfo');
+
+        getDataList('',1);
+        $('#mydate').daterangepicker({
+                    presetRanges:[
+                        //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+                        //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+                        //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+                    ],
+                    presets:{
+                        dateRange:'自定义时间'
+                    },
+                    rangeStartTitle:'起始日期',
+                    rangeEndTitle:'结束日期',
+                    nextLinkText:'下月',
+                    prevLinkText:'上月',
+                    doneButtonText:'确定',
+                    cancelButtonText:'取消',
+                    earliestDate:'',
+                    latestDate:Date.parse('today'),
+                    constrainDates:true,
+                    rangeSplitter:'-',
+                    dateFormat:'yy-mm-dd',
+                    closeOnSelect:false,
+                    onOpen:function(){
+                        $('.ui-daterangepicker-dateRange').click().parent().hide();
+                        $('.ui-daterangepickercontain').css({left:($('#mydate').offset().left-220)+'px'});
+                    },
+                    onClose:function(){
+//                        var typer=$('#mydate').attr('data');
+                        var b=$('#tableList').attr('data');
+                        getDataList('',b);
+                        var b=$('#mydate').val();
+                        var timeBegin= b.substring(0,10);
+                        var timeEnd= b.substring(12,23);
+                        $('#_startTime').val(timeBegin);
+                        $('#_stopTime').val(timeEnd);
+
+                    }
+                }
+        );
+    });
+
+   function getDataList(index,typer){
+
+       var b=$('#mydate').val();
+       var timeBegin= b.substring(0,10);
+       var timeEnd= b.substring(12,23);
+
+       var data={};
+       data.page=index||1;
+       data.pageSize=global.pageSize;
+       data.uid=$('#in_uid').val();
+       data.startTime=timeBegin;
+       data.stopTime=timeEnd;
+       data.type=typer;
+       data.isExcel=0;
+
+
+       $.ajax({
+           type:"POST",
+           data:data,
+           url:'/ajax/statistics',
+           dataType:'json',
+           success:function(res){
+
+               var data=res.data.list;
+               var tableList=document.getElementById("tableList");
+               var tbody= tableList.getElementsByTagName('tbody')[0];
+               dataTable.clearData(tbody);
+
+//               var count=document.getElementById('count');
+//               count.innerHTML=res.data.dataCounts;
+               for(var i in data){
+                   if(data[i]!=''){
+                       var row=tbody.insertRow();
+                      addRow(tbody, data[i], i);
+                   }
+               }
+               if(!index||index==0){
+                   utilsPagination("#pagination", res.data.dataCounts,global.pageSize,function(page_index,jq){
+                       page_index+=1;
+                       $('#_page').val(page_index);
+                       getDataList(page_index,typer);
+                   });
+               }
+           }
+       });
+   }
+
+
+    function addRow(table,data,str){
+        var b=$('#tableList').attr('data');
+        var j = 0;
+        var row;
+        for(var i in data.data){
+            row=table.insertRow();
+            j++;
+            if(j == 1){
+                var firstRow = row.insertCell();
+                firstRow.innerHTML = str;
+                firstRow.style.cssText='border-right:1px solid #ddd';
+            }
+            row.insertCell().innerHTML='<span>'+data.data[i].start_txt+'</span>—<span>'+data.data[i].stop_txt+'</span>'
+            row.insertCell().innerHTML=data.data[i].length;
+            row.insertCell().innerHTML=data.data[i].count;
+            if(b==1){
+                row.insertCell().innerHTML=data.data[i].minute+'条/分钟';
+            }
+            else{
+                row.insertCell().innerHTML=data.data[i].number+'分钟/条';
+            }
+
+            if(j == 1){
+                var endRow = row.insertCell();
+                endRow.innerHTML = '<div style="background-color: #837ECE;width: 74px;height: 30px; margin: 10px auto;color: #ffffff;line-height: 30px;">合并时段</div>' +
+                        '<div style="background-color: #837ECE;width: 74px;height: 30px;margin: 7px auto;color: #ffffff;line-height: 30px;">删除时段</div>';
+                endRow.style.cssText='border-left:1px solid #ddd';
+            }
+            endRow.rowSpan = j+1;
+            firstRow.rowSpan = j+1;
+        }
+        if(j>0){
+            if(data.timeCount>=0){
+                row=table.insertRow();
+                row.insertCell().innerHTML='总计：';
+                row.insertCell().innerHTML=data.timeCount;
+                row.insertCell().innerHTML=data.count;
+                if(b==1){
+                    row.insertCell().innerHTML=data.minute+'条/分钟';
+                }
+                else{
+                    row.insertCell().innerHTML=data.number+'分钟/条';
+                }
+            }
+
+        }
+    }
+    function minute(typer){
+        $('#tableList').attr('data',typer);
+        $('#_typer').attr('value',typer);
+        getDataList('',typer);
+    }
+    function munber(typer){
+        $('#tableList').attr('data',typer);
+        $('#_typer').attr('value',typer);
+        getDataList('',typer);
+    }
+
+</script>

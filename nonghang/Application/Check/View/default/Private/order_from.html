@@ -1,0 +1,41 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="" id="dataform">
+<div class="formBody">
+    <div class="privateOrderInfo">
+        <p>订单编号：{$id}&nbsp;&nbsp;&nbsp;&nbsp;订单时间：{$paymentTimeflag}</p>
+        <h2>{$filmName}</h2>
+        <p>影厅：{$videoCode}号/{$topicName}</p>
+        <p>日期：{$time}</p>
+        <p>时段：{$cc}-{$ec}小计：￥{$planPrice}</p>
+        <?php if(isset($packagelist)):?>
+        <h3>套餐饮品</h3>
+        <volist name='packagelist' id='v'>
+        <p>{$v.name}：{$v.num}份  ￥ {$v.price} 小计：￥{$v.tolprice}</p>
+        </volist>
+        <?php endif;?>
+         <?php if(isset($servicelist)):?>
+        <h3>附加服务</h3>
+        <volist name='servicelist' id='v'>
+        <p>{$v.name}：{$v.num}份 ￥ {$v.price} 小计：￥{$v.tolprice}</p>
+        </volist>
+
+         <?php endif;?>
+<?php if($detail):?>
+         <p>附加说明：{$detail}</p>
+<?php endif;?>
+
+
+    </div>
+    <div class="privateOrderBtm">
+        	<span>总额：<b>￥{$total}</b>（预付：￥{$prepay}）</span>
+            <span style=" float:right;">验证码：<b>{$code}</b></span>
+        </div>
+</div>
+</form>
+</block>
+<block name="script">
+<script type="text/javascript">
+	
+</script>
+</block>

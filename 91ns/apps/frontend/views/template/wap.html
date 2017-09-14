@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+{% block header %}
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	<meta content="telephone=no" name="format-detection" />
+	<meta name="viewport" content="initial-scale=1, maximum-scale=0.5, minimum-scale=0.5, user-scalable=no">
+    <title>{{ ns_title|default('91NS') }}-福建第一人气帅哥美女主播娱乐互动平台！</title>
+	<meta name="google" value="notranslate" />
+	<meta property="qc:admins" content="1252251640611636375" />
+	<meta property="wb:webmaster" content="abb686998c49b59c" />
+	<meta http-equiv="Window-target" content="_top">
+	<meta name="author" content="xhb">
+	<meta name="keywords" content="美女视频 美女直播 视频交友 真人秀场">
+	<meta name="description" content="福建第一人气帅哥美女主播娱乐互动平台！福建最大的真人互动视频直播社区。在线秀场直播间，支持数万人同时在线视频聊天、视频交友、在线K歌跳舞。海量美女主播，每天劲歌热舞，明星歌手，精彩视频，91NS一网打尽。">
+	<meta name="robots" content="index">
+	<link rel="icon" href="{{static_url('web/cssimg/91ns/91ns.ico.png')}}" mce_href="{{static_url('web/cssimg/91ns/91ns.ico.png')}}" type="image/x-icon">
+	<link rel="shortcut icon" href="{{static_url('web/cssimg/91ns/91ns.ico.png')}}" mce_href="{{static_url('web/cssimg/91ns/91ns.ico.png')}}" type="image/x-icon">
+    <script type="text/javascript">
+    var nsConfig = {
+        channelType:'{{ webType["channelType"] }}',
+        domain:'{{ webType["domain"] }}',
+        name:'{{ webType["name"] }}',
+        logoURL:'{{ static_url(webType["logoURL"]) }}',
+        roomLogoURL:'{{ static_url(webType["roomLogoURL"]) }}',
+        roomLoadingURL:'{{ static_url(webType["roomLoadingURL"]) }}'
+    }
+    </script>
+	<link rel="stylesheet" type="text/css" href="{{static_url('wap'|ns_css)}}" />
+	<link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}"/>
+	<script type="text/javascript" src="{{static_url('jq'|ns_js)}}"></script>
+	<script type="text/javascript" src="{{static_url('wap'|ns_js)}}"></script>
+{% endblock %}
+{% block headerAdd %}
+{% endblock %}
+</head>
+<body onload="wapOnload();">
+{% block body %}
+{% endblock %}
+</body>
+</html>

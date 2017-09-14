@@ -1,0 +1,236 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<!--js、css引入-->
+{% endblock %}
+
+{% block title %}
+我的房管
+{% endblock %}
+
+{% block titleList %}
+<ul class="nav">
+    <li class="active _getGift" onclick="condoList()"><a  href="#serve">我担任的房管</a></li>
+    <li class="_sendGift" onclick="hiscondoList()"><a  href="#Myself">我自己的房管</a></li>
+
+</ul>
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent" style="background-color: transparent;">
+    <div class="center-box-content box-tabs" id="serve" style="display: block;">
+        <div class="center-box main-background-body" bottompadding="42" style="border-bottom: 0px;width: 1000px;">
+            <div class="center-top special-position _special-position-2">
+                <div>小贴士：房管是用户可以在成为房管的直播间对没有免疫功能的用户进行踢人，禁言等操作。</div>
+            </div>
+            <div class="center-content" style="min-height: 630px;background-color: #fff;padding-top: 0px;border: 1px solid #d09ce6;">
+               <div class="content-top clearfix" style="border-bottom: 1px solid #f0e1f7;margin-bottom: 30px;">
+                   <ul class="tabs clearfix">
+                       <li class="pull-left">
+                           <div id="AllDelBox"  class="row" style="text-align: left; margin-bottom:20px;">
+
+                               <div class="all checkbox" data="0" onclick="allcheckbox(this)" style="margin-bottom: -3px;margin-top: 6px;">
+                                   <img src="{{static_url('web/cssimg/room/pri-send-gift-right.png')}}" >
+                               </div>
+                               <span style="margin-left:30px">全选</span>
+                               <button class="all btndelete" onclick="AlldeleteAttention('#Allhouse .checkbox')">删除</button>
+                               <button class="qlogin" onclick="islogin()">7天内登录</button>
+                               <button class="qlogin" onclick="nologin()" style="margin-left: 20px;">7天内未登录</button>
+                               <input id="qloginid" type="hidden" value="">
+                           </div>
+                       </li>
+                       <li class="pull-right _hm-search">
+                           <div class="search">
+                               <input id="searchroomid" type="hidden" value="">
+                               <label>请输入用户账号ID</label>
+                               <input id="all_search_text" class="search-text" type="text">
+                               <button  class="btn-search" onclick="Findhouseh()"><i class="gmc-icon gmc-icon-search"></i></button>
+                           </div>
+                       </li>
+                   </ul>
+               </div>
+                <div class="content-mid special-mid">
+                    <div class="clearfix">
+                        <ul id="Allhouse" data="2" class="thumbnail-box clearfix">
+                            <!--<li class="thumbnail clearfix _thumbnail-2" style="margin-bottom: 0px;">-->
+                            <!--<div class="thumbnail-img">-->
+                            <!--<a><img src="http://cdn.91ns.com/userupload/10075/avatars/0.jpg"></a>-->
+                            <!--</div>-->
+                            <!--<div class="thumbnail-content">-->
+                            <!--<div class="name">-->
+                            <!--<a target="_blank" href="/10075">小眼睛的姑娘</a>(10075)-->
+                            <!--</div>-->
+                            <!--<div class="level">-->
+                            <!--<span>主播：</span>-->
+                            <!--<span style="margin-top:4px;"><i class="sprite-zb_level zb0"></i></span>&nbsp;&nbsp;&nbsp;-->
+                            <!--<span style="margin-top:4px;"><i class="sprite-fh_level fh0"></i></span>-->
+                            <!--</div>-->
+                            <!--<div class="remark">-->
+                            <!--<span>备注：<i class="p-icon-edit" onclick="mfpoint(this,10075,'小眼睛的姑娘','')"></i></span>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="checkbox" data="0" fuid="10075" onclick="thumbnailCheck(this)">-->
+                            <!--<img src="/web/cssimg/room/pri-send-gift-right.png">-->
+                            <!--</div>-->
+                            <!--</li>-->
+                        </ul>
+                        <div class="no-notData" style="display: none;"><span></span>您还没有担任房管哦！</div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div>
+                <img src="{{static_url('web/cssimg/mybill/bottom.png')}}">
+            </div>
+
+        </div>
+
+
+        {% include "template/background.html" %}
+    </div>
+    <div class="center-box-content box-tabs" id="Myself" style="display: none;">
+        <div class="center-box main-background-body" bottompadding="42" style="border-bottom: 0px;width: 1000px;">
+            <div class="center-top special-position _special-position-2">
+                <div class="pull-left">主播等级：皇冠以上的主播管理上限为：1000（包括皇冠1）主播等级：皇冠以下的主播管理上限为200</div>
+                <div class="pull-right" style="margin-right: 30px;">我还可以拥有<span id="housenum" style="color:#f38fae;">33</span>个房管</div>
+                <input id="hideroomid" type="hidden" value="">
+            </div>
+            <div class="center-content" style="min-height: 630px;background-color: #fff;padding-top: 0px;border: 1px solid #d09ce6;">
+                <div class="content-top clearfix" style="border-bottom: 1px solid #f0e1f7;margin-bottom: 30px;">
+                    <ul class="tabs clearfix">
+                        <li class="pull-left">
+                            <div   class="row" style="text-align: left; margin-bottom:20px;">
+                                <div class="all checkbox" data="0" onclick="allcheckbox(this)" style="margin-bottom: -3px;margin-top: 6px;">
+                                    <img src="{{static_url('web/cssimg/room/pri-send-gift-right.png')}}" >
+                                </div>
+                                <span style="margin-left:30px">全选</span>
+                                <button class="all btndelete" onclick="AlldeleteAttention('#myselfhouse .checkbox')">删除</button>
+                                <button class="qlogin" onclick="hislogin()">30天内登录</button>
+                                <button class="qlogin" onclick="nohislogin()" style="margin-left: 20px;">30天内未登录</button>
+                                <input id="hisloginid" type="hidden" value="">
+                            </div>
+                        </li>
+                        <li class="pull-right _hm-search">
+                            <div class="search">
+                                <input id="hissearchroomid" type="hidden" value="">
+                                <label>请输入用户账号ID</label>
+                                <input id="hisserch"  class="search-text" type="text">
+                                <button  class="btn-search" onclick="hisfindhouse()"><i class="gmc-icon gmc-icon-search"></i></button>
+                            </div>
+                        </li>
+                        <li class="pull-right" style="margin-top: 15px;">
+                            <button class="pull-right add-hm" onclick="addhm()">添加房管</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="content-mid special-mid">
+                    <div class="clearfix">
+                        <ul id="myselfhouse"  class="thumbnail-box clearfix">
+                            <!--<li class="thumbnail clearfix _thumbnail-2" style="margin-bottom: 0px;">-->
+                                <!--<div class="thumbnail-img">-->
+                                    <!--<a><img src="http://cdn.91ns.com/userupload/10075/avatars/0.jpg"></a>-->
+                                <!--</div>-->
+                                <!--<div class="thumbnail-content">-->
+                                    <!--<div class="name">-->
+                                        <!--<a target="_blank" href="/10075">小眼睛的姑娘</a>(10075)-->
+                                    <!--</div>-->
+                                    <!--<div class="level">-->
+                                        <!--<span>主播：</span>-->
+                                        <!--<span style="margin-top:4px;"><i class="sprite-zb_level zb0"></i></span>&nbsp;&nbsp;&nbsp;-->
+                                        <!--<span style="margin-top:4px;"><i class="sprite-fh_level fh0"></i></span>-->
+                                    <!--</div>-->
+                                    <!--<div class="remark">-->
+                                        <!--<span>备注：<i class="p-icon-edit" onclick="mfpoint(this,10075,'小眼睛的姑娘','')"></i></span>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="checkbox" data="0" fuid="10075" onclick="thumbnailCheck(this)">-->
+                                    <!--<img src="/web/cssimg/room/pri-send-gift-right.png">-->
+                                <!--</div>-->
+                            <!--</li>-->
+                        </ul>
+                        <div class="no-notData" style="display: none;"><span></span>您还没有关注的主播哦！</div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div>
+                <img src="{{static_url('web/cssimg/mybill/bottom.png')}}">
+            </div>
+
+        </div>
+
+
+        {% include "template/background.html" %}
+    </div>
+</div>
+
+<div class="ns-alert ns-dialog">
+    <div class="win mark" >
+        <div class="header">
+            <i class="ico-main-12 alert-logo"></i>
+            <span>备注</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body">
+            <div>
+                <div id="d_fuid" class="show-text">123456</div>
+                <div>备注：<input id="bzName" class="name-text" type="text"></div>
+                <div class="btn-box">
+                    <button id="ns_btn_OK" fuid="" class="btn btn-purple">确定</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="ns-dialog-colse" class="btn btn-purple">取消</button>
+                </div>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div>
+
+<div class="ns-alert ns-dialog">
+    <div class="win house" >
+        <div class="header">
+            <i class="ico-main-12 alert-logo"></i>
+            <span>添加房间管理员</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body">
+            <div>
+                <div class="show-text">请输入任命用户的账号ID</div>
+                <div><input id="houseRoomid" class="name-text" type="text"></div>
+                <div class="btn-box">
+                    <button id="house_btn_OK" fuid="" class="btn btn-purple">确定</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="house-dialog-colse" class="btn btn-purple">取消</button>
+                </div>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript">var right_ico_pre = "{{static_url('web/cssimg/room/pri-send-gift-right.png')}}";</script>
+<script type="text/javascript" src="{{static_url('91ns.userhmanagement'|ns_js)}}"></script>
+<script type="text/javascript">
+    (function($){
+        $('.nav li').click(function(){
+            $('.nav li.active').removeClass('active');
+            $(this).addClass('active');
+            var id=$(this).children('a').attr('href');
+            $('.box-tabs').hide();
+            $(id).show();
+            return false;
+        });
+    })(jQuery);
+
+</script>
+{% endblock %}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>中瑞影视2016年年会</title>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="__CSS__/style.css" />
+</head>
+
+<body>
+
+<style>
+body{
+	background:#b91a35 url(__IMG__/bg2.jpg) no-repeat;
+	background-size:cover;
+	font-family:'微软雅黑';
+	}
+
+</style>
+<div class="getTime" id="getTime"><span><img src="__IMG__/number/0.png" /><img src="__IMG__/number/1.png" /><img src="__IMG__/number/mh.png" /><img src="__IMG__/number/0.png" /><img src="__IMG__/number/2.png" /></span></div>
+<div id="yinyue">
+    <audio src="__IMG__/sound/1.wav" autoplay loop id="bj" class="audio"></audio>
+    <audio src="__IMG__/sound/2.wav" autoplay class="audio"></audio>
+    <audio src="__IMG__/biao/all.wav" autoplay class="audio"></audio>
+</div>
+<div class="allbox">
+	<ul id="voteContent">
+
+    	 
+
+    </ul>
+    
+</div>
+<script>
+// document.getElementById("bj").volume = 0.1;
+
+var i=0;
+
+	
+    /*add——创建tbx下的div加文字和变宽度的方法*/
+    function add(i, id){
+
+			$("#li_"+id+" .tiao").css("width",i/5+"%");
+		}
+
+
+	//页面倒计时
+    function daojis (time) {
+        // alert(time);
+        var minute = 0;
+        var m1 =  parseInt(time/10);
+        var m2 = time-m1*10;
+        var strTime = '<span><img src="__IMG__/number/0.png" /><img src="__IMG__/number/0.png" /><img src="__IMG__/number/mh.png" /><img src="__IMG__/number/' + m1 + '.png" /><img src="__IMG__/number/'+m2+'.png" />';
+
+        $('#getTime').html(strTime);
+        if (time == 0 ) {
+            $.post('{:U('index')}', {'id':0}, function(json){
+            }, 'json');
+
+            $('#getTime').html('<p>投票结束</p>');
+            return ;
+        };
+        time--;
+        setTimeout("daojis("+time+")",1000);
+    }
+    daojis(60);
+	
+
+function getVote () {
+
+    $.post('{:U()}', '', function(json){
+        var content = '';
+        $.each(json.data,function(key,data){
+            var t = parseInt(data.id / 10);
+            var t1 = data.id - parseInt(data.id / 10) * 10;
+             content += '<li id="li_' + data.id + '"><div class="info">                <em class="em'+(key+1)+'"></em><span ><img src="__IMG__/num/'+t+'.png" height="15" /><img src="__IMG__/num/'+t1+'.png" height="15" /></span>                <span class="span1">'+data.type+'</span><span class="span2">'+data.name+'</span>                <span class="span3">'+data.store+'</span>            </div>            <div class="loading">                <div class="tbox">                    <div class="tiao" style="width:'+data.vote/3.5+'%"></div></div>                <span >'+data.vote+'票</span>                <div class="clear"></div>            </div>            <div class="clear"></div>        </li>'; 
+                $("#voteContent").html(content);
+        })
+    }, 'json');
+
+    setTimeout("getVote()", 1000);
+}
+
+getVote();
+
+</script>
+</body>
+</html>

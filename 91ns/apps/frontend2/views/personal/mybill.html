@@ -1,0 +1,237 @@
+{% extends "template/personal_body.html" %}
+{% block title %}
+收到礼物
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+<link rel="stylesheet" type="text/css" href="{{static_url('mybill'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('personal.mybill'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+<div class="personal-div getpresents clearfix">
+    <div class="get-head pull-re pull-re">
+        <div class="head-txt inline pull-left">收到礼物</div>
+        <div class="head-time inline pull-left ">
+            <div class="get-time inline">
+                <div class="inline font-num"></div>
+                <div class="inline font-num"></div>
+            </div>
+            <div class="get-time-txt inline"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="search-div clearfix ">
+            <div class="search-txt pull-left">时间段</div>
+            <input id="date1-begin" layDate="true" readonly="true" class="ser-box ser-box-begin pull-left" type="text" >
+            <div class="search-to pull-left">至</div>
+            <input id = "date1-end" layDate="true" readonly="true" class="ser-box search-box-over pull-left" type="text">
+            <div class="search-but cu-a sprite-anchor search pull-left" rel="getpresents">查询</div>
+        </div>
+
+        <!--右边账户信息-->
+        <div class="account-info pull-ab">
+            <div class="account-txt pull-left">您的账户余额：</div>
+            <div class="acc-coin-num font-num pull-left" id="getpresents-leftcoin" nsdata="cash"></div>
+            <div class="acc-coin-pic pull-left sprite-concern coin"></div>
+            <div class="acc-beans-num font-num pull-left" id="getpresents-leftbean" nsdata="coin"></div>
+            <div class="acc-beans-pic pull-left sprite-concern beans" ></div>
+        </div>
+    </div>
+
+    <!--详情列表-->
+    <table class="getpresents-table">
+        <tr class="get-tb-tit">
+            <td class="tit-name">赠送人</td>
+            <td class="tit-presents">礼物</td>
+            <td class="tit-number">数量</td>
+            <td class="tit-paycoin">支付聊币</td>
+            <td class="tit-time">时间</td>
+        </tr>
+        <tbody id="getpresents_body">
+            <tr class="get-tb-list" style="display:none;">
+                <td class="list-name">
+                    <div class="list-name-txt inline"></div>
+                    <div class="list-name-id font-num inline"></div>
+                </td>
+                <td class="list-presents">
+                    <div class="list-pre-div inline clearfix">
+                        <div class="list-pre-pic inline sprite-gift_1x bbt pull-left "></div>
+                        <div class="list-pre-txt inline pull-left "></div>
+                    </div>
+                </td>
+                <td class="list-num font-num"></td>
+                <td class="list-paycoin font-num"></td>
+                <td class="list-paybeans"></td>
+                <td class="list-time"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--送出的礼物-->
+<div class="personal-div sentpresents div-hiden clearfix">
+    <div class="get-head pull-re pull-re">
+        <div class="head-txt inline pull-left">送出礼物</div>
+        <div class="head-time inline pull-left">
+            <div class="get-time inline">
+                <div class="inline font-num"></div>
+                <div class="inline font-num"></div>
+            </div>
+            <div class="get-time-txt inline"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="search-div ">
+            <div class="search-txt pull-left">时间段</div>
+            <input layDate="true" readonly="true" id="date2-begin"class="ser-box ser-box-begin pull-left" type="text" >
+            <div class="search-to pull-left">至</div>
+            <input layDate="true" readonly="true" id="date2-end" class="ser-box search-box-over pull-left" type="text">
+            <div class="search-but cu-a sprite-anchor search pull-left" rel="sentpresents">查询</div>
+        </div>
+
+        <!--右边账户信息-->
+        <div class="account-info pull-ab">
+            <div class="account-txt pull-left">您的账户余额：</div>
+            <div class="acc-coin-num font-num pull-left" id="sentpresents-leftcoin"></div>
+            <div class="acc-coin-pic pull-left sprite-concern coin"></div>
+            <div class="acc-beans-num font-num pull-left" id="sentpresents-leftbean"></div>
+            <div class="acc-beans-pic pull-left sprite-concern beans"></div>
+        </div>
+    </div>
+
+    <!--详情列表-->
+    <table class="sentpresents-table">
+        <tr class="get-tb-tit">
+            <td class="tit-name">赠送人</td>
+            <td class="tit-presents">礼物</td>
+            <td class="tit-number">数量</td>
+            <td class="tit-paycoin">支付聊币</td>
+            <td class="tit-time">时间</td>
+        </tr>
+
+        <tbody id="sentpresents-body"></tbody>
+    </table>
+</div>
+<!--充值记录-->
+<div class="personal-div payrecord div-hiden clearfix">
+    <div class="pay-head pull-re clearfix">
+        <div class="head-txt inline pull-left">充值记录</div>
+        <div class="head-time inline pull-left">
+            <div class="time-begin inline"></div>
+            <diy class="time-to inline"></diy>
+            <div class="time-over inline"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="search-div ">
+            <div class="search-txt pull-left">时间段</div>
+            <input type="text" class="Wdate pull-left" id="d4321" onFocus="WdatePicker({minDate:'<?php echo date('Y-m-d',strtotime('-1 year')); ?>',maxDate:'#F{$dp.$D(\'d4322\');}'})"/>
+            <div class="search-to pull-left">至</div>
+            <input type="text" class="Wdate pull-left" id="d4322" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d4321\')||\'<?php echo date('Y-m-d',strtotime('-1 year')); ?>,\';}',maxDate:'%y-%M-%d'})"/>
+            <div class="search-but cu-a sprite-anchor search pull-left" rel="payrecord">查询</div>
+            <div class="head-s pull-left"><div class="head-bottom-s pull-left"></div></div>
+            <div class="_head-s pull-left">只记录最近一年</div>
+        </div>
+
+        <!--头部右边部分-->
+        <div class="head-right-div pull-ab">
+            <div class="finish-but-div pull-right">
+                <!--<div class="finish-but but-finish pull-left sprite-mynews tab_left ">已完成</div>-->
+                <!--<div class="finish-but but-unfinish pull-left sprite-mynews tab_right">未完成</div>-->
+            </div>
+            <!--充值信息-->
+            <div class="clear"></div>
+            <div class="payinfo-div pull-right ">
+                <div class="pay-this-txt pull-left">此区间充值金额：</div>
+                <div class="pay-this-num pull-left" id="payrecord-searchCoin"></div>
+                <div class="pay-coin pull-left sprite-concern coin"></div>
+                <div class="pay-count-txt pull-left">我的总充值金额：</div>
+                <div class="pay-count-num pull-left" id="payrecord-totalCoin"></div>
+                <div class="pay-coin pull-left sprite-concern coin"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--已完成表格-->
+    <table class="pay-table finish-table">
+        <tr class="tb-pay-tit">
+            <td class="deal-id">交易号</td>
+            <td class="deal-time">交易时间</td>
+            <td class="tb-pay-coin">充值聊币(个)</td>
+            <td class="pay-money">支付金额</td>
+            <td class="pay-way">交易通道</td>
+            <td class="pay-way">交易状态</td>
+            <td class="pay-state">操作</td>
+        </tr>
+        <tbody id="payrecord-body"></tbody>
+    </table>
+
+</div>
+<!--消费记录-->
+<div class="personal-div consume div-hiden clearfix">
+    <div class="consume-head pull-re pull-re">
+        <div class="head-txt inline pull-left">消费记录</div>
+        <div class="head-time inline pull-left">
+            <div class="consume-time inline">
+                <div class="inline font-num"></div>
+                <div class="inline font-num"></div>
+            </div>
+            <div class="consume-time-txt inline"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="search-div ">
+            <div class="search-txt pull-left">时间段</div>
+            <!--<input layDate="true" readonly="true" id="date4-begin" class="ser-box ser-box-begin pull-left" type="text" >-->
+            <input id="d4311" class="Wdate pull-left" type="text" onFocus="WdatePicker({minDate:'<?php echo date('Y-m-d',strtotime('-1 year')); ?>',maxDate:'#F{$dp.$D(\'d4312\')||\'%y-%M-%d\'}'})"/>
+            <div class="search-to pull-left">至</div>
+            <!--<input layDate="true" readonly="true" id="date4-end" class="ser-box search-box-over pull-left" type="text">-->
+            <input id="d4312" class="Wdate pull-left" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d4311\')||\'<?php echo date('Y-m-d',strtotime('-1 year')); ?>,\'}',maxDate:'%y-%M-%d'})"/>
+            <div class="search-but cu-a sprite-anchor search pull-left" rel="consume">查询</div>
+            <div class="head-s pull-left"><div class="head-bottom-s pull-left"></div></div>
+            <div class="_head-s pull-left">只记录最近一年</div>
+        </div>
+        <!--右边消费信息-->
+        <div class="consume-info pull-ab">
+            <div class="consume-coin-div clearfix">
+                <div class="coin-today-txt pull-left">此区间支付聊币：</div>
+                <div class="coin-today-num pull-left" id="consume-searchCoin"></div>
+                <div class="consume-coin sprite-concern coin pull-left"></div>
+                <div class="coin-sum-txt pull-left">我的总支付聊币：</div>
+                <div class="coin-sum-num pull-left" id="consume-totalCoin"></div>
+                <div class="consume-coin sprite-concern coin pull-left"></div>
+            </div>
+
+             <!--<div class="consume-beans-div">-->
+            <!--<div class="beans-today-txt pull-left">当天支付聊豆：</div>-->
+          <!--<div class="beans-today-num pull-left">0</div>-->
+          <!--<div class="consume-beans sprite-concern beans pull-left"></div>-->
+          <!--<div class="beans-sum-txt pull-left">我的总支付聊豆：</div>-->
+          <!--<div class="beans-sum-num pull-left">0</div>-->
+          <!--<div class="consume-beans sprite-concern beans"></div>-->
+        <!--</div>-->
+
+        </div>
+    </div>
+
+    <!--表格列表-->
+    <table class="consume-table">
+        <tr class="tb-list-tit">
+            <td class="tit-prop">消费物品</td>
+            <!--<td class="tit-num">消费目标</td>-->
+            <td class="tit-num">数量</td>
+            <td class="tit-num">单价</td>
+            <td class="tit-paycoin">消费金额</td>
+            <td class="tit-time">时间</td>
+        </tr>
+        <tbody id="consume-body"></tbody>
+        <tr class="tb-list" style="display:none;">
+            <td class="list-prop">
+                <div class="prop-div clearfix inline">
+                    <div class="prop-pic inline pull-left sprite-gift_1x www"></div>
+                    <div class="prop-name inline pull-left"></div>
+                </div>
+            </td>
+            <td class="list-num"></td>
+            <td class="list-paycoin"></td>
+            <td class="list-time"></td>
+        </tr>
+    </table>
+</div>
+{% endblock%}

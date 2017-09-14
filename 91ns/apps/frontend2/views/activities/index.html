@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('index'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('web/css2/pagination2.css')}}" />
+    <script type="text/javascript" defer async data-main="{{static_url('activities'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+
+    <div class="wrapBd">
+        <div class="w_1200">
+            <div class="wrapCont">
+                <div id="activities-content" class="activities-content">
+
+                </div>
+                {% include "template/pagination.html" %}
+            </div>
+            <div class="wrapAside">
+                {% include "template/rank.html" %}
+            </div>
+        </div>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<extend name="Public/base"/>
+<block name="body">
+<style>
+body{
+	background:#0069ac;
+	}
+</style>
+	<div class="checkBody">
+    	<form action="{:U()}" method="post" id='myform'>
+            <div class="checkInput">
+                <input type="text" placeholder="请输入票券编码" name="voucherNumber" id="code" value="{$data['voucherNumber']}" />
+            </div>
+            <a class="queryBtn" href="javascript:query();">查询</a>
+        </form>
+	</div>
+    <div class="checkTable">
+    	<div class="checkLog"><a href="{:U('Index/voucherlist')}">历史操作记录</a></div>
+    	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+                 <thead>
+                    <tr>
+                        <td width="13%">票券编码</td>
+                        <td width="15%">适用影院</td>
+                        <td width="10%">票券名称</td>
+                        <td width="16%">生效时间</td>
+                        <td width="16%">到期时间</td>
+                        <td width="10%">票券状态</td>
+                         <td width="10%">操作</td>
+                      </tr>
+				</thead>
+                <tbody>
+                <volist name='codes' id='vo'>
+                    <tr>
+                        <td>{$vo['voucherNumber']}</td>
+                        <td>{$vo['cinemaName']}</td>
+                        <td>{$voucherTypeList[$vo['typeId']]['typeName']}</td>
+                        <td>{$vo['startTime']}</td>
+                        <td>{$vo['endTime']}</td>
+                        <td>{$vo['statuStr']}</td>
+                        <td><?php if($vo['status']=='1'){ ?><a href="javascript:check('{$vo['voucherId']}');">使用</a><?php }else{ ?>
+                        {$vo['useTime']}<?php } ?></td>
+                    </tr>
+                    </volist>
+                </tbody>
+            </table>
+            <?php if(empty($codes)){ ?><div class="novoucher"></div><?php } ?>
+    </div>
+
+	
+</block>
+<block name="script">
+ <script type="text/javascript">
+
+//查询
+function query(){
+		var code=$('#code').val();
+		var searcharray='';
+		
+		if(code == '请输入票券编码' || code == '' ){
+			
+			 layer.alert("请输入票券编码");
+              return;
+		}
+		$('#myform').submit();
+ }
+ 
+function check(id){
+	layer.confirm('确认使用',function(index){
+		$.getJSON("{:U('checkVoucher')}",{id:id},function(json){
+			layer.alert(json['text']);
+			if(json['status']=='0'){
+				setTimeout(function(){window.location.reload();},2000);
+				}
+			});
+		});
+	}
+</script>
+</block>

@@ -1,0 +1,105 @@
+<extend name='Public/base'/>
+<block name='title'>排期列表</block>
+<block name='body'>
+<div class="views">
+    <!-- Your main view -->
+    <div class="view view-main">
+	<div class="headerNav">
+       <div class="headerLeft"><a href="javascript:window.history.back(-1);"  class="back"><img src="__IMG__/common/back.png" height="100%" /></a></div>
+        <div class="title"><span>{$cinema['cinemaName']}</span></div>
+        <div class="headerRight"><a href="{:U('cinemalist',array('op'=>'plan'))}">更换影院</a></div>
+    </div>
+    <div class="content">
+    	<div class="dateBox">
+            <ul class="dateBody"  id="dateBody">
+            	<volist name='time' id='vo'>
+                <li planDate="{$vo['time']}" <?php if($i=='1'){ ?>class="cur"<?php }?>>{$vo['instr']}{$vo['dtime']}</li>
+                </volist>
+            </ul>
+        </div>
+        <div class="planList">
+        	<volist name='films' id='vo'>
+        	<dl>
+            	<dt>
+                    <a class="filmLink" href="javascript:details('{$vo['filmNo']}')" >
+                        <div class="filmImg">
+                            <img src="<?php if(!empty($vo['film']['image'])){ ?>__UPLOAD__/{$vo['film']['image']}<?php }else{ ?>imgUrl/movie/default.jpg<?php } ?>" height="100%"  />
+                        </div>
+                        <div class="filmInfo">
+                            <h2>{$vo['filmName']}</h2><span><?php if(!empty($vo['film'])){ ?>{$vo['film']['score']/10}<?php }else{ ?>0<?php } ?></span>
+                            <p>影片片长:{$vo['totalTime']}分钟</p>
+                        </div>
+                        <div class="clear"></div>
+                    </a>
+                </dt>
+                <volist name='vo["planInfo"]' id='plan'>
+                <dd onclick="location.href='{:U('seat',array('featureAppNo'=>$plan['featureAppNo']))}'">
+                	<div class="planDate"><span>{$plan['startTime']}</span><em>￥{$plan['memberPrice']}</em></div>
+                    <div class="planType"><span>{$plan['copyLanguage']}{$plan['copyType']}</span><em>￥{$plan['listingPrice']}</em></div>
+                </dd>
+                </volist>
+                <div class="clear"></div>
+            </dl>
+            </volist>
+        </div>
+    </div>
+	</div>
+</div>
+<script type="text/javascript">
+	 var w = $("body").width();
+	 var i = $("#dateBody > li").length;
+	 var n = $("#dateBody > li").width();
+		$("#dateBody").width((parseInt(n*i)));
+		$("#dateBody > li").width(w*0.33);
+		$("#dateBody > li").click(function(){
+			$(this).addClass("cur").siblings().removeClass("cur")}
+		);
+		$("#dateBody").find("li").each(function(){
+			$(this).click(function(){
+				getPlanlist($(this).attr("planDate"));
+			});
+		});
+		function getPlanlist(planDate){
+			$.get("{:U('planajax')}",{
+				cinemaCode:"{$cinema['cinemaCode']}",
+				startTime:planDate,
+				random:Math.random(),
+				}, function(msg) {
+					var data=JSON.parse(msg);
+					$('.planList').html('');
+					if(data){
+						$.each(data,function(k,value){
+							var str="";
+							 str+='<dl><dt><a class="filmLink" href="javascript:details(\''+value['filmNo']+'\')" ><div class="filmImg">'+
+	                            '<img src="';
+							 if(value['film']['image']){
+								 str+='uploadUrl/'+value['film']['image'];
+							 } else{
+								 str+='imgUrl/movie/default.jpg';
+							 }
+							 str+='" height="100%"  /></div><div class="filmInfo"><h2>'+
+	                            value['filmName']+'</h2><span>'+value['film']['score']/10+'</span><p>影片片长:'+value['totalTime']+'分钟</p>'+
+	                        '</div><div class="clear"></div> </a></dt>';
+							 $.each(value.planInfo,function(key,v){
+								 
+								 str+='<dd onclick="location.href=\''+"{:U('seat')}?featureAppNo="+v['featureAppNo']+'\'"><div class="planDate"><span>'
+										 +v['startTime']+'</span><em>￥'+v['memberPrice']+'</em></div><div class="planType"><span>'
+										 +v['copyLanguage']+v['copyType']+'</span><em>￥'+v['listingPrice']+'</em></div></dd>';
+							});
+							str+='<div class="clear"></div></dl>';
+							$('.planList').append(str);
+						});				
+					}
+			}) ;		
+		}
+		function details(filmNo){
+			$.get("{:U('hasfilm')}",{filmNo:filmNo},function(json){
+				if(json=='1'){
+					location.href="{:U('details')}?filmNo="+filmNo;
+				}else{
+					alert('该影片信息未编辑');
+				}
+			});
+		}
+</script>    
+</block>

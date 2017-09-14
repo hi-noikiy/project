@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('index'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('charge'|ns_css)}}">
+    <script type="text/javascript" defer async data-main="{{static_url('91ns.charge'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+
+    <div class="wrapBd" style="background-color: #300b45;min-width:1902px;">
+        <div class="charge" style="margin-bottom: 80px;">
+            <div class="head">
+                <div class="head-p" style="width: 100%;margin:0 auto;background-color:#eebe3e;">
+                    <img class="head-img"  src="{{static_url('web/cssimg/charge/banner.jpg')}}">
+                </div>
+                <div style="position: relative">
+                    <img style="position: absolute;width: 574px;height: 108px;margin-top: -9%;left: 18%"  src="{{static_url('web/cssimg/charge/Atime.png')}}">
+                    <div class="wantCharge"><a {% if ns_userUid %}href="/charging"{% else %}onclick="userLogin()"{% endif %} style="width:240px;height:62px;display:inline-block;cursor: pointer"></a></div>
+                </div>
+            </div>
+            <div style="/*width: 1660px;*/margin: 0 auto;">
+                <div class="content clearfix" style="position: relative;/*width: 1423px;*/margin: -6px auto;">
+                    <!--<div class="content-left" style="float: left"></div>-->
+                    <div class="content-mid" style="margin: 0 auto; color: #ffffff;position: relative;">
+                        <!--<div style="position: absolute;top: 0px;left: 0px;width: 125px;height: 498px;"><img src="{{static_url('web/cssimg/charge/bb.png')}}"></div>-->
+                        <div class="activities1 clearfix">
+                            <!--<img class="head-img"  style="position: absolute;height: 594px;" src="{{static_url('web/cssimg/charge/blueImg.png')}}">-->
+                            <div class="active-content clearfix" style="width: 950px;">
+                                <div class="active-content-left">
+                                    <div class="charetext clearfix">
+                                        <div class="charetitle clearfix">
+                                            <img src="{{static_url('web/cssimg/charge/shuziy.png')}}">
+                                            <div class="num" style="position: absolute;margin: -85px 0 0 15px;">01</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin: -45px 0 0 80px;"></div>
+                                            <div class="_content">累积充值<span class="_font">【达到10元】</span>送<span class="_font">迷你青铜</span>礼包</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin:60px 0 0 350px;"></div>
+                                            <img style="float: right;margin: -8px;" src="{{static_url('web/cssimg/charge/xiaoyuan.png')}}">
+                                        </div>
+                                    </div>
+                                    <div class="_giftData">
+                                        <ul class="clearfix">
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc bean"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间购买聊豆礼物
+                                                </div>
+                                                <div class="listSl">
+                                                    聊豆
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×50）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc bbt"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间送给房主的小礼物
+                                                </div>
+                                                <div class="listSl">
+                                                    礼物—棒棒糖
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×10）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc tractor"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    非卖活动座驾
+                                                </div>
+                                                <div class="listSl">
+                                                    座驾—拖拉机
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用7天（×1）
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="paper" style="display: none"></div>
+                                        <div id="charge_0" class="paper0"></div>
+                                    </div>
+                                    <img style="position: absolute;left: 50%; margin-left: -80px;margin-top:8px;" src="{{static_url('web/cssimg/charge/ssj.png')}}">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="activities2 clearfix">
+                            <!--<img class="head-img"  style="position: absolute;height: 594px;" src="{{static_url('web/cssimg/charge/blueImg.png')}}">-->
+                            <div class="active-content clearfix">
+                                <div class="active-content-left">
+                                    <div class="charetext clearfix" style="margin-left: 115px;">
+                                        <div class="charetitle clearfix">
+                                            <img src="{{static_url('web/cssimg/charge/shuziy.png')}}">
+                                            <div class="num" style="position: absolute;margin: -85px 0 0 15px;">02</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin: -45px 0 0 80px;"></div>
+                                            <div class="_content">累积充值<span class="_font">【达到100元】</span>送<span class="_font">超值青铜</span>礼包</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin:60px 0 0 350px;"></div>
+                                            <img style="float: right;margin: -8px;" src="{{static_url('web/cssimg/charge/xiaoyuan.png')}}">
+                                        </div>
+                                    </div>
+                                    <div class="_giftData">
+                                        <ul class="clearfix">
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc bean"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间购买聊豆礼物
+                                                </div>
+                                                <div class="listSl">
+                                                    聊豆
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×1000）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc vip1"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    免费体验普通VIP特权
+                                                </div>
+                                                <div class="listSl">
+                                                    普通VIP
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用7天（×1）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc xxxy"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间送给房主的小礼物
+                                                </div>
+                                                <div class="listSl">
+                                                    礼物—心心相印
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×100）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc magic_broom"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    非卖活动座驾
+                                                </div>
+                                                <div class="listSl">
+                                                    座驾—魔法扫帚
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用15天（×1）
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="paper" style="display: none"></div>
+                                        <div id="charge_1" class="paper0"></div>
+                                    </div>
+                                    <img style="position: absolute;left: 50%; margin-left: -80px;margin-top: 32px;" src="{{static_url('web/cssimg/charge/qsj.png')}}">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="activities3 clearfix">
+                            <!--<img class="head-img"  style="position: absolute;height: 594px;" src="{{static_url('web/cssimg/charge/blueImg.png')}}">-->
+                            <div class="active-content clearfix" style="width: 950px;">
+                                <div class="active-content-left">
+                                    <div class="charetext clearfix">
+                                        <div class="charetitle clearfix">
+                                            <img src="{{static_url('web/cssimg/charge/shuziy.png')}}">
+                                            <div class="num" style="position: absolute;margin: -85px 0 0 15px;">03</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin: -45px 0 0 80px;"></div>
+                                            <div class="_content">累积充值<span class="_font">【达到500元】</span>送<span class="_font">土豪白银</span>礼包</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin:60px 0 0 350px;"></div>
+                                            <img style="float: right;margin: -8px;" src="{{static_url('web/cssimg/charge/xiaoyuan.png')}}">
+                                        </div>
+                                    </div>
+                                    <div class="_giftData">
+                                        <ul class="clearfix">
+                                            <li class="giftList" style="margin-left: 165px;">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc bean"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间购买聊豆礼物
+                                                </div>
+                                                <div class="listSl">
+                                                    聊豆
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×2000）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc vip1"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    免费体验普通VIP特权
+                                                </div>
+                                                <div class="listSl">
+                                                    普通VIP
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用15天（×1）
+                                                </div>
+                                            </li><br>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc dg"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间送给房主的小礼物
+                                                </div>
+                                                <div class="listSl">
+                                                    礼物—蛋糕
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×200）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc ylb"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间发送飞屏
+                                                </div>
+                                                <div class="listSl">
+                                                    道具—银喇叭卡
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×1）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc trojan"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    非卖活动座驾，彰显身份
+                                                </div>
+                                                <div class="listSl">
+                                                    座驾—呆萌木马
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用30天（×1）
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="paper" style="display: none"></div>
+                                        <div id="charge_2" class="paper0"></div>
+                                    </div>
+                                    <img style="position: absolute;left: 50%; margin-left: -80px;margin-top: 24px;" src="{{static_url('web/cssimg/charge/ssj.png')}}">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="activities4 clearfix">
+                            <!--<img class="head-img"  style="position: absolute;height: 594px;" src="{{static_url('web/cssimg/charge/blueImg.png')}}">-->
+                            <div class="active-content clearfix" style="width: 950px;">
+                                <div class="active-content-left">
+                                    <div class="charetext clearfix">
+                                        <div class="charetitle clearfix">
+                                            <img src="{{static_url('web/cssimg/charge/shuziy.png')}}">
+                                            <div class="num" style="position: absolute;margin: -85px 0 0 15px;">04</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin: -45px 0 0 80px;"></div>
+                                            <div class="_content">累积充值<span class="_font">【达到1000元】</span>送<span class="_font">至尊白银</span>礼包</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin:60px 0 0 350px;"></div>
+                                            <img style="float: right;margin: -8px;" src="{{static_url('web/cssimg/charge/xiaoyuan.png')}}">
+                                        </div>
+                                    </div>
+                                    <div class="_giftData">
+                                        <ul class="clearfix">
+                                            <li class="giftList" style="margin-left: 165px;">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc bean"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间购买聊豆礼物
+                                                </div>
+                                                <div class="listSl">
+                                                    聊豆
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×3000）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc vip2"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    免费体验至尊VIP尊贵特权
+                                                </div>
+                                                <div class="listSl">
+                                                    至尊VIP
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用7天（×1）
+                                                </div>
+                                            </li><br>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc pic"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    全屏动画大礼物，酷炫更夺目
+                                                </div>
+                                                <div class="listSl">
+                                                    礼物—爱的火山
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×3）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc jlb"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间发送全网广播
+                                                </div>
+                                                <div class="listSl">
+                                                    道具—金喇叭卡
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×1）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc porsche"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    非卖活动座驾，彰显身份
+                                                </div>
+                                                <div class="listSl">
+                                                    座驾—保时捷
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用15天（×1）
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="paper" style="display: none"></div>
+                                        <div id="charge_3" class="paper0"></div>
+                                    </div>
+                                    <img style="position: absolute;left: 50%; margin-left: -80px;margin-top: 24px;" src="{{static_url('web/cssimg/charge/qsj.png')}}">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="activities3 clearfix">
+                            <!--<img class="head-img"  style="position: absolute;height: 594px;" src="{{static_url('web/cssimg/charge/blueImg.png')}}">-->
+                            <div class="active-content clearfix">
+                                <div class="active-content-left">
+                                    <div class="charetext clearfix" style="margin-left: 115px;">
+                                        <div class="charetitle clearfix">
+                                            <img src="{{static_url('web/cssimg/charge/shuziy.png')}}">
+                                            <div class="num" style="position: absolute;margin: -85px 0 0 15px;">05</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin: -45px 0 0 80px;"></div>
+                                            <div class="_content">累积充值<span class="_font">【达到5000元】</span>送<span class="_font">史诗黄金</span>礼包</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin:60px 0 0 350px;"></div>
+                                            <img style="float: right;margin: -8px;" src="{{static_url('web/cssimg/charge/xiaoyuan.png')}}">
+                                        </div>
+                                    </div>
+                                    <div class="_giftData">
+                                        <ul class="clearfix">
+                                            <li class="giftList" style="margin-left: 165px;">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc bean"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间购买聊豆礼物
+                                                </div>
+                                                <div class="listSl">
+                                                    聊豆
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×5000）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc vip2"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    免费体验至尊VIP尊贵特权
+                                                </div>
+                                                <div class="listSl">
+                                                    至尊VIP
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用15天（×1）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc xhmtl"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    全屏动画大礼物，酷炫更夺目
+                                                </div>
+                                                <div class="listSl">
+                                                    礼物—幸福摩天轮
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×3）
+                                                </div>
+                                            </li><br>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc ylb"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间发送飞屏
+                                                </div>
+                                                <div class="listSl">
+                                                    道具—银喇叭卡
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×2）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc jlb"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间发送全网广播
+                                                </div>
+                                                <div class="listSl">
+                                                    道具—金喇叭卡
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×1）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc silver_ghost"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    非卖限量活动座驾，王者必备
+                                                </div>
+                                                <div class="listSl">
+                                                    座驾—劳斯莱斯银魅
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用30天（×1）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc money1"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    史诗徽章，聊天酷炫
+                                                </div>
+                                                <div class="listSl">
+                                                    徽章—万贯
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×1）
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="paper" style="display: none"></div>
+                                        <div id="charge_4" class="paper0"></div>
+                                    </div>
+                                    <img style="position: absolute;left: 50%; margin-left: -80px;margin-top: 24px;" src="{{static_url('web/cssimg/charge/ssj.png')}}">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="activities4 clearfix">
+                            <!--<img class="head-img"  style="position: absolute;height: 594px;" src="{{static_url('web/cssimg/charge/blueImg.png')}}">-->
+                            <div class="active-content clearfix">
+                                <div class="active-content-left">
+                                    <div class="charetext clearfix" style="margin-left: 115px;">
+                                        <div class="charetitle clearfix">
+                                            <img src="{{static_url('web/cssimg/charge/shuziy.png')}}">
+                                            <div class="num" style="position: absolute;margin: -85px 0 0 15px;">06</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin: -45px 0 0 80px;"></div>
+                                            <div class="_content">累积充值<span class="_font">【达到10000元】</span>送<span class="_font">传说黄金</span>礼包</div>
+                                            <div style="width: 514px;height: 2px;background-color: #9026b8;margin:60px 0 0 350px;"></div>
+                                            <img style="float: right;margin: -8px;" src="{{static_url('web/cssimg/charge/xiaoyuan.png')}}">
+                                        </div>
+                                    </div>
+                                    <div class="_giftData">
+                                        <ul class="clearfix">
+                                            <li class="giftList" style="margin-left: 165px;">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc bean"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间购买聊豆礼物
+                                                </div>
+                                                <div class="listSl">
+                                                    聊豆
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×8000）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc vip2"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    免费体验至尊VIP尊贵特权
+                                                </div>
+                                                <div class="listSl">
+                                                    至尊VIP
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用30天（×1）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc private-yacht"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    全屏动画大礼物，酷炫更夺目
+                                                </div>
+                                                <div class="listSl">
+                                                    礼物—私人游艇
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×3）
+                                                </div>
+                                            </li><br>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc ylb"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间发送飞屏
+                                                </div>
+                                                <div class="listSl">
+                                                    道具—银喇叭卡
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×2）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc jlb"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    可在直播间发送全网广播
+                                                </div>
+                                                <div class="listSl">
+                                                    道具—金喇叭卡
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×2）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc car1"></i>
+                                                </div>
+                                                <div class="listCon">
+                                                    非卖限量活动座驾，王者必备
+                                                </div>
+                                                <div class="listSl">
+                                                    座驾—黄金战车
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    免费使用30天（×1）
+                                                </div>
+                                            </li>
+                                            <li class="giftList">
+                                                <div class="listImg">
+                                                    <i class="sprite-lc money2"></i>
+                                                </div>
+                                                <div class="listCon" style="line-height: 30px;">
+                                                    传说徽章，光彩夺目，<br>聊天酷炫
+                                                </div>
+                                                <div class="listSl">
+                                                    徽章—富甲
+                                                </div>
+                                                <div class="listSl fontD">
+                                                    永久（×1）
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <div class="paper" style="display: none"></div>
+                                        <div id="charge_5" class="paper0"></div>
+                                    </div>
+                                    <img style="position: absolute;left: 50%; margin-left: -80px;margin-top: 24px;" src="{{static_url('web/cssimg/charge/qsj.png')}}">
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="reminder" style="border-top: 2px solid #9026b8">
+                            <div class="_point">温馨提示</div>
+                            <ul>
+                                <li><span>1.本活动开始时间：2015年07月03日 19:00；</span></li>
+                                <li><span>2.“累计充值”指用户在全平台（包括网页和手机客户端）的积累充值；</span></li>
+                                <li><span>3.累计充值金额达到活动需求对应金额方可领取相应礼包；</span></li>
+                                <li><span>4.每位用户只能领取1次；</span></li>
+                                <li><span>5.所有奖励都在领取礼包时即刻发放：VIP和座驾可在我的道具里查看，礼物套餐直接存放在用户的直播间包裹中；</span></li>
+                                <li><span>6.本活动最终解释权归{{webType['name']}}所有。</span></li>
+                            </ul>
+                        </div>
+
+
+
+                    </div>
+                    <!--<div class="content-right" style="float: left"></div>-->
+                </div>
+            </div>
+
+            <div style="height: 4px;*height: 20px;"></div>
+        </div>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+<div class="ns-alert ns-dialog">
+    <div class="win goProp" style="display: none;">
+        <div class="header">
+            <i class="ico-main-12 alert-logo"></i>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body">
+            <div>
+                <div id="d_fuid" class="show-text"><span style="color: #f55c20;">恭喜您</span>，已成功领取了活动礼物</div>
+                <div class="btn-box">
+                    <a id="ns_btn_OK" href="/personal/props" fuid="" class="btn btn-purple leiProp">马上进去我的道具查看</a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div>
+</body>
+</html>

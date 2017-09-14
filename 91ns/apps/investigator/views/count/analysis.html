@@ -1,0 +1,628 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+    <div class="container-fluid" style="padding: 0;">
+
+        <div class="widget-box tab-tabs" >
+            <div class="widget-title">
+                <ul class="nav nav-tabs">
+                    {% include "common/tab.html" %}
+                </ul>
+            </div>
+            <div class="widget-content tab-content" style="overflow: hidden;">
+
+                <div class="row-fluid" style="margin-top: 30px;">
+                    <div class="container-fluid" style="padding: 0;">
+                        <div class="nav-line-tab nav-line nav-tab1" data="1">
+                            <a name="newAdd" class="_nav active" style="margin-left: 40px;">用户新增</a>
+                            <a name="retained" class="_nav">用户留存</a>
+                            <a name="analysis" class="_nav">用户分析</a>
+                            <a name="behavior" class="_nav">用户行为</a>
+                        </div>
+                    </div>
+                    <div id="newAdd" class="countBox container-fluid" style="padding: 0;">
+                        <div class="row-fluid" style="margin-top: 30px;color: #fff;text-align: center;min-width: 1000px;">
+                            <span class="span3" style="background-color: #d9544f;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                <p id="NewSum" class="font28">0</p>
+                                <p class="font20">今日新增用户总数</p>
+                            </span>
+                            <span class="span3" style="background-color: #3399ff;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                 <p id="NewSum1" class="font28">0</p>
+                                <p class="font20">昨天新增用户总数</p>
+                            </span>
+                            <span class="span3" style="background-color: #00cccc;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                 <p id="NewSum2" class="font28">0</p>
+                                <p class="font20">最近7天新增用户总数</p>
+                            </span>
+                            <span class="span3" style="background-color: #1d283a;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                 <p id="NewSum3" class="font28">0</p>
+                                <p class="font20">最近30天新增用户总数</p>
+                            </span>
+                        </div>
+                        <div class="row-fluid" style="margin-top: 30px;color: #fff;min-width: 1000px;">
+                            <div class="nav-line-tab nav-line nav-tab5" data="5" style="background-color: #fff;">
+                                <a class="_nav active"  data="<?php echo date('Y-m-d',strtotime('today')); ?>" >今天</a>
+                                <a class="_nav" type="yesterDay"  data="<?php echo date('Y-m-d',strtotime('-1 day')); ?>" >昨天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-6 day')); ?>" >最近7天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-29 day')); ?>" >最近30天</a>
+
+                                <a  class="date-calendar"><i class=" icon-calendar"></i> <input id="Newdate" value="<?php echo date('Y-m-d',strtotime('today')); ?> - <?php echo date('Y-m-d',strtotime('today')); ?>" data="toDay"  placeholder="请输入日期"></a>
+                            </div>
+                            <div class="clearfix" style="min-width: 1000px;padding-top: 20px;">
+                                <div class="pull-left" style="width: 40%;height: 300px;">
+                                    <div class="nav-line-tab nav-line"  style="text-align: center;">
+                                        <a class="_nav">注册使用终端设备比例</a>
+                                    </div>
+                                    <div id="containerty"  class="nav-line-tab nav-line"  style="text-align: center;background-color: #fff;position: relative;">
+                                        <canvas id="chart" width="670" height="500" style="position: relative;"></canvas>
+                                        <table id="chartData" style="position: absolute;left: 540px;top: -40px;">
+                                            <tr>
+                                                <th>注册使用终端设备</th><th>数量</th>
+                                            </tr>
+                                            <tr style="color:#0DA068">
+                                                <td>Web</td><td id="webSum1">0</td>
+                                            </tr>
+                                            <tr style="color:#194E9C">
+                                                <td>ios</td><td id="iosSum2">0</td>
+                                            </tr>
+                                            <tr style="color:#ED9C13">
+                                                <td>android</td><td id="androidSum3">0</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="pull-right" style="width: 59%;">
+                                    <div class="nav-line-tab nav-line"  style="text-align: center;">
+                                        <a class="_nav">注册趋势</a>
+                                    </div>
+                                    <div class="nav-line-tab nav-line"  style="text-align: center;background-color: #fff;">
+                                        <div id="render-chart5" style="height: 500px;margin-top: 10px;width: 100%;color: #000;">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 50px;">
+                            <table id="tableList" class="table with-check table-purple">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>渠道</th>
+                                    <th>新增用户数量</th>
+                                    <th>所占比例</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            {% include "common/pagination.html" %}
+                        </div>
+                    </div>
+                    <div id="retained" class="countBox container-fluid" style="padding: 0;display: none;">
+                        <div class="row-fluid" style="margin-top: 30px;color: #fff;min-width: 1000px;">
+                            <div class="nav-line-tab nav-line nav-tab6" data="6" style="background-color: #fff;">
+                                <a class="_nav active" type="yesterDay"  data="<?php echo date('Y-m-d',strtotime('-1 day')); ?>" >昨天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-6 day')); ?>" >最近7天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-29 day')); ?>" >最近30天</a>
+
+                                <a  class="date-calendar"><i class=" icon-calendar"></i> <input id="Retaineddate" value="<?php echo date('Y-m-d',strtotime('-1 day')); ?> - <?php echo date('Y-m-d',strtotime('-1 day')); ?>" data="toDay"  placeholder="请输入日期"></a>
+                            </div>
+                            <div class="clearfix" style="min-width: 1000px;padding-top: 20px;">
+                                <div class="nav-line-tab nav-line"  style="text-align: center;background-color: #fff;">
+                                    <div id="render-chart6" style="height: 500px;margin-top: 10px;width: 100%;color: #000;">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row-fluid" style="margin-top:0px;color: #fff;text-align: center;min-width: 1000px;">
+                            <span class="span3" style="background-color: #d9544f;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                <p id="retainedSum1" class="font28">0.00%</p>
+                                <p class="font20">次日留存率</p>
+                            </span>
+                            <span class="span3" style="background-color: #3399ff;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                 <p id="retainedSum2" class="font28">0.00%</p>
+                                <p class="font20">3天留存率</p>
+                            </span>
+                            <span class="span3" style="background-color: #00cccc;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                 <p id="retainedSum3" class="font28">0.00%</p>
+                                <p class="font20">7天留存率</p>
+                            </span>
+                            <span class="span3" style="background-color: #1d283a;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                 <p id="retainedSum4" class="font28">0.00%</p>
+                                <p class="font20">30天留存率</p>
+                            </span>
+                        </div>
+
+                        <div class="row-fluid" style="margin-bottom: 50px;margin-top: 30px;">
+                            <form id="formSearch" class="form-search">
+                                <input name="order" type="hidden" value="2">
+                            </form>
+                            <table id="tableList-retained" class="table with-check table-purple">
+                                <thead>
+                                <tr>
+                                    <th>渠道</th>
+                                    <th class="cursor" onclick="tableOrderClick('formSearch',2,getDataList)">次日留存率&darr;</th>
+                                    <th class="cursor" onclick="tableOrderClick('formSearch',3,getDataList)">3天留存率&darr;</th>
+                                    <th class="cursor" onclick="tableOrderClick('formSearch',7,getDataList)">7天留存率&darr;</th>
+                                    <th class="cursor" onclick="tableOrderClick('formSearch',30,getDataList)">30天留存率&darr;</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <div class="row-fluid">
+                                <div class="total pull-left">
+                                    <p class="font font18 cr-gy">
+                                        <span>记录总数：</span>
+                                        <span id="count1">0</span>
+                                    </p>
+                                </div>
+
+                                <div id="pagination1" class="pagination alternate pull-right"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="analysis" class="countBox container-fluid" style="padding: 0;display: none;">
+                        <div class="row-fluid" style="margin-top: 30px;color: #fff;text-align: center;min-width: 1000px;">
+                            <span class="span3" style="background-color: #d9544f;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                <p id="sum" class="font28">0</p>
+                                <p class="font20">直播间在线用户总数</p>
+                            </span>
+                            <span class="span3" style="background-color: #3399ff;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                 <p id="sum1" class="font28">0</p>
+                                <p class="font20">Web在线用户</p>
+                            </span>
+                            <span class="span3" style="background-color: #00cccc;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                 <p id="sum2" class="font28">0</p>
+                                <p class="font20">ios在线用户</p>
+                            </span>
+                            <span class="span3" style="background-color: #1d283a;height: 98px;padding-top: 30px;width: 23%;float: left;">
+                                 <p id="sum3" class="font28">0</p>
+                                <p class="font20">Android在线用户</p>
+                            </span>
+                        </div>
+
+                        <div class="row-fluid" style="margin-top: 30px;">
+                            <div class="nav-line-tab nav-line nav-tab2" data="2">
+                                <a class="_nav active"  data="<?php echo date('Y-m-d',strtotime('today')); ?>" >今天</a>
+                                <a class="_nav" type="yesterDay"  data="<?php echo date('Y-m-d',strtotime('-1 day')); ?>" >昨天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-6 day')); ?>" >最近7天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-29 day')); ?>" >最近30天</a>
+
+                                <a  class="date-calendar"><i class=" icon-calendar"></i> <input id="mydate" value="<?php echo date('Y-m-d',strtotime('today')); ?> - <?php echo date('Y-m-d',strtotime('today')); ?>" data="toDay"  placeholder="请输入日期"></a>
+                            </div>
+                            <div class="font20" style="text-align: center;margin-top: 5px;">没去重的</div>
+                            <div id="render-chart3" style="height: 500px;margin-top: 10px;width: 100%;color: #000;">
+
+                            </div>
+
+                        </div>
+
+                        <div class="row-fluid" style="margin-top: 30px;">
+                            <div class="nav-line-tab nav-line nav-tab3" data="3">
+                                <a class="_nav active"  data="<?php echo date('Y-m-d',strtotime('today')); ?>" >今天</a>
+                                <a class="_nav" type="yesterDay"  data="<?php echo date('Y-m-d',strtotime('-1 day')); ?>" >昨天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-6 day')); ?>" >最近7天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-29 day')); ?>" >最近30天</a>
+
+                                <a  class="date-calendar"><i class=" icon-calendar"></i> <input id="qydate" value="<?php echo date('Y-m-d',strtotime('today')); ?> - <?php echo date('Y-m-d',strtotime('today')); ?>" data="toDay"  placeholder="请输入日期"></a>
+                            </div>
+                            <div class="font20" style="text-align: center;margin-top: 5px;">去重的</div>
+                            <div id="render-chart4" style="height: 500px;margin-top: 10px;width: 100%;color: #000;">
+
+                            </div>
+
+                        </div>
+                        <div class="row-fluid" style="margin-top: 30px;">
+                            <div class="nav-line-tab nav-line nav-tab4" data="4">
+                                <a class="_nav active"  data="<?php echo date('Y-m-d',strtotime('today')); ?>" >今天</a>
+                                <a class="_nav" type="yesterDay"  data="<?php echo date('Y-m-d',strtotime('-1 day')); ?>" >昨天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-6 day')); ?>" >最近7天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-29 day')); ?>" >最近30天</a>
+
+                                <a  class="date-calendar"><i class=" icon-calendar"></i> <input id="sydate" value="<?php echo date('Y-m-d',strtotime('today')); ?> - <?php echo date('Y-m-d',strtotime('today')); ?>" data="toDay"   placeholder="请输入日期"></a>
+                            </div>
+                            <div class="level clearfix">
+                                <div class="left" style="border: 0px;">
+                                    <div class="level clearfix anchorLevel">
+                                        <div id="Active-sum0" class="radius" nsdata="level-radius" nstype="sum" level-range="1">
+                                            <div class="bgs"></div>
+                                            <div class="type"></div>
+                                            <i class="highline">
+                                                <i class="head-bottom-s"></i>
+                                            </i>
+                                            <div class="text" style="margin-top: 60px;">
+                                                <p style="width: 120px;">活跃用户总数<span id="actSum0" style="color: #7EB3EA">0</span></p>
+                                                <p style="width: 120px;">
+                                                    <span id="aPoint0"></span>
+                                                    <span style="position: relative;display: inline-block">
+                                                        <i class="highline" >
+                                                            <i class="head-bottom-s spe"></i>
+                                                        </i>
+                                                    </span>
+
+                                                    <span id="asum0" style="margin-left: 10px;">00.00%</span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="level clearfix richerLevel">
+                                        <div id="Active-sum1" class="radius" nsdata="level-radius" nstype="sum1" level-range="1">
+                                            <div class="bgs"></div>
+                                            <div class="type"></div>
+                                            <i class="highline">
+                                                <i class="head-bottom-s"></i>
+                                            </i>
+                                            <div class="text" style="margin-top: 60px;">
+                                                <p style="width: 130px;">Web活跃用户总数<span id="actSum1" style="color: #7EB3EA">0</span></p>
+                                                <p style="width: 120px;">
+                                                    <span id="aPoint1"></span>
+                                                    <span style="position: relative;display: inline-block">
+                                                        <i class="highline" >
+                                                            <i class="head-bottom-s spe"></i>
+                                                        </i>
+                                                    </span>
+
+                                                    <span id="asum1" style="margin-left: 10px;">00.00%</span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="level clearfix fansLevel">
+                                        <div id="Active-sum2" class="radius" nsdata="level-radius" nstype="sum2" level-range="1">
+                                            <div class="bgs"></div>
+                                            <div class="type"></div>
+                                            <i class="highline">
+                                                <i class="head-bottom-s"></i>
+                                            </i>
+                                            <div class="text" style="margin-top: 60px;">
+                                                <p style="width: 130px;">ios活跃用户总数<span id="actSum2" style="color: #7EB3EA">0</span></p>
+                                                <p style="width: 120px;">
+                                                    <span id="aPoint2"></span>
+                                                    <span style="position: relative;display: inline-block">
+                                                        <i class="highline" >
+                                                            <i class="head-bottom-s spe"></i>
+                                                        </i>
+                                                    </span>
+
+                                                    <span id="asum2" style="margin-left: 10px;">00.00%</span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="level clearfix fansLevel">
+                                        <div id="Active-sum3" class="radius" nsdata="level-radius" nstype="sum3" level-range="1">
+                                            <div class="bgs"></div>
+                                            <div class="type"></div>
+                                            <i class="highline">
+                                                <i class="head-bottom-s"></i>
+                                            </i>
+                                            <div class="text" style="margin-top: 60px;">
+                                                <p style="width: 140px;">Android活跃用户总数<span id="actSum3" style="color: #7EB3EA">0</span></p>
+                                                <p style="width: 120px;">
+                                                    <span id="aPoint3"></span>
+                                                    <span style="position: relative;display: inline-block">
+                                                        <i class="highline" >
+                                                            <i class="head-bottom-s spe"></i>
+                                                        </i>
+                                                    </span>
+
+                                                    <span id="asum3" style="margin-left: 10px;">00.00%</span>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row-fluid" style="margin-top: 30px;"></div>
+                    </div>
+                    <div id="behavior" class="countBox container-fluid" style="padding: 0;display: none;">
+                        <div class="nav-line-tab nav-line nav-tab7" data="7">
+                            <a name="sign" class="_nav active" style="margin-left: 40px;">签到</a>
+                            <a name="task" class="_nav">任务</a>
+                        </div>
+                        <div id="sign" class="dis-behavior">
+                            <div class="row-fluid" style="margin-top: 30px;color: #fff;min-width: 1000px;">
+                                <div class="nav-line-tab nav-line" style="height: 70px;line-height: 70px;color: #2d2d2d;">
+                                    <span class="font20 mar">选择日期：</span>
+                                    <input id="anincometimebox"  class="anincome-timebox" type="text" value="<?php echo date('Y-m',strtotime('this month')); ?>">
+                                    <div class="pull-right" style="line-height: 15px;padding-top: 20px;text-align: center;margin-right: 30px;">
+                                        <p class="font20">签到总用户数</p>
+                                        <p class="cr-ly font20" id="signSum">0</p>
+                                    </div>
+                                </div>
+                                <div class="clearfix" style="min-width: 1000px;padding-top: 20px;">
+
+                                    <div class="nav-line-tab nav-line"  style="text-align: center;background-color: #fff;color: #2d2d2d;">
+                                        <div class="font20" style="text-align: center;margin-top: 5px;">签到用户数趋势图</div>
+                                        <div id="render-chart7" style="height: 500px;margin-top: 10px;width: 100%;">
+
+                                        </div>
+                                    </div>
+
+                                    <table  class="table with-check table-purple table-gary" style="color:#656565;">
+                                        <thead>
+                                        <tr style="">
+                                            <th></th>
+                                            <th>2天</th>
+                                            <th>3天</th>
+                                            <th>4天</th>
+                                            <th>5天</th>
+                                            <th>6天</th>
+                                            <th>7天</th>
+                                            <th></th>
+                                            <th>7天</th>
+                                            <th>14天</th>
+                                            <th>20天</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <p>完成</p>
+                                                <p>连续签到</p>
+                                            </td>
+                                            <td class="cr-ly" id="conDay1">0</td>
+                                            <td class="cr-ly" id="conDay2">0</td>
+                                            <td class="cr-ly" id="conDay3">0</td>
+                                            <td class="cr-ly" id="conDay4">0</td>
+                                            <td class="cr-ly" id="conDay5">0</td>
+                                            <td class="cr-ly" id="conDay6">0</td>
+                                            <td>
+                                                <p>完成</p>
+                                                <p>累计签到</p>
+                                            </td>
+                                            <td class="cr-ly" id="totDay1">0</td>
+                                            <td class="cr-ly" id="totDay2">0</td>
+                                            <td class="cr-ly" id="totDay3">0</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <table id="conTable"  class="table with-check table-purple table-gary pull-left" style="color:#656565;width: 48%;">
+                                        <thead>
+                                        <tr style="">
+                                            <th>连续签到天数</th>
+                                            <th>完成人数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+
+                                    <table id="totTable"  class="table with-check table-purple table-gary pull-right" style="color:#656565;width: 48%;">
+                                        <thead>
+                                        <tr style="">
+                                            <th>累计签到天数</th>
+                                            <th>完成人数</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <!--<div class="row-fluid">-->
+                                        <!--<div class="total pull-left">-->
+                                            <!--<p class="font font18 cr-gy">-->
+                                                <!--<span>记录总数：</span>-->
+                                                <!--<span id="count2">0</span>-->
+                                            <!--</p>-->
+                                        <!--</div>-->
+
+                                        <!--<div id="pagination2" class="pagination alternate pull-right"></div>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div id="task" class="dis-behavior" style="display: none;">
+                            <div class="row-fluid" style="margin-top: 30px;">
+                                <div class="nav-line-tab nav-line nav-tab8" data="8">
+                                    <a class="_nav active"  data="<?php echo date('Y-m-d',strtotime('-6 day')); ?>" >最近7天</a>
+                                    <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-29 day')); ?>" >最近30天</a>
+
+                                    <a  class="date-calendar"><i class=" icon-calendar"></i> <input id="taskdate" value="<?php echo date('Y-m-d',strtotime('-6 day')); ?> - <?php echo date('Y-m-d',strtotime('today')); ?>" data="toDay"  placeholder="请输入日期"></a>
+                                </div>
+                                <div id="render-chart8" style="height: 500px;margin-top: 10px;width: 100%;color: #000;">
+
+                                </div>
+
+                            </div>
+                            <div class="row-fluid clearfix" style="margin-top: 30px;color: #fff;text-align: center;min-width: 1000px;">
+                                <span class="span3" style="background-color: #d9544f;height: 98px;padding-top: 30px;width: 48%;float: left;">
+                                    <p id="joinSum" class="font28">0</p>
+                                    <p class="font20">参与做任务用户总数</p>
+                                </span>
+                                <span class="span3" style="background-color: #3399ff;height: 98px;padding-top: 30px;width: 48%;float: right;">
+                                    <p id="finishSum" class="font28">0</p>
+                                    <p class="font20">任务完成总数</p>
+                                </span>
+                            </div>
+                            <div class="nav-line-tab nav-line font20" style="height: 50px;line-height: 50px;text-align: center;margin-top: 20px;">
+                                 各任务完成情况分析
+                            </div>
+                            <div class="row-fluid" style="margin-top: 30px;margin-bottom: 30px;">
+                                <div class="level clearfix">
+                                    <div id="levelLeft" class="left" style="border: 0px;">
+                                        <!--<div class="level clearfix anchorLevel">-->
+                                            <!--<div id="task-sum0" class="radius" nsdata="level-radius" nstype="sum" level-range="1">-->
+                                                <!--<div class="bgs"></div>-->
+                                                <!--<div class="type">00.00%</div>-->
+                                                <!--<i class="highline">-->
+                                                    <!--<i class="head-bottom-s"></i>-->
+                                                <!--</i>-->
+                                                <!--<div class="text" style="margin-top: 60px;">-->
+                                                    <!--<p class="taskName" style="width: 140px;"></p>-->
+                                                    <!--<p class="taskStyleColor">-->
+                                                        <!--<span class="taskUser" style="margin-left: 10px;">0</span>-->
+                                                        <!--<span>用户</span>-->
+                                                    <!--</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                        <!--<div class="level clearfix anchorLevel">-->
+                                            <!--<div id="task-sum1" class="radius" nsdata="level-radius" nstype="sum1" level-range="1">-->
+                                                <!--<div class="bgs"></div>-->
+                                                <!--<div class="type">00.00%</div>-->
+                                                <!--<i class="highline">-->
+                                                    <!--<i class="head-bottom-s"></i>-->
+                                                <!--</i>-->
+                                                <!--<div class="text" style="margin-top: 60px;">-->
+                                                    <!--<p class="taskName" style="width: 140px;"></p>-->
+                                                    <!--<p class="taskStyleColor">-->
+                                                        <!--<span class="taskUser" style="margin-left: 10px;">0</span>-->
+                                                        <!--<span>用户</span>-->
+                                                    <!--</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                        <!--<div class="level clearfix anchorLevel">-->
+                                            <!--<div id="task-sum2" class="radius" nsdata="level-radius" nstype="sum2" level-range="1">-->
+                                                <!--<div class="bgs"></div>-->
+                                                <!--<div class="type">00.00%</div>-->
+                                                <!--<i class="highline">-->
+                                                    <!--<i class="head-bottom-s"></i>-->
+                                                <!--</i>-->
+                                                <!--<div class="text" style="margin-top: 60px;">-->
+                                                    <!--<p class="taskName" style="width: 140px;"></p>-->
+                                                    <!--<p class="taskStyleColor">-->
+                                                        <!--<span class="taskUser" style="margin-left: 10px;">0</span>-->
+                                                        <!--<span>用户</span>-->
+                                                    <!--</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                        <!--<div class="level clearfix anchorLevel">-->
+                                            <!--<div id="task-sum3" class="radius" nsdata="level-radius" nstype="sum3" level-range="1">-->
+                                                <!--<div class="bgs"></div>-->
+                                                <!--<div class="type">00.00%</div>-->
+                                                <!--<i class="highline">-->
+                                                    <!--<i class="head-bottom-s"></i>-->
+                                                <!--</i>-->
+                                                <!--<div class="text" style="margin-top: 60px;">-->
+                                                    <!--<p class="taskName" style="width: 140px;"></p>-->
+                                                    <!--<p class="taskStyleColor">-->
+                                                        <!--<span class="taskUser" style="margin-left: 10px;">0</span>-->
+                                                        <!--<span>用户</span>-->
+                                                    <!--</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                        <!--<div class="level clearfix anchorLevel">-->
+                                            <!--<div id="task-sum4" class="radius" nsdata="level-radius" nstype="sum4" level-range="1">-->
+                                                <!--<div class="bgs"></div>-->
+                                                <!--<div class="type">00.00%</div>-->
+                                                <!--<i class="highline">-->
+                                                    <!--<i class="head-bottom-s"></i>-->
+                                                <!--</i>-->
+                                                <!--<div class="text" style="margin-top: 60px;">-->
+                                                    <!--<p class="taskName" style="width: 140px;"></p>-->
+                                                    <!--<p class="taskStyleColor">-->
+                                                        <!--<span class="taskUser" style="margin-left: 10px;">0</span>-->
+                                                        <!--<span>用户</span>-->
+                                                    <!--</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                        <!--<div class="level clearfix anchorLevel">-->
+                                            <!--<div id="task-sum5" class="radius" nsdata="level-radius" nstype="sum5" level-range="1">-->
+                                                <!--<div class="bgs"></div>-->
+                                                <!--<div class="type">00.00%</div>-->
+                                                <!--<i class="highline">-->
+                                                    <!--<i class="head-bottom-s"></i>-->
+                                                <!--</i>-->
+                                                <!--<div class="text" style="margin-top: 60px;">-->
+                                                    <!--<p class="taskName" style="width: 140px;"></p>-->
+                                                    <!--<p class="taskStyleColor">-->
+                                                        <!--<span class="taskUser" style="margin-left: 10px;">0</span>-->
+                                                        <!--<span>用户</span>-->
+                                                    <!--</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                        <!--<div class="level clearfix anchorLevel">-->
+                                            <!--<div id="task-sum6" class="radius" nsdata="level-radius" nstype="sum6" level-range="1">-->
+                                                <!--<div class="bgs"></div>-->
+                                                <!--<div class="type">00.00%</div>-->
+                                                <!--<i class="highline">-->
+                                                    <!--<i class="head-bottom-s"></i>-->
+                                                <!--</i>-->
+                                                <!--<div class="text" style="margin-top: 60px;">-->
+                                                    <!--<p class="taskName" style="width: 140px;"></p>-->
+                                                    <!--<p class="taskStyleColor">-->
+                                                        <!--<span class="taskUser" style="margin-left: 10px;">0</span>-->
+                                                        <!--<span>用户</span>-->
+                                                    <!--</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                        <!--<div class="level clearfix anchorLevel">-->
+                                            <!--<div id="task-sum7" class="radius" nsdata="level-radius" nstype="sum7" level-range="1">-->
+                                                <!--<div class="bgs"></div>-->
+                                                <!--<div class="type">00.00%</div>-->
+                                                <!--<i class="highline">-->
+                                                    <!--<i class="head-bottom-s"></i>-->
+                                                <!--</i>-->
+                                                <!--<div class="text" style="margin-top: 60px;">-->
+                                                    <!--<p class="taskName" style="width: 150px;"></p>-->
+                                                    <!--<p class="taskStyleColor">-->
+                                                        <!--<span class="taskUser" style="margin-left: 10px;">0</span>-->
+                                                        <!--<span>用户</span>-->
+                                                    <!--</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<link rel="stylesheet" href="{{static_url('web/css/canvas.css')}}">
+<script type="text/javascript" src="{{static_url('web/js/flotr2.js')}}"></script>
+<script src="{{static_url('web/laydate/laydate.js')}}"></script>
+<script src="{{static_url('web/js/jquery.ui.datepicker-zh-CN.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js/91ns.analysis.js')}}"></script>
+<!--[if IE]>
+<script src="{{static_url('web/js/excanvas.js')}}"></script>
+<![endif]-->
+
+<script type="text/javascript">
+
+</script>

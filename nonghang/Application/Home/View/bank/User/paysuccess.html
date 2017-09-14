@@ -1,0 +1,75 @@
+<extend name='Public/base'/>
+<block name='title'>微信2.0</block>
+<block name='jscss'>
+	<link type="text/css" rel="stylesheet" href="__CSS__/style.css">
+ </block>
+
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="<if condition="$pflag neq ''">{:U('index/cinema')}<else/>{:U('index/index')}</if>" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">购票成功</div>
+    <div class="right"></div>
+  </div>
+</div>
+    </block>
+
+<block name='body'>
+<div data-page="userSuccess" class="page" style="padding-top:44px; overflow:scroll;">
+<div class="content">
+        <div id='success' style="display: none">
+            
+            <div class="payStatusicon">
+                <img src="__IMG__/movie/success.png" width="50%" />
+                <p>购票成功</p>
+                <p><span>取票码：</span><b></b></p>
+            </div>
+        </div>
+        <div id='fail' style="display: none">
+            <div class="payStatusicon">
+                <img src="__IMG__/movie/lose.png" width="50%" />
+                <p>购票失败</p>
+                <p><span>订单状态：</span><b></b></p>
+            </div>
+        </div>
+        <div id='ining'>
+            <div class="payStatusicon">
+                <img src="__IMG__/movie/ing.png" width="50%" />
+                <p> 正在购票中.....</p>
+            </div>
+        </div>
+        <div class="payStatusinfo">
+            <p><span>订单编号：</span>{$order['orderCode']}</p>
+            <p><span>观影时间：</span>{$order['startTime']|date='Y-m-d H:i',###}</p>
+            <p><span>观影影院：</span>{$order['cinemaName']}</p>
+            <p><span>座位信息：</span>{$order['seatIntroduce']}</p>
+        </div>
+        
+    </div>
+    </div>
+
+</block>
+
+<block name='script'>
+<script type="text/javascript">
+    var id=setInterval("getPayStatus()",3000);
+var data = "{$order['orderCode']}";
+function getPayStatus(){      
+    $.get("{:U('User/orderajax')}",{orderid:data},function(json){
+        var msg=JSON.parse(json);
+        if(msg.status != '0'){
+            clearInterval(id);
+            $("#ining").hide();
+            if(msg.status =='3'){
+                $("#success b").text(msg['printNo']);
+                $("#success").show();
+            }else{
+                $("#fail b").text('购票失败');
+                $("#fail").show();
+                $.post("{:U('cancelOrder')}",{orderid:data},function(json){});
+            }   
+        }
+    });
+}
+</script>
+    </block>

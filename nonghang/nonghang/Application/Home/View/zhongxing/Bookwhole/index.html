@@ -1,0 +1,305 @@
+<extend name='Public/bookbase'/>
+<block name='title'>三坊七巷店</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+               <!--   <a href="#" class="back link"> -->
+                <a href="http://weixin.zrfilm.com" class="external link" >
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">三坊七巷店-影厅包场</div>
+            <div class="right book">
+                <a href="{:U('Bookwhole/orderbc')}"></a>
+            </div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+        <div data-page="bookwholeIndex" class="page">
+            <div class="wrap" id="bookwholeindex">
+                <div class="date">
+                    <ul>
+                        <volist name='title' id='v'>
+                            <li <?php if($key==0):?>class="active"<?php endif;?>  onclick='search_plan({$v.time});'>{$v.name}</li>
+                        </volist>
+
+                   
+                    </ul>
+                </div>
+                <div class="planCon" id='plannumList'>
+
+                    <volist name='list' id='v'>
+                    <label class="item {$v.classesd}">
+                        <input type="checkbox" name="index_plan" time="{$v.time}" endTime="{$v.endTime}" price="{$v.price}">
+                        <div>
+                            <span>
+                                <b>{$v.timeflag}<em>- {$v.endTimeflag}</em></b>
+                                <i>预定时段</i>
+                            </span>
+                            <span>
+                                <b>{$v.duration}<b>min</b></b>
+                                <i>预定时长</i>
+                            </span>
+                            <span>
+                                <b>¥{$v.price}</b>
+                                <i>{$v.oriPrice}</i>
+                            </span>
+                            <a  class="external" ></a>
+                        </div>
+                    </label>
+                    </volist>
+                </div>
+                 <div style="display:none" id="search_plan_theme_thisUrl">{:U('bookwhole/search_plan_theme')}</div>
+                 <div style="display:none" id="search_plan_thisUrl">{:U('bookwhole/search_plan')}</div>
+                 <div style="display:none" id="index_payoff_thisUrl">{:U('bookwhole/payoff')}</div>
+                 <div style="display:none" id="index_theme_thisUrl">{:U('bookwhole/theme')}</div>
+
+
+                 <div style="display:none" id="index_flag">{$flag}</div>
+                 <div style="display:none" id="index_flag_id">{$flag_id}</div>
+                 <div style="display:none" id="index_flag_id_cancel">{:U('bookwhole/index_cancel')}</div>
+                 
+                 
+            </div>
+            <div class="stepBlock">
+                <p>下一步：选择主题影厅（<i>1</i>/4）</p>
+                <a id="step1" class="disabled external" >下一步</a>
+            </div>
+        </div>
+</block>
+<block name='script'>
+    <script type="text/javascript">
+        $(function() {
+         //f7 初始化
+            var myApp = new Framework7({
+                modalButtonOk: '确认',
+                modalButtonCancel: '取消'
+            });
+            
+        //日期列表
+            var wrapWidth = $(window).width(),
+                    unitWidth = wrapWidth / 4,
+                    ulWidth = unitWidth * $('.date li').length;
+            $('.date li').width(unitWidth);
+            $('.date ul').width(ulWidth);
+            $('.date li').on('click',function(){
+                $(this).addClass('active');
+                $(this).siblings().removeClass('active');
+                $('#step1').addClass('disabled');//重新加载时段列表时下一步不可点
+            });
+
+//            //兼容安卓微信时间列表不能滑动
+//            $('.date li').eq(1).on('click',function(){
+//                $(this).addClass('hack');
+//            });
+//            $$('.date li').eq(1).trigger('click');
+
+            var index_flag=$('#index_flag').html();
+            if( index_flag=='111') {
+                var index_payoff_thisUrl=$('#index_payoff_thisUrl').html();
+                var myApp = new Framework7({
+                    modalButtonOk: '前往支付',
+                    modalButtonCancel: '重新购买'
+                });
+                myApp.confirm('你有一笔订单未完成支付！','温馨提示',function(){
+                     location.href=index_payoff_thisUrl+'?id='+$('#index_flag_id').html();
+                   // _this.parents('label').remove();
+               },'alert(2222)')
+              $('body').on('click','.modal-button:eq(0)',function(){
+                   $.ajax({
+                       // global:true,
+                       type: "POST",
+                       url:$('#index_flag_id_cancel').html(),
+                       data: 'id='+$('#index_flag_id').html(),
+                       success: function(msg){
+                      
+                      }
+                   });
+            	});
+              // $('body').on('click','.modal-button:eq(0)',function(){
+            	 //  myApp.alert('我跳出成功了');
+             	//});
+            }
+            //下一步是否可点
+              // 操作提示
+            var msgcc = function(text){
+                $('#bookwholeindex').after('<div class="msg"><div class="shad"></div></div></div>');
+                $('.shad').before('<p>'+text+'</p>');
+                setTimeout(function () {
+                    $('.msg').remove();
+                }, 2000);
+            };
+            
+
+            $('#bookwholeindex').on('click','label', function () {
+                setTimeout(function () {        //加入延迟避免点击label时所探测的input:checked个数未及时改变
+
+                    if($('input:checked').length>=2){ //判断选择的项是否连续
+                        $('#step1').removeClass('disabled');
+                        for(i=0;i<=$('input:checked').length-2;i++){
+                            if(!$('input:checked').eq(i).parents('label').next().find('input').is(':checked')){
+
+                                $('#step1').addClass('disabled');
+                                myApp.alert('必须选择连续的时间段！','温馨提醒');
+                                return false;
+                            }
+                        }
+                        var stime;
+                        var endtime;
+                        $("input[name='index_plan']:checked").each(function(i,a){ 
+                                var $this = $(this);
+                                if(i==0)    {
+                                    stime=$this.attr("time");
+                                } 
+                                if(i==($("input[name='index_plan']:checked").length-1) )   {
+                                    endtime=$this.attr("endTime");
+                                }            
+                        });
+
+                         var sedata='&time='+stime+'&endTime='+endtime;
+                         
+                         $.ajax({
+                             // global:true,
+                             type: "POST",
+                             url:$('#search_plan_theme_thisUrl').html(),
+                             data: sedata,
+                             success: function(msg){
+                              if(msg.status==1){
+                                 msgcc(msg.content);
+                            	//  myApp.alert( msg.content,'温馨提醒');
+                            	  $('#step1').addClass('disabled');
+                               }else{
+                            	   $('#step1').removeClass('disabled');
+                                }
+                         	}
+                         });
+               
+                    }else if($('input:checked').length==0) {
+                        $('#step1').addClass('disabled');
+                        myApp.alert('请选择时间段','温馨提醒');
+                        return false;
+
+                    }else {
+
+
+
+
+
+                        var sedata='&time='+$("input[name='index_plan']:checked").attr("time")+'&endTime='+$("input[name='index_plan']:checked").attr("endTime");
+                         
+                         $.ajax({
+                             // global:true,
+                             type: "POST",
+                             url:$('#search_plan_theme_thisUrl').html(),
+                             data: sedata,
+                             success: function(msg){
+                              if(msg.status==1){
+                                msgcc(msg.content);
+                               // myApp.alert( msg.content,'温馨提醒');
+                                $('#step1').addClass('disabled');
+                               }else{
+                                 $('#step1').removeClass('disabled');
+                                }
+                          }
+                         });
+                        // $('#step1').removeClass('disabled');
+                    }
+
+                }, 100);
+            });
+        });
+
+        function search_plan(time) {
+            var search_plan_thisUrl = $('#search_plan_thisUrl').html();
+            var sedata='';
+            if(time) {
+                sedata+='&time='+time;
+                 $.cookie('time', time, { path: '/' });  
+            }          
+            $.ajax({
+                // global:true,
+                type: "POST",
+                url:search_plan_thisUrl,
+                data: sedata,
+                success: function(msg){
+
+
+                        var data=msg.data;
+                  //  var data= eval("(" + msg + ")");
+                    var html='';
+                     for(var o in data){ 
+                        html+='<label class="item '+data[o].classesd+'">';
+                        html+='    <input type="checkbox" name="index_plan" time="'+data[o].time+'" endTime="'+data[o].endTime+'" price="'+data[o].price+'">';
+                        html+='    <div>';
+                        html+='         <span>';
+                        html+='             <b>'+data[o].timeflag+'<em>- '+data[o].endTimeflag+'</em></b>';
+                        html+='             <i>预定时段</i>';
+                        html+='         </span>';
+                        html+='         <span>';
+                        html+='             <b>'+data[o].duration+'min</b>';
+                        html+='             <i>预定时长</i>';
+                        html+='         </span>';
+                        html+='         <span>';
+                        html+='             <b>¥'+data[o].price+'</b>';
+                        html+='             <i>'+data[o].oriPrice+'</i>';
+                        html+='         </span>';
+                        html+='         <a></a>';
+                        html+='     </div>';
+                        html+='</label>';
+                      } 
+                      $('#plannumList').empty().append(html);
+                }
+            });
+        }
+      
+
+        //按钮点击操作
+        $('#step1').on('click',function(){
+
+            var index_all='';
+
+
+            var stime;
+            var endtime;
+            var index_price=0;
+
+             $("input[name='index_plan']:checked").each(function(i,a){ 
+
+                     var $this = $(this);
+                    if(i==0)    {
+                        stime=$this.attr("time");
+                    } 
+
+                    if(i==($("input[name='index_plan']:checked").length-1) )   {
+                        endtime=$this.attr("endTime");
+                    } 
+             
+                   
+                    var time=$this.attr("time");
+                    var price=$this.attr("price");
+                    // time+= time+',';
+					index_price+=price*1;
+                    index_all+='{"time":"'+time+'","price":"'+price+'"},'
+                     //如果元素已经存在，不再添加                                  
+             });
+             index_all = "[" + index_all.substring(0, index_all.length - 1) + "]";
+             $.cookie('index_all', index_all, { path: '/' });  
+             $.cookie('index_duration', (endtime-stime)/60, { path: '/' });
+             $.cookie('viewingDate', stime, { path: '/' });
+             $.cookie('endTime', endtime, { path: '/' });
+             $.cookie('planPrice', index_price, { path: '/' });
+             $.cookie('index_price', index_price, { path: '/' });
+
+             mainView.router.loadPage($('#index_theme_thisUrl').html());
+         //    location.href='{:U("Bookwhole/theme")}';
+
+        });
+
+    </script>
+
+
+
+
+
+</block>

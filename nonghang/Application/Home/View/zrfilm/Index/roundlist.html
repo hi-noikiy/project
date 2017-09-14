@@ -1,0 +1,57 @@
+
+<extend name='Public/base'/>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><a href="{:U('index/index')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center sliding">乐购</div>
+            <div class="right"><a href="{:U('index/cinemalist',array('op'=>'round'))}">{$cinema['shortName']}</a></div>
+        </div>
+    </div>
+</block>
+
+<block name='body'>
+
+<div class="pages">
+  <div data-page="groupPurchase" class="page" id="page-groupPurchase">
+      <link rel="stylesheet" href="__CSS__/goods.css?{:time()}">
+      <div class="content">
+          <form>
+              <div class="purchase-type">
+                  <a class="goods" href="{:U('index/goodslist')}">
+                      <div>
+                          <span>卖品</span>
+                          <p>电影和爆米花更配哟</p>
+                          <i></i>
+                      </div>
+                  </a>
+                  <a class="group-purchase actvie" href="{:U('index/roundlist')}">
+                      <div>
+                          <span>团购</span>
+                          <p>限时不抢要后悔</p>
+                          <i></i>
+                      </div>
+                  </a>
+              </div>
+              <div class="goods-section">
+              	 <?php if(empty($goods)){ ?><div class="goodsBg">暂时还没有商品上架</div><?php }else{ ?>
+                  <div class="gp">
+                          <foreach name='goods' item='vo'>
+                              <a class="gp-item" href="{:U('index/roundinfo',array('goodsId'=>$vo['id']))}">
+                                  <div class="images-box">
+                                      <img  src="{$vo['goodsImg']}">
+                                  </div>
+                                  <h4>{$vo['goodsName']}</h4>
+                                  <p>{$vo['introduce']}</p>
+                                  <span>¥{$vo['price']}</span><span>¥{$vo['showPrice']}</span><span>已售{$vo['saleNumber']}</span>
+                              </a>
+                           </foreach>
+                       <?php } ?>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+
+</block>

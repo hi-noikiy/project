@@ -1,0 +1,107 @@
+<extend name='Public/nbase'/>
+
+<block name='body'>
+
+<div id="main" class="recharge">
+
+
+     <div class="odContent">
+        <div class="container">
+            <div class="orderHeader">
+                <div class="orderClassify">
+                    <a href="{:U('user/movieorder')}">影票订单</a><a class="active" href="{:U('user/goodsorder')}">卖品订单</a>
+                </div>
+            </div>
+            <!--订单空-->
+            <?php if(empty($list)):?>
+            <div class="orderNone"></div>
+            <?php endif;?>
+            <volist name='list' id='v'>
+            <div class="orderBlock">
+                <div class="orderItem gd">
+                	<volist name='v[order_detail]' id='v1'>
+                    <div class="gdItem">
+                        <img src="{$v1.goodsImg}">
+                        <p class="tcName">{$v1.goodsName}<span>￥{$v1.tolprice}</span></p>
+                        <p>单价：￥{$v1.price} &nbsp;数量{$v1.number} 份&nbsp; {$v1.detail}</p>
+                    </div>
+                    </volist>
+                    <p class="orderNum">订单：{$v.id}&nbsp;{$v.downTime|date="Y-m-d",###}&nbsp;{$v.downTime|date="H:i",###}</p>
+                    <p class="cost">总计：￥{$v.price}</p>
+                    <p class="codeTicket">兑换码：{$v.convcode}</p>
+                    <a orderid='{$v.id}'></a>
+                </div>
+            </div>
+            </volist><!--
+            
+            <div class="orderBlock">
+                <div class="orderItem gd">
+                    <div class="gdItem">
+                        <img src="__IMG__/pic/gd1.png">
+                        <p class="tcName">单人套餐<span>￥30</span></p>
+                        <p>单价：￥15 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量2份&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 一份可乐+一份爆米花</p>
+                    </div>
+                    <div class="gdItem">
+                        <img src="__IMG__/pic/gd1.png">
+                        <p class="tcName">单人套餐<span>￥30</span></p>
+                        <p>单价：￥15 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数量2份&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 一份可乐+一份爆米花</p>
+                    </div>
+                    <p class="orderNum">订单：15489789&nbsp;2014-5-18&nbsp;16:00</p>
+                    <p class="cost">总计：￥60</p>
+                    <p class="codeTicket">兑换码：123456</p>
+                    <a></a>
+                </div>
+            </div>
+        --></div>
+    </div>
+</div>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            $('.orderStatus span').each(function(i){
+                $(this).click(function(){
+                    $('.orderStatus span').removeClass('active');
+                    $(this).addClass('active');
+                    $('.order-section').hide();
+                    $('.order-section').eq(i).show();
+                })
+            });
+            var url="{:U('delOrderGoods')}";
+            $('.orderItem > a').on('click',function(){
+                var _this = $(this);
+                layer.open({
+                    type: 1,
+                    shift:5,
+                    title: false,
+                    skin: 'warn',
+                    closeBtn:0,
+                    border: 1,
+                    shadeClose: true,
+                    area: ['404px', '200px'],
+                    btn:['确认','取消'],
+                    content: '\<\p id="tipCon">\"确认要删除该订单？"<\/p>',
+                    yes: function(index){
+
+                    	orderid=_this.attr('orderid');
+                    	$.getJSON(url,{orderid:orderid},function(data){
+                    		layer.msg(data.content);
+                    		if(data.status=='0'){
+                    			 _this.parents('.orderBlock').remove();
+                    		}
+                    		layer.close(index); //一般设定yes回调，必须进行手工关闭
+                    	});
+                        layer.close(index); //一般设定yes回调，必须进行手工关闭
+                    }
+                });
+
+            });
+
+        })
+    </script>
+
+</block>
+
+
+

@@ -1,0 +1,285 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<!--js、css引入-->
+{% endblock %}
+
+{% block title %}
+个人收益
+{% endblock %}
+
+{% block titleList %}
+<!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent">
+    <div class="center-box-content">
+        <div class="center-box">
+
+            <div class="center-top">
+                <div class="rope-left">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+
+                <div class="rope-right">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+            </div>
+            <div class="center-content">
+                <div class="widget-box">
+                    <div class="contain-m">
+                        <ul class="tabs clearfix">
+                            <li class="tab active">
+                                <a href="#tab_1">本周</a>
+
+                            </li>
+                            <li class="tab">
+                                <a href="#tab_2">上周</a>
+
+                            </li>
+                            <li class="tab">
+                                <a href="#tab_3">本月</a>
+
+                            </li>
+                            <li class="tab">
+                                <a href="#tab_4">上月</a>
+
+                            </li>
+                            <li class="tab">
+                                <a href="#tab_5">总榜</a>
+
+                            </li>
+                            <li class="returngroup">
+                                <a href="userfamily" target="_blank"></a>
+                            </li>
+                        </ul>
+
+                        <div id="tab_1" class="tabbox list">
+                            <div class="incometab-head">我的本周家族总收益：<span class="khi"><i class="numi">{{ thisWeekConsume['sum'] }}</i> 聊币</span></div>
+                            <table class="tablebox-income">
+                                <thead>
+                                <tr>
+                                    <th style="width: 260px;">时间</th>
+                                    <th style="width: 459px;">所属家族</th>
+                                    <th class="clearboder" style="width: 472px;">收益(结算前)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if thisWeekConsume['sum'] > 0 %}
+                                {% for consume in thisWeekConsume['record'] %}
+                                <tr>
+                                    <td style="width: 260px;" class="grouptime">{{ consume['createTime']|ns_date }}</td>
+                                    <td style="width: 459px;" >
+                                        <div class="_incometabmyINfo-pic">
+                                            <a href="/userfamily"><img src="{{ consume['familyLogo'] }}"></a>
+                                            <!--/index?fid={{ consume['familyId'] }}-->
+                                        </div>
+                                        <div class="_mygroup" rel="{$val['familyInfo']['yf_url']}">
+                                            <a href="/userfamily">{{ consume['familyName'] }}</a>
+                                            <!--/index?fid={{ consume['familyId'] }}-->
+                                        </div>
+                                    </td>
+                                    <td style="width: 472px;"><span class="kh" ><strong  class="_num">{{ consume['amount'] }}</strong>  聊币</span></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+
+                            </table>
+
+                            {% if thisWeekConsume['sum'] == 0 %}
+                            <div class="no-notData"><span></span>您的本周没有收益！</div>
+                            {% endif %}
+
+                        </div>
+
+                        <!--/tab_1-->
+
+                        <div id="tab_2" class="tabbox list" style="display:none;">
+                            <div class="incometab-head">我的上周家族总收益：<span class="khi"><i  class="numi">{{ lastWeekConsume['sum'] }}</i> 聊币</span></div>
+                            <table class="tablebox-income">
+                                <thead>
+                                <tr>
+                                    <th style="width: 260px;">时间</th>
+                                    <th style="width: 459px;">所属家族</th>
+                                    <th class="clearboder" style="width: 472px;">收益(结算前)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if lastWeekConsume['sum'] > 0 %}
+                                {% for consume in lastWeekConsume['record'] %}
+                                <tr>
+                                    <td style="width: 260px;" class="grouptime">{{ consume['createTime']|ns_date }}</td>
+                                    <td style="width: 459px;" >
+                                        <div class="_incometabmyINfo-pic">
+                                            <a href="/userfamily/index?fid={{ consume['familyId'] }}"><img src="{{ consume['familyLogo'] }}"></a>
+                                        </div>
+                                        <div class="_mygroup" rel="{$val['familyInfo']['yf_url']}">
+                                            <a href="/userfamily/index?fid={{ consume['familyId'] }}">{{ consume['familyName'] }}</a>
+                                        </div>
+                                    </td>
+                                    <td style="width: 472px;"><span class="kh" ><strong  class="_num">{{ consume['amount'] }}</strong>  聊币</span></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+
+                            </table>
+
+                            {% if lastWeekConsume['sum'] == 0 %}
+                            <div class="no-notData"><span></span>您的上周没有收益！</div>
+                            {% endif %}
+
+                        </div>
+                        <!--/tab_1-->
+
+                        <div id="tab_3" class="tabbox list" style="display:none;">
+                            <div class="incometab-head">我的本月家族总收益：<span class="khi"><i  class="numi">{{ thisMonthConsume['sum'] }}</i> 聊币</span></div>
+                            <table class="tablebox-income">
+                                <thead>
+                                <tr>
+                                    <th style="width: 260px;">时间</th>
+                                    <th style="width: 459px;">所属家族</th>
+                                    <th class="clearboder" style="width: 472px;">收益(结算前)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if thisMonthConsume['sum'] > 0 %}
+                                {% for consume in thisMonthConsume['record'] %}
+                                <tr>
+                                    <td style="width: 260px;" class="grouptime">{{ consume['createTime']|ns_date }}</td>
+                                    <td style="width: 459px;" >
+                                        <div class="_incometabmyINfo-pic">
+                                            <a href="/userfamily/index?fid={{ consume['familyId'] }}"><img src="{{ consume['familyLogo'] }}"></a>
+                                        </div>
+                                        <div class="_mygroup" rel="{$val['familyInfo']['yf_url']}">
+                                            <a href="/userfamily/index?fid={{ consume['familyId'] }}">{{ consume['familyName'] }}</a>
+                                        </div>
+                                    </td>
+                                    <td style="width: 472px;"><span class="kh" ><strong  class="_num">{{ consume['amount'] }}</strong>  聊币</span></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+
+                            </table>
+
+                            {% if thisMonthConsume['sum'] == 0 %}
+                            <div class="no-notData"><span></span>您的本月没有收益！</div>
+                            {% endif %}
+
+                        </div>
+                        <!--/tab_3-->
+
+                        <div id="tab_4" class="tabbox list" style="display:none;">
+                            <div class="incometab-head">我的上月家族总收益：<span class="khi"><i  class="numi">{{ lastMonthConsume['sum'] }}</i> 聊币</span></div>
+                            <table class="tablebox-income">
+                                <thead>
+                                <tr>
+                                    <th style="width: 260px;">时间</th>
+                                    <th style="width: 459px;">所属家族</th>
+                                    <th class="clearboder" style="width: 472px;">收益(结算前)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if lastMonthConsume['sum'] > 0 %}
+                                {% for consume in lastMonthConsume['record'] %}
+                                <tr>
+                                    <td style="width: 260px;" class="grouptime">{{ consume['createTime']|ns_date }}</td>
+                                    <td style="width: 459px;" >
+                                        <div class="_incometabmyINfo-pic">
+                                            <a href="/userfamily/index?fid={{ consume['familyId'] }}"><img src="{{ consume['familyLogo'] }}"></a>
+                                        </div>
+                                        <div class="_mygroup" rel="{$val['familyInfo']['yf_url']}">
+                                            <a href="/userfamily/index?fid={{ consume['familyId'] }}">{{ consume['familyName'] }}</a>
+                                        </div>
+                                    </td>
+                                    <td style="width: 472px;"><span class="kh" ><strong  class="_num">{{ consume['amount'] }}</strong>  聊币</span></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+
+                            </table>
+
+                            {% if lastMonthConsume['sum'] == 0 %}
+                            <div class="no-notData"><span></span>您的上月没有收益！</div>
+                            {% endif %}
+
+                        </div>
+                        <!--/tab_4-->
+
+                        <div id="tab_5" class="tabbox list" style="display:none;">
+                            <div class="incometab-head">我的家族总收益：<span class="khi"><i  class="numi">{{ totalConsumes['sum'] }}</i> 聊币</span></div>
+                            <table class="tablebox-income">
+                                <thead>
+                                <tr>
+                                    <th style="width: 260px;">时间</th>
+                                    <th style="width: 459px;">所属家族</th>
+                                    <th class="clearboder" style="width: 472px;">收益(结算前)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if totalConsumes['sum'] > 0 %}
+                                {% for consume in totalConsumes['record'] %}
+                                <tr>
+                                    <td style="width: 260px;" class="grouptime">{{ consume['createTime']|ns_date }}</td>
+                                    <td style="width: 459px;" >
+                                        <div class="_incometabmyINfo-pic">
+                                            <a href="/userfamily/index?fid={{ consume['familyId'] }}"><img src="{{ consume['familyLogo'] }}"></a>
+                                        </div>
+                                        <div class="_mygroup" rel="{$val['familyInfo']['yf_url']}">
+                                            <a href="/userfamily/index?fid={{ consume['familyId'] }}">{{ consume['familyName'] }}</a>
+                                        </div>
+                                    </td>
+                                    <td style="width: 472px;"><span class="kh" ><strong  class="_num">{{ consume['amount'] }}</strong>  聊币</span></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+
+                            </table>
+
+                            {% if totalConsumes['sum'] == 0 %}
+                            <div class="no-notData"><span></span>您没有收益！</div>
+                            {% endif %}
+
+                        </div>
+                        <!--/tab_5-->
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="center-bottom">
+
+            </div>
+        </div>
+
+        <div class="center-footer-bg" >
+
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript">
+    jq('.contain-m .tabs .tab').click(function(){
+        var id=jq(this).children('a').attr('href');
+        jq('.contain-m .tabs .tab').removeClass("active");
+        jq(this).addClass('active');
+        jq('.tabbox').hide();
+        jq(id).show();
+        return false;
+    });
+</script>
+{% endblock %}

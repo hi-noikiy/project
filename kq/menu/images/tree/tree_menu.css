@@ -1,0 +1,9 @@
+.tree_menu {
+	MARGIN: 10px auto; WIDTH: 90%; TEXT-ALIGN: left;FONT-SIZE: 13px;
+}
+.tree_menu .LinkTable IMG {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+body{
+	font-size:13px;
+}

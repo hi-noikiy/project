@@ -1,0 +1,16 @@
+==========Eegin===============
+========SumLoginOrNew========
+The data of `sum_newuser_daily_detail` on [20140520] had added to the DATABASE.2014-06-05 16:21:29|OK|Insert Into sum_login_daily_detail|rowCount=1905
+
+========remainDaily========
+2014-06-05 16:21:29|OK|Insert Into sum_reserveusers_daily|rowCount=0date=20140520
+rowCount:0
+2014-06-05 16:21:29|OK|Insert Into sum_reserveusers_daily|rowCount=2696date=20140519
+2014-06-05 16:21:29|OK|Insert Into sum_reserveusers_daily|rowCount=2642date=20140518
+2014-06-05 16:21:29|OK|Insert Into sum_reserveusers_daily|rowCount=2606date=20140517
+2014-06-05 16:21:29|OK|Insert Into sum_reserveusers_daily|rowCount=2538date=20140516
+2014-06-05 16:21:29|OK|Insert Into sum_reserveusers_daily|rowCount=2444date=20140515
+2014-06-05 16:21:29|OK|Insert Into sum_reserveusers_daily|rowCount=2375date=20140514
+2014-06-05 16:21:29|OK|Insert Into sum_reserveusers_daily|rowCount=2274date=20140513
+2014-06-05 16:21:30|OK|Insert Into sum_reserveusers_daily|rowCount=2166date=20140512
+==========End===============

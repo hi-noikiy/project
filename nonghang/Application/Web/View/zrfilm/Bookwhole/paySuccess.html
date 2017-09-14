@@ -1,0 +1,44 @@
+﻿<extend name='Public/base'/>
+<block name='body'>
+
+<!-- 主体内容 -->
+
+    <div id="main">
+        <div class="container">
+            <p>预定成功，包厢验证码123456</p>
+            <p>观影地点：中瑞三坊七巷店<a>查看订单></a></p>
+        </div>
+    </div>
+
+<!--/ 主体内容-->
+
+</block>
+<block name='script'>
+
+<script type="text/javascript">
+    $(function(){
+        //单选框美化
+        $.fn.radio = function(options) {
+            var self = this;
+            return $('label', this).each(function() {
+                $(this).addClass('radio');
+                if ($(this).prev().is("checked")) $(this).addClass('radioChecked');
+            }).click(function(event) {
+                $(this).siblings().removeClass("radioChecked");
+                if (!$(this).prev().is(':checked')) {
+                    $(this).addClass("radioChecked");
+                    $(this).prev()[0].checked = true;
+                }
+                event.stopPropagation();
+            }).prev().hide();
+        };
+
+        $('.radiolist').radio();
+
+        //加减
+        $(".Spinner").Spinner({value:0, min:0, len:2, max:99});
+
+    })
+</script>
+
+</block>

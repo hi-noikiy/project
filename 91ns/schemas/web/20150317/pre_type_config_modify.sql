@@ -1,0 +1,1 @@
+alter table pre_type_config add description varchar(255)

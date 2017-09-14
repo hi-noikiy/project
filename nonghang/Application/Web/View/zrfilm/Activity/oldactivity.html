@@ -1,0 +1,56 @@
+<extend name='Public/base'/>
+
+<block name='body'>
+
+<div id="main">
+        <div class="container">
+            <div class="film-con">
+                <h2><a class="active"  href="javascript:">其他以往活动</a></h2>
+                <div class="slide-box">
+                    <div class="hd">
+                        <div class="hr" style="width:100%;"></div>
+                    </div>
+                    
+                    <div class="activitySilde">
+                        <div class="sildeBox">
+                            <ul class="listImg">
+                            
+                            <volist name='list' id='v'>
+                                <li><a href="oldactivity.html?id={$v.id}"><img src="{$v.img}" width="100%" height="100%" /></a></li>
+                             </volist>
+                          
+                            </ul>
+                        </div>
+                        <div class="activityPageBtn">
+                            <span class="prev"></span>
+                            <span class="next"></span>
+                        </div>
+                </div>
+                </div>
+                <div class="activityContent">
+                	<h2>{$title}</h2>
+                    <div class="contentBody">
+                    		{$content|htmlspecialchars_decode}
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            //去掉列底线
+            $('.film-con .bd> ul').each(function(){
+                $(this).children('li').last().find('.baseInfo').css({'border-bottom':'none'});
+            })
+
+        })
+		
+		jQuery(".activitySilde").slide({ mainCell:".listImg", effect:"left",vis:3,scroll:1,trigger:"click",pnLoop:"false"});
+		
+    </script>
+
+
+</block>

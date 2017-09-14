@@ -1,0 +1,98 @@
+<extend name='Public/base'/>
+
+<block name='title'>确认订单</block>
+
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center sliding">确认订单</div>
+            <div class="right"></div>
+        </div>
+    </div>
+</block>
+
+<block name='body'>
+
+<div class="pages">
+  <div data-page="confirmgoods" class="page" id="page-goods">
+      <link rel="stylesheet" href="__CSS__/goods.css?{:time()}">
+      <div style="display:none" id="gourl">{:U('user/paygoods')}</div>
+      <div style="display:none" id="payurl">{:U('user/setCinemaOrder')}</div>
+      <div class="content">
+          <div class="firmOrder">
+               <div class="firmOrderInfo" id="firmOrder">
+                    <img src="__IMG__/common/zrlogo.png" height="30" />
+                    <div class="line"></div>
+                    <div class="orderInfo">
+                        <div class="itemBlock">
+                            <h4><span style="text-align:left; width:40%;">商品名</span><span>数量</span><span style="text-align:right;">单价</span></h4>
+                            <foreach name='showdata["details"]' item='vo'>
+                                <p><span style="text-align:left; width:40%;">{$vo['goodsName']}</span><span>{$vo['number']}</span><span style="text-align:right;">{$vo['price']}</span></p>
+                            </foreach>
+                        </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="firmBtm ">
+                    	<span>应付金额：<b>￥{$showdata['price']}</b></span>
+                        <p>兑换地点：{$showdata['cinemaName']}</p>
+                    </div>
+               </div>
+               <img src="__IMG__/movie/ticketbg.png" width="100%" />
+               <div class="ticketBtm">
+                    <div class="inputBox">
+                        <em></em>
+                        <input id="mobile" class="phone" name="mobile" type="tel" placeholder="请输入接收取票码的手机号" value="{$mobile}"  />
+                        
+                    </div>
+               </div>
+            </div>
+            <div class="Button">
+                <a id="confirm" href="javascript:;">确认订单</a>
+            </div>
+      </div>
+      
+	 <!-- <div id="page-confirmOrder">
+		  <div class="content">
+			  <div class="logo-area"></div>
+			  <div class="itemBlock">
+				 
+			  </div>
+			  <p class="address-d">兑换地点：{$showdata['cinemaName']}</p>
+		  </div>
+		  <div class="tel-block">
+			  <input type="telephone" placeholder="接收卖品兑换码手机号 "  id='mobile' value="{$mobile}">
+		  </div>
+		  <div class="submit-block">
+			  <span>应付金额：<i>￥<em>{$showdata['price']}</em></i></span>
+				<a id='confirm' href='javascript:;'>确认支付</a>
+		  </div>
+
+	  </div>-->
+
+	</div>
+</div>
+
+</block>
+
+    <block name='script'>
+<script>
+$(function(){
+	$('#confirm').click(function(){
+		var mobile=$('#mobile').val();
+		if(!isMobil(mobile)){
+			myApp.alert('请输入正确手机号码');
+		}else{
+			var payurl=$('#payurl').html();
+			var gourl=$('#gourl').html();;
+			$.getJSON(payurl,{mobile:mobile},function(data){
+	            if(data['status']=='0'){
+	                location.href=gourl;
+	             }
+	        });
+		}
+	});
+});
+
+</script>
+</block>

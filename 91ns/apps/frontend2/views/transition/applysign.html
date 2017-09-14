@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('transition'|ns_css)}}">
+    <link rel="stylesheet" type="text/css" href="{{static_url('uploadfile'|ns_css)}}" >
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+    <div class="wrapNav"></div>
+<iframe style="display:none" name='hidden_frame' id="hidden_frame"></iframe>
+    <div class="wrapBd">
+        <div class="transition applySign">
+            <div class="head" >
+                <div class="head-p apply">
+                    <div class="step clearfix">
+                        <div class="apply-step active pull-left mar apply-step1">申请须知</div>
+                        <div class="hd-div active pull-left apply-step1">
+                            <div class="hd pull-left"></div>
+                        </div>
+                        <div class="apply-step {% if isSignIng==1 %} active {% endif %} pull-left apply-step2"> 基本资料</div>
+                        <div class="hd-div pull-left apply-step2 {% if isSignIng==1 %} active {% endif %}">
+                            <div class="hd pull-left"></div>
+                        </div>
+                        <div class="apply-step {% if isSignIng==1 %} active {% endif %} pull-left apply-step3">官方审核</div>
+                        <div class="hd-div pull-left apply-step3 {% if isSignIng==1 %} active {% endif %}">
+                            <div class="hd pull-left"></div>
+                        </div>
+                        <div class="apply-step pull-left">成功签约</div>
+                    </div>
+                </div>
+            </div>
+            <div id="Agreement" class="content {% if isSignIng==1 %} div-hide {% endif %}" style="position: relative;">
+                <div class="signTitle">91NS签约主播<span>用户协议</span></div>
+                <div class="hr"></div>
+                <div class="content_con">
+                    <p class="p1">用户同意按照本协议的规定及上海秀吧网络科技有限有限公司（以下简称“秀吧”）不时发布的管理规则享受秀吧提供的在线演艺直播活动的技术支持服务。用户申请签约主播资格前， 详细阅读本协议的所有内容（未成年人应在监护人陪同下阅读），特别是免除或限制责任的条款、争议解决和法律适用条款。用户提交签约主播申请即表示用户完全接受本协议项下的全部条款。如您不同意本协议或秀吧随时对其的修改，请勿继续申请签约主播流程。当您点击“我同意”按钮后， 即表示您已完全理解并接受本协议的所有约定，此后您不得以未阅读本协议内容或类似言辞做任何形式的抗辩。</p>
+                    <p class="p1">1. 总则</p>
+                    <p class="p2">1.1 本协议由您与秀吧的运营主体共同缔结，具有合同效力。您在秀吧的行为，包括但不限于您申请成为主播，以主播身份进行歌曲演唱、脱口秀等任何形式的在线表演活动、您从秀吧用户处获得礼物、参与秀吧举办的活动、在秀吧上传、发布信息等，均受本协议约束。</p>
+                    <p class="p2">1.2 秀吧包括但不限于网址为www.91ns.com的网站及移动客户端及其升级版本，以及将来可能出现以信息网络为传输渠道的其他终端平台。</p>
+                    <p class="p2">1.3 本协议内容包括协议正文及所有秀吧已经发布或将来可能发布的各类规范、公告或通知。如无明确的相反说明，则该等规范、公告或通知与本协议正文合称“本协议”，为本协议不可分割的组成部分，与协议正文具有同等法律效力。</p>
+                    <p class="p2">1.4 秀吧有权根据需要，不时修改本协议，并以网站公示的方式发布，无需另行单独通知您。变更后的协议一经公布，立即或在公示时明确的特定时间自动生效。若您在 前述变更后继续使用秀吧服务的，即表示您已经阅读、理解并接受经修订的协议内容。</p>
+
+                    <p class="p1">2. 秀吧权利与义务</p>
+                    <p class="p2">2.1   秀吧为主播提供视频直播有关的网站技术支持服务，除此之外因视频直播所需的环境、设备（包括但不限于网络、电脑、麦克风、视频装置等软件、硬件）等条件以及费用均由主播自行负担。</p>
+                    <p class="p2">2.2  为促进秀吧的良性发展，秀吧有权（但无义务）指定或委托第三方自然人、公司等法律实体对主播的表演行为进行管理、指导，该等第三方可能命名为“机构”或其他名称，以使主播和用户之间能够良好地互动。主播应尊重并服从秀吧此种安排并接受该等第三方的管理及指导。</p>
+                    <p class="p2">2.3 为规范秀吧的良好秩序，秀吧有权（但无义务）调配主播的才艺表演安排，主播应尊重并服从秀吧的管理。</p>
+                    <p class="p2">2.4 如主播的才艺表演出现任何有损秀吧利益、品牌形象之情况时，秀吧有权采取相应措施进行干预，包括但不限于立即中断在线表演、限制/冻结主播的权限、追究主播的违约责任等。</p>
+                    <p class="p2">2.5 为使平台服务更加规范化、系统化，秀吧将按照法律法规的要求，不时制定、调整与主播才艺表演相关的规范、制度，并通过系统公告、系统通知、当面告知等的方式通知主播，敬请主播注意查询并应予遵守。</p>
+                    <p class="p2">2.6  秀吧将通过网络技术服务对签约主播在本网站在线演艺直播活动进行录制，并享有录制作品的全部合法权利，包括但不限于录制的音视频等的复制、发行、信息网络传播权及转授权的权利；</p>
+                    <p class="p2">2.7  秀吧在行使前款权利时，有权使用签约主播的肖像权；</p>
+                    <p class="p2">2.8  秀吧优先向签约主播提供在线演艺直播活动的技术支持服务。</p>
+
+                    <p class="p1">3．签约主播权利与义务</p>
+                    <p class="p2">3.1 保证在秀吧的直播符合法律法规及相关政策的规定，无任何不良、非法或侵权内容；</p>
+                    <p class="p2">3.2 不得利用秀吧提供的网络技术服务进行任何不利于秀吧的行为；</p>
+                    <p class="p2">3.3 不得利用秀吧提供的网络技术服务以任何理由或方式拉拢本网站用户或签约主播去其他同类竞争网站；</p>
+                    <p class="p2">3.4 在秀吧分享个人表演形成的表演者权归表演的签约主播，签约主播在秀吧分享的原创内容之著作权归创作者，签约主播有权以自己的名义维护该等权利不受侵害；</p>
+                    <p class="p2">3.5 确保申请签约成为主播过程中，提供给秀吧的个人信息（包括身份证号、银行帐号、联系方式、居住地址等）合法有效；</p>
+                    <p class="p2">3.6 承诺对其上传或者发表于秀吧平台的所有信息，包括但不限于文字、图片、音乐、电影、表演和录音录像制品等均享有完整的知识产权或者已经得到相关权利人的合法授权；</p>
+                    <p class="p2">3.7 如签约主播违反上述各项规定造成秀吧被第三人索赔的，签约主播同意全额补偿秀吧。</p>
+
+                    <p class="p1">4. 关于主播收入、费用的约定</p>
+                    <p class="p2">4.1 签约主播有权通过秀吧平台在线分享演艺活动，可以获得用户给予的奖赏，该奖赏由秀吧支付给主播。</p>
+                    <p class="p2">4.2 主播同意在使用秀吧提供的服务时，向秀吧支付一定金额的平台服务费，该服务费由秀吧按比例从主播获得的用户奖赏中直接扣除。秀吧会将具体扣除比例以不特定形式向主播明示，该比例以秀吧通知为准。</p>
+                    <p class="p2">4.3 秀吧将根据平台制定的运营政策，确定应收取的技术服务费，并核算主播应得费用。</p>
+                    <p class="p2">4.4 核算签约主播应得费用之数据由秀吧平台通过系统自动统计秀吧。签约主播同意秀吧按该等统计数据及核算结果向其结算费用。</p>
+                    <p class="p2">4.5 主播开展本协议所涉之合作事项而获得的实际应得奖赏为税后收入，秀吧将代缴法定税费。</p>
+                    <p class="p2">4.6 秀吧和签约主播双方非劳动关系，签约主播不隶属于秀吧，秀吧无义务承担签约主播任何劳务费用及其他社会保险、福利和医疗保险费用等。</p>
+
+                    <p class="p1">5．如发生下列任何一种情形，秀吧有权随时解除签约主播的资格，并有权视情况，扣除应当支付给签约主播的全部或部分费用：</p>
+                    <p class="p2">5.1 违反本协议中规定的规则；</p>
+                    <p class="p2">5.2 违反网站或机构的管理，违反签约主播管理规范；</p>
+                    <p class="p2">5.3 提供的个人资料不真实或不合法；</p>
+                    <p class="p2">5.4 收到针对主播的第三方投诉或政府部门通知。</p>
+
+                    <p class="p1">6. 当第三方认为签约主播上传或者发表于秀吧的信息侵犯其权利，并根据《信息网络传播权保护条例》或者相关法律规定向秀吧发送权利通知书时，签约主播同意秀吧可以自行判断决定删除涉嫌侵权的签约主播上传或者发表于秀吧的信息。</p>
+
+                    <p class="p1">7. 因本协议引起的或与本协议有关的争议，秀吧可与签约主播协商解决。协商不成的，任何一方均有权向秀吧所在地人民法院提起诉讼解决。</p>
+                    <div class="readManger clearfix" id="readManger"><i class="sprite-message selected"></i><span>我已阅读 <a>《91NS签约主播管理规范》</a></span></div>
+                </div>
+                <div class="hr hr1"></div>
+                <div class="isApply clearfix">
+                    <div id="applyStepTwo" class="agree pull-left">同意</div>
+                    <div class="unagree pull-left"><a href="/">不同意</a></div>
+                    <div class="unagree-p pull-right">(回到网站首页)</div>
+                </div>
+            </div>
+            <div id="readContent" class="showRead" style="display:none;">
+                <i class="bg"></i>
+                <div class="cts">
+                    <div class="header">91NS签约主播管理规范</div>
+                    <i class="close"></i>
+                    <div class="bodys hasScroll">
+                        <div class="no-wh g-scroll">
+                            <div class="scroll-bg"></div>
+                            <div class="scroll-ban"></div>
+                        </div>
+                        <div class="scroll-body">
+                            <p>主播在91NS平台在线分享演艺活动，如发生违法本规范的行为时，秀吧有权随时解除签约主播的资格，并有权视情况，扣除应当支付给签约主播的全部或部分费用。
+                            <p>1. 违规行为
+                            <p>1.1 严重违规行为
+                            <p>严重违规行为是指涉政、涉黄、违规等严重扰乱91NS视频直播平台秩序的行为。
+                            <p>在视频直播中违反以下规定，构成严重违规，包括但不限于：
+                            <p>1.1.1严禁发表反党反政府的言论，或做出侮辱诋毁党和国家的行为，如：</p>
+                            <p>（1）违反宪法确定的基本原则的；</p>
+                            <p>（2）危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；</p>
+                            <p>（3）损害国家荣誉和利益的；</p>
+                            <p>（4）煽动民族仇恨、民族歧视、破坏民族团结的；</p>
+                            <p>（5）破坏国家宗教政策，宣扬邪教和封建迷信的；</p>
+                            <p>（6）散布谣言，扰乱社会秩序，破坏社会稳定的；</p>
+                            <p>（7）散布暴力、恐怖或者教唆犯罪的；</p>
+                            <p>（8）煽动非法集会、结社、游行、示威、聚众扰乱社会秩序的；</p>
+                            <p>1.1.2严禁进行具有性挑逗性质的表演或行为，如表演脱衣舞等。</p>
+                            <p>1.1.3、严禁与他人进行互相性挑逗形式的表演或行为。如相互抚摸敏感部位、进行能让人产生性幻想的动作、在床上以任何抚摸形式进行表演等。</p>
+                            <p>1.1.4严禁通过各种方式展示具有性特征的身体敏感部位。</p>
+                            <p>1.1.5严禁展示枪支管制刀具、进行高危表演。如晃动管制刀具、枪支、高仿真枪支、表演具有高度危险性的节目等。</p>
+                            <p>1.1.6严禁表演危害他人人身安全的节目。如：殴打他人、以刀具威胁他人等。</p>
+                            <p>1.1.7严禁传播毒品。如展示毒品样品、表演及传播毒品吸食或注射方式、讲解毒品制作过程等。</p>
+                            <p>1.1.8严禁宣传传销机构、哄骗用户加入传销组织、或本人组织传销。</p>
+                            <p>1.1.9严禁表演危害自身安全的节目，如自杀、自残。</p>
+                            <p>1.1.10严禁进行其他类涉政、涉黄、违法、侵权、或威胁生命健康的表演。</p>
+                            <p>1.2 一般违规行为</p>
+                            <p>一般违规行为是指除严重违规行为外，影响程度较轻的扰乱91NS视频直播平台秩序的违规行为。在视频直播中违反以下规定，构成一般违规，包括但不限于：</p>
+                            <p>1.2.1内容规定：</p>
+                            <p>（1）严禁开展无资质的拍卖活动；</p>
+                            <p>（2）严禁组织以骚扰、戏弄为目的的网络电话；</p>
+                            <p>（3）严禁演唱、播放带有色情、性暗示的音乐；</p>
+                            <p>（4）严禁跳脱衣舞；</p>
+                            <p>（5）严禁男性反串；</p>
+                            <p>（6）严禁酒后直播表现如耍酒疯、酣睡等醉态；</p>
+                            <p>（7）严禁在床上进行各种形式的表演；</p>
+                            <p>（8）严禁播放带有色情、性暗示的直播、录像。</p>
+                            <p>（9）严禁其他低俗表演；</p>
+                            <p>（10）严禁评论其他主播，严禁攻击用户；遇到用户无理由的谩骂或攻击时，可以禁言或踢人或找客服解决；</p>
+                            <p>（11）不得在直播时透露个人的感情情况，有男女友或丈夫妻子的不得宣扬，掉粉丝。</p>
+                            <p>1.2.2动作规定：</p>
+                            <p>（1）严禁模仿各种低俗、色情动作、声音或带有诱惑性、挑逗性表演的行为；</p>
+                            <p>（2）严禁将镜头刻意聚焦于性敏感部位，或进行带有性暗示的抚摸、拉扯动作，或使用道具引起观众对性敏感部位的注意；</p>
+                            <p>（3）严禁使用性用品作为表演道具。</p>
+                            <p>1.2.3裸露规定：严禁男性赤裸上身，女性刻意露出三点；</p>
+                            <p>1.2.4着装、妆容规定：</p>
+                            <p>（1）严禁穿着透明、情趣内衣、内衣外穿；</p>
+                            <p>（2）严禁穿着内衣、三点式露脐泳装、肉色紧身衣；</p>
+                            <p>（3）严禁穿着短于大腿1/3长度的下装；</p>
+                            <p>（4）严禁妆容低俗、不雅。</p>
+                            <p>1.2.5言论规定：</p>
+                            <p>（1）严禁刻意模仿各种带有性挑逗的声音；</p>
+                            <p>（2）严禁刻意发表低俗涉黄言论，引导场内低俗互动；</p>
+                            <p>（3）严禁以文字、语音、图片等任何形式宣传其他语音、视频平台。</p>
+                            <p>1.3 轻微违规行为（C类违规）</p>
+                            <p>轻微违规行为是指除严重违规行为和一般违规行为外，影响程度轻微的扰乱91NS视频直播平台秩序的违规行为。</p>
+                            <p>在视频直播中违反以下规定，将构成轻微违规，包括但不限于：</p>
+                            <p>（1）严禁穿着带有中华人民共和国（包含港澳台）国家机关人员、军队的工作制服进行直播。包括警服、军服、工商制服、检察院制服、法院制服、城管制服、路政制服等。</p>
+                            <p>（2）严禁持续爆粗口、谩骂。</p>
+                            <p>（3） 严禁主播或麦上用户在进行视频直播时播放录制的电影、电视剧等未经版权许可的视频。</p>
+                            <p>（4）严禁进行其他类型违反91NS社区相关秩序规范的表演。</p>
+                            <p>（5）严禁在直播镜头前公然抽烟。</p>
+                            <p>（6）严禁主播本人长时间不出现在视频画面中；</p>
+                            <p>（7）严禁非主播本人使用直播间(包括使用视频截图功能进行转播他人视频）；</p>
+                            <p>（8）严禁主播 在直播时抽烟；</p>
+                            <p>（9）严禁主播直播时串房到其他主播房间；</p>
+                            <p>2. 直播准备规范</p>
+                            <p>2.1 封面作为门面，需要展示主播的美丽以及特点。示范如下：</p>
+                            <div class="clearfix" style="margin:10px;">
+                                <img class="pull-left" src="{{static_url('web/cssimg2/transition/nogood.png')}}" style="margin-left:60px;">
+                                <img class="pull-left" src="{{static_url('web/cssimg2/transition/good.png')}}" style="margin-left:60px;">
+                            </div>
+                            <div class="clearfix" style="margin:10px;">
+                                <div class="pull-left" style="margin-left:134px;">不好的封面</div>
+                                <div class="pull-left" style="margin-left:212px;">好的封面</div>
+                            </div>
+                            <p>2.2 直播画面</p>
+                            <p>（1）正面要有灯光：正面光线不够，请购买台灯，或者打光灯打光；打光时，请使用双灯交叉，以保证光纤均匀。</p>
+                            <p>（2）保持与镜头的距离，露出上半身：摄像头请不要夹在显示屏上，这样可以避免拉近显示器的时候不会改变拍摄的效果，若角度不理想，请使用视屏架子。</p>
+                            <p>（3）直播要化妆：主播直播要求要带妆（眼妆，眉毛，鼻影，唇彩）直播，服装上镜，禁止穿着邋遢；同时需要将画面调节至适合的清晰度，确保视频内容干净整洁。</p>
+                            <p>（4）表情传达情绪积极。</p>
+                            <p>（5）背景不凌乱邋遢，背景色调鲜艳，摆放玩偶等女生萌物，更加强化主播女性的娇美特征；若直播环境不好，请主播自行购买屏风、布帘等用作背景遮挡。</p>
+                            <p>（6）合理使用了软件中的字幕和装饰功能。</p>
+                            <p>4.熟悉发布端的使用功能：声音特效、喊麦、切麦、管理、禁言、充值、座驾的购买、富豪等级、礼物等级等，不熟悉的不上直播。</p>
+                            <p>（7）良好的直播画面示范</p>
+                            <div class="clearfix" style="margin:10px;">
+                                <img class="pull-left" src="{{static_url('web/cssimg2/transition/su.png')}}" style="margin-left:182px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="sign" class="content div-hide" style="position: relative;">
+                <div class="signTitle1"><div class="redbox pull-left"></div><span>基本资料</span></div>
+                <div class="hr hr3"></div>
+                <div class="pwd-left">
+                    <div jsshow="telValid" class="one-row clearfix">
+                        <div class="l-row">
+                            <span>申请入驻账号:</span>
+                            <label>{{ nickName }}({{ uid }})</label>
+                        </div>
+                        <div class="l-row">
+                            <span>真实姓名:</span>
+                            <input id="settleName" type="text" class="inputText">
+                            <span class="showTips"></span>
+                        </div>
+                        <div class="l-row">
+                            <span>性别:</span>
+                            <input type="radio" id="boy"  name="sex" value="1">
+                            <span name="boy" class="radioSpan" for="boy">男</span>
+                            <input type="radio" id="girl" checked name="sex"  value="0">
+                            <span name="girl" class="checked radioSpan" for="girl">女</span>
+                            <!--<input class="radioSex" type="radio" name="sex" value="1"><span class="radioSpan">男</span>-->
+                            <!--<input class="radioSex radioSex1" type="radio" name="sex" checked value="0"><span class="radioSpan">女</span>-->
+                        </div>
+                        <div class="l-row">
+                            <span>身份证号:</span>
+                            <input id="settleCarID" type="text" class="inputText" onkeyup="value=value.replace(/[^\w]/ig,'')">
+                            <span class="showTips"></span>
+                        </div>
+                        <div class="l-row">
+                            <span>生日:</span>
+                            <input id="settleBirthday" type="text" class="inputText">
+                            <span class="showTips"></span>
+                        </div>
+                        <div class="l-row">
+                            <span>当前所在地:</span>
+                            <select id="settleProvince" name="as_province" style="height: 30px;*height: 23px; border: 1px solid #e3e3e3;width:120px; ">
+                                {% for province in location %}
+                                <option value="{{ province['id'] }}" {% if provinceDefault == province['id'] %}selected="selected"{% endif %} data="{% for ct in city %}{% if ct['id']!= '0000' %}{{ct['id']}},{% endif %}{% endfor %}">{{ province['name'] }}</option>
+                                {% endfor %}
+                            </select>
+                            <select id="settleCity" name="as_province" style="height: 30px;*height: 23px; border: 1px solid #e3e3e3;width:120px;">
+                                {% for ct in city %}
+                                <option value="{{ ct['id'] }}" {% if cityDefault == ct['id'] %}selected="selected"{% endif %} data="{{ ct['id'] }}">{{ ct['name'] }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="l-row">
+                            <span>手机:</span>
+                            <input id="settleTEL" type="text" class="inputText" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                            <span class="showTips"></span>
+                        </div>
+                        <div class="l-row">
+                            <span>QQ:</span>
+                            <input id="settleQQ" type="text" class="inputText" onkeyup="this.value=this.value.replace(/\D/g,'')">
+                            <span class="showTips"></span>
+                        </div>
+                        <div class="l-row">
+                            <span>邮箱:</span>
+                            <input id="settleMail" type="text" class="inputText">
+                            <span class="showTips"></span>
+                        </div>
+                        <div class="l-row">
+                            <span>联系地址:</span>
+                            <input id="settleAddress" type="text" class="inputText inputText1">
+                            <span class="showTips"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="signTitle1 money"><div class="redbox pull-left"></div><span>财务信息</span><span class="blueFont">请照实填写财务信息，否则将会影响到资金发放</span></div>
+                <div class="hr hr3"></div>
+                <div class="pwd-left">
+                    <div jsshow="telValid" class="one-row clearfix">
+                        <div class="pull-left" style="min-width: 580px;">
+                            <div class="l-row">
+                                <span>银行卡号:</span>
+                                <input id="settleBankID" type="text" class="inputText">
+                                <span class="showTips"></span>
+                            </div>
+                            <div class="l-row">
+                                <span>开户名:</span>
+                                <input id="settleBankUser" type="text" class="inputText">
+                                <span class="showTips"></span>
+                            </div>
+                            <div class="l-row">
+                                <span>开户行:</span>
+                                <input id="settleBankName" type="text" class="inputText">
+                                <span class="showTips"></span>
+                            </div>
+                        </div>
+                        <div class="pull-left" style="margin-top: 160px;">
+                            <ul class="moneyUL">
+                                <li>
+                                    <p>请填写详细的支行名称，不清楚可致电银行进行咨询。</p>
+                                    <p>示例：中国银行福建省分行</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="signTitle1 money"><div class="redbox pull-left"></div><span>上传照片</span><span class="blueFont">请保证图片清晰</span></div>
+                <div class="hr hr3"></div>
+                <div class="pwd-left">
+                    <div jsshow="telValid" class="one-row clearfix">
+                        <div class="pull-left" style="min-width: 580px;">
+                            <div class="l-row">
+                                <i class="numImg pull-left">1</i>
+                                <span id="settleIDPic" class="numImg1">证件照</span>
+                                <span class="numImg1 numImg2">(身份证正反面的照片)</span>
+                                <span class="showTips"></span>
+                            </div>
+                            <div class="l-row clearfix">
+                                <ul class="signphoto clearfix">
+                                    <li>
+                                        <div id="id_image_1" nstype="id" nsid="1" class="signphoto-box" showUploadImageDiv></div>
+                                    </li>
+                                    <li>
+                                        <div id="id_image_2" nstype="id" nsid="2" class="signphoto-box" showUploadImageDiv></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="l-row clearfix">
+                                <form uploadImgFrom class="_uploadPhoto pull-left" action="/userfamily/applySigningPic?type=id&id=1" nstype="id" nsid="1" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                    上传照片
+                                    <input type="file" value="上传" onchange="uploadImgFromSubmit(this);" name="file_upload1">
+                                </form>
+                                <form uploadImgFrom class="_uploadPhoto pull-left div-hide" action="/userfamily/applySigningPic?type=id&id=2" nstype="id" nsid="2" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                    上传照片
+                                    <input type="file" value="上传" onchange="uploadImgFromSubmit(this);" name="file_upload1">
+                                </form>
+                                <span class="_uploadPhoto-p">(仅支持jpg、png图片，且文件小于2M)</span>
+                            </div>
+                        </div>
+                        <div class="pull-left" style="margin-top: 30px;">
+                            <ul class="moneyUL">
+                                <li>
+                                    <p>上传文件要求本人手持者证件，证件全部信息清晰无遮挡。</p>
+                                    <p style="margin-top: 15px;">示例：</p>
+                                    <div style="margin-top: 10px;">
+                                        <img src="{{static_url('web/cssimg/familyActivities/fm.png')}}">
+                                        <img style="margin-left:36px; " src="{{static_url('web/cssimg/familyActivities/zm.png')}}">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hr hr3" style="margin-top: 30px;"></div>
+                <div class="pwd-left">
+                    <div jsshow="telValid" class="one-row clearfix">
+                        <div class="pull-left">
+                            <div class="l-row">
+                                <i class="numImg pull-left">2</i>
+                                <span id="settleLivePic" class="numImg1">生活照</span>
+                                <span class="numImg1 numImg2">(请上传3张个人生活照)</span>
+                                <span class="showTips"></span>
+                            </div>
+                            <div class="l-row clearfix">
+                                <ul class="signphoto clearfix">
+                                    <li>
+                                        <div id="live_image_1" nstype="live" nsid="1" class="signphoto-box1" showUploadImageDiv></div>
+                                    </li>
+                                    <li>
+                                        <div id="live_image_2" nstype="live" nsid="2" class="signphoto-box1" showUploadImageDiv></div>
+                                    </li>
+                                    <li>
+                                        <div id="live_image_3" nstype="live" nsid="3" class="signphoto-box1" showUploadImageDiv></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="l-row clearfix">
+                                <form uploadImgFrom class="_uploadPhoto pull-left" action="/userfamily/applySigningPic?type=live&id=1" nstype="live" nsid="1" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                    上传照片
+                                    <input type="file" value="上传" onchange="uploadImgFromSubmit(this);" name="file_upload1">
+                                </form>
+                                <form uploadImgFrom class="_uploadPhoto pull-left div-hide" action="/userfamily/applySigningPic?type=live&id=2" nstype="live" nsid="2" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                    上传照片
+                                    <input type="file" value="上传" onchange="uploadImgFromSubmit(this);" name="file_upload1">
+                                </form>
+                                <form uploadImgFrom class="_uploadPhoto pull-left div-hide" action="/userfamily/applySigningPic?type=live&id=3" nstype="live" nsid="3" method="post" target="hidden_frame" enctype="multipart/form-data">
+                                    上传照片
+                                    <input type="file" value="上传" onchange="uploadImgFromSubmit(this);" name="file_upload1">
+                                </form>
+                                <span class="_uploadPhoto-p">(仅支持jpg、png图片，且文件小于2M)</span>
+                            </div>
+                        </div>
+                        <div class="pull-left" style="margin-top: 80px;">
+                            <ul class="moneyUL">
+                                <li>
+                                    <p>图片要求尽可能清晰，不允许与本人差距太大的艺术照。</p>
+                                </li>
+                                <li>
+                                    <p>照片里不要出现太多的干扰因素，比如床、家具等不能展示你美丽的东西。</p>
+                                </li>
+                                <li>
+                                    <p>仅支持jpg、png图片，且文件小于2M。</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="hr hr3" style="margin-top: 60px;"></div>
+                <div id="settleSubmit" class="applySubmit">提交申请</div>
+            </div>
+            <div id="aduit" class="content {% if isSignIng==0 %} div-hide {% endif %}" style="position: relative;text-align: center;min-height:565px;">
+                <img src="{{static_url('web/cssimg/familyActivities/aduit.png')}}">
+                <p class="_p1">我们正在努力审核中...</p>
+                <p class="_p2">若资料审核通过我们将联系您安排视频面试。</p>
+                <p class="_p2">视频面试通过后，您就成为91NS平台的签约主播啦。</p>
+                <div class="hr hr3" style="margin-top: 24px;"></div>
+                <p class="_p2">如果在此期间您有任何疑问，请联系客服咨询。</p>
+                <a class="zxkf" href="tencent://message/?v=3&uin={{GMQQ[0]}}&site=qq&menu=yes"><i>在线客服</i></a>
+            </div>
+        </div>
+    </div>
+    {% include "template/footer.html" %}
+    <script type="text/javascript" defer async data-main="{{static_url('transition.applysign'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</div>
+</body>
+</html>

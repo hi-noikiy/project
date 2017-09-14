@@ -1,0 +1,32 @@
+<script type="text/javascript">
+var thisAnchorUid = '{{anchorInfo["uid"]}}';
+</script>
+<div class="header">
+    <div class="avatar">
+        <i></i>
+        <img src="{{anchorInfo['avatar']}}">
+    </div>
+    <div class="name clearfix">
+        <span id="headerNickName" class="nickName">{{anchorInfo['nickName']}}</span>
+        <i class="sprite-zb_level zb{{anchorInfo['levelInfo']['anchorLevel']}}"></i>
+        <i class="sprite-zf_level zf{{anchorInfo['levelInfo']['fansLevel']}}"></i>
+    </div>
+    <span class="say">{% if anchorInfo['signature'] == '' %}主人太懒，什么都没写{% else %}{{anchorInfo['signature']}}{% endif %}</span>
+    <div class="btn clearfix {% if anchorInfo['uid'] == ns_userUid %}self{% endif %}">
+        <div id="focusBtn" class="sprite-homeBtn focus {% if anchorInfo['isFans'] == true %}active{% endif %}" uid="{{anchorInfo['uid']}}" roomid="{{anchorInfo['roomId']}}">{% if anchorInfo['isFans'] == true %}已关注{% else %}关注TA{% endif %}</div>
+        <a class="sprite-homeBtn goRoom" target="_blank" href="/{{anchorInfo['uid']}}">进入房间</a>
+    </div>
+    <div id="homeNav" class="homeNav">
+        <ul class="navs">
+            <a href="/home/detail?uid={{anchorInfo['uid']}}"><li id="cur-detail" class="changeFilter" style="margin-right:192px;margin-left:96px;">个人档</li></a>
+            <!-- <a href="/home/dynamic?uid={{anchorInfo['uid']}}"><li id="cur-dynamic" class="changeFilter">动态</li></a> -->
+            <a href="/home/gallery?uid={{anchorInfo['uid']}}"><li id="cur-gallery" class="changeFilter">照片墙</li></a>
+            <!-- <a href="/home/message?uid={{anchorInfo['uid']}}"><li id="cur-message" class="changeFilter">留言板</li></a> -->
+        </ul>
+    </div>
+    <script type="text/javascript">
+    (function(){
+        var li = document.getElementById('cur-{{ns_type}}').className = 'changeFilter active';
+    })();
+    </script>
+</div>

@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>首页</title>
+
+    <link rel="stylesheet" type="text/css" href="__CSS__/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__/style.css"/>
+    <script src="__JS__/jquery.min.js"></script>
+    <script src="__JS__/album.js"></script>
+
+</head>
+<block name='body'>
+    <div class="detail-section">
+        <ul>
+            <li>预告</li>
+            <li>剧照</li>
+            <li class="last">剧情</li>
+        </ul>
+        <div class="imgBox">
+           
+          <!--   <embed src="http://static.video.qq.com/TPout.swf?vid=t001815flhz&amp;auto=0" width="814" height="553" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" flashvars="from=ku6"> -->
+           
+         <!--   <embed src="http://player.youku.com/embed/XNzA5MDA0MTI0" width="814" height="553" allowscriptaccess="always" allowfullscreen="true" type="application/x-shockwave-flash" flashvars="vid=p0175w94dyr&duration=132&cid=2njjhmf9tk6rzxx&tpid=1&showend=1&showcfg=1&searchbar=1&shownext=1&list=2&autoplay=1&ptag=static_video_qq_com&outhost=http%3A%2F%2Fv.qq.com%2Fprev%2F2%2F2njjhmf9tk6rzxx.html%3Fvid%3Dp0175w94dyr&openbc=0&fakefull=1&title=%E3%80%8A%E6%98%9F%E7%90%83%E5%A4%A7%E6%88%98%E3%80%8B%E4%B8%AD%E5%9B%BD%E7%89%88%E9%A2%84%E5%91%8A%20%E6%9A%B4%E9%A3%8E%E5%85%B5%E9%9B%86%E7%BB%93%E9%9C%87%E6%92%BC%E7%A9%BA%E6%88%98%E5%BC%80%E5%90%AF">-->
+          
+           <iframe height="553" width="814" src="{$prevs}" frameborder=0 allowfullscreen></iframe>   
+        </div>
+        <div class="album">
+            <div class="bigpic">
+                <div class="btn pre"></div>
+                <div class="btn preDisabled"></div>
+                <div class="btn next"></div>
+                <div class="btn nextDisabled"></div>
+                <img class="bpic" src="{$imaslist.0}" />
+            </div>
+            <div id="ztbox">
+                <div class="spic">
+                    <div id="left"></div>
+                    <div id="conter">
+                        <ul>
+                        
+                        	<volist name='imaslist' id='v' >
+          
+                            <li <?php if($key==0):?>class="on"<?php endif;?>>                        	
+                                <img class="smallpic" src="{$v}" />
+                            </li>
+                            </volist><!--
+                            <li class="on">
+                                <img class="smallpic" src="__IMG__/pic/album2.jpg" />
+                            </li>
+                            <li>
+                                <img class="smallpic" src="__IMG__/pic/album3.jpg" />
+                            </li>
+                            <li>
+                                <img class="smallpic" src="__IMG__/pic/album4.jpg" />
+                            </li>
+                            <li>
+                                <img class="smallpic" src="__IMG__/pic/album5.jpg" />
+                            </li>
+                            <li>
+                                <img class="smallpic" src="__IMG__/pic/album6.jpg" />
+                            </li>
+                            <li>
+                                <img class="smallpic" src="__IMG__/pic/album7.jpg" />
+                            </li>
+                        --></ul>
+                    </div>
+                    <div id="right"></div>
+                </div>
+                <div id="scroll"><span></span></div>
+            </div>
+        </div>
+        <div class="store">
+        
+        
+        
+        	{$introduction|htmlspecialchars_decode}
+           
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+
+           //tab切换
+            $('.detail-section > div').eq(1).show();
+            $('.detail-section li').eq(1).addClass('active');
+            $('.detail-section li').each(function(i){
+
+                $(this).click(function(){
+                    $(this).addClass('active');
+                    $(this).siblings().removeClass('active');
+                    $('.detail-section > div').eq(i).show();
+                    $('.detail-section > div').eq(i).siblings('div').hide();
+                })
+            });
+            //视频播放
+            $('embed').hide();
+            $('.detail-section .play').click(function(){
+                $('.imgBox img').hide();
+                $(this).hide();
+                $('embed').show();
+            })
+        })
+    </script>
+</block>
+

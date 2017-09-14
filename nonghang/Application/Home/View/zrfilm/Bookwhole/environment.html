@@ -1,0 +1,40 @@
+<extend name='Public/bookbase'/>
+<block name='title'>影厅内景</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="#" class="back link">
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">影厅内景</div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+    <div class="pages">
+        <div data-page="environment" class="page">
+
+            <div class="main" id="page-environment">
+                <div id="focus" class="focus">
+                    <div class="hd">
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="bd">
+                        <ul>
+                            <volist name='list' id='v'>
+                            <li>
+                                <a href="#"><img  src="{$v.relativePath}"  /></a>
+                            </li>
+                            </volist>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <p  class="pageState"></p>
+            </div>
+        </div>
+    </div>
+</block>
+</body></html>

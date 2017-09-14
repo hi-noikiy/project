@@ -1,0 +1,52 @@
+* { margin:0; padding:0;}
+body { width:100%;
+	margin:0; padding:0; font-family: "Microsoft YaHei", "微软雅黑";}
+img { height:100%; width:auto}
+p { line-height: 1; color: #fff;}
+.main {
+	width: 100%; position: relative; height:100%;}
+#page-index .main {background:#6d056a url(../images/indexBg.jpg) no-repeat center top;}
+.timeArea { position: absolute; left:50%;  top:0; height:12.2%;}
+.timeArea .text { position: absolute; bottom:14.63%; font-size: 24px;  text-align: center; color:#fff9c3;width: 100%;}
+.timeArea .text p span img{
+	height:17px;
+	}
+.voteStatus {
+	font-size: 17px;
+	color: #fff;
+	position: absolute;
+	top: 80.5%;
+	text-align: center;
+	width: 100%;
+}
+#page-index2 .timeArea .text p span img{
+	height:17px;
+	width:auto;
+	}
+.zanArea { height:28.6%; position: absolute; top:46.3%; left:50%;  margin-left:-7.81%;}
+header { width:100%; font-size: 18px; text-align: center; color: #fff; height: 40px; line-height: 40px; background: #179fec;}
+.zanArea .num {
+	position: absolute;
+	bottom: 13%;
+	text-align: center;
+	width: 100%;
+	font-size: 21px;
+	color: #fff;
+}
+.item { position: absolute; top:18.19%; width:100%; text-align: center;}
+.item p.num {        font-size: 36px;    }
+.item p.art { margin:20px auto 12px;}
+.item p.art ,.item p.person{        font-size: 24px;    }
+#page-index2 .topWrap {  background: none;
+	background-size: cover;
+	z-index: 22;
+	top:0;
+	height:12.2%;
+	position: relative;
+	}
+#page-index2 .timeArea { position: absolute; left:50%;  top:0; width:25.3%;}
+#page-index2 .timeArea img { width:100%; height: auto;}
+#page-index2 .timeArea .text { position: absolute; bottom:0; padding-bottom: 8.1%; font-size: 24px;  text-align: center; color:#fff9c3;width: 100%;}
+.timeArea .text p{
+	font-size:14px;
+	}

@@ -1,0 +1,202 @@
+<div id="breadcrumb">
+<a href="/anchor" class="go-to-home tip-bottom font font18" data-original-title="Go to Home">
+<i class="icon-arrow-left"></i> 返回 &nbsp;
+</a> 
+<a href="#" class="font font18"> &nbsp;&nbsp;<span>主播 &gt</span></a>
+<a href="#" class="font font18"> <span>{{anchorInfo['status']}}&gt</span></a>
+<a href="#" class="current font font18"> <span>主播详情</span></a>
+</div>
+
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <div class="user-info">
+        <img alt="" src="{{anchorInfo['avatar']}}">
+
+        <p>
+            <span class="font font20 cr-dpe">{{anchorInfo['nickName']}}</span>
+        </p>
+        <p>
+            <span class="font font20 cr-dpe" id="_uid">{{anchorInfo['uid']}}</span>
+            <input id="in_uid" type="hidden" value="{{anchorInfo['uid']}}">
+        </p>
+        <p>
+            <span class="i-actor sprite-zb_level zb{{anchorInfo['level2']}}"></span><span class="font font20 cr-dpe">{{anchorInfo['name']}}</span>
+        </p>
+        <p>
+            <!-- <span class="font font20 cr-dpe">{{anchorInfo['status']}}</span> -->
+            <span class="font font20 cr-dpe">
+                {{anchorInfo['status']}}
+                {% if anchorInfo['status']=='已签约' and !familyId %}<!--  and !familyId  -->
+                <button class="btn" onclick="unbind({{anchorInfo['uid']}})">解约</button>
+                {% endif %}
+            </span>
+        </p>
+    </div>
+  <div class="progtrckr-box" style="top:260px;">
+    <div class="progtrckrline" ></div>
+    <ul class="progtrckr" style="width: 212px;">
+        <li ><i class="custom-icon custom-icon-point"></i><a href="/anchor/anchorinfo?uid={{anchorInfo['uid']}}">个人资料</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/income?uid={{anchorInfo['uid']}}">收益</a></li>
+        <li class="active"><i class="custom-icon custom-icon-point"></i><a href="/anchor/fans?uid={{anchorInfo['uid']}}">粉丝</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/contribute?uid={{anchorInfo['uid']}}">贡献</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/trend?uid={{anchorInfo['uid']}}">趋势分析</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/worktable?uid={{anchorInfo['uid']}}">导出工作情况表</a></li>
+    </ul>
+  </div>
+</div>
+<!--end sidebar-menu-->
+
+
+<div id="content">
+
+<div class="container-fluid">
+
+	<div class="content-box" style="background: #FFF; text-align: left; margin-top:20px;  padding-bottom: 40px;">
+
+		<div class="row-fluid" style="margin-top: 60px; min-width: 900px; padding: 0 25px; ">
+		
+		<div class="thum-box box span4" style="float: left">
+			<div class="thum-top clearfix">
+	         	<div class="title">
+		          <p><span>粉丝</span></p>
+		          <p><span>总数</span></p>
+	        	</div>         
+         	</div>
+         	
+         	<div class="thum-content ">
+	           <p class="font font20 cr-e5">
+	           		
+	           		<span class="font font36 cr-ly">23,423</span>
+	           </p>
+	         </div>
+         
+		</div>
+		
+		<div class="thum-box box span4" style="float: left">
+			<div style="margin: 0 auto; width: 280px;">
+				<div class="thum-top ggr clearfix">
+		         	<div class="title ggr">
+			          <p style="margin-top: 15px;"><span>新增</span></p>
+		        	</div>         
+	         	</div>
+	         	
+	         	<div class="thum-content clearfix" style="height: 52px;font-size: 20px">
+                   <div  style="border-right: 1px dashed #cccccc;float: left;width: 144px;">
+                        <span style="margin-left: 10px;">今天：</span>
+                        <span class="cr-ly" style="margin-right: 10px;">1</span>
+                   </div>
+                    <div style="float: left;">
+                        <span style="margin-left:10px;">本月：</span>
+                        <span class="cr-ly" style="margin-right: 10px;">4</span>
+                    </div>
+
+	            </div>
+          </div>
+		</div>
+		
+		
+		<div class="thum-box box span4" style="float: left">
+			<div class="pull-right">
+				<div class="thum-top bl clearfix">
+		         	<div class="title bl">
+			          <p style="margin-top: 15px;"><span>减少</span></p>
+		        	</div>         
+	         	</div>
+
+                <div class="thum-content clearfix" style="height: 52px;font-size: 20px">
+                    <div  style="border-right: 1px dashed #cccccc;float: left;width: 144px;">
+                        <span style="margin-left: 10px;">今天：</span>
+                        <span class="cr-ly" style="margin-right: 10px;">7777</span>
+                    </div>
+                    <div style="float: left;">
+                        <span style="margin-left: 10px;">本月：</span>
+                        <span class="cr-ly" style="margin-right: 10px;">7557</span>
+                    </div>
+
+                </div>
+         	</div>
+		</div>
+		
+		</div>
+		
+		<div class="row-fluid" style="margin-top: 30px;">
+			<div class="container-fluid">
+				<div class="nav-line">
+					<a class="tabs-nav active" href="#tab-box1">按日</a>
+					<a class="tabs-nav" href="#tab-box2">按周</a>
+					<a class="tabs-nav" href="#tab-box3">按月</a>
+					
+					<!--<input id="dete" type="text" value="4/23/99" id="rangeA" />-->
+                    <input id="sdate" placeholder="请输入日期" class="laydate-icon" >
+                    <input id="edate" placeholder="请输入日期" class="laydate-icon" >
+				</div>
+			</div>
+		</div>
+        <div id="tab-box1" class="tab-box">
+            <div class="row-fluid" style="margin-top: 20px;">
+                <div class="container-fluid">
+                    <div id="render-chart" style="height: 500px">
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="tab-box2" class="tab-box" style="display: none">
+            <div class="row-fluid" style="margin-top: 20px;">
+                222222
+            </div>
+        </div>
+
+        <div id="tab-box3" class="tab-box" style="display: none">
+            <div class="row-fluid" style="margin-top: 20px;">
+                333333
+
+            </div>
+        </div>
+
+		
+	</div>
+	
+
+     
+</div>
+
+</div>
+
+<script src="{{static_url('web/js/flotr2.js')}}"></script>
+<script src="{{static_url('web/laydate/laydate.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<script type="text/javascript" src="{{static_url('web/js/91ns.anchor1.js')}}"></script>
+<script type="text/javascript">
+
+$(function(){
+	$('body').addClass('anchorinfo');
+	  //$('#dete').datepicker({arrows:true});
+    laydate.skin('default');
+
+    laydate({
+        elem: '#sdate'
+    })
+    laydate({
+        elem: '#edate'
+    })
+
+    $('.tabs-nav').click(function(){
+        $('.tabs-nav.active').removeClass('active');
+        $(this).addClass('active');
+        var id=$(this).attr('href');
+        $('.tab-box').hide();
+        $(id).show();
+        return false;
+    });
+
+});
+
+mChart([[1, 3000], [2, 200], [4, 5], [6, 1300],[8, 3000], [10, 200], [12, 5], [14, 1300]],{
+	X:{title:'小时',max:24,noTicks:12},
+	Y:{max:10000}	
+})
+	
+</script>
+

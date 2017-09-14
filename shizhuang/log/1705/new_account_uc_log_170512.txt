@@ -1,0 +1,1 @@
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1game3ec1ff994ab04be0bc2af5d161efd090132552";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1654403  2017-05-12 02:48:35

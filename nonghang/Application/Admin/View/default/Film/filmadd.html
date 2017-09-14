@@ -1,0 +1,344 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='jscss'>
+<script src="__JS__/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__JS__/uploadify/uploadify.css">
+
+<script src="__STATIC__/ueditorFull1.2.2/ueditor.config.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/ueditor.all.min.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
+
+</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>  
+        </div>
+        <form id='myform' action="{:U()}" method="post" enctype="multipart/form-data" target="myframe">
+		<div class="rightContent" style="padding-bottom:100px;">
+        	<div class="queryBox">
+                <div class="contentBar">
+                    <div class="barLeft">
+                        <span>影片编号<a class="binding" href="javascript:binding();">（绑定）</a></span>
+                    </div>
+
+                    <span id="filmValue">
+                            
+                        <if condition="$film['filmNo']">
+                            <?php
+                            // echo $film['filmNo'];
+                                // print_r($noBindFilmList);
+                            ?>
+                                <input type="hidden" name="data[filmNo]" value="{$nowBindFilmList[0]['filmNo']}" />{$nowBindFilmList[0]['filmNo']}{$nowBindFilmList[0]['filmName']}[{$nowBindFilmList[0]['copyType']}]
+                        </if>
+
+                        </span>
+                </div>
+            </div>
+            <div class="contentBox">
+                <div class="boxLeft">
+                    <p>影片名称</p>
+                    <input name="data[filmName]" type="text"  value="" placeholder="请输入影片名称">
+                    <p>导演</p>
+                    <input name="data[director]" type="text"  id="text" value="" placeholder="请输入导演名称">
+                    <p>主演</p>
+                    <input name="data[cast]" type="text"  value="" placeholder="请输入主演名称" >
+                    <p>片长</p>
+                    <input name="data[duration]" type="text"   value="0" placeholder="请输入影片片长" >分钟
+                    <p>语言</p>
+                    <input type="text" name="data[lang]" value="" placeholder="请输入影片语言" >
+                    <p>上映日期</p> 
+                    <input type="text" name='data[publishDate]' class="date" placeholder="请选择上映日期" >
+                    <!--<p>最低保护价</p>
+                    <input name="data[minPrice]" type="text" value="0" placeholder="请输入最低保护价">-->
+                    <p>简短介绍</p>
+                    <input name="data[simpleword]" type="text" value="" placeholder="请输入简短介绍" maxlength="20">
+                    <p>电影评分</p>
+                    <input name="data[score]" type="text" id="score" class="text" value="0" placeholder="取值1-100">
+                </div>
+                <div class="boxMid">
+                	<!-- <div class="titleBox">
+                        <h4>影片状态</h4>
+                        <input name="data[inRelease]" type="radio" value="0" id="radio1" checked="checked"><label for="radio1" style="margin-right:15px;">即将上映</label>
+                        <input name="data[inRelease]" type="radio" value="1" id="radio2"><label for="radio2" style="margin-right:15px;">正在热映</label>
+                        <input name="data[inRelease]" type="radio" value="2" id="radio3"><label for="radio3" style="margin-right:15px;">影片下架</label>
+                    </div> -->
+                    <div class="titleBox">
+                        <h4>影片类型</h4>
+                        <input name="data[version]" id="2d" type="radio" value="2D" checked="checked"><label for="2d">2D</label>
+                        <input name="data[version]" type="radio" value="3D" id="3d"><label for="3d">3D</label>
+                        <input name="data[version]" type="radio" value="IMAX" id="imax"><label for="imax">IMAX</label>
+                    </div>
+                    <div class="titleBox">
+                        <h4>影片地区</h4> 
+                        <input name="data[area]" type="radio" value="内地" id="area1" checked="checked"><label for="area1">内地</label>
+                        <input name="data[area]" type="radio" value="香港" id="area2"><label for="area2"> 香港</label>
+                        <input name="data[area]" type="radio" value="台湾" id="area3"><label for="area3"> 台湾</label>
+                        <input name="data[area]" type="radio" value="日本" id="area4"><label for="area4"> 日本</label>
+                        <input name="data[area]" type="radio" value="韩国" id="area5"><label for="area5"> 韩国</label>
+                        <input name="data[area]" type="radio" value="美国" id="area6"><label for="area6"> 美国</label>
+                        <input name="data[area]" type="radio" value="欧洲" id="area7"><label for="area7"> 欧洲</label>
+                        <input name="data[area]" type="radio" value="印度" id="area8"><label for="area8"> 印度</label>
+                        <input name="data[area]" type="radio" value="泰国" id="area9"><label for="area9"> 泰国</label>
+                    </div>
+                    <div class="titleBox">
+                        <h4>影片类型</h4> 
+                        <input name="type[]" type="checkbox" value="爱情" checked="checked" id="type1" /><label for="type1">爱情</label>
+                        <input name="type[]" type="checkbox" value="剧情" id="type2"><label for="type2">剧情</label>
+                        <input name="type[]" type="checkbox" value="喜剧 " id="type3"><label for="type3">喜剧</label>
+                        <input name="type[]" type="checkbox" value="动作" id="type4"><label for="type4">动作</label>
+                        <input name="type[]" type="checkbox" value="冒险" id="type5"><label for="type5">冒险</label>
+                        <input name="type[]" type="checkbox" value="犯罪" id="type6"><label for="type6">犯罪</label>
+                        <input name="type[]" type="checkbox" value="科幻" id="type7"><label for="type7">科幻</label>
+                        <input name="type[]" type="checkbox" value="悬疑" id="type8"><label for="type8">悬疑</label>
+                        <input name="type[]" type="checkbox" value="奇幻" id="type9"><label for="type9">奇幻</label>
+                        <input name="type[]" type="checkbox" value="恐怖" id="type10"><label for="type10">恐怖</label>
+                        <input name="type[]" type="checkbox" value="伦理" id="type11"><label for="type11">伦理</label>
+                        <input name="type[]" type="checkbox" value="家庭" id="type12"><label for="type12">家庭</label>
+                        <input name="type[]" type="checkbox" value="武侠" id="type13"><label for="type13">武侠</label>
+                        <input name="type[]" type="checkbox" value="战争" id="type14"><label for="type14">战争</label>
+                    </div>
+                    <div class="titleBox" style="height:230px;">
+                    <h4>预告片封面图：</h4>
+                    <div class="cover">
+                        <div id="preview1" style="text-align:center">
+                            <img id="imghead1" width='280' height='190' border=0 src="__UPLOAD__/{$film['prevsImg']}">
+                        </div>
+                        <a class="selectBtn" href="javascript:" style="margin-top:15px;" ><input type="file" name='image1' onchange="previewImage1(this)" class="selectfile" />选择图片</a>
+                    </div>
+                </div>
+                <div class="titleBox">
+                    <h4>预告片：</h4>
+                    <input name="data[prevs]" type="text"  value="{$film['prevs']}" placeholder="请输入影片预告片地址" style="width:100%;">
+                </div>
+                  
+                </div>
+                <div class="boxRight">
+                    <div class="cover">
+                    	<div id="preview">
+                            <img id="imghead" width='150' height='200' border=0 src="">
+                        </div>
+                        <a class="selectBtn" href="javascript:" style="margin-top:15px;" ><input type="file" name='image' onchange="previewImage(this)" class="selectfile" />选择图片</a>
+                        <p>上传封面海报(图片尺寸：195×260)</p>
+                        
+                    </div>
+                    <div class="plot titleBox">
+                        <h4>剧情编辑</h4> 
+                        <div type="text/plain" id="introduction" name="data[introduction]" style="width:400px;height:240px;">
+							{:htmlspecialchars_decode($film['introduction'])}
+						</div>
+                    </div>
+                    <div class="clear"></div>
+                    
+                    <div class="still titleBox">
+                        <h4>上传影片剧照</h4>
+                        <a class="selectBtn" href="javascript:void(0);" id="postImage" style="float:left;" >选择海报</a>
+                        <div id="post_list">
+                        <volist name='filearr' id='vo'>
+                            <div style="float: left;position:relative">
+                                        <div style="background:url('__JS__/uploadify/uploadify-cancel.png') no-repeat 0 0;top:0;right:0;position: absolute ;width:20px;height:20px; background-size:100%; cursor:pointer; " onclick="delpic(this,'{$vo}')"></div>
+                                        <img class="post_image"  style="padding: 2px;" border=0  width="180" height="120" src="/{$vo}"/>
+                            </div>
+                        </volist>
+                        </div> <div class="clear"></div>
+                    </div>   
+                </div>
+               
+            </div>
+             <div class="btnLink"><a class="button" id="button" href="javascript:;">发布上架</a></div>
+        </div>
+        </form>
+    </div>
+<script type="text/javascript">
+
+var ue = UE.getEditor('introduction', {
+    toolbars: [
+        ['source','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify','fontsize','bold','forecolor','link', 'unlink','insertunorderedlist', 'fullscreen',]
+    ],
+    autoHeightEnabled: false,
+    autoFloatEnabled: false
+});
+
+$('#button').click(function() {
+	var tt=/^[1-9][0-9]*$/;
+	var tt1=/^[0]|([1-9][0-9]*)$/;
+	var checkd=true;
+	$('input[type="text"]').each(function(){
+		var name=$(this).prev('p').html();
+		var value=$(this).val();
+		if(value==''){
+			layer.alert(name+'不能为空');
+			checkd=false;
+			return false;
+		}else if($(this).attr('name')=='data[duration]'||$(this).attr('name')=='data[score]'||$(this).attr('name')=='data[minPrice]'){
+			if(!tt.test(value)){
+				layer.alert(name+'填写错误');
+				checkd=false;
+				return false;
+			}
+		}
+	});
+	if(checkd){
+		checkd=false;
+		$('input[name="type[]"]').each(function(){
+			if($(this).prop('checked')){
+				checkd=true;
+				return true;
+			}
+		});
+		if(checkd){
+			$('#myform').submit();
+		}else{
+			layer.alert('数据不全');
+		}
+	}
+});
+var layerOpen = '';
+function binding(){
+
+
+layerOpen = layer.open({
+    type: 1,
+    title: false,
+    closeBtn: true,
+    shadeClose: false,
+    skin: 'yourclass',
+    area: ['500px', '<?php echo (count($noBindFilmList) + 1) * 42?>px'],
+    content: '<div class="binding"><table border="0" cellpadding="0" cellspacing="0"><thead><tr><th width="30%">影片编号</th><th width="50%">影片名称</th><th width="20%">操作</th></tr></thead><tbody><volist name='noBindFilmList' id='vo'><tr><td class="p5">{$vo.filmNo}</td><td>{$vo.filmName}[{$vo.copyType}]</td><td><button class="bindBtn" onClick="setBindVal(\'{$vo.filmNo}\', \'{$vo.filmName}[{$vo.copyType}]\')">绑定</button></td></tr></volist></tbody></table></div>'
+});
+
+}
+
+
+function setBindVal (filmNo, filmName) {
+    layer.close(layerOpen);
+
+    $("#filmValue").html('<input type="hidden" name="data[filmNo]" value="'+filmNo+'" />' + filmNo + filmName);
+    // alert(filmNo);
+}
+
+	  //图片上传预览    IE是用了滤镜。
+        function previewImage(file)
+        {
+          var MAXWIDTH  = 150; 
+          var MAXHEIGHT = 200;
+          var div = document.getElementById('preview');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=imghead>';
+              var img = document.getElementById('imghead');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+	  
+      //图片上传预览    IE是用了滤镜。
+        function previewImage1(file)
+        {
+          var MAXWIDTH  = 150; 
+          var MAXHEIGHT = 200;
+          var div = document.getElementById('preview1');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=imghead1>';
+              var img = document.getElementById('imghead1');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead1>';
+            var img = document.getElementById('imghead1');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead1 style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight )
+            {
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                 
+                if( rateWidth > rateHeight )
+                {
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else
+                {
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+             
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+
+//影片海报
+$('#postImage').uploadify({
+    'buttonClass' : 'btn_addPic',
+    'height': 30,//浏览按钮的高度
+    'width': 120,
+    'swf'   : '__JS__/uploadify/uploadify.swf',
+    'uploader': '{:U("addUpload")}',
+	'fileObjName': 'postImage',
+    'buttonText' : '选择图片',
+    'multi': true,
+    'fileTypeDesc' : 'Image',
+    'fileTypeExts' : '*.gif; *.jpg; *.png',
+    'onUploadSuccess' : function(file, data, response) {
+    	if (response){
+            var pic_domain = "/";
+            var image = '<div style="float: left;position:relative">' +
+                    '<div style="background: url(\'__JS__/uploadify/uploadify-cancel.png\') no-repeat 0 0;top:0;right:0;position: absolute ;width:20px;height:20px;  background-size: 100%; cursor:pointer; " onclick="delpic(this,\''+data+'\')"></div>' +
+                    '<img class="post_image"  style="padding: 2px;" border=0  width="180" height="120" src="'+pic_domain+data+'" /></div>';
+            $("#post_list").append(image);
+        }
+    }
+});
+function delpic(obj,pic){
+	$.get('{:U("delpic")}',{pic:pic},function(json){
+		$(obj).parent().remove();
+	});
+}
+
+
+</script> 
+</block>

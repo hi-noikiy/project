@@ -1,0 +1,81 @@
+<div class="menu js-id-topControl {% if !ns_userUid %}active{% endif %}" onselectstart="return false;">
+    <div class="user-info-control ico-main-14 active js-toggle-userInfo {% if !ns_userUid %}onlogin{% endif %}"></div>
+    <div class="menu-body hasScroll js-menu-scroll">
+        <div class="no-wh g-scroll">
+            <div class="scroll-bg"></div>
+            <div class="scroll-ban"></div>
+        </div>
+        <div class="scroll-body">
+            <div class="tab-bar">
+                <ul>
+                    <li class="{% if ns_name|default('') == '91ns' %}active{% endif %}" onclick="userAction('91ns',1);">
+                        <i class="ico-main-5_1"></i>
+                        <span>首页</span>
+                    </li>
+                    <li class="{% if ns_name|default('') == 'rank' %}active{% endif %}" onclick="userAction('rank',1);">
+                        <i class="ico-main-5_2"></i>
+                        <span>排行榜</span>
+                    </li>
+                    <li class="{% if ns_name|default('') == 'shop' %}active{% endif %}" onclick="userAction('shop',1);">
+                        <i class="ico-main-5_3"></i>
+                        <span>商城</span>
+                    </li>
+                    <li class="{% if ns_name|default('') == 'game' %}active{% endif %}" onclick="userAction('game',1);">
+                        <i class="newIcon-game"></i>
+                        <span>游戏中心</span>
+                    </li>
+                    <li class="{% if ns_name|default('') == 'charging' %}active{% endif %}" onclick="userAction('charging','{{ ns_userUid }}');">
+                        <i class="ico-main-5_4"></i>
+                        <span>充值中心</span>
+                        {% if ns_userType|default(0) == 3 %}
+                            <img src="{{static_url('web/cssimg/91ns/exchange.gif')}}" style="margin-top:-5px;margin-left: -2px;display: inline-block;float: left;">
+                        {% endif %}
+                    </li>
+                    <li class="{% if ns_name|default('') == 'download' %}active{% endif %}" onclick="userAction('download',1);">
+                        <i class="ico-main-5_5"></i>
+                        <span>下载中心</span>
+                    </li>
+                    <li class="{% if ns_name|default('') == 'help' %}active{% endif %}" onclick="userAction('help',1);">
+                        <i class="ico-main-5_6"></i>
+                        <span>帮助中心</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="manage-bar">
+                <div class="bar-header ico-main-7">管理中心&nbsp;&nbsp;</div>
+                <div class="bar-body">
+                    <ul class="clearfix js-mangerType-control">
+                        <li onclick="userAction('userprop','{{ ns_userUid }}');" class="myProp {% if ns_type|default('') == 'userprop' %}active{% endif %}">我的道具</li>
+                        <li onclick="userAction('userfamily','{{ ns_userUid }}');" class="myFamily {% if ns_type|default('') == 'userfamily' %}active{% endif %}">我的家族</li>
+                        <li onclick="userAction('userattention','{{ ns_userUid }}');" class="myAttention {% if ns_type|default('') == 'userattention' %}active{% endif %}">我的关注</li>
+                        <li onclick="userAction('userfans','{{ ns_userUid }}');" class="myFans {% if ns_type|default('') == 'userfans' %}active{% endif %}">我的粉丝</li>
+                        <li onclick="userAction('userhmanagement','{{ ns_userUid }}');" class="myHManagement {% if ns_type|default('') == 'userhmanagement' %}active{% endif %}">我的房管</li>
+                        <li onclick="userAction('usersecurity','{{ ns_userUid }}');" class="accountSecurity {% if ns_type|default('') == 'usersecurity' %}active{% endif %}">账户安全</li>
+                        <li onclick="userAction('userincome','{{ ns_userUid }}');" class="myIncome {% if ns_type|default('') == 'userincome' %}active{% endif %}">我的收益</li>
+                        <li onclick="userAction('userbill','{{ ns_userUid }}');" class="myBill {% if ns_type|default('') == 'userbill' %}active{% endif %}">我的账单</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="more-bar">
+                <div class="first-charge">
+                    <a href="/activities/star" target="_blank"><img src="{{static_url('web/cssimg/91ns/activities.star.jpg')}}"></a>
+                </div>
+                <div class="first-charge">
+                    <a href="/activities/charge" target="_blank"><img src="{{static_url('web/cssimg/91ns/first-charge.jpg')}}"></a>
+                </div>
+                <div class="share">
+                    <a href="/activities/share" target="_blank"><img src="{{static_url('web/cssimg/91ns/share.jpg')}}"></a>
+                </div>
+                <div class="online">
+                    <a href="/activities/online" target="_blank"><img src="{{static_url('web/cssimg/91ns/online.jpg')}}"></a>
+                </div>
+                <div class="footer-notes">
+                    <p>许可证</p>
+                    <p>闽ICP备14005885号</p>
+                    <!-- <p>文网文[2008]059号</p> -->
+                    {% if webType['channelType'] == 1 %}<p><a href="{{ aboutUrl|default('/about') }}" target="_blank">关于91NS</a></p>{% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

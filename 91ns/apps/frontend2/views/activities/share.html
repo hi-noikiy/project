@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html  style="overflow: visible;*overflow: auto;">
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('index'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('charge'|ns_css)}}">
+    <script type="text/javascript" defer async data-main="{{static_url('activities.star'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</head>
+<body style="padding: 0;margin: 0;overflow: visible;height: auto;">
+<div class="wrap">
+    {% include "template/header.html" %}
+
+    <div class="wrapBd" style="background-color: #70B8DC;margin-top: 10px;">
+        <div class="share">
+            <div class="head" >
+                <div class="head-p">
+                    {% if webType['channelType']!=2 %}
+                    <img class="head-img" src="{{static_url('web/cssimg/charge/share.png')}}">
+                    {% else %}
+                    <img class="head-img" src="{{static_url('web/cssimg/charge/sharedz.jpg')}}">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="content">
+                <div class="content-mid">
+                    <div class="content-p">
+                        <img class="head-img" src="{{static_url('web/cssimg/charge/blueshade.png')}}">
+                    </div>
+                    <div class="content-mid-m">
+                        <div class="mid-m-head">
+                            活动详情
+                        </div>
+                        <div class="mid-m-content">
+                            <ul>
+                                <li><p>本活动必须先关注主播的分享才计算在内。</p></li>
+                                <li><p>分享的主播必须是正在直播的主播。</p></li>
+                                <li><p>完成本活动任务每日必须分享5次SNS。</p></li>
+                                <li>
+                                    <p>每次分享必须为同个主播的不同SNS，</p>
+                                    <p>或者不同主播的同个SNS（QQ微博，新浪微博，QQ群，QQ空间）。</p>
+                                </li>
+                                <li><p>每日分享任务完成后，需等到第二天0点刷新该日常任务。</p></li>
+                                <li><p>该活动属于日常任务，奖励为100聊豆。</p></li>
+                                <li><p>本活动最终解释权归{{webType['name']}}所有。</p></li>
+                            </ul>
+                        </div>
+                        <div class="mid-m-footer">
+                            <img class="head-img" src="{{static_url('web/cssimg/charge/smalls.png')}}">
+                        </div>
+                    </div>
+                    <div class="content-mid-f">
+                        <img class="head-img" src="{{static_url('web/cssimg/charge/shade2.png')}}">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+</body>
+</html>
+

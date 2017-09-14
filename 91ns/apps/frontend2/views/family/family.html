@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('family.family'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('pagination2'|ns_css)}}" />
+    <script type="text/javascript">
+    var thisSkin = {{familySkinInfo|json_encode}};
+    </script>
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+    <div id="skinDOM" class="skinCont">
+	    <div class="cts">
+	    	<div class="header">
+	    		<div class="info clearfix">
+	                <div class="avatar">
+	                	<img src="{{ familyInfo['logo'] }}">
+	                	<i></i>
+	                </div>
+	                <div class="info">
+	                    <div class="base clearfix">
+	                        <span class="name">{{ familyInfo['name'] }}</span>
+	                        <i class="icon sprite-family_level family1">{{ familyInfo['shortName'] }}</i>
+	                    </div>
+	                    <div class="createTime">
+	                        成立：<span>{{ familyInfo['createTime'] }}</span>
+	                    </div>
+	                </div>
+	    		</div>
+	    		<div class="apply clearfix">
+	    			{% if familyCreator %}
+	    			<div id="changeSkinBtn" class="sprite-familyFamily hf"></div>
+	    			{% endif %}
+	    			<div class="apply">
+	    				<div class="number clearfix">
+	                        <i class="sprite-familyFamily htbbb"></i>
+	                        <span>{{ familyInfo['num'] }}</span>
+	                    </div>
+	                    {% if applyBtn == 1 %}
+	                    <div id="applyJoinFamily" class="applyBtn normal">申请成为家族成员</div>
+	                    {% elseif applyBtn == 0 %}
+	                    <div class="applyBtn forbid"><span>申请成为家族成员</span><i></i></div>
+	                    {% else %}
+	                    <div class="applyBtn applyIng">您的成员申请审批中</div>
+	                    {% endif %}
+	                    <div class="tips">
+	                    	<i class="sprite-familyFamily star"></i>
+	                    	<span>须是签约主播，每人暂时只能加入一个家族</span>
+	                    </div>
+	    			</div>
+	    		</div>
+	    	</div>
+	    	<div class="leader">
+	    		<div class="leaderCT">
+		    		<h2 class="titles">族长</h2>
+		    		<div class="info clearfix">
+		    			<div class="avatar">
+		    				<img src="{{ familyInfo['avatar'] }}">
+		    			</div>
+		    			<div class="name"><span>{{ familyInfo['nickName'] }}</span><i class="sprite-zb_level zb{{ familyInfo['level'] }}"></i></div>
+		    		</div>
+		    		<div class="msgs sprite-familyFamily gg">
+		    			<h3>家族公告</h3>
+		    			<p>{{ familyInfo['announcement'] }}</p>
+		    		</div>
+	    		</div>
+	    		<i></i>
+	    	</div>
+	    	<div class="js-data-demo-anchorItem" style="display:none;"><li class="m-item"><a href="#" target="_blank" class="i-user" title=""><img src="" class="i-avatar" alt="" title=""><span class="i-tags index-roomlist-1 _status"><i class="txt">直播</i></span><i class="index-roomlist-1 _play ico-play"></i><div class="i-bg"></div><div class="i-info2"><i class="index-roomlist-1 _number"></i><span class="number">0</span><span class="i-city"></span></div></a><div class="i-info"><div class="i-info1"><div class="i-name"><a href="#" target="_blank" title="" class="name"></a></div><span class="i-actor sprite-zb_level"></span><i class="sprite-family_level"></i></div></div></li></div>
+	    	<div class="body clearfix">
+		    	<div class="familyAnchor">
+		    		<h2 class="titles">主播</h2>
+		    		<ul id="familyAnchorList" class="anchorsRoomLists clearfix"></ul>
+		    		<div class="pageStyle">{% include "template/pagination.html" %}</div>
+		    	</div>
+		    	<div class="rankList">
+		    		<div class="R_cont R_cont_rank R_cont_star">
+					    <div class="R_cont_hd">
+					        <h2>明星榜</h2>
+					        <p class="RCB_tab" nsdata="rankUpdate" nstype="anchor">
+					            <!-- <a  nsdate="day">日</a><em></em> -->
+					            <a class="cur" nsdate="week">周</a><em></em>
+					            <a nsdate="month">月</a>
+					        </p>
+					    </div>
+					    <div class="R_cont_bd">
+					        <ul id="rank-anchor"></ul>
+					    </div>
+					</div>
+					<!-- <div class="R_cont R_cont_rank R_cont_hot">
+					    <div class="R_cont_hd">
+					        <h2>人气榜</h2>
+					        <p class="RCB_tab" nsdata="rankUpdate" nstype="fans">
+					            <a class="cur" nsdate="day">日</a><em></em>
+					            <a nsdate="week">周</a><em></em>
+					            <a nsdate="month">月</a>
+					        </p>
+					    </div>
+					    <div class="R_cont_bd">
+					        <ul id="rank-fans"></ul>
+					    </div>
+					</div> -->
+		    	</div>
+	    	</div>
+	    </div>
+	</div>
+	<iframe style="display:none" name='hidden_frame' id="hidden_frame"></iframe>
+	<div id="skinSetDiv" class="skinSet">
+		<div class="cts">
+			<ul class="header clearfix">
+	            <li id="skinBGSet" class="active">背景</li>
+	            <li id="skinCustom">自定义</li>
+	        </ul>
+	        <ul id="skinBGSetUL" class="skinSelect clearfix"></ul>
+	        <div id="skinCustomUL" class="skinSelect clearfix" style="display:none;">
+		        <form id="uploadImgFrom" class="upload" action="/userfamily/uploadFamilySkin" method="post" target="hidden_frame" enctype="multipart/form-data">
+	        		<i class="sprite-familyBgSet uploadIco"></i>
+	        		<i class="bg"></i>
+	        		<span>上传图片</span>
+                    <input type="file" value="上传" name="file_upload1">
+		        	<img src="">
+	            </form>
+	        	<!-- <div class="upload">
+	        		<i class="sprite-familyBgSet uploadIco"></i>
+	        		<i class="bg"></i>
+	        		<span>上传图片</span>
+	        	</div> -->
+	        	<div class="line"></div>
+	        	<ul class="bgType clearfix">
+	        		<li class="active" value="2">
+	        			<div class="img sprite-familyBgSet bgCenter"></div>
+		        		<div class="select">
+		        			<i></i>
+		        			<span></span>
+		        		</div>
+	        			<div class="title">平铺</div>
+	        		</li>
+	        		<li value="1">
+	        			<div class="img sprite-familyBgSet repeat"></div>
+		        		<div class="select">
+		        			<i></i>
+		        			<span></span>
+		        		</div>
+	        			<div class="title">居中</div>
+	        		</li>
+	        	</ul>
+	        </div>
+	        <ul class="btn clearfix">
+	        	<li class="right">确定</li>
+	        	<li class="left">取消</li>
+	        </ul>
+		</div>
+    </div>
+</div>
+<div id="joinFamilyConfirm" class="joinFamilyConfirm" style="display:none;">
+	<i class="bg"></i>
+	<div class="cts">
+		<div class="header">加入家族</div>
+		<i class="close"></i>
+		<div class="bodys" style="color:#666;">
+			<p style="color:#666;font-size:12px;">您正在申请加入 <span style="color:#2b2b2b;">{{ familyInfo['name'] }}</span> 家族</p>
+			<i class="sprite-message selected"></i>
+			已阅读并同意
+			<a href="/family/het" target="_blank">《主播合同》</a>
+			和
+			<a href="/family/specification" target="_blank">《直播规范》</a>
+			<div class="btn">提交</div>
+		</div>
+	</div>
+</div>
+    {% include "template/footer.html" %}
+    <script type="text/javascript" defer async data-main="{{static_url('family.family'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</body>
+</html>

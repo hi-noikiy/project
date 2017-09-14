@@ -1,0 +1,63 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+
+
+
+
+<script src="__STATIC__/ueditorFull1.2.2/ueditor.config.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/ueditor.all.min.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
+
+
+<form method="post" action="{:U()}" class="dataform" id="dataform">
+	<div class="formBox">
+
+        <foreach name="cinemaCodeList" item="vo" key="k" >
+        <div class="inputText" >
+        <input type="checkbox" name="data[cinemaCode][]" value="{$vo.cinemaCode}" id="ciname{$vo.cinemaCode}" <if condition="strstr($cinemaList, ','.$vo['cinemaCode'].',')">checked="checked"</if>><label for="ciname{$vo.cinemaCode}">{$vo.cinemaName}</label>
+    </div>
+        <br />
+        </foreach>
+
+<input type="hidden" name="cinemaGroupId" value="{$cinemaGroupId}">
+
+    </div>
+	<div class="formBtn">
+        <a href="javascript:ajaxSubmit()" class="button">确认</a>
+         <a href="javascript:parent.layer.closeAll();" class="cancel">取消</a>
+        
+    </div>
+</form>
+<script type="text/javascript">
+
+
+function ajaxSubmit () {
+        // alert('1');
+        $("#dataform").ajaxSubmit({  
+            type:"post",  //提交方式  
+            dataType:"json", //数据类型  
+            url:"{:U()}", //请求url 
+            success:function(json){ //提交成功的回调函数  
+                if (json.status == 1) {
+                    layer.alert(json.content);
+                }else if(json.status == 0){
+
+
+                    layer.confirm(json.content, {
+                    btn: ['返回列表','继续修改'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    parent.location.reload();
+                }, function(){
+                    location.reload();
+                });
+                }
+
+
+                // alert('11');
+            }  
+        });
+    }
+
+</script> 
+</block>

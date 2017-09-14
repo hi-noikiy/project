@@ -1,0 +1,20 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: luoxue
+ * Date: 2016/12/9
+ * Time: 上午9:51
+ * 爱应用
+ */
+define('ROOT_PATH', str_replace('interface/iapp/config.php', '', str_replace('\\', '/', __FILE__)));
+include_once ROOT_PATH.'inc/config.php';
+include_once ROOT_PATH.'inc/config_account.php';
+include_once ROOT_PATH.'inc/function.php';
+$key_arr = array(
+    8=>array(
+        'ios'=>array(
+            'appId'     =>'2446ec3ead7ded8c4e6b802cada9ae4b',
+            'appKey'    =>'ee7bdb5332e157b3873aae18275bb105',
+        ),
+    ),
+);

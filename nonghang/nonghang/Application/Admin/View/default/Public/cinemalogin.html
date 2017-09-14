@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>影城后台管理系统</title>
+
+<link rel="stylesheet" href="__CSS__/common.css" type="text/css" media="screen" />
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+
+<link rel="stylesheet" href="__CSS__/style.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/layer.js"></script>
+<script type="text/javascript" src="__JS__/jquery.form.js"></script> 
+
+<link rel="stylesheet" href="__JS__/skin/layer.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__JS__/skin/layer.ext.css" type="text/css" media="screen" />
+
+</head>
+<style>
+html{
+	height:100%;
+	}
+body{
+	background: -webkit-linear-gradient(right top, #4f90a5 , #574b7a); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(bottom left, #4f90a5, #574b7a); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(bottom left, #4f90a5, #574b7a); /* Firefox 3.6 - 15 */
+	background: linear-gradient(to bottom left, #4f90a5 , #574b7a); /* 标准的语法 */
+	}
+</style>
+<body>
+    <!--顶部-->
+    <div class="header">
+        <div class="title"><img src="__IMG__/common/logo.png" height="80" />影城后台管理系统</div>
+    </div>
+    <!--顶部结束-->
+    <div>
+        <div class="loginBody">
+        	<h3>登录</h3>
+            <form id="loginform" action="" method="post">
+                <div class="divInput"><span><img src="__IMG__/common/user.png" /></span><input type="text" id="username"  name='username' placeholder="请输入用户名"></div>
+                <div class="divInput"><span><img src="__IMG__/common/pwd.png" /></span><input name='password' id="password" placeholder="请输入密码" type="password"></div>
+                <span class="">
+                    <a href="javascript:login();" class="button" style=" width:100%; padding:0; text-align:center;">登录</a></span>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有  4008-12345678</p>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var loadi = '';
+    var loadimsg = '';
+    function login () {
+        loadi = layer.load(1, {shade: [0.5,'#000']});
+        loadimsg = layer.msg('正在登录...',{time: 60000});
+
+        $("#loginform").ajaxSubmit({    
+                type:"post",    //提交方式  
+                dataType:"json", //数据类型 
+                url:"{:U()}", //请求url 
+                data:{'username':$('#username').val(), 'password':$('#password').val()}, 
+                success:function(data){ //提交成功的回调函数 
+                        if(data.status == 0){
+                            layer.msg(data.content);
+                            layer.close(loadi);
+                            location.href = '{:U('Index/index')}'
+                        }else{
+                            layer.close(loadi);
+                            layer.close(loadimsg);
+                            layer.msg(data.content, {icon: 5});
+                        }
+                }   
+        });
+}
+
+</script>

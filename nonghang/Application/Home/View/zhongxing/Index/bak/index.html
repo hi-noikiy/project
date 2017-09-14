@@ -1,0 +1,56 @@
+<extend name='Public/base'/>
+<block name='title'>中兴院线微信购票</block>
+<block name='body'>
+<div class="page">
+	<div class="headerNav">
+       <div class="headerLeft"></div>
+        <div class="title" id="title"><span>中兴院线</span></div>
+        <div class="headerRight"></div>
+    </div>
+    <div class="content">
+         <div class="swiper">
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <volist name='banners' id='vo'>
+                <div class="swiper-slide"> <a href="{$vo['url']}"> <img src="__UPLOAD__/{$vo['img']}" height="100%" width="100%"></a> </div>
+                </volist>
+              </div>
+            </div>
+            <div class="pagination"></div>
+        </div>
+         <div class="homeLink">
+         	<div class="linkLeft">
+            	<a href="{:U('plan',array('op'=>'plan'))}"><img src="__IMG__/common/1.jpg" width="100%" /></a>
+                <div class="linkFilm">
+                	<a href="<?php if($data['curin']=='0'){ ?>javascript:;<?php }else{ ?>{:U('film')}<?php }?>"><b>{$data['curin']}</b><span>正在热映</span></a>
+                    <a href="<?php if($data['prein']=='0'){ ?>javascript:;<?php }else{ ?>{:U('soon')}<?php }?>"><b>{$data['prein']}</b><span>即将上映</span></a>
+                </div>
+            </div>
+            <div class="linkRight">
+            	<a href="{:U('User/user')}"><img src="__IMG__/common/2.jpg" width="100%" /></a>
+                <a href="{:U('Otherpay/index')}"><img src="__IMG__/common/3.jpg" width="100%" /></a>
+                <a href="{:U('activity')}"><img src="__IMG__/common/4.jpg" width="100%" /></a>
+                <a href="{:U('cinemalist',array('op'=>'cinema'))}"><img src="__IMG__/common/5.jpg" width="100%" /></a>
+            </div>
+         </div>
+         <div class="">
+         	<a href=""><img src="__UPLOAD__/{$ad['img']}" width="100%" height="120" /></a>
+         </div>
+    </div>
+</div>
+<script>
+	var w=$(document).width();
+	$('.swiper-container').height(w*0.33);
+	var mySwiper = new Swiper('.swiper-container',{
+		pagination: '.pagination',
+		loop:true,
+		grabCursor: true,
+		paginationClickable: true
+	})
+	
+	var mySwiper = app.swiper('.swiper-container', {
+    speed: 400,
+    spaceBetween: 100
+});
+</script>    
+</block>

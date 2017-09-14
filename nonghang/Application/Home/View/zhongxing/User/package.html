@@ -1,0 +1,68 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">我的券包</div>
+    <div class="right"><a href="javascript:" id="bind">解除绑定</a><span id="bangding"><a href="javascript:" class="link no">取消</a><a href="javascript:" class="link ok">确定</a></span></div>
+  </div>
+</div>
+<div class="pages">
+  <div data-page="package" class="page">
+    <div class="page-content">
+<div style="display:none" id='url'>{:U('addvoucher')}</div>
+<div style="display:none" id='surl'>{:U('packageajax')}</div>
+<div style="display:none" id='durl'>{:U('delvoucher')}</div>
+        <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+        </foreach>
+        
+		<div class="content">
+            <div class="packageTop">
+                <p>
+                	<span>绑定票券</span>
+                	<a href="{:U('voucherrule')}" class="voucherRule" >票券规则></a>
+                <p>
+                <input type="text" placeholder="请输入券码" id='voucher'/>
+                <a href="javascript:" class="voucherBtn" >绑定</a>
+                <div class="clear"></div>
+            </div>
+            <div class="voucherList">
+            	<?php if(empty($memberVoucherList)){ ?><div class="noVoucher">您暂时还没有优惠券</div><?php }else{ ?>
+            	<p>*您有<b>{$memberVoucherList[0]['expireNum']}</b>张票券即将过期</p><a href="{:U('packagerecord')}" class="outvoucher link">历史票券</a>
+                <ul>
+                <foreach name='memberVoucherList' item='vo'>
+                	<li><label><input type="checkbox" class="voucherli" />
+                    	<a class="checkboxicon"></a>
+                    	
+                            <img src="__IMG__/user/voucher{$vo['typeClass']+1}.png" width="100%" />
+                            <div class="voucherBody">
+                                <div class="voucherPrice"><b>￥</b>{$vo['voucherValue']}</div>
+                                <div class="voucherCode">{$vo['voucherNum']}</div>
+                                <div class="voucherName">{$vo['voucherName']}</div>
+                                
+                                <div class="voucherDate">有效期至{$vo['validDate']}</div>
+                            </div>
+                        </label>
+                    </li>
+                    </foreach>
+                </ul>
+                <?php } ?>
+            </div>
+    	</div>
+
+
+    </div>
+  </div>
+</div>
+<block name='script'>
+<script>
+$('#bind').click(function(e){
+		$('#bangding').css('display','inline-block');
+		$(this).css('display','none');
+	})
+$('#bangding > a').click(function(e){
+		$('#bind').css('display','inline-block');
+		$('#bangding').css('display','none');
+	})
+</script>  
+</block>

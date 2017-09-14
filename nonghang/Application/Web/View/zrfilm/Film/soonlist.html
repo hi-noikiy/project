@@ -1,0 +1,73 @@
+﻿<extend name='Public/base'/>
+
+<block name='body'>
+    <div id="main">
+        <div class="container">
+            <div class="film-con">
+                <h2><a href="filmlist.html">正在热映</a><a href="soonlist.html" class="active">即将上映</a></h2>
+                <div class="slide-box">
+                    <div class="hd">
+                        <a class="next"></a>
+                        <a class="prev"></a>
+                        <ul>
+                        <li class='on'></li>
+                           <volist name='films' id='v'	 mod="8" >
+	                        <eq name="mod" value="0"> <li></li></eq>
+	                        
+	                        </volist >
+                        </ul>
+                        <div class="hr"></div>
+                    </div>
+
+                    <div class="bd">
+                          <ul>              	
+                        <volist name='films' id='v' mod="8" >
+                         <eq name="mod" value="0"></eq>
+                         	<li>
+                                <div class="baseInfo">
+                                    <a href="filminfo.html?id={$v.id}" class="img-box">
+                                    	 <img src="{$v.image}" >
+                                        <div class="tag {$v.version}">{$v.version}</div>
+                                    </a>
+                                    <h3><a href="filminfo.html?id={$v.id}">{$v.filmName}</a></h3>
+                                    <p><i>片长：{$v.duration}分钟</i></p>
+                                    <h4><span>{$v.simpleword}</span></h4>
+                                    <ul>
+                                        <li>导演：{$v.director} </li>
+                                        <li>主演：{$v.cast}</li>
+                                        <li class="last">类型：{$v.type}</li>
+                                    </ul>
+                                    <div class="showDate"><span>{$v.publishDate}</span><a>上映</a></div>
+                                    <a class="selectSeat-btn wait">等待排期</a>
+                                </div>
+                            </li>
+                             <eq name="mod" value="7"> </eq>
+                        </volist>
+                      </ul>
+                    </div>
+                    
+                </div>
+             </div>
+        </div>
+    </div>
+
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            //去掉列底线
+            $('.film-con .bd> ul').each(function(){
+                $(this).children('li').last().find('.baseInfo').css({'border-bottom':'none'});
+            })
+            //滑动
+         // jQuery(".slide-box").slide({ mainCell:".bd",effect:"left",delayTime:800,delayTime:400,pnLoop:false,easing:"easeOutCubic"});
+        })
+
+    </script>
+
+
+</block>
+
+
+

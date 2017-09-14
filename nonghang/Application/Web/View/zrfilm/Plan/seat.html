@@ -1,0 +1,353 @@
+<extend name='Public/base'/>
+<block name='body'>
+    <div id="main">
+        <div class="container">
+              <div style="display:none" id="hall01">0</div>
+              <volist name='hallprice' id='vo'>
+      <div id="hall{$i}" style="display:none">{$vo}</div>
+      </volist>
+            <div class="seatBox">
+				<div class="seatTip">
+                	<span><em class="seatTureTip"></em>可选</span>
+                    <span><em class="seatSelectTip"></em>已选</span>
+                    <span><em class="seatFalse"></em>已售</span>
+                </div>
+                <div class="seatScreen">&nbsp;&nbsp;{$plan['cinemaName']}{$plan['hallName']}荧幕&nbsp;&nbsp;</div>
+                <div class="seatList">
+                	<table cellspacing="0" cellpadding="0" class="seatNum" align="center">
+                    	<tbody>
+                    	<foreach name='seatinfos["row"]' item='row'>
+                        	<tr><td>{$row}</td></tr>
+                        </foreach>
+                       </tbody>
+                   </table>
+                   <div class="seatBody">
+                        <table id="tbSeat" cellspacing="0" cellpadding="0" class="" align="center">
+                            <tbody>
+                            <foreach name='seatinfos["seat"]' item='row'>
+                                <tr>
+                                    <td  align="center">
+                                    <foreach name='row' item='col'>
+                                        <i  id="{$col['SeatNo']}"  sectionId="{$col['sectionId']}" 
+                            <?php if(($col['SeatState']=='0')&&!empty($col['groupCode'])){ ?>gid="{$col['groupCode']}"<?php }?> 
+                            class="<?php if($col['SeatState']=='0'){ ?>seatTure<?php }elseif($col=='1'){ ?>seatNull<?php }else{ ?>seatFalse<?php } ?>"
+                            name="{$col['SeatRow']}排{$col['SeatCol']}座" title="{$col['SeatRow']}排{$col['SeatCol']}座">{$col['SeatCol']}</i>
+                                    </foreach>
+                                    </td>
+                                 </tr>
+                            </foreach>
+                           </tbody>
+                       </table>
+                 </div>
+                </div>
+                <div class="seatBtm">
+                	<div class="seatBtmLeft">
+                    	<h2>{$plan['filmName']}</h2>
+                        <span>{$plan['startTime']}</span>
+                        <a href="javascript:" onclick="changePlan(this);" id="changePlan"  class="on">更换场次</a>
+                    </div>
+                    <div class="seatBtmMid" id="seatNo">
+                    	<span class=''>待选座位</span>
+                        <span class=''>待选座位</span>
+                        <span class=''>待选座位</span>
+                        <span class=''>待选座位</span>
+                    </div>
+                    <div class="seatBtmRight">
+                    	<span>*</span>
+                    	<input type="text" placeholder="请输入购票手机号" id='mobile' value="{$mobile}"/>
+                        <a href="javascript:;" id='seatBtn' class="seatBtn disabled" >确定</a>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="changePlan">
+                            <div class="changeClose"></div>
+                            <div class="changePlanList" >
+                                <a href="javascript:void(0)" class="prev"></a>
+                                <div class="dateList" style="display: none">
+                                    <foreach name='otherplans' item='vo'>
+                                        <li>
+                                            <a class="planInfo" href="{:U('',array('featureAppNo'=>$vo['featureAppNo']))}">
+                                                <div class="planDate"><span>{$vo['start']}</span><em>￥{$vo['memberPrice']}</em></div>
+                                                <div class="planType"><span>{$vo['copyLanguage']}{$vo['copyType']}</span><s>￥{$vo['listingPrice']}</s></div>
+                                            </a>
+                                        </li>
+                                    </foreach>
+                                </div>
+                                <div class="slide">
+                                </div>
+                                <a href="javascript:void(0)" class="next"></a>
+                            </div>
+                        </div>
+                	</div>
+                </div>   
+            </div>   
+        </div>
+    </div>
+</block>
+
+<block name="script">
+     <script type="text/javascript">
+	 
+	  function validateFn(){
+             var seatNo=$('.seatBtmMid span.cur').length;
+			 if(seatNo ==0){
+				 $('#seatBtn').addClass('disabled').removeClass('seatBtn');
+			 }else{
+				 $('#seatBtn').removeClass('disabled').addClass('seatBtn');
+			 }
+            };
+			
+	 validateFn();
+	 
+	 //$('#mobile').blur( function () { 
+//	 		if($('#seatNo > span').val()!="" || $('#mobile').val()!=""){
+//			$('.seatBtmRight > a').addClass('seatBtn');
+//		 }else{
+//			 $('.seatBtmRight > a').removeClass('seatBtn');
+//			 }
+//	 });
+	 
+     <?php if(!empty($hasorder)){ ?>
+     var gourl="{:U('plan/pay',array('orderid'=>$hasorder))}";
+     var cancelurl="{:U('plan/cancelOrder',array('orderid'=>$hasorder))}";
+//     layer.confirm('',{
+//		  btn: ['继续支付','重新选座']
+//		  }, function () {
+//         window.location.href=gourl;
+//       },function () {
+//           $.get(cancelurl,{},function(msg){});
+//       });
+
+          layer.open({
+              type: 1,
+              shift:5,
+              title: false,
+              skin: 'warn',
+              closeBtn:0,
+              border: 1,
+              shadeClose: true,
+              area: ['404px', '200px'],
+              btn: ['继续支付','重新选座'],
+              content: '\<\p id="tipCon">\您有一笔未支付订单？<\/p>',
+              yes: function(index){
+                  window.location.href=gourl;
+                  layer.close(index); //一般设定yes回调，必须进行手工关闭
+              },
+              cancel:function(){
+                  $.get(cancelurl,{},function(msg){});
+              }
+          });
+
+     <?php }?>
+     var uid="{$user['id']}";
+	 
+     $("#seatBtn").click(function(){
+    	    if($('.seatBtmMid span.cur').length<=0){
+    	        return false;
+    	    }else{
+    	        var datas='';
+    	        var featureAppNo= "{$plan['featureAppNo']}";
+    	        var mobile= $('#mobile').val();
+    	        var patrn=/^1\d{10}$/; 
+    	         if (!patrn.exec(mobile)){
+    	        	 layer.msg("请正确输入手机号");
+                     return false;
+    	         }
+				
+    	        $('.seatBtmMid span.cur').each(function(){
+    	            if(datas == ''){
+    	                datas = $(this).attr('sid')+'.'+$(this).text();
+    	            }else{
+    	                datas += ',' + $(this).attr('sid')+'.'+$(this).text();
+    	            }
+    	        });
+    	        var myurl="{:U('pay')}";
+    	        //loading层
+				var index = layer.load(2, {
+					shade: [0.3,'#000'] //0.1透明度的白色背景
+				});
+    	        $.getJSON("{:U('seatLock')}",{mobile:mobile,featureAppNo:featureAppNo,datas:datas.toString().replace(/#/g,'|')},function(json){
+    	        	layer.close(index);
+    	        	if(json.status=='0'){
+    	        		location.href=myurl+'?orderid='+json['data']['orderCode'];      
+    	        	}else{
+    	        		layer.msg(json.content);
+    	        	}
+    	        });
+    	    }
+			          
+    	});
+     $('.seatBtmMid span').removeClass('cur');
+     var flag;
+     $('.seatTure,.seatSelect').each(function(){
+         $(this).bind('click',function(){
+             if( $(this).hasClass('seatSelect') ) { 
+                 if($(this).attr("gid")!=undefined){
+                     $('.seatBody i[gid='+$(this).attr("gid")+']').each(function(){
+                         $(this).removeClass('seatSelect');
+                         $(this).addClass('seatTure');
+                         $('.seatBtmMid span[sid="'  + $(this).attr('id') + '"]').remove();
+                         $('.seatBtmMid').append('<span class="">待选座位</span>');
+                     });
+                 }else{
+                     $(this).removeClass('seatSelect');
+                     $(this).addClass('seatTure');
+                     $('.seatBtmMid span[sid="'  + $(this).attr('id') + '"]').remove();
+                     $('.seatBtmMid').append('<span class="">待选座位</span>');	 
+                 }   
+             }else{
+            	 if(uid==''){
+            		 login(0);
+            		 return false;
+            	 }
+                 if($(this).attr("gid")!=undefined){
+                 	flag=true;
+                 	$('.seatBtmMid span.cur').each(function(){
+                 		if($('.seatBody i[id='+$(this).attr('sid')+']').attr('gid')==undefined){
+                 			 layer.msg('只能选择一种座区');
+                 			 flag= false;
+                 			 return false;
+                 		}
+                 	});
+                 	if(!flag){
+                 		return false;
+                 	}
+                     if($('.seatBtmMid span.cur').length+$('.seatTure[gid='+$(this).attr("gid")+']').length < 5) {
+                         $('.seatBody i[gid='+$(this).attr("gid")+']').each(function(){
+                             $(this).removeClass('seatTure');
+                             $(this).addClass('seatSelect');
+                             var selectedSeatObject = $('<span class="cur"  onClick="cancelSelec(this)"  sid="'+$(this).attr('id')+'">' + $(this).attr('name') +  '</span>');
+                             var length=$('.seatBtmMid span.cur').length;
+                             $('.seatBtmMid span').eq(length).replaceWith(selectedSeatObject);
+                         });
+                     }else {
+                          layer.msg('最多只能选择4个座位');
+                     }                   
+                 }else{
+                 	flag=true;
+                 	$('.seatBtmMid span.cur').each(function(){
+                 		if($('.seatBody i[id='+$(this).attr('sid')+']').attr('gid')!=undefined){
+                				layer.msg('只能选择一种座区');
+                			 	flag= false;
+                			 	return flag;
+                			}
+                 	});
+                 	if(!flag){
+                 		return false;
+                 	}
+                     if($('.seatBtmMid span.cur').length< 4) {
+                         $(this).removeClass('seatTure');
+                         $(this).addClass('seatSelect');                   
+                         var selectedSeatObject = $('<span class="cur" onClick="cancelSelec(this)"  sid="'+$(this).attr('id')+'">' + $(this).attr('name') +  '</span>');
+                         var length=$('.seatBtmMid span.cur').length;
+                         $('.seatBtmMid span').eq(length).replaceWith(selectedSeatObject);
+                     }else {
+                         layer.msg('最多只能选择4个座位');
+                     }
+                 }
+             }
+			 //validateFn();
+             countTatol( $(this).attr("sectionId"));
+			 
+         });
+				
+     });
+
+     //价格计算
+     function countTatol(obj) {
+     	var s=0,memberPrice="{$plan['memberPrice']}";
+     	if($('#hall'+obj).text()!=''){
+     		s=$('#hall'+obj).text();
+     	}
+         var seatPrice =  $('.seatBtmMid span.cur').length * (parseFloat(memberPrice)+parseFloat(s));
+		 if(seatPrice=='0'){
+			 $('#seatBtn').addClass('disabled').removeClass('seatBtn');
+			 $("#seatBtn").html('确认');
+			 }else{
+				  $("#seatBtn").html('确认￥'+seatPrice.toFixed(2));
+				  $('#seatBtn').removeClass('disabled').addClass('seatBtn');
+				 }
+        
+     }
+
+     //价格计算
+     function cancelSelec(obj) {
+         var s=$('.seatBody i[id='+$(obj).attr('sid')+']');
+
+         if(s.attr("gid")!=undefined){
+             $('span[gid='+s.attr("gid")+']').each(function(){
+                 $('.seatBtmMid span.cur[sid='+$(this).attr('id')+']').remove(); 
+                 $(this).removeClass('seatSelect');
+                 $(this).addClass('seatTure');
+                 $('.seatBtmMid').append('<span class="">待选座位</span>');
+             });
+         }else{
+             s.removeClass('seatSelect');
+             s.addClass('seatTure');
+             $('.seatBtmMid').append('<span class="">待选座位</span>');
+             $(obj).remove();      
+         } 
+		 
+         countTatol(s.attr("sectionId"));
+		 //validateFn();   
+     }
+
+
+
+    /*layer.open({
+		type: 1,
+		title: false,
+		closeBtn:0,
+		border: 1,
+		shadeClose: true,
+		area: ['420px', '202px'], //宽高
+
+		content: "<div class='planTip'><h2>场次提醒</h2><p>红星店："+$('.seatBtmLeft span').html()+"</p><a href='javascript:layer.closeAll();' >我知道了</a></div>"
+		});*/
+
+	 
+	 
+	 
+      var w=$('#tbSeat').width();
+	  if(w > 1200){
+	 	$('.seatBody').width(1140);
+	  }else{
+		  $('.seatBody').width(w);
+		  }
+	
+  
+  function changePlan(obj){
+	  if($(obj).attr("class")=="on")
+	  	{
+			$(obj).removeClass("on");
+			$(obj).addClass('off');
+			$(".changePlan").fadeIn(); 
+	  }else{
+			$(obj).removeClass("off");
+			$(obj).addClass('on');
+			$(".changePlan").fadeOut(); 
+		}
+	}
+	
+		
+  $(".changeClose").click( function () { 
+			$("#changePlan").removeClass("off");
+		  	$("#changePlan").addClass('on');
+			$(".changePlan").fadeOut(); 
+	});
+ 
+
+
+ var num = $('.dateList li').length;
+ for (i = 0; i < Math.ceil(num / 10); i++) {
+     $('.slide').append('<ul></ul>');
+     $('.dateList a:lt(10)').appendTo($('.slide ul:last'));
+ }
+ //滚动
+$(".changePlanList").slide({ mainCell:".slide",effect:"leftLoop",pnLoop:"false"});
+
+ $(".changePlan").css('display','none'); 
+    </script>
+</block>
+
+
+

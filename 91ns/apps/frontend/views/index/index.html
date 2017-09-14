@@ -1,0 +1,101 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<style type="text/css">
+    .main-body .main-main .main-content{
+        background-color: #e4edf4;
+    }
+</style>
+{% endblock %}
+
+{% block title %}
+首页
+{% endblock %}
+
+{% block titleList %}
+<div class="select">
+    <div class="s-selected js-displaySelectType-control">
+        <div class="js-display-selectType" value="2">观众人数</div>
+        <div class="tip_"><i class="ico-main-16"></i></div>
+    </div>
+    <div class="s-content ns-bgf js-id-selectType">
+        <div class="ns-bg"></div>
+        <div class="ns-ct">
+            <div class="s-item js-item" value="2">观众人数</div>
+            <div class="s-item js-item" value="1">主播等级</div>
+            <div class="s-item js-item" value="0">开播时间</div>
+        </div>
+    </div>
+</div>
+<!-- <div class="_liveTab clearfix">
+    <div class="_liveGirl active" onclick="anchorWall.init(undefined,true,0)">美女直播</div>
+    <div class="_livePxx" onclick="anchorWall.init(undefined,true,1000)">莆仙戏</div>
+</div> -->
+<div id="xsydBing" class="xsydBing" style="display: none;">
+    <a onclick="closeBing()" class="Bing-no">暂不绑定</a>
+    <a href="/usersecurity" class="Bing-is">立即绑定</a>
+</div>
+<div class="xsydBing-hide" style="display: none;"></div>
+{% endblock %}
+
+{% block titleContent %}
+<div class="header-notice">
+    <div class="title_">公告：</div>
+    <div class="notice-content js-notice-control">
+        <ul>
+        </ul>
+    </div>
+</div>
+{% if ns_userUid %}
+<div class="header-right">
+    <div class="toPlay" onclick="userAction('play',1);">
+        <i class="ico-main-4"></i>
+        <a><span>我要直播</span></a>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<ul class="clearfix item-content js-data-anchorItemUl"></ul>
+<div class="js-data-demo-anchorItem" style="display:none;"><li class="m-item"><a href="#" target="_blank" class="i-user" title=""><img src="" class="i-avatar" alt="" title=""><span class="i-tags index-roomlist-1 _status"><i class="txt">直播</i></span><i class="index-roomlist-1 _play ico-play"></i><div class="i-bg"></div><div class="i-info2"><i class="index-roomlist-1 _number"></i><span class="number">0</span><span class="i-city"></span></div></a><div class="i-info"><div class="i-info1"><div class="i-name"><a href="#" target="_blank" title="" class="name"></a></div><span class="i-actor sprite-zb_level"></span><i class="sprite-family_level"></i></div></div></li></div>
+{% endblock %}
+
+{% block end %}
+<div class="main-help" id="QQpanel">
+    <a class="telIco"><i></i>400-999-0591</a>
+    <a>
+        <div style="width: 90px;height: 18px;color: white;float: left;background-color: #fa3986;text-align: center;font-size: 12px;">91女神手机端</div>
+        <div style="width: 90px;height: 84px;text-align: center;background-color: white;float: left;margin-bottom: 4px;">
+            <img style="width: 76px;height: 76px;margin-top: 4px;" src="{{static_url('web/cssimg/91ns/QRcode.png')}}">
+        </div>
+    </a>
+    <a href="tencent://message/?v=3&uin={{GMQQ[0]}}&site=qq&menu=yes">
+        <div class="help-1 qq-ico-i qqpanel" qq="{{GMQQ[0]}}">
+            <i class="ico-main-6"></i>
+            秀场客服
+        </div>
+    </a>
+    <a href="tencent://message/?v=3&uin={{GMQQ[1]}}&site=qq&menu=yes">
+        <div class="help-2 qq-ico-i qqpanel" qq="{{GMQQ[1]}}">
+            <i class="ico-main-6"></i>
+            秀场客服
+        </div>
+    </a>
+    <a href="tencent://message/?v=3&uin={{GMQQ[2]}}&site=qq&menu=yes">
+        <div class="help-2 qq-ico-i qqpanel" qq="{{GMQQ[2]}}">
+            <i class="ico-main-6"></i>
+            主播招募
+        </div>
+    </a>
+    <div class="help-select-top js-goTop-control">
+        <i class="ico-main-3"></i>
+        <div>返回顶部</div>
+    </div>
+    <div class="help-select-reload js-91nsReload-control">
+        <i class="ico-main-11"></i>
+        <div>刷新页面</div>
+    </div>
+</div>
+<script type="text/javascript" src="{{static_url('91ns'|ns_js)}}"></script>
+{% endblock %}

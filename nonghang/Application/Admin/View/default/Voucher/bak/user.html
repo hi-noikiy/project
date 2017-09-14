@@ -1,0 +1,216 @@
+<extend name='Public/base1'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                <li><a href="/Admin/order/orderlist.html" class="menu1 cur">影片配置</a></li>
+                <li><a href="/Admin/Order/rechargelist.html" class="menu1">设置方案</a></li>
+            </ul>
+            <div class="planBtn"><a class="button" href="javascript:getCinemaList();" >一键刷新排期</a></div>
+            <div class="planBtn"><a class="refreshBtn" href="javascript:;" onclick="priceRefresh()">刷新价格</a></div>
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+        	<form action="{:U()}" method="post" id='myform'>
+                <div class="inputSelect">
+                    <span>按影院查询：</span>
+                    <select name='cinemaCode'>
+                    	<option value="0">所有影院</option>
+                    	<volist name='cinemaList' id='vo'>
+                    	<option value="{$vo['cinemaCode']}"  <?php if($pageData['cinemaCode']==$vo['cinemaCode']){ ?>selected<?php } ?>>{$vo['cinemaName']}</option>
+                    	</volist>
+                    </select>
+                </div>
+                <div class="inputSelect">
+                    <span>按影片查询：</span>
+                    <select name='filmNo'>
+                    	<option value="0">所有影片</option>
+                    	<volist name='filmList' id='vo'>
+                        <option value="{$vo['filmNo']}" <?php if($pageData['filmNo']==$vo['filmNo']){ ?>selected<?php } ?>>{$vo['filmName']}({$vo['copyType']})</option>
+                        </volist>
+                    </select>
+                </div>
+                <div class="inputText" >
+                	<span>按日期区间查询</span>
+                    <input type="text" name="start" onclick="WdatePicker()" placeholder="请输入开始日期" value="{$pageData['start']}"><span>至</span>
+                    <input type="text" name="end" onclick="WdatePicker()" placeholder="请输入结束日期" value="{$pageData['end']}">
+                </div>
+                <a href="#" class="button">查询</a>
+                </form>
+            </div>
+            <div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <tr >
+                        <td width="10%">排期编码</td>
+                        <td width="12%">场次时间</td>
+                        <td width="12%">影片</td>
+                        <td width="12%">影院</td>
+                        <td width="6%">影厅</td>
+                        <td width="5%">类型</td>
+                        <td width="5%">语言</td>
+                        <td width="5%">片长</td>
+                        <td width="5%">保护价</td>
+                        <td width="5%">标准价</td>
+                        <td width="6%">挂牌价</td>
+                        <td width="5%">会员价格</td>
+                        <th width="10%">操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <foreach name="planList" item="vo" key="k" >
+                            <tr>
+                            <td> {$vo.featureAppNo} </td>
+                            <td> {$vo.startTime|date='Y-m-d H:i',###} </td>
+                            <td> {$vo.filmName} </td>
+                            <td>{$vo.cinemaName} </td>
+                            <td> {$vo.hallName} </td>
+                            <td> {$vo.copyType} </td>
+                            <td> {$vo.copyLanguage} </td>
+                            <td > {$vo.totalTime}</td>
+                            <td > {$vo.lowestPrice} </td>
+                            <td > {$vo.standardPrice} </td>
+                            <td > {$vo.listingPrice} </td>
+                            <td ><a href="javascript:edit({$vo.featureAppNo});">编辑</a></td>
+                            <td ><a href="javascript:del({$vo.featureAppNo});">删除</a></td>
+                            </tr>
+                        </foreach>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                
+                <div class="page">
+                    {$page}
+                	
+                </div>
+                
+            </div>
+            </div>
+        </div>
+	</div>
+<script type="text/javascript">
+$('.queryBox .button').click(function(){
+	$('#myform').submit();
+});
+$(function(){
+	var urlstr="?cinemaCode={$pageData['cinemaCode']}&filmNo={$pageData['filmNo']}&start={$pageData['start']}&end={$pageData['end']}";
+	$('.page a').each(function(){
+		$(this).attr('href',$(this).attr('href')+urlstr);
+	});
+});
+//加载扩展模块
+var loadi = '';
+var loadimsg = '';  
+
+
+function edit(featureAppNo){
+
+    layer.open({
+		   type: 2,   //0-4的选择,
+			title: false,
+			border: [0],
+			closeBtn: [0],
+			shadeClose: true,
+			area: ['500px', '320px'],
+			content: '{:U('planprice')}?featureAppNo=' + featureAppNo
+		});
+}
+
+function del(featureAppNo){
+		layer.confirm('确认是否删除？',function(index){
+
+            loadi = layer.load(1, {shade: [0.5,'#000']});
+            loadimsg = layer.msg('正在删除中...',{icon: 16, time:60000000});
+
+                $.ajax({    
+                url:'{:U("ajaxDelPlan")}',// 跳转到 action    
+                data:{'featureAppNo':featureAppNo},    
+                type:'post',       
+                dataType:'json',    
+                success:function(data) {
+                    layer.close(loadi);
+                    layer.close(loadimsg);
+                   
+                    if(data.status == 0){
+                       layer.msg(data.content, {time: 1000});
+
+                       location.reload();
+
+                    }else{
+                       layer.msg(data.content, {time: 1000});
+                    }
+
+                },    
+                error : function() {
+                    layer.close(loadi);
+                    layer.close(loadimsg);
+                    layer.msg('删除失败，请重试', {icon: 5});
+                }    
+            });
+		
+		})
+	}
+
+function getCinemaList () {
+    loadi = layer.load(1, {shade: [0.5,'#000'], title: '开始刷新排期！'});
+    layer.msg('正在获取影院列表...',{time: 3600});
+    $.ajax({    
+        url:'{:U("getCinemaList")}',// 跳转到 action    
+        // data:{'groupName':groupName},    
+        type:'post',       
+        dataType:'json',    
+        success:function(data) {
+            if(data.status == 0){
+                layer.msg('获取影院列表成功...',{time: 3600});
+                getPlanList(data.data);
+            }else{
+                layer.alert(data.content, {icon: 5});
+            }
+        },    
+        error : function() {
+            layer.close(loadi);
+            layer.alert('获取影院列表失败，请重试', {icon: 5});
+        }    
+    });
+    // alert('开始刷新排期！');
+}
+var allCount = 0;
+var isDo = 0;
+function getPlanList (cinemas) {
+    allCount = 0;
+    isDo = 0;
+    var upPlanDate = [{$upPlanDate}];
+    $.each(upPlanDate, function(dateKey, dateValue) {
+        $.each(cinemas, function(key, value) {
+            layer.msg('开始获取' + value.cinemaName + '的排期！', {time: 3600});
+            allCount ++;
+            ajaxGetPlan(value.cinemaCode, value.cinemaName, dateValue);
+        })
+    })
+}
+
+function ajaxGetPlan (cinemaCode, cinemaName, planDate) {
+    $.ajax({    
+        url:'{:U("Refresh/Plan/getPlanList")}',// 跳转到 action    
+        data:{'cinemaCode':cinemaCode,'planDate':planDate},    
+        type:'post',       
+        dataType:'json',    
+        success:function(data) {
+            layer.msg(data.content, {time: 3600});
+            isDo++;
+            if(isDo == allCount){
+                layer.msg('恭喜您，所有影城刷新刷新完成！');
+                layer.close(loadi);
+                setTimeout(function(){location.reload()}, 1000);
+            }
+
+        },    
+        error : function() {
+            layer.close(loadi);
+            layer.msg('获取影院列表失败，请重试', {icon: 5});
+        }    
+    });
+}
+</script> 
+</block>

@@ -1,0 +1,28 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<div class="formBody">
+    <div class="privateAddPlan">
+         <form action="{:U('editplan_from')}" method="post" id='myforms'  target="myframe">
+        <div class="privatePlanlist" id="privatePlanlist">
+        	<input type="hidden" name='id'  value='{$id}' />
+        	<input type="hidden" name='now'  value='{$now}' />
+            <div class="privateSubitem" id="{$key}" style="display:block;" >
+            				<p>输入要修改的时间</p>
+                            <input type="datetime" class="time"  value="{$timeflag}" name='time' /><span>至</span><input type="datetime" class="time"  name='endTime' value="{$endTimeflag}" /><br />
+                            <span>输入新售价:</span><input type="text" placeholder="售价" value="{$price}" name='price'  /><span>元</span><br />
+                            <span>请输入原价:</span><input type="text" placeholder="原价" value="{$oriPrice}"  name='oriPrice' /><span>元</span>
+                        </div>
+        </div>
+        <div class="privateAddBtm">
+            <input type='submit' class="button" name='updata'  value='保存'/>
+        </div>
+        </form> 
+    </div>
+</div>
+</block>
+<block name="script">
+<script type="text/javascript">
+	
+	
+</script>
+</block>

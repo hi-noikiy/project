@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities.crowdfunded'|ns_css)}}">
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+
+    {% set detalisPage = false %}
+
+<!--{{details|json_encode}}-->
+
+    <div class="wrapBd">
+        <div class="bodyBg" style="background-color:#f8f8f8;">
+            <div class="bodyContent">
+                <div class="content-h clearfix">
+                    <a href="/crowdfunded"><img src="{{static_url('web/cssimg2/crowdfunded/img.png')}}"></a>
+                    <div class="h_cake">
+                        <p>
+                            <a href="/crowdfunded">一元夺宝</a>
+                            <i>></i>
+                            <a href="/crowdfunded/goods">所有商品</a>
+                            <i>></i>
+                            <a href="/crowdfunded/details?id={{details['goodsInfo']['id']}}&ts={{details['thisTimes']}}">揭晓详情</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="content-body">
+                    <!-- 期数 -->
+                    <div class="allTimes{% if details['openingTimes']!=details['thisTimes'] %} active1 {% endif %}">
+                        <ul class="clearfix" data="{{details['openingTimes']}}" name="{{details['thisTimes']}}">
+                            <li {% if details['openingTimes']==details['thisTimes'] %} class="active" {% else %} class="active-spe" {% endif %}><a href="/crowdfunded/details?id={{details['goodsInfo']['id']}}&ts={{details['openingTimes']}}"><span class="spe">第 {{details['openingTimes']}} 期</span><span class="txts">进行中<img src="{{static_url('web/cssimg2/crowdfunded/details/1.gif')}}" /></span></a></li>
+                            {% if details['openingTimes']>1 %}
+                            {% for i in details['openingTimes']-1..1 %}
+                            {% if i>details['openingTimes']-23 %}
+                            <li {% if i==details['thisTimes'] %} class="active" {% endif %}><a href="/crowdfunded/details?id={{details['goodsInfo']['id']}}&ts={{i}}">第 {{i}} 期</a></li>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+
+                            {% if details['openingTimes']>24 %}
+                            <li class="controll spe1" data="2"><a>展开<i></i></a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <!-- 物品 -->
+                    <h2>（第 {{details['thisTimes']}} 期）{{details['goodsInfo']['name']}}<span>{{details['goodsInfo']['description']}}</span></h2>
+                    <!-- 物品详情 -->
+                    <div class="itemDetail clearfix">
+                        <!-- 物品展示 -->
+                        <div class="itemShow">
+                            <div class="itemImage">
+                                <img src="{{static_url('')}}web/goods/{{details['goodsInfo']['img']}}.jpg">
+                            </div>
+
+                            {% if details['isOpening']==1 %}
+                            <!-- (页面1)显示详情 -->
+                            <ul class="show-img clearfix">
+                                <li class="small-show-img active"><img src="{{static_url('')}}web/goods/{{details['goodsInfo']['img']}}.jpg"></li>
+                                {% if details['goodsInfo']['imgs'] %}
+                                {% for img in details['goodsInfo']['imgs']%}
+                                <li class="small-show-img"><img src="{{static_url('')}}web/goods/{{img}}.jpg"></li>
+                                {% endfor %}
+                                {% endif %}
+                            </ul>
+                            <!--/ (页面1)显示详情 -->
+                            {% else %}
+                            <!-- (页面2)显示结果 -->
+                            <ul class="show-result clearfix">
+                                <li class="li1">
+                                    <p class="clolorBlue numbers">第 {{details['openingData']['times']}} 期</p>
+                                    <p class="clolorBlue">正在进行</p>
+                                </li>
+                                <li class="li2">
+                                    <p class="clolorBlue">{{details['openingData']['hasBetNums']}}</p>
+                                    <p>已参与人次</p>
+                                </li>
+                                <li class="li3">
+                                    <p class="clolorBlue">{{details['openingData']['totalNums']}}</p>
+                                    <p>总需人次</p>
+                                </li>
+                                <li class="li4">
+                                    <p class="clolorBlue">{{details['openingData']['leftNums']}}</p>
+                                    <p>剩余人次</p>
+                                </li>
+                                <li class="li5">
+                                    <div><a href="/crowdfunded/details?id={{details['goodsInfo']['id']}}&ts={{details['openingData']['times']}}">查看详情</a></div>
+                                </li>
+                            </ul>
+                            <!--/ (页面2)显示结果 -->
+                            {% endif %}
+                            {% if details['anchorData'] %}
+                            <div class="detailsAnchorData">
+                                <img src="{{static_url('')}}web/cssimg2/crowdfunded/details/gs.png">
+                                <div class="detailsAnchorData-box">
+                                    <div class="avatar pull-left">
+                                        <img src="{{details['anchorData']['avatar']}}">
+                                    </div>
+                                    <div class="info pull-left">
+                                        <p>昵称：{{details['anchorData']['nickName']}}</p>
+                                        <p class="pp">ID：{{details['anchorData']['uid']}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                        <!-- 物品其他信息 -->
+                        <div class="itemMsg">
+                            <p>价值：{{details['goodsInfo']['price']}}元</p>
+                            {% if details['isOpening']==1 %}
+                            <!-- (页面1)显示详情 -->
+                            <div class="schedule clearfix">
+                                <ul><li style="width: {{details['openingData']['hasBetNums']/details['openingData']['totalNums']*684}}px;"></li></ul>
+                                <div class="number">
+                                    <div class="n-left">
+                                        <p class="hasNumber">{{details['openingData']['hasBetNums']}}</p>
+                                        <p>参与人次</p>
+                                    </div>
+                                    <div class="n-center">
+                                        <p id="leftNums">{{details['openingData']['leftNums']}}</p>
+                                        <p>剩余人次</p>
+                                    </div>
+                                    <div class="n-right">
+                                        <p id="totalNums">{{details['openingData']['totalNums']}}</p>
+                                        <p>总人次</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="hr"></i>
+                            <p>夺宝价格<span class="price"><span id="priceCash">{{details['goodsInfo']['perCash']}}</span>聊币/<span id="pricePoint">{{details['goodsInfo']['perPoint']}}</span>积分</span></p>
+                            <div class="clearfix payAction">
+                                <span>我要夺宝：</span>
+                                <span class="changeNum left-count" data="left"></span>
+                                <input id="doBettingValue" onkeydown="onlyNum()" onkeyup="maxNums()"  value="{% if details['openingData']['leftNums'] <10 %}{{details['openingData']['leftNums']}}{% else %}10{% endif %}" type="text" >
+                                <span class="changeNum right-count" data="right"></span>
+                                <div class="head-s pull-left"><!--<div class="head-bottom-s pull-left"></div>--></div>
+                                <span class="des">购买人次越多获得几率越大哦！</span>
+                            </div>
+                            <div class="payType clearfix">
+                                <span>支付方式：</span>
+                                <span class="type doBettingType active" data="2"><i></i>聊币</span>
+                                <span class="type doBettingType" data="1"><i></i>积分</span>
+                                <span>总消耗：</span><span id="nums" class="redColor">{% if details['openingData']['leftNums'] <10 %} {{details['goodsInfo']['perCash']*details['openingData']['leftNums']}} {% else %} {{details['goodsInfo']['perCash']*10}} {% endif %}</span><span id="unit">聊币</span>
+                            </div>
+                            <div id="paySubmit" class="paySubmit" data="{{details['goodsInfo']['id']}}" value="{{details['openingData']['times']}}">立即夺宝</div>
+                            <!--/ (页面1)显示详情 -->
+                            {% else %}
+                            <!-- (页面2)显示结果 -->
+                            <div class="result">
+                                <h2>揭晓结果</h2>
+                                <i class="header-banner"></i>
+                                <div class="body-s">
+                                    <i class="body-logo"></i>
+                                    <ul class="clearfix">
+                                        <li>
+                                            恭喜<span>{{details['openedInfo']['nickName']}}({{details['openedInfo']['uid']}})</span>获得本期商品
+                                        </li>
+                                        <li>揭晓时间：{{details['openedInfo']['openTime']}}</li>
+                                        <li>商品获得者本期夺宝了 {{details['openedInfo']['hisBetNums']}}人次 </li>
+                                    </ul>
+                                </div>
+                                <i class="body-bottom"></i>
+                            </div>
+                            <!--/ (页面2)显示结果 -->
+                            {% endif %}
+
+                            <div class="history">
+                                <p class="clearfix title">
+                                    <span class="bettingLogTab active" name="bettingLog">
+                                        {% if details['isOpening']==1 %}最新{% else %}本期{% endif %}夺宝记录
+                                    </span>
+                                    <i></i>
+                                    <span class="bettingLogTab" name="myBettingLog">我的夺宝记录</span>
+                                </p>
+                                <ul class="bettingLog" id="bettingLog" style="height: 260px;overflow-y: auto;display:block;">
+                                    {% if details['bettingLog'] %}
+                                    {% for bettingLog in details['bettingLog']|default([]) %}
+                                    <li>
+                                        <img src="{{bettingLog['avatar']}}">
+                                        <p class="nickName">{{bettingLog['nickName']}}</p>
+                                        <p class="des"><span>{{bettingLog['createTime']}}</span>夺宝了<span>{{bettingLog['nums']}}</span>人次</p>
+                                    </li>
+                                    {% endfor %}
+                                    {% endif %}
+                                    <!--<li>-->
+                                        <!--<img src="http://image.91ns.com/userupload/36811/anchorposterpath/1446915519.jpg@!poster-small">-->
+                                        <!--<p class="nickName">这他妈也能算名字？</p>-->
+                                        <!--<p class="des"><span>20</span>分钟前夺宝了<span>144</span>人次</p>-->
+                                    <!--</li>                                  -->
+                                </ul>
+                                <ul class="bettingLog" id="myBettingLog" style="height: 260px;overflow-y: auto;display: none;">
+                                    {% if details['myBettingLog'] %}
+                                    {% for myBettingLog in details['myBettingLog']|default([]) %}
+                                    <li>
+                                        <p class="nickName">你</p>
+                                        <p class="des"><span>{{myBettingLog['createTime']}}</span>夺宝了<span>{{myBettingLog['nums']}}</span>人次</p>
+                                    </li>
+                                    {% endfor %}
+                                    {% endif %}
+                                    <!--<li>-->
+                                    <!--<img src="http://image.91ns.com/userupload/36811/anchorposterpath/1446915519.jpg@!poster-small">-->
+                                    <!--<p class="nickName">这他妈也能算名字？</p>-->
+                                    <!--<p class="des"><span>20</span>分钟前夺宝了<span>144</span>人次</p>-->
+                                    <!--</li>                                  -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actGotop"><a href="javascript:;" title="返回顶部"></a></div>
+            </div>
+            {% include "template/footer.html" %}
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" defer async data-main="{{static_url('doBetting'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>

@@ -1,0 +1,310 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a> 
+        <a href="#" class="tip-bottom" data-original-title="">配置管理</a> 
+        <a href="#" class="current">推荐主播管理</a>
+    </div>
+    
+   <!--  <h1>Tables</h1> -->
+  </div>
+  <div class="container-fluid">
+   <!--  <hr> -->
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+            <button id="btnadd" class="btn btn-success pull-right">添&nbsp;加</button>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>活动列表</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table id="dataList" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>推荐位</th>
+                  <th>主播uid</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                       
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="pagination" class="pagination alternate pull-right">
+              
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="dialog-form" title="Create new user" style=" display: none;">
+  <p class="validateTips"></p>
+
+   <form id="submitform" action="#" method="get" class="form-horizontal">
+       <div class="control-group">
+           <label class="control-label">推荐位 :</label>
+           <div class="controls">
+               <input id="pos" name = 'pos' type="text" class="span11" placeholder="">
+               <span class="help-block"></span>
+           </div>
+       </div>
+       <div class="control-group">
+           <label class="control-label">主播uid :</label>
+           <div class="controls">
+               <input id="uid" name = 'uid' type="text" class="span11" placeholder="">
+               <span class="help-block"></span>
+           </div>
+       </div>
+    </form>
+
+</div>
+<script type="text/javascript">
+
+$(function(){
+    getDataList();
+});
+
+$(function(){
+  laydate.skin('molv');
+
+  laydate({
+     elem: '#dateline'
+  });
+
+});
+
+
+/**
+* 初始化为空
+*/
+function Initialization(){
+
+    var submitform=document.getElementById('submitform');
+    $('#showimg').attr('src', '');
+    submitform.pos.value='';
+//    submitform.backgroundcolor.value='';
+    submitform.uid.value='';
+    //submitform.image.value='';
+}
+
+ var btnadd=document.getElementById('btnadd');
+ utils.addEvent(btnadd,'click',addData);
+
+ function addData(){
+  $( "#dialog-form" ).dialog({
+      width: 600,
+      title:'添加推荐',
+      modal:true,
+      closeOnEscape:true,
+      resizable:false,
+      open:function(res){
+          Initialization();
+        },
+      buttons:{
+        "添加":function(){
+
+          var submitform=document.getElementById('submitform'),
+          data={};
+
+          data.action="add"
+          data.uid=submitform.uid.value;
+          data.pos= submitform.pos.value;
+          $.ajax({
+              type:"post",
+              url:"/configmgr/updateAnchorRecommend",
+              data:data,
+              dataType:'json',
+              success:function(res){
+                if(res.code==0){
+                  getDataList();
+                  $("#dialog-form" ).dialog("close");
+                }else{
+                  alert(res.info);
+                }
+              }
+          });
+
+          
+        },
+        "取消":function(){
+          $(this).dialog("close");
+        }
+
+      }
+  });
+ }
+
+function getDataList(index){
+  var data={};
+  data.page=index||0;
+  data.numPerPage=pagesize;
+  $.ajax({
+    type:"post",
+    url:"/configmgr/getAnchorRecommend",
+    data:data,
+    dataType:'json',   
+    success:function(res){
+      
+      var data=res.data;
+      var table=document.getElementById("dataList");
+      var tbody= table.getElementsByTagName('tbody')[0];
+
+      dataTable.clearData(tbody);
+      
+      for(var i=0;i<data.list.length;i++){
+        addRow(tbody,'',data.list[i]);
+      }
+      
+      if(!index||index==0){
+        initPagination(data.count);
+      }
+
+    }
+  });
+}
+
+function initPagination(page) {
+  $("#pagination").pagination(page, {
+      callback: pageselectCallback,
+      items_per_page:pagesize, // 每页只显示一条记录
+      num_display_entries : 3,
+      num_edge_entries : 1, 
+      prev_text : "上一页",  
+      next_text : "下一页", 
+  });
+}
+
+function pageselectCallback(page_index, jq){
+    getDataList(page_index);
+    return false;
+}
+
+function addRow(table,index,data){
+  var row=table.insertRow();
+  var cell=row.insertCell(0);
+  var cell1=row.insertCell(1);
+  var cell2=row.insertCell(2);
+//  var cell9=row.insertCell(9);
+  cell.innerHTML=data.pos;
+  cell1.innerHTML=data.uid;
+  var deit=document.createElement("a"),
+  del=document.createElement("a");
+  
+  deit.innerHTML='编辑';
+  deit.className="table-edit";
+  deit.data=data.uid;
+  utils.addEvent(deit,'click',dataEdit);
+
+  del.innerHTML='删除';
+  del.data=data.uid;
+  utils.addEvent(del,'click',dataDelete); 
+
+  cell2.appendChild(deit);
+  cell2.appendChild(del);
+    
+  return row;
+}
+  
+
+function dataEdit(id){
+  var btn=this;  
+  var url="/configmgr/updateAnchorRecommend/"+btn.data;
+
+   $( "#dialog-form" ).dialog({
+        width: 600,
+        title:'修改公告信息',
+        modal:true,
+        closeOnEscape:true,
+        resizable:false,
+        open:function(){
+          var data={};
+          data.action='';
+
+          Initialization();
+          
+          $.ajax({
+            type:"post",
+            data:data,
+            url:url,
+            dataType:'json',
+            success:function(res){
+                  var data= res.data;
+                  var submitform=document.getElementById('submitform');
+                  submitform.uid.value= data.uid;
+                  submitform.pos.value= data.pos;
+
+                }
+          });
+        },
+        buttons:{
+          "修改":function(){
+
+            var submitform=document.getElementById('submitform');
+
+            data={};
+
+              data.action="update";
+              data.uid=submitform.uid.value;
+              data.pos=submitform.pos.value;
+
+            $.ajax({
+              type:"post",
+              data:data,
+              url:url,
+              dataType:'json',
+              success:function(res){
+                if(res.code==0){
+                  getDataList();
+                  $("#dialog-form" ).dialog("close");
+                }   
+                else{
+                  alert(res.info);
+                }     
+              }
+            });
+
+          },
+          "取消":function(){
+            $(this).dialog("close");
+          }
+
+        }
+   });
+
+}
+
+function dataDelete(){
+  if(confirm("确定要删除该数据")){
+    var btn=this;
+    var url="/configmgr/updateAnchorRecommend/"+btn.data,
+    data={};
+    data.action="del";
+      data.uid=submitform.uid.value;
+    $.ajax({
+      type:"post",
+      data:data,
+      url:url,
+      dataType:'json',
+      success:function(res){
+        if(res.code==0){
+          getDataList();
+        }else{
+          alert(res.info);
+        }
+      }
+    });
+  }
+}
+
+
+</script>

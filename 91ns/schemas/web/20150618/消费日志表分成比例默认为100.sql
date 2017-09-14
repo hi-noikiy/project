@@ -1,0 +1,1 @@
+UPDATE pre_consume_log SET ratio = 100 WHERE ratio <= 0 OR ISNULL(ratio);

@@ -1,0 +1,22 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">编辑昵称</div>
+    <div class="right"></div>
+  </div>
+</div>
+
+<div class="pages">
+  <div data-page="userName" class="page">
+    <div class="page-content" style="padding-top:44px;">
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+      <div class="content">
+                <div class="inputText"><input type="text" id='name' value="{$user['otherName']}"  maxlength="15"/></div>
+                <div class="Button"><a href=""  class="btn">确认</a></div>
+            </div>
+    </div>
+  </div>
+</div>

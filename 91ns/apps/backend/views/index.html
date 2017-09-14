@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {{ get_title() }}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Your invoices">
+        <meta name="author" content="Phalcon Team">
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/css/bootstrap.min.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/css/bootstrap-responsive.min.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/css/jquery-ui-1.10.0.custom.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/css/pagination.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/css/fullcalendar.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/css/matrix-style.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/css/matrix-media.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/font-awesome/css/font-awesome.css')}}"/>
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/css/jquery.gritter.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/css/uniform.css')}}" />
+        <link rel="stylesheet" type="text/css" href="{{static_url('web/css/91ns.css')}}" />
+
+        {#{{ javascript_include('js/jquery.min.js') }}#}
+        <script type="text/javascript" src="{{static_url('web/js/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('web/js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('web/js/utils.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('web/js/jquery-ui-1.10.0.custom.min.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('web/js/jquery.ui.datepicker-zh-CN.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('web/js/jquery.uniform.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('web/js/jquery.pagination.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('web/js/matrix.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('web/laydate/laydate.js')}}"></script>
+        <script type="text/javascript" src="{{static_url('web/js/jquery.cookie.js')}}"></script>
+    </head>
+    <body>
+
+        {{ content() }}
+
+    </body>
+</html>

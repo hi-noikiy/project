@@ -1,0 +1,1 @@
+ALTER TABLE `pre_consume_log` ADD COLUMN `income`  int(11) DEFAULT NULL COMMENT '收益记录';

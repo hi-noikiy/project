@@ -1,0 +1,29 @@
+<extend name='Public/shakebase'/>
+<block name='title'></block>
+
+
+<block name='body'>
+            <!--立减券-->
+            <div class="ticket">
+                <div class="base-info">
+                    <div class="left-block">
+                        <span>￥</span>
+                        <span>{$addData['voucherValue']}</span>
+                    </div>
+                    <div class="right-block">
+                        <p>折后抵值</p>
+                        <p>{$addData['voucherName']}</p>
+                        <p>有效期{$prize['endTime']|date='Y年m月d日',###}</p>
+                    </div>
+                </div>
+                <p>{$logarr['value']}</p>
+            </div>
+            <!--/立减券-->
+
+            
+</block>
+<block name='script'>
+<script type="text/javascript">
+
+  </script>
+</block>

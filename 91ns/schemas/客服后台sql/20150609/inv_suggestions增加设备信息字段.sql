@@ -1,0 +1,1 @@
+ALTER TABLE `inv_suggestions` ADD `devInfo` VARCHAR(255) NULL AFTER `mobile`;

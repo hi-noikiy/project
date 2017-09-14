@@ -1,0 +1,20 @@
+==========Eegin===============
+========SumRmbUsed+++++元宝统计========
+========SumMarketConsumption+++++统计商城消费========
+========SumMarketConsumption========
+==============SumRegTrans=============
+==============SumOnline=============
+==============SumLoginOrNew=============
+----login-----
+----reg-----
+------role------
+------newlogin------
+------au------
+------cnt_pay------
+------pay_rate------
+
+Warning: Division by zero in D:\www\sanguo\analysis\class\Analysis.class.php on line 726
+Array
+(
+)
+==========End===============

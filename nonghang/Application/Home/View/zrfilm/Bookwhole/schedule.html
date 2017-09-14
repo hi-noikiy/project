@@ -1,0 +1,63 @@
+
+<extend name='Public/bookbase'/>
+<block name='title'>场次列表</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="#" class="back link">
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">场次列表</div>
+            <div class="right"></div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+    <div class="pages">
+        <div data-page="schedule" class="page">
+            <div class="main" id="page-schedule">
+                <div class="date-select">
+                    <div class="date">
+                        <ul>
+
+                            <volist name="list['time']" id='v'>
+                            <li <?php if($key==0): ?>class="active"<?php endif;?>>
+                                <a href="#"><span>{$v.time}</span>
+                                    <em>¥{$v.min}</em></a>
+                            </li>
+                            </volist>
+                        </ul>
+                    </div>
+                    <div class="discount">
+                        <a><span>低价</span><span> 日历</span></a>
+                    </div>
+                </div>
+
+
+                
+
+                <volist name="list['list']" id='v'>
+                <div class="content">
+                     <volist name="v" id='vs'>
+                    <a href="{:U('Bookwhole/index')}?filmNo={$vs.filmNo}&time={$vs.time}" class="item">
+
+                        <div>
+                            <span>{$vs.cc}</span><i>观影时间</i>
+                        </div>
+                        <div>
+                            <span>{$vs.dd}</span><i>结束时间</i>
+                        </div>
+                        <div>
+                            <span>¥{$vs.price}</span><i>元/张</i>
+                        </div>
+                    </a>
+                     </volist>     
+                </div>
+                </volist>
+               
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

@@ -1,0 +1,279 @@
+<extend name='Public/base'/>
+<block name='title'>微信2.0</block>
+<block name='jscss'>
+	<link type="text/css" rel="stylesheet" href="__CSS__/style.css">
+ </block>
+
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a id="cancel" href="#" class="back link"> <i class="icon icon-back"></i><span>取消</span></a></div>
+    <div class="center sliding">支付</div>
+    <div class="right"></div>
+  </div>
+</div>
+    </block>
+
+<block name='body'>
+<div data-page="userPay" class="page" style="padding-top:44px; overflow:scroll;">
+    <div class="content" style="background: none">
+        <div class="payTop"><span><em></em> 支付剩余时间  <b id='time1'><?php echo  date('i:s',$order['lockTime']-time());?></b></span></div>
+        <div class="payWays list-block media-list">
+        	<h2>使用票券</h2>
+            <ul>
+                <li>
+                  <a href="javascript:" class="item-link item-content open-info-minus">
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                          <div class="item-title">
+                              <div class="item-maintitle">立减券</div>
+                              <div class="item-subtitle">您有<b>2</b>张立减券可用</div></div>
+                        </div>
+                        
+                      </div>
+                  </a>
+                </li>
+                <li>
+                   <a href="javascript:" class="item-link item-content open-info-exchange">
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                          <div class="item-title">
+                              <div class="item-maintitle">兑换券</div>
+                              <div class="item-subtitle">您有<b>2</b>张兑换券可用</div>
+                          </div>
+                        </div>
+                        
+                      </div>
+                  </a>
+                </li> 
+            </ul>
+        </div>
+        <div class="selectPay list-block media-list">
+            <h2>还需支付：<b>￥15</b></h2>
+            <div class="totalPrice">
+            	<span>应付金额：<b>￥{$order['myPrice']*$order['seatCount']}</b></span>
+            </div>
+            <ul>
+                <li>
+                <label class="label-checkbox item-content">
+                    <div class="item-inner">
+                        <div class="payIcon"><img src="__IMG__/movie/nhbank.png" height="50" /></div>
+                        <div class="payInfo">
+                            <p>农行账户支付</p>
+                            <span>推荐持有农行网上银行用户使用</span>
+                        </div>
+                    </div>
+					<input type="radio" name="my-checkbox" checked="checked">
+                    <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                </label>
+                </li>
+            </ul>
+			
+        </div>
+        <div class="Button" id="payButton">
+        	<a href="javascript:void(0)" class="">确认支付</a>
+        </div>
+    </div>
+    </div>
+ <div class="modal-overlay "></div>
+<div class="picker-modal pickerInfo payPicker minusPicker"  style="height:290px;display: none" >
+	
+    <div class="voucherPickerTop">
+    	<h4>选择立减券</h4>
+        <p>一个订单只能使用一张立减券</p>
+    	<a href="#" class="closePicker minusClosePicker"></a>
+    </div>
+    <div class="voucherList scroll">
+    	<div class="voucherText">
+        	<input type="text" placeholder="请输入券码" />
+            <a href="">使用</a>
+        </div>
+        <ul>
+            <li>
+                <img src="__IMG__/user/voucher3.png" width="100%" />
+                <div class="voucherBody">
+                    <div class="voucherPrice"><b>￥</b>10</div>
+                    <div class="voucherCode">dsKDSLFJDKJSF<p class="voucherDatePicker">有效期至2015-09-08</p></div>
+                    <div class="voucherName">卖品券</div>
+                    
+                    <a href="#" class="voucherUse">立即使用</a>
+                </div>
+            </li>
+            <li>
+                <img src="__IMG__/user/voucher4.png" width="100%" />
+                <div class="voucherBody">
+                    <div class="voucherPrice"><b>￥</b>10</div>
+                    <div class="voucherCode">dsKDSLFJDKJSF<p class="voucherDatePicker">有效期至2015-09-08</p></div>
+                    <div class="voucherName">2/3D券</div>
+                    <span class="voucherUse" >不可以使用</span>
+                    <!--<a href="#" class="voucherUse">立即使用</a>-->
+                </div>
+            </li>
+            <li>
+                <img src="__IMG__/user/voucher3.png" width="100%" />
+                <div class="voucherBody">
+                    <div class="voucherPrice"><b>￥</b>10</div>
+                    <div class="voucherCode">dsKDSLFJDKJSF<p class="voucherDatePicker">有效期至2015-09-08</p></div>
+                    <div class="voucherName">立减券</div>
+                    
+                    <a href="#" class="voucherUse">立即使用</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="voucherPickerBtm" >
+    	<span class="voucherNumPicker">还能使用<b>1</b>张立减券</span>
+        <span class="voucherPircePicker">应付：<b>¥30</b><em>已优惠¥5</em></span>
+    </div>
+</div>
+<div class="picker-modal pickerInfo payPicker exchangePicker"  style="height:290px;display: none"  >
+	
+    <div class="voucherPickerTop">
+    	<h4>选择兑换券</h4>
+        <p>一个订单只能使用一张兑换券</p>
+    	<a href="#" class="closePicker exchangeClosePicker"></a>
+    </div>
+    <div class="voucherList scroll">
+    	<div class="voucherText">
+        	<input type="text" placeholder="请输入券码" />
+            <a href="">使用</a>
+        </div>
+        <ul>
+            <li>
+                <img src="__IMG__/user/voucher1.png" width="100%" />
+                <div class="voucherBody">
+                    <div class="voucherPrice"><b>￥</b>10</div>
+                    <div class="voucherCode">dsKDSLFJDKJSF<p class="voucherDatePicker">有效期至2015-09-08</p></div>
+                    <div class="voucherName">兑换券</div>
+                    
+                    <a href="#" class="voucherUse">立即使用</a>
+                </div>
+            </li>
+            <li>
+                <img src="__IMG__/user/voucher4.png" width="100%" />
+                <div class="voucherBody">
+                    <div class="voucherPrice"><b>￥</b>10</div>
+                    <div class="voucherCode">dsKDSLFJDKJSF<p class="voucherDatePicker">有效期至2015-09-08</p></div>
+                    <div class="voucherName">兑换券</div>
+                    <span class="voucherUse" >不可以使用</span>
+                   <!-- <a href="#" class="voucherUse">立即使用</a>-->
+                </div>
+            </li>
+            <li>
+                <img src="__IMG__/user/voucher1.png" width="100%" />
+                <div class="voucherBody">
+                    <div class="voucherPrice"><b>￥</b>10</div>
+                    <div class="voucherCode">dsKDSLFJDKJSF<p class="voucherDatePicker">有效期至2015-09-08</p></div>
+                    <div class="voucherName">兑换券</div>
+                    
+                    <a href="#" class="voucherUse">立即使用</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="voucherList scroll">
+    	<div class="voucherText">
+        	<input type="text" placeholder="请输入券码" />
+            <a href="">使用</a>
+        </div>
+        
+    </div>
+    <div class="voucherPickerBtm" >
+    	<span class="voucherNumPicker">还能使用<b>1</b>张兑换券</span>
+        <span class="voucherPircePicker">应付：<b>¥30</b><em>已优惠¥5</em></span>
+    </div>
+</div>
+
+<div class="picker-modal pickerInfo payPicker integralPicker" style="height:70px;display: none"  >
+	
+    <div class="voucherPickerTop">
+    	<h4>使用积分</h4>
+        <p>10个积分抵扣1元人民币</p>
+    	<a href="#" class="closePicker integralClosePicker"></a>
+    </div>
+    <div class="voucherList scroll">
+    	<div class="voucherText">
+        	<input type="text" placeholder="请输入您想兑换的积分数" />
+            <a href="">使用</a>
+        </div>
+        
+    </div>
+    <div class="voucherPickerBtm" >
+    	<span class="voucherNumPicker">目前您的账户有<b>1000</b>积分</span>
+        <span class="voucherPircePicker">应付：<b>¥30</b><em>已优惠¥5</em></span>
+    </div>
+</div>
+</block>
+
+<block name='script'>
+
+<script type="text/javascript">
+	$$('.open-info-minus').on('click', function () {
+	  myApp.pickerModal('.minusPicker');
+	  $$('.modal-overlay').addClass('modal-overlay-visible');
+    });
+    $$('.minusClosePicker').on('click', function () {
+      myApp.closeModal('.minusPicker')
+    }); 
+	$$('.open-info-integral').on('click', function () {
+	  myApp.pickerModal('.integralPicker');
+	  $$('.modal-overlay').addClass('modal-overlay-visible');
+    });
+    $$('.integralClosePicker').on('click', function () {
+      myApp.closeModal('.integralPicker')
+    }); 
+	$$('.open-info-exchange').on('click', function () {
+	  myApp.pickerModal('.exchangePicker');
+	  $$('.modal-overlay').addClass('modal-overlay-visible');
+    });
+    $$('.exchangeClosePicker').on('click', function () {
+      myApp.closeModal('.exchangePicker')
+    });
+	
+	
+	
+    $(function(){
+        var i,s,time={$order['lockTime']-time()};
+        var id=setInterval(function(){
+            time-=1;
+            if(time>0){
+                i=Math.floor(time/60);
+                s=time%60;
+                $('#time1').text(i+':'+s);
+            }else{
+                location.href='{:U("Index/plan")}';
+                clearInterval(id);
+            }
+        },1000);
+        $('#payButton').click(function(){
+            var orderCode="{$order['orderCode']}";
+            var payurl="{:U('paysuccess',array('orderid'=>$order['orderCode']))}";
+            myApp.showIndicator();
+            $.get("{:U('User/ordersuccess1')}",{orderid:orderCode},function(json){
+                myApp.hideIndicator();
+                var msg=JSON.parse(json);
+                if(msg['status']!='0'){
+                    location.href=payurl;
+                }else{
+                    layer.alert(msg['text']);
+                }
+            });
+        });
+    });
+    var myApp = new Framework7({
+        modalTitle:'',
+        modalButtonOk:'确认',
+        modalButtonCancel:'取消'
+        });
+    var $$ = Dom7;
+    $$('#cancel').on('click', function () {
+        var orderid="{$order['orderCode']}";
+        myApp.confirm('请确认是否取消该订单', function () {
+            $.get('{:U("cancelOrder")}',{orderid:orderid},function(msg){
+                location.href="<if condition="$pflag neq ''">{:U('index/cinema')}<else/>{:U('index/index')}</if>";
+            });
+        });
+    });
+</script>
+
+</block>

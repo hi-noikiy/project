@@ -1,0 +1,2253 @@
+==========Eegin===============
+========SumRmbUsed========
+========SumMarketConsumption========
+========SumMarketConsumption========
+==============SumRegTrans=============
+Array
+(
+    [0] => Array
+        (
+            [serverid] => 0
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [1] => Array
+        (
+            [serverid] => 0
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [2] => Array
+        (
+            [serverid] => 0
+            [fenbaoid] => 60014
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 3
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [3] => Array
+        (
+            [serverid] => 0
+            [fenbaoid] => 60020
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [4] => Array
+        (
+            [serverid] => 0
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 7
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [5] => Array
+        (
+            [serverid] => 0
+            [fenbaoid] => 60044
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [6] => Array
+        (
+            [serverid] => 501
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 4
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [7] => Array
+        (
+            [serverid] => 502
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 68
+            [sum_cre] => 7
+            [sum_cre_rate] => 1
+        )
+
+    [8] => Array
+        (
+            [serverid] => 502
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 68
+            [sum_cre] => 14
+            [sum_cre_rate] => 2
+        )
+
+    [9] => Array
+        (
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [10] => Array
+        (
+            [serverid] => 902
+            [fenbaoid] => 60002
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [11] => Array
+        (
+            [serverid] => 902
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [12] => Array
+        (
+            [serverid] => 903
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [13] => Array
+        (
+            [serverid] => 903
+            [fenbaoid] => 60031
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [14] => Array
+        (
+            [serverid] => 904
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [15] => Array
+        (
+            [serverid] => 905
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [16] => Array
+        (
+            [serverid] => 913
+            [fenbaoid] => 60002
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [17] => Array
+        (
+            [serverid] => 917
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [18] => Array
+        (
+            [serverid] => 918
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [19] => Array
+        (
+            [serverid] => 920
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [20] => Array
+        (
+            [serverid] => 921
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [21] => Array
+        (
+            [serverid] => 927
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [22] => Array
+        (
+            [serverid] => 928
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [23] => Array
+        (
+            [serverid] => 930
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [24] => Array
+        (
+            [serverid] => 930
+            [fenbaoid] => 60011
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [25] => Array
+        (
+            [serverid] => 932
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [26] => Array
+        (
+            [serverid] => 932
+            [fenbaoid] => 60027
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [27] => Array
+        (
+            [serverid] => 933
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [28] => Array
+        (
+            [serverid] => 936
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [29] => Array
+        (
+            [serverid] => 936
+            [fenbaoid] => 60033
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [30] => Array
+        (
+            [serverid] => 941
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [31] => Array
+        (
+            [serverid] => 941
+            [fenbaoid] => 60019
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [32] => Array
+        (
+            [serverid] => 942
+            [fenbaoid] => 60002
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [33] => Array
+        (
+            [serverid] => 946
+            [fenbaoid] => 60008
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [34] => Array
+        (
+            [serverid] => 947
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [35] => Array
+        (
+            [serverid] => 947
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [36] => Array
+        (
+            [serverid] => 948
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [37] => Array
+        (
+            [serverid] => 948
+            [fenbaoid] => 60008
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [38] => Array
+        (
+            [serverid] => 948
+            [fenbaoid] => 60036
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [39] => Array
+        (
+            [serverid] => 949
+            [fenbaoid] => 60002
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [40] => Array
+        (
+            [serverid] => 950
+            [fenbaoid] => 60034
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [41] => Array
+        (
+            [serverid] => 951
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [42] => Array
+        (
+            [serverid] => 952
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [43] => Array
+        (
+            [serverid] => 952
+            [fenbaoid] => 60020
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [44] => Array
+        (
+            [serverid] => 953
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [45] => Array
+        (
+            [serverid] => 953
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [46] => Array
+        (
+            [serverid] => 953
+            [fenbaoid] => 60011
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [47] => Array
+        (
+            [serverid] => 955
+            [fenbaoid] => 60019
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [48] => Array
+        (
+            [serverid] => 955
+            [fenbaoid] => 60036
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [49] => Array
+        (
+            [serverid] => 955
+            [fenbaoid] => 60041
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [50] => Array
+        (
+            [serverid] => 956
+            [fenbaoid] => 60024
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [51] => Array
+        (
+            [serverid] => 957
+            [fenbaoid] => 61006
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [52] => Array
+        (
+            [serverid] => 957
+            [fenbaoid] => 61008
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [53] => Array
+        (
+            [serverid] => 958
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [54] => Array
+        (
+            [serverid] => 958
+            [fenbaoid] => 60034
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [55] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60003
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [56] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 8
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [57] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 5
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [58] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60011
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [59] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60016
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [60] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60020
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [61] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60021
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [62] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 2
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [63] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60024
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [64] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60033
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 2
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [65] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60036
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [66] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 60044
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [67] => Array
+        (
+            [serverid] => 959
+            [fenbaoid] => 61006
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 3
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [68] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 4
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [69] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 60008
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [70] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 2
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [71] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 60015
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [72] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 60016
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [73] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 60017
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [74] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 60021
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [75] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 60022
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [76] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 60024
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [77] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 60036
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [78] => Array
+        (
+            [serverid] => 960
+            [fenbaoid] => 61006
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 2
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [79] => Array
+        (
+            [serverid] => 961
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [80] => Array
+        (
+            [serverid] => 961
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 3
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [81] => Array
+        (
+            [serverid] => 961
+            [fenbaoid] => 60027
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [82] => Array
+        (
+            [serverid] => 961
+            [fenbaoid] => 61004
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [83] => Array
+        (
+            [serverid] => 961
+            [fenbaoid] => 61010
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [84] => Array
+        (
+            [serverid] => 962
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 3
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [85] => Array
+        (
+            [serverid] => 963
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [86] => Array
+        (
+            [serverid] => 963
+            [fenbaoid] => 60019
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [87] => Array
+        (
+            [serverid] => 963
+            [fenbaoid] => 60041
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [88] => Array
+        (
+            [serverid] => 963
+            [fenbaoid] => 61010
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [89] => Array
+        (
+            [serverid] => 964
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [90] => Array
+        (
+            [serverid] => 964
+            [fenbaoid] => 60021
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [91] => Array
+        (
+            [serverid] => 964
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 2
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [92] => Array
+        (
+            [serverid] => 964
+            [fenbaoid] => 60034
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [93] => Array
+        (
+            [serverid] => 965
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 2
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [94] => Array
+        (
+            [serverid] => 965
+            [fenbaoid] => 60030
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [95] => Array
+        (
+            [serverid] => 966
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 3
+            [sum_cre] => 3
+            [sum_cre_rate] => 0.42857142857143
+        )
+
+    [96] => Array
+        (
+            [serverid] => 966
+            [fenbaoid] => 60021
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [97] => Array
+        (
+            [serverid] => 967
+            [fenbaoid] => 60022
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [98] => Array
+        (
+            [serverid] => 967
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [99] => Array
+        (
+            [serverid] => 968
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 3
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [100] => Array
+        (
+            [serverid] => 969
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [101] => Array
+        (
+            [serverid] => 969
+            [fenbaoid] => 60044
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [102] => Array
+        (
+            [serverid] => 970
+            [fenbaoid] => 60003
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 3
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [103] => Array
+        (
+            [serverid] => 970
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 4
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [104] => Array
+        (
+            [serverid] => 970
+            [fenbaoid] => 60008
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [105] => Array
+        (
+            [serverid] => 970
+            [fenbaoid] => 60014
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [106] => Array
+        (
+            [serverid] => 970
+            [fenbaoid] => 60044
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [107] => Array
+        (
+            [serverid] => 970
+            [fenbaoid] => 61004
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [108] => Array
+        (
+            [serverid] => 970
+            [fenbaoid] => 61006
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [109] => Array
+        (
+            [serverid] => 971
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 3
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [110] => Array
+        (
+            [serverid] => 971
+            [fenbaoid] => 60008
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 2
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [111] => Array
+        (
+            [serverid] => 971
+            [fenbaoid] => 60027
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [112] => Array
+        (
+            [serverid] => 971
+            [fenbaoid] => 60034
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [113] => Array
+        (
+            [serverid] => 971
+            [fenbaoid] => 61005
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [114] => Array
+        (
+            [serverid] => 971
+            [fenbaoid] => 61006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [115] => Array
+        (
+            [serverid] => 972
+            [fenbaoid] => 60002
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [116] => Array
+        (
+            [serverid] => 972
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [117] => Array
+        (
+            [serverid] => 972
+            [fenbaoid] => 60011
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 3
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [118] => Array
+        (
+            [serverid] => 972
+            [fenbaoid] => 60014
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [119] => Array
+        (
+            [serverid] => 972
+            [fenbaoid] => 60020
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [120] => Array
+        (
+            [serverid] => 972
+            [fenbaoid] => 61006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [121] => Array
+        (
+            [serverid] => 973
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 3
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [122] => Array
+        (
+            [serverid] => 973
+            [fenbaoid] => 60008
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [123] => Array
+        (
+            [serverid] => 973
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [124] => Array
+        (
+            [serverid] => 973
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [125] => Array
+        (
+            [serverid] => 973
+            [fenbaoid] => 60027
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [126] => Array
+        (
+            [serverid] => 973
+            [fenbaoid] => 60033
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [127] => Array
+        (
+            [serverid] => 973
+            [fenbaoid] => 60044
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [128] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 9
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [129] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60011
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [130] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60014
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [131] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60017
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [132] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60019
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [133] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60022
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [134] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 2
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [135] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60026
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [136] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60033
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [137] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60034
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [138] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 60044
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 2
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [139] => Array
+        (
+            [serverid] => 974
+            [fenbaoid] => 61004
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [140] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60003
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 3
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [141] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 20
+            [sum_cre] => 9
+            [sum_cre_rate] => 1.2857142857143
+        )
+
+    [142] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60008
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [143] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 3
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [144] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60011
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [145] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60014
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [146] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60016
+            [day] => 140530
+            [prof] => 
+            [sum_new] => 1
+            [sum_cre] => 
+            [sum_cre_rate] => 0
+        )
+
+    [147] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60020
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [148] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 2
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [149] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60033
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [150] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 60036
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [151] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 61004
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [152] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 61006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 3
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [153] => Array
+        (
+            [serverid] => 975
+            [fenbaoid] => 61008
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [154] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 60003
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [155] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 12
+            [sum_cre] => 8
+            [sum_cre_rate] => 1.1428571428571
+        )
+
+    [156] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 4
+            [sum_cre_rate] => 0.57142857142857
+        )
+
+    [157] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 60014
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 7
+            [sum_cre] => 3
+            [sum_cre_rate] => 0.42857142857143
+        )
+
+    [158] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 60016
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [159] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 60020
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [160] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 60026
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [161] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 60027
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [162] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 60034
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [163] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 60041
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 2
+            [sum_cre] => 3
+            [sum_cre_rate] => 0.42857142857143
+        )
+
+    [164] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 61004
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [165] => Array
+        (
+            [serverid] => 976
+            [fenbaoid] => 61006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 4
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [166] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60002
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 14
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [167] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60003
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 60
+            [sum_cre] => 8
+            [sum_cre_rate] => 1.1428571428571
+        )
+
+    [168] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 1256
+            [sum_cre] => 190
+            [sum_cre_rate] => 27.142857142857
+        )
+
+    [169] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60007
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 111
+            [sum_cre] => 12
+            [sum_cre_rate] => 1.7142857142857
+        )
+
+    [170] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60008
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 73
+            [sum_cre] => 11
+            [sum_cre_rate] => 1.5714285714286
+        )
+
+    [171] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60009
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 779
+            [sum_cre] => 148
+            [sum_cre_rate] => 21.142857142857
+        )
+
+    [172] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60010
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [173] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60011
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 94
+            [sum_cre] => 16
+            [sum_cre_rate] => 2.2857142857143
+        )
+
+    [174] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60012
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [175] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60014
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 35
+            [sum_cre] => 5
+            [sum_cre_rate] => 0.71428571428571
+        )
+
+    [176] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60016
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 204
+            [sum_cre] => 47
+            [sum_cre_rate] => 6.7142857142857
+        )
+
+    [177] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60017
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 55
+            [sum_cre] => 6
+            [sum_cre_rate] => 0.85714285714286
+        )
+
+    [178] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60019
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 77
+            [sum_cre] => 12
+            [sum_cre_rate] => 1.7142857142857
+        )
+
+    [179] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60020
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 126
+            [sum_cre] => 23
+            [sum_cre_rate] => 3.2857142857143
+        )
+
+    [180] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60021
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 61
+            [sum_cre] => 10
+            [sum_cre_rate] => 1.4285714285714
+        )
+
+    [181] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60022
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 207
+            [sum_cre] => 31
+            [sum_cre_rate] => 4.4285714285714
+        )
+
+    [182] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60023
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 289
+            [sum_cre] => 52
+            [sum_cre_rate] => 7.4285714285714
+        )
+
+    [183] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60024
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 155
+            [sum_cre] => 36
+            [sum_cre_rate] => 5.1428571428571
+        )
+
+    [184] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60025
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 3
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [185] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60026
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 70
+            [sum_cre] => 10
+            [sum_cre_rate] => 1.4285714285714
+        )
+
+    [186] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60027
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 52
+            [sum_cre] => 5
+            [sum_cre_rate] => 0.71428571428571
+        )
+
+    [187] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60028
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 6
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [188] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60030
+            [day] => 140530
+            [prof] => 3
+            [sum_new] => 12
+            [sum_cre] => 3
+            [sum_cre_rate] => 0.42857142857143
+        )
+
+    [189] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60033
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 171
+            [sum_cre] => 27
+            [sum_cre_rate] => 3.8571428571429
+        )
+
+    [190] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60034
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 71
+            [sum_cre] => 9
+            [sum_cre_rate] => 1.2857142857143
+        )
+
+    [191] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60036
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 105
+            [sum_cre] => 18
+            [sum_cre_rate] => 2.5714285714286
+        )
+
+    [192] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60041
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 56
+            [sum_cre] => 8
+            [sum_cre_rate] => 1.1428571428571
+        )
+
+    [193] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60042
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 2
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [194] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60043
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 9
+            [sum_cre] => 3
+            [sum_cre_rate] => 0.42857142857143
+        )
+
+    [195] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60044
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 77
+            [sum_cre] => 9
+            [sum_cre_rate] => 1.2857142857143
+        )
+
+    [196] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 60046
+            [day] => 140530
+            [prof] => 2
+            [sum_new] => 1
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+    [197] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 61004
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 60
+            [sum_cre] => 10
+            [sum_cre_rate] => 1.4285714285714
+        )
+
+    [198] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 61005
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 17
+            [sum_cre] => 4
+            [sum_cre_rate] => 0.57142857142857
+        )
+
+    [199] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 61006
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 765
+            [sum_cre] => 142
+            [sum_cre_rate] => 20.285714285714
+        )
+
+    [200] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 61007
+            [day] => 140530
+            [prof] => 1
+            [sum_new] => 2
+            [sum_cre] => 2
+            [sum_cre_rate] => 0.28571428571429
+        )
+
+    [201] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 61008
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 34
+            [sum_cre] => 4
+            [sum_cre_rate] => 0.57142857142857
+        )
+
+    [202] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 61009
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 20
+            [sum_cre] => 6
+            [sum_cre_rate] => 0.85714285714286
+        )
+
+    [203] => Array
+        (
+            [serverid] => 977
+            [fenbaoid] => 61010
+            [day] => 140530
+            [prof] => 4
+            [sum_new] => 7
+            [sum_cre] => 1
+            [sum_cre_rate] => 0.14285714285714
+        )
+
+)
+==========End===============

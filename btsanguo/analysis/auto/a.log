@@ -1,0 +1,82 @@
+==========Begin===============
+2014-07-09
+------cnt_pay------
+2014-07-10
+------cnt_pay------
+2014-07-11
+------cnt_pay------
+2014-07-12
+------cnt_pay------
+2014-07-13
+------cnt_pay------
+2014-07-14
+------cnt_pay------
+2014-07-15
+------cnt_pay------
+2014-07-16
+------cnt_pay------
+2014-07-09
+----login-----
+_________AU____
+_________AU End____
+_________reg End____
+------role------
+2014-07-17 08:48:05|OK|Insert Into sum_daily_archive|rowCount=1
+2014-07-17 08:48:06|OK|Insert Into sum_daily_archive_detail|rowCount=2741
+2014-07-10
+----login-----
+_________AU____
+_________AU End____
+_________reg End____
+------role------
+2014-07-17 08:48:06|OK|Insert Into sum_daily_archive|rowCount=1
+2014-07-17 08:48:06|OK|Insert Into sum_daily_archive_detail|rowCount=2762
+2014-07-11
+----login-----
+_________AU____
+_________AU End____
+_________reg End____
+------role------
+2014-07-17 08:48:07|OK|Insert Into sum_daily_archive|rowCount=1
+2014-07-17 08:48:07|OK|Insert Into sum_daily_archive_detail|rowCount=2738
+2014-07-12
+----login-----
+_________AU____
+_________AU End____
+_________reg End____
+------role------
+2014-07-17 08:48:07|OK|Insert Into sum_daily_archive|rowCount=1
+2014-07-17 08:48:08|OK|Insert Into sum_daily_archive_detail|rowCount=2734
+2014-07-13
+----login-----
+_________AU____
+_________AU End____
+_________reg End____
+------role------
+2014-07-17 08:48:08|OK|Insert Into sum_daily_archive|rowCount=1
+2014-07-17 08:48:09|OK|Insert Into sum_daily_archive_detail|rowCount=2740
+2014-07-14
+----login-----
+_________AU____
+_________AU End____
+_________reg End____
+------role------
+2014-07-17 08:48:09|OK|Insert Into sum_daily_archive|rowCount=1
+2014-07-17 08:48:10|OK|Insert Into sum_daily_archive_detail|rowCount=2741
+2014-07-15
+----login-----
+_________AU____
+_________AU End____
+_________reg End____
+------role------
+2014-07-17 08:48:10|OK|Insert Into sum_daily_archive|rowCount=1
+2014-07-17 08:48:10|OK|Insert Into sum_daily_archive_detail|rowCount=2751
+2014-07-16
+----login-----
+_________AU____
+_________AU End____
+_________reg End____
+------role------
+2014-07-17 08:48:10|OK|Insert Into sum_daily_archive|rowCount=1
+2014-07-17 08:48:11|OK|Insert Into sum_daily_archive_detail|rowCount=2768
+==========End===============

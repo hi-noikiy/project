@@ -1,0 +1,953 @@
+{% extends "template/personal_body.html" %}
+{% block title %}
+概况
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('myincome'|ns_css)}}">
+{% endblock %}
+
+{% block content %}
+<!--概况-->
+<!-- {{ singAccountInfo|json_encode }} -->
+<div class="personal-div overview clearfix">
+   <!--顶部框-->
+   <div class="overview-top clearfix">
+      <div class="overview-top-left pull-left clearfix">
+      	 <div class="overview-top-moneyremin pull-re pull-left">
+            <div class="overview-moneybalance clearfix">
+                佣金金额：
+                <div id="balance-num" class="moneybalance-num inline font-num">0</div>
+            	元
+            </div>
+            <div class="overview-incomeremin clearfix">
+            	上月收入：
+            	<div class="incomeremin-lastnum inline font-num">0</div>
+            	元
+            	<div class="incomeremin-txt inline">累计：</div>
+            	<div class="incomeremin-total inline clearfix">0</div>
+            	元
+            </div>
+
+      	    <!--三角形的阴影-->
+      	 	<div class="overview-moneyremin-triangle pull-ab"></div>
+      	 </div>
+          <!--兑换、提现-->
+      	 <div class="overview-top-exchangebut pull-left ">
+      	     <div class="exchangebut-putout cu-a">
+      	     	<div class="putout-icon sprite-overview dollor pull-left"></div>
+      	     	<div class="putout-txt pull-left">提现</div>
+      	     </div>
+      	 	<!--<div class="exchangebut-exchange cu-a">-->
+      	 		<!--<div class="putout-icon sprite-overview exchangecoin pull-left"></div>-->
+      	 		<!--<div class="exchange-txt pull-left">兑换聊币</div>-->
+      	 	<!--</div>-->
+      	 </div>
+      </div>
+
+      <!--头部右边：我的银行卡-->
+      <div class="overview-top-right overview-mycard pull-right">
+          <div class="overview-mycard-head clearfix">
+          	<div class="sprite-overview bankcard mycard-icon pull-left"></div>
+          	<div class="mycard-head-txt pull-lreft inline">我的银行卡</div>
+          </div>
+          <div class="mycard-cutline"></div>
+
+
+          <div class="mycard-inform clearfix">
+             {% if singAccountInfo['cardNumber']=="" %}
+             <!--未添加卡-->
+             <div class="mycard-nocard clearfix ">
+                <div class="mycard-nocard-txt">你还没有银行卡哦，请添加！</div>
+                <div id="addCardInfoBtn" class="mycard-addcar sprite-overview add inline cu-a">
+                   <div class="addcard-txt pull-right">添加</div>
+                </div>
+             </div>
+             {% else %}
+          	 <div class="mycard-havecard clearfix">
+                <div class="mycard-personalinfo clearfix">
+	                  <div class="inline personal-name-tit">姓名：</div>
+	                  <div class="inline personal-name-txt">{{singAccountInfo['realName']}}</div>
+	                  <div class="inline personal-name-line">|</div>
+	                  <div class="inline personal-identity-tit">身份证：</div>
+	                  <div class="inline personal-identity-num font-num">{{singAccountInfo['idCard']}}</div>
+                </div>
+
+                <div class="mycard-pankinfo clearfix">
+                      <div class="inline pankinfo-tit">开户银行：</div>
+                	  <div id="accountBank" class="inline pankinfo-txt">{{singAccountInfo['bank']}}</div>
+                </div>
+
+                <div class="mycard-cardid clearfix">
+                	  <div class="inline cardid-tit">银行卡号：</div>
+                	  <div id="accountNumber" class="inline cardid-txt font-num">{{singAccountInfo['cardNumber']}}</div>
+                </div>
+
+                <div class="mycard-button-div clearfix">
+                  <div id="modifyCardInfoBtn" class="mycard-change-button sprite-overview change cu-a">修改</div>
+                </div>
+             </div>
+             {% endif %}
+          </div>
+     </div>
+
+      </div>
+
+
+
+   <!--中部框-->
+   <div class="overview-center overview-dynamic clearfix">
+   	   <div class="dynamic-head clearfix">
+   	   	  <div class="dynamic-head-txt inline">资产动态</div>
+   	   	  <div class="dynamic-head-time inline font-num"><!--2015.07.11-2015.07.12--></div>
+   	   </div>
+   	   <table class="dynamic-detail-table">
+   	   	  <tr class="tb-tr-tit">
+   	   	  	<td class="tr-take-tit"></td>
+   	   	  	<td class="tr-award-tit"></td>
+   	   	  	<td class="tr-putout-tit"></td>
+   	   	  	<td class="tr-exchange-tit"></td>
+   	   	  </tr>
+   	   	  <tr class="tb-tr-list">
+   	   	  	<td class="tr-take-list">
+   	   	  		<div class="takemoney-icon list-icon sprite-overview takemoney inline pull-left"></div>
+   	   	  		<div class="takemoney-money-div inline clearfix">
+	   	   	  		<div class="takemoney-num list-num font-num inline pull-left">0</div>
+	   	   	  		<div class="takemoney-txt list-txt inline pull-left">聊币</div>
+   	   	  		</div>
+   	   	  	</td>
+   	   	  	<td class="tr-award-list">
+   	   	  		<div class="award-icon list-icon sprite-overview award inline pull-left"></div>
+   	   	  		<div class="takemoney-money-div inline clearfix">
+	   	   	  		<div class="award-num list-num font-num inline pull-left">0</div>
+	   	   	  		<div class="award-txt list-txt inline pull-left">聊币</div>
+   	   	  		</div>
+   	   	  	</td>
+   	   	  	<td class="tr-putout-list">
+   	   	  		<div class="putout-icon list-icon sprite-overview putout inline pull-left"></div>
+   	   	  		<div class="takemoney-money-div inline clearfix">
+	   	   	  		<div class="putout-num list-num font-num inline pull-left">0</div>
+	   	   	  		<div class="putout-txt list-txt inline pull-left">聊币</div>
+   	   	  		</div>
+   	   	  	</td>
+   	   	  	<td class="tr-exchange-list">
+   	   	  		<div class="exchange-icon list-icon sprite-overview exchange inline pull-left"></div>
+   	   	  		<div class="takemoney-money-div inline clearfix">
+	   	   	  		<div class="exchange-num list-num font-num inline pull-left">0</div>
+	   	   	  		<div class="exchange-txt list-txt inline pull-left">聊币</div>
+   	   	  		</div>
+   	   	  	</td>
+   	   	  </tr>
+   	   </table>
+   </div>
+   <!--底部框-->
+   <div class="overview-bottom overview-dealdetail clearfix">
+   	  <div class="dealdetail-head clearfix">
+   	  	<div class="pull-left deal-head-txt inline">交易明细</div>
+   	  	<div class="pull-right deal-head-but sprite-myincome lookall cu-a">查看所有</div>
+   	  </div>
+
+   	  <table class="dealdetail-table">
+   	  	<tr class="deal-tr-tit">
+   	  		<td class="td-tit-subject">科目</td>
+   	  		<td class="td-tit-dealid">交易号</td>
+   	  		<td class="td-tit-time">时间</td>
+   	  		<td class="td-tit-money">金额</td>
+   	  		<td class="td-tit-state">状态</td>
+   	  	</tr>
+        <tbody class="tblistbody">
+   	  	<!-- <tr class="tb-tr-list">
+   	  		<td class="td-list-subject">提现</td>
+   	  		<td class="td-list-dealid font-num">14310000000QAA1D</td>
+   	  		<td class="td-list-time font-num">
+   	  			<div class="inline">2015-06-04</div>
+   	  			<div class="inline timehour">15:30:00.0</div>
+   	  		</td>
+   	  		<td class="td-list-money coin-color">-155513.00</td>
+   	  		<td class="td-list-state">
+   	  			<div class="statetxt">打款成功</div>
+   	  			<div class="inline detailbut div clearfix">
+   	  				<div class="state-detail-txt inline pull-left">详情</div>
+   	  				<div class=" sprite-myincome down inline pull-left"></div>
+   	  			</div>
+   	  		</td>
+   	  	</tr>
+
+   	  	<tr class="tb-tr-list list2">
+   	  		<td class="td-list-subject">发放</td>
+   	  		<td class="td-list-dealid font-num">14310000000QAA1D</td>
+   	  		<td class="td-list-time font-num">
+   	  			<div class="inline">2015-06-04</div>
+   	  			<div class="inline timehour">15:30:00.0</div>
+   	  		</td>
+   	  		<td class="td-list-money coin-color">-155513.00</td>
+   	  		<td class="td-list-state">
+   	  			无
+   	  		</td>
+   	  	</tr>
+
+  		  <tr class="tb-tr-list">
+   	  		<td class="td-list-subject">发放</td>
+   	  		<td class="td-list-dealid font-num">14310000000QAA1D</td>
+   	  		<td class="td-list-time font-num">
+   	  			<div class="inline">2015-06-04</div>
+   	  			<div class="inline timehour">15:30:00.0</div>
+   	  		</td>
+   	  		<td class="td-list-money coin-color">-155513.00</td>
+   	  		<td class="td-list-state">
+   	  			无
+   	  		</td>
+   	  	</tr>
+
+   	  	<tr class="tb-tr-list list2">
+   	  		<td class="td-list-subject">发放</td>
+   	  		<td class="td-list-dealid font-num">14310000000QAA1D</td>
+   	  		<td class="td-list-time font-num">
+   	  			<div class="inline">2015-06-04</div>
+   	  			<div class="inline timehour">15:30:00.0</div>
+   	  		</td>
+   	  		<td class="td-list-money coin-color">-155513.00</td>
+   	  		<td class="td-list-state">
+   	  			无
+   	  		</td>
+   	  	</tr>
+
+  		  <tr class="tb-tr-list last">
+   	  		<td class="td-list-subject">发放</td>
+   	  		<td class="td-list-dealid font-num">14310000000QAA1D</td>
+   	  		<td class="td-list-time font-num">
+   	  			<div class="inline">2015-06-04</div>
+   	  			<div class="inline timehour">15:30:00.0</div>
+   	  		</td>
+   	  		<td class="td-list-money coin-color">-155513.00</td>
+   	  		<td class="td-list-state">
+   	  			无
+   	  		</td>
+   	    </tr> -->
+   	  	</tbody>
+   	  </table>
+
+   </div>
+</div>
+<img id="incomeLoading" src="/web/cssimg/91ns/load.gif" class="incomeLoading pull-ab" style="opacity: 50; display:none;">
+<!--主播收益-->
+<div class="personal-div anchorincome anincome clearfix div-hiden">
+	<div class="anincome-head clearfix">
+		<div class="anincome-head-txt">主播收益</div>
+		<div class="anincome-cutline "></div>
+		<!--向上的三角形-->
+        <div class="anincome-triangle pull-re">
+            <div class="anincome-triangle2 pull-ab">
+
+			</div>
+		</div>
+        <!--主播收入里的菜单-->
+		<div class="anincome-menu">
+		    <div class="anincome-menu-div clearfix">
+    			<div tablename="income-giftdetail-table" reminname="remin-detail" class="anincome-menu-li pull-left cu-a select">礼物明细</div>
+    			<div tablename="income-giftcome-table" reminname="remin-giftcome" class="anincome-menu-li pull-left cu-a">礼物收入</div>
+    			<div tablename="income-coinrun-table" reminname="remin-coinrun" class="anincome-menu-li pull-left cu-a">聊币流水</div>
+    			<div tablename="income-coinrun-table" reminname="remin-moneyrun" class="anincome-menu-li pull-left cu-a">佣金流水</div>
+		    </div>
+		</div>
+	</div>
+
+	<div class="anincome-content-div ">
+
+		<!--搜索框-->
+        <div class="anincome-search-div clearfix pull-re">
+            <div class="anincome-search ">
+                <div class="anincome-timetxt pull-left inline">时间：</div>
+                <div class="pull-left serachbox-div pull-re pull-left">
+                    <input id="anincometimebox" readonly="true" class="anincome-timebox" type="text">
+                    <div class="search-dateicon sprite-myincome date pull-ab "></div>
+                </div>
+                <div class="anincome-searchbut pull-left sprite-myincome search cu-a">查看</div>
+
+            </div>
+            <div class="pull-ab anincome-search-remin clearfix">
+                <div class=" search-remin remin-giftcome inline pull-left div-hiden">
+                    <div style="margin-top: -22px;padding-bottom: 6px;text-align: right;position: absolute;right: 0px;">累计：<span id="total">0</span>聊币</div>
+                    <div class="remin-txt pull-left inline">当月处于扶持期，分成等级：</div>
+                    <div class="remin-txt-orange pull-left inline">A(<div class="font-num inline">100</div>%)</div>
+                    <div class="sprite-myincome questionmark icon inline pull-left"></div>
+                </div>
+                <div class=" search-remin pull-left inline remin-detail remin-giftcome">次日显示上一日礼物明细</div>
+                <div class=" search-remin pull-left inline remin-coinrun div-hiden">
+                    每个月
+                    <div class="inline font-num">12</div>
+                    号将聊币余额自动结算成佣金
+                </div>
+                <div class="search-remin pull-left inline remin-moneyrun div-hiden">
+                    可点击“提现”按钮提取现金，
+                    <a href="myincome?secondpage=commissionwithdraw" class="remin-link">传送门>></a>
+                </div>
+            </div>
+        </div>
+
+		<!--礼物明细表格-->
+		<table class="anincome-table income-giftdetail-table">
+			<tr class="detail-tr-tit">
+			  <td class="td-tit-time">获取时间</td>
+			  <td class="tb-tit-type">礼物种类</td>
+			  <td class="tb-tit-number">礼物数量</td>
+			  <td class="tb-tit-sender">赠送者</td>
+			  <td class="tb-tit-come">来源</td>
+			</tr>
+
+      <tbody id="anincome-tbody">
+
+			</tbody>
+		</table>
+
+       <!--礼物收入的表格-->
+	   <table class="anincome-table income-giftcome-table div-hiden">
+	   	   <tr class="giftcome-tr-tit tb-tr-tit">
+	   	   	  <td class="td-tit-time">获取时间</td>
+	   	   	  <td class="td-tit-cost">礼物价值(聊币)</td>
+	   	   	  <td class="td-tit-level">分成等级</td>
+	   	   	  <td class="td-tit-income">家族提成</td>
+	   	   	  <td class="td-tit-come">来源</td>
+	   	   	  <td class="td-tit-intime">入账时间</td>
+	   	   	  <td class="td-tit-get">最终获得(聊币)</td>
+	   	   </tr>
+	   	   <tbody id="giftincome-table">
+
+	   	   </tbody>
+	   </table>
+
+       <!--货币流水和佣金流水-->
+	   <table class="anincome-table income-coinrun-table div-hiden">
+	   	  <tr class="coinrun-tr-tit tb-tr-tit">
+			  <td class="td-tit-time">获取时间</td>
+			  <td class="tb-tit-coin" id="anchorBit">金额(聊币)</td>
+			  <td class="tb-tit-explain">说明</td>
+		  </tr>
+
+
+      <tbody id="giftcoinrun-tbody" class="tbody-coinrun">
+			    <!-- <tr class="coinrun-tr-list tb-tr-list">
+				  <td class="td-list-time">
+				     <div class="inline font-num">2015-12-31</div>
+				  </td>
+				  <td class="tb-list-coin">
+				  	<div class="inline font-num coin-color">15.22</div>
+				  </td>
+				  <td class="tb-list-explain">
+				    <div class="inline">主播礼物分成</div>
+				  </td>
+			    </tr>
+
+			    <tr class="coinrun-tr-list tb-tr-list list2">
+				  <td class="td-list-time">
+				     <div class="inline font-num">2015-12-31</div>
+				  </td>
+				  <td class="tb-list-coin">
+				  	<div class="inline font-num coin-color">15.22</div>
+				  </td>
+				  <td class="tb-list-explain">
+				    <div class="inline">主播礼物分成</div>
+				  </td>
+			    </tr> -->
+		  </tbody>
+
+		    <tbody id="giftmoneyrun-tbody" class="tbody-moneyrun">
+			  	<!-- <tr class="coinrun-tr-list tb-tr-list">
+				  <td class="td-list-time">
+				     <div class="inline font-num">2015-12-31</div>
+				  </td>
+				  <td class="tb-list-coin">
+				  	<div class="inline font-num coin-color">15.22</div>
+				  </td>
+				  <td class="tb-list-explain">
+				    <div class="inline">主播礼物分成</div>
+				  </td>
+			    </tr> -->
+		   </tbody>
+	   </table>
+	</div>
+</div>
+
+
+<!--活动奖励-->
+<div class="personal-div activitiesaward clearfix div-hiden ">
+	<div class="anincome-head clearfix">
+		<div class="anincome-head-txt">活动奖励</div>
+		<div class="anincome-cutline "></div>
+			<!--向上的三角形-->
+        <div class="anincome-triangle pull-re">
+            <div class="anincome-triangle2 pull-ab">
+
+			</div>
+		</div>
+		<div class="anincome-menu">  <!--主播收入里的菜单-->
+		  <div class="anincome-menu-div clearfix">
+              <div tablename="activities-income" class="activities-menu-li pull-left cu-a select">活动收入</div>
+			<div tablename="activities-coinrun" class="activities-menu-li pull-left cu-a">聊币流水</div>
+			<div tablename="activities-moneyrun" class="activities-menu-li pull-left cu-a">佣金流水</div>
+		  </div>
+		</div>
+	</div>
+    <div class="activities-content-div ">
+	    <div class="activities-search-div clearfix pull-re">
+			<div class="activities-search ">
+				<div class="activities-timetxt pull-left inline">时间：</div>
+				<div class="pull-left serachbox-div pull-re pull-left">
+	                <input id="activetimebox" readonly="true" class="activities-timebox" type="text">
+	                <div class="search-dateicon sprite-myincome date pull-ab "></div>
+                </div>
+                <div class="activities-searchbut pull-left sprite-myincome search cu-a" onclick="activitiesTab()">查看</div>
+
+			</div>
+
+			<div class="activities-remin pull-ab div-hiden">
+				可点击“体现”按钮提取现金，<a href="myincome?secondpage=commissionwithdraw" class="remin-link">传送门>></a>
+			</div>
+	    </div>
+        <table class="activities-income activities-table">
+            <thead>
+                <tr class="tb-tr-tit">
+                    <td class="tb-tit-time">获取时间</td>
+                    <td class="tb-tit-money">金额(聊币)</td>
+                    <td class="tb-tit-come">来源</td>
+                    <td class="tb-tit-explain">说明</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+
+        </table>
+	    <table class="activities-coinrun activities-table div-hiden">
+            <thead>
+            <tr class="tb-tr-tit">
+                <td class="tb-tit-time">时间</td>
+                <td class="tb-tit-money">金额(聊币)</td>
+                <!--<td class="tb-tit-come">来源</td>-->
+                <td class="tb-tit-explain">说明</td>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr class="tb-tr-list">
+                <td class="tb-list-time font-num">2015-12-31</td>
+                <td class="tb-list-money font-num coin-color">15,224</td>
+                <td class="tb-list-explain">推荐有奖佣金</td>
+            </tr> -->
+            </tbody>
+
+	    </table>
+	    <table class="activities-moneyrun activities-table div-hiden">
+	    	<thead>
+            <tr class="tb-tr-tit">
+                <td class="tb-tit-time">时间</td>
+                <td class="tb-tit-money">金额(元)</td>
+                <td class="tb-tit-come">来源</td>
+            </tr>
+            </thead>
+           <tbody>
+           <!-- <tr class="tb-tr-list">
+               <td class="tb-list-time font-num">2015-12-31</td>
+               <td class="tb-list-money font-num coin-color">15,224</td>
+               <td class="tb-list-come">
+                   12月月结
+               </td>
+           </tr> -->
+           </tbody>
+
+
+	    </table>
+	</div>
+</div>
+
+<!--家族长收益-->
+<div class="personal-div familincome clearfix div-hiden">
+	<div class="anincome-head clearfix">
+		<div class="anincome-head-txt">家族长收益</div>
+		<div class="anincome-cutline "></div>
+			<!--向上的三角形-->
+
+        <div class="anincome-triangle pull-re">
+            <div class="anincome-triangle2 pull-ab">
+
+			</div>
+		</div>
+		<div class="anincome-menu famil-menu">  <!--与主播收入里的菜单一致-->
+		  <div class="anincome-menu-div clearfix">
+			<div tablename="familincome-table" class="anincome-menu-li pull-left cu-a select">家族礼物收入</div>
+			<div tablename="income-coinrun-table" reminname="remin-coinrun"  class="anincome-menu-li pull-left cu-a">聊币流水</div>
+			<div tablename="income-coinrun-table" reminname="remin-moneyrun" class="anincome-menu-li pull-left cu-a">佣金流水</div>
+		  </div>
+		</div>
+	</div>
+
+    <!--搜索框里的与主播收益里的一致-->
+	<div class="familincome-content clearfix anincome-content-div">
+	    <div class="anincome-search-div clearfix pull-re">
+			<div class="anincome-search ">
+				<div class="anincome-timetxt pull-left inline">时间：</div>
+				<div class="pull-left serachbox-div pull-re pull-left">
+	                <input readonly="true" id="familincometimebox" class="anincome-timebox familincome-timebox" type="text">
+	                <div class="search-dateicon sprite-myincome date pull-ab "></div>
+                </div>
+                <div class="anincome-searchbut familincome-searchbut pull-left sprite-myincome search cu-a">查看</div>
+
+			</div>
+			<div class="pull-ab clearfix familincome-remin anincome-search-remin">
+				<div class=" search-remin pull-left inline remin-coinrun div-hiden">每个月<div class="inline font-num">12</div>号将聊币余额自动结算成佣金</div>
+		        <div class="search-remin pull-left inline remin-moneyrun div-hiden">可点击“提现”按钮提取现金，<a href="myincome?secondpage=commissionwithdraw" class="remin-link">传送门>></a></div>
+			</div>
+		</div>
+
+		<table class="familincome-table anincome-table">
+			<tr class="tb-tr-tit">
+				<td class="td-tit-time">获取时间</td>
+				<td class="td-tit-anchore">主播</td>
+				<td class="td-tit-income">收入(聊币)</td>
+				<td class="td-tit-level">分成等级</td>
+				<td class="td-tit-commission">家族提成</td>
+				<td class="td-tit-lastget">最终获得(聊币)</td>
+				<td class="td-tit-incometime">入账时间</td>
+				<td class="td-tit-come">来源</td>
+			</tr>
+			<tbody id="familgiftincome-tbody">
+			<!-- 	<tr class="tb-tr-list">
+					<td class="td-list-time font-num">2015-12-31</td>
+					<td class="td-list-anchore">
+						<div class="anchore-name">主播名称</div>
+						<div class="anchore-id font-num">(100124)</div>
+					</td>
+					<td class="td-list-income coin-color">45542</td>
+					<td class="td-list-level">C</td>
+					<td class="td-list-commission font-num">50%</td>
+					<td class="td-list-lastget coin-color font-num">465465</td>
+					<td class="td-list-incometime font-num">2015-12-31</td>
+					<td class="td-list-come font-num">91NS</td>
+				</tr> -->
+			</tbody>
+		</table>
+
+        <!--聊币流水和佣金流水-->
+		<table class="anincome-table income-coinrun-table div-hiden">
+	   	  <tr class="coinrun-tr-tit tb-tr-tit">
+  			  <td class="td-tit-time">获取时间</td>
+  			  <td class="tb-tit-coin" id="familyHeaderBit">金额(元)</td>
+  			  <td class="tb-tit-explain">说明</td>
+		    </tr>
+        <tbody id="familcoinrun-tbody" class="tbody-coinrun">
+  		  <!--  <tr class="coinrun-tr-list tb-tr-list">
+  			   <td class="td-list-time">
+  			     <div class="inline font-num">2015-12-31</div>
+  			   </td>
+  			   <td class="tb-list-coin">
+  			  	<div class="inline font-num coin-color">15.22</div>
+  			   </td>
+  			   <td class="tb-list-explain">
+  			    <div class="inline">主播礼物分成</div>
+  			   </td>
+  		   </tr> -->
+  		  </tbody>
+
+  		  <tbody id="familmoneyrun-tbody" class="tbody-moneyrun">
+  		  	<!-- <tr class="coinrun-tr-list tb-tr-list">
+  			  <td class="td-list-time">
+  			     <div class="inline font-num">2015-12-31</div>
+  			  </td>
+  			  <td class="tb-list-coin">
+  			  	<div class="inline font-num coin-color">15.22</div>
+  			  </td>
+  			  <td class="tb-list-explain">
+  			    <div class="inline">主播礼物分成</div>
+  			  </td>
+  		  </tr> -->
+  		  </tbody>
+	  </table>
+
+	</div>
+</div>
+
+<!--游戏提成-->
+<div class="personal-div gamecommission clearfix div-hiden">
+    <div class="anincome-head clearfix">
+        <div class="anincome-head-txt">游戏提成</div>
+        <div class="anincome-cutline "></div>
+        <!--向上的三角形-->
+        <div class="anincome-triangle pull-re">
+            <div class="anincome-triangle2 pull-ab">
+
+            </div>
+        </div>
+        <!--主播收入里的菜单-->
+        <div class="anincome-menu">
+            <div class="gamecommission-menu-div clearfix">
+                <div tablename="gamecommission-giftdetail-table" reminname="remin-detail" class="anincome-menu-li pull-left cu-a select">提成明细</div>
+                <div tablename="gamecommission-giftcome-table" reminname="remin-giftcome" class="anincome-menu-li pull-left cu-a">提成收入</div>
+                <div tablename="gamecommission-coinrun-table" reminname="remin-coinrun" class="anincome-menu-li pull-left cu-a">聊币流水</div>
+                <div tablename="gamecommission-coinrun-table" reminname="remin-moneyrun" class="anincome-menu-li pull-left cu-a">佣金流水</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="anincome-content-div ">
+
+        <!--搜索框-->
+        <div class="anincome-search-div clearfix pull-re">
+            <div class="anincome-search ">
+                <div class="anincome-timetxt pull-left inline">时间：</div>
+                <div class="pull-left serachbox-div pull-re pull-left">
+                    <input id="gamecommissiontimebox" readonly="true" class="anincome-timebox" type="text">
+                    <div class="search-dateicon sprite-myincome date pull-ab "></div>
+                </div>
+                <div class="anincome-searchbut pull-left sprite-myincome search cu-a">查看</div>
+
+            </div>
+            <div class="pull-ab anincome-search-remin clearfix">
+                <div class=" search-remin remin-giftcome inline pull-left div-hiden">
+                    <!--<div style="margin-top: -22px;padding-bottom: 6px;text-align: right;position: absolute;right: 0px;">累计：<span id="total">0</span>聊币</div>-->
+                    <!--<div class="remin-txt pull-left inline">当月处于扶持期，分成等级：</div>-->
+                    <!--<div class="remin-txt-orange pull-left inline">A(<div class="font-num inline">100</div>%)</div>-->
+                    <!--<div class="sprite-myincome questionmark icon inline pull-left"></div>-->
+                </div>
+                <div class=" search-remin pull-left inline remin-detail remin-giftcome">次日显示上一日提成明细</div>
+                <!--<div class=" search-remin pull-left inline remin-coinrun div-hiden">-->
+                    <!--每个月-->
+                    <!--<div class="inline font-num">12</div>-->
+                    <!--号将聊币余额自动结算成佣金-->
+                <!--</div>-->
+                <!--<div class="search-remin pull-left inline remin-moneyrun div-hiden">-->
+                    <!--可点击“提现”按钮提取现金，-->
+                    <!--<a href="myincome?secondpage=commissionwithdraw" class="remin-link">传送门>></a>-->
+                <!--</div>-->
+            </div>
+        </div>
+
+        <!--提成明细表格-->
+        <table class="anincome-table gamecommission-giftdetail-table">
+            <tr class="detail-tr-tit">
+                <td class="td-tit-time" style="width: 150px">获取时间</td>
+                <td class="tb-tit-sender" style="width: 150px">游戏种类</td>
+                <td class="tb-tit-number" style="width: 150px">聊币数量</td>
+                <td class="tb-tit-type" style="width: 270px;">庄家</td>
+                <td class="tb-tit-type" style="width: 270px;">说明</td>
+            </tr>
+
+            <tbody id="gamecommission-tbody">
+
+            </tbody>
+        </table>
+
+        <!--提成收入的表格-->
+        <table class="anincome-table gamecommission-giftcome-table div-hiden">
+            <tr class="giftcome-tr-tit tb-tr-tit">
+                <td class="td-tit-time">获取时间</td>
+                <td class="td-tit-cost">金额(聊币)</td>
+                <td class="td-tit-come">来源</td>
+                <td class="td-tit-get">说明</td>
+            </tr>
+            <tbody id="gameincome-table">
+
+            </tbody>
+        </table>
+
+        <!--聊币流水和佣金流水-->
+        <table class="anincome-table gamecommission-coinrun-table div-hiden">
+            <tr class="coinrun-tr-tit tb-tr-tit">
+                <td class="td-tit-time">获取时间</td>
+                <td class="tb-tit-coin" id="anchorBit1">金额(聊币)</td>
+                <td class="tb-tit-explain" id="pT">说明</td>
+            </tr>
+
+
+            <tbody id="gamecoinrun-tbody" class="tbody-coinrun">
+            <!-- <tr class="coinrun-tr-list tb-tr-list">
+              <td class="td-list-time">
+                 <div class="inline font-num">2015-12-31</div>
+              </td>
+              <td class="tb-list-coin">
+                  <div class="inline font-num coin-color">15.22</div>
+              </td>
+              <td class="tb-list-explain">
+                <div class="inline">主播礼物分成</div>
+              </td>
+            </tr>
+
+            <tr class="coinrun-tr-list tb-tr-list list2">
+              <td class="td-list-time">
+                 <div class="inline font-num">2015-12-31</div>
+              </td>
+              <td class="tb-list-coin">
+                  <div class="inline font-num coin-color">15.22</div>
+              </td>
+              <td class="tb-list-explain">
+                <div class="inline">主播礼物分成</div>
+              </td>
+            </tr> -->
+            </tbody>
+
+            <tbody id="gamemoneyrun-tbody" class="tbody-moneyrun">
+            <!-- <tr class="coinrun-tr-list tb-tr-list">
+            <td class="td-list-time">
+               <div class="inline font-num">2015-12-31</div>
+            </td>
+            <td class="tb-list-coin">
+                <div class="inline font-num coin-color">15.22</div>
+            </td>
+            <td class="tb-list-explain">
+              <div class="inline">主播礼物分成</div>
+            </td>
+          </tr> -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--佣金提现-->
+<div class="personal-div  commissionwithdraw clearfix div-hiden">
+
+	<div class="withdraw-head">
+		<div class="withdraw-head-txt">佣金提现</div>
+	</div>
+
+	<div class="withdraw-inform clearfix">
+    {% if singAccountInfo['cardNumber'] != "" %}
+		<div class="withdraw-info-line inform-name">
+			<div class="info-line-left pull-left">开户的真实姓名：</div>
+			<div class="info-line-right pull-left inline"></div>
+		</div>
+		<div class="withdraw-info-line inform-bankname">
+			<div class="info-line-left pull-left">开户银行：</div>
+			<div class="info-line-right pull-left inline"></div>
+		</div>
+		<div class="withdraw-info-line inform-bankcard">
+			<div class="info-line-left pull-left">银行卡号：</div>
+			<div class="info-line-right pull-left inline"></div>
+		</div>
+    {% else %}
+        <script type="text/javascript">
+        var noBank = true;
+        </script>
+        <div class="addCardInfoDiv inform-name">
+            <div class="info-line-left pull-left">开户的真实姓名：</div>
+            <input id="drawRealName" type="text" >
+            <div class="pull-left tips"></div>
+        </div>
+        <div class="addCardInfoDiv inform-bankname">
+            <div class="info-line-left pull-left">开户银行：</div>
+            <input id="drawBank" type="text" >
+            <div class="pull-left tips" isbank="true">开户行必须是完整信息，包括银行名称、支行所在地和名称，<br>否则将导致打款失败（示例：建设银行福州市城北支行）</div>
+        </div>
+        <div class="addCardInfoDiv inform-bankcard">
+            <div class="info-line-left pull-left">银行卡号：</div>
+            <input id="drawBankNumber" type="text" >
+            <div class="pull-left tips"></div>
+        </div>
+        <div class="addCardInfoDiv inform-bankcard">
+            <div class="info-line-left pull-left">身份证：</div>
+            <input id="drawID" type="text" >
+            <div class="pull-left tips"></div>
+        </div>
+    {% endif %}
+		<div class="ifphonebindingdiv clearfix">
+				<div class="withdraw-info-boxline inform-phonecode">
+					<div class="info-line-left pull-left">手机验证码：</div>
+					<input type="text" class="withdraw-phone-code withdraw-textbox pull-left" maxlength="6" onpaste="return false" onkeydown="onlyNum()" ondragenter="return false" oncontextmenu="return false">
+					<div class="sprite-myincome getphonecode pull-left cu-a" >获取手机验证码</div>
+				</div>
+				<div class="withdraw-info-line2 inform-biddingphone">
+					<div class="info-line-left pull-left"></div>
+					<div class="info-line-right pull-left inline">绑定的手机号为：</div>
+				</div>
+	    </div>
+		<div class="withdraw-info-boxline inform-phonecode">
+			<div class="info-line-left pull-left">提现金额：</div>
+			<input type="text" class="withdraw-money-num withdraw-textbox pull-left" onkeydown="onlyNum()" maxlength="8" onpaste="return false">
+		</div>
+		<div class="withdraw-info-line2 inform-balance">
+			<div class="info-line-left pull-left"></div>
+			<div class="info-line-right pull-left inline">
+				<div class="balance-txt inline">可用余额：</div>
+                <div class="balance-num inline font-num"></div>元
+                <div class="balance-txt inline">(佣金体现必须为</div>
+                <div class="balance-remin inline">整数</div>,
+                <div class="balance-remin inline">且提现金额不得低于100元。</div>
+			</div>
+		</div>
+		<div class="withdraw-info-line2 inform-balance">
+			<div class="info-line-left pull-left"></div>
+			<div class="info-line-right pull-left inline">
+				<div class="balance-remin inline">由于扣税及银行转账手续费等因素，请以实际到账金额为准</div>
+				<div class="balance-link inline cu-a"></div>)
+			</div>
+		</div>
+
+		<div class="withdraw-info-button">
+			<div class="info-line-left pull-left"></div>
+			<div id="canSubmitWithdraw" class="info-line-right pull-left sprite-myincome unclick cu-a">确定</div>
+		</div>
+	</div>
+	<div class="withdraw-bottom clearfix">
+	    <div class="bottom-remin clearfix">
+			<div class="sprite-myincome attantion inline pull-left"></div>
+			<div class="bottom-remintxt bottom-txt inline pull-left">每月14-20</div>,可以申请提现
+		</div>
+		<div class="bottom-remin2">
+			<div class="bottom-remintxt bottom-txt inline">每月20日23：59</div>,我们将锁定最近一个月内提交的提现申请进行处理。您的提现金额预期将于
+			<div class="bottom-remintxt inline">2-5个工作日</div>内到账
+		</div>
+	</div>
+</div>
+
+<!---交易明细-->
+<div class="personal-div  dealdetail clearfix div-hiden">
+	<div class="deal-head clearfix">
+		<div class="anincome-head-txt">交易明细</div>
+		<div class="deal-search">
+			<div class="deal-search-txt pull-left">查询时间：</div>
+			<div class="pull-left serachbox-div pull-re pull-left">
+                <input readonly="true" id="detailstartimebox" class="anincome-timebox" type="text">
+                <div class="search-dateicon sprite-myincome date pull-ab "></div>
+            </div>
+            <div class="deal-search-txt2 pull-left">至</div>
+            <div class="pull-left serachbox-div pull-re pull-left">
+                <input readonly="true" id="detailendtimebox" class="anincome-timebox" type="text">
+                <div class="search-dateicon sprite-myincome date pull-ab "></div>
+            </div>
+            <div class="anincome-searchbut pull-left sprite-myincome search cu-a">查询</div>
+
+		</div>
+	</div>
+    <table class="anincome-table dealdetail-table">
+        <tr class="tb-tr-tit">
+            <td class="td-tit-subject">科目</td>
+            <td class="td-tit-dealid">交易号</td>
+            <td class="td-tit-time">时间</td>
+            <td class="td-tit-money">金额</td>
+            <td class="td-tit-state">状态</td>
+        </tr>
+
+        <tbody class="tblistbody">
+            <tr>
+                <td>加载失败</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--聊币兑换弹框-->
+<div class="lDialog-bg div-hiden"></div><!--背景半透明-->
+<div id="exchangeDialog" class="lDialog-content div-hiden">
+    <div class="lTitle">兑换聊币</div>
+    <div class="lClose sprite-userincome drawCloseIcon sprite-myincome cancelbig"></div>
+    <div class="lBody">
+        <div class="lTip">佣金兑换聊币，兑换比例：1元=<span class="lFont">100</span>聊币</div>
+        <div class="lCnt clearfix">
+            <div class="lLeft">手机验证码：</div>
+            <div class="lRight clearfix">
+                <input id="telCodeDrawCash" maxlength="6" onkeydown="onlyNum()" type="text"/>
+                <div id="drawCashDBtn" class="gettel">获取手机验证号码</div>
+            </div>
+        </div>
+        <div id="thisUserPhone" class="lText"></div>
+        <div class="lCnt clearfix">
+            <div class="lLeft">兑换金额：</div>
+            <div class="lRight clearfix">
+                <input id="telCodeDrawCashNum" onkeydown="onlyNum()" type="text"/>
+            </div>
+        </div>
+        <div class="lText">可用余额：<span id="thisUserHas" class="lFont"></span>元（必须为<span class="lFont1">整数</span>）</div>
+        <div id="drawCashDSubmit" class="lBtn sprite-userincome drawok sprite-myincome confirm2">确&nbsp;定</div>
+    </div>
+</div>
+<div id="modifyCardInfo" class="lDialog-content div-hiden cardInfo">
+    <div class="lTitle">修改银行卡</div>
+    <div class="lClose sprite-userincome drawCloseIcon sprite-myincome cancelbig"></div>
+    <div class="lBody">
+        <div class="lCnt clearfix">
+            <div class="lLeft">真实姓名：</div>
+            <div class="lRight clearfix">
+                <span>{{singAccountInfo['realName']}}</span>
+                <span class="fontColorLine">|</span>
+                <span>身份证：</span>
+                <span>{{singAccountInfo['idCard']}}</span>
+            </div>
+        </div>
+        <div class="lCnt clearfix">
+            <div class="lLeft">银行卡号：</div>
+            <div class="lRight clearfix">
+                <input id="modifyCardID" type="text" jsdata="cardNumber"/>
+            </div>
+        </div>
+        <div id="modifyCardIDTip" class="lText">&nbsp;</div>
+        <div class="lCnt clearfix">
+            <div class="lLeft">开户银行：</div>
+            <div class="lRight clearfix">
+                <input id="modifyCardBank" type="text" jsdata="bank"/>
+            </div>
+        </div>
+        <div id="modifyCardBankTip" class="lText">开户行必须是<span class="lFont1">完整</span>信息，包括<span class="lFont1">支行所在地</span>和<span class="lFont1">名称</span>，<br>否则将导致打款失败。</div>
+        <div class="lCnt clearfix">
+            <div class="lLeft">手机号码：</div>
+            <div class="lRight clearfix">
+                <span class="tel" jsdata="telephone"></span>
+            </div>
+        </div>
+        <div class="lCnt clearfix">
+            <div class="lLeft">验证码：</div>
+            <div class="lRight clearfix">
+                <input id="modifyCardCode" type="text"/>
+                <div class="gettel">获取验证码</div>
+            </div>
+        </div>
+        <div id="modifyCardCodeTip" class="lText">&nbsp;</div>
+        <div id="modifyCardBtn" class="lBtn sprite-btok1 btok1">确定</div>
+    </div>
+</div>
+<div id="addCardInfo" class="lDialog-content div-hiden cardInfo add">
+    <div class="lTitle">增加银行卡</div>
+    <div class="lClose sprite-userincome drawCloseIcon sprite-myincome cancelbig"></div>
+    <div class="lBody">
+        <div class="lCnt clearfix">
+            <div class="lLeft">真实姓名：</div>
+            <div class="lRight clearfix">
+                <input id="addCardRealName" type="text" jsdata="realName"/>
+                <span class="pull-left" style="margin-left:14px;">身份证：</span>
+                <input id="addCardIDCard" type="text" jsdata="idCard"/>
+            </div>
+        </div>
+        <div id="addTip" class="lText clearfix"><span>&nbsp;</span><span></span></div>
+        <div class="lCnt clearfix">
+            <div class="lLeft">银行卡号：</div>
+            <div class="lRight clearfix">
+                <input id="addCardID" type="text"/>
+            </div>
+        </div>
+        <div id="addCardIDTip" class="lText">&nbsp;</div>
+        <div class="lCnt clearfix">
+            <div class="lLeft">开户银行：</div>
+            <div class="lRight clearfix">
+                <input id="addCardBank" type="text"/>
+            </div>
+        </div>
+        <div id="addCardBankTip" class="lText">开户行必须是<span class="lFont1">完整</span>信息，包括<span class="lFont1">支行所在地</span>和<span class="lFont1">名称</span>，<br>否则将导致打款失败。</div>
+        <div nsdata="noTel" class="lText" style="margin-top:20px;display:none;">
+            您尚未绑定手机<br>马上&nbsp;<a href="/personal/savecenter" target="_blank" style="color:#FF62A1;text-decoration: underline;">绑定手机</a>，即可提现
+        </div>
+        <div nsdata="hasTel" class="lCnt clearfix">
+            <div class="lLeft">手机号码：</div>
+            <div class="lRight clearfix">
+                <span jsdata="telephone" class="tel"></span>
+            </div>
+        </div>
+        <div nsdata="hasTel" class="lCnt clearfix">
+            <div class="lLeft">验证码：</div>
+            <div class="lRight clearfix">
+                <input id="addCardCode" type="text"/>
+                <div class="gettel">获取验证码</div>
+            </div>
+        </div>
+        <div id="addCardCodeTip" class="lText">&nbsp;</div>
+        <div id="addCardBtn" class="lBtn sprite-btok1 btok1">确定</div>
+    </div>
+</div>
+<script type="text/javascript" defer async data-main="{{static_url('personal.myincome'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}

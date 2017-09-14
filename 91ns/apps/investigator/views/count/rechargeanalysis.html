@@ -1,0 +1,237 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+    <div class="container-fluid" style="padding: 0;">
+
+        <div class="widget-box tab-tabs" >
+            <div class="widget-title">
+                <ul class="nav nav-tabs">
+                    {% include "common/tab.html" %}
+                </ul>
+            </div>
+            <div class="widget-content tab-content" style="overflow: hidden;">
+
+                <div class="row-fluid" style="margin-top: 30px;">
+                    <div class="container-fluid" style="padding: 0;">
+                        <div class="nav-line-tab nav-line nav-tab1" data="1">
+                            <a name="newAdd" class="_nav active" style="margin-left: 40px;">充值金额</a>
+                            <!--<a name="retained" class="_nav">区域分析</a>-->
+                            <!--<a name="analysis" class="_nav">支付方式</a>-->
+                            <a name="capita" class="_nav">人均充值分析</a>
+                            <a name="query" class="_nav">充值记录查询</a>
+                        </div>
+                    </div>
+                    <div id="newAdd" class="countBox container-fluid" style="padding: 0;">
+                        <div class="row-fluid" style="margin-top: 30px;color: #fff;text-align: center;min-width: 1000px;">
+                            <span class="a_analysis span3" style="background-color: #d9544f;">
+                                <p id="NewSum" class="font28">0</p>
+                                <p class="font20">今日充值金额（人民币）</p>
+                            </span>
+                            <span class="a_analysis span3" style="background-color: #3399ff;">
+                                 <p id="NewSum1" class="font28">0</p>
+                                <p class="font20">昨日充值金额（人民币）</p>
+                            </span>
+                            <span class="a_analysis span3" style="background-color: #00cccc;">
+                                 <p id="NewSum2" class="font28">0</p>
+                                <p class="font20">最近7天充值金额（人民币）</p>
+                            </span>
+                            <span class="a_analysis span3" style="background-color: #1d283a;">
+                                 <p id="NewSum3" class="font28">0</p>
+                                <p class="font20">最近30天充值金额（人民币）</p>
+                            </span>
+                        </div>
+                        <div class="row-fluid" style="margin-top: 30px;color: #fff;min-width: 1000px;">
+                            <div class="nav-line-tab nav-line nav-tab2" data="2" style="background-color: #fff;">
+                                <a class="_nav active"  data="<?php echo date('Y-m-d',strtotime('today')); ?>" >今天</a>
+                                <a class="_nav" type="yesterDay"  data="<?php echo date('Y-m-d',strtotime('-1 day')); ?>" >昨天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-6 day')); ?>" >最近7天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-29 day')); ?>" >最近30天</a>
+
+                                <a  class="date-calendar"><i class=" icon-calendar"></i> <input id="Newdate" value="<?php echo date('Y-m-d',strtotime('today')); ?> - <?php echo date('Y-m-d',strtotime('today')); ?>" data="toDay"  placeholder="请输入日期"></a>
+                            </div>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 50px;">
+                            <table id="tableList" class="table with-check table-purple">
+                                <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>渠道</th>
+                                    <th>充值金额（人民币）</th>
+                                    <th>所占比例</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            {% include "common/pagination.html" %}
+                        </div>
+                        <div class="row-fluid" style="margin-top: 30px;color: #fff;min-width: 1000px;text-align: center;">
+                            <div class="nav-line-tab nav-line nav-tab3 a_margin" data="3" style="background-color: #e6e6e6;height: 50px;">
+                                <a class="_nav active pull-left" data="day">日</a>
+                                <a class="_nav pull-left" data="week">周</a>
+                                <a class="_nav pull-left" data="month">月</a>
+                                <a class="a_class"><i></i>充值排行</a>
+                            </div>
+                            <table id="tableList-rank" class="table with-check table-purple" style="margin-top: 10px;color: #666;">
+                                <thead>
+                                <tr>
+                                    <th>名次</th>
+                                    <th>用户</th>
+                                    <th>富豪等级</th>
+                                    <th>充值金额（人民币）</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="capita" class="countBox container-fluid" style="padding: 0;display: none;">
+                        <div class="nav-line-tab nav-line nav-tab4 a_nav-line" data="4">
+                            <a  class="_nav active" data="today">今日</a>
+                            <a  class="_nav" data="yestoday">昨日</a>
+                        </div>
+                        <div class="row-fluid" style="margin-top: 30px;color: #fff;text-align: center;min-width: 1000px;">
+                            <span class="a_analysis span3" style="background-color: #d9544f;">
+                                <p id="capitaSum" class="font28">0</p>
+                                <p class="font20">充值收入（人民币）</p>
+                            </span>
+                            <span class="a_analysis span3" style="background-color: #3399ff;">
+                                 <p id="capitaSum1" class="font28">0</p>
+                                <p class="font20">登录用户（个）</p>
+                            </span>
+                            <span class="a_analysis span3" style="background-color: #00cccc;">
+                                 <p id="capitaSum2" class="font28">0</p>
+                                <p class="font20">人均充值（人民币）</p>
+                            </span>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 50px;margin-top: 20px;">
+                            <div class="nav-line-tab nav-line a_margin" style="background-color: #e6e6e6;text-align: center;font-size: 20px;">
+                                <a class="a_class">当日充值排名</a>
+                            </div>
+                            <table id="tableList2" class="table with-check table-purple">
+                                <thead>
+                                <tr>
+                                    <th>用户昵称</th>
+                                    <th>ID</th>
+                                    <th>充值总额</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <!--{% include "common/pagination.html" %}-->
+                        </div>
+
+                        <div class="row-fluid" style="margin-bottom: 50px;margin-top: 20px;">
+
+                            <table id="tableList3" class="table with-check table-purple TS">
+                                <thead>
+                                <tr>
+                                    <th>日期</th>
+                                    <th>充值收入（元）</th>
+                                    <th>登录用户</th>
+                                    <th>人均充值</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div id="query" class="countBox container-fluid" style="padding: 0;display: none;">
+
+                        <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">
+                            <form id="formSearch" class="form-search">
+                                <label style="margin-left: 20px;">时间</label>
+                                <a class="date-calendar" style="height: 40px;line-height: 40px;"><i class=" icon-calendar"></i> <input id="mdate"  data="toDay" placeholder="请输入日期"></a>
+
+                                <!--<label style="margin-left: 20px;">充值渠道</label>-->
+                                <!--<select>-->
+                                    <!--<option>所有</option>-->
+                                    <!--<option>支付宝</option>-->
+                                    <!--<option>微信支付</option>-->
+                                    <!--<option>储蓄卡</option>-->
+                                    <!--<option>手机充值卡</option>-->
+                                <!--</select>-->
+
+
+                                <!--<label style="margin-left: 20px;">充值终端</label>-->
+                                <!--<select>-->
+                                    <!--<option>所有</option>-->
+                                    <!--<option>wap</option>-->
+                                    <!--<option>ios</option>-->
+                                    <!--<option>android</option>-->
+                                <!--</select>-->
+
+                                <label style="margin-left: 20px;">用户UID/昵称</label>
+                                <input name="name" type="text" placeholder="请输入uid/昵称">
+                                <button id="btnSearch" type="button" class="btn btn-purple" style="margin-left: 15px;">查询&nbsp;</button>
+
+                            </form>
+                            <form action="/count/getRechargeExcel" method="post" style="margin-top: -36px;">
+                                <input class="startDate" type="hidden" value="" name="startDate">
+                                <input class="endDate" type="hidden" value="" name="endDate">
+                                <input class="_nickName" type="hidden" value="" name="nickName">
+                                <button type="submit" id="exportTable" class="btn btn-purple pull-right" style="margin-right: 40px;margin-bottom: 10px;">导出表格</button>
+                            </form>
+                        </div>
+                        <div class="row-fluid" style="margin-bottom: 50px;margin-top: 20px;">
+                            <table id="tableList4" class="table with-check table-purple">
+                                <thead>
+                                <tr>
+                                    <th>交易号</th>
+                                    <th>充值时间</th>
+                                    <th>用户</th>
+                                    <th>ID</th>
+                                    <th>充值聊币</th>
+                                    <th>支付金额</th>
+                                    <th>充值渠道</th>
+                                    <th>终端</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <div class="row-fluid">
+                                <div class="total pull-left">
+                                    <p class="font font18 cr-gy">
+                                        <span>共</span>
+                                        <span id="count2">0</span>
+                                        <span>条记录</span>
+                                        <span style="margin-left: 30px;">共</span>
+                                        <span id="_Ttotal">0</span>
+                                        <span>元</span>
+                                    </p>
+                                </div>
+
+                                <div id="pagination2" class="pagination alternate pull-right"></div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<script src="{{static_url('web/js/highcharts.js')}}"></script>
+<script src="{{static_url('web/js/jquery.ui.datepicker-zh-CN.js')}}"></script>
+<script src="{{static_url('web/js/91ns.rechargeanalysis.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+

@@ -1,0 +1,182 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+<!--顶部结束-->
+    <div class="content">
+        <div class="leftMenu">
+           <ul>
+                {$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+        	<div class="contentBox">
+                <form id="loginform">
+                <div class="cinema ">
+                    <div class="queryItem"><p>基本信息</p></div>
+                    <div class="inputText" id="city">
+                        <span>所属地区：</span>
+                        <select class="prov" name="data[prov]"></select> 
+                        <select class="city" name="data[city]" disabled="disabled"></select>
+                    </div>
+                    <div class="inputSelect">
+                        <span>所属影院组：</span>
+                        <select name="data[cinemaGroupId]">
+                            <foreach name="groupList" item="vo" key="k" >
+                                <option value="{$vo.id}" <if condition="$vo['id'] == $cinemaInfo['cinemaGroupId']">selected="selected"</if>>{$vo.groupName}</option>
+                            </foreach>
+    
+                        </select>
+                    </div>
+
+                    <div class="inputText">
+                        <span>影院编号：</span>
+                        <input name="data[cinemaCode]" id="cinemaCode" type="text" class="text" value="{$cinemaInfo.cinemaCode}" placeholder="请输入影院编号">
+                    </div>
+                    <div class="inputText">
+                        <span>影院名称：</span>
+                        <input name="data[cinemaName]" id="cinemaName" type="text" class="text" value="{$cinemaInfo.cinemaName}" placeholder="请输入影院名称">
+                    </div>
+                    
+                    <div class="inputText">
+                        <span>影院地址：</span>
+                        <input name="data[address]" type="text" class="text" id="address" value="{$cinemaInfo.address}" placeholder="请输入影院地址">
+                    </div>
+                    <div class="inputText">
+                        <span>联系电话：</span>
+                        <input name="data[phone]" id="phone" type="text" class="text" value="{$cinemaInfo.phone}" placeholder="请输入联系电话">
+                     </div>
+                    
+                     <div class="inputText">
+                        <span>经度：</span>
+                        <input name="data[longitude]" type="text" class="text" id="longitude" value="{$cinemaInfo.longitude}" placeholder="请输入影院地址位置经度">
+                    </div>
+                     <div class="inputText">
+                        <span>纬度：</span>
+                        <input name="data[latitude]" type="text" class="text" id="latitude" value="{$cinemaInfo.latitude}" placeholder="请输入影院地址位置纬度">
+                    </div>
+                    
+                     
+                     
+                     <br />
+                     <div class="inputText">
+                        <span>服务费：</span>
+                        <input name="data[serviceCharge]" type="text" class="text" id="latitude" value="{$cinemaInfo.serviceCharge}" placeholder="请输入影院服务费">
+                    </div>
+                	<div class="inputText">
+                        <span>服务有效期</span>
+                        <input name="data[serviceStart]" id="serviceStart" type="text" value="{$cinemaInfo.serviceStart|date='Y-m-d',###}" onclick="WdatePicker()" placeholder="请输入开始日期"><span>至</span><input  name="data[serviceEnd]" id="serviceEnd" type="text" value="{$cinemaInfo.serviceEnd|date='Y-m-d',###}" onclick="WdatePicker()" placeholder="请输入结束日期">
+                    </div> 
+                    
+
+
+                    <div class="inputText">
+                        <span>开业状态</span>
+                        <input name="data[status]" type="radio" value="0" id="status1" <if condition="$cinemaInfo['status'] == 0">checked="checked"</if>><label for="status1" style=" width:70px;">已开业</label>
+                        <input name="data[status]" type="radio" value="1" id="status2" <if condition="$cinemaInfo['status'] == 1">checked="checked"</if>><label for="status2" style="width:60px;">未开业</label>
+                    </div>  
+
+                        <div class="queryItem"><p>接口设置</p></div>
+                        
+                        <div class="inputText">
+                        <span>影院售票平台</span>
+                        <input name="data[interfaceType]" type="radio" value="mtx" id="radio1" <if condition="$cinemaInfo['interfaceType'] == 'mtx'">checked="checked"</if>><label for="radio1" style=" width:70px;">满天星</label>
+                        <input name="data[interfaceType]" type="radio" value="cx" id="radio3" <if condition="$cinemaInfo['interfaceType'] == 'cx'">checked="checked"</if>><label for="radio3" style="width:60px;">辰星</label>
+
+                        <input name="data[interfaceType]" type="radio" value="hfh" id="radio3" <if condition="$cinemaInfo['interfaceType'] == 'hfh'">checked="checked"</if>><label for="radio3" style="width:60px;">火凤凰</label>
+
+
+                        
+                        </div>
+
+                        <div class="inputText">
+                        <span>售票平台账号：</span>
+                        <input name="data[appCode]"  type="text"  placeholder="" value="{$cinemaInfo['interfaceConfig']['appCode']}"> 
+                        </div>
+                        <div class="inputText">
+                        <span>售票平台密码：</span>
+                        <input name="data[appPwd]"  type="text"  placeholder="" value="{$cinemaInfo['interfaceConfig']['appPwd']}">
+                        </div>
+                        <div class="queryItem"><p>支付宝设置</p></div>
+                        <div class="inputText">
+                        <span>partnerId：</span>
+                        <input name="data[partnerId]"  type="text"  placeholder="" value="{$cinemaInfo['alipayConfig']['partnerId']}"> 
+                        </div>
+                        <div class="inputText">
+                        <span>sellerEmail：</span>
+                        <input name="data[sellerEmail]"  type="text"  placeholder="" value="{$cinemaInfo['alipayConfig']['sellerEmail']}"> 
+                        </div>
+                        <div class="inputText">
+                        <span>key：</span>
+                        <input name="data[alipayKey]"  type="text"  placeholder="" value="{$cinemaInfo['alipayConfig']['alipayKey']}"> 
+                        </div>
+                        <div class="inputText">
+                        <span>加密方式：</span>
+                        <input name="data[signType]"  type="text"  placeholder="" value="{$cinemaInfo['alipayConfig']['signType']}"> 
+                        </div>
+                        <div class="queryItem"><p>微信支付设置</p></div>
+                        <div class="inputText"><span>appid：</span>
+                        <input name="data[appid]"  type="text"  placeholder="" value="{$cinemaInfo['weixinConfig']['appid']}"></div>  
+                        <div class="inputText"><span>secret：</span>
+                        <input name="data[appsecret]"  type="text"  placeholder="" value="{$cinemaInfo['weixinConfig']['appsecret']}"></div>
+                        <div class="inputText"><span>key：</span>
+                        <input name="data[key]"  type="text"  placeholder="" value="{$cinemaInfo['weixinConfig']['key']}"></div>
+                        <div class="inputText"><span>mchid：</span>
+                        <input name="data[mchid]"  type="text"  placeholder="" value="{$cinemaInfo['weixinConfig']['mchid']}"></div>
+
+                    </div>
+
+            
+                <div class="clear"></div>
+                <div style="text-align:center; margin-top:30px;"><a href="javascript:ajaxsubmit();" class="button" >保存</a> <a href="{:U('cinemaList', array('cinemaGroupId'=>$cinemaGroupId))}" class="button" >返回列表</a></div>
+
+                </form>
+            </div>
+            <div class="rightFooter">
+                <p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有  4008-12345678</p>
+            </div>
+        </div>
+        
+</div>
+<script type="text/javascript">
+$(function(){
+	
+$("#city").citySelect({
+		url:"__JS__/city.min.js",
+    	prov:"{$cinemaInfo.prov}", 
+    	city:"{$cinemaInfo.city}"
+	});
+})
+
+var loadi = '';
+var loadimsg = '';  
+function ajaxsubmit() {
+    loadi = layer.load(1, {shade: [0.5,'#000']});
+    loadimsg = layer.msg('正在保存...',{icon: 16, time:60000000});
+     $("#loginform").ajaxSubmit({  
+        type:"post",  //提交方式  
+        dataType:"json", //数据类型  
+        url:"{:U()}", //请求url 
+        data:{'cinemaCode':<?php echo intval($cinemaInfo['cinemaCode']);?>}, 
+        success:function(data){ //提交成功的回调函数  
+            if(data.status == 0){
+
+                layer.confirm(data.content, {
+                    btn: ['返回列表','<?php if(intval($cinemaInfo['cinemaCode']) == 0){echo '继续添加';}else{echo '继续修改';}?>'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    location.href = '{:U('cinemaList')}';
+                }, function(){
+                    location.href = '<?php if(intval($cinemaInfo['cinemaCode']) == 0){echo U('cinemaAdd', array('cinemaGroupId'=>$cinemaGroupId));}else{echo U('cinemaEdit', array('cinemaCode'=>$cinemaInfo['cinemaCode'], 'cinemaGroupId'=>$cinemaGroupId));}?>';
+                });
+              }else{
+                layer.close(loadi);
+                layer.close(loadimsg);
+                layer.alert(data.content, {icon: 5});
+              }
+        }  
+    });
+}
+
+
+</script> 
+</block>

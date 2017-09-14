@@ -1,0 +1,90 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+                {% include "common/tab.html" %}
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+
+            <div id="tab2" class="tab-pane active">
+              <div class="container-fluid">
+                  <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                      <form  class="form-search">
+                          <input id="isFamily" type="hidden" >
+                          <span style="font-size:20px; line-height: 30px">配置直播结束时，自动跳转的主播房间；系统将在下列正在直播的房间中随机跳转。</span>
+                        <span class="find-search pull-right">
+                        <button  type="button" class="btn btn-purple" onclick="addExceptionDialog()">添加主播</button>
+                        </span>
+                      </form>
+                  </div>
+                
+               <div id="autoskip">
+                   <ul id="exceptionList" class="thumbnails">
+                   </ul>
+
+               </div>
+                  {% include "common/pagination.html" %}
+              </div>
+            </div>
+            
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+{% include "common/addanchor_dialog.html" %}
+<div id="addExceptionDialog" style="display:none"> <!--class="ui-dialog"-->
+    <div class="ui-dialog-header">
+        <div class="title" style="margin-left: 20px;font-size: 14px;">
+            选择主播：
+        </div>
+        <div class="clearfix">
+            <form id="addanchorform">
+                <ul id="ul_addanchorlist" class="addanchorlist" style="margin-top: 10px;">
+
+                    <li class="add-btn-anchor" onclick="addanchorDialog()" >
+                        <div style="position: relative;">
+                            <span class="font font56 cr-pe" style="margin-top: 14px; margin-left:15px;  display: inline-block;" ><i class="icon-plus"></i></span>
+                            <span  class="font font32 cr-pe" style="top:25px; display: inline-block;position: absolute;" >添加</span>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div style="width: 705px;height: 1px;border-bottom:1px dashed #cccccc;margin-top: 20px;"></div>
+        <div class="title" style="margin: 20px 0 20px 20px;font-size: 14px;">
+            优先级：
+            <select id="orderSelect" data="0" name="conditions" style="width: 300px;margin-top: 7px;">
+            <option value="0">高</option>
+            <option value="1">较高</option>
+            <option value="2">中</option>
+            <option value="3">低</option>
+        </select>
+        </div>
+        <!-- <div id="pr_excvalue" class="clearfix" style="margin-top: 45px; margin-left: 10px">
+            <input id="excvalue" type="text" style="width: 650px;height: 30px;border: 1px solid #cccccc;margin-left: 30px;">
+        </div> -->
+    </div>
+
+    <div class="ui-dialog-content">
+
+    </div>
+</div>
+
+<script type="text/javascript" src="{{static_url('web/js/91ns.room.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js/91ns.autoskip.js')}}"></script>
+<script type="text/javascript">
+
+</script>

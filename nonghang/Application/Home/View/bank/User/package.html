@@ -1,0 +1,64 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">我的券包</div>
+    <div class="right"><a href="{:U('packagerecord')}" class="link">历史票券</a></div>
+  </div>
+</div>
+<div class="pages">
+  <div data-page="package" class="page">
+    <div class="page-content">
+
+        <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+        </foreach>
+        
+		<div class="content">
+            <div class="packageTop">
+                <p>
+                	<span>绑定票券</span>
+                	<a href="{:U('voucherrule')}" class="voucherRule" >票券规则></a>
+                <p>
+                <input type="text" placeholder="请输入券码" />
+                <a href="#" class="voucherBtn" >绑定</a>
+                <div class="clear"></div>
+            </div>
+            <div class="voucherList">
+            	<!--<div class="noVoucher">您暂时还没有优惠券</div>-->
+            	<p>*您有<b>5</b>张票券即将过期</p>
+                <ul>
+                	<li>
+                    	<img src="__IMG__/user/voucher1.png" width="100%" />
+                        <div class="voucherBody">
+                            <div class="voucherPrice"><b>￥</b>10</div>
+                            <div class="voucherCode">dsKDSLFJDKJSF</div>
+                            <div class="voucherName">兑换券</div>
+                            
+                            <div class="voucherDate">有效期至2015-09-08</div>
+                        </div>
+                    </li>
+                  
+                    <li>
+                    	<img src="__IMG__/user/voucher3.png" width="100%" />
+                        <div class="voucherBody">
+                            <div class="voucherPrice"><b>￥</b>10</div>
+                            <div class="voucherCode">dsKDSLFJDKJSF</div>
+                            <div class="voucherName">立减券</div>
+                            
+                            <div class="voucherDate">有效期至2015-09-08</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+    	</div>
+
+
+    </div>
+  </div>
+</div>
+<block name='script'>
+<script>
+
+</script>  
+</block>

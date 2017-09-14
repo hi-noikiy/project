@@ -1,0 +1,1 @@
+update pre_lucky_gift_configs set count=0 where giftId=61;

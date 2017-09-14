@@ -1,0 +1,71 @@
+<extend name='Public/base'/>
+
+<block name='body'>
+
+<div id="main">
+        <div class="container">
+            <div class="film-con">
+                <h2 id="menu"><a  href="{:U('activity/activitylist')}">正在进行</a><a class="active" href="javascript:">以往活动</a></h2>
+                <div class="slide-box">
+                    <div class="hd">
+                        <div class="hr" style="width:100%;"></div>
+                    </div>
+
+                    <!--无活动-->
+                    <div class="none" style="display:none"></div>
+
+                    <div class="bd">
+                        <ul>
+                        <volist name='list' id='v'>
+                            <li>
+                                <div class="baseInfo">
+                                    <a href="oldactivity.html?id={$v.id}" class="activityImg">
+                                        <img src="{$v.img}" width="600" height="200" >
+                                    </a>
+                                    <div class="activityInfo">
+                                        <a href="oldactivity.html?id={$v.id}">{$v.title}</a>
+                                        <p>{$v.introduction|htmlspecialchars_decode}</p>
+                                        <span>{$v.updateTime|date="Y-m-d",###}</span>
+                                    </div>
+                                </div>
+                            </li>
+                         </volist>
+                          
+                        </ul>
+                    </div>
+                    <div class="pagination">
+                    	<div class="page">
+                            <div>
+                            {$page}
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+             </div>
+        </div>
+    </div>
+
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            //去掉列底线
+            $('.film-con .bd> ul').each(function(){
+                $(this).children('li').last().find('.baseInfo').css({'border-bottom':'none'});
+            });
+
+        	
+ 
+        })
+        
+        
+
+		
+		
+		
+    </script>
+
+
+</block>

@@ -1,0 +1,71 @@
+<form action="" method="post" autocomplete="off">
+    <div class="modifyPassword">
+        {% if ns_issues|default(FALSE) %}
+            <div class="li_ clearfix" id="question_li">
+                <div class="_text pull-left">原安全问题：</div>
+                <select  id="questionid" class="_input" style="display:none;">
+                    {% for question in issues %}
+                    {% if question['id'] ==  ns_issues %}
+                    <option value="{{ question['id'] }}" select>{{ question['name'] }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+                    {% for question in issues %}
+                    {% if question['id'] ==  ns_issues %}
+                    <div style="float:left;margin-top:5px;" data="{{ question['id'] }}">{{ question['name'] }}</div>
+                    {% endif %}
+                    {% endfor %}
+            </div>
+            <div class="li_ clearfix" id="answer_li">
+                <div class="_text pull-left">原问题答案：</div>
+                <input type="text" id="answer" onclick="inputAnswer(this);" class="_input pull-left">
+                <div class="_tip" id="oldSecAnswer"></div>
+            </div>
+            <div class="li_ clearfix" id="new_question_li" style="display:none;">
+                <div class="_text pull-left">新安全问题：</div>
+                <select  id="newQuestionid" class="_input">
+                    {% for question in issues %}
+                        <option value="{{ question['id'] }}">{{ question['name'] }}</option>
+                    {% endfor %}
+                </select>
+                <div class="_tip"></div>
+            </div>
+            <div class="li_ clearfix" id="new_answer_li" style="display:none;">
+                <div class="_text pull-left">新问题答案：</div>
+                <input type="text" id="newAnswer" class="_input pull-left">
+                <div class="_tip" id="secAnswer"></div>
+            </div>
+        {% else %}
+            <div class="li_ clearfix">
+                <div class="_text pull-left">安全问题：</div>
+                <select  id="questionid" class="_input">
+                    {% for question in issues %}
+                    <option value="{{ question['id'] }}">{{ question['name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="li_ clearfix">
+                <div class="_text pull-left">问题答案：</div>
+                <input type="text" id="answer" onclick="inputAnswer(this);" class="_input pull-left">
+                <div class="_tip" id="secAnswer"></div>
+            </div>
+        {% endif %}
+        <div class="msg_submit clearfix">
+        {% if ns_issues|default(FALSE) %}
+            <div class="submit pn pnc" id="nextToUpdate" onclick="modifySecques(this)" />下一步</div>
+        {% else %}
+            <div class="submit pn pnc" onclick="modifySecques(this)" />提交</div>
+        {% endif %}
+        </div>
+    </div>
+    <input type="hidden" name="passwordsubmit" value="true" />
+</form>
+<div class="content-retrieve-right">
+    <div class="retrieve retrieve-point content-retrieve-cue">
+        <div style="margin-top: 160px;line-height:20px;margin-left:24px;">
+            <i class="retrieve retrieve-star icon-redstar"></i>
+            通过设定安全问题及相对应的答案，</br>
+            &nbsp;&nbsp;&nbsp;&nbsp;令您的账户安全系数更上一层楼！
+        </div>
+    </div>
+</div>

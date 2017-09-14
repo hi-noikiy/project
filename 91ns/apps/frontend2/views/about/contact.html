@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+{% include "template/about_link.html" %}
+<link rel="stylesheet" type="text/css" href="{{static_url('about/index'|ns_css)}}"/>
+</head>
+<body class="clearfix">
+{% include "template/about_header.html" %}
+<div class="content contact w1000m500">
+    <i class="title"></i>
+    <div class="banner">
+    	<div class="content1"></div>
+    	<div class="content2">
+    		<p class="h3">91NS.COM</p>
+    		<p>
+    			公司地址：厦门市思明区湖滨南路<br>莲景二里5号楼410室<!-- 华泾路509号7幢243室 -->
+    		</p>
+			<p>邮政编码：361000 <!-- 350001 --></p>
+			<p>客服电话：4009990591</p>
+			<p>邮箱：cyy@91ns.com</p>
+    	</div>
+    </div>
+    <div class="content clearfix" style="display:none;">
+    	<div class="left">
+    		<div class="top">公司地图</div>
+    		<div class="content">
+    			<h3>公交路线：</h3>
+    			<p>
+    				社区中心：1210路
+                    <br>
+                    龙吟路华济路：718路
+                    <br>
+                    华泾路龙吟路：718路 804路 1220路
+                    <br>
+                    华泾路长华路：714路 718路 770路 1210路 1220路
+                    <br>
+                    华新社：1210路
+                    <br>
+                    紫阳花苑：731路 770路
+                    <br>
+                    龙吴路华泾路：178路 178路大站车 342路 770路 956路 958路 1220路
+                    <br>
+                    华泾镇政府：上奉专线
+                    <br>
+                    龙吴路华新社： 731路
+                    <br>
+                    华济路龙吴路： 公交站
+    			</p>
+    		</div>
+    	</div>
+    	<div class="right"></div>
+    </div>
+</div>
+{% include "template/about_footer.html" %}
+</body>
+</html>

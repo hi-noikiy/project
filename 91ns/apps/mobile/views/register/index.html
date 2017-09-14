@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/regedit'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+</head>
+<body>
+<div id="topDiv" class="wrap" style="">
+    {% include "template/header.html" %}
+    <div class='pos_rel' style="width:100%;">
+        <img src='{{static_url("web/cssimg/mobile/screen/top_bg.jpg")}}' width="100%"/>
+        <img id="leftMenu" src='{{static_url("web/cssimg/mobile/screen/back.png")}}' width="7%" class='pos_ab back' />
+        <div class="pos_ab menu" style="width:100%;">
+            <img id="regTypeBG" src='{{static_url("web/cssimg/mobile/regedit/bg1.png")}}' width='59%' class='menu_bg'/>
+            <ul class='pos_ab'>
+                <li id="regTelLi" class='on'>手机号注册</li>
+                <li id="regNameLi">用户名注册</li>
+            </ul>
+        </div>
+    </div>
+    <div id="regTelLiContent" class='list'>
+        <div class='mm'>
+            <p class='fl menu_name'>手机号</p>
+            <input type='tel' id="regTelephone" placeholder="请输入手机号" class='fl mobile' />
+            <p id="userRegisterGetSMS" class='fr yzm'><span>获取验证码</span><i class="_all_code" style="display:none;"><i>60</i></i></p>
+            <div class="clear_all"></div>
+        </div>
+        <div class='mm'>
+            <p class='fl menu_name'>验证码</p>
+            <input id="regTelCode" type='text' placeholder="请输入收到的手机验证码" class='fl mobile1' />
+            <div class="clear_all"></div>
+        </div>
+        <div class='mm'>
+            <p class='fl menu_name'>密码</p>
+            <input id="regTelPassword" type='password' placeholder="6-18字母，数字，区分大小写" class='fl mobile1' />
+            <div class="clear_all"></div>
+        </div>
+        <div class='mm'>
+            <p class='fl menu_name'>确认密码</p>
+            <input id="regTelPassword2" type='password' placeholder="" class='fl mobile1' />
+            <div class="clear_all"></div>
+        </div>
+        <div class='mm endb'>
+            <p class='fl menu_name'>昵称</p>
+            <input id="regTelNickName" type='text' placeholder="2-10个字，不可使用纯数字" class='fl mobile1' />
+            <div class="clear_all"></div>
+        </div>
+    </div>
+    <div id="regNameLiContent" class='list' style='display: none' >
+        <div class='mm'>
+            <p class='fl menu_name'>用户名</p>
+            <input id="regUserName" type='text' placeholder="4-12字母，数字，区分大小写" class='fl mobile1' />
+            <div class="clear_all"></div>
+        </div>
+        <div class='mm'>
+            <p class='fl menu_name'>密码</p>
+            <input id="password_" type='password' placeholder="6-18字母，数字，区分大小写" class='fl mobile1' />
+            <div class="clear_all"></div>
+        </div>
+        <div class='mm'>
+            <p class='fl menu_name'>确认密码</p>
+            <input id="password2_" type='password' placeholder="" class='fl mobile1' />
+            <div class="clear_all"></div>
+        </div>
+        <div class='mm'>
+            <p class='fl menu_name'>昵称</p>
+            <input id="nickName_" type='text' placeholder="2-10个字，不可使用纯数字" class='fl mobile1' />
+            <div class="clear_all"></div>
+        </div>
+        <div class='mm endb'>
+            <p class='fl menu_name'>验证码</p>
+            <input id="secCode" type='text' placeholder="" class='fl mobile1' />
+            <img id="secCodeShow" class="secCode" src="" />
+            <div class="clear_all"></div>
+        </div>
+    </div>
+    <p class='des'>我已查看并同意<span onclick="hrefTo('/agreement/reggreement');">《91NS使用协议》</span></p>
+    <p id="registerSubmit" class='reg'>注册</p>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/register'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

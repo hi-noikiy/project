@@ -1,0 +1,50 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<div class="formBody">
+  	<div class="tableList">   
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr >
+                <td width="40%">上架影片</td>
+                <td width="15%">包场票价</td>
+                <td width="15%">全包票价</td>
+                <td width="15%">优惠票价</td>
+                <td width="15%">服务费</td>
+              </tr>
+            </thead>
+            <tbody>
+                <volist name='list' id='v'>
+                <tr>
+                    <td>{$v.filmName}</td>
+                    <td>￥{$v.price}</td>
+                    <td>￥{$v.fullHousePrice}</td>
+                    <td>￥{$v.favorablePrice}</td>
+                    <td>￥{$v.serviceCharge}</td>
+                </tr>
+                </volist>          
+            </tbody>
+        </table>
+	</div>
+</div>
+</form>
+</block>
+<block name="script">
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+<script type="text/javascript" src="__STATIC__/jqdatetiem/jquery.datetimepicker.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#tablist div.sublist").hide(); // Initially hide all content
+	$("#tabs li:first").attr("id","current"); // Activate first tab
+	$("#tablist div:first").fadeIn(); // Show first tab content
+    
+    $('#tabs a').click(function(e) {
+        e.preventDefault();        
+        $("#tablist div.sublist").hide(); //Hide all content
+        $("#tabs li").attr("id",""); //Reset id's
+        $(this).parent().attr("id","current"); // Activate this
+        $('#' + $(this).attr('href')).fadeIn(); // Show content for current tab
+    });
+});
+	
+</script>
+</block>

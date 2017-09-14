@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities.crowdfundingmovie'|ns_css)}}">
+    <link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+
+    <div id="cr_movie" class="wrapBd" style="min-width: 1204px;">
+        <div class="cr_movie_header"></div>
+        <div class="cr_movie time">
+            <div class="contentBody">
+                <div class="text"><span></span>~<span></span></div>
+                <div class="btn next">下一期</div>
+                <div class="btn prev">上一期</div>
+            </div>
+        </div>
+        <div class="cr_movie dataList">
+            <div class="contentBody">
+                <div class="btn next sprite-crowdfundingmovie right"></div>
+                <div class="btn prev sprite-crowdfundingmovie left"></div>
+                <div class="ulParent">
+                    <ul style="width:10000px;" class="clearfix">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="cr_movie message">
+            收到<span>0</span>个<i class="sprite-crowdfundingmovie dianyingpiao"></i>
+        </div>
+        <ul class="cr_movie detail">
+            <li class="title">
+                <div class="ranking">排名</div>
+                <div class="nickName">昵称</div>
+                <div class="number">送出电影票</div>
+            </li>
+            <li class="rankIndex1">
+                <div class="ranking">1</div>
+                <div class="nickName"></div>
+                <div class="number"></div>
+            </li>
+            <li class="rankIndex2">
+                <div class="ranking">2</div>
+                <div class="nickName"></div>
+                <div class="number"></div>
+            </li>
+            <li class="rankIndex3">
+                <div class="ranking">3</div>
+                <div class="nickName"></div>
+                <div class="number"></div>
+            </li>
+            <li>
+                <div class="ranking">4</div>
+                <div class="nickName"></div>
+                <div class="number"></div>
+            </li>
+            <li>
+                <div class="ranking">5</div>
+                <div class="nickName"></div>
+                <div class="number"></div>
+            </li>
+            <li>
+                <div class="ranking">6</div>
+                <div class="nickName"></div>
+                <div class="number"></div>
+            </li>
+            <li>
+                <div class="ranking">7</div>
+                <div class="nickName"></div>
+                <div class="number"></div>
+            </li>
+            <li>
+                <div class="ranking">8</div>
+                <div class="nickName"></div>
+                <div class="number"></div>
+            </li>
+            <li>
+                <div class="ranking">9</div>
+                <div class="nickName"></div>
+                <div class="number"></div>
+            </li>
+            <li>
+                <div class="ranking">10</div>
+                <div class="nickName"></div>
+                <div class="number"></div>
+            </li>
+        </ul>
+        <div class="cr_movie_footer"></div>
+    </div>
+    {% include "template/footer.html" %}
+    <script type="text/javascript" defer async data-main="{{static_url('activities.crowdfundingmovie'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</div>
+</body>
+</html>

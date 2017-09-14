@@ -1,0 +1,93 @@
+<extend name='Public/base'/>
+<block name='navbar'>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <div class="left"><a class="link" href="javascript:window.history.back()"> <i class="icon icon-back"></i><span></span></a></div>
+        <div class="center sliding">评论详情</div>
+        <div class="right"></div>
+      </div>
+    </div>
+</block>   
+</head>
+<block name='body'>
+
+ <div data-page="comment" class="page" id="page-comment">
+ <div style="display:none" id="addview">{:U('user/addView',array('pid'=>$views['cur']['id']))}</div>
+ <div style="display:none" id="zanurl">{:U('user/addClick')}</div>
+ <div style="display:none" id="delzanurl">{:U('user/delClick')}</div>
+	<div class="wrap">
+        <link rel="stylesheet" href="__CSS__/goods.css?{:time()}">
+            <div class="comment-main">
+                <h4><img src="{$views['cur']['headImage']}">{$views['cur']['otherName']}</h4>
+                <article>
+                    {$views['cur']['content']}
+                </article>
+
+                <section>
+                    <div class="item-block">
+                        <div class="datetime">{$views['cur']['time']}</div>
+                        <div class="comment-area"><span hasclick="{$views['cur']['hasClick']}" <?php if(!empty($user)){ ?>onclick="zan(this)"<?php }?> pid="{$views['cur']['id']}">{$views['cur']['clickNum']}</span><a>{$views['cur']['lookNum']}</a></div>
+                    </div>
+                </section>
+            </div>
+            <div id='text'>
+<foreach name='views["list"]' item='vo'>
+            <div class="comment-follow">
+                <h4><img src="{$vo['headImage']}">{$vo['otherName']} <div class="datetime">{$vo['time']}</div></h4>
+                <article>
+                    {$vo['content']}
+                </article>
+            </div>
+</foreach>
+</div>
+
+    </div>
+     <div class="reply-area" id='reply-area2'>
+        <textarea placeholder="回复..."></textarea>
+        <a>回复</a>
+     </div>
+
+  </div>
+  
+
+</block>
+<block name='script'>
+
+<script type="text/javascript">
+$(function(){
+    //进入页面时已点过赞的变色
+    $('.comment-area span').each(function(){
+        var hasclick = $(this).attr('hasclick');
+        if(hasclick=='0'){
+            $(this).removeClass('active');
+        }else{
+            $(this).addClass('active');
+        }
+    });
+
+	 zanurl=$('#zanurl').html();
+	delzanurl=$('#delzanurl').html();
+	var str='';
+	$('#reply-area2 a').click(function(){
+		var text=$(this).prev();
+		var content=text.val();
+		if(content!=''){
+			$.getJSON($('#addview').html(),{content:content},function(data){
+				if(data.status=='0'){
+					$('#text').html('');
+					 $.each(data.data,function(k,value){
+						 str+=' <div class="comment-follow"><h4><img src="'+value['headImage']+'">'+value['otherName']+' <div class="datetime">'+value['time']+'</div></h4>'+
+				                '<article>'+value['content']+'</article></div>';
+					 });
+					 text.val('');
+					$('#text').html(str);
+					$('.comment-area a').html(data.data.length);
+				}
+			});
+		}
+	});
+});
+
+
+</script>
+</block>

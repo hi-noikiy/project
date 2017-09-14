@@ -1,0 +1,154 @@
+{{ content() }}
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a>
+        <a href="#" class="current">未签约信息</a> 
+    </div>
+    
+  </div>
+  <div class="container-fluid">
+   <!--  <hr> -->
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+           <form class="form-search">
+            <select style="width: 100px;">
+              <option>全部</option>
+              <option>申请中</option>
+              <option>未申请</option>
+            </select>
+            
+            用户uid ：<input id="uid" type="text" class="input-medium search-query" placeholder="用户uid" > 
+            <button id="usersearch" type="button" class="btn  btn-success">查&nbsp;询</button>
+          </form>
+        </div>
+        <div class="widget-box">
+          
+          <div class="widget-content nopadding">
+            <table id="dataList" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th style="width: 20px;"><input type="checkbox"></th>
+                  <th>UID</th>
+                  <th>申请签约</th>
+                  <th>昵称</th>
+                  <th>申请表</th>
+                  <th>主播等级</th>
+                  <th>总播出时长</th>
+                  <th>总粉丝</th>                 
+                  <th>总收益(聊币)</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                	<td><input type="checkbox"></td>
+                	<td><a onclick="incomeDialog()">10000</a></td>
+                  <td>申请中</td>
+                	<td>透明</td>
+                  <td><a onclick="AIDialog()">查看</a></td>
+                	<td>1</td>
+                	<td>1000</td>
+                  <td>1000</td>
+                	<td>12</td>
+                  <td><a>通过</a>&nbsp;<a>拒绝</a></td>
+                </tr>
+
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td><a onclick="incomeDialog()">10000</a></td>
+                  <td>未申请</td>
+                  <td>透明</td>
+                  <td><a onclick="AIDialog()">查看</a></td>
+                  <td>1</td>
+                  <td>1000</td>
+                  <td>1000</td>
+                  <td>12</td>
+                  <td>无...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="pagination" class="pagination alternate pull-right">
+              
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="dialog-form" title="Create new user" style=" display: none;">
+  <form action="#" method="get" class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label">用户名(UID):</label>
+      <div class="controls">
+        <input type="text" placeholder="" class="span11" style="width:150px">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">兑换下限:</label>
+      <div class="controls">
+        <input type="text" placeholder="" class="span11" style="width:150px">
+      </div>
+    </div>
+  </form>
+</div>
+
+{% include "common/applyinfo.html" %}
+
+{% include "personal/income.html" %}
+
+<script type="text/javascript">
+  function ditedialog(id){
+    $( "#dialog-form" ).dialog({
+        width: 400,
+        title:'修改兑换限制',
+        modal:true,
+        closeOnEscape:true,
+        resizable:false,
+        open:function(){
+        /*
+          initialization();
+          $.ajax({
+            type:"post",
+            data:'',
+            url:url,
+            dataType:'json',
+            success:function(res){
+
+          });*/
+        },
+        buttons:{
+          "修改":function(){
+
+              /*$.ajax({
+                type:"post",
+                url:"/usermgr/userCountUpdate/"+id,
+                data:data,
+                dataType:'json',
+                success:function(res){
+                  alert(res.info);
+                  if(res.code==0){
+
+                    location.reload();
+
+                  }else{
+                    
+                  }
+                }
+              });*/
+          }
+          
+
+        }
+   });
+  }
+</script>

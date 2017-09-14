@@ -1,0 +1,68 @@
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('charge'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+
+
+<html style="overflow: visible;*overflow: auto;background-color: #E2A9B8;">
+ <body style="padding: 0;margin: 0;overflow: visible;height: auto;background-color: #E2A9B8;">
+<div class="online" style="background-color: #E2A9B8;">
+    <div class="head" >
+        <div class="head-p">
+            {% if webType['channelType']!=2 %}
+            <img class="head-img" src="{{static_url('web/cssimg/charge/online1.png')}}">
+            {% else %}
+            <img style="margin-left: 4px;" class="head-img" src="{{static_url('web/cssimg/charge/online1dz.png')}}">
+            {% endif %}
+        </div>
+    </div>
+    <div class="content">
+        <div class="content-mid" style="*position: relative;">
+            <div class="content-mid-m">
+                <div class="mid-m-head">
+                    <div style="width: 136px;height: 31px;"><img class="head-img" src="{{static_url('web/cssimg/charge/online2.png')}}"></div>
+                    <i><img  src="{{static_url('web/cssimg/charge/online3.png')}}"></i>
+                    <p style="position: absolute;margin: -27px 0 0 36px;font-size: 18px;color: #ffffff">活动详情</p>
+                    <div class="m-head-back"></div>
+                </div>
+                <div class="mid-m-content">
+                    <ul>
+                        <li><p>本活动用户必须在正在直播的房间内方可生效。</p></li>
+                        <li><p>若观看未达到5分钟而中断，重新连接直播间则重置时间。</p></li>
+                        <li><p>在线5分钟可获得25聊豆，每天可无限循坏。</p></li>
+                        <li><p>若用户未登录，则在直播间，同样会产生一个虚拟时间累积器，倒计时依然在累积。但是需要登录后才能领取奖励。</p></li>
+                        <li><p>本活动最终解释权归{{webType['name']}}所有。</p></li>
+                    </ul>
+                </div>
+                <div class="mid-m-footer" style="width: 817px; height: 16px;margin: 0 auto;">
+                    <img class="head-img" src="{{static_url('web/cssimg/charge/online5.png')}}">
+                </div>
+            </div>
+            <!--<div class="content-mid-f">-->
+                <!--<img class="head-img" src="{{static_url('web/cssimg/charge/shade2.png')}}">-->
+            <!--</div>-->
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
+{% endblock %}
+
+{% block end %}
+{% endblock %}

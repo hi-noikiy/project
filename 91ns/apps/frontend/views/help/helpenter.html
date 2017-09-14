@@ -1,0 +1,122 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+          <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title">如何进入人满的房间 </div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div class="HAL-text">
+                                      <p style="text-align: center;">每个主播等级都会有相应的房间人数上限，随着主播等级的提升，房间人数上限也会相应的提升。</p>
+                                      <p style="text-align: center;">如果用户进入人数已满的房间，会弹出提示，此时只要去商城开通VIP并升级到VIP3，就可以进入任何满员的房间了。</p>
+                                  </div>
+
+                                  <div>
+                                      <table style="width: 720px;" cellpadding="0" cellspacing="0">
+                                          <thead>
+                                          <tr>
+                                              <th class="td166">图标</th>
+                                              <th class="td166">主播等级</th>
+                                              <th class="td216 tdright">房间人数上限</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb0"></i></td><td class="td166">棒棒糖0</td><td class="td216 tdright"> 500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb1"></i></td><td class="td166">棒棒糖1</td><td class="td216 tdright"> 1,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb2"></i></td><td class="td166">棒棒糖2</td><td class="td216 tdright"> 1,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb3"></i></td><td class="td166">棒棒糖3</td><td class="td216 tdright"> 2,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb4"></i></td><td class="td166">棒棒糖4</td><td class="td216 tdright"> 2,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb5"></i></td><td class="td166">棒棒糖5</td><td class="td216 tdright"> 2,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb6"></i></td><td class="td166">蝴蝶结1</td><td class="td216 tdright"> 3,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb7"></i></td><td class="td166">蝴蝶结2</td><td class="td216 tdright"> 3,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb8"></i></td><td class="td166">蝴蝶结3</td><td class="td216 tdright"> 4,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb9"></i></td><td class="td166">蝴蝶结4</td><td class="td216 tdright"> 4,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb10"></i></td><td class="td166">蝴蝶结5</td><td class="td216 tdright">  5,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb11"></i></td><td class="td166">口红1</td><td class="td216 tdright"> 5,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb12"></i></td><td class="td166">口红2</td><td class="td216 tdright"> 6,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb13"></i></td><td class="td166">口红3</td><td class="td216 tdright"> 6,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb14"></i></td><td class="td166">口红4</td><td class="td216 tdright"> 7,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb15"></i></td><td class="td166">口红5</td><td class="td216 tdright"> 7,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb16"></i></td><td class="td166">口红6</td><td class="td216 tdright"> 8,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb17"></i></td><td class="td166">口红7</td><td class="td216 tdright"> 8,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb18"></i></td><td class="td166">口红8</td><td class="td216 tdright"> 9,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb19"></i></td><td class="td166">口红9</td><td class="td216 tdright"> 9,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb20"></i></td><td class="td166">口红10</td><td class="td216 tdright">  10,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb21"></i></td><td class="td166">口红11</td><td class="td216 tdright">  10,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb22"></i></td><td class="td166">口红12</td><td class="td216 tdright">  11,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb23"></i></td><td class="td166">口红13</td><td class="td216 tdright">  11,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb24"></i></td><td class="td166">口红14</td><td class="td216 tdright">  12,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb25"></i></td><td class="td166">高跟鞋1</td><td class="td216 tdright">  12,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb26"></i></td><td class="td166">高跟鞋2</td><td class="td216 tdright">  13,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb27"></i></td><td class="td166">高跟鞋3</td><td class="td216 tdright">  13,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb28"></i></td><td class="td166">高跟鞋4</td><td class="td216 tdright">  14,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb29"></i></td><td class="td166">高跟鞋5</td><td class="td216 tdright">  14,500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb30"></i></td><td class="td166">钻戒1</td><td class="td216 tdright"> 16,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb31"></i></td><td class="td166">钻戒2</td><td class="td216 tdright"> 17,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb32"></i></td><td class="td166">钻戒3</td><td class="td216 tdright"> 18,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb33"></i></td><td class="td166">钻戒4</td><td class="td216 tdright"> 19,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb34"></i></td><td class="td166">钻戒5</td><td class="td216 tdright"> 20,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb35"></i></td><td class="td166">皇冠1</td><td class="td216 tdright"> 25,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb36"></i></td><td class="td166">皇冠2</td><td class="td216 tdright"> 30,000</td></tr>
+                                          <tr><td class="td166" style="border-bottom: 1px solid #000000"><i class="sprite-zb_level zb37"></i></td><td class="td166" style="border-bottom: 1px solid #000000">皇冠3</td><td class="td216 tdright" style="border-bottom: 1px solid #000000">  35,000</td></tr>
+
+
+                                          </tbody>
+                                      </table>
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,2 @@
+result={"id":1494842675,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"5de6a44fa21a3055bd714de6e734f52f","creator":"JY","nickName":"九游玩家246335903003"}} 2017-05-15 18:04:35
+result={"id":1494842720,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"5de6a44fa21a3055bd714de6e734f52f","creator":"JY","nickName":"九游玩家246335903003"}} 2017-05-15 18:05:20

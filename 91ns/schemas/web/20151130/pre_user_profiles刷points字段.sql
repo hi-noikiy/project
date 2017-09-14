@@ -1,0 +1,1 @@
+UPDATE pre_user_profiles SET points = 0 WHERE ISNULL(points);

@@ -1,0 +1,214 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+    <ul style="display: block;">
+        {% include "common/menu.html" %}
+    </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+    <div class="container-fluid" style="padding: 0;">
+        <div class="widget-box tab-tabs" >
+            <div class="widget-content tab-content">
+                <div id="tab1" class="tab-pane active">
+                    <div class="container-fluid">
+                        <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                            <form id="signingSearch" class="form-search">
+                                <input id="isFamily" type="hidden" >
+                                <span style="font-size:20px; line-height: 30px">配置推荐位</span>
+                        <span class="find-search pull-right">
+                        <button  type="button" class="btn btn-purple" onclick="addrecommendDialog(0)">添加规则</button>
+                        </span>
+                            </form>
+                        </div>
+
+                        <div class="row-fluid">
+                            <table id="tableList" class="table with-check table-purple">
+                                <thead>
+                                <tr>
+                                    <th>推荐位</th>
+                                    <th>主播uid</th>
+                                    <th>主播昵称</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {% include "common/pagination.html" %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div id="addrecommendDialog" style="display:none"> <!--class="ui-dialog"-->
+    <form id="recommendDialogForm">
+        <div style="margin-top: 15px;margin-left: 24px;">
+            <span>推荐位：</span>
+            <input id="recommendPos" type="text">
+        </div>
+        <div style="margin-top: 15px;margin-left: 20px;">
+            <span>主播uid：</span>
+            <input id="recommendUid" type="text">
+        </div>
+    </form>
+</div>
+<div id="delrecommendDialog" style="display:none">
+    <div style="height: 115px;line-height: 115px;text-align: center;font-size: 16px;">确定删除这条数据？</div>
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+        recommendData();
+    });
+
+    function recommendData(index){
+        var form=global.doc('signingSearch');
+        var data={};
+        data.page=index||1;
+        data.numPerPage=global.pageSize;
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/getAnchorRecommend',
+            dataType:'json',
+            success:function(res){
+                var data=res.data;
+                var tableList=document.getElementById("tableList");
+                var tbody= tableList.getElementsByTagName('tbody')[0];
+                dataTable.clearData(tbody);
+
+                var count=document.getElementById('count');
+                count.innerHTML=data.count;
+
+                for(var i=0;i<data.list.length;i++){
+                    addRow(tbody,data.list[i]);
+                }
+                if(!index||index==0){
+                    utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                        page_index+=1;
+                        getDataList(page_index);
+                    });
+                }
+            }
+
+        });
+    }
+
+    function addRow(table,data){
+
+        var row=table.insertRow();
+        var cell=row.insertCell(0);
+        var cell1=row.insertCell(1);
+        var cell2=row.insertCell(2);
+        var cell3=row.insertCell(3);
+
+
+
+        cell.innerHTML=data.pos;
+
+        cell1.innerHTML=data.uid;
+
+        cell2.innerHTML=data.nickName;
+
+        cell3.innerHTML='<span class="spanedit"><a style="cursor: pointer" onclick="addrecommendDialog(1,'+data.uid+','+data.pos+')">修改</a>&nbsp;|&nbsp;<a style="cursor: pointer" onclick="delrecommendDialog('+data.uid+','+data.pos+')"> 删除</a></span>';
+
+        return row;
+    }
+
+    //  推荐位添加
+    function addrecommendDialog(type,uid,pos){
+        if(type==0){
+            var title='添加';
+            var action='add';
+        }
+        else{
+            var title='修改';
+            var action='update';
+        }
+        $('#addrecommendDialog').dialog({
+            autoOpen:true,
+            width:440,
+            height:250,
+            title:title,
+            resizable:false,
+            modal:true,
+            open:function(){
+                $('#recommendPos').val(pos);
+                $('#recommendUid').val(uid);
+            },
+            buttons: {
+                "确定": function () {
+
+                    var data={};
+                    data.action=action;
+                    data.uid=$('#recommendUid').val();
+                    data.pos=$('#recommendPos').val();
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/updateAnchorRecommend',
+                        dataType:'json',
+                        success:function(res){
+                            if(res.code!=0){
+                                alert(res.info);
+                            }
+                            location.reload();
+                        }
+
+                    });
+
+                }
+            }
+        });
+    }
+
+    //  推荐位删除
+    function delrecommendDialog(uid,pos){
+
+        $('#delrecommendDialog').dialog({
+            autoOpen:true,
+            width:440,
+            height:250,
+            title:'删除',
+            resizable:false,
+            modal:true,
+            open:function(){
+            },
+            buttons: {
+                "确定": function () {
+                    var data={};
+                    data.action='del';
+//                    data.uid=uid;
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/updateAnchorRecommend/'+uid,
+                        dataType:'json',
+                        success:function(res){
+                            if(res.code!=0){
+                                alert(res.info);
+                            }
+                            location.reload();
+                        }
+
+                    });
+
+                }
+            }
+        });
+    }
+
+
+
+</script>

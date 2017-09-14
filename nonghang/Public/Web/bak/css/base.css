@@ -1,0 +1,326 @@
+html, body, div, span, applet, object, iframe, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+h1, h2, h3, h4, h5, h6 {margin: 0;padding: 0;border: 0; font-weight: normal}
+
+html {height: 100%;-webkit-user-select: none;}
+body {font-size: 62.5%; font-family: "Microsoft YaHei"; line-height: 1; background: #fff; color:#3e4148;}
+
+article, aside, details, figcaption, figure, footer, header, menu, nav, section {display: block;}
+ol, ul, menu { list-style: none; }
+
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none;}
+strong {font-weight: bold; }
+
+table {border-collapse: collapse; border-spacing: 0;}
+img {border:none; max-width:100%; height: auto }
+
+a,a:visited {text-decoration:none; color:#3e4148}
+
+button {
+    outline:none
+}
+.clearboth {clear: both;}
+.clearfix{
+	*zoom:1
+}
+
+.clearfix:before,.clearfix:after{
+	display:table;
+	content:"";
+	line-height:0
+}
+
+.clearfix:after{
+	clear:both
+}
+
+.clear {
+    clear: both;
+}
+input, textarea,select {outline: none;  font-family: "Microsoft YaHei";}
+button { cursor: pointer; font-family: "Microsoft YaHei"; }
+
+body { background:#f6f6f6; position:relative;}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: #9a9a9a;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color: #9a9a9a;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+    color: #9a9a9a;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    color: #9a9a9a;
+}
+label{ cursor: pointer}
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0px 1000px #f6f6f6 inset;} /*去除谷歌输入框自动填充时的黄色背景*/
+.color-orange { color:#f99412}
+@font-face { font-family:db; src:url(../font/db.ttf); }
+/* 头部 */
+#header {
+    height: 104px;
+    background: #fff;
+    overflow: hidden;
+    border-top: 4px solid #179fec;
+    border-bottom:1px solid #dfdfdf;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 999;
+    width: 100%;
+}
+#page-index #header .container{
+	margin:0 auto;
+	}
+
+#header .nav {
+    float: left;
+    overflow: hidden;
+    width: 570px;
+    height: 104px;
+}
+
+#header .logo {
+    width: 200px;
+    float: left;
+    height: 65px;
+    margin:18px 44px 0 12px;
+    background:url(../images/logo.png) no-repeat;
+}
+#header ul.nav {
+    float:left;
+}
+#header li {
+    float: left;
+
+    width: 88px;
+    text-align: center
+}
+
+#header li a {
+    color: #3e4148;
+    display: block;
+    font-size: 14px;
+    height: 100px;
+    padding-top: 60px;
+    background: url(../images/navIcons.png) no-repeat 28px 24px;
+}
+
+
+#header li.active {
+    background:url("../images/navLi-active.png") no-repeat 0 -5px;
+}
+#header li.film a {
+    background-position: -62px 24px;
+}
+#header li.plan a {
+    background-position: -149px 24px;
+}
+#header li.bookwhole a {
+    background-position: -237px 24px;
+}
+#header li.goods a {
+    background-position: -325px 24px;
+}
+#header li.cinema a {
+    background-position: -413px 24px;
+}
+#header li.activity a {
+    background-position: -502px 24px;
+}
+#header li.phone a {
+    background-position: -595px 24px;
+}
+#header li.active a{
+    background-image: url("../images/navIcons2.png");
+    color:#fff;
+}
+
+
+#header .login-block {
+	text-align:right;
+    width: 260px;
+    float:right;
+    margin:0 10px;
+	height:100px;
+}
+#header .login-block a{
+    color:#071e2c;
+    font-size:15px;
+	line-height:50px;
+    margin:25px 10px;
+    cursor: pointer;
+	display:inline-block;
+	vertical-align:top;
+}
+#header .login-block a.portrait,#header .login-block a.portrait img {
+    width: 48px;
+    height: 48px;
+}
+a.portrait img {
+    border-radius: 50%;
+}
+#header .login-block a.name{
+	max-width:100px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+#header .login-block a.logout{
+    color: #179fec;
+}
+.fillMargin { height:104px;}
+/*登录弹窗*/
+
+.page-login .layui-layer-setwin {
+    right: 15px;
+    top: 15px;
+}
+
+.page-login .clubCard-login> a.link, .page-login .tel-login > a.link { color:#3e4148; font-size:14px; cursor: pointer; width:auto; background: none;}
+.page-login .clubCard-login> a.mit.link,.page-login .tel-login > a.mit.link { margin:0 16px 0 9px; display: inline-block; }
+.page-login .clubCard-login input {
+    color: #605f5f;
+    box-sizing: border-box;
+    line-height: 40px;
+}
+.page-login .clubCard-login ,.page-login .tel-login {
+    margin-left: 80px;
+}
+.page-login.login-area h4 {
+    margin: 30px 0 33px 112px;
+}
+.service-theme.layui-layer {
+    border: 1px solid #179fec;
+    border-radius: 6px;
+}
+
+/*导航选中*/
+#page-index #header li.index a,#page-filminfo #header li.film a,
+#page-plan #header li.plan a,#page-bookwholeIndex #header li.bookwhole a,
+#page-orderInfo #header li.bookwhole a,#page-payment #header li.bookwhole a,
+#page-paySuccess #header li.bookwhole a,#page-filmlist #header li.film a,
+#page-goodsIndex #header li.goods a,#page-activitylist #header li.activity a{
+    background-image: url("../images/navIcons2.png");
+    color:#fff;
+}
+#page-index #header li.index,#page-filminfo #header li.film,
+#page-plan #header li.plan,#page-bookwholeIndex #header li.bookwhole,
+#page-orderInfo #header li.bookwhole,#page-payment #header li.bookwhole,
+#page-paySuccess #header li.bookwhole,#page-filmlist #header li.film,
+#page-goodsIndex #header li.goods,#page-activitylist #header li.activity{
+    background:url("../images/navLi-active.png") no-repeat 0 -5px;}
+
+#header li:hover a {
+    color:#179fec;
+    background-image: url("../images/navIcons3.png");
+}
+
+/*底部*/
+#footer {
+    height: 180px;
+    border-top: 9px solid #179fec;
+    background: #3a3a3a;
+    text-align: center
+}
+
+#footer .containers {
+    width: 1248px;
+    background: url(../images/indexIcons.png) no-repeat right -920px;
+    padding-top: 40px;
+    position: relative;
+}
+
+#footer li {
+    color: #c5c5c5;
+    font-family: '宋体';
+    font-size: 12px;
+    margin-bottom: 16px;
+}
+
+#footer li a {
+    font-size: 14px;
+    color: #c5c5c5;
+    font-family: 'Microsoft YaHei'
+}
+
+#footer span {
+    font-size: 14px;
+    color: #fff;
+    position: absolute;
+}
+
+#footer span.tel {
+    right: 254px;
+    top: 18px;
+}
+
+#footer span.publicize {
+    right: 14px;
+    top: 17px;
+}
+
+
+/*分页*/
+/*分页开始*/
+.pagination {
+	margin:10px 0 30px;
+	text-align:center;
+	}
+
+.pagination .page a{
+	padding:0px 10px;
+	border:1px solid #ccc;
+	height:28px;
+	line-height:28px;
+	color:#5d5d5d;
+	display:inline-block;
+	text-align:center;
+	position:relative;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	margin: 2px;
+	}
+.pagination .page a:hover{
+	background-color:#179fec;
+	color:#fff;
+	padding:0px 10px;
+	margin: 2px;
+	}
+
+.pagination .page span.current{
+	padding:0px 10px;
+	background-color:#179fec;
+	height:30px;
+	line-height:30px;
+	color:#fff;
+	display:inline-block;
+	text-align:center;
+	position:relative;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;	
+	margin: 2px;
+	}
+/*分页结束*/

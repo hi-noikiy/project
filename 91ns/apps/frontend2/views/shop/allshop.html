@@ -1,0 +1,173 @@
+{% extends "template/template_shop.html" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('mall_allshop'|ns_css)}}"/>
+<link rel="stylesheet" type="text/css" href="{{static_url('mall_car'|ns_css)}}"/>
+{% endblock %}
+{% block body %}
+
+<div class="M_allshop">
+    <div class="M_allshop_hd clearfix">
+        <h3>&nbsp;VIP</h3><span class="pull-left">奢华会员 彰显尊贵</span><div class="hr pull-left"></div>
+    </div>
+</div>
+<div class="AD_1200"><a href="/shop/vip"><img alt="vip" src="{{static_url('web/cssimg2/upload/vip-banner.png')}}"></a></div>
+
+<div class="M_allshop">
+    <div class="M_allshop_hd clearfix">
+        <h3>&nbsp;座驾</h3><span class="pull-left">奢华座驾 彰显品味</span><div class="hr pull-left"></div><a class="moreCar pull-left" href="/shop/car">更多</a>
+    </div>
+</div>
+<div class="M_car">
+    {% if carInfo %}
+    {% for car in carInfo %}
+    {%if car['showStatus'] and car['typeId'] == 1 %}
+    <div class="M_car_item clearfix">
+        <ul>
+            {% for i in 0..3 %}
+            <li id="car-{{ car['info'][i]['id'] }}" style="{% if i!=0 and (i+1)%4==0 %}margin-right:0px;{%endif%}">
+                <div class="pic">
+                    <i class="sprite-car_img_big {{ car['info'][i]['configName'] }}"></i>
+                </div>
+
+                <div class="txt">
+                    <h4>{{ car['info'][i]['name'] }}</h4>
+                    <p>
+                                <span class="price">
+                                {% if car['typeId'] == 4 %}
+                                    <em class="t_purple">{{ car['info'][i]['description'] }}</em>
+                                {% else %}
+                                    <i class="i_L"></i><em class="t_red">{{ car['info'][i]['price'] }}</em>/月
+                                {% endif %}
+                                </span>
+                        {% if car['sellStatus'] %}
+                        <a class="bt_pay sendC" style="margin-top: -14px;" onclick="sendCarType({{ car['info'][i]['id'] }});">赠送</a>
+                        <a class="bt_pay sendB" style="margin-top: 7px;" onclick="buyCarType({{ car['info'][i]['id'] }});">{% if car['info'][i]['hasCar']|default(0)==1 %}续费{% else %}购买{% endif %}</a>
+                        {% else %}
+                    <div class="no_sale"></div>
+                    {% endif %}
+                    </p>
+                </div>
+
+                {% if car['info'][i]['hasCar']|default(0)==1%}
+                <div class="item-has"></div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {%endif%}
+    {%endfor%}
+    {%endif%}
+</div>
+
+<div class="M_allshop">
+    <div class="M_allshop_hd clearfix">
+        <h3>&nbsp;守护</h3><span class="pull-left">牵手专属天使 守护挚爱主播</span><div class="hr pull-left"></div>
+    </div>
+</div>
+<div class="AD_1200" style="position: relative;padding-top: 10px;">
+    <img alt="vip" src="{{static_url('web/cssimg2/upload/guard-banner.png')}}">
+    <div class="allguard">
+        <div><img class="allguard_img" src="{{static_url('web/cssimg2/V/guard3.png')}}"><span class="marginSpan number">99999</span><span class="marginSpan">聊币/月</span></div>
+        <div><img class="allguard_img" src="{{static_url('web/cssimg2/V/guard1.png')}}"><span class="marginSpan number">66666</span><span class="marginSpan">聊币/月</span></div>
+        <div><img class="allguard_img" src="{{static_url('web/cssimg2/V/guard2.png')}}"><span class="marginSpan number">22222</span><span class="marginSpan">聊币/月</span></div>
+    </div>
+    <div class="_allguard"><a href="/rooms/hotroom">快去直播间为TA开通守护吧！</a></div>
+</div>
+
+<div class="alartDia">
+    <div class="dia-win buycar" style="margin-top: -222.5px; display:none; opacity: 1;border: 1px solid #ccc;background-color: white;width: 555px;">
+        <div class="header">
+            <!-- <i class="ico-main-12 alert-logo"></i> -->
+            <span class="_tip" style="margin-left: 20px;">购买入场特效</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control pull-right sprite-myincome cancelbig" onclick="closedia()"></i>
+        </div>
+        <div class="alert-content clearfix">
+            <div class="pull-left" style="width: 226px;height: 262px;">
+                <div class="leftImg"></div>
+                <div class="leftType"></div>
+                <div class="leftPrice">价格：<span id="_buyVipP" class="buyVipFontColor">0</span>聊币/月</div>
+
+            </div>
+            <div class="bugInfo pull-left"  style="width: 300px;height: 262px;">
+                <ul>
+                    <li>
+                        <span>&nbsp;&nbsp;&nbsp;我的账号ID：</span>
+                        <span id="_userID">您还未登录</span>
+                        <a class="sendFriend" onclick="sendCarType()">赠送好友</a>
+                        <!--<input type="text" style="width: 120px;height: 24px;padding: 2px;border: 1px solid #ccc;">-->
+                    </li>
+                    <li>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购买时长：</span>
+                        <a class="_buyTime active" vipid="1">30天</a>
+                        <a class="_buyTime" vipid="3">90天</a>
+                        <a class="_buyTime" vipid="6">180天</a>
+                        <a class="_buyTime" vipid="12" style="margin-left: 90px;margin-top: 8px;">360天</a>
+                    </li>
+                    <li>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应付金额：</span>
+                        <span id="totalPrice" class="buyVipFontColor">0</span>&nbsp;聊币
+                        <a href="/charging" class="goCharing">充值</a>
+                    </li>
+                    <li>
+                        <span>您的账户余额：</span>
+                        <span id="myCash" class="buyVipFontColor" nsdata="cash">0</span>&nbsp;聊币
+                    </li>
+                    <li>
+                        <div id="goBuyCar-ok" class="goBuyVip" onclick="buyCar(this,1)">购买</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alartDia">
+    <div class="dia-win sendcar" style="margin-top: -222.5px; display: none; opacity: 1;border: 1px solid #ccc;background-color: white;width: 555px;">
+        <div class="header">
+            <!-- <i class="ico-main-12 alert-logo"></i> -->
+            <span class="_tip" style="margin-left: 20px;">购买入场特效</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control pull-right sprite-myincome cancelbig" onclick="closedia()"></i>
+        </div>
+        <div class="alert-content clearfix">
+            <div class="pull-left" style="width: 226px;height: 330px;">
+                <div class="leftImg" style="margin-top: 80px;"></div>
+                <div class="leftType"></div>
+                <div class="leftPrice">价格：<span id="buyVipO" class="buyVipFontColor">0</span>聊币/月</div>
+
+            </div>
+            <div class="bugInfo pull-left"  style="width: 300px;height: 330px;">
+                <ul>
+                    <li class="clearfix">
+                        <span class="pull-left" style="line-height:30px;">&nbsp;&nbsp;&nbsp;好友账号ID：</span>
+                        <input id="Fuid" class="inputText pull-left" type="text">
+                        <a class="sendFriend" style="margin-left: 20px;float:left;line-height:30px;" onclick="buyCarType()">买给自己</a><br>
+                        <label id="pointId" style="color: red;margin-left: 90px;float:left;"></label>
+                    </li>
+                    <li class="clearfix" style="margin-top: 5px;">
+                        <span class="pull-left" style="*margin-right:-4px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购买时长：</span>
+                        <a class="_sendTime active pull-left" vipid="1">30天</a>
+                        <a class="_sendTime pull-left" vipid="3">90天</a>
+                        <a class="_sendTime pull-left" vipid="6">180天</a>
+                        <a class="_sendTime pull-left" vipid="12" style="margin-left: 87px;*margin-left:83px;margin-top: 8px;">360天</a>
+                    </li>
+                    <li>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应付金额：</span>
+                        <span id="sendTotal" class="buyVipFontColor">0</span>&nbsp;聊币
+                        <a href="/charging" class="goCharing">充值</a>
+                    </li>
+                    <li>
+                        <span>您的账户余额：</span>
+                        <span id="_viptotal" class="buyVipFontColor" nsdata="cash">0</span>&nbsp;聊币
+                    </li>
+                    <li id="_telephone"></li>
+                    <li id="_smsCode" class="clearfix"></li>
+                    <li>
+                        <div id="goSendVip-ok" class="goBuyVip" style="margin-top: -9px;" type="1" onclick="buyCar(this,2)">赠送</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

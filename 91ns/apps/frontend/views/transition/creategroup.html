@@ -1,0 +1,160 @@
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('transition'|ns_css)}}">
+<link rel="stylesheet" type="text/css" href="{{static_url('uploadfile'|ns_css)}}">
+<script type="text/javascript" src="{{static_url('creatGroup'|ns_js)}}"></script>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<html style="overflow: visible;*overflow: auto;">
+ <body style="padding: 0;margin: 0;overflow: visible;height: auto;">
+   <div class="container-group">
+       <div class="container-top">
+           <div class="container-top-img">
+               {% if webType['channelType']!=2 %}
+               <img src="{{static_url('web/cssimg/familyActivities/create.jpg')}}">
+               {% else %}
+               <img src="{{static_url('web/cssimg/familyActivities/createdz.png')}}">
+               {% endif %}
+           </div>
+       </div>
+       <div class="container-content">
+           <div class="content-group">
+               <div class="title">
+                   <p><i class="yuan r-left pull-left"></i> <i class="yuan r-right pull-right"></i></p>
+                   <p class="title-point">(<span style="color: red;">*</span>选项都为必选项)</p>
+                   <p><i class="title-line"></i></p>
+               </div>
+               <div class="applycon">
+                   <div class="appForm">
+                           <input type="hidden" name="picurl" value="" id="poster_url">
+                           <dl>
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>家族名称：</div>
+                                   <div class="finp">
+                                       <!--<label id="tab-lable" class="group-lable" style="display: block;*margin: 0px 0 0 -320px">限8个字</label>-->
+                                       <label defaultdisplay="default" defaultvalue="上限8个字" style="color: #8f8f8f;font-size: 12px;display: block;margin: 5px 0 0 120px;position:absolute;cursor: text;">上限8个字</label>
+                                       <input id="f_name" type="text" name="fName" class="input_text familyname default-value"  >
+                                       &nbsp;
+                                       <span class="warning" id="f_name_tip" style="*margin-top: -20px;margin-top: -17px\0;float:none\0;"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>家族徽章：</div>
+                                   <div class="finp"  style="position: relative">
+                                       <!--<label id="tab-lable1" class="group-lable" style="display: block;position:absolute;top:0px;left:0px;float: left;">限2个字</label>-->
+                                       <label defaultdisplay="default" defaultvalue="必须为2个字" style="color: #8f8f8f;font-size: 12px;display: block;display: block;position:absolute;top:5px;left:120px;float: left;cursor: text;">必须为2个字</label>
+                                       <input  id="f_shortName" type="text" name="fShortName" class="input_text familystan default-value"  style="width: 72px">
+
+                                       <span class="warning" id="f_shortName_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"><span style="color: red;">*</span>家族图标：</div>
+                                   <div class="finp" style="margin-left: 120px;">
+                                       <div class="clearfix">
+                                           <div id="fileuploader" class="create-fileuploader">
+                                               <object class="img_up_obj" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="100%" height="100%" id="mycamera" wmode="transparent">
+                                                   <param name="allowScriptAccess" value="always" />
+                                                   <param name="scale" value="exactfit" />
+                                                   <param name="wmode" value="transparent" />
+                                                   <param name="quality" value="high" />
+                                                   <param name="movie" value="{{static_url('web/swf/uploadImage.swf?serviceUrl=/userfamily/uploadfamilyposter&width=160&height=160&backFun=uploadImageCallback')}}" />
+                                                   <param name="menu" value="false" />
+                                                   <embed class="img_up_obj" id="img_swf" src="{{static_url('web/swf/uploadImage.swf?serviceUrl=/userfamily/uploadfamilyposter&width=160&height=160&backFun=uploadImageCallback')}}" quality="high" width="100%" height="100%" name="mycamera" allowScriptAccess="always" allowFullScreen="false" scale="exactfit" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer"/>
+                                               </object>
+                                               <span>上传图片</span>
+                                           </div>
+                                           <div id="uploading" class="loading" style="display:none;position: absolute;margin:-38px 0 0 80px">
+                                              <img src="{{static_url('web/cssimg/91ns/loading1.gif')}}" >
+                                           </div>
+                                           <input id="fimg" type="hidden">
+                                       </div>
+                                       <div id="preview" class="warning clearfix" style="margin: 5px 0 0 0px;font-weight: bold;">未选择任何图片（限jpg、png格式，500k以内）</div>
+                                       <img id="pre_familyLogo" src="" style="display: none;" width="160" height="160">
+                                   </div>
+                                   <div id="f_logo_tip"></div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ginfo" style="">族长信息</div>
+                                   <div class="ftit" > <span style="color: red;">*</span>代理公司名称：</div>
+                                   <div class="finp" id="comname">
+                                        <label defaultdisplay="default" defaultvalue="上限20个字" style="color: #8f8f8f;font-size: 12px;display: block;display: block;position:absolute;top:5px;left:120px;float: left;cursor: text;">上限20个字</label>
+                                       <input type="text" class="input_text cgname" id="f_companyName">
+                                       <span class="warning" id="f_companyName_tip"></span>
+                                   </div>
+                               </dd>
+                               <dd class="clearfix">
+                                   <div class="ftit" > <span style="color: red;">*</span>代理公司地址：</div>
+                                   <div class="finp" id="comadd">
+                                        <label defaultdisplay="default" defaultvalue="上限30个字" style="color: #8f8f8f;font-size: 12px;display: block;display: block;position:absolute;top:5px;left:120px;float: left;cursor: text;">上限30个字</label>
+                                       <input type="text" class="input_text cgname" id="f_address">
+                                       <span class="warning" id="f_address_tip"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix" style="margin-top: 36px; margin-bottom: 36px;">
+                                   <div class="ftit"> <input type="checkbox" id="deal" name="deal" checked="checked" style="float: right;margin: -1px 12px 0 0;">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+                                   <div class="finp" style=" font-size: 14px;">
+                                       我已阅读并同意 <a href="/agreement/createGroupAgreement" target="_blank" style="color:#FF0000">《家族申请用户协议》</a>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit">
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                   </div>
+                                   <div class="finp" >
+                                       <input class="submbtn" style="margin-left: 66px;" gmqq="{{GMQQ[0]}}" type="button" name='creatSubmitBtn' value='提 交' id='creatSubmitBtn'>
+
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit">
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                   </div>
+                                   <div class="finp" >
+                                       <a href="tencent://message/?v=3&amp;uin={{GMQQ[0]}}&amp;site=qq&amp;menu=yes" style="margin-left: 46px; margin-top: 20px;margin-bottom: 80px; display: inline-block; font-size: 14px; color: #000; border: 1px #979c9c solid; padding: 5px 10px; border-radius: 4px;" >
+                                           &nbsp;&nbsp;<img src="{{static_url('web/cssimg/familyActivities/qq.png')}}" style="vertical-align: middle">
+                                           &nbsp;&nbsp;&nbsp;&nbsp;签约主播服务
+                                       </a>
+                                   </div>
+                               </dd>
+                           </dl>
+                   </div>
+
+               </div>
+
+           </div>
+
+       </div>
+       <div style="padding-top: 80px;background-color: #140317;"></div>
+   </div>
+
+
+
+
+
+
+</div>
+</body>
+</html>
+{% endblock %}
+
+{% block end %}
+{% endblock %}

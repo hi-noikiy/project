@@ -1,0 +1,331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>影城票券验证系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<link rel="stylesheet" type="text/css" href="__CSS__/style.css" media="all">
+<link rel="stylesheet" href="__STATIC__/jqdatetiem/jquery.datetimepicker.css" type="text/css" media="screen" />
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__STATIC__/jquery1.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<!--<![endif]-->
+<link rel="stylesheet" href="__STATIC__/layer/skin/layer.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__STATIC__/layer/skin/layer.ext.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="__STATIC__/layer/layer.js?t={$__TIME__}"></script>
+<script type="text/javascript" src="__STATIC__/jqdatetiem/jquery.datetimepicker.js?t={$__TIME__}"></script>
+<script type="text/javascript" src="__JS__/jquery.placeholder.1.3.min.js"></script>
+<script type="text/javascript" src="__JS__/jQuery.resizeEnd.js"></script>
+ 
+
+<block name="style"></block>
+
+</head>
+<body>
+<div class="checkLeft">
+	<div class="leftLogo"><img src="__IMG__/zrlogo.png" width="80%" /></div>
+    <div class="leftTop">
+        <p>上次登录：<?php echo date("Y-m-d h:i:s",$_SESSION['adminUserInfo']['lastLoginTime']);?></p>
+        <p class="user">操作员：<span>{$user['username']}</span><a href="javascript:" class="on" ></a></p>
+    </div>
+    <div class="leftMenu">
+        <ul id="menu">
+            <li><a href="{:U('Index/voucher')}" class="menu1 <?php if(ACTION_NAME=='voucher' || ACTION_NAME=='voucherlist'){ ?>cur<?php }?>" >票券验证</a></li>
+            <li><a href="{:U('Index/sale')}" class="menu2 <?php if(ACTION_NAME=='sale' || ACTION_NAME=='salelist'){ ?>cur<?php }?>" >卖品验证</a></li>
+        </ul>
+    </div>
+    <div class="modify">
+        <form action="{:U('Public/up_pass')}" method="post" id="edit_from">
+            <div class="modifyBox">
+                 <input type="password" placeholder="请输入原始密码" name="password" id='password'/>
+                <input type="password" placeholder="请输入新密码" name="newpass" id='newpass'/>
+                <input type="password" placeholder="确认新密码" name="newpass_2" id='newpass_2'/>
+                <a href="javascript:edit_passwd()" >修改</a>
+                <a href="javascript:" class="off">取消</a>
+                
+            </div>
+        </form>
+    </div>
+    <a class="checkClose" href="javascript:"><em><img src="__IMG__/close.png" /></em><span>退出登录</span></a>
+    <div class="clear"></div>
+</div>
+<div class="checkRight">
+    <block name="body"></block>
+    <div class="footerRight">
+         <p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有 0591-83820802</p>
+    </div>
+</div>
+<script type="text/javascript">
+//自适应浏览器高度
+var h=$(window).height();
+//var scrollHeight=document.body.scrollHeight;
+var l=h-70  
+$('.checkRight').height(l);
+//$('.checkLeft').height(scrollHeight);
+;(function($) {
+		$(window).on('resize', function() {
+			
+		});
+		$(window).resizeEnd({
+			delay : 0
+		}, function() {
+			var h=$(window).height();
+			var l=h-70  
+			$('.checkRight').height(l);
+			/* Add callback function logic here */
+		});
+	})(jQuery);
+	
+	
+
+		
+$(document).ready(function(){
+	$(".on").click(function(){
+		$('.modify').show().animate({left:'0px'},1000);
+		$('.leftMenu').css('display','none');
+	});
+	 $(".off").click(function(){
+	 	$('.modify').css('display','none');
+	 	$('.leftMenu').css('display','block');
+	 });
+	
+	$('.checkClose').click(function(){
+       
+       
+
+        layer.confirm('您确定要退出吗？',function(index){
+
+           window.location.href="{:U('public/logout')}";
+
+      
+        })
+       
+
+	});
+
+});
+	function edit_passwd(){
+            var password=$('#password').val();
+            var ewpass=$('#newpass').val();
+            var newpass_2=$('#newpass_2').val();
+            var searchdata="";
+            if(!password){
+                layer.alert("请输入旧密码！");
+                return;
+            }
+            if(!ewpass){
+                layer.alert("请输入新密码！");
+                return;
+            }
+            if(!newpass_2){
+                layer.alert("请输入确认密码！");
+                return;
+            }
+            if(ewpass!=newpass_2){
+
+               
+                
+
+                layer.alert("两次密码不一致2！");
+                return;
+            }
+
+
+
+            if(password)
+                searchdata=searchdata+"&password="+password;
+            if(ewpass)
+                searchdata=searchdata+"&newpass="+ewpass;
+            if(newpass_2)
+                searchdata=searchdata+"&newpass_2="+newpass_2;
+          
+
+
+              $.ajax({
+                type: "post", 
+                url:"{:U('Public/up_pass')}",
+                data:searchdata,
+                success: function(msg){
+                    // var res = eval("(" + msg + ")");
+                    if(msg.status == '0') {
+
+                            $('.modify').css('display','none');
+                            $('.leftMenu').css('display','block');
+                            layer.alert(msg.content); 
+
+
+
+                    }else { 
+
+                            layer.alert(msg.content);    
+
+
+                    }           
+                } 
+            });   
+
+
+
+		// alert('111');
+   		// $("#edit_from").submit();
+    }
+
+//兼容默认注释
+$(function(){
+		// Initialize placeholder
+		$.Placeholder.init();
+		});
+	//判断浏览器是否支持 placeholder属性
+(function($) {    
+  var placeholderfriend = {  
+    focus: function(s) {  
+      s = $(s).hide().prev().show().focus();  
+      var idValue = s.attr("id");  
+      if (idValue) {  
+        s.attr("id", idValue.replace("placeholderfriend", ""));  
+      }  
+      var clsValue = s.attr("class");  
+      if (clsValue) {  
+        s.attr("class", clsValue.replace("placeholderfriend", ""));  
+      }  
+    }  
+  }  
+  
+  //判断是否支持placeholder  
+  function isPlaceholer() {  
+    var input = document.createElement('input');  
+    return "placeholder" in input;  
+  }  
+  //不支持的代码  
+  if (!isPlaceholer()) {  
+    $(function() {  
+  
+      var form = $(this);  
+  
+      //遍历所有文本框，添加placeholder模拟事件  
+      var elements = form.find("input[type='text'][placeholder]");  
+      elements.each(function() {  
+        var s = $(this);  
+        var pValue = s.attr("placeholder");  
+        var sValue = s.val();  
+        if (pValue) {  
+          if (sValue == '') {  
+            s.val(pValue);  
+          }  
+        }  
+      });  
+  
+      elements.focus(function() {  
+        var s = $(this);  
+        var pValue = s.attr("placeholder");  
+        var sValue = s.val();  
+        if (sValue && pValue) {  
+          if (sValue == pValue) {  
+            s.val('');  
+          }  
+        }  
+      });  
+  
+      elements.blur(function() {  
+        var s = $(this);  
+        var pValue = s.attr("placeholder");  
+        var sValue = s.val();  
+        if (!sValue) {  
+          s.val(pValue);  
+        }  
+      });  
+  
+      //遍历所有密码框，添加placeholder模拟事件  
+      var elementsPass = form.find("input[type='password'][placeholder]");  
+      elementsPass.each(function(i) {  
+        var s = $(this);  
+        var pValue = s.attr("placeholder");  
+        var sValue = s.val();  
+        if (pValue) {  
+          if (sValue == '') {  
+            //DOM不支持type的修改，需要复制密码框属性，生成新的DOM  
+            var html = this.outerHTML || "";  
+            html = html.replace(/\s*type=(['"])?password\1/gi, " class='pwdPlaceholder' type=text placeholderfriend")  
+              .replace(/\s*(?:value|on[a-z]+|name)(=(['"])?\S*\1)?/gi, " ")  
+              .replace(/\s*placeholderfriend/, " placeholderfriend value='" + pValue  
+              + "' " + "onfocus='placeholderfriendfocus(this);' " );  
+            var idValue = s.attr("id");  
+            if (idValue) {  
+              s.attr("id", idValue + "placeholderfriend");  
+            }  
+            var clsValue = s.attr("class");  
+            if (clsValue) {  
+              s.attr("class", clsValue + "placeholderfriend");  
+            }  
+            s.hide(); 
+            s.after(html);  
+          }  
+        }  
+      });  
+  
+      elementsPass.blur(function() {  
+        var s = $(this);  
+        var sValue = s.val();  
+        if (sValue == '') {  
+          var idValue = s.attr("id");  
+          if (idValue) {  
+            s.attr("id", idValue + "placeholderfriend");  
+          }  
+          var clsValue = s.attr("class");  
+          if (clsValue) {  
+            s.attr("class", clsValue + "placeholderfriend");  
+          }  
+          s.hide().next().show();  
+        }  
+      });  
+  
+    });  
+  }  
+  window.placeholderfriendfocus = placeholderfriend.focus;  
+})(jQuery);  
+
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+    datepicker:true,
+	timepicker:false,
+
+	format:'Y-m-d',
+	formatDate:'Y-m-d'
+});
+
+
+$('.dateTime').datetimepicker({
+    yearOffset:0,
+    lang:'ch',
+    datepicker:true,
+    timepicker:true,
+    format:'Y-m-d H:i:s',
+    formatDate:'Y-m-d H:i:s'
+});
+
+$('.time').datetimepicker({
+    yearOffset:0,
+    lang:'ch',
+    datepicker:false,
+    timepicker:true,
+    format:'H:i',
+    formatDate:'H:i'
+});
+$('.date').after('<span onclick="clearDate(this)"  style="cursor:pointer; display:inline-block; margin-left:-25px;"><img src="__IMG__/out.png" width="15" style="margin:0 auto" /></span>');
+$('.dateTime').after('<span onclick="clearDate(this)"  style="cursor:pointer; margin-left:-25px;"><img src="__IMG__/out.png" width="15" style="margin:0 auto" /></span>');
+$('.time').after('<span onclick="clearDate(this)"  style="cursor:pointer; margin-left:-25px;"><img src="__IMG__/out.png" width="15" style="margin:0 auto" /></span>');
+
+function clearDate (obj) {
+    $(obj).prev().val('');
+}
+
+
+</script>
+<block name="script"></block>
+</body>
+</html>

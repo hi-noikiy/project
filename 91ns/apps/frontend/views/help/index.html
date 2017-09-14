@@ -1,0 +1,121 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+{% endblock %}
+
+{% block titleContent %}
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent">
+    <div class="center-box-content">
+        <div class="center-box main-background-body" bottompadding="42">
+            <div class="center-top">
+                <div class="rope-left">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+                <div class="rope-right">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+            </div>
+            <div class="center-content">
+                <div class="widget-box">
+                    <div class="help-box">
+                        <div class="content-c clearfix">
+                            <div class="content-left">
+                                <ul class="btnlist">
+                                    <li class="btn1">
+                                        <a>
+                                            <img src="{{static_url('web/cssimg/help/btn1.png')}}">
+                                            <span>在线服务</span>
+                                        </a>
+                                    </li>
+                                    <li class="btn2">
+                                        <a>
+                                            <img style="margin-left: 1px;" src="{{static_url('web/cssimg/help/btn2.png')}}">
+                                            <span>官方申请</span>
+                                        </a>
+                                    </li>
+                                    <li class="btn3">
+                                        <a>
+                                            <img src="{{static_url('web/cssimg/help/btn3.png')}}">
+                                            <span>常见问题</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="content-right">
+                                <ul class="help1 clearfix">
+                                    <li style="margin-left:48px">
+                                        <a href="tencent://message/?v=3&amp;uin={{GMQQ[0]}}&amp;site=qq&amp;menu=yes">
+                                            <i class="help-icon-iocn1"></i>
+                                        </a>
+                                        <a href="tencent://message/?v=3&amp;uin={{GMQQ[0]}}&amp;site=qq&amp;menu=yes">在线服务</a>
+                                    </li>
+                                    <!--<li style="margin-left:130px"><i class="help-icon-iocn2"></i><a href="#">签约主播服务</a></li>-->
+                                    <li style="margin-left:110px">
+                                        <i class="help-icon-iocn3"></i>
+                                        <a style="color: #000000;text-decoration: none;">服务电话：400-999-0591</a>
+                                    </li>
+                                </ul>
+                                <ul class="help2 clearfix">
+                                    <li style="margin-left:41px">
+                                        <a style="cursor:pointer;display:block;" onclick="createGroup();">
+                                            <div><i class="help-icon-iocn4"></i></div>创建家族
+                                        </a>
+                                    </li>
+                                    <!--<li style="margin-left:145px"><div><i class="help-icon-iocn5"></i></div><a href="#">签约申请</a></li>-->
+                                    <!--<li style="margin-left:145px"><a href="#"><div><i class="help-icon-iocn6"></i></div>投诉建议</a></li>-->
+                                </ul>
+                                <ul class="help3 clearfix">
+                                    <li class="help3-h1"><span>01</span><a href="/help/helpConfigure" target="_blank">{{webType['name']}}官方配置推荐</a></li>
+                                    <li class="help3-h2"><span>02</span><a href="/help/helpVideo" target="_blank">如何开启直播?</a></li>
+                                    <li class="help3-h3"><span>03</span><a href="/help/helpLive" target="_blank">为什么无法开启直播？</a></li>
+                                    <li class="help3-h1"><span>04</span><a href="/help/helpVLevel" target="_blank">什么是富豪等级?</a></li>
+                                    <li class="help3-h2"><span>05</span><a href="/help/helpZFLevel" target="_blank">什么是主粉等级？</a></li>
+                                    <li class="help3-h3"><span>06</span><a href="/help/helpAnchorLevel" target="_blank">什么是主播等级?</a></li>
+                                    <li class="help3-h1"><span>07</span><a href="/help/helpUserName" target="_blank">如何修改昵称？</a></li>
+                                    <li class="help3-h2"><span>08</span><a href="/help/helpSiging" target="_blank">如何申请成为签约主播?</a></li>
+                                    <li class="help3-h3"><span>09</span><a href="/help/helpMotoring" target="_blank">如何获得座驾？</a></li>
+                                    <li class="help3-h1"><span>10</span><a href="/help/helpGfit" target="_blank">如何送礼物？</a></li>
+                                    <li class="help3-h2"><span>11</span><a href="/help/helpUserPwd" target="_blank">如何修改密码？</a></li>
+                                    <!--<li class="help3-h3"><span>12</span><a href="91ns.helpSong.php" target="_blank">如何点歌？</a></li>-->
+                                    <!--<li class="help3-h3"><span>12</span><a href="91ns.helpPublish.php" target="_blank">如何发布动态？</a></li>-->
+                                    <li class="help3-h3"><span>12</span><a href="/help/helpPicture" target="_blank">如何上传头像？</a></li>
+                                    <!--<li class="help3-h2"><span>14</span><a href="91ns.helpUser.php" target="_blank">如何修改个人信息？</a></li>-->
+                                    <li class="help3-h1"><span>13</span><a href="/help/helpGuardian" target="_blank">如何开通守护?</a></li>
+                                    <li class="help3-h2"><span>14</span><a href="/help/helpBind" target="_blank">如何绑定/解绑手机？</a></li>
+                                    <!--<li class="help3-h3"><span>18</span><a href="91ns.helpBuy.php" target="_blank">如何购买酒水？</a></li>-->
+                                    <!--<li class="help3-h3"><span>15</span><a href="/help/helpVip" target="_blank">VIP等级如何提升?</a></li>-->
+                                    <!--<li class="help3-h2"><span>20</span><a href="91ns.helpauction.php" target="_blank">用户如何夜场竞拍主播？</a></li>-->
+                                    <li class="help3-h3"><span>15</span><a href="/help/helpFAQ" target="_blank">如何使用NS魔镜？</a></li>
+                                    <li class="help3-h1"><span>16</span><a href="/help/helpCharm" target="_blank">什么是魅力星?如何获取？</a></li>
+
+                                    <!--<li class="help3-h2"><span>17</span><a href="/help/helpEnter" target="_blank">如何进入人满的房间？</a></li>-->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="center-bottom"></div>
+        </div>
+        <div class="center-footer-bg"></div>
+        {% include "template/background.html" %}
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript">var GMQQNUMBER = "{{GMQQ[0]}}";</script>
+<script type="text/javascript" src="{{static_url('91ns.help'|ns_js)}}"></script>
+{% endblock %}

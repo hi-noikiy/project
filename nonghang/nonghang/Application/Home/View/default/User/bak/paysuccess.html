@@ -1,0 +1,41 @@
+<extend name='Public/base'/>
+<block name='title'>微信2.0</block>
+<block name='jscss'>
+	<link type="text/css" rel="stylesheet" href="__CSS__/style.css">
+ </block>
+<block name='body'>
+<div class="views">
+  <div class="view view-main">
+	<div class="headerNav">
+        <div class="headerLeft"><a href="javascript:window.history.back(-1);"><img src="__IMG__/common/back.png" height="100%" /></a></div>
+        <div class="title"><span>购票成功</span></div>
+        <div class="headerRight"></div>
+    </div>
+    <
+</div>
+</div>
+<script type="text/javascript" src="__JS__/framework7.min.js"></script>
+<script type="text/javascript">
+var id=setInterval("getPayStatus()",3000);
+var data = "{$order['orderCode']}";
+function getPayStatus(){      
+	$.get("{:U('User/orderajax')}",{orderid:data},function(json){
+		var msg=JSON.parse(json);
+		if(msg.status != '0'){
+			clearInterval(id);
+			$("#ining").hide();
+			if(msg.status =='3'){
+				$("#success b").text(msg['printNo']);
+				$("#success").show();
+			}else{
+				$("#fail b").text(msg['status']);
+				$("#fail").show();
+				$.post("{:U('cancelOrder')}",{orderid:data},function(json){});
+			}	
+		}
+	});
+}
+			
+</script>
+</block>
+

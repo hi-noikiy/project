@@ -1,0 +1,160 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+            {% include "common/tab.html" %}
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+            <div id="tab1" class="tab-pane active">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                  <form id="formSearch" class="form-search">
+                      <input id="isFamily" type="hidden" value="0">
+                      <span style="font-size:20px; line-height: 30px">查看：</span>
+                      <span class="tabs-group active" isFamily="0">无家族</span>
+                      &nbsp;
+                      <span class="tabs-group" isFamily="1">有家族</span>
+                      <span class="pull-right" style="margin-left: 50px;">
+                          <span style="font-size:20px; line-height: 30px">导出数据表(excel)&nbsp;&nbsp;</span>
+                          <button type="button" class="btn btn-purple" onclick="exportTableDialog()">导出表格</button>
+                      </span>
+                      <span class="find-search pull-right">
+                          <i class="icon-search icon-on-right bigger-110"></i>
+                          <input name="order" type="hidden" value="0">
+                          <input name="isSign" type="hidden" value="1">
+                          <input name="name" type="text" placeholder="用户名（uid）、昵称、姓名" value="" >
+                          <button id="btnSearch" type="button" class="btn btn-purple">搜索</button>
+                      </span>
+
+
+                  </form>
+                </div>
+                
+				{% include "common/pagination.html" %}
+
+                <div class="row-fluid">
+                  <table id="tableList" class="table with-check table-purple">
+                    <thead>
+                      <tr>
+                        <th>主播号</th>
+                        <th>昵称</th>
+                        <th>姓名</th>
+                        <th class="cursor" onclick="tableOrderClick('formSearch',1,getDataList)">主播等级&uarr;&darr; </th>
+                        <!-- <th class="cursor" onclick="tableOrderClick('formSearch',3,getDataList);">粉丝&uarr;&darr;</th> -->
+                        <!-- <th class="cursor" onclick="tableOrderClick('formSearch',5,getDataList);">收益(聊币)&uarr;&darr;</th> -->
+                        <th>直播状态</th>
+                        <th>账号状态</th>
+                        <th>结算状态</th>
+                        <th>房间显示</th>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+					
+                    </tbody>
+                  </table>
+                </div>
+                
+              </div>
+            </div>
+
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+
+<div id="addNoticeDialog" style="display:none"> <!--class="ui-dialog"-->
+    <form id="addNoticeDialogForm">
+        <div><textarea id="reason" rows="5" style="width: 98%;margin-top: 10px;"></textarea></div>
+    </form>
+</div>
+
+<div id="exportTableDialog" style="display:none"> <!--class="ui-dialog"-->
+    <div style="width:250px;margin: 20px auto;">
+        <div style="font-size: 16px;color: #929292;">选择日期：</div>
+        <a class="date-calendar" style="margin-top: 10px;height: 30px;line-height: 30px;">
+            <i class=" icon-calendar"></i>
+            <input id="mydate" placeholder="请输入日期" value="<?php echo date('Y-m',strtotime('last month')); ?>-11 - <?php echo date('Y-m',strtotime('this month')); ?>-10">
+        </a>
+        <form action="/ajax/excelWorkData" method="post">
+            <input type="hidden" value="1" name="type">
+            <input class="ExportIsFamily"  type="hidden" value="0" name="isFamily">
+            <input class="ExportstartDate" type="hidden" value="" name="startDate">
+            <input class="ExportendDate" type="hidden" value="" name="endDate">
+            <input class="ExportNickName" type="hidden" value="" name="nickName">
+            <button type="submit" id="exportTable" class="btn btn-purple pull-left" style="margin-top: 20px;">导出考勤收益表</button>
+        </form>
+        <!--<form action="/ajax/excelWorkData" method="post">-->
+            <!--<input type="hidden" value="2" name="type">-->
+            <!--<input class="ExportIsFamily" type="hidden" value="0" name="isFamily">-->
+            <!--<input class="ExportstartDate" type="hidden" value="" name="startDate">-->
+            <!--<input class="ExportendDate" type="hidden" value="" name="endDate">-->
+            <!--<input class="ExportNickName" type="hidden" value="" name="nickName">-->
+            <!--<button type="submit" class="btn btn-purple pull-right" style="margin-top: 20px;">导出收益表</button>-->
+        <!--</form>-->
+    </div>
+</div>
+
+<script type="text/javascript" src="{{static_url('web/js/91ns.anchor.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js/91ns.sgin.js')}}"></script>
+<link rel="stylesheet" href="/web/css/ui.daterangepicker.css">
+<script src="/web/js/daterangepicker.jQuery.js"></script>
+<script type="text/javascript">
+    $('#mydate').daterangepicker({
+                presetRanges:[
+                    //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+                    //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+                    //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+                ],
+                presets:{
+                    dateRange:'自定义时间'
+                },
+                rangeStartTitle:'起始日期',
+                rangeEndTitle:'结束日期',
+                nextLinkText:'下月',
+                prevLinkText:'上月',
+                doneButtonText:'确定',
+                cancelButtonText:'取消',
+                earliestDate:'',
+                latestDate:0,
+                constrainDates:true,
+                rangeSplitter:'-',
+                dateFormat:'yy-mm-dd',
+                closeOnSelect:false,
+                onOpen:function(){
+                    $('.ui-daterangepicker-dateRange').click().parent().hide();
+                    $('.ui-daterangepickercontain').css({left:($('#mydate').offset().left-25)+'px'});
+                    $('.ui-daterangepickercontain').css({top:($('#mydate').offset().top+30)+'px'});
+                    var type=$('#mydate').attr('data');
+                    $('.ui-daterangepickercontain .range-end.hasDatepicker').show();
+                    if(type == 'hour'){
+                        $('.ui-daterangepickercontain .range-end.hasDatepicker').hide();
+                    }
+                },
+                onClose:function(){
+                    var b=$('#mydate').val();
+                    var timeBegin= b.substring(0,10);
+                    var timeEnd= b.substring(12,23);
+                    if(!timeEnd||timeEnd==''){
+                        timeEnd=timeBegin;
+                    }
+                    $('.ExportstartDate').attr('value',timeBegin);
+                    $('.ExportendDate').attr('value',timeEnd);
+                }
+            }
+    );
+</script>

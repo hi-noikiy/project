@@ -1,0 +1,4 @@
+parseStr=game_id=9&username=00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00&account_id=1652214&expired=1486782028, 2017-02-11 11:00:29
+parseStr=game_id=9&username=1486783486&account_id=1652382&expired=1486783508, 2017-02-11 11:25:13
+parseStr=game_id=9&username=5DD12CAE-EB0D-4F79-A10F-D9FBC439EB96&account_id=1652148&expired=1486792403, 2017-02-11 13:53:25
+parseStr=game_id=9&username=5DD12CAE-EB0D-4F79-A10F-D9FBC439EB96&account_id=1652148&expired=1486793000, 2017-02-11 14:03:21

@@ -1,0 +1,119 @@
+{% block begin %}
+{% endblock %}
+
+{% block title %}
+<style type="text/css">
+    .btn{text-align: center;line-height: 42px; width:132px;height:42px;border-radius:4px;font-size:14px;background-color: #F86EB3;float: left;cursor: pointer;display: block;}
+    .btn:hover{background-color: #FFB9DC;}
+    .btn:active{background-color: #DD3E8D;}
+    .btn.cancel{background-color: #B7B7B7;float: right;}
+    .btn.cancel:hover{background-color: #D9D9D9;}
+    .btn.cancel:active{background-color: #949494;}
+    #main-nav{display: none;}
+    .vipvalue{ position: relative; margin-top: 15px;height: 40px;margin-left: 93px;}
+
+    .vipsta { position: absolute;z-index: 2;  background-image: url('{{static_url("/web/cssimg/mgtcenter/level_now.png")}}');   background-repeat: no-repeat;   left: 0;   top: 0;  width: 38px;   height: 38px;  margin-top: 0px;text-align: center;}
+    .vipsta.vipMaxLevel{  left: 172px;  }
+    .vipsta.vipMaxLevel i{  margin-top: 7px;  }
+    .vipprogress { margin-top:14px;  position: absolute;  z-index: 1;  margin-left: 0px;  background-color: #3D55D1;  left: 36px;  height: 12px;  width: 310px;}
+    .vipprogress2 { width: 0px; height: 100%;  background: #35A7FF;}
+    .vipend { position: absolute; z-index: 2; left: 344px; top: 0; background-image: url('{{static_url("/web/cssimg/mgtcenter/level_next.png")}}'); background-repeat: no-repeat; width: 38px; height: 38px; margin-top: 0px;text-align: center; }
+    .empiricValue {position: absolute;top: 0px;z-index: 3;left: 36px;  margin-top: 11px; width: 310px;overflow: hidden;font-size: 12px; white-space: nowrap; text-overflow: ellipsis; text-align: center; color: #FFF;}
+    #viplevelbegin, #viplevelend{ margin: 8px 0 0 2px; }
+    .nav-body .nav-bd{display: none;}
+</style>
+{% endblock %}
+
+{% block titleList %}
+<!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div style="width: 560px;position: absolute;left: 50%;top: 50%;margin-left: -280px;margin-top: -170px;" id="recharge" >
+    <img src="{{static_url('web/cssimg/91ns/czcg.png')}}" style="margin: 0 auto;display: block;">
+    <div style="margin-top: 32px;font-size: 18px;color:#000;text-align: center;">
+        <i style="display: inline-block; background-image: url({{static_url('/web/cssimg/91ns/star.png')}});height: 24px;width: 15px;"></i>
+        恭喜您已成功为账户 <i style="font-style: normal;color:#F86EB3;">{{ userInfo['nickName'] }}</i> 充值 <i style="font-style: normal;color:#F86EB3;">{{ recharge['cash']|default(0) }}</i> 聊币！
+    </div>
+    {% if vipLevel|default(0) > 0 %}
+    {% if vipLevel == nextVipLevel %}
+    <div class="vipvalue clearfix">
+        <div class="vipsta vipMaxLevel"><i class="sprite-vip_level VIP{{ vipLevel }}"></i></div>
+    </div>
+    {% else %}
+    <div class="vipvalue clearfix">
+        <div class="vipsta"><i id="viplevelbegin"  class="sprite-vip_level VIP{{ vipLevel }}"></i></div>
+        <div class="vipprogress"><div id="vipprogress" class="vipprogress2"></div></div>
+        <div class="vipend"><i id="viplevelend" class="sprite-vip_level VIP{{ nextVipLevel }}"></i></div>
+        <div class="empiricValue">还需要充值{{ vipInfo['higher'] - vipInfo['current'] }}聊币</div>
+    </div>
+    {% endif %}
+    {% endif %}
+    <script type="text/javascript">
+        var payType = {{ recharge['payType']|default(0) }};
+        jq(function(){
+            vipprogress(lower,higher,current);
+        });
+
+        var lower = "{{ vipInfo['lower'] }}";
+        var higher = "{{ vipInfo['higher'] }}";
+        var current = "{{ vipInfo['current'] }}";
+        function VipLevelUp(level){
+            jq('#recharge').prepend('<div class="animateDiv" id="upLevel-animateDiv"></div>');
+            var giftswf=jq('#upLevel-animateDiv');
+            giftswf.append("<embed src='{{static_url('/web/cssimg/shop/vip/upLevel.swf')}}?level={{ vipInfo['level'] }}' style='position:absolute;z-index:106;height:700px;width:700px;left:50%;top:50%;margin-left:-350px;margin-top:-450px;' id='swfobj_upLevel' name='swfobj_upLevel' wmode='transparent' ></embed>");
+            giftswf.css('display','block');
+            window.setTimeout(function(){
+                jq('#upLevel-animateDiv').remove();
+            },3000);
+        }
+        var VipLevel="{{ recharge['levelUp']|default(0) }}";
+        if(VipLevel!='0'){
+            VipLevelUp('{{ vipLevel }}');
+        }
+        function userBill(){
+            if('{{ recharge["isFirstCharge"]|default(0) }}' == '1'){
+                confirm('您刚刚完成了首冲活动，是否要现在领取奖励？',{},function(){
+                    if(payType == 3){
+                        window.parent.location.href = '/activities/charge';
+                        return false;
+                    }
+                    window.location.href = '/activities/charge';
+                },returnFunction);
+            }else{
+                returnFunction();
+            }
+            function returnFunction(){
+                if(payType == 3){
+                    window.parent.location.href = '/';
+                    return false;
+                }
+                window.location.href = '/';
+            }
+        }
+        function goHome(){
+            if(payType == 3){
+                window.parent.location.href = '/';
+                return false;
+            }
+            window.location.href = '/';
+        }
+    </script>
+    <div style="width: 306px;height: 42px;margin: 56px auto;color: #FFF;">
+        <a class="btn" onclick="userBill();return false;">充值完毕</a>
+        <a class="btn cancel" href="tencent://message/?v=3&uin={{GMQQ[0]}}&site=qq&menu=yes">联系客服</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+
+
+
+
+

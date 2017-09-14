@@ -1,0 +1,4 @@
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"52B8E8ED86306694358B60607EEA4276";s:4:"sign";s:32:"75b36b6c798a73d38cc95466fcde2242";s:7:"game_id";s:1:"9";}, 2016-10-15 00:02:23
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"D6F5865D604C18BBBD2D62757F653152";s:4:"sign";s:32:"8b7ce32cf4002988f88aa054ea89441f";s:7:"game_id";s:1:"9";}, 2016-10-15 02:18:25
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"D6F5865D604C18BBBD2D62757F653152";s:4:"sign";s:32:"8b7ce32cf4002988f88aa054ea89441f";s:7:"game_id";s:1:"9";}, 2016-10-15 13:38:52
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"D6F5865D604C18BBBD2D62757F653152";s:4:"sign";s:32:"8b7ce32cf4002988f88aa054ea89441f";s:7:"game_id";s:1:"9";}, 2016-10-15 14:36:07

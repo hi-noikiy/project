@@ -1,0 +1,401 @@
+<div id="breadcrumb">
+    <a onclick="javascript:history.go(-1);"  class="go-to-home tip-bottom font font18" style="cursor: pointer;">
+        <i class="icon-arrow-left"></i> 返回 &nbsp;
+    </a>
+    <a onclick="javascript:history.go(-1);"  class="font font18" style="cursor: pointer;"> &nbsp;&nbsp;<span>主页 &gt</span></a>
+    <a href="/anchor/applyinfo?id={{info['id']}}" class="current font font18"> <span>全部房间</span></a>
+</div>
+
+<div>
+    <div class="container-fluid" style="padding: 0;">
+        <div class="widget-box tab-tabs" >
+            <div class="widget-title">
+                <ul class="nav nav-tabs">
+                    {% include "common/tab.html" %}
+                </ul>
+            </div>
+            <div class="widget-content tab-content">
+                <div id="tab1" class="tab-pane active">
+                    <div class="container-fluid">
+                        <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                            <form id="formSearch" class="form-search">
+                                <input id="isFamily" type="hidden" value="0">
+                                <span style="font-size:20px; line-height: 30px">查看：</span>
+                                <span class="tabs-group active" isFamily="0">全部</span>
+                                &nbsp;
+                                <span class="tabs-group" isFamily="1">正在直播（<span id="livenum">0</span>）</span>
+                                <span class="tabs-group" isFamily="2">调试状态（<span id="shownum">0</span>）</span>
+
+                                <select id="orderSelect" name="conditions" style="width: 110px;display: none;margin-top: -7px;">
+                                    <option value="0">观众人数</option>
+                                    <option value="1">上传带宽</option>
+                                    <option value="2">丢包率</option>
+                                    <option value="3">连接数</option>
+                                </select>
+                                <span class="find-search pull-right">
+                                    <i class="icon-search icon-on-right bigger-110"></i>
+                                    <input name="name" type="text" placeholder="用户名或昵称" value="" >
+                                    <button id="btnSearch" type="button" class="btn btn-purple">搜索</button>
+                                </span>
+                            </form>
+                        </div>
+                        <div id="autoskip">
+                            <ul id="exceptionList" class="thumbnails">
+                                <!--<li style="list-style: none;border-bottom: 1px solid #ccc;">-->
+                                    <!--<div style="float: left;">-->
+                                        <!--<div class="thu-info">-->
+                                            <!--<img src="/userupload/default/avatars/0.jpg">-->
+                                            <!--<span class="status">-->
+                                                <!--<p>直<br>播</p>-->
+                                            <!--</span>-->
+                                        <!--</div>-->
+                                        <!--<div class="clearfix">-->
+                                            <!--<div class="thu-use-info">-->
+                                                <!--<span>asasas</span>-->
+                                                <!--<span>主播号:10001</span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                        <!--<div>-->
+                                            <!--<div class="addrotbot pull-left" style="border-right: 1px solid #9D9ADA;" onclick="addrobot('+data.liveStatus+','+data.uid+')">加机器人</div>-->
+                                            <!--<div class="addrotbot pull-left" style="border-right: 1px solid #9D9ADA;" onclick="addrobot('+data.liveStatus+','+data.uid+')">加机器人</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+
+                                    <!--<div class="add-info">-->
+                                        <!--<span class="pull-left">发布点：</span><span class="pull-right">192.168.1.17</span><br>-->
+                                        <!--<span class="pull-left">主播地址：</span><span class="pull-right">192.168.1.17</span><br>-->
+                                        <!--<span class="pull-left">上行速度(Kb/s)：</span><span class="pull-right">192</span><br>-->
+                                        <!--<span class="pull-left">丢帧率(%)：</span><span class="pull-right">0.00</span><br>-->
+                                        <!--<span class="pull-left">下行连接数：</span><span class="pull-right">53</span>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            </ul>
+                        </div>
+                        {% include "common/pagination.html" %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="addrobot" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="addDialogForm">
+        <div style="margin-top: 20px;">
+            <span>需要增加的机器人数量：</span>
+        </div>
+        <div style="margin-top: 20px;">
+
+            <input id="addvalue"  type="text" ><br>
+
+        </div>
+        <!--<div style="margin-top:20px;">-->
+
+            <!--<span>什么时间加完：</span>-->
+
+        <!--</div>-->
+        <!--<div style="margin-top: 10px;">-->
+
+            <!--<input  type="text" >-->
+            <!--<span>秒</span>-->
+        <!--</div>-->
+    </form>
+</div>
+
+<div id="delrobot" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="delDialogForm">
+        <div style="border-bottom: 1px dashed #ddd;height: 40px;line-height: 40px;color: #5159b1;">
+            <span>直播间当前机器人数量：<span id="_robotnum">0</span></span>
+        </div>
+        <div style="margin-top: 20px;">
+            <span>需要减少的机器人数量：</span>
+        </div>
+        <div style="margin-top: 20px;">
+
+            <input id="delvalue"  type="text" ><br>
+
+        </div>
+        <!--<div style="margin-top:20px;">-->
+
+            <!--<span>什么时间减完：</span>-->
+
+        <!--</div>-->
+        <!--<div style="margin-top: 10px;">-->
+
+            <!--<input  type="text" >-->
+            <!--<span>秒</span>-->
+        <!--</div>-->
+    </form>
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+        $('body').addClass('anchorinfo');
+        tabsGroup ();
+        getDataExceptionList();
+        selectchange();
+    });
+    var btn=global.doc("btnSearch");
+    utils.addEvent(btn,'click',function(){
+        getDataExceptionList();
+    });
+
+    function tabsGroup () {
+        $('#formSearch .tabs-group').click(function(){
+            $('#formSearch .tabs-group').removeClass('active');
+            $(this).addClass('active');
+            var form= global.doc('formSearch');
+            form.isFamily.value=$(this).attr('isFamily');
+            getDataExceptionList();
+        });
+    }
+
+//    排序
+    function selectchange(){
+        $('#orderSelect').change(function(){
+            var checkValue=$("#orderSelect").val()
+            getDataExceptionList('',checkValue)
+        })
+    }
+
+    function getDataExceptionList(index,checkValue){
+        var form= global.doc('formSearch'),
+            data={};
+        data.page=index||1;
+        data.pageSize=18;
+        data.type=form.isFamily.value;
+        data.name=form.name.value;
+        var a=form.isFamily.value;
+        // if(checkValue){
+            data.order = checkValue;
+        // }
+
+        if(a==1){
+            $('#orderSelect').show();
+        }
+        else{
+            $('#orderSelect').hide();
+        }
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/allRooms',
+            dataType:'json',
+            success:function(res){
+                var data=res.data;
+                        eul=document.getElementById('exceptionList');
+                $('#exceptionList').children().remove();
+                var count=global.doc('count');
+                count.innerHTML=data.count;
+                $('#livenum').html(data.liveRoomNum);
+                $('#shownum').html(data.debugCount);
+                for (var i = 0; i <data.list.length; i++) {
+                    addRowExceptionRule(eul,data.list[i],a);
+                };
+
+                if(!index||index==0){
+                    utilsPagination("#pagination",data.count,18,function(page_index, jq){
+                        page_index+=1;
+                        getDataExceptionList(page_index);
+                    });
+                }
+
+            }
+        });
+
+    }
+
+    //添加列主播列表
+    function addRowExceptionRule(per,data,type){
+        /*var oCloneNode=oList.cloneNode(true);
+         cloneArea.appendChild(oCloneNode); */
+
+        var li =document.createElement('li');
+        var html='';
+        html+=' <div style="float: left;"><div class="thu-info" ><img src="'+data.poster+'" >';
+        html+='<a href="http://www.91ns.com/'+data.uid+'" style="position: absolute;width: 250px;height: 150px;margin-left: -250px;"></a>';
+        if(data.liveStatus==1){
+            html+='<span class="status" style="margin-top:0px;margin-left: -37px;"><p>直<br/>播</p></span>';
+        }
+        if(data.liveStatus==2){
+            html+='<span class="status" style="margin-top:0px;margin-left: -77px;"><p>禁<br/>播</p></span>';
+        }
+        if(data.showStatus==0){
+            html+='<span class="status" style="margin-top: 0px;margin-left: -37px;"><p>调<br/>试</p></span>';
+        }
+        html+='</div><div class="clearfix"><div class="thu-use-info"><a href="/anchor/anchorinfo?uid='+data.uid+'"><span>'+data.nickName+'</span></a><span>主播号:'+data.uid+'</span></div>';
+        html+='<div class="i-info1" style="float: right;margin:29px 10px 0 0;color: #ddd;"><i class="index-roomlist-1 _number"></i><span class="number">'+data.realNum+'</span><i class="index-roomlist-2 _number"></i><span class="number">'+data.robotNum+'</span></div></div>';
+        html+='<div><div class="addrotbot pull-left"  onclick="addrobot('+data.liveStatus+','+data.uid+')">加机器人</div>';
+        html+='<div class="addrotbot pull-left"  onclick="delrobot('+data.liveStatus+','+data.uid+')">减机器人</div>';
+        if(data.liveStatus==2){
+            html+='<div class="addrotbot pull-left"  onclick="ban('+data.uid+',0)">解禁</div>';
+        }else if(data.liveStatus==0 || data.liveStatus==1){
+            html+='<div class="addrotbot pull-left"  onclick="ban('+data.uid+',2)">禁播</div>';
+        }
+        // html+='<div class="addrotbot pull-left"  onclick="">禁播</div>';
+        if(data.showStatus==0){
+            html+='<div class="addrotbot pull-left"  onclick="showroom('+data.uid+',1)">解除调试</div></div></div>';
+        }else if(data.showStatus==1){
+            html+='<div class="addrotbot pull-left"  onclick="showroom('+data.uid+',0)">调试</div></div></div>';
+        }
+        // html+='<div class="addrotbot pull-left"  onclick="">调试</div></div></div>';
+
+        if(type==1){
+            if(data.liveStatus==1){
+                html+=' <div class="add-info"> <span class="pull-left">发布点：</span><span class="pull-right">'+data.deployaddress+'</span><br>';
+                html+='<span class="pull-left">主播地址：</span><span class="pull-right">'+data.inaddress+'</span><br>';
+                html+='<span class="pull-left">上行速度(Kb/s)：</span><span class="pull-right">'+data.inbandwidth+'</span><br>';
+                html+='<span class="pull-left">丢帧率(%)：</span><span class="pull-right">'+data.lfr+'</span><br>';
+                html+='<span class="pull-left">下行连接数：</span><span class="pull-right">'+data.hists+'</span></div>';
+            }
+        }
+
+        li.innerHTML=html;
+
+        per.appendChild(li);
+    }
+
+    function addrobot(liveStatus,uid){
+        $('#addrobot').dialog({
+            autoOpen:true,
+            width:420,
+            height:300,
+            title:'加机器人',
+            resizable:false,
+            modal:true,
+            open:function(){
+            },
+            buttons: {
+                "确定": function () {
+                    var count=$('#addvalue').val();
+                    var data={};
+                    if(liveStatus==1){
+                        data.type="true";
+                    }
+                    else{
+                        data.type="false";
+                    }
+                    data.uid=uid;
+                    data.count=count;
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/changeRobotCount',
+                        dataType:'json',
+                        success:function(res){
+                            alert(res.info);
+                            location.reload();
+                        }
+                    })
+
+                }/*,
+                 "取消": function () {
+
+
+                 }*/
+            }
+        });
+    }
+
+    function delrobot(liveStatus,uid){
+        $('#delrobot').dialog({
+            autoOpen:true,
+            width:420,
+            height:365,
+            title:'减机器人',
+            resizable:false,
+            modal:true,
+            open:function(){
+                var data={};
+                data.uid=uid;
+                $.ajax({
+                    type:"POST",
+                    data:data,
+                    url:'/ajax/getRoomRobotCount',
+                    dataType:'json',
+                    success:function(res){
+                        if(res.data.robotCount){
+                            $('#_robotnum').html(res.data.robotCount);
+                        }
+                        else{
+                            $('#_robotnum').html(0);
+                        }
+
+
+
+                    }
+                })
+            },
+            buttons: {
+                "确定": function () {
+                    var count=$('#delvalue').val();
+                    var data={};
+                    if(liveStatus==1){
+                        data.type="true";
+                    }
+                    else{
+                        data.type="false";
+                    }
+                    data.uid=uid;
+                    data.count=-count;
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/changeRobotCount',
+                        dataType:'json',
+                        success:function(res){
+                            alert(res.info);
+                            location.reload();
+                        }
+                    })
+
+                }/*,
+                 "取消": function () {
+
+
+                 }*/
+            }
+        });
+    }
+
+    function ban(uid, status){
+        // var uid=$('#in_uid').val();
+        var data={};
+        data.uid=uid;
+        data.status=status;
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: '/ajax/liveStatus',
+            dataType: 'json',
+            success: function (res) {
+                location.reload();
+            }
+        })
+    }
+
+    function showroom(uid,status){
+        var data={};
+        data.uid=uid;
+        data.status=status;
+        /*if($("#checked").attr("checked")=='checked'){
+            data.status=0;
+        }
+        else{
+            data.status=1;
+        }*/
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: '/ajax/showStatus',
+            dataType: 'json',
+            success: function (res) {
+                location.reload();
+            }
+        })
+    }
+
+
+
+</script>

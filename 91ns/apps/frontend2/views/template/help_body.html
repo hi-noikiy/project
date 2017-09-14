@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}" />
+    {% block head %}{% endblock %}
+    <script type="text/javascript" defer async data-main="{{static_url('mall'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+    <div class="wrapNav"></div>
+    <div class="content">
+        <div class="content-div clearfix">
+            <!--内容块左边导航-->
+            <div class=" content-left pull-left clearfix">
+                <div style="font-size: 16px;margin: 22px 0px 0px 16px;color: #000;">帮助中心</div>
+                <div class="content-help">
+                    <ul>
+                        <li class="{%if ns_type|default('help') == 'helpanchor'%} active {% endif %}"><a href="/help/helpanchor" style="display: inline-block;width: 138px;height: 30px;">主播等级</a></li>
+                        <li class="{%if ns_type|default('help') == 'helpricher'%} active {% endif %}"><a href="/help/helpricher" style="display: inline-block;width: 138px;height: 30px;">富豪等级</a></li>
+                        <li class="{%if ns_type|default('help') == 'helpricherprivilege'%} active {% endif %}"><a href="/help/helpricherprivilege" style="display: inline-block;width: 138px;height: 30px;">富豪特权</a></li>
+                        <li class="{%if ns_type|default('help') == 'helpsendgift'%} active {% endif %}"><a href="/help/helpsendgift" style="display: inline-block;width: 138px;height: 30px;">送礼</a></li>
+                        <li class="{%if ns_type|default('help') == 'helpcharge'%} active {% endif %}"><a href="/help/helpcharge" style="display: inline-block;width: 138px;height: 30px;">充值</a></li>
+                        <li class="{%if ns_type|default('help') == 'helpbind'%} active {% endif %}"><a href="/help/helpbind" style="display: inline-block;width: 138px;height: 30px;">手机绑定</a></li>
+                        <li class="{%if ns_type|default('help') == 'helpdemand'%} active {% endif %}"><a href="/help/helpdemand" style="display: inline-block;width: 138px;height: 30px;">点播节目</a></li>
+                        <!--<li class="{%if ns_type|default('help') == 'help'%} active {% endif %}"><a href="/help">91ns管理规范</a></li>-->
+                        <!--<li class="{%if ns_type|default('help') == 'helproom'%} active {% endif %}"><a href="/help/helproom">直播间操作</a></li>-->
+                        <!--<li class="{%if ns_type|default('help') == 'helpcharging'%} active {% endif %}"><a href="/help/helpcharging">充值消费</a></li>-->
+                        <!--<li class="{%if ns_type|default('help') == 'helpanchor'%} active {% endif %}"><a>关于主播</a></li>-->
+                        <!--<li class="{%if ns_type|default('help') == 'helpuser'%} active {% endif %}"><a>关于用户</a></li>-->
+                        <!--<li class="{%if ns_type|default('help') == 'helpfamily'%} active {% endif %}"><a>关于家族</a></li>-->
+                        <!--<li class="{%if ns_type|default('help') == 'helpother'%} active {% endif %}"><a>其他问题</a></li>-->
+                        <!--<li class="{%if ns_type|default('help') == 'helpcommerce '%} active {% endif %}"><a>商务推广合作</a></li>-->
+                        <!--<li class="{%if ns_type|default('help') == 'helpnotice'%} active {% endif %}"><a>平台公告</a></li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class="content-right pull-right">{% block content %}{% endblock %}</div>
+        </div>
+    </div>
+    <div class="wrapBd">
+        <div class="w_1200">
+            {% block body %}
+            {% endblock %}
+        </div>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+</body>
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>微信购票</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="__CSS__/framework7.ios.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="__CSS__/my-app.css?{:time()}">
+    <script type="text/javascript" src="__JS__/iscroll-zoom.js"></script>
+    <script type="text/javascript" src="__JS__/jweixin-1.0.0.js"></script>
+    <block name='css'></block>
+  </head>
+  <body>
+    <div class="views">
+      <div class="panel panel-left panel-cover">
+        <div class="view view-left navbar-through">
+
+        </div>
+      </div>
+      <div class="view view-main navbar-through">
+        <block name='navbar'></block>
+        <div class="pages" >
+              <block name='body'></block>
+        </div>
+
+
+      </div>
+    </div>
+<div class="login-screen">
+  
+    <div class="view">
+      <div class="page"> 
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left"><a href="" class="close-login-screen"> <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center title">登录</div>
+            <div class="right"></div>
+          </div>
+         </div>
+        <div class="page-content login-screen-content" style="padding-top: 44px;">
+          <form>
+                <!-- 导航栏中的按键排控制器 -->
+                <div class="buttons-row">
+                <a href="#tab1" class="button tab-link active">持卡会员</a>
+                <a href="#tab2" class="button tab-link">注册会员</a>
+                </div>
+                <div class="tabs-animated-wrap">
+                    <!-- Tabs, tabs容器 -->
+                    <div class="tabs">
+                        <!-- Tab 1，默认激活 -->
+                        <div id="tab1" class="tab active">
+                            <div class="loginBody">
+                              <form id="userLoginFrom">
+                            <div id="select" class="loginSelect" >
+                                <span><img src="__IMG__/login/icon1.png" width="100%" /></span><input type="text" value="请选择会员所属门店" post-val="" name="placeNo" readonly><em><img src="__IMG__/login/down.png" width="100%" /></em>
+                                <ul>
+                                    <li data-value="35012401">中瑞国际影城（红星店）</li>
+                                    <li data-value="35013801">中瑞国际影城（省体店）</li>
+                                    <li data-value="35013201">中瑞国际影城（仓山店）</li>
+                                    <li data-value="35013901">中瑞国际影城（福清店）</li>
+                                </ul>
+                            </div>
+                            <div class="loginInput">
+                                <div style="border-bottom:1px solid #d9d9d9;"><span><img src="__IMG__/login/icon6.png" width="100%" /></span><input  type="text" id="cardId" name="cardId" placeholder="请输入会员卡号"  /></div>
+                                <div><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input id="userLoginCardPassword" type="password"  name="passWord" placeholder="请输入会员卡密码"  /></div>
+                            </div>
+                            </form>
+                            <div class="loginBtn">
+                                <a href="javascript:" id="cardLogin">登录</a>
+                            </div>
+                            </div>
+                        </div>
+                        <!-- Tab 2 -->
+                        <div id="tab2" class="tab">
+                            <div class="loginBody">
+                                <div class="loginInput">
+                                    <div  style="border-bottom:1px solid #d9d9d9;" ><span><img src="__IMG__/login/icon4.png" width="100%" /></span><input id="mobile" type="text" name="mobile" placeholder="请输入手机号"/></div>
+                                    <div  style="border-bottom:1px solid #d9d9d9;"><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input id='telPassWord' type="password"  name="telPassWord" placeholder="请输入密码"/></div>
+                                </div>
+                                <div class="linkLogin">
+                                    <a href="http://wap.zrfilm.com/index.php?route=user/find" class="external">找回密码</a>|<a href="http://wap.zrfilm.com/index.php?route=login/register" class="external">注册帐号</a>
+                                </div>
+                                <div class="loginBtn">
+                                    <a href="javascript:void(0)" class="close-login-screen" id="moblieLogin" >登录</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div> 
+<div class="modal-overlay modal-overlay-visible" style="display:none;"></div>
+  <div class="picker-modal pickerInfo " style="height:auto" >
+    
+        <h4>选择支付</h4>
+        <a href="#" class="closePay"></a>
+        <div class="selectPay">
+        <ul>
+                
+                <li id="cardPayItem"<if condition="$userInfo.cardId == ''"> style = 'display:none';</if> onclick="gotoPay('cardPay');">
+                    <div class="item-inner">
+                        <div class="payIcon" ><img src="/Public/Home/default/images/movie/balance.png" height="50"></div>
+                        <div class="payInfo" >
+                            <p>账户余额支付</p>
+                            <span>您当前账户余额为<b id="userBalance">{$userInfo['balance']/100}</b>元</span>
+                        </div>
+                    </div>
+                    <div class="item-media"><i class="icon icon-form-checkbox"></i>
+                    
+                    <!-- </div><div class="payBtn"><a href="/otherpay/index.html" class="external">充值</a></div> -->
+                    <div class="clear"></div>
+                </li>
+                <li onclick="gotoPay('aliPay');">
+                    <div class="item-inner">
+                        <div class="payIcon"><img src="/Public/Home/default/images/movie/zfb.png" height="50" /></div>
+                        <div class="payInfo">
+                            <p>支付宝支付</p>
+                            <span>推荐安装支付宝客户端使用</span>
+                        </div>
+                        
+                    </div>
+                    <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                    <div class="clear"></div>
+                </li> 
+            </ul>
+        </div>
+
+
+
+  </div>
+
+
+    <div class="popover popover-links">
+    
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+      <div class="list-block">
+        <ul>
+          <li><a href="{:U('index',array('a'=>'11'))}"  class="list-button item-link close-popover">中瑞国际影城（红星）</a></li>
+          <li><a href="{:U('index')}" class="list-button item-link  close-popover">中瑞万星影城（省体）</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="__JS__/framework7.min.js"></script>
+    <script type="text/javascript" src="__JS__/jquery.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="__JS__/my-app.js?{:time()}"></script>
+    <script type="text/javascript" src="__JS__/jquery.form.js"></script>
+  </body>
+</html>
+<script type="text/javascript">
+
+  $('#select').click(function(e){
+    $('#select').find('ul').hide();
+    $(this).find('ul').show();
+    e.stopPropagation();
+  });
+  $('#select li').hover(function(e){
+    $(this).toggleClass('on');
+    e.stopPropagation();
+  });
+  $('#select li').click(function(e){
+    var val = $(this).text();
+    $(this).parents('#select').find('b').text(val);
+
+    $(this).parents('#select').find('input').val($(this).html());
+    $(this).parents('#select').find('input').attr('post-val', $(this).attr('data-value'));
+    $('#select ul').hide();
+    e.stopPropagation();
+  });
+  $(document).click(function(){
+    $('#select ul').hide();
+  });
+
+
+$('.loginBtn #cardLogin').click(function(e){
+  myApp.showIndicator();
+  var placeNo = $('#select input[name="placeNo"]').attr('post-val');
+  var cardId = $('#cardId').val();
+  var passWord = $('#userLoginCardPassword').val();
+  if(placeNo == ''){
+    placeNo = '11';
+  }
+  $.ajax({    
+    url:'{:U("Buying/userLogin")}',// 跳转到 action   
+    data:{'placeNo':placeNo, 'cardId':cardId, 'passWord':passWord},   
+    type:'post',       
+    dataType:'json',    
+    success:function(data) {
+      myApp.hideIndicator();
+      if (data.status == 0) {
+        $("#userBalance").html(data.data.balance);
+        $("#cardPayItem").css('display', '');
+        myApp.closeModal('.login-screen');
+      }else{
+         myApp.alert(data.content);
+      }
+    },    
+    error : function() {
+      myApp.hideIndicator();
+        // layer.close(loadi);
+    }   
+    });
+});
+
+
+function isMobil(s){ //验证手机号
+  var patrn=/^1[0-9]{2}\d{8}$/; 
+  if (!patrn.exec(s)){
+    return false 
+  }else{
+    return true
+  }
+ }
+
+function gotoPay (payType) {
+myApp.closeModal('.pickerInfo');
+myApp.closeModal('.modal-overlay');
+var tickNum = $("#tickNum").val();
+var tickPrice = $("#tickPrice").val();
+var tickPhone = $("#tickPhone").val();
+var buyingId = $("#buyingId").val();
+
+if (!isMobil(tickPhone)) {
+
+  myApp.alert('手机号不正确，请重新输入！');
+  return;
+
+};
+
+if(payType == 'cardPay'){
+  var content = '会员卡';
+}else{
+  var content = '支付宝';
+}
+  myApp.confirm('确认要使用'+content+'支付'+$("#tickNum").val()+'张票，总计：'+$('#tickTotal').html()+'元', 
+        function () {
+          myApp.showIndicator();
+            $.ajax({    
+              url:'{:U("Buying/gotoPay")}',// 跳转到 action   
+              data:{'tickNum':tickNum, 'tickPrice':tickPrice, 'tickPhone':tickPhone, 'buyingId':buyingId, 'payType':payType},   
+              type:'post',       
+              dataType:'json',    
+              success:function(data) {
+                myApp.hideIndicator();
+                if (data.status == '100102') {
+                  myApp.pickerModal('.login-screen');
+                }else if(data.status == 1){
+                  myApp.alert(data.content);
+                }else if(data.status == 0){
+                  if(payType == 'cardPay'){
+                    mainView.router.loadPage('{:U('Buying/paystatus')}?orderId='+ data.data);
+                  }else{
+                    window.location.href = data.data;
+
+                  }
+                  
+                  // myApp.alert(data.content);
+                }
+              },    
+              error : function() {
+                myApp.hideIndicator();
+              // layer.close(loadi);
+              }   
+            });
+          // alert('1');
+          // window.location.href=gourl;
+        },
+        function () {
+            // $.get(cancelurl,{},function(msg){});
+        });
+}
+
+
+$('.loginBtn #moblieLogin').click(function(e){
+  myApp.showIndicator();
+
+
+
+  var mobile = $('#mobile').val();
+  var telPassWord = $('#telPassWord').val();
+
+  $.ajax({    
+    url:'{:U("Buying/userLogin")}',// 跳转到 action   
+    data:{'mobile':mobile, 'telPassWord':telPassWord},   
+    type:'post',       
+    dataType:'json',    
+    success:function(data) {
+      myApp.hideIndicator();
+      if (data.status == 0) {
+        $("#userBalance").html(data.data.balance);
+        $("#cardPayItem").css('display', 'none');
+        myApp.closeModal('.login-screen');
+      }else{
+         myApp.alert(data.content);
+      }
+    },    
+    error : function() {
+      myApp.hideIndicator();
+        // layer.close(loadi);
+    }   
+    });
+});
+
+
+  myApp.onPageInit('buyIndex', function (page) {
+  var mySwiper3 = myApp.swiper('.swiper-buy', {
+    slideToClickedSlide:true,
+    initialSlide :0,
+    slidesPerView : 5,
+    slidesPerGroup:1,
+    centeredSlides : false,
+    onSlideChangeEnd: function(swiper){
+      var html = $('.swiper-wrapper div span').eq(swiper.activeIndex).html();
+      getPlanInfo(html);
+    }
+  });
+
+
+
+getPlanInfo( $('.swiper-wrapper div span').eq(0).html());
+
+
+  });
+
+
+  function getPlanInfo (date) {
+myApp.showIndicator();
+    $.ajax({    
+    url:'{:U("Buying/getPlanList")}',// 跳转到 action   
+    data:{'date':date},   
+    type:'post',       
+    dataType:'json',    
+    success:function(data) {
+      myApp.hideIndicator();
+      if (data.status == 0) {
+        $('.buyList ul').html('');
+        $.each(data.data, function(k,v){
+          // alert(k);
+          $('.buyList ul').append('<li><a href="{:U('film')}?buyingId='+v.buyingId+'"><div class="filmImg"><img src="__UPLOAD__/'+v.preView+'" width="67.5" height="90"></div></a><div class="filmInfo"><a href="{:U('film')}?buyingId='+v.buyingId+'"><h2>'+v.filmName+'</h2></a><p>'+v.cinemaName+'</p><p><span>'+v.filmStartTime+'</span>('+v.productName+')</p><p>仅剩<span>'+v.seatCount+'</span>张</p></div><div class="filmPrice"><span>￥'+v.newPrice+'</span><i>￥'+v.oldPrice+'</i></div><div class="buyBtn"><a class="alert-text" href="{:U('film')}?buyingId='+v.buyingId+'">立即抢票</a></div></li>');
+        });
+        
+      };
+    },    
+    error : function() {
+      myApp.hideIndicator();
+        // layer.close(loadi);
+    }   
+    });
+  }
+
+  myApp.onPageInit('buyingfilmList', function (page) {
+
+
+  
+  $(".minus").click(function(){
+       var nowNum = parseInt($('#tickNum').val());
+    if(nowNum > 1){
+      $('#tickNum').val(parseInt($('#tickNum').val()) - 1);
+      setTickTotal();
+    }else{
+       myApp.messages('不能再少啦');
+    }
+  });
+
+function setTickTotal () {
+  $('#tickTotal').html($("#tickNum").val() * $("#tickPrice").val());
+}
+  $(".plus").click(function(){
+    var nowNum = parseInt($('#tickNum').val());
+    var tickMaximum = parseInt($('#tickMaximum').val());
+    if(nowNum < tickMaximum){
+      $('#tickNum').val(parseInt($('#tickNum').val()) + 1);
+      setTickTotal();
+    }else{
+       myApp.alert('最多只能抢购'+tickMaximum+'张');
+    }
+  });
+
+
+  $$('#buy').on('click', function () {
+
+      myApp.showIndicator();
+    $.ajax({    
+    url:'{:U("Buying/checkLogin")}',// 跳转到 action   
+    type:'post',       
+    dataType:'json',    
+    success:function(data) {
+      myApp.hideIndicator();
+      if(data.status == 0){
+        myApp.pickerModal('.pickerInfo');
+        myApp.pickerModal('.modal-overlay');
+      }else{
+        myApp.pickerModal('.login-screen');
+      }
+
+    },    
+    error : function() {
+      myApp.hideIndicator();
+        // layer.close(loadi);
+    }   
+    });
+      
+    });
+    $$('.closePay').on('click', function () {
+      myApp.closeModal('.pickerInfo')
+      $('.modal-overlay').removeClass('modal-in');
+      $('.modal-overlay').addClass('modal-overlay-visible');
+      $('.modal-overlay').css('display','none');
+    }); 
+  
+  $$(".phone").focus(function(){
+    $$('.toolbar').css('display','none');
+
+	
+		//alert(h);
+//		alert(phone.scrollHeight);
+	
+	 if(navigator.userAgent.match(/Android/i)) {  
+   		var phone = document.getElementById('content');
+    	phone.scrollTop = phone.scrollHeight-100;
+  		}
+  });
+  $(".phone").blur(function(){
+    $$('.toolbar').css('display','block');
+  });
+
+  });
+
+
+myApp.onPageInit('buyingUserSuccess', function (page) {
+myApp.showIndicator();
+getPayStatus();
+setIntervalId = setInterval("getPayStatus()",3000);
+});
+var setIntervalId= '';
+function getPayStatus(){
+
+var data = $("#orderInfoOrderId").val();  
+// alert(data);    
+    $.get("{:U('Buying/getOrderStatus')}",{'orderId':data},function(json){
+        // var msg=JSON.parse(json);
+        // alert(json.status);
+        if (json.status == '0') {
+          // alert('111');
+           myApp.hideIndicator();
+            clearInterval(setIntervalId);
+            $("#ining").hide();
+            $("#success b").eq(1).text(json['data']);
+            $("#success").show();
+        };
+    });
+}
+
+</script>
+<block name='script'></block>

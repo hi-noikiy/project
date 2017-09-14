@@ -1,0 +1,131 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<script type="text/javascript" src="{{static_url('notice'|ns_js)}}"></script>
+<link rel="stylesheet" type="text/css" href="{{static_url('notice'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+公告
+{% endblock %}
+
+{% block titleList %}
+<!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parents">
+    <div class="center-box-content">
+        <div class="notice-body">
+            <div class="notice-main {% if !listType %}center_{% endif %}">
+                {% if listType %}
+                <div class="notice-header nhbg_ list_page">
+                    <i class="line_small left_"></i>
+                    <i class="line_small right_"></i>
+                    <div class="title_">信息公告</div>
+                </div>
+                {% else %}
+                <div class="notice-header nhbg_ list_page goback-btn">
+                    <a href="/notice">
+                        <div class="title_ no-bg">返回公告列表</div>
+                        <div class="icon_"></div>
+                        <div class="bottom_bg"></div>
+                        <div class="bottom_bg2"></div>
+                    </a>
+                </div>
+                <div class="nhbg_ notice-title list_page">
+                    <i class="line_big left_"></i>
+                    <i class="line_big right_"></i>
+                    <div class="title_s">{{ noticeContent['data']['title'] }}</div>
+                </div>
+                {% endif %}
+                <div class="notice-right list_page" style="display: none;">
+                    <div class="right-radius left_"></div>
+                    <div class="right-radius right_"></div>
+                    <div class="right-title">
+                        <i></i>
+                        <span>热门活动</span>
+                    </div>
+                    <div class="right-content">
+                        <div class="notice-pub">
+                            <img src="{{static_url('web/cssimg/notice/1_01.png')}}">
+                        </div>
+                        <div class="notice-pub">
+                            <img src="{{static_url('web/cssimg/notice/1_02.png')}}">
+                        </div>
+                        <div class="notice-pub">
+                            <img src="{{static_url('web/cssimg/notice/1_03.png')}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="notice-content {% if listType %}list_page{% endif %}">
+                    {% if listType %}
+                    <ul>
+                        {% for val in noticeList['data']['list'] %}
+                        <li class="clearfix">
+                            <div class="nc-d">
+                                <i class="nc-icon-d"></i>
+                            </div>
+                            <div class="nc-c">
+                                <a href="/notice?id={{ val['id'] }}" title="{{ val['title'] }}">{{ val['title'] }}</a>
+                            </div>
+                            <div class="nc-data">{{ val['createTime']|ns_date }}</div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <div class="content-center">{{ noticeContent['data']['contents'] }}</div>
+                    {% endif %}
+                </div>
+                {% if listType %}
+                <div class="notice-pageControl list_page">
+                    <div class="content_ clearfix">
+                        <div class="page-btn page-btn-index pull-left no-border {% if !listType or pageTotal < 6 %}no-use{% endif %}" onclick="indexPage(1);">首页</div>
+                        <ul class="clearfix" id="pageTotal" totalpage="{{ pageTotal }}">
+                            {% if pageTotal > 1 %}
+                            {% for index in 1..pageTotal %}
+                            {% if (index<=(thisPage+2)and(index>=thisPage-3))or(thisPage<4 and index<7)or(thisPage>pageTotal-3 and index>pageTotal-6) %}
+                            <li class="page-btn {% if thisPage == index %}active{% endif %}" onclick="noticePageTo(this);">{{ index }}</li>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                        {% if pageTotal > 6 and pageTotal > (thisPage+2)  %}
+                        <div class="page-btn page-btn-more pull-left no-border {% if !listType or pageTotal < 6 %}no-use{% endif %}" onclick="morePage();">......</div>
+                        <div class="page-btn page-btn-last pull-left" onclick="noticePageTo(this);">{{ pageTotal }}</div>
+                        {% endif %}
+                        <div class="page-btn page-btn-next pull-left {% if !listType or pageTotal < 6 %}no-use{% endif %} {% if pageTotal == thisPage %}forbid{% endif %}" onclick="nextPage(0,this);"><i class="right_"></i></div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="center-footer-bgs"></div>
+    <script type="text/javascript">
+        function noticePageTo(n){
+            location.href='/notice?p='+jq(n).html();
+        }
+        function nextPage(n,a){
+            if(jq(a).hasClass('forbid')){return false;}
+            n=parseInt(jq('.notice-pageControl .page-btn.active').html())+1;
+            location.href='91ns.notice.php?p='+n;
+        }
+        function indexPage(n){
+            location.href='91ns.notice.php?p='+n;
+        }
+        function morePage(n){
+            n=parseInt(jq('#pageTotal li:last').html());
+            location.href='91ns.notice.php?p='+n;
+        }
+    </script>
+</div>
+{% endblock %}
+
+{% block end %}
+<!--例如、QQ客服-->
+{% endblock %}

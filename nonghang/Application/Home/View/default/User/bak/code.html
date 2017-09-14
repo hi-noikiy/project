@@ -1,0 +1,36 @@
+<extend name='Public/base'/>
+<block name='title'>取票密码</block>
+<block name='body'>
+<div class="views">
+  <div class="view view-main">
+	<div class="headerNav">
+        <div class="headerLeft"><a href="javascript:window.history.back(-1);" class="external"><img src="__IMG__/common/back.png" height="100%" /></a></div>
+        <div class="title"><span>取票密码</span></div>
+        <div class="headerRight"></div>
+    </div>
+    <div class="content">
+        <div class="ticketCode">
+        	<ul>
+        	<volist name='codes' id='vo'>
+            	<li>
+                	<div class="codeLeft">
+                    	<h3>{$vo['filmName']}</h3>
+                        <p>订单编号：{$vo['orderCode']}</p>
+                    </div>
+                    <div class="codeRight">
+                    	<span>取票码</span><br />
+                        <b>{$vo['printNo']}</b>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript" src="__JS__/framework7.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</block>

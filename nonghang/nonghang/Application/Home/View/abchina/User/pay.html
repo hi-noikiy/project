@@ -1,0 +1,456 @@
+<extend name='Public/base'/>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a id="cancel" href="#" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">支付</div>
+    <div class="right"></div>
+  </div>
+</div>
+    </block>
+
+<block name='body'>
+<div data-page="userPay" class="page" style="padding-top:44px; overflow:scroll;">
+<foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+      <?php 
+      foreach ($data as $key => $value) {
+        echo '<div style="display:none" id="' . $key . '">' . $value . '</div>';
+      }
+
+      //print_r($data);?>
+    <div class="content" style="background: none">
+        <div class="payTop"><span><em></em>支付剩余时间  <b id='time1'><?php echo  date('i:s',$order['lockTime']-time());?></b></span></div>
+        <div class="payWays list-block media-list">
+        	<h2>使用电子券/积分</h2>
+            <ul id="voucherList">
+
+            </ul>
+            <ul id="integral" style="display:none">
+                <li onclick="useIntegral()">
+                   <label class="label-checkbox item-content">
+                    <div class="item-inner">
+                        <div class="item-title-row">
+                          <div class="item-title">
+                          	<div class="item-maintitle">积分</div>
+                            <div class="item-subtitle">{$payInfo['integral'][0]['content']}</div>
+                          </div>
+                        </div>
+                      </div>
+                     <input type="checkbox"  id='icheck'  <?php if($payInfo['integral'][0]['isShow']=='1'){ ?><?php if($payInfo['integral'][0]['isUse']=='1'){ ?>checked<?php }?><?php }else{ ?>disabled<?php }?>>
+                    <div class="item-media" style="padding-right:10px;"><i class="icon icon-form-checkbox"></i></div>
+                  </label>
+                </li>
+            </ul>
+        </div>
+        <div class="selectPay list-block media-list">
+            <h2>还需支付：￥<b id="orderPrice">{$payInfo['orderInfo']['price']}</b></h2>
+            <div class="payBtn"><a href="{:U('user/recharge')}" class="external">充值</a></div>
+            <ul id="accountInfo" style="display:none">
+                <li>
+                 	<label class="label-checkbox item-content" onclick='useMoney()'>
+                    <div class="item-inner">
+                        <div class="payIcon"><img src="__IMG__/movie/balance.png" height="50" /></div>
+                        <div class="payInfo">
+                            <p>账户余额支付</p>
+                            <span>您当前账户余额为<b id='hasmoney'>{$user['userMoney']}</b>元</span>
+                        </div>
+                    </div>
+					<input type="checkbox"  id='mcheck'  <?php if($payInfo['account'][0]['isShow']=='1'){ ?><?php if($payInfo['account'][0]['isUse']=='1'){ ?>checked<?php }?><?php }else{ ?>disabled<?php }?>>
+                    <div class="item-media"><i class="icon icon-form-checkbox" ></i>
+                    
+                    </div>
+                </label>
+                </li>	
+            </ul>
+            <ul id="onlinePay">
+
+                </ul>
+                 
+            <!--<h2>应付金额：<b>￥{$order['myPrice']*$order['seatCount']}</b></h2>-->
+			
+        </div>
+        <div class="Button" id="payButton">
+        	<a href="javascript:void(0)" class="">确认支付</a>
+        </div>
+    </div>
+    </div>
+ <div class="modal-overlay "></div>
+<div class="picker-modal pickerInfo payPicker minusPicker"  style="height:290px;display: none" >
+	
+    <div class="voucherPickerTop">
+    	<h4>选择立减券</h4>
+        <p>一个订单只能使用一张立减券</p>
+    	<a href="#" class="closePicker minusClosePicker"></a>
+    </div>
+    <div class="voucherList scroll">
+    	<div class="voucherText">
+        	<input type="text" placeholder="请输入券码" />
+            <a href="javascript:;" onclick='var voucher=$(this).prev().val();payUse(voucher);'>使用</a>
+        </div>
+        <ul id="voucherList1">
+        <foreach name="payInfo['voucher'][0]['list']" item='vo'>
+            <li>
+                <img src="__IMG__/user/voucher2.png" width="100%" />
+                <div class="voucherBody">
+                    <div class="voucherPrice"><b>￥</b>{$vo['voucherValue']}</div>
+                    <div class="voucherCode">{$vo['voucherNum']}<p class="voucherDatePicker">有效期至{$vo['validData']|date='Y-m-d',###}</p></div>
+                    <div class="voucherName">{$vo['voucherName']}</div>
+                    <?php if($vo['isCanUse']!='1'){ ?><span class="voucherUse" >不可以使用</span>
+                    <?php }elseif($vo['isUse']!='1'){ ?><a href="javascript:payUse('{$vo[voucherNum]}')" class="voucherUse">立即使用</a>
+                     <?php }else{ ?><a href="javascript:cancelUse('{$vo[voucherNum]}')"  class="voucherUse">取消使用</a><?php }?>
+                </div>
+            </li>
+            </foreach>
+        </ul>
+    </div>
+    <div class="voucherPickerBtm" >
+    	<span class="voucherNumPicker">还能使用<b id="voucherNum1">{$payInfo['voucher'][0]['useNum']}</b>张立减券</span>
+        <span class="voucherPircePicker">应付：<b>¥{$order['myPrice']*$order['seatCount']}</b></span>
+    </div>
+</div>
+<input type="hidden" id='allprice' value="{$order['myPrice']*$order['seatCount']}">
+<div class="picker-modal pickerInfo payPicker exchangePicker"  style="height:290px;display: none">
+	
+    <div class="voucherPickerTop">
+    	<h4>选择兑换券</h4>
+        <p>几个座位使用几张兑换券</p>
+    	<a href="#" class="closePicker exchangeClosePicker"></a>
+    </div>
+    <div class="voucherList scroll">
+    	<div class="voucherText">
+        	<input type="text" placeholder="请输入券码" />
+            <a href="javascript:;" onclick='var voucher=$(this).prev().val();payUse(voucher);'>使用</a>
+        </div>
+        <ul id="voucherList0" style="padding-bottom:65px;">
+        <foreach name="payInfo['voucher'][1]['list']" item='vo'>
+            <li>
+                <img src="__IMG__/user/voucher1.png" width="100%" />
+                <div class="voucherBody">
+                    <div class="voucherPrice"><b>￥</b>{$vo['voucherValue']}</div>
+                    <div class="voucherCode">{$vo['voucherNum']}<p class="voucherDatePicker">有效期至{$vo['validData']|date='Y-m-d',###}</p></div>
+                    <div class="voucherName">{$vo['voucherName']}</div>
+                    <?php if($vo['isCanUse']!='1'){ ?><span class="voucherUse" >不可以使用</span>
+                    <?php }elseif($vo['isUse']!='1'){ ?><a href="javascript:payUse('{$vo[voucherNum]}')" class="voucherUse">立即使用</a>
+                    <?php }else{ ?><a href="javascript:cancelUse('{$vo[voucherNum]}')"  class="voucherUse">取消使用</a><?php }?>
+                </div>
+            </li>
+            </foreach>
+        </ul>
+    </div>
+    <div class="voucherList scroll">
+    	<div class="voucherText">
+        	<input type="text" placeholder="请输入券码" />
+            <a href="">使用</a>
+        </div>
+        
+    </div>
+    <div class="voucherPickerBtm" >
+    	<span class="voucherNumPicker">还能使用<b  id="voucherNum0">{$payInfo['voucher'][1]['useNum']}</b>张兑换券</span>
+        <span class="voucherPircePicker">应付：<b>¥{$order['myPrice']*$order['seatCount']}</b></span>
+    </div>
+</div>
+
+
+</block>
+
+<block name='script'>
+
+<script type="text/javascript">
+
+    $$('.minusClosePicker').on('click', function () {
+      myApp.closeModal('.minusPicker')
+    }); 
+	$$('.open-info-integral').on('click', function () {
+	  myApp.pickerModal('.integralPicker');
+	  $$('.modal-overlay').addClass('modal-overlay-visible');
+    });
+    $$('.integralClosePicker').on('click', function () {
+      myApp.closeModal('.integralPicker')
+    }); 
+
+    function showVouceherList (type) {
+        if(type == 0){
+            myApp.pickerModal('.exchangePicker');
+            $$('.modal-overlay').addClass('modal-overlay-visible');
+        }else{
+            myApp.pickerModal('.minusPicker');
+            $$('.modal-overlay').addClass('modal-overlay-visible');
+        }
+    }
+
+
+    $$('.exchangeClosePicker').on('click', function () {
+      myApp.closeModal('.exchangePicker')
+    });
+	//使用券
+	function payUse(voucherNum){
+		var url='{:U("useVoucher")}';
+		var type='film';
+		var orderId='{$order["orderCode"]}';
+		if(voucherNum==''){
+			 myApp.alert('请输入券码', function () {
+			$$('.modal-overlay').addClass('modal-overlay-visible');
+		});
+			 return false;
+		}
+		$.post(url,{voucherNum:voucherNum,orderId:orderId,type:type},function(data){
+			if(data['status']=='0'){
+                myApp.closeModal();
+                reloadPayWay();
+			}else{
+				myApp.alert(data['content'], function () {
+        		$$('.modal-overlay').addClass('modal-overlay-visible');
+		});
+			}
+		},'json');
+	}
+	//取消券
+	function cancelUse(voucherNum){
+		var url='{:U("cancelVoucher")}';
+		var type='film';
+		var orderId='{$order["orderCode"]}';
+		$.post(url,{voucherNum:voucherNum,orderId:orderId,type:type},function(data){
+			if(data['status']=='0'){
+				// location.reload();
+                myApp.closeModal();
+                reloadPayWay();
+			}else{
+				myApp.alert(data['content']);
+			}
+		},'json');
+	}
+	//使用积分
+	function useIntegral(){
+		<?php if($payInfo['integral'][0]['isShow']=='0'){ ?>
+		return false;
+		<?php }?>
+		var type='film';
+		var orderId='{$order["orderCode"]}';
+        myApp.showIndicator();
+		if($('#icheck').prop('checked')){
+			var url='{:U("cancelIntegral")}';
+		}else{
+			var url='{:U("useIntegral")}';
+		}
+		$.post(url,{orderId:orderId,type:type},function(data){
+			// myApp.hideIndicator();
+            if(data['status']=='0'){
+                reloadPayWay();
+                // mainView.router.loadPage('{:U('user/pay')}');
+			}else{
+				myApp.alert(data['content']);
+			}
+		},'json');
+	}
+
+    function reloadPayWay () {
+        myApp.showIndicator();
+        var orderId='{$order["orderCode"]}';
+        $.post('{:U('getBuyPaywayJson')}',{'orderId':orderId,'type':'film'},function(json){
+
+
+            
+
+            myApp.hideIndicator();
+            if(json['status']=='0'){
+                var str = '';
+                if (json['data']['account']) {
+                    $('#hasmoney').html(json['data']['account'][0]['userMoney']);
+                }else{
+                    $('.payBtn').css('display', 'none');
+                }
+                if (json.data.voucher) {
+                    $('#voucherList').html('');
+                    var	pf=parseFloat($('#allprice').val())-parseFloat(json.data.orderInfo.price);
+                    $.each(json.data.voucher, function(k,v){
+                        if (v.isShow == 1) {
+                        $('#voucherList').append('<li onclick="showVouceherList('+v.voucherClass+')"><a href="javascript:" class="item-link item-content open-info-'+v.voucherClass+'"><div class="item-inner"><div class="item-title-row"><div class="item-title"><div class="item-maintitle">'+v.name+'</div><div class="item-subtitle">'+v.content+'</div></div></div>                      </div></a></li>');
+                            $('#voucherList'+v.voucherClass).html('');
+                            if (v.list) {
+                            
+                            $.each(v.list, function(i,l){
+                                if (l.isCanUse == 1) {
+                                   if (l.isUse==0) {
+                                        str = '<a href="javascript:payUse(\''+l.voucherNum+'\')" class="voucherUse">立即使用</a>';
+                                    }else{
+                                        str = '<a href="javascript:cancelUse(\''+l.voucherNum+'\')"  class="voucherUse">取消使用</a>';
+                                    }
+                                }else{
+
+                                    str = '<span class="voucherUse" >不可用</span>';
+                                }
+
+                                var voucherName = l.voucherName;
+
+                                voucherName = voucherName.replace(/兑换券/, "");
+
+                                $('#voucherList'+v.voucherClass).append('<li><img src="__IMG__/user/voucher1.png" width="100%" /><div class="voucherBody"><div class="voucherPrice">'+voucherName+'</div><div class="voucherCode">'+l.voucherNum+'<p class="voucherDatePicker">有效期至:'+getLocalTime(l.validData)+'</p></div><div class="voucherName">兑换券</div>'+str+'</div></li>');
+                            });
+                            };
+                            $('#voucherNum' + v.voucherClass).html(v.useNum);
+                            
+                            
+                        }
+                        
+                    });
+                    $('#pf0').html(pf.toFixed(2));
+                    $('#pf1').html(pf.toFixed(2));
+                    $('#orderPrice').html(json.data.orderInfo.price);
+
+                    
+                    if (json.data.integral) {
+                        $('#integral').css('display', '');
+                    }else{
+                        $('#integral').css('display', 'none');
+                    }
+
+                    if (json.data.account) {
+                        $('#accountInfo').css('display', '');
+                    }else{
+                        $('#accountInfo').css('display', 'none');
+                    }
+                    $('#onlinePay').html('');
+
+                    // var str = JSON.stringify(json.data.online); 
+                    //     alert(str); 
+
+                    $.each(json['data']['online'], function(k,v){
+                        if (v.isShow == 0) {
+                            str = 'disabled';
+                        }else{
+                            str = '';
+                        }
+                        $('#onlinePay').append(' <li><label class="label-checkbox item-content"><div class="item-inner"><div class="payIcon"><img src="'+v.icon+'" height="50" /></div><div class="payInfo"><p>'+v.name+'</p><span>'+v.instruction+'</span></div></div><input type="radio" name="my-checkbox" value="'+v.type+'" '+str+'><div class="item-media"><i class="icon icon-form-checkbox"></i></div></label></li>');
+                           
+                    });
+
+                };
+
+                // if (data.data.) {};
+                // reloadPayWay();
+                // mainView.router.loadPage('{:U('user/pay')}');
+            }else{
+                myApp.alert(json['content']);
+            }
+        },'json');
+    }
+	//使用余额
+	function useMoney(){
+		<?php if($payInfo['account'][0]['isShow']=='0'){ ?>
+		return false;
+		<?php }?>
+		var type='film';
+		var orderId='{$order["orderCode"]}';
+		if($('#mcheck').prop('checked')){
+			var url='{:U("cancelAccount")}';
+		}else{
+			var url='{:U("useAccount")}';
+		}
+		$.post(url,{orderId:orderId,type:type},function(data){
+			if(data['status']=='0'){
+                reloadPayWay();
+			}else{
+				myApp.alert(data['content']);
+			}
+		},'json');
+	}
+    $(function(){
+        var i,s,time={$order['lockTime']-time()};
+        var id=setInterval(function(){
+            time-=1;
+            if(time>0){
+                i=Math.floor(time/60);
+                s=time%60;
+                $('#time1').text(i+':'+s);
+            }else{
+                location.href='{:U("Index/plan")}';
+                clearInterval(id);
+            }
+        },1000);
+        $('#payButton').click(function(){
+        	var price=$('#orderPrice').html();
+        	var payType=$('input[name="my-checkbox"]:checked').val();
+            // alert(payType);
+        	if(payType==undefined){
+        		payType='account';
+        	}
+        	if(payType=='account'&&parseFloat(price)>0){
+        		myApp.alert('请选择正确支付方式');
+        		return false;
+        	}
+        	var orderCode="{$order['orderCode']}";
+        	var payurl="{:U('user/ordersuccess1')}";
+            var gourl="{:U('paysuccess',array('orderid'=>$order['orderCode']))}";
+        	if(payType=='weixinpay'){
+        	        myApp.confirm("去支付", function () {
+        	        	myApp.showIndicator();
+    	                var configdata = {
+    	                        appId: $("#appid").html() ,
+    	                        timestamp:  $("#timestamp").html() ,
+    	                        nonceStr: $("#wxnonceStr").html() , 
+    	                        signature: $("#wxSha1").html() , 
+    	                        debug:false,
+    	                        jsApiList: [
+    	                            'chooseWXPay',
+    	                        ]
+    	                    };
+
+    	                    wx.config(configdata);
+    	                    wx.ready(function () {
+    	                        $.post(payurl,{orderid:orderCode,payType:payType},function(data){   
+    	                        	myApp.hideIndicator();
+    	                        	 wx.chooseWXPay({
+    	                                 timestamp:  data['timeStamp'] ,
+    	                                 nonceStr: data['nonceStr'] , 
+    	                                 package: data['package'] , 
+    	                                 signType: data['signType'] , 
+    	                                 paySign: data['paySign'] , 
+    	                                 success: function (res) {
+    	                                	 location.href=gourl;
+    	                                 },
+    	                             });
+    	                        },'json');
+    	                    });
+    	                    wx.error(function (res) {
+    	                        myApp.alert( res.errMsg );
+    	                    });
+        	            });
+        	}else{
+                myApp.showIndicator();
+                $.post(payurl,{orderid:orderCode,payType:payType},function(msg){
+                    myApp.hideIndicator();
+                    if(msg['status']=='0'){
+                        location.href=msg['data'];
+                    }else{
+                        myApp.alert(msg['content']);
+                    }
+                },'json');
+        	}
+        });
+    });
+    var myApp = new Framework7({
+        modalTitle:'',
+        modalButtonOk:'确认',
+        modalButtonCancel:'取消'
+        });
+    var $$ = Dom7;
+    $$('#cancel').on('click', function () {
+        var orderid="{$order['orderCode']}";
+        myApp.confirm('请确认是否取消该订单', function () {
+            $.get('{:U("cancelOrder")}',{orderid:orderid},function(msg){
+                location.href="{:U('index/index')}";
+            });
+        });
+    });
+    reloadPayWay();
+
+
+function getLocalTime(nS) {     
+   return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ').substr(0, 10);     
+}   
+
+</script>
+
+</block>

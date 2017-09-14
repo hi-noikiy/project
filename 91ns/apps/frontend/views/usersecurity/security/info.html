@@ -1,0 +1,63 @@
+<div class="m-y-content clearfix">
+    <div class="personal-div getpresents clearfix">
+        <div class="info clearfix">
+            <img id="info-avatar" class="avatar" >
+            <div class="msg">
+                <div class="name clearfix">
+                    <span>用户名：</span>
+                    <span id="info-name">{{ uinfo['userName'] }}</span>
+                    <input id="usernameInput" class="usernameInput" value="" style="display: none;float: none;">
+                    <span class="userI" style="display: none;">
+                        <a class="userOk">确定</a>
+                        <a class="userCancel">取消</a>
+                    </span>
+                    {% if uinfo['canSetUserName']==1 %}
+                    <span id="userNameMof" style="width: 30px;height: 20px;"><i class="p-icon-edit editIsShow"></i></span>
+                    {% endif %}
+                </div>
+                <div class="userid">ID：<span id="info-id"></span></div>
+                <div  class="nickname">
+                    昵称：
+                    <span id="info-nickName"></span>
+                    <input id="nicknameInput" class="usernameInput" value="" style="display: none;float: none;">
+                    <span class="nickI" style="display: none;">
+                        <a class="nickOk">确定</a>
+                        <a class="nickCancel">取消</a>
+                    </span>
+
+                    <span id="nicknameMof" style="width: 30px;height: 20px;"><i class="p-icon-edit editNickName"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="level clearfix">
+            <div class="left">
+                <div class="level clearfix richerLevel">
+                    <div id="info-richerLevel" class="radius" nsdata="level-radius" nstype="richer" level-range="1" level-exp="0">
+                        <div class="bgs"></div>
+                        <div class="type">富豪等级</div>
+                        <i class=""></i>
+                    </div>
+                    <div class="text">距<i id="info-richerLevelNext" class=""></i>还需消费<span id="info-richerLevelNextExp"></span>聊币升级</div>
+                </div>
+                <div class="level clearfix fansLevel">
+                    <div id="info-fansLevel" class="radius" nsdata="level-radius" nstype="fans" level-range="1" level-exp="0">
+                        <div class="bgs"></div>
+                        <div class="type">主粉等级</div>
+                        <i class=""></i>
+                    </div>
+                    <div class="text">距<i id="info-fansLevelNext" class=""></i>还需<span id="info-fansLevelNextExp"></span>粉丝升级</div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="level clearfix anchorLevel">
+                    <div id="info-anchorLevel" class="radius" nsdata="level-radius" nstype="anchor" level-range="1" level-exp="0">
+                        <div class="bgs"></div>
+                        <div class="type">主播等级</div>
+                        <i class=""></i>
+                    </div>
+                    <div class="text">距<i id="info-anchorLevelNext" class=""></i>还需<span id="info-anchorLevelNextExp"></span>主播经验升级</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

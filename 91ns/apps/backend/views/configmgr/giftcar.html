@@ -1,0 +1,209 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a> 
+        <a href="#" class="tip-bottom" data-original-title="">配置管理</a> 
+        <a href="#" class="current">礼物座驾配置</a> 
+    </div>
+    
+   <!--  <h1>Tables</h1> -->
+  </div>
+  <div class="container-fluid">
+   <!--  <hr> -->
+    <div class="row-fluid">
+      <div class="span12">
+        <!-- <div class="row-fluid">
+            <button id="btnAdd" class="btn btn-success pull-right">添&nbsp;加</button>
+        </div> -->
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>礼物座驾配置列表</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table id="dataList" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>礼物类型名称</th>
+                  <th>标识Id(非0)</th>
+                  <th>描述</th>
+                  <th>是否显示</th>
+                  <th>是否可卖</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="pagination" class="pagination alternate pull-right">
+
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+$(function(){
+    getDataList();
+});
+
+
+/**
+* 初始化为空
+*/
+function Initialization(){
+
+  var submitform=document.getElementById('submitform');
+    
+    submitform.giftTypeName.value='';
+    submitform.giftTypeId.value='';
+    submitform.description.value='';
+}
+
+//add vip data
+/*var btnadd=document.getElementById('btnAdd');
+utils.addEvent(btnadd,'click',addData); */
+
+function getDataList(index){
+  var data={};
+  data.page=index||0;
+  data.numPerPage=pagesize;
+  $.ajax({
+    type:"post",
+    url:"/configmgr/getGiftCar",
+    data:data,
+    dataType:'json',   
+    success:function(res){
+      
+      var data=res.data;
+      var table=document.getElementById("dataList");
+      var tbody= table.getElementsByTagName('tbody')[0];
+
+      dataTable.clearData(tbody);
+      
+      for(var i=0;i<data.list.length;i++){
+        addRow(tbody,'',data.list[i]);
+      }
+      
+      if(!index||index==0){
+        initPagination(data.count);
+      }
+
+    }
+  });
+}
+
+function initPagination(page) {
+  $("#pagination").pagination(page, {
+      callback: pageselectCallback,
+      items_per_page:pagesize, // 每页只显示一条记录
+      num_display_entries : 3,
+      num_edge_entries : 1, 
+      prev_text : "上一页",  
+      next_text : "下一页", 
+  });
+}
+
+function pageselectCallback(page_index, jq){
+    getDataList(page_index);
+    return false;
+}
+
+function addRow(table,index,data){
+  var row=table.insertRow();
+  var cell=row.insertCell(0);
+  var cell1=row.insertCell(1);
+  var cell2=row.insertCell(2);
+  var cell3=row.insertCell(3);
+  var cell4=row.insertCell(4);
+  var cell5=row.insertCell(5);
+  
+  cell.innerHTML=data.name;
+  cell1.innerHTML=data.typeId;
+  cell2.innerHTML=data.description;
+  cell3.innerHTML=data.showStatus == 0 ? '否' : '是';
+  cell4.innerHTML=data.sellStatus == 0 ? '否' : '是';
+
+  var b=document.createElement('a');
+  b.innerHTML=data.showStatus==1 ? "&nbsp;不显示" : '&nbsp;显示';
+  b.onclick=function(){setShowStatus(data.id, 1-data.showStatus);}
+  cell5.appendChild(b);
+
+  var c=document.createElement('a');
+  c.innerHTML=data.sellStatus==1 ? "&nbsp;不销售" : '&nbsp;销售';
+  c.onclick=function(){setSellStatus(data.id, 1-data.sellStatus);}
+  cell5.appendChild(c);
+
+  /*var deit=document.createElement("a"),
+  del=document.createElement("a");
+  
+  deit.innerHTML='编辑';
+  deit.className="table-edit";
+  deit.data=data.id;
+  utils.addEvent(deit,'click',dataEdit);
+
+  del.innerHTML='删除';
+  del.data=data.id; 
+  utils.addEvent(del,'click',dataDelete); 
+
+  cell5.appendChild(deit);
+  cell5.appendChild(del);*/
+    
+  return row;
+}
+
+function setShowStatus(id, showStatus) {
+  data={};
+  data.showStatus = showStatus;
+  $.ajax({
+    type:"post",
+    url:"/configmgr/setShowStatus/"+id,
+    data:data,
+    dataType:'json',
+    success:function(res){
+      var data= res;
+
+      if (data.code != 0) {
+        alert(data.info);
+      }
+      else {
+        alert('操作成功');
+        location.reload();
+      }
+    }
+  });
+}
+
+function setSellStatus(id, sellStatus) {
+  data={};
+  data.sellStatus = sellStatus;
+  $.ajax({
+    type:"post",
+    url:"/configmgr/setSellStatus/"+id,
+    data:data,
+    dataType:'json',
+    success:function(res){
+      var data= res;
+
+      if (data.code != 0) {
+        alert(data.info);
+      }
+      else {
+        alert('操作成功');
+        location.reload();
+      }
+    }
+  });
+}
+  
+</script>
+

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('index'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('pagination2'|ns_css)}}" />
+    <script type="text/javascript">
+    var SWF_URL = "{{ swfUrl|default('web/swf') }}";
+    </script>
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+    <div class="theBanner" id="carouselHeader">
+        <div class="theBannerLogin">
+            <!--unloginBox 登录前-->
+            <div id="unloginBox" class="unloginBox" style="display:none;">
+                <!-- <div class="err" style="display:none;"><span>用户名不能为空</span></div> -->
+                <ul>
+                    <li>
+                        <label class="label_username" jsShowType="normalLogin"></label>
+                        <label class="label_tel" jsShowType="telLogin"></label>
+                        <span defaultdisplay="default" class="inp_placeholder" loginShowTip>用户名</span>
+                        <input type="text" class="inp_txt" id="login_username"></li>
+                    <li>
+                        <label class="label_password"></label>
+                        <span defaultdisplay="default" class="inp_placeholder" loginShowTipPWD>密码</span>
+                        <input type="password" class="inp_txt" id="login_password">
+                        <a href="/forgetpwd?ul=1" class="forgetPassword" jsShowType="normalLogin">
+                            <i>忘记密码</i>
+                        </a>
+                        <i class="getTelCode" id="indexLoginGetCode" jsShowType="telLogin">获取验证码<i></i></i>
+                    </li>
+                </ul>
+                <div class="p_rem">
+                    {% if webType['channelType']!=2 %}
+                    <label class="login_save clearfix" id="login_changeType" onselectstart="return false;">
+                        <i class="sprite-index telValidIco"></i>
+                        <span jsShowType="normalLogin">手机登录</span>
+                        <span jsShowType="telLogin">返回普通登录</span>
+                    </label>
+                    {% endif %}
+                    <a class="login_reg" id="reg_home">注册用户</a>
+                </div>
+                <span class="login_btn" id="userLogin">登录</span>
+                {% if webType['channelType']!=2 %}
+                <p><a class="sprite-index_third thirdWeixin" onclick="thirdLogin('weixin');return false;"></a><a class="sprite-index_third thirdQQ" onclick="thirdLogin('qqdenglu');return false;"></a><a class="sprite-index_third thirdWeibo" onclick="thirdLogin('sinaweibo');return false;"></a></p>
+                {% endif %}
+            </div>
+            <!--loginedBox 登录后-->
+            <div class="loginedBox" id="loginedBox" style="display:none;">
+                <div id="index_userInfo" class="user_info_div">
+                    <div class="user_pic">
+                        <img src="" nsdata="userAvatar">
+                    </div>
+                    <div class="user_info">
+                        <p class="user_data clearfix"><span class="userNickName" nsdata="userNickName"></span><i class="line"></i><span nsdata="userUID"></span><!-- <a class="user_edit"></a> --></p>
+                        <p class="user_coin">
+                            <span>聊币:</span>
+                            <span class="datas" nsdata="cash">0</span>
+                            <span>积分:</span>
+                            <span nsdata="integral">0</span>
+                            <span>聊豆:</span>
+                            <span nsdata="coin">0</span>
+                        </p>
+                    </div>
+                    <div class="user_nav_list" id="index_centerContent" style="display:none;">
+                        <a target="_blank" href="/personal/info">个人资料</a>
+                        <a target="_blank" href="/personal/concern">我的关注</a>
+                        <!--<a target="_blank" href="/personal/myfans">我的粉丝</a>-->
+                        <i class="line"></i>
+                        <a target="_blank" href="/personal/props">我的道具</a>
+                        <a target="_blank" href="/personal/mybill">我的账单</a>
+                        <i class="line"></i>
+                        <a target="_blank" href="/personal/savecenter">安全中心</a>
+                        <a href="/user/loginout">退出登录</a>
+                        <i class="bottom"></i>
+                    </div>
+                </div>
+                <p class="user_nav"><a class="user_msg" href="/message" target="_blank">消息</a><a class="user_center" id="index_userCenter">用户中心</a><a class="user_pay" href="/charging" target="_blank">充值</a></p>
+                {% if isSignAnchor|default(false) %}
+                <a class="sprite-btn-space myspace" target="_blank" href="/home?uid={{ ns_userUid|default(0) }}">我的空间</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="theBannerCont" id="carouselBody">
+            <div class="control left" jsdata="left">
+                <i class="bgs"></i>
+                <i class="sprite-index arrow2Left"></i>
+            </div>
+            <div class="control right" jsdata="right">
+                <i class="bgs"></i>
+                <i class="sprite-index arrow2Right"></i>
+            </div>
+            {% for i in bannerList %}
+            <ul style="background-color:{{i['backgroundcolor']}}">
+                <li><a href="{{i['extracontent']}}" target="_blank"><img src="{{i['bannerurl']}}"></a></li>
+            </ul>
+            {% endfor %}
+            <ul style="background-color:{{bannerList[0]['backgroundcolor']}}">
+                <li><a href="{{bannerList[0]['extracontent']}}" target="_blank"><img src="{{bannerList[0]['bannerurl']}}"></a></li>
+            </ul>
+        </div>
+        <div class="theBannerCont_control" id="carouselFooter">
+            <p class="clearfix">
+                {% for i in 0..(bannerList|length - 1) %}
+                <a {% if i == 0 %}class="cur"{% endif %} data="{{ i }}"></a>
+                {% endfor %}
+            </p>
+        </div>
+    </div>
+    <div class="wrapBd">
+        <div class="w_1200">
+            <div class="wrapCont">
+                <div class="Hot_V_tit"><h3>推荐主播</h3><span>RECOMMENDED HOSTESS</span><div class="line"></div></div>
+                <div id="roomListContent" class="Hot_V_list clearfix">
+                    <div class="js-data-demo-anchorItem" style="display:none;"><li class="m-item"><a href="#" target="_blank" class="i-user" title=""><img src="" class="i-avatar" alt="" title=""><span class="i-tags index-roomlist-1 _status"><i class="txt">直播</i></span><i class="index-roomlist-1 _play ico-play"></i><div class="i-bg"></div><div class="i-info2"><i class="index-roomlist-1 _number"></i><span class="number">0</span><span class="i-city"></span></div></a><div class="i-info"><div class="i-info1"><div class="i-name"><a href="#" target="_blank" title="" class="name"></a></div><span class="i-actor sprite-zb_level"></span><i class="sprite-family_level"></i></div></div></li></div>
+                    <ul id="roomTheOne" class="clearfix roomTheOne ">
+                        <li id="roomlist-0">
+                            <a href="#" target="_blank" class="i-user">
+                                <div id="roomTheOneSwf"></div>
+                            </a>
+                            <div class="i-info">
+                                <div class="i-info1 clearfix">
+                                    <div class="i-name">
+                                        <a href="#" target="_blank" title="" class="name"></a>
+                                    </div>
+                                    <i class="sprite-family_level"></i>
+                                    <span class="i-actor sprite-zb_level"></span>
+                                    <span class="number"></span>
+                                    <i class="index-roomlist-1 _number"></i>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul id="roomRecommendList1" class="clearfix anchorsRoomLists roomRecommendList1"></ul>
+                    <ul id="roomRecommendList2" class="clearfix anchorsRoomLists roomRecommendList2"></ul>
+                    <div class="Hot_V_tit"><h3>热门主播</h3><span>POPULAR ANCHIR</span><div class="line"></div></div>
+                    <ul id="roomList" class="clearfix anchorsRoomLists roomList"></ul>
+                </div>
+                <div class="addMore"><a id="addMore">点击看看更多主播</a><i class="animate-load"></i></div>
+            </div>
+            <div class="wrapAside">
+                <div class="R_cont R_cont_act">
+                    <div class="R_cont_hd"><h2>活动进行中</h2></div>
+                    <div class="R_cont_more"><a href="/activities" target="_blank">更多+</a></div>
+                    <div class="R_cont_bd">
+                        <div class="RCAct_pic" id="activitiesList">
+                            <div class="control left" jsdata="left">
+                                <i class="bgs"></i>
+                                <i class="sprite-index arrow1Left"></i>
+                            </div>
+                            <div class="control right" jsdata="right">
+                                <i class="bgs"></i>
+                                <i class="sprite-index arrow1Right"></i>
+                            </div>
+                            <ul class="clearfix">
+                            </ul>
+                        </div>
+                        <div class="RCAct_control" id="activitiesControl"></div>
+                    </div>
+                </div>
+                {% include "template/rank.html" %}
+                <!-- <div class="R_cont R_cont_news">
+                    <div class="R_cont_hd"><h2>公告帮助</h2></div>
+                    <div class="R_cont_bd">
+                        <ul id="noticeList">
+                        </ul>
+                        <div class="row-fluid pageType1">
+                            <div id="pagination" class="pagination alternate pull-right"></div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right_fixed clearfix">
+    <span class="telIco"><i></i>400-999-0591</span>
+    {% if webType['channelType']!=2 %}
+    <span class="right_fixed-head">
+        <div class="fixed-head-ns">91女神手机端</div>
+        <div class="fixed-head-QRcode">
+            <img src="http://cdn.91ns.com/web/cssimg/91ns/QRcode.png">
+        </div>
+    </span>
+    {% endif %}
+    <div class="Customer">
+        <div class="_Customer">客服
+            <ul class="CustomerList">
+                <li>
+                    <a class="a_qq off" href="tencent://message/?uin={{GMQQ[0]}}&Menu=yes&Site=91ns&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45"><span>秀场客服</span></a>
+                </li>
+                <li style="border-top: 0px;border-bottom: 0px;">
+                    <a class="a_qq" href="tencent://message/?uin={{GMQQ[1]}}&Menu=yes&Site=91ns&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45"><span>秀场客服</span></a>
+                </li>
+                <li>
+                    <a class="a_qq" href="tencent://message/?uin={{GMQQ[2]}}&Menu=yes&Site=91ns&Service=300&sigT=45a1e5847943b64c6ff3990f8a9e644d2b31356cb0b4ac6b24663a3c8dd0f8aa12a595b1714f9d45"><span>主播招募</span></a>
+                </li>
+            </ul>
+        </div>
+        </div>
+    <div class="right_fixed-bottom clearfix">
+         <div class="help pull-left">
+            <a class="a_help" href="/help/helpanchor" target="_blank"><i class="helpImg"></i><span>帮助</span></a>
+        </div>
+        <div class="hr pull-left"></div>
+        <div class="back pull-left">
+            <a class="a_help" id="index_goTop"><i class="goTopImg"></i><span>回顶部</span></a>
+        </div>
+        <!--<a class="a_help a_back" id="index_goTop" style="display: inline-block;margin-top: 7px;width: 128px;height: 42px;"><i class="goTopImg"></i><span style="display: inline-block;vertical-align: 1px;margin-left: 5px;">回顶部</span></a>-->
+    </div>
+</div>
+<div id="room_iframe_content">
+    <iframe id="room_iframe" width="100%" height="100%" style="position:absolute;top:0;left:0;border:0;z-index:-1;opacity: 0; filter: alpha(opacity=0);"></iframe>
+</div>
+    {% include "template/footer.html" %}
+    <script type="text/javascript" defer async data-main="{{static_url('index'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<div id="incomeDialog" style="padding:0;">
+
+  <div>
+    <table>
+      <tbody>
+        <tr>    
+          <!-- <td>
+           <label style="display: inline-block;">用户UID：</label>
+           <input type="text" style="margin-top: 10px;" >
+           <button class="btn  btn-success">查询</button>
+          </td> -->
+          <td>
+            <label style="display: inline-block;">时间：</label>
+            <input type="text" style="margin-top: 10px;" > 
+            <button class="btn  btn-success">查询</button>
+          </td>
+        </tr>
+        
+        
+      </tbody>
+    </table>
+  </div>
+
+  <div>
+   <span> X年X月总播出时长：</span><span>1小时00分</span>
+  <span> , 总增加粉丝量：120</span>
+  </div>
+
+  <div class="widget-box" style="margin:0;">     
+    <div class="widget-content nopadding">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>昵称</th>
+            <th>主播等级</th>
+            <th>播出时长</th>
+            <th>新增粉丝</th>
+            <th>收益(聊币)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="odd gradeX">
+            <td>2015-3-11 10:15:27</td>
+            <td>韩国</td>
+            <td>1</td>
+            <td class="center">1 小时00分</td>
+            <td class="center">100</td>
+            <td class="center">1000</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  function incomeDialog(id){
+    $( "#incomeDialog" ).dialog({
+        width: 800,
+        height: 650,
+        title:'主播收益详细页面',
+        modal:true,
+        closeOnEscape:true,
+        resizable:false,
+        open:function(){
+        /*
+          initialization();
+          $.ajax({
+            type:"post",
+            data:'',
+            url:url,
+            dataType:'json',
+            success:function(res){
+
+          });*/
+        }
+        
+   });
+  }
+</script>

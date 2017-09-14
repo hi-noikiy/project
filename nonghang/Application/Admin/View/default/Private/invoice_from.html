@@ -1,0 +1,93 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="" id="dataform">
+<div class="formBody">
+    <div class="privateOrderInfo">
+
+        <?php if($type==1):?>
+        <h2>普通发票</h2>
+        <p>发票抬头：<span>{$name}</span></p>
+        <p>发票内容：<span>{$content}</span></p>
+        <?php elseif($type==2):?>
+        <h2>增值税发票</h2>
+        <p>单位名称：<span>{$name}</span></p>
+        <p>纳税人识别号：<span>{$identificationNum}</span></p>
+        <p>注册地址：<span>{$address}</span></p>
+        <p>注册电话：<span>{$phone}</span></p> 
+        <p>开户银行：<span>{$bank}</span></p>
+        <p>银行账号：<span>{$bankAccount}</span></p>
+        <?php endif;?>
+        <?php if($type):?>
+        <p>收票人姓名：<span>{$telname}</span></p>
+        <p>收票人电话：<span>{$telphone}</span></p>
+        <?php endif;?>    
+    </div>
+    <div class="privateAddBtm">
+       <?php if($type&&$flag):?>
+       <?php if($state==1):?>
+        	<span>发票编码：{$code}</span>
+       <?php else:?>
+       		<span>*请输入发票编号以备财务核对：</span>
+       <?php endif;?>
+       <div class="privateInput">
+            <?php if($state==1):?>
+              
+              <em>已开票</em>
+             <?php else:?> 
+            <input type="text" style="width:120px;" id='invoice_from_code' placeholder="请输入发票编号"/>
+            <a href="javascript:invoice_from()" class="button">确认开票</a>
+            <?php endif;?>
+               
+        </div>
+        <?php endif;?> 
+         <!--<b>已开票</b>-->
+     </div>
+<!--    <div class="privateOrderBtm">
+        	<span>总额：<b>￥1000</b>（预付：￥350）</span>
+            <span style=" float:right;">验证码：<b>123126378</b></span>
+        </div>-->
+</div>
+</form>
+</block>
+<block name="script">
+<script type="text/javascript">
+ function invoice_from() {
+    var code=$('#invoice_from_code').val();
+
+    var sedata='id={$id}';
+    if(code) {
+        sedata+='&code='+code;
+
+    }
+
+
+    // alert(sedata);
+    // return;
+
+     $.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(invoice_from)}',
+            data: sedata,
+            success: function(data){
+
+
+            parent.window.location.href='order';
+            var index = parent.layer.getFrameIndex(window.name);
+            parent.layer.close(index);
+
+                // if(data.status == 0){
+                //      mainView.router.loadPage(confirmOrder_thisUrl);
+                // }else{
+                //     myApp.alert(data.content);
+                // }
+            }
+      }) 
+
+
+
+
+ }
+	
+</script>
+</block>

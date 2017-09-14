@@ -1,0 +1,1 @@
+insert into pre_gift_configs(id,typeId,name,coin,cash,recvCoin,discount,freeCount,littleFlag,orderType,createTime,configName,guardFlag,description)values(59,6,'羊年红包',0,2015,1007,0,0,1,300,1444300504,'Red_envelope',0,'快来购买红包，塞上你满满的祝福吧！')

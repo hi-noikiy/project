@@ -1,0 +1,1 @@
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"c416ae0a49e51db0acf21b6f884b2248";s:8:"username";s:35:"D48086396ED31B4E4D82DC667D45A218@qq";}, 2016-10-03 12:49:11

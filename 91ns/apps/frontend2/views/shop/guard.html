@@ -1,0 +1,103 @@
+{% extends "template/template_shop.html" %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('mall_guard'|ns_css)}}"/>
+{% endblock %}
+{% block body %}
+<div class="AD_1200"><img alt="vip" src="{{static_url('web/cssimg/new/upload/AD_1200_3.jpg')}}"></div>
+<div class="M_guard">
+    <div class="M_guard_hd">
+        <h3>房间守护</h3>
+        <p>
+            开通守护等同于礼物消费
+            <!--<span>守护对象：{% if nickName|default(FALSE) %}<a id="guardedUid" guardeduid="{{ guid }}" href="/{{ guid }}">{{ nickName }}({{ guid }})</a>{% else %}未选择守护对象{% endif %}</span>-->
+        </p>
+    </div>
+    <div class="M_guard_table">
+        <table width="1200">
+            <tr><th width="168">功能</th><th width="344">铂金守护</th><th width="344">黄金守护</th><th width="344">白银守护</th></tr>
+            <tr height="100"><td>尊贵标识</td><td><img src="{{static_url('web/cssimg/new/V/bojin.png')}}"></td><td><img src="{{static_url('web/cssimg/new/V/guard_1.png')}}"></td><td><img src="{{static_url('web/cssimg/new/V/guard_2.png')}}"></td></tr>
+            <tr height="86"><td>价格</td><td>99999 聊币/月</td><td>66666 聊币/月</td><td>22222 聊币/月</td></tr>
+            <tr height="256">
+                <td><p>专属坐席</p><p style="color: #838383;font-size: 12px;">(进入房间自动落座专属坐席)</p></td>
+                <td><img src="{{static_url('web/cssimg/new/V/bojin1.png')}}"></td>
+                <td><img src="{{static_url('web/cssimg/new/V/huangjin1.png')}}"></td>
+                <td><img src="{{static_url('web/cssimg/new/V/baiyin1.png')}}"></td>
+            </tr>
+            <tr height="120">
+                <td>专属座驾</td>
+                <td><i class="sprite-car_img Lamborghini"></i><span style="display: inline-block;margin-left: 5px;margin-top: -15px;vertical-align: middle;">兰博基尼</span></td>
+                <td><i class="sprite-car_img Pagani"></i><span style="display: inline-block;margin-left: 5px;margin-top: -15px;vertical-align: middle;">帕加尼</span></td>
+                <td><i class="sprite-car_img Benz_S" style="vertical-align: middle;margin-top: -5px;"></i><span style="display: inline-block;margin-left: 5px;margin-top: -5px;vertical-align: middle;">奔驰S</span></td>
+            </tr>
+            <tr height="100">
+                <td>炫酷进场</td>
+                    <td><p>欢迎尊贵的&nbsp;<i class="sprite-guard_level guard3" style="vertical-align: bottom"></i>XXX&nbsp;进入房间</p></td>
+                <td><p>欢迎高贵的&nbsp;<i class="sprite-guard_level guard1" style="vertical-align: bottom"></i>XXX&nbsp;进入房间</p></td>
+                <td><p>欢迎&nbsp;<i class="sprite-guard_level guard2" style="vertical-align: bottom"></i>XXX&nbsp;进入房间</p></td>
+            </tr>
+            <tr height="100">
+                <td>防御特权</td>
+                <td><p>除主播以外，防御被禁言和被踢</p><img src="{{static_url('web/cssimg/new/V/guard_7.gif')}}">　　　　<img src="{{static_url('web/cssimg/new/V/guard_8.gif')}}"></td>
+                <td><p>除主播以外，防御被踢</p><img src="{{static_url('web/cssimg/new/V/guard_8.gif')}}"></td>
+                <td><p>—</p></td>
+            </tr>
+            <tr height="180">
+                <td><p>聊天特效</p><p style="color: #838383;font-size: 12px;">(专属文字颜色，动态表情)</p></td>
+                <td><div class="chat-effect chat-effect1">专属色</div><div><img src="{{static_url('web/cssimg/new/V/face.png')}}"></div></td>
+                <td><div class="chat-effect chat-effect2">专属色</div><div><img src="{{static_url('web/cssimg/new/V/face.png')}}"></div></td>
+                <td><div class="chat-effect chat-effect3">专属色</div><div><img src="{{static_url('web/cssimg/new/V/face.png')}}"></div></td>
+            </tr>
+            <tr height="90">
+                <td>聊天间隔</td>
+                <td><div class="chat_Time"><span>0.5S</span></div></td>
+                <td><div class="chat_Time"><span>1S</span></div></td>
+                <td><div class="chat_Time"><span>2S</span></div></td>
+            </tr>
+            <tr height="90">
+                <td>礼物折扣</td>
+                <td>成为守护后，购买某些礼物可享受折扣价</td>
+                <td>成为守护后，购买某些礼物可享受折扣价</td>
+                <td>成为守护后，购买某些礼物可享受折扣价</td>
+            </tr>
+            <tr height="150">
+                <td><p>专属礼物</p><p style="color: #838383;font-size: 12px;">(拥有专属守护礼物)</p></td>
+                <td><img src="{{static_url('web/cssimg/new/V/gift.png')}}"></td>
+                <td><img src="{{static_url('web/cssimg/new/V/gift.png')}}"></td>
+                <td><img src="{{static_url('web/cssimg/new/V/gift.png')}}"></td>
+            </tr>
+            <!--&lt;!&ndash;<tr height="187">&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>价格</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>&ndash;&gt;-->
+            <!--&lt;!&ndash;99999聊币/月&ndash;&gt;-->
+            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>&ndash;&gt;-->
+            <!--&lt;!&ndash;22222聊币/月&ndash;&gt;-->
+            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+            <!--<tr height="229"><td>专属坐席</td><td><p>sss</p></td><td><p>进入房间自动落座专属坐席，排序更靠前</p><img src="{{static_url('web/cssimg/new/V/guard_3.jpg')}}"></td><td><p>进入房间自动落座专属坐席</p><img src="{{static_url('web/cssimg/new/V/guard_4.jpg')}}"></td></tr>-->
+            <!--<tr height="145"><td>进场提示</td><td>ssss</td><td><p>进入房间醒目提示，伴有专属座驾{% if guardInfo|default(FALSE) and guardInfo[1]|default(FALSE) %}（{{ guardInfo[1]['carInfo']['name'] }}）{% endif %}，身份更尊贵</p>{% if guardInfo|default(FALSE) and guardInfo[1]|default(FALSE) %}<i class="sprite-car_img {{ guardInfo[1]['carInfo']['configName'] }}"></i>{% endif %}</td><td><p>进入房间醒目提示，伴有专属座驾{% if guardInfo|default(FALSE) and guardInfo[1]|default(FALSE) %}（{{ guardInfo[2]['carInfo']['name'] }}）{% endif %}</p>{% if guardInfo|default(FALSE) and guardInfo[2]|default(FALSE) %}<i class="sprite-car_img {{ guardInfo[2]['carInfo']['configName'] }}"></i>{% endif %}</td></tr>-->
+            <!--<tr height="97"><td>防御特权</td><td>ssss</td><td><p>除主播等级6皇冠(含)以上的房主外，防止被禁言。免疫所有踢人</p><img src="{{static_url('web/cssimg/new/V/guard_7.gif')}}">　　　　<img src="{{static_url('web/cssimg/new/V/guard_8.gif')}}"></td><td><p>除房主以外，防止被踢！除房主以外，防止被禁言。</p><img src="{{static_url('web/cssimg/new/V/guard_7.gif')}}">　　　　<img src="{{static_url('web/cssimg/new/V/guard_8.gif')}}"></td></tr>-->
+            <!--<tr height="97"><td>管理特权</td><td>ssss</td><td><p>可以在房间内执行管理踢人，禁言特权</p><img src="{{static_url('web/cssimg/new/V/guard_7.gif')}}">　　　　<img src="{{static_url('web/cssimg/new/V/guard_8.gif')}}"></td><td><p>可以在房间内执行管理禁言特权</p><img src="{{static_url('web/cssimg/new/V/guard_7.gif')}}"></td></tr>-->
+            <!--<tr height="97"><td>聊天特效</td><td>sssss</td><td><p>聊天标识黄金守护身份，专属动态表情，<br><span class="t_orange">更有专属文字颜色</span></p></td><td><p>聊天标识白银守护身份，专属动态表情</p></td></tr>-->
+            <!--<tr height="69"><td>礼物折扣</td><td>ccccccc</td><td><p>成为守护后，购买某些礼物可享受折扣价</p></td><td><p>成为守护后，购买某些礼物可享受折扣价</p></td></tr>-->
+            <!--<tr height="260"><td>专属坐席</td><td>cccccc</td><td><p>拥有专属守护礼物</p><p></p><p></p><img src="{{static_url('web/cssimg/new/V/guard_9.jpg')}}"></td><td><p>拥有专属守护礼物</p><p></p><p></p><img src="{{static_url('web/cssimg/new/V/guard_9.jpg')}}"></td></tr>-->
+            <tr height="310">
+                <td colspan="4" class="_guardListImg" style="vertical-align: top;text-align: left;">
+                    <div class="_ListImg">
+                        <img  src="{{static_url('web/cssimg/new/V/wen.png')}}">
+                        <span class="_ListPoint">如何购买铂金/黄金/白银守护</span>
+                    </div>
+                    <div style="margin-left: 66px;">
+                        <span class="guandColor">01</span>
+                        <span>如下图所示，在直播间内，点击守护下方的【开通】<span style="font-size: 12px;color:  #464646">(铂金/黄金/白银守护只能在直播间内购买)</span></span>
+                        <span class="guandColor position">02</span>
+                        <span>在弹出窗口中即可进行购买</span>
+                    </div>
+                    <div style="text-align: center;"><img  src="{{static_url('web/cssimg/new/V/rhgm.png')}}"></div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <p class="t_red">注：以上房间特权除了座驾以外只在开通守护的房间内生效</p>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "template/meta.html" %}
+	<title>91NS—美女视频</title>
+	{% include "template/header.html" %}
+    {% include "template/link_app.html" %}
+	<link rel="stylesheet" type="text/css" href="{{static_url('mobile/app.reddetail'|ns_css)}}"/>
+</head>
+<body onselectstart='return false'>
+	<div class="appBg"></div>
+	<div id="viewList" class="appMain onAppCenter">
+		<img class="bgImg" src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_bg{{imgSuffix}}.png"/>
+		<div class="body">
+			<div class="vieCloseID close">
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_guanbi{{imgSuffix}}.png"/>
+				<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_guanbi_p{{imgSuffix}}.png"/>
+			</div>
+			<div class="text">红包记录</div>
+			<div class="btn btnID">
+				<img id="userAvatar" src=""/>
+			</div>
+			<div class="time">
+				<span style="float:left;margin-left:10%;">出现红包<br><i id="redNumber">0</i>个</span>
+				<span style="float:right;margin-right:10%;">总金额<br><i id="redSum">0</i>聊币</span>
+			</div>
+			<div class="text2">
+				<i class="line1"></i>
+				<ul id="redList" class="lists"></ul>
+			</div>
+		</div>
+	</div>
+	<div id="M_data" class="appMain onAppCenter detailMsg">
+		<img class="bgImg" src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_bg{{imgSuffix}}.png"/>
+		<div class="body">
+			<div class="vieCloseID close">
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_guanbi{{imgSuffix}}.png"/>
+				<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_guanbi_p{{imgSuffix}}.png"/>
+			</div>
+			<div class="text"><span id="M_back"><返回</span>红包记录</div>
+			<div class="time">
+				<i id="I_nickName"></i>发的红包<br/>
+				共<i id="I_money">0</i>聊币
+			</div>
+			<div class="text2">
+				<div class="msg" id="I_isEnd">已过期红包：剩余<i>0</i>聊币 已退回</div>
+				<div class="msg" id="I_noEnd">未领完红包：剩余<i>0</i>聊币</div>
+				<div class="msg" id="I_isEnded">已领完红包</div>
+				<i class="line1"></i>
+				<div class="msg">已领<i id="I_hasGetN">0</i>个，<i id="I_hasGetM">0</i>聊币<div style="float:right;">共<i id="I_totalN">0</i>个</div></div>
+				<i class="line1"></i>
+				<ul id="I_infoList"></ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" data-main="{{static_url('mobile/m/app.reddetail'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

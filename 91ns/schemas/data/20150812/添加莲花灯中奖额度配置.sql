@@ -1,0 +1,1 @@
+insert into pre_lucky_gift_configs(`giftId`,`multiple`,`limit`,`count`)values(47,0,6000,0);

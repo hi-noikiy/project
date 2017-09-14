@@ -1,0 +1,5 @@
+serverId=0, accountId=1000001 2017-04-13 15:07:03
+  , sql=insert into u_accountlimit(account_id, server_id, endtime) values('1000001', '0', '0'),   Table 'fashion_rel.u_accountlimit' doesn't existserverId=0, accountId=1000025 2017-04-13 15:12:20
+  , sql=insert into u_accountlimit(account_id, server_id, endtime) values('1000025', '0', '0'),   Table 'fashion_rel.u_accountlimit' doesn't existserverId=0, accountId=1000023 2017-04-13 15:15:37
+  , sql=insert into u_accountlimit(account_id, server_id, endtime) values('1000023', '0', '0'),   Table 'fashion_rel.u_accountlimit' doesn't existserverId=0, accountId=1000025 2017-04-13 15:49:04
+  , sql=insert into u_accountlimit(account_id, server_id, endtime) values('1000025', '0', '0'),   Table 'fashion_rel.u_accountlimit' doesn't exist

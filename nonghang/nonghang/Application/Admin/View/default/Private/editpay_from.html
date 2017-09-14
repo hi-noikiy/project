@@ -1,0 +1,33 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="" id="dataform" target="myframe">
+    <div class="formBody">
+        <div class="packageBox">
+            <div class="privateInput">
+                <p>付款类别</p>
+                <select class="select" name="name">
+                	<option value='全额支付' <?php if($name=='全额支付'):?> selected = "selected"<?php endif;?>>全额支付</option>
+                    <option value='预定金支付' <?php if($name!='全额支付'):?> selected = "selected"<?php endif;?>>预定金支付</option>
+                </select>
+            </div>
+            <div class="privateInput">
+                <p>付款比例</p>
+                <input type="text" style="width:180px;" placeholder="请输入付款比例" name='ratio' value='{$ratio}'/>&nbsp;&nbsp;%
+            </div>
+            <div class="privateInput">
+                <p>付款说明</p>
+                <input type="text" style="width:320px;" placeholder="可在观影前5天申请退订或调整，过时不返还预定金" name='detail' value='{$detail}'/>
+            </div>
+        </div>
+        <div class="privateAddBtm">
+         	<input type="hidden" name='id'  value='{$id}' />
+            <input type='submit' class="button" name='updata'  value='确定'/ >
+        </div>
+    </div>
+</form>
+</block>
+<block name="script">
+<script type="text/javascript">
+	  
+</script>
+</block>

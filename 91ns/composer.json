@@ -1,0 +1,17 @@
+{
+    "require": {
+		"rmccue/requests": ">=1.0",
+        "nesbot/Carbon": "*",
+		"Respect/Validation": "*",
+		"swiftmailer/swiftmailer": "~5.2",
+		"masterexploder/phpthumb": "*",
+		"league/monga": "1.*",
+		"dapphp/securimage": "3.5.4",
+		"jmikola/geojson": "~1.0",
+		"omnipay/common": "~2.0",
+		"mobiledetect/mobiledetectlib": "*"
+    },
+    "require-dev": {
+		"fzaninotto/faker": "1.4.*@dev"
+    }
+}

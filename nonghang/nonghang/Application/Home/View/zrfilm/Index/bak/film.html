@@ -1,0 +1,36 @@
+<extend name='Public/base'/>
+<block name='title'>影片列表</block>
+<block name='body'>
+<div class="page">
+	<div class="headerNav">
+       <div class="headerLeft"><a href="javascript:window.history.back()"><img src="__IMG__/common/back.png" height="100%" /></a></div>
+        <div class="title" id="title"><a class="titleLeft cur" href="{:U('film')}">正在热映</a><a class="titleRight" href="{:U('soon')}">即将上映</a></div>
+        <div class="headerRight"><!--<a>红星<em></em></a>--></div>
+    </div>
+    <div class="content">
+        <div class="filmList">
+        	<ul>
+            	<volist name='films' id='vo'>
+            	<li>
+                	<a href="javascript:details('{$vo['filmNo']}')" >
+                        <div class="filmImg"><img src="<?php if(!empty($vo['image'])){ ?>__UPLOAD__/{$vo['image']}<?php }else{ ?>imgUrl/movie/default.jpg<?php } ?>" width="67.5" height="90" /><em class="style3D"></em></div>
+                        <div class="filmInfo">
+                            <h2>{$vo['filmName']}</h2>
+                            <p>{$vo['simpleword']}</p>
+                            <span>今天还有{$vo['cc']}家影院放映{$vo['cp']}场</span>
+                            
+                        </div>
+                        <div class="filmScore">
+                            <sub>{$vo['f']}.</sub><sup>{$vo['s']}</sup>
+                        </div>
+                    </a>
+                </li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+
+</script>
+</block>

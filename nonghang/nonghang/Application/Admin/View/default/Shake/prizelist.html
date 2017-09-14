@@ -1,0 +1,88 @@
+<extend name='Public/base'/>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>
+            <div class="planBtn"><a class="button" href="javascript:addprize();" >添加奖品</a></div>
+        </div>
+        <div class="rightContent">
+            <div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <tr >
+                        <td width="7%">序号</td>
+                        <td width="7%">所属影城</td>
+                        <td width="20%">奖品名称</td>
+                        <td width="9%">奖品类型</td>
+                        <td width="9%">有效果期</td>
+                        <td width="9%">每日数量</td>
+                        <td width="10%">备注</td>
+                        <td width="10">库存</td>
+                        <td width="8%">中奖概率</td>
+                        <td width="10%">编辑</td>
+                      </tr>
+                    </thead>
+                     <tbody>
+                     <foreach name='prizes' item='vo'>
+                     	<tr>
+                            <td>{$vo.id}</td>
+                            
+                            <td>{$vo.cinemaCode}</td>
+                            <td>{$vo.name}</td>
+                            <td>{$vo.typeStr}</td>
+                            <td>{$vo.startTime|date='m/d',###}-{$vo.endTime|date='m/d',###}</td>
+                            <td>{$vo.dateNum}</td>
+                            <td>{$vo.note}</td>
+                            <td>{$vo.remainNum}张</td>
+                            <td>{$vo.odds}‱</td>
+                            <td><a href="javascript:editprize({$vo.id});">编辑</a>|<a href="javascript:del({$vo.id});">删除</a></td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                
+                <div class="page">
+                    {$page}
+                	
+                </div>
+                
+            </div>
+            </div>
+        </div>
+	</div>
+<script type="text/javascript">
+function addprize(){
+	layer.open({
+		title :'添加奖品',
+		type: 2,
+		area: ['640px', '570px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U("prizefrom")}'
+	});
+}
+function del(id){
+	$.getJSON("{:U('delprize')}",{id:id},function(json){
+		layer.alert(json['content']);
+		if(json['status']=='0'){
+			location.reload();
+		}
+	})
+}
+
+function editprize(id){
+    layer.open({
+        title :'编辑奖品',
+        type: 2,
+        area: ['640px', '570px'],
+        fix: false, //不固定
+        maxmin: true,
+        content: '{:U("prizefrom")}?id='+id
+    });
+}
+
+</script> 
+</block>

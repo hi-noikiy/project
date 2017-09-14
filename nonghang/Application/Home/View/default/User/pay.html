@@ -1,0 +1,119 @@
+<extend name='Public/base'/>
+<block name='title'>微信2.0</block>
+<block name='jscss'>
+	<link type="text/css" rel="stylesheet" href="__CSS__/style.css">
+ </block>
+
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a id="cancel" href="#" class="back link"> <i class="icon icon-back"></i><span>取消</span></a></div>
+    <div class="center sliding">支付</div>
+    <div class="right"></div>
+  </div>
+</div>
+    </block>
+
+<block name='body'>
+<div data-page="userPay" class="page" style="padding-top:44px; overflow:scroll;">
+    <div class="content" style="background: none">
+        <div class="payTop"><span><em></em>支付剩余时间   <span id='time1'><?php echo  date('i:s',$order['lockTime']-time());?></span></span></div>
+        <div class="payBody">
+        	<p><span>订单编号：{$order['orderCode']}</span></p>
+            <p><strong>{$order['filmName']}</strong><span>{$order['copyType']}</span></p>
+            <p><span>{$order['cinemaName']}</span><span>{$order['hallName']}</span></p>
+            <p><span>{$order['startTime']|date='Y-m-d H:i',###}</span></p>
+            <p><span>{$order['seatIntroduce']}</span></p>
+            <div class="payPrice">
+            	<span>应付金额：<b>￥{$order['myPrice']*$order['seatCount']}</b></span>
+            </div>
+        </div>
+        <div class="selectPay list-block media-list">
+            <h2>选择支付方式</h2>
+            <ul>
+                <!--<li>
+                <label class="label-checkbox item-content">
+                    <div class="item-inner">
+                        <div class="payIcon"><img src="__IMG__/movie/zfb.png" height="50" /></div>
+                        <div class="payInfo">
+                            <p>支付宝支付</p>
+                            <span>推荐安装支付宝客户端使用</span>
+                        </div>
+                    </div>
+					<input type="radio" name="my-checkbox">
+                    <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                </label>
+                </li>-->
+                <li>
+                 	<label class="label-checkbox item-content">
+                    <div class="item-inner">
+                        <div class="payIcon"><img src="__IMG__/movie/balance.png" height="50" /></div>
+                        <div class="payInfo">
+                            <p>账户余额支付</p>
+                            <span>您当前账户余额为<b>{$user['basicBalance']+$user['donateBalance']}</b>元</span>
+                        </div>
+                    </div>
+					<input type="radio" name="my-checkbox">
+                    <div class="item-media"><i class="icon icon-form-checkbox"></i>
+                    
+                    </div><div class="payBtn"><a href="{:U('otherpay/index')}" class="external">充值</a></div>
+                </label>
+                </li>	
+            </ul>
+			
+        </div>
+        <div class="Button" id="payButton">
+        	<a href="javascript:void(0)" class="">确认支付</a>
+        </div>
+    </div>
+    </div>
+</block>
+
+<block name='script'>
+
+    <script type="text/javascript">
+    $(function(){
+        var i,s,time={$order['lockTime']-time()};
+        var id=setInterval(function(){
+            time-=1;
+            if(time>0){
+                i=Math.floor(time/60);
+                s=time%60;
+                $('#time1').text(i+':'+s);
+            }else{
+                location.href='{:U("Index/plan")}';
+                clearInterval(id);
+            }
+        },1000);
+        $('#payButton').click(function(){
+            var orderCode="{$order['orderCode']}";
+            var payurl="{:U('paysuccess',array('orderid'=>$order['orderCode']))}";
+            myApp.showIndicator();
+            $.get("{:U('User/ordersuccess1')}",{orderid:orderCode},function(json){
+                myApp.hideIndicator();
+                var msg=JSON.parse(json);
+                if(msg['status']!='0'){
+                    location.href=payurl;
+                }else{
+                    layer.alert(msg['text']);
+                }
+            });
+        });
+    });
+    var myApp = new Framework7({
+        modalTitle:'',
+        modalButtonOk:'确认',
+        modalButtonCancel:'取消'
+        });
+    var $$ = Dom7;
+    $$('#cancel').on('click', function () {
+        var orderid="{$order['orderCode']}";
+        myApp.confirm('请确认是否取消该订单', function () {
+            $.get('{:U("cancelOrder")}',{orderid:orderid},function(msg){
+                location.href="<if condition="$pflag neq ''">{:U('index/cinema')}<else/>{:U('index/index')}</if>";
+            });
+        });
+    });
+</script>
+
+</block>

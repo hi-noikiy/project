@@ -1,0 +1,77 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+                {% include "common/tab.html" %}
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+            
+            <div id="tab5" class="tab-pane active">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                  <form id="applySearch" class="form-search">
+                    <input name="status" type="hidden">
+                  <span style="font-size:20px; line-height: 30px">查看：</span>
+                  <span class="tabs-group active" status="0">全部</span>
+                  &nbsp; &nbsp;
+                  <span class="tabs-group" status="1">待处理</span>
+                  {%if anchorApplyNum%}
+                  <span id="tirCount" class="tir" style="margin-top: -9px;position: absolute;margin-left: -8px;">{{anchorApplyNum}}</span>
+                  {%endif%}
+                  &nbsp; &nbsp;
+                  <span class="tabs-group" status="2">已处理</span>
+                  
+                  <!-- <span class="find-search pull-right">
+                  <i class="icon-search icon-on-right bigger-110"></i>
+                  <input type="text" placeholder="用户名或昵称" >                      
+                  <button id="usersearch" type="button" class="btn btn-purple">查询&nbsp;</button>
+                  </span> -->
+                </form>
+                </div>
+
+                {% include "common/pagination.html" %}
+
+                <div class="row-fluid">
+                  <table id="tableListApply" class="table with-check table-purple">
+                    <thead>
+                      <tr>
+                        <th>主播号</th>
+                        <th>昵称</th>
+                        <th>主播等级</th>
+                        <!-- <th>粉丝</th> -->
+                        <th>申请时间</th>
+                        <th>状态</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+					
+                    </tbody>
+                  </table>
+                </div>
+                
+
+              </div>
+            </div>
+            
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+
+
+<!--<script type="text/javascript" src="{{static_url('web/js/91ns.anchor.js')}}"></script>-->
+<script type="text/javascript" src="{{static_url('web/js/91ns.signapply.js')}}"></script>

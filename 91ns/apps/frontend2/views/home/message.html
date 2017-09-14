@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('home'|ns_css)}}">
+</head>
+<body>
+    <div class="wrap">
+        {% include "template/header.html" %}
+        <div class="homeBody">
+            {% include "home/header.html" %}
+            <div class="cts clearfix">
+                <div class="personalInfo">
+                    <div class="title">个人资料</div>
+                    <ul>
+                        <li>昵称：<span class="nickName">{{anchorInfo['nickName']}}</span></li>
+                        <li>直播间：<a class="room" href="/{{anchorInfo['uid']}}" target="_blank">www.91ns.com/{{anchorInfo['uid']}}</a></li>
+                        <li>性别：<span class="sex">{% if anchorInfo['gender'] == 0 %}女{% else %}男{% endif %}</span></li>
+                        <li>生日：<span class="birthday">{{anchorInfo['birthday']|ns_birthday_md}}</span></li>
+                        <li>所在地：<span class="address">{{anchorInfo['location']}}</span></li>
+                        <li>家族：<span>{% if anchorInfo['familyName'] == '' %}无{% else %}{{anchorInfo['familyName']}}{% endif %}</span></li>
+                        <li>上次直播：<span>{{anchorInfo['publicTime']}}</span></li>
+                        <li>
+                            <span class="pull-left">徽章：</span>
+                            {% if anchorInfo['badge']|length > 0 %}
+                            {% for i in anchorInfo['badge'] %}
+                            <i class="pull-left sprite-pericon {{i['configName']}}" title="{{i['name']}}" style="margin:14px 0 0 8px;"></i>
+                            {% endfor %}
+                            {% else %}
+                            无
+                            {% endif %}
+                        </li>
+                        <li>
+                            <span class="pull-left">主播等级：</span>
+                            <div class="levelDiv">
+                                <div class="lico rights"><i class="sprite-zb_level zb{{anchorInfo['levelInfo']['anchorLevel']}}"></i></div>
+                                {% if anchorInfo['levelInfo']['anchorLevel'] < anchorInfo['levelInfo']['nextAnchorLevel'] %}
+                                <div class="linfo lanchor" exp="{{anchorInfo['levelInfo']['anchorExp']}}" lower="{{anchorInfo['levelInfo']['anchorLevelLower']}}" higher="{{anchorInfo['levelInfo']['anchorLevelHigher']}}">
+                                    <i class="go"></i>
+                                </div>
+                                <div class="lico lefts"><i class="sprite-zb_level zb{{anchorInfo['levelInfo']['nextAnchorLevel']}}"></i></div>
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li>
+                            <span class="pull-left">粉丝等级：</span>
+                            <div class="levelDiv clearfix">
+                                <div class="lico rights"><i class="sprite-zf_level zf{{anchorInfo['levelInfo']['fansLevel']}}"></i></div>
+                                {% if anchorInfo['levelInfo']['fansLevel'] < anchorInfo['levelInfo']['nextfansLevel'] %}
+                                <div class="linfo lfans" exp="{{anchorInfo['levelInfo']['fansExp']}}" lower="{{anchorInfo['levelInfo']['fansLevelLower']}}" higher="{{anchorInfo['levelInfo']['fansLevelHigher']}}">
+                                    <i class="go"></i>
+                                </div>
+                                <div class="lico lefts"><i class="sprite-zf_level zf{{anchorInfo['levelInfo']['nextfansLevel']}}"></i></div>
+                                {% endif %}
+                            </div>
+                        </li>
+                        <li>
+                            <span class="pull-left">富豪等级：</span>
+                            <div class="levelDiv">
+                                <div class="lico rights"><i class="sprite-fh_level fh{{anchorInfo['levelInfo']['richerLevel']}}"></i></div>
+                                {% if anchorInfo['levelInfo']['richerLevel'] < anchorInfo['levelInfo']['nextRicherLevel'] %}
+                                <div class="linfo lricher" exp="{{anchorInfo['levelInfo']['richerExp']}}" lower="{{anchorInfo['levelInfo']['richerLevelLower']}}" higher="{{anchorInfo['levelInfo']['richerLevelHigher']}}">
+                                    <i class="go"></i>
+                                </div>
+                                <div class="lico lefts"><i class="sprite-fh_level fh{{anchorInfo['levelInfo']['nextRicherLevel']}}"></i></div>
+                                {% endif %}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="fansInfo">
+                    <div class="title">粉丝贡献榜</div>
+                    <ul id="fansListUL"></ul>
+                    <!-- <div class="noData">
+                        <img src="">
+                    </div> -->
+                    <div id="fansListPage" class="page"></div>
+                </div>
+            </div>
+        </div>
+        {% include "template/footer.html" %}
+    </div>
+    <script type="text/javascript" defer async data-main="{{static_url('home'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</body>
+</html>

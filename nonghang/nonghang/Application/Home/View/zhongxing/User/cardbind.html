@@ -1,0 +1,44 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('user/user')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">绑定会员卡</div>
+    <div class="right"></div>
+  </div>
+</div>
+<div class="pages">
+  <div data-page="bind" class="page">
+    <div class="page-content">
+		<foreach name="data" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+        </foreach>
+        <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+        </foreach>
+		<div class="content">
+            <div class="cardBind">
+             	<?php if($flag=='1'){ ?><div class="noCard">您暂时未绑定会员卡<a href="{:U('addcard')}" class="addPhone" ><em></em><span>添加会员卡</span></a></div>
+             	<?php }else{ ?><div class="bindSuccess">
+                	<div class="bindCard">
+                    	<h4>会员卡基本信息</h4>
+                    	<p><span>卡类型：</span>{$user['levelName']}</p>
+                        <p><span>有效期：</span>{$user['expirationTime']}到期</p>
+                        <p><span>卡状态：</span>{$user['cardStatus']}</p>
+                        <p><span>积&nbsp;&nbsp;&nbsp;分：</span>{$user['integral']}积分</p>
+                        <p><span>余&nbsp;&nbsp;&nbsp;额：</span>￥{$user['money']}<a href="{:U('user/recharge')}" class='external'>（充值）</a></p>
+                    </div>
+                    <a href="{:U('unbindcard')}" class="bindBtn" >解除绑定</a>
+                </div>
+                <?php } ?>
+            </div>
+    	</div>
+
+
+    </div>
+  </div>
+</div>
+<block name='script'>
+<script>
+
+</script>  
+</block>

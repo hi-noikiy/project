@@ -1,0 +1,15 @@
+ 
+
+{% for menu in moduleList[currentModule[0]]['children'] %}
+<li class="{% if menu['moduleAction']==currentModule[1] %}active{% endif %}">
+    <a href="/{{currentModule[0]}}/{{ menu['moduleAction']}}">{{ menu['moduleName']}}
+        {%if menu['moduleAction']=='signapply' and anchorApplyNum %}
+        <span id="tirCount" class="tir" style="margin-top: -4px;position: absolute;margin-left: 70px;">{{anchorApplyNum}}</span>
+        {%elseif menu['moduleAction']=='familyapply' and familyApplyNum %}
+        <span id="tirCount" class="tir" style="margin-top: -4px;position: absolute;margin-left: 70px;">{{familyApplyNum}}</span>
+        {%elseif menu['moduleAction']=='waitsettle' and accountApplyNum %}
+        <span id="tirCount" class="tir" style="margin-top: -4px;position: absolute;margin-left: 54px;">{{accountApplyNum}}</span>
+        {%endif%}
+     </a>
+</li>
+ {% endfor %}

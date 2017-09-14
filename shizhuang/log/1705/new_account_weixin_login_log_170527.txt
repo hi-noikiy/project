@@ -1,0 +1,11 @@
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wFX57z7Z9O4GENLfcq4EpM4";s:4:"sign";s:32:"efa952e9461204cc7482b3da679fb727";s:7:"game_id";s:1:"9";}, return=1 1656262, 2017-05-27 00:27:17
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wAH1laAv-s8QC6kSBn47sVs";s:4:"sign";s:32:"c2c6ae66a993afc0f21faf66377fd907";s:7:"game_id";s:1:"9";}, return=1 1656271, 2017-05-27 06:49:27
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wPxCWbVXMZOedFQwDTRsjGA";s:4:"sign";s:32:"2a5c78f5dd2e922709a054b0adb578a1";s:7:"game_id";s:1:"9";}, return=1 1656292, 2017-05-27 15:59:48
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wITQXEmte8jxHbkGmevNfko";s:4:"sign";s:32:"c91bae6f11061d8ab0df4a5bbbea1219";s:7:"game_id";s:1:"9";}, return=1 1656299, 2017-05-27 17:46:38
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wL4zeqLynL8sM9tlzs5ibM0";s:4:"sign";s:32:"9636eacf554b7d7fde42c8a397bf4dbc";s:7:"game_id";s:1:"9";}, return=1 1656310, 2017-05-27 18:54:55
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wGgjG3vmJ8cP7pJjkzJ4jwg";s:4:"sign";s:32:"b3d33d93a29651c99a5561628ae10ecf";s:7:"game_id";s:1:"9";}, return=1 1656312, 2017-05-27 19:01:22
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wBTid3i05o6esthY6H_SDU4";s:4:"sign";s:32:"ffc5bfb6f3d8fad1d383428e16441218";s:7:"game_id";s:1:"9";}, return=1 1656330, 2017-05-27 20:52:49
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wAUBYpaaKgoZmd1VN7qAZoU";s:4:"sign";s:32:"c7f8a6d91e2cb4f4d36d3eb13be4447a";s:7:"game_id";s:1:"9";}, return=1 1656336, 2017-05-27 21:43:58
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wGCzNzqDG9jmaVPCk6n3TnY";s:4:"sign";s:32:"7be55fccd32257f19118489067f78c5f";s:7:"game_id";s:1:"9";}, return=1 1656338, 2017-05-27 21:54:59
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wGSeXOpCF3PeHVaUsmigHKA";s:4:"sign";s:32:"7399b856eb72ccec5107ac0406004f33";s:7:"game_id";s:1:"9";}, return=1 1656347, 2017-05-27 22:32:27
+post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wKxUigEZr6V6m0SIX1_c-3M";s:4:"sign";s:32:"2bfaf820c98bdcbb9773c30e59ede55a";s:7:"game_id";s:1:"9";}, return=1 1656363, 2017-05-27 23:20:31

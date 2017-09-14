@@ -1,0 +1,118 @@
+<extend name="Public/privatebase"/>
+<block name="style">
+<style>
+body{
+	background:#0069ac;
+	}
+</style>
+</block>
+<block name="body">
+	<div class="queryBox">
+            	<form action="{:U()}" method="post" id='privatelist_myform'>
+                    <div class="inputText" >
+                        <p>按订单编码查询</p>
+                        <input type="text" name="id"  placeholder="请输入票券编码" value="{$map['id']}">
+                    </div>
+                    <div class="inputText">
+                            <p>按兑换日期查询</p>
+                            <input type="datetime" name="start_checkTime" class="date" placeholder="请输入开始日期" value="{$map['start_checkTime']}">
+                            <span>至</span>
+                    <input type="datetime" name="end_checkTime" class="date" placeholder="请输入结束日期" value="{$map['end_checkTime']}">
+                        </div>
+                    <div class="inputSelect" name='adminUid'>
+                        <p>按操作人查询</p>
+                        <select name='adminUid' id='privatelist_adminUid'>
+                            <option value="">--请选择--</option>
+
+                            <volist name='admin' id='v'>
+
+                            <option value="{$v.uid}">{$v.realName}</option>
+                            </volist>
+                         </select>
+                    </div>
+                    <a href="javascript:$('#privatelist_myform').submit()" class="button">查询</a>
+                </form>
+            </div>
+	<div class="checkTable">
+    	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+                 <thead>
+                    <tr>
+                        <td width="10%">订单编号</td>
+                        <td width="15%">订单时间</td>
+                        <td width="15%">兑换时间</td>
+                        <td width="10%">订单总额</td>
+                        <td width="10%">支付状态</td>
+                        <td width="10%">订单差额</td>
+                        <td width="10%">订单详情</td>
+                        <td width="10%">验证状态</td>
+                        <td width="10%">操作人</td>
+                      </tr>
+                </thead>
+                <tbody>
+                     <volist name='list' id='v'>
+                        <tr>
+                            <td>{$v.id}</td>
+                            <td>{$v.paymentTimeflag}</td>
+                            <td>{$v.checkTimeflag}</td>
+                            <td>{$v.total}</td>
+                            <td>预付：{$v.prepay}</td>
+                            <td>{$v.cr}</td>
+                            <td><a href='javascript:order({$v.id});'>查看详情</a></td>
+                            <td>{$v.stateflag}</td>
+                            <td>{$v.realName}</td>
+                        </tr>
+                    </volist>
+                   
+                </tbody>
+            </table>
+    </div>
+</block>
+<block name="script">
+<script type="text/javascript">
+
+$('#privatelist_adminUid').val('{$map.adminUid}');
+
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+    datepicker:true,
+	timepicker:false,
+
+	format:'Y-m-d',
+	formatDate:'Y-m-d'
+});
+$('.date').after('<span onclick="clearDate(this)"  style="cursor:pointer; display:inline-block; margin-left:-25px;"><img src="__IMG__/out.png" width="15" style="margin:0 auto" /></span>');
+
+function order(id){
+	layer.open({
+		title :'订单详情',
+		type: 2,
+		area: ['500px', '490px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: 'order_from.html?id='+id
+	});
+}
+
+//自适应浏览器高度
+var h=$(window).height();
+var l=h-70  
+$('.checkRight').height(l);
+;(function($) {
+		$(window).on('resize', function() {
+			
+		});
+		$(window).resizeEnd({
+			delay : 500
+		}, function() {
+			var h=$(window).height();
+			var l=h-70  
+			$('.checkRight').height(l);
+			/* Add callback function logic here */
+		});
+	})(jQuery);
+
+
+
+</script> 
+</block>

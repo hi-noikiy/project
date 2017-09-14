@@ -1,0 +1,196 @@
+﻿<extend name='Public/base'/>
+<block name='body'>
+    <div id="">
+        <div class="container">
+            <div class="seatBox">
+				<div class="seatTip">
+                	<span><em class="seatTure"></em>可选</span>
+                    <span><em class="seatSelect"></em>已选</span>
+                    <span><em class="seatFalse"></em>已售</span>
+                </div>
+                <div class="seatScreen">————————————————————&nbsp;&nbsp;中瑞影城1号厅荧幕&nbsp;&nbsp;————————————————————</div>
+                <div class="seatList">
+                	<table cellspacing="0" cellpadding="0" class="seatNum" align="center">
+                    	<tbody>
+                        	<tr><td>1</td></tr>
+                            <tr><td>2</td></tr>
+                            <tr><td>3</td></tr>
+                       </tbody>
+                   </table>
+                   <div class="seatBody">
+                        <table id="tbSeat" cellspacing="0" cellpadding="0" class="" align="center">
+                            <tbody>
+                                <tr>
+                                    <td  align="center">
+                                        <i class="seatTure" onclick="selectSeat(this);" id="seat_0_0" rowname="1" colname="1排8座" status="0" type="0">8</i>
+                                        <i class="seatTure" onclick="selectSeat(this);" id="seat_0_1" rowname="1" colname="1排7座" status="0" type="0">7</i>
+                                        <i class="seatTure" id="seat_0_2" rowname="1" colname="1排6座" status="0" type="0">6</i>
+                                        <i class="seatTure" id="seat_0_3" rowname="1" colname="1排5座" status="0" type="0">5</i>
+                                        <i class="seatTure" id="seat_0_4" rowname="1" colname="1排4座" status="0" type="0">4</i>
+                                        <i class="seatTure" id="seat_0_5" rowname="1" colname="1排3座" status="0" type="0">3</i>
+                                        <i class="seatSelect" id="seat_0_6" rowname="1" colname="1排2座" status="0" type="0">2</i>
+                                        <i class="seatTure" id="seat_0_7" rowname="1" colname="1排1座" status="0" type="0">1</i>
+                                        <i class="seatNull" id="seat_0_8" rowname="1" colname="0" status="-1" type="0">&nbsp;</i>
+                                        <i class="seatNull" id="seat_0_9" rowname="1" colname="0" status="-1" type="0">&nbsp;</i>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td  align="center">
+                                        <i class="seatTure" id="seat_0_0" rowname="1" colname="1排8座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatTure" id="seat_0_1" rowname="1" colname="1排7座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatTure" id="seat_0_2" rowname="1" colname="1排6座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatTure" id="seat_0_3" rowname="1" colname="1排5座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatTure" id="seat_0_4" rowname="1" colname="1排4座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatTure" id="seat_0_5" rowname="1" colname="1排3座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatSelect" id="seat_0_6" rowname="1" colname="1排2座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatTure" id="seat_0_7" rowname="1" colname="1排1座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatNull" id="seat_0_8" rowname="1" colname="0" status="-1" type="0">&nbsp;</i>
+                                        <i class="seatNull" id="seat_0_9" rowname="1" colname="0" status="-1" type="0">&nbsp;</i>
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                    <td  align="center">
+                                        <i class="seatFalse" id="seat_0_0" rowname="1" colname="1排8座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatFalse" id="seat_0_1" rowname="1" colname="1排7座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatFalse" id="seat_0_2" rowname="1" colname="1排6座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatFalse" id="seat_0_3" rowname="1" colname="1排5座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatFalse" id="seat_0_4" rowname="1" colname="1排4座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatFalse" id="seat_0_5" rowname="1" colname="1排3座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatFalse" id="seat_0_6" rowname="1" colname="1排2座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatFalse" id="seat_0_7" rowname="1" colname="1排1座" status="0" type="0">&nbsp;</i>
+                                        <i class="seatFalse" id="seat_0_8" rowname="1" colname="0" status="-1" type="0">&nbsp;</i>
+                                        <i class="seatFalse" id="seat_0_9" rowname="1" colname="0" status="-1" type="0">&nbsp;</i>
+                                    </td>
+                                </tr>
+                                
+                                 
+                               
+                           </tbody>
+                       </table>
+                 </div>
+                </div>
+                <div class="seatBtm">
+                	<div class="seatBtmLeft">
+                    	<h2>九层要他九层要他九层要他九层要他</h2>
+                        <span>2015/10/31 12：30</span>
+                        <a href="javascript:" onclick="changePlan(this);" id="changePlan"  class="on">更换场次</a>
+                    </div>
+                    <div class="seatBtmMid" id="seatNo">
+                    	<span class="cur">3排3座</span>
+                        <span>待选座位</span>
+                        <span>待选座位</span>
+                        <span>待选座位</span>
+                    </div>
+                    <div class="seatBtmRight">
+                    	<input type="text" placeholder="请输入购票手机号" />
+                        <a href="{:U('plan/pay')}">确定 ￥120</a>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="changePlan" >
+                    	<div class="changeClose"></div>
+                        <div id="boxscroll4" style="height:280px;" >
+                        <div class="changePlanList" >
+                            <a class="planInfo" href="/Index/seat/featureAppNo/10621512108BH48ZH0.html">
+                                <div class="planDate"><span>12:00</span><em>￥61.6</em></div>
+                                <div class="planType"><span>英语3D</span><s>￥110</s></div>
+                            </a>
+                            <a class="planInfo" href="/Index/seat/featureAppNo/10621512108BH48ZH0.html">
+                                <div class="planDate"><span>12:00</span><em>￥61.6</em></div>
+                                <div class="planType"><span>英语3D</span><s>￥110</s></div>
+                            </a>
+                            <a class="planInfo" href="/Index/seat/featureAppNo/10621512108BH48ZH0.html">
+                                <div class="planDate"><span>12:00</span><em>￥61.6</em></div>
+                                <div class="planType"><span>英语3D</span><s>￥110</s></div>
+                            </a>
+                            <a class="planInfo" href="/Index/seat/featureAppNo/10621512108BH48ZH0.html">
+                                <div class="planDate"><span>12:00</span><em>￥61.6</em></div>
+                                <div class="planType"><span>英语3D</span><s>￥110</s></div>
+                            </a>
+                            <a class="planInfo" href="/Index/seat/featureAppNo/10621512108BH48ZH0.html">
+                                <div class="planDate"><span>12:00</span><em>￥61.6</em></div>
+                                <div class="planType"><span>英语3D</span><s>￥110</s></div>
+                            </a>
+                            <a class="planInfo" href="/Index/seat/featureAppNo/10621512108BH48ZH0.html">
+                                <div class="planDate"><span>12:00</span><em>￥61.6</em></div>
+                                <div class="planType"><span>英语3D</span><s>￥110</s></div>
+                            </a>
+                            <a class="planInfo" href="/Index/seat/featureAppNo/10621512108BH48ZH0.html">
+                                <div class="planDate"><span>12:00</span><em>￥61.6</em></div>
+                                <div class="planType"><span>英语3D</span><s>￥110</s></div>
+                            </a>
+                            <a class="planInfo" href="/Index/seat/featureAppNo/10621512108BH48ZH0.html">
+                                <div class="planDate"><span>12:00</span><em>￥61.6</em></div>
+                                <div class="planType"><span>英语3D</span><s>￥110</s></div>
+                            </a>     
+                        </div>
+                    </div>
+                </div>   
+            </div>   
+        </div>
+    </div>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+      var w=$('#tbSeat').width();
+	  $('.seatBody').width(w);
+	  
+	  
+	  
+	//  var swiper = new Swiper('.swiper-container', {
+//        slidesPerView:5,
+//        slidesPerColumn: 2,
+//		pagination: '.swiper-pagination',
+//		slidesPerColumnFill : 'row',
+//        paginationClickable: true,
+//		nextButton: '.swiper-button-next',
+//        prevButton: '.swiper-button-prev',
+//        spaceBetween: 10
+//    });
+	
+	 $(document).ready(function() {
+  
+	var nice = $("html").niceScroll();  // The document page (body)
+
+	
+    $("#boxscroll4").niceScroll("#boxscroll4 .changePlanList",{boxzoom:true});  // hw acceleration enabled when using wrapper
+    
+  });
+  
+  function changePlan(obj){
+	  if($(obj).attr("class")=="on")
+	  	{
+			$(obj).removeClass("on");
+			$(obj).addClass('off');
+			$(".changePlan").fadeIn(); 
+	  }else{
+			$(obj).removeClass("off");
+			$(obj).addClass('on');
+			$(".changePlan").fadeOut(); 
+		}
+	}
+	
+		
+  $(".changeClose").click( function () { 
+			$("#changePlan").removeClass("off");
+		  	$("#changePlan").addClass('on');
+			$(".changePlan").fadeOut(); 
+			
+			});
+			
+ function selectSeat(obj){	
+ 	if($(obj).attr("class")=="seatTure"){
+			$(obj).removeClass("seatTure");
+		  	$(obj).addClass('seatSelect');
+			$("#seatNo > span").addClass('cur');
+	 }else if($(obj).attr("class")=="seatSelect"){
+		 $(obj).removeClass("seatSelect");
+		  	$(obj).addClass('seatTure');
+			$("#seatNo > span").removeClass('cur');
+					}
+ }
+    </script>
+</block>
+
+
+

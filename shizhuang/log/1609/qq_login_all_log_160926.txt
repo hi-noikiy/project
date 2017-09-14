@@ -1,0 +1,9 @@
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"663990C78A7AF71E963632949A5AB38F";s:4:"sign";s:32:"9f4c732dbd8ed9ee9ac631562970e75e";s:7:"game_id";s:1:"9";}, 2016-09-26 09:23:50
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"663990C78A7AF71E963632949A5AB38F";s:4:"sign";s:32:"9f4c732dbd8ed9ee9ac631562970e75e";s:7:"game_id";s:1:"9";}, 2016-09-26 09:25:33
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"663990C78A7AF71E963632949A5AB38F";s:4:"sign";s:32:"9f4c732dbd8ed9ee9ac631562970e75e";s:7:"game_id";s:1:"9";}, 2016-09-26 10:06:34
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"E322203EE3EA5ACFF8D1A6E5D43039A2";s:4:"sign";s:32:"38436ce068559339d25c46d7fdb799ec";s:7:"game_id";s:1:"6";}, 2016-09-26 10:49:21
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"663990C78A7AF71E963632949A5AB38F";s:4:"sign";s:32:"9f4c732dbd8ed9ee9ac631562970e75e";s:7:"game_id";s:1:"6";}, 2016-09-26 16:12:38
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"663990C78A7AF71E963632949A5AB38F";s:4:"sign";s:32:"9f4c732dbd8ed9ee9ac631562970e75e";s:7:"game_id";s:1:"6";}, 2016-09-26 16:12:42
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"663990C78A7AF71E963632949A5AB38F";s:4:"sign";s:32:"9f4c732dbd8ed9ee9ac631562970e75e";s:7:"game_id";s:1:"9";}, 2016-09-26 16:17:03
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"663990C78A7AF71E963632949A5AB38F";s:4:"sign";s:32:"9f4c732dbd8ed9ee9ac631562970e75e";s:7:"game_id";s:1:"9";}, 2016-09-26 16:25:25
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"663990C78A7AF71E963632949A5AB38F";s:4:"sign";s:32:"9f4c732dbd8ed9ee9ac631562970e75e";s:7:"game_id";s:1:"9";}, 2016-09-26 16:27:52

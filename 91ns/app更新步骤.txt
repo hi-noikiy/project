@@ -1,0 +1,22 @@
+oss更新：
+1 ipa/apk/plist文件提交oss
+	plist需要提交到91ns-https-oss上
+2 更新日志文件，提交oss
+3 小贴士如果有更新，需要提交oss
+
+php更新：
+1 default.php需要更新
+	downloadUrl里面
+	ios:		plist路径修改
+	android:	路径修改
+	ipa：		路径修改
+
+	appUpdateContent里面
+	修改对应的更新日志文件，提交oss
+
+	mobiletips：如果需要更新：
+	修改对应的更新文件，提交oss
+
+2 app/rest/controller/SessionController.php
+	getVersion函数里面
+	修改版本号

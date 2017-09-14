@@ -1,0 +1,187 @@
+<extend name='Public/base'/>
+<block name='pageCss'>
+<link rel="stylesheet" href="__CSS__/goods.css" type="text/css" media="screen" />
+<script type="text/javascript" src="__JS__/jquery.form.js"></script> 
+<script type="text/javascript" src="__JS__/Validform_v5.3.2.js"></script> 
+
+
+<link rel="stylesheet" href="__STATIC__/jqdatetiem/jquery.datetimepicker.css" type="text/css" media="screen" />
+<script type="text/javascript" src="__STATIC__/jqdatetiem/jquery.datetimepicker.js"></script> 
+
+
+</block>
+<block name='body'>
+		<div class="content">
+				<div class="leftMenu">
+						<ul>
+								{$leftMenu}
+						</ul>
+				</div>
+				<div class="rightContent">
+					<div class="contentBox goods">	
+							<div class="queryItem"><p>商品添加</p></div>
+						<form id="submitForm" method="post" enctype="multipart/form-data" >
+							<input type="hidden" name="data[buyingId]" value="{$buyingInfo.buyingId}" />
+								
+								<div class="inputText" >
+									<span>影片名称：</span><input type="text" name="data[filmName]" value="{$buyingInfo.filmName}" datatype="*"  nullmsg="请输入影片名称" 	placeholder="请输入影片名称" >
+								</div>
+								<div class="inputText" >
+									<span>影院/影厅:</span><input type="text" name="data[cinemaName]" value="{$buyingInfo.cinemaName}" datatype="*"  nullmsg="请输入影院/影厅" placeholder="请输入影院/影厅" >
+								</div>
+								<br />
+								<div class="inputText" >
+									<span>影片制式：</span><input type="text" name="data[productName]" value="{$buyingInfo.productName}" datatype="*"  nullmsg="请输入影片制式：" placeholder="请输入影片制式：" >
+								</div>
+								<div class="inputText" >
+									<span>场次时间：</span><input type="text" name="data[filmStartTime]" value="{$buyingInfo.filmStartTime}" datatype="*"  nullmsg="请输入场次时间" placeholder="请输入场次时间" >
+								</div>
+								<div class="clear"></div>
+
+								<div class="inputText" >
+									<span>影片封面：</span>
+									<if condition="$buyingInfo['preView']">
+										<div><img src="__UPLOAD__/{$buyingInfo['preView']}" width="135" height="180"></div>
+									</if>
+									<input type="file" datatype="*" name="preView" nullmsg="请上传影片封面" />
+								</div>
+
+								<div class="inputText" >
+									<span>销售座位图：</span>
+									<if condition="$buyingInfo['seatView']">
+										<div><img src="__UPLOAD__/{$buyingInfo['seatView']}" width="300" height="200"></div>
+									</if>
+									<input type="file" datatype="*" name="seatView"  nullmsg="请上传影片封面" />
+								</div>
+								
+								<div class="clear"></div>
+								<div class="inputText">
+									<span>座位添加：</span>
+										<input type="text" style="width:30px;" id="seatRow" value="" />
+										排
+										<input type="text" style="width:30px;" id="seatColumnStart" value="" />
+										座
+										-
+										<input type="text" style="width:30px;" id="seatColumnEnd" value="" />
+										座
+										<a href="javascript:addSeat();" id="add" class="button">添加座位</a>
+								</div>
+					 		<div class="seatList">
+					 			<if condition="buyingInfo.seat">
+					 				<foreach name="buyingInfo.seat" item="vo" key="k" >
+										<span><input type="hidden" name="data[seat][]" value="{$vo}" /><span id="r_{:str_replace(',','c_', $vo)}">{:str_replace(',','排', $vo)}座<em onclick="removeSeat(this);"></em></span></span>
+									</foreach>
+
+								</if>
+
+
+								</div>
+								<div class="inputText" >
+									<span>原价：</span><input type="text" name="data[oldPrice]" datatype="*"  nullmsg="请输入原价" 	placeholder="请输入原价" value="{$buyingInfo.oldPrice}" />
+								</div>
+								<div class="inputText" >
+									<span>价格：</span><input type="text" name="data[newPrice]" datatype="*"  nullmsg="请输入售价" 	placeholder="请输入售价"  value="{$buyingInfo.newPrice}" />
+								</div>
+								<div class="inputText" >
+									<span>限制数量：</span><input type="text" name="data[tickNums]" datatype="*"  nullmsg="请输入限制数量" 	placeholder="请输入限制数量"  value="<if condition="$buyingInfo['tickNums']">{$buyingInfo.tickNums}<else />4</if>"/>
+								</div>
+								
+								<div class="clear"></div>
+
+								<!-- <div class="inputText" >
+									<span>开始抢购时间：</span><input type="text" name="data[startBuyingTime]" datatype="*"  nullmsg="请输入开始抢购时间" 	placeholder="请输入开始抢购时间"  value="{$buyingInfo.startBuyingTime}"/>
+								</div>
+								<div class="inputText" >
+									<span>结束抢购时间：</span><input type="text" name="data[endBuyingTime]" datatype="*"  nullmsg="请输入结束抢购时间：" 	placeholder="请输入结束抢购时间："  value="{$buyingInfo.endBuyingTime}">
+								</div> -->
+
+								<div class="clear"></div>
+								<a href="javascript:ajaxsubmit();" class="button" style="margin:30px;"><if condition="$buyingInfo['buyingId']">更新<else/>添加</if></a>
+								</form>
+						</div>
+						
+				</div>
+
+	</div>
+
+<script type="text/javascript">
+	
+function addSeat () {
+	var seatRow = $("#seatRow").val();
+	var seatColumnStart = $("#seatColumnStart").val();
+	var seatColumnEnd = $("#seatColumnEnd").val();
+	// alert(seatColumnEnd);
+	if (seatColumnEnd == '') {
+		seatColumnEnd = seatColumnStart;
+	};
+
+	for (var i = seatColumnStart; i <= seatColumnEnd; i++) {
+		$('#r_'+seatRow+'c_'+i).parent().remove();
+		$('.seatList').append('<span><input type="hidden" name="data[seat][]" value="'+seatRow+','+i+'" /><span id="r_'+seatRow+'c_'+i+'">'+seatRow+'排'+i+'座<em onclick="removeSeat(this);"></em"></span></span>');
+	};
+}
+
+
+function removeSeat (obj) {
+	$(obj).parent().parent().remove();
+}
+
+
+function ajaxsubmit() {
+
+     $("#submitForm").ajaxSubmit({  
+        type:"post",  //提交方式  
+        dataType:"json", //数据类型  
+        url:"{:U()}", //请求url 
+        success:function(data){ //提交成功的回调函数  
+        	if (data.status == 1) {
+        		layer.alert(data.content, {icon: 2});
+        	}else{
+        		layer.confirm(data.content, {
+        			icon: 1,
+                    btn: ['返回列表',<if condition="$buyingInfo['buyingId']">'继续更新'<else/>'继续添加'</if>], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    location.href = '{:U('goods')}';
+                }, function(){
+                	<if condition="$buyingInfo['buyingId']">
+                		location.href = '{:U('editGoods', array('buyingId'=>$buyingInfo['buyingId']))}';
+					<else />
+						location.href = '{:U('addgoods')}';
+					</if>
+                    
+                });
+        	}
+        }  
+    });
+}
+
+
+$('input[name="data[filmStartTime]"]').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+	timepicker:true,
+	format:'Y-m-d H:i',
+	formatDate:'Y-m-d H:i',
+});
+
+
+$('input[name="data[startBuyingTime]"]').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+	timepicker:true,
+	format:'Y-m-d H:i',
+	formatDate:'Y-m-d H:i',
+});
+
+
+$('input[name="data[endBuyingTime]"]').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+	timepicker:true,
+	format:'Y-m-d H:i',
+	formatDate:'Y-m-d H:i',
+});
+
+</script> 
+</block>

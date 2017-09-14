@@ -1,0 +1,379 @@
+<div id="enterPwd" style="display:none"> <!--class="ui-dialog"-->
+    <form id="enterPwdForm">
+        <div>密码：<input type="password" value='' id="pwd"></div>
+        <input id='hideuid' type="hidden">
+    </form>
+</div>
+<script type="text/javascript">
+    $('#enterPwd').on('keypress',function(e){
+        e = e || window.event;
+        if(13 == e.keyCode){
+            var uid = $("#hideuid").attr('data');
+            aa(uid);
+            e.returnValue = false
+            return false
+        }
+    });
+    var uid = '{{info['uid']}}';
+    enterPwd(uid);
+    function enterPwd(uid){
+        var postData = {};
+        postData.type = 0;
+        $.ajax({
+            type:"POST",
+            data:postData,
+            url:'/ajax/checkHasAuth',
+            dataType:'json',
+            success:function(res){
+                if(res.code == 0){
+                    $("#content1").removeClass('hidden');
+                }else{
+                    // var pwd = window.prompt("输入密码", "");
+                    // aa(uid,pwd);
+                    $('#enterPwd').dialog({
+                        autoOpen:true,
+                        width:320,
+                        height:180,
+                        title:'输入密码',
+                        resizable:false,
+                        modal:true,
+                        open:function(){
+                            $('#hideuid').attr('data',uid);
+                        },
+                        buttons: {
+                            "确定": function () {
+                                // $(".ui-dialog-titlebar-close").click();
+                                aa(uid);
+                            }
+                        }
+                    });
+                }
+
+            }
+
+        });
+
+    }
+    function aa(uid,pwd){
+        var data={};
+        data.pwd = $('#pwd').val();
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/checkAnchorPwd',
+            dataType:'json',
+            success:function(res){
+                if(res.code == 0){
+                    location.reload();
+                }else{
+                    if(confirm(res.info) == false){
+                        $("#content1").addClass('hidden');
+                    }else{
+                        $("#content1").addClass('hidden');
+                    }
+                }
+
+            }
+
+        });
+    }
+</script>
+<div id="breadcrumb">
+    <a onclick="javascript:history.go(-1);" class="go-to-home tip-bottom font font18" style="cursor: pointer;">
+        <i class="icon-arrow-left"></i> 返回 &nbsp;
+    </a> 
+    <a onclick="javascript:history.go(-1);" class="font font18" style="cursor: pointer;"> &nbsp;&nbsp;<span>用户 &gt</span></a>
+    <a href="/anchor/anchorinfo?uid={{info['uid']}}" class="current font font18"> <span>用户详情</span></a>
+</div>
+
+<!--sidebar-menu-->
+
+<!--end sidebar-menu-->
+<div class="head-info" style="border-bottom: 0px;">
+    <div class="info-content  pull-re">
+        <!--头像信息-->
+        <div class="con-pic pull-left">
+            <img nsdata="userAvatar" src="{{userInfo['avatar']}}" width="100" height="100">
+        </div>
+        <!--文字信息-->
+        <div class="con-text pull-left">
+            <!--第一行-->
+            <div class="con-title">
+                <div class="con-text-name pull-left"  title="{{userInfo['nickName']}}">{{userInfo['nickName']}}</div>
+                <input type="hidden" id="in_uid" value="{{userInfo['uid']}}">
+            </div>
+
+            <div class="con-icon-div clearfix">
+                <div class="con-fh-icon pull-left sprite-fh_level fh{{userInfo['richerLevel']}}"></div>
+                <div class="sprite-vip_level VIP{{userInfo['vipLevel']}} pull-left" style="margin-left: 5px;"></div><!--vip等级-->
+
+                {% for badge in userInfo['badge']|default([]) %}
+                <div class="sprite-pericon {{ badge['configName'] }} pull-left"></div><!--棋牌-->
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+        <div class="con-text pull-right">
+            <div class="loginLable">
+                <label class="pull-left" style="padding-left: 15px;">账号：</label>
+                {% if userInfo['status']==1 %}
+                <label class="pull-left green">激活</label>
+                {% else %}
+                <label class="pull-left red">未激活</label>
+                {% endif %}
+            </div>
+            {% if userInfo['status']==1 %}
+            <div class="froneButton btn" onclick="frozen(2)">冻结</div>
+            {% else %}
+            <div class="froneButton btn" onclick="frozen(1)">解冻</div>
+            {% endif %}
+
+            <div class="froneButton btn" onclick="addNoticeDialog({{userInfo['uid']}})">发消息</div>
+        </div>
+    </div>
+    <div class="info-content  pull-re" >
+
+        <div class="nav-line-tab spe nav-line nav-tab1" data="1">
+            <a name="userInfo" class="_nav spe active" style="margin-left: 40px;">用户资料</a>
+            <a name="userActivitise" class="_nav spe">活动奖励</a>
+            <a name="userOrder" class="_nav spe">交易明细</a>
+            <a name="userLogin" class="_nav spe">登录记录</a>
+        </div>
+
+    </div>
+</div>
+
+<div id="content1"  class="container-fluid hidden">
+
+    <div id="userInfo" class="userBox">
+        <div class="row-fluid" style="margin-top: 40px;">
+            <div class="span8" style="width: 66%;float: none;margin: 0 auto;">
+                <div class="content-box" style="background: #FFF; text-align: left;  padding-bottom: 40px;">
+                    <div style="height:40px;margin: 0 10px; ">
+                        <div style="height: 40px;border-bottom:2px solid #817cce;width: 100px;color:#817cce;text-align: center;line-height: 40px;font-size: 20px; ">基础信息</div>
+                    </div>
+                    <div class="ct-anchorinfo clearfix">
+                        <div class="l-row spe pull-left">
+                            <span class="lable font font16 cr-b9">uid:</span>
+                            <span class="font font16">{{userInfo['uid']}}</span>
+                        </div>
+
+                        <div class="l-row spe pull-right">
+                            <span class="lable font font16 cr-b9">用户名:</span>
+                            <span class="font font16">{{userInfo['userName']}}</span>
+                        </div>
+
+                        <div class="l-row spe pull-left">
+                            <span class="lable font font16 cr-b9">昵称:</span>
+                            <span class="font font16">{{userInfo['nickName']}}</span>
+                        </div>
+
+                        <div class="l-row spe pull-right">
+                            <span class="lable font font16 cr-b9">所在地:</span>
+                            <span class="font font16">暂无</span>
+                        </div>
+
+                        <div class="l-row spe pull-left">
+                            <span class="lable font font16 cr-b9">注册时间:</span>
+                            <span class="font font16">{{userInfo['createTime']}}</span>
+                        </div>
+
+                        <div class="l-row spe pull-right">
+                            <span class="lable font font16 cr-b9">注册站点:</span>
+                            <span class="font font16">暂无</span>
+                        </div>
+
+                        <div class="l-row spe pull-left">
+                            <span class="lable font font16 cr-b9">来源:</span>
+                            <span class="font font16">暂无</span>
+                        </div>
+
+                        <div class="l-row spe pull-right" style="position: relative;">
+                            <span class="lable font font16 cr-b9">最后一次登录:</span>
+                            <span class="font font16">{{userInfo['updateTime']}} </span><!--福建省福州市 网页-->
+                            {% if userInfo['noLoginDay']>2%}
+                            <span class="font font12" style="position: absolute;left: 124px;top: 20px;color: red;">已{{userInfo['noLoginDay']}}天未登录</span>
+                            {% endif %}
+                        </div>
+
+
+
+                    </div>
+                    <div style="height:40px;border-top:1px solid #cccccc;margin: 20px 10px; ">
+                        <div style="height: 40px;width: 100px;color:#817cce;text-align: center;line-height: 40px;font-size: 20px; ">安全设置</div>
+                    </div>
+                    <div class="ct-anchorinfo clearfix">
+                        <div class="l-row spe pull-left">
+                            <span class="lable font font16 cr-b9">登录密码:</span>
+                            {% if userInfo['canSetPassword']==0 %}
+                            <span class="font font16" style="color: #008200"><i></i>  已设置</span>
+                            {% else %}
+                            <span class="font font16" style="color: red"><i></i>  未设置</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="l-row spe pull-right">
+                            <span class="lable font font16 cr-b9">密保问题:</span>
+                            {% if userInfo['questionId'] %}
+                            <span class="font font16" style="color: #008200"><i></i>  已设置</span>
+                            {% else %}
+                            <span class="font font16" style="color: red"><i></i>  未设置</span>
+                            {% endif %}
+                        </div>
+
+                        <div class="l-row spe pull-left">
+                            <span class="lable font font16 cr-b9">绑定手机:</span>
+                            {% if userInfo['telephone'] %}
+                            <span class="font font16" style="color: #008200"><i></i>  已绑定{{userInfo['telephone']}}</span>
+                            {% else %}
+                            <span class="font font16" style="color: red"><i></i>  未绑定</span>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="userActivitise" class="userBox" style="display: none;">
+        还没做1
+    </div>
+    <div id="userOrder" class="userBox" style="display: none">
+        还没做2
+    </div>
+    <div id="userLogin" class="userBox" style="display: none">
+        还没做3
+    </div>
+
+</div>
+<div id="addNoticeDialog" style="display:none"> <!--class="ui-dialog"-->
+    <form id="addNoticeDialogForm">
+        <div><textarea id="reason" rows="5" style="width: 98%;margin-top: 10px;"></textarea></div>
+    </form>
+</div>
+
+
+<script type="text/javascript" src="{{static_url('web/js/jquery.fancybox-1.3.1.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js/91ns.anchor1.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/jquery.fancybox-1.3.1.css')}}" type="text/css" />
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<script type="text/javascript">
+
+    $(function() {
+        $('body').addClass('anchorinfo');
+
+        $('.nav-line-tab ._nav').click(function(){
+            var a=$(this).parent().attr('data');
+            $('.nav-tab'+a+' ._nav').removeClass('active');
+            $(this).addClass('active');
+            if(a==1){
+                var name=$(this).attr('name');
+                $('#content1 .userBox').hide();
+                $('#'+name).show();
+            }
+            return false;
+        });
+        $("a[rel=example_group]").fancybox({
+            'transitionIn'		: 'none',
+            'transitionOut'		: 'none',
+            'titlePosition' 	: 'over',
+            'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+                return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+            }
+        });
+    });
+    function ban(status){
+        var uid=$('#in_uid').val();
+        var data={};
+        data.uid=uid;
+        data.status=status;
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: '/ajax/liveStatus',
+            dataType: 'json',
+            success: function (res) {
+                location.reload();
+            }
+        })
+    }
+
+    function frozen(status){
+        var uid=$('#in_uid').val();
+        var data={};
+        data.uid=uid;
+        data.status=status;
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: '/ajax/userStatus',
+            dataType: 'json',
+            success: function (res) {
+                location.reload();
+            }
+        })
+    }
+
+    function showroom(){
+        var uid=$('#in_uid').val();
+        var data={};
+        data.uid=uid;
+        if($("#checked").attr("checked")=='checked'){
+            data.status=0;
+        }
+        else{
+            data.status=1;
+        }
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: '/ajax/showStatus',
+            dataType: 'json',
+            success: function (res) {
+                location.reload();
+            }
+        })
+    }
+
+    //  发送消息
+    function addNoticeDialog(uid){
+
+        $('#addNoticeDialog').dialog({
+            autoOpen:true,
+            width:440,
+            height:260,
+            title:'发消息',
+            resizable:false,
+            modal:true,
+            open:function(){
+
+            },
+            buttons: {
+                "确定": function () {
+
+                    var data={};
+                    data.uids=uid;
+                    data.content=$('#reason').val();
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/sendNotice',
+                        dataType:'json',
+                        success:function(res){
+                            if(res.code!=0){
+                                alert(res.info);
+                            }
+                            location.reload();
+                        }
+
+                    });
+
+                }
+            }
+        });
+    }
+</script>

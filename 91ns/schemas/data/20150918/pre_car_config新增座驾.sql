@@ -1,0 +1,1 @@
+insert into pre_car_configs(id,typeId,name,description,price,orderType,status,configName)values(43,10,'月亮马车','形如皎月的马车，车上坐的是否是那位月宫仙子呢？',0,0,0,'ylmc')

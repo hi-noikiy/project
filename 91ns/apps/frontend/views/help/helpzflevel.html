@@ -1,0 +1,91 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+            <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title">主粉等级</div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div class="HAL-text">
+                                      <p style="text-align: center; ">主粉等级是随着主播粉丝数的增加形成的升级系统。</p>
+                                  </div>
+
+                                  <div>
+                                      <table cellpadding="0" cellspacing="0">
+                                          <thead>
+                                          <tr>
+                                              <th class="td166">图标</th>
+                                              <th class="td166">主粉等级称号</th>
+                                              <th class="td216 tdright">粉丝数</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr>
+                                              <td class="td166"><i class="sprite-zf_level zf0"></i> </td><td class="td166">无名小卒</td>  <td class="td216 tdright">0</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zf_level zf1"></i></td><td class="td166">鲜为人知</td> <td class="td216 tdright">500</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zf_level zf2"></i></td><td class="td166">略有所成</td> <td class="td216 tdright">1000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zf_level zf3"></i></td><td class="td166">人见人爱</td> <td class="td216 tdright">2000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zf_level zf4"></i></td><td class="td166">如日中天</td> <td class="td216 tdright">4000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zf_level zf5"></i></td><td class="td166">万人空巷</td> <td class="td216 tdright">8000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zf_level zf6"></i></td><td class="td166">叱咤风云</td> <td class="td216 tdright">16000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zf_level zf7"></i></td><td class="td166">举世闻名</td> <td class="td216 tdright">32000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zf_level zf8"></i></td><td class="td166">载入历史</td> <td class="td216 tdright">64000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zf_level zf9"></i></td><td class="td166">璀璨神话</td> <td class="td216 tdright">128000</td></tr>
+                                          <tr><td class="td166" style="border-bottom: 1px solid #000"><i class="sprite-zf_level zf10"></i></td><td class="td166" style="border-bottom: 1px solid #000">传世天神</td><td class="td216 tdright" style="border-bottom: 1px solid #000">256000</td></tr>
+
+
+                                          </tbody>
+                                      </table>
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+

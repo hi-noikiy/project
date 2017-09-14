@@ -1,0 +1,167 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+            <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title"> {% if webType['channelType']!=2 %}91NS{% else %}秀吧{% endif %}官方配置推荐</div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div class="" style=" margin:30px auto 0;">
+                                      <table class="configure">
+                                          <thead style="text-align: center;background-color:#9d69d3; color: #ffffff;">
+                                          <tr style="height: 40px;">
+                                              <th colspan="2" style="font-size: 16px;">最低配置</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr>
+                                              <td>主板</td>
+                                              <td>华硕主板 P8H81</td>
+                                          </tr>
+                                          <tr>
+                                              <td>显卡</td>
+                                              <td>集成</td>
+                                          </tr>
+                                          <tr>
+                                              <td>CPU</td>
+                                              <td>G3220</td>
+                                          </tr>
+                                          <tr>
+                                              <td>内存</td>
+                                              <td>4G</td>
+                                          </tr>
+                                          <tr>
+                                              <td>硬盘</td>
+                                              <td>WD500G</td>
+                                          </tr>
+                                          <tr>
+                                              <td>显示器</td>
+                                              <td>LG21.5</td>
+                                          </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                                  <div class="" style=" margin:30px auto 0;">
+                                      <table class="configure">
+                                          <thead style="text-align: center;background-color:#9d69d3; color: #ffffff;">
+                                          <tr style="height: 40px;">
+                                              <th colspan="2" style="font-size: 16px;">普通配置</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr>
+                                              <td>主板</td>
+                                              <td>华硕 B85</td>
+                                          </tr>
+                                          <tr>
+                                              <td>显卡</td>
+                                              <td>影驰 750 1G</td>
+                                          </tr>
+                                          <tr>
+                                              <td>CPU</td>
+                                              <td>I5 4440</td>
+                                          </tr>
+                                          <tr>
+                                              <td>内存</td>
+                                              <td>4G</td>
+                                          </tr>
+                                          <tr>
+                                              <td>硬盘</td>
+                                              <td>WD500G</td>
+                                          </tr>
+                                          <tr>
+                                              <td>显示器</td>
+                                              <td>飞利浦21.5</td>
+                                          </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                                  <div class="" style=" margin:30px auto 0;">
+                                      <!--<div style="background: url({{static_url('web/cssimg/help/Configure1.png')}}) no-repeat;width: 480px;height: 290px;margin: 0 auto;">-->
+                                      <!---->
+                                      <!--</div>-->
+                                      <table class="configure">
+                                          <thead style="text-align: center;background-color:#9d69d3; color: #ffffff;">
+                                          <tr style="height: 40px;">
+                                              <th colspan="2" style="font-size: 16px;">推荐配置</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr>
+                                              <td>主板</td>
+                                              <td>华硕 Z97</td>
+                                          </tr>
+                                          <tr>
+                                              <td>显卡</td>
+                                              <td>影驰 760 1G</td>
+                                          </tr>
+                                          <tr>
+                                              <td>CPU</td>
+                                              <td>I7 4770</td>
+                                          </tr>
+                                          <tr>
+                                              <td>内存</td>
+                                              <td>8G</td>
+                                          </tr>
+                                          <tr>
+                                              <td>硬盘</td>
+                                              <td>WD500G</td>
+                                          </tr>
+                                          <tr>
+                                              <td>显示器</td>
+                                              <td>飞利浦21.5</td>
+                                          </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+

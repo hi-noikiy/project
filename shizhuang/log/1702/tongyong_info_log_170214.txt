@@ -1,0 +1,16 @@
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1game85e6118b8370401696057a425a39c92a140182";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 10:36:03
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1game70b3e86409354010bdf0b755a63b50b5113064";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 10:36:22
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1game5deacfe579614d1da0967b88f8d1e98b191983";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 10:37:13
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1gameee2ea7921e0c433cb63dc607e4fadaaa113928";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 10:38:28
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1game6db886ef9aa34eb3aa60ecebbd6e2263147579";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 10:38:53
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1game9106a62838774600812fa1e4147344ca128078";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 10:39:22
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1gamefb467d85e129448faa078f1fb97555fd189072";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 10:39:43
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1mobi8c253142425f4fd4b8ea7116f431e932168779";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 11:16:24
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1mobi3ed95a5a1bed4d1590362423bca1c556162696";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 11:17:45
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1gamebae5205878d24a6a949b8147926903e2185240";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 12:21:39
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1gamee5a23b28693a48d98c473a8db5f97066153727";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 12:27:27
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1mobi824469270e8b46fd9571ca85491b4403155065";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 12:29:00
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1mobib238b92f44ad4c828e5713280975f654180857";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 13:56:51
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1game0b9c7f71ff7a4670b700d70a9aeeeaa9146175";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 14:36:39
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1game44a0f494b04b48e3aef5b076e367790d130289";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 14:46:38
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1game1c03e4494c884a97bbe0cf8a72c81fe2139889";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-14 15:16:27

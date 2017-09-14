@@ -1,0 +1,75 @@
+﻿<extend name='Public/base'/>
+
+<block name='body'>
+
+
+    <div id="main">
+        <div class="container">
+            <div class="film-con">
+                <h2><a class="active"  href="filmlist.html">正在热映</a><a  href="soonlist.html">即将上映</a></h2>
+                <div class="slide-box">
+                    <div class="hd">
+                        <a class="next"></a>
+                        <a class="prev"></a>
+                        <ul>
+                        <li class='on'></li>
+                        <volist name='films' id='v'	 mod="8" >
+                        <eq name="mod" value="0"> <li></li></eq>
+                        
+                        </volist >
+
+
+
+                        </ul>
+                        <div class="hr"></div>
+                    </div>
+                    <div class="bd">
+           			 <ul>
+                        <volist name='films' id='v'	 mod="8" >
+                          <li>
+                                <div class="baseInfo">
+                                    <a href="filminfo.html?filmNo={$v.filmNo}" class="img-box">
+                                        <img src="{$v.image}" >
+                                        <div class="tag tag-{$v.copyType}">{$v.copyType}</div>
+                                    </a>
+                                    <h3><a href="filminfo.html?filmNo={$v.filmNo}">{$v.filmName}</a></h3>
+                                    <p><i>片长：{$v.duration}分钟</i></p>
+                                    <h4><span>{$v.simpleword}</span></h4>
+                                    <ul>
+                                        <li>导演：{$v.director} </li>
+                                        <li>主演：{$v.cast} </li>
+                                        <li class="last">今天剩余{$v.cc}场</li>
+                                    </ul>
+                                    <div class="score1">{$v.f}.</div>
+                                    <div class="score2">{$v.s}</div>
+                                    <a class="selectSeat-btn" href="{:U('film/filminfo')}?filmNo={$v.filmNo}">{$v.publishDateflag}</a>
+                                </div>
+                            </li>
+                        </volist>                              
+                      </ul>
+
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            //去掉列底线
+            $('.film-con .bd> ul').each(function(){
+                $(this).children('li').last().find('.baseInfo').css({'border-bottom':'none'});
+            });
+            //滑动
+        //    jQuery(".slide-box").slide({ mainCell:".bd", effect:"left", delayTime:800,delayTime:400,pnLoop:false,easing:"easeOutCubic" });
+        })
+    </script>
+
+
+</block>
+
+
+

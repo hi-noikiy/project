@@ -1,0 +1,9 @@
+result={"id":1487642118,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"688e75ac1d77d3cbac4aff713dafaaf5","nickName":"九游玩家266421985718","creator":"JY"}} 2017-02-21 09:55:18
+result={"id":1487651243,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"4986b0c09451cd547889dc1ff9c1122c","nickName":"九游玩家908077214416","creator":"JY"}} 2017-02-21 12:27:23
+result={"id":1487654359,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"4986b0c09451cd547889dc1ff9c1122c","nickName":"九游玩家908077214416","creator":"JY"}} 2017-02-21 13:19:19
+result={"id":1487655914,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"4986b0c09451cd547889dc1ff9c1122c","nickName":"九游玩家908077214416","creator":"JY"}} 2017-02-21 13:45:14
+result={"id":1487656221,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"4986b0c09451cd547889dc1ff9c1122c","nickName":"九游玩家908077214416","creator":"JY"}} 2017-02-21 13:50:21
+result={"id":1487657919,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"4986b0c09451cd547889dc1ff9c1122c","nickName":"九游玩家908077214416","creator":"JY"}} 2017-02-21 14:18:40
+result={"id":1487660227,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"4986b0c09451cd547889dc1ff9c1122c","nickName":"九游玩家908077214416","creator":"JY"}} 2017-02-21 14:57:07
+result={"id":1487662296,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"4986b0c09451cd547889dc1ff9c1122c","nickName":"九游玩家908077214416","creator":"JY"}} 2017-02-21 15:31:36
+result={"id":1487662318,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"4986b0c09451cd547889dc1ff9c1122c","nickName":"九游玩家908077214416","creator":"JY"}} 2017-02-21 15:31:58

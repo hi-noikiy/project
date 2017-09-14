@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/prize'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+    <style type="text/css">
+    #aboutIndex{}
+    #aboutIndex h3{
+    	padding-top: 1rem;
+    	font-size: 1.2rem;
+    }
+    #aboutIndex p{
+    	font-size: 1rem;
+    	line-height: 1.8rem;
+    	color: #555;
+    }
+    </style>
+</head>
+<body>
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+		<div class='pos_rel'>
+			<img src='{{static_url("web/cssimg/mobile/screen/top_bg.jpg")}}' width="100%"/>
+			<p class='title pos_ab'>
+				关于我们
+			</p>
+			<img id="leftMenu" src='{{static_url("web/cssimg/mobile/screen/back.png")}}' width="7%" class='pos_ab back' />
+		</div>
+		<div id="aboutIndex">
+			<h3>公司简介</h3>
+			<p>厦门奈斯文化传媒有限公司旗下公司上海秀吧网络科技有限公司成立于2015年4月7日，致力于网络直播的开发和运营，为大众提供最高品质的网络娱乐产品和服务，立志为国内互动娱乐产业注入新元素。
+公司强大的技术实力和富有创造力的设计能力，加之对国内外文化的深刻理解和丰富的运营经验，使公司能够迅速推出适合于大众的直播，以满足用户不断变化的需求及直播市场的发展。
+面对更多的市场需求和层出不穷的挑战，秀吧网络科技坚持“为所有用户创造更好、更新、更完善的直播环境”的宗旨，为用户提供高品质互动性的直播内容，通过直播内容，为用户创造轻松、愉悦的快乐体验，最大限度的为用户挖掘网络娱乐产业的乐趣。我们把休闲直播、社交网络、多人网络直播和虚拟世界中诸多精华整合在一起，提供一个全新互动平台，来让用户和朋友一起体验直播中的快乐与收获。</p>
+			<br>
+			<h3>联系方式</h3>
+			<p>
+公司地址：厦门市思明区湖滨南路莲景二里5号楼410室<br>
+邮政编码：361000<br>
+客服电话：4009990591<br>
+邮箱：cyy@91ns.com<br>
+			</p>
+		</div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/about.index'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

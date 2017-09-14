@@ -1,0 +1,36 @@
+<?php use \Phalcon\Tag as Tag; ?>
+
+<!-- Sending the form by method POST -->
+<?= Tag::form("usermgr/search") ?>
+    <label for="q">用户名:</label>
+    <?= Tag::textField("username") ?> <br/>
+    <label for="q">用户uid:</label>
+    <?= Tag::textField("uid") ?><br/>
+    <?= Tag::submitButton(array("Search", "name" => "Search")) ?>
+</form>
+{% if users %}
+    {% for users in page.items %}
+        {% if loop.first %}
+            <table class="table table-bordered table-striped" align="center">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>username</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% endif %}
+        <tr>
+            <td>{{ users.uid }}</td>
+            <td>{{ users.username }}</td>
+            <td width="7%">{{ link_to("usermgr/edit/" ~ users.uid, '<i class="glyphicon glyphicon-edit"></i> Edit', "class": "btn btn-default") }}</td>
+            <!--<td width="7%">{{ link_to("usermgr/delete/" ~ users.uid, '<i class="glyphicon glyphicon-remove"></i> Delete', "class": "btn btn-default") }}</td>-->
+        </tr>
+    {% endfor %}
+{% else %}
+    No users are recorded
+{% endif %}
+{% if users %}
+        </tbody>
+    </table>
+{% endif %}

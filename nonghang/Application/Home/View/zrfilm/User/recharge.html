@@ -1,0 +1,153 @@
+<extend name="Public/base"/>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('user/user')}" > <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">账户充值</div>
+    <div class="right"></div>
+  </div>
+</div>
+</block>
+
+<block name='body'>
+  <div data-page="recharge" class="page">
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+      <div style="display:none" id="cardNum">{$user['loginNum']}</div>
+      <?php 
+      foreach ($data as $key => $value) {
+        echo '<div style="display:none" id="' . $key . '">' . $value . '</div>';
+      }
+
+      //print_r($data);?>
+
+
+      <div class="content">
+        <div class="rechargeTop">
+            <div class="userTop" style="background:#fff;">
+                <div class="userTopLeft"><img src="__IMG__/user/my_icon.png" width="100%" /></div>
+                <div class="userTopRight">
+                    <h2>{$user['loginNum']}</h2><em>{$user['levelName']}</em>
+                    <div class="info"><span>账户余额：￥{$user['userMoney']}</span><!--<span>积分：{$user['integralBalance']}</span>--></div>
+                </div>
+                <div class="clear"></div>
+          </div>
+            <div class="rechargePrice">
+              <p>请选择充值金额</p>
+              <div class="rechargeVal">
+                      <a class="minus" href="javascript:;">-</a><input id='allmount' placeholder="输入100的整数倍" type="tel" value="100"><a class="plus" href="javascript:;">+</a>
+                </div>
+            </div>
+        </div>
+        <div class="selectPay list-block media-list">
+            <h2>选择支付方式</h2>
+            <ul>
+            <foreach name='payInfo' item='vo'>
+                <li>
+                  <label class="label-checkbox item-content">
+                    <div class="item-inner">
+                        <div class="payIcon"><img src="{$vo['icon']}" height="50" /></div>
+                        <div class="payInfo">
+                            <p>{$vo['name']}</p>
+                        </div>
+                    </div>
+          			<input type="radio" name="my-checkbox" checked value="{$vo['type']}">
+                    <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                </label>
+                </li> 
+                </foreach>
+            </ul>
+
+        </div>
+        <div class="rechangeBtn">
+          <a href="javascript:void(0)"  class="" >立即充值</a>
+        </div>
+    </div>
+
+
+    </div>
+</div>
+      
+  </block>
+
+<block name='script'>
+<script type="text/javascript">
+$(function(){
+    $('.rechangeBtn').click(function(){
+        var amountTotal=$("#allmount").val();
+        if(amountTotal=="" || !$.isNumeric(amountTotal)){
+            myApp.alert("请选择充值金额");
+            return false;
+        }
+        else if(amountTotal<100){
+            myApp.alert("充值金额必须大于等于100元");
+            return false;
+        }else if(amountTotal%100>0){
+            myApp.alert("充值金额必须是100的倍数");
+            return false;
+        }
+        var t=$('.selectPay input[type="radio"]:checked').val();
+
+
+        myApp.confirm("您当前充值帐号为："+$("#cardNum").html()+"<br/> 充值金额为："+amountTotal+"元", function () {
+            if(t=='weixinpay'){
+            	myApp.showIndicator();
+            	var payType='weixinpay';
+                var configdata = {
+                        appId: $("#appid").html() ,
+                        timestamp:  $("#timestamp").html() ,
+                        nonceStr: $("#wxnonceStr").html() , 
+                        signature: $("#wxSha1").html() , 
+                        debug:false,
+                        jsApiList: [
+                            'chooseWXPay',
+                        ]
+                    };
+      
+                    wx.config(configdata);
+                    wx.ready(function () {
+                        $.getJSON($("#otherpayMain").html(),{fee:amountTotal,payType:payType},function(data){   
+                        	 myApp.hideIndicator();
+                        	 wx.chooseWXPay({
+                                 timestamp:  data['timeStamp'] ,
+                                 nonceStr: data['nonceStr'] , 
+                                 package: data['package'] , 
+                                 signType: data['signType'] , 
+                                 paySign: data['paySign'] , 
+                                 success: function (res) {
+                                     mainView.router.loadPage($("#userIndex").html());
+                                 },
+                             });
+                        });
+                    });
+                    wx.error(function (res) {
+                        myApp.alert( res.errMsg );
+                    });
+                }
+            });
+        });
+
+});
+    
+$(".minus").click(function(){
+    var ini=100*Math.ceil($(this).next().val().trim()/100);
+    var inin=$(this).next();
+    if(ini>100){
+        inin.val(parseInt(ini)-100);
+    }
+});
+$(".plus").click(function(){
+    var ini=100*Math.floor($(this).prev().val().trim()/100);
+    if(ini==''){
+        ini=0;
+    }
+    var inin=$(this).prev();
+    if(ini>=0 ){
+        inin.val(parseInt(ini)+100);
+    }
+});
+</script>
+  </block>

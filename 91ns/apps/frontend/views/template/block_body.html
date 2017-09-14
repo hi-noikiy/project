@@ -1,0 +1,27 @@
+{% block begin %}
+{% endblock %}
+<div class="main-main">
+	<div class="common-header">
+		<div class="header-left">
+			<div class="navbar">
+				<div class="navbar-inner">
+					<a class="brand ico-main-15">
+                        {% block title %}
+                        {% endblock %}
+                    </a>
+                    {% block titleList %}
+                    {% endblock %}
+				</div>
+			</div>
+		</div>
+        {% block titleContent %}
+        {% endblock %}
+	</div>
+	<div class="main-content-bg"></div>
+	<div class="main-content js-goTop-div">
+        {% block content %}
+        {% endblock %}
+	</div>
+</div>
+{% block end %}
+{% endblock %}

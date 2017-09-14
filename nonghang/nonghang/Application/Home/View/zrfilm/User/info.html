@@ -1,0 +1,102 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('user/user')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">我的资料</div>
+    <div class="right"></div>
+  </div>
+</div>
+
+<div class="pages">
+  <div data-page="userInfo" class="page">
+
+
+
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+
+       <div class="content">
+                <div class="list-block media-list" style="margin-top:0;">
+                  <ul>
+                  	<li>
+                      <a href="" class="name item-link item-content">
+                        <div class="item-inner">
+                          <div class="item-title-row" style="background:none;">
+                            <div class="item-title">头像</div>
+                            <div class="item-after"><img src="{$user['userIcon']}" style="border-radius:15px;"  height="30px"/></div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{:U('user/name')}" class="name item-link item-content">
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">昵称</div>
+                            <div class="item-after">{$user['userNickname']}</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="" class="sex item-link item-content " >
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">性别</div>
+                            <div class="item-after">{$user['userSex']}</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <label id="birthday" class="item-link item-content birthday">
+                        <div class="item-inner">
+                          <lable class="mob" for="appDate"></lable>
+                          <div class="item-title-row">
+                            <div class="item-title">生日</div>
+                            <div class="item-after">
+                             <input type="text" placeholder="请选择年月日" class="inputDate" name="appDate" readonly id="appDate" value="{$user['userBirthday']}" <?php if($user['userBirthday']){ ?>disabled<?php }?>/></div>
+                             
+                          </div>
+                        </div>
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              <!--  <div class="picker-modal pickerInfo datePicker ">
+                	<div id="picker-date-container"></div>
+                </div>-->
+				<div class="modal-overlay " id="aaa"></div>
+       
+                <div class="list-block media-list">
+                  <ul>
+                  	<li>
+                      <a href="{:U('user/email')}" class="item-link item-content">
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">邮箱</div>
+                            <div class="item-after">{$user['email']}</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{:U('user/password')}" class="item-link item-content">
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">修改密码</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    
+                  </ul>
+                </div>
+            </div>
+    </div>
+  </div>
+</div>
+

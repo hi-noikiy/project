@@ -1,0 +1,768 @@
+<div id="breadcrumb">
+<a href="/anchor" class="go-to-home tip-bottom font font18" data-original-title="Go to Home">
+<i class="icon-arrow-left"></i> 返回 &nbsp;
+</a> 
+<a href="#" class="font font18"> &nbsp;&nbsp;<span>主播 &gt</span></a>
+<a href="#" class="font font18"> <span>{{anchorInfo['status']}}&gt</span></a>
+<a href="#" class="current font font18"> <span>主播详情</span></a>
+</div>
+{#{ salaryInfo|json_encode }#}
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+  <div class="user-info">
+    <img alt="" src="{{anchorInfo['avatar']}}">
+    
+    <p>
+        <span class="font font20 cr-dpe">{{anchorInfo['nickName']}}</span>
+    </p>
+    <p>
+        <span class="font font20 cr-dpe" id="_uid">{{anchorInfo['uid']}}</span>
+        <input id="in_uid" type="hidden" value="{{anchorInfo['uid']}}">
+    </p>
+    <p>
+        <span class="i-actor sprite-zb_level zb{{anchorInfo['level2']}}"></span><span class="font font20 cr-dpe">{{anchorInfo['name']}}</span>
+    </p>
+    <p>
+        <!-- <span class="font font20 cr-dpe">{{anchorInfo['status']}}</span> -->
+        <span class="font font20 cr-dpe">
+            {{anchorInfo['status']}}
+            {% if anchorInfo['status']=='已签约' and !familyId %}<!--  and !familyId  -->
+            <button class="btn" onclick="unbind({{anchorInfo['uid']}})">解约</button>
+            {% endif %}
+        </span>
+    </p>
+  </div>
+  <div class="progtrckr-box" style="top:260px;">
+    <div class="progtrckrline" ></div>
+    <ul class="progtrckr" style="width: 212px;">
+        <li ><i class="custom-icon custom-icon-point"></i><a href="/anchor/anchorinfo?uid={{anchorInfo['uid']}}">个人资料</a></li>
+        <li class="active"><i class="custom-icon custom-icon-point"></i><a href="/anchor/income?uid={{anchorInfo['uid']}}">收益</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/fans?uid={{anchorInfo['uid']}}">粉丝</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/contribute?uid={{anchorInfo['uid']}}">贡献</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/trend?uid={{anchorInfo['uid']}}">趋势分析</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/worktable?uid={{anchorInfo['uid']}}">导出工作情况表</a></li>
+    </ul>
+  </div>
+</div>
+<!--end sidebar-menu-->
+
+
+<div id="content">
+
+<div class="container-fluid">
+
+    <ul class="tab-nav clearfix" style="margin-top: 20px;">
+        <li class="tabs-nav _tab active"><a href="#box1">主播收益</a></li>
+        {% if familyHeader==true %}
+        <li class="tabs-nav _tab"><a href="#box2">家族长收益</a></li>
+        {% endif %}
+        <li class="tabs-nav _tab"><a href="#box3">交易明细</a></li>
+
+    </ul>
+	<div class="content-box" style="background: #FFF; text-align: left; margin-top:20px;  padding-bottom: 40px;">
+
+
+        <div id="box1" class="tab-box">
+
+            <ul class="incomeTab-nav clearfix" style="font-size: 14px;list-style: none">
+            <!--<li class="incomeTabs-nav active pull-left"><a href="#incomeBox1">礼物明细</a></li>-->
+            <li class="incomeTabs-nav active pull-left"><a href="#incomeBox2" onclick="getDayGifts(1)">礼物收入</a></li>
+                <li class="incomeTabs-nav pull-left"><a href="#incomeBox3" onclick="getDayIncome(1)">聊币流水</a></li>
+                <li class="incomeTabs-nav pull-left"><a href="#incomeBox4" onclick="getMonthIncome(1)">佣金流水</a></li>
+            </ul>
+            <div class="hr-d7"></div>
+
+            <div id="incomeBox1" class="box-pane" style="margin: 15px 25px 10px 25px;display: none">
+                <div>
+                    <span style="font-size: 16px;">日期：</span>
+                    <span><input id="sdate" placeholder="请输入日期" class="laydate-icon" ></span>
+                    <button type="button" class="btn btn-purple" style="margin-left: 10px;" onclick="getDayRecvGifts()">查询</button>
+                </div>
+                <table id="giftTableList"  class="table with-check table-purple">
+                    <thead>
+                        <tr>
+                            <th>获取时间</th>
+                            <th>礼物名称</th>
+                            <th>礼物数量</th>
+                            <th>赠送者</th>
+                            <th>来源</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="incomeBox2" class="box-pane" style="margin: 15px 25px 10px 25px;">
+                <div>
+                    <span style="font-size: 16px;">选择月份：</span>
+                    <span>
+                         <select id="select_id" style="width: 100px;">
+                            <option>2014</option>
+                            <option selected = "selected" >2015</option>
+                            <option>2016</option>
+                        </select>
+                    </span>
+                    <span>
+                         <select id="selectM_id" style="width: 100px;">
+                            {% for i in 1..12 %}
+                            {% if i<10 %}
+                             <option value="0{{i}}">{{i}}月</option>
+                            {% else %}
+                             <option value="{{i}}">{{i}}月</option>
+                            {% endif %}
+                            {% endfor %}
+                         </select>
+                    </span>
+                    <button type="button" class="btn btn-purple" style="margin-left: 10px;" onclick="getDayGifts(1)">查询</button>
+                    <div class="pull-right" style="line-height: 40px;font-size: 16px;">
+                        <span>收入总额（聊币）：</span>
+                        <span  id="ttl">0</span>
+                    </div>
+                </div>
+                <table id="giftIncomeList"  class="table with-check table-purple">
+                    <thead>
+                        <tr>
+                            <th>日期</th>
+                            <th>礼物价值（聊币）</th>
+                            <th>分成等级</th>
+                            <th>家族提成</th>
+                            <th>来源</th>
+                            <th>入账时间</th>
+                            <th>最终获得（聊币）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="incomeBox3" class="box-pane" style="margin: 15px 25px 10px 25px;display: none">
+                <div>
+                    <span style="font-size: 16px;">选择月份：</span>
+                    <span>
+                         <select id="select1_id" style="width: 100px;">
+                             <option>2014</option>
+                             <option selected = "selected" >2015</option>
+                             <option>2016</option>
+                         </select>
+                    </span>
+                    <span>
+                         <select id="selectM1_id" style="width: 100px;">
+                             {% for i in 1..12 %}
+                             {% if i<10 %}
+                             <option value="0{{i}}">{{i}}月</option>
+                             {% else %}
+                             <option value="{{i}}">{{i}}月</option>
+                             {% endif %}
+                             {% endfor %}
+                         </select>
+                    </span>
+                    <button type="button" class="btn btn-purple" style="margin-left: 10px;" onclick="getDayIncome(1)">查询</button>
+                </div>
+                <table id="cashIncomeList"  class="table with-check table-purple">
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>金额（聊币）</th>
+                        <th>说明</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="incomeBox4" class="box-pane" style="margin: 15px 25px 10px 25px;display: none">
+                <div>
+                    <span style="font-size: 16px;">选择年份：</span>
+                    <span>
+                         <select id="select2_id" style="width: 100px;">
+                             <option>2014</option>
+                             <option selected = "selected" >2015</option>
+                             <option>2016</option>
+                         </select>
+                    </span>
+                    <button type="button" class="btn btn-purple" style="margin-left: 10px;" onclick="getMonthIncome(1)">查询</button>
+                </div>
+                <table id="MonthIncomeList" class="table with-check table-purple">
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>金额（元）</th>
+                        <th>说明</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div id="box2" class="tab-box" style="display: none">
+            <ul class="incomeTab-nav clearfix" style="font-size: 14px;list-style: none">
+                <li class="incomeTabs-nav active pull-left"><a href="#incomeBox5" onclick="getDayGifts(2)">礼物收入</a></li>
+                <li class="incomeTabs-nav pull-left"><a href="#incomeBox6" onclick="getDayIncome(2)">聊币流水</a></li>
+                <li class="incomeTabs-nav pull-left"><a href="#incomeBox7" onclick="getMonthIncome(2)">佣金流水</a></li>
+            </ul>
+            <div class="hr-d7"></div>
+            <div id="incomeBox5" class="box-pane" style="margin: 15px 25px 10px 25px;">
+                <div>
+                    <span style="font-size: 16px;">选择月份：</span>
+                    <span>
+                         <select id="select_id5" style="width: 100px;">
+                             <option>2014</option>
+                             <option selected = "selected" >2015</option>
+                             <option>2016</option>
+                         </select>
+                    </span>
+                    <span>
+                         <select id="selectM5_id" style="width: 100px;">
+                             {% for i in 1..12 %}
+                             {% if i<10 %}
+                             <option value="0{{i}}">{{i}}月</option>
+                             {% else %}
+                             <option value="{{i}}">{{i}}月</option>
+                             {% endif %}
+                             {% endfor %}
+                         </select>
+                    </span>
+                    <button type="button" class="btn btn-purple" style="margin-left: 10px;" onclick="getDayGifts(2)">查询</button>
+                    <div class="pull-right" style="line-height: 40px;font-size: 16px;">
+                        <span>收入总额（聊币）：</span>
+                        <span id="Fttl">0</span>
+                    </div>
+                </div>
+                <table id="giftIncomeList1"  class="table with-check table-purple">
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>礼物价值（聊币）</th>
+                        <th>分成等级</th>
+                        <th>家族提成</th>
+                        <th>来源</th>
+                        <th>入账时间</th>
+                        <th>最终获得（聊币）</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="incomeBox6" class="box-pane" style="margin: 15px 25px 10px 25px;display: none">
+                <div>
+                    <span style="font-size: 16px;">选择月份：</span>
+                    <span>
+                         <select id="select6_id" style="width: 100px;">
+                             <option>2014</option>
+                             <option selected = "selected" >2015</option>
+                             <option>2016</option>
+                         </select>
+                    </span>
+                    <span>
+                         <select id="selectM6_id" style="width: 100px;">
+                             {% for i in 1..12 %}
+                             {% if i<10 %}
+                             <option value="0{{i}}">{{i}}月</option>
+                             {% else %}
+                             <option value="{{i}}">{{i}}月</option>
+                             {% endif %}
+                             {% endfor %}
+                         </select>
+                    </span>
+                    <button type="button" class="btn btn-purple" style="margin-left: 10px;" onclick="getDayIncome(2)">查询</button>
+                </div>
+                <table id="cashIncomeList1"  class="table with-check table-purple">
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>金额（聊币）</th>
+                        <th>说明</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+            <div id="incomeBox7" class="box-pane" style="margin: 15px 25px 10px 25px;display: none">
+                <div>
+                    <span style="font-size: 16px;">选择年份：</span>
+                    <span>
+                         <select id="select7_id" style="width: 100px;">
+                             <option>2014</option>
+                             <option selected = "selected" >2015</option>
+                             <option>2016</option>
+                         </select>
+                    </span>
+                    <button type="button" class="btn btn-purple" style="margin-left: 10px;" onclick="getMonthIncome(2)">查询</button>
+                </div>
+                <table id="MonthIncomeList1"  class="table with-check table-purple">
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>金额（元）</th>
+                        <th>说明</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div id="box3" class="tab-box" style="display: none;margin: 30px 25px 10px 25px;">
+            <div>
+                <span style="font-size: 16px;">请选择起止日期：</span>
+                <a class="date-calendar " style="margin-left: 8px;"><i class=" icon-calendar"></i> <input id="mydate"  placeholder="请输入日期"  value="" style="height: 34px;"></a>
+                <input type="hidden" value="" name="startTime" id="_startTime">
+                <input type="hidden" value="" name="endTime" id="_stopTime">
+                <button type="button" class="btn btn-purple" style="margin-left: 10px;" onclick="getChangeLog()">查询</button>
+                <div class="pull-right" style="line-height: 40px;font-size: 16px;">
+                    <span>账户余额（元）：</span>
+                    <span id="total">0</span>
+                </div>
+            </div>
+            <table id="tableList"  class="table with-check table-purple">
+                <thead>
+                <tr>
+                    <th>科目</th>
+                    <th>提现申请单号</th>
+                    <th>时间</th>
+                    <th>金额（元）</th>
+                    <th>状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                </tbody>
+            </table>
+        </div>
+
+        <div id="isPage" class="row-fluid">
+            <div class="total pull-left">
+                <p class="font font18 cr-gy">
+                    <span>记录总数：</span>
+                    <span id="count">0</span>
+                </p>
+            </div>
+
+            <div id="pagination" class="pagination alternate pull-right"></div>
+        </div>
+	</div>
+</div>
+
+</div>
+
+
+
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<script src="{{static_url('web/laydate/laydate.js')}}"></script>
+
+<script type="text/javascript">
+
+$(function(){
+	$('body').addClass('anchorinfo');
+    getDayGifts(1);
+    $('.tabs-nav').click(function(){
+        $('.tabs-nav.active').removeClass('active');
+        $(this).addClass('active');
+        var id=$(this).children('a').attr('href');
+        $('.tab-box').hide();
+        $(id).show();
+//        if(id=='#box1'){
+//            getDayRecvGifts();
+//        }
+        if(id=='#box2'){
+            getDayGifts(2);
+        }
+        if(id=='#box3'){
+            getChangeLog();
+        }
+        return false;
+    });
+
+    $('.incomeTabs-nav').click(function(){
+        $('.incomeTabs-nav.active').removeClass('active');
+        $(this).addClass('active');
+        var id=$(this).children('a').attr('href');
+        $('.box-pane').hide();
+        $(id).show();
+//        if(id=='#incomeBox1'){
+//            $('#isPage').show();
+//        }
+        return false;
+    });
+
+    $('.nav-line a').click(function(){
+        $('.nav-line a.active').removeClass('active');
+        $(this).addClass('active');
+        return false;
+    });
+
+    $('#mydate').daterangepicker({
+        presetRanges:[
+            //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+            //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+            //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+        ],
+        presets:{
+            dateRange:'自定义时间'
+        },
+        rangeStartTitle:'起始日期',
+        rangeEndTitle:'结束日期',
+        nextLinkText:'下月',
+        prevLinkText:'上月',
+        doneButtonText:'确定',
+        cancelButtonText:'取消',
+        earliestDate:'',
+        latestDate:Date.parse('today'),
+        constrainDates:true,
+        rangeSplitter:'-',
+        dateFormat:'yy-mm-dd',
+        closeOnSelect:false,
+        onOpen:function(){
+            $('.ui-daterangepicker-dateRange').click().parent().hide();
+            $('.ui-daterangepickercontain').css({left:($('#mydate').offset().left-120)+'px'});
+            $('.ui-daterangepickercontain').css({top:($('#mydate').offset().top+20)+'px'});
+        },
+        onClose:function(){
+//                        var typer=$('#mydate').attr('data');
+            var b=$('#mydate').val();
+            var timeBegin= b.substring(0,10);
+            var timeEnd= b.substring(12,23);
+            $('#_startTime').val(timeBegin);
+            $('#_stopTime').val(timeEnd);
+
+        }
+    })
+
+
+    laydate.skin('default');
+
+    laydate({
+        elem: '#sdate'
+    });
+});
+
+//礼物明细
+function getDayRecvGifts(index){
+    var myDate = new Date();
+    var a=myDate.toLocaleDateString();
+    var dateNow = new Date(a);
+    var timeNow = dateNow.getTime()/1000;
+//    var timestamp=new Date().getTime();
+    var str=$('#sdate').val();
+    str = str.replace(/-/g,'/');
+    var date = new Date(str);
+    var time = date.getTime()/1000;
+    if(time>=timeNow){
+        alert('请选择今天之前的日期！');
+        var tableList=document.getElementById("giftTableList");
+        var tbody= tableList.getElementsByTagName('tbody')[0];
+        dataTable.clearData(tbody);
+        return false;
+    }
+    var data={};
+    data.uid=$('#in_uid').val();
+    data.date=$('#sdate').val();
+    data.page=index||1;
+    data.pageSize=global.pageSize;
+    $.ajax({
+        type: "post",
+        data: data,
+        url: '/ajax/getDayRecvGifts',
+        dataType: 'json',
+        success: function (res) {
+            var data=res.data;
+            var tableList=document.getElementById("giftTableList");
+            var tbody= tableList.getElementsByTagName('tbody')[0];
+            dataTable.clearData(tbody);
+
+            var count=document.getElementById('count');
+            count.innerHTML=data.count;
+
+            for(var i=0;i<data.data.length;i++){
+                addRow(tbody,'',data.data[i]);
+            }
+            if(!index||index==0){
+                utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                    page_index+=1;
+                    getDayRecvGifts(page_index);
+                });
+            }
+        }
+    });
+}
+function addRow(table,index,data){
+    var row=table.insertRow();
+    var cell=row.insertCell(0);
+    var cell1=row.insertCell(1);
+    var cell2=row.insertCell(2);
+    var cell3=row.insertCell(3);
+    var cell4=row.insertCell(4);
+
+    cell.innerHTML=data.createTime;
+    cell1.innerHTML=data.name;
+    cell2.innerHTML=data.count;
+    cell3.innerHTML=data.nickName;
+    cell4.innerHTML='91NS';
+
+    return row;
+}
+
+//礼物收入
+function getDayGifts(type,index){
+    if(type==1){
+        var a=$('#select_id').val();
+        var b=$('#selectM_id').val();
+    }
+    else{
+        var a=$('#select5_id').val();
+        var b=$('#selectM5_id').val();
+    }
+    var date=a+'-'+b;
+    var data={};
+    data.uid=$('#in_uid').val();
+    data.date=date;
+    data.type=type;
+    data.page=index||1;
+    data.pageSize=global.pageSize;
+    $.ajax({
+        type: "post",
+        data: data,
+        url: '/ajax/getDayGifts',
+        dataType: 'json',
+        success: function (res) {
+            var data=res.data.data;
+            if(type==1){
+                var tableList=document.getElementById("giftIncomeList");
+                $('#ttl').html(res.data.ttl);
+            }
+            else{
+                var tableList=document.getElementById("giftIncomeList1");
+                $('#Fttl').html(res.data.ttl);
+            }
+
+            var tbody= tableList.getElementsByTagName('tbody')[0];
+            dataTable.clearData(tbody);
+
+            var count=document.getElementById('count');
+            count.innerHTML=res.data.count;
+
+            for(var i=0;i<data.length;i++){
+                getDayGiftsAddRow(tbody,'',data[i]);
+            }
+            if(!index||index==0){
+                utilsPagination("#pagination",res.data.count,global.pageSize,function(page_index,jq){
+                    page_index+=1;
+                    getDayGifts(type,page_index);
+                });
+            }
+        }
+    });
+}
+function getDayGiftsAddRow(table,index,data){
+    var row=table.insertRow();
+    var cell=row.insertCell(0);
+    var cell1=row.insertCell(1);
+    var cell2=row.insertCell(2);
+    var cell3=row.insertCell(3);
+    var cell4=row.insertCell(4);
+    var cell5=row.insertCell(5);
+    var cell6=row.insertCell(6);
+
+    cell.innerHTML=data.createTime;
+    cell1.innerHTML=data.allIncome;
+    cell2.innerHTML='A';
+    cell3.innerHTML=data.divideRatio+'%';
+    cell4.innerHTML='91NS';
+    cell5.innerHTML=data.inTime;
+    cell6.innerHTML=data.finalIncome;
+
+    return row;
+}
+
+//聊币流水
+function getDayIncome(type,index){
+    if(type==1){
+        var a=$('#select1_id').val();
+        var b=$('#selectM1_id').val();
+    }
+    else{
+        var a=$('#select6_id').val();
+        var b=$('#selectM6_id').val();
+    }
+    var date=a+'-'+b;
+    var data={};
+    data.uid=$('#in_uid').val();
+    data.date=date;
+    data.type=type;
+    data.page=index||1;
+    data.pageSize=global.pageSize;
+    $.ajax({
+        type: "post",
+        data: data,
+        url: '/ajax/getDayIncome',
+        dataType: 'json',
+        success: function (res) {
+            var data=res.data.data;
+            if(type==1){
+                var tableList=document.getElementById("cashIncomeList");
+            }
+            else{
+                var tableList=document.getElementById("cashIncomeList1");
+            }
+
+            var tbody= tableList.getElementsByTagName('tbody')[0];
+            dataTable.clearData(tbody);
+
+            var count=document.getElementById('count');
+            count.innerHTML=res.data.count;
+
+            for(var i=0;i<data.length;i++){
+                getDayIncomeAddRow(tbody,'',data[i]);
+            }
+            if(!index||index==0){
+                utilsPagination("#pagination",res.data.count,global.pageSize,function(page_index,jq){
+                    page_index+=1;
+                    getDayIncome(type,page_index);
+                });
+            }
+        }
+    });
+}
+function getDayIncomeAddRow(table,index,data){
+    var row=table.insertRow();
+    var cell=row.insertCell(0);
+    var cell1=row.insertCell(1);
+    var cell2=row.insertCell(2);
+
+    cell.innerHTML=data.createTime;
+    cell1.innerHTML=data.money;
+    cell2.innerHTML=data.description;
+
+    return row;
+}
+
+//佣金流水
+function getMonthIncome(type,index){
+    if(type==1){
+        var date=$('#select2_id').val();
+    }
+    else{
+        var date=$('#select7_id').val();
+    }
+    var data={};
+    data.uid=$('#in_uid').val();
+    data.date=date;
+    data.type=type;
+    data.page=index||1;
+    data.pageSize=global.pageSize;
+    $.ajax({
+        type: "post",
+        data: data,
+        url: '/ajax/getMonthIncome',
+        dataType: 'json',
+        success: function (res) {
+            var data=res.data.data;
+            if(type==1){
+                var tableList=document.getElementById("MonthIncomeList");
+            }
+            else{
+                var tableList=document.getElementById("MonthIncomeList1");
+            }
+
+            var tbody= tableList.getElementsByTagName('tbody')[0];
+            dataTable.clearData(tbody);
+
+            var count=document.getElementById('count');
+            count.innerHTML=res.data.count;
+
+            for(var i=0;i<data.length;i++){
+                getMonthIncomeAddRow(tbody,'',data[i]);
+            }
+            if(!index||index==0){
+                utilsPagination("#pagination",res.data.count,global.pageSize,function(page_index,jq){
+                    page_index+=1;
+                    getMonthIncome(type,page_index);
+                });
+            }
+        }
+    });
+}
+function getMonthIncomeAddRow(table,index,data){
+    var row=table.insertRow();
+    var cell=row.insertCell(0);
+    var cell1=row.insertCell(1);
+    var cell2=row.insertCell(2);
+
+    cell.innerHTML=data.createTime;
+    cell1.innerHTML=data.money;
+    cell2.innerHTML=data.desc;
+
+    return row;
+}
+
+//交易明细
+function getChangeLog(index){
+
+    var data={};
+    data.uid=$('#in_uid').val();
+    data.page=index||1;
+    data.pageSize=global.pageSize;
+    data.startTime=$('#_startTime').val();
+    data.endTime=$('#_stopTime').val();
+    $.ajax({
+        type: "post",
+        data: data,
+        url: '/ajax/getChangeLog',
+        dataType: 'json',
+        success: function (res) {
+            var data=res.data;
+
+            var tableList=document.getElementById("tableList");
+            var tbody= tableList.getElementsByTagName('tbody')[0];
+            dataTable.clearData(tbody);
+
+            var count=document.getElementById('count');
+            count.innerHTML=data.count;
+
+            $('#total').html(data.usefulMoney);
+            for(var i=0;i<data.data.length;i++){
+                getChangeLogAddRow(tbody,'',data.data[i]);
+            }
+            if(!index||index==0){
+                utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                    page_index+=1;
+                    getChangeLog(page_index);
+                });
+            }
+        }
+    });
+}
+function getChangeLogAddRow(table,index,data){
+    var row=table.insertRow();
+    var cell=row.insertCell(0);
+    var cell1=row.insertCell(1);
+    var cell2=row.insertCell(2);
+    var cell3=row.insertCell(3);
+    var cell4=row.insertCell(4);
+
+    cell.innerHTML=data.typeDesc;
+    cell1.innerHTML=data.orderNum;
+    cell2.innerHTML=data.createTime;
+    cell3.innerHTML=data.money;
+    cell4.innerHTML=data.statusDesc;
+
+    return row;
+}
+</script>
+

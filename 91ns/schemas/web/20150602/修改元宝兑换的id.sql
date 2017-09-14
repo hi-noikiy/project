@@ -1,0 +1,1 @@
+update pre_order set payType=1001 where payType=4

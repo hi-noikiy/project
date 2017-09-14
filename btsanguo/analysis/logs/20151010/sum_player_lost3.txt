@@ -1,0 +1,3062 @@
+==========Begin===============
+date:[2014-06-01]+ServerID:[901]+Count:[0]++++++++++
+Count All Levels.....
+Get All Accounts Who Login Today.....
+SELECT accountid FROM newmac WHERE serverid=901 AND createtime>=1406010000 AND createtime<=1406012359 AND accountid IN(3491,3550,3596,3644,3776,4148,4192,4284,4421,4488,4509,4544,4572,5163,5750,5802,5896,6288,6359,6397,6616,6721,6747,7110,7453,7496,7900,7966,8615,8879,9632,9638,9959,10040,10482,10972,10983,11448,12230,12579,12903,13114,14084,14408,15857,15992,16594,17499,18797,18827,20518,20576,20717,20823,21926,22429,24539,24587,25104,25988,26257,26315,26387,26953,27462,29178,29492,29638,29667,30369,30732,30984,31030,32657,32742,33003,34559,34637,34741,34882,35373,36188,36601,36950,37349,37361,37372,37660,37694,38783,39341,39372,39785,41647,41977,42357,44336,44563,44664,45527,45578,45976,46051,46380,46419,46522,47148,47324,47754,47883,47917,48860,49119,49706,50164,50881,51289,51547,52362,52657,53694,53808,53952,54019,54203,54316,54889,55044,55207,55550,56025,56099,56487,56519,57029,58010,59003,59156,59223,59771,60900,61068,61507,62307,63148,63897,64296,64535,64952,65307,65464,66225,66466,66930,67014,68748,69561,70039,70139,70584,70903,71108,71189,71666,72401,72578,74242,74253,74895,75786,75897,76330,76554,76692,76700,76986,77183,77350,77477,77560,77724,77862,78914,79176,79200,79249,79804,80103,80117,80718,80767,80841,81688,82007,82130,82548,83026,83147,83259,83550,84419,84796,84888,85564,86405,86524,86827,87032,87102,87229,88625,89324,89368,89609,89904,90886,91626,92849,93514,94198,96907,99962,100780,101424,102181,102971,103489,103652,104441,106849,107453,108403,113891,123506,125823,130325,133182,139036,141131,142665,149799,154640,155951,169046,177492,191322,193104,195415,197157,199562,203681,223011,227126,230207,233658,239002,240631,250873,253258,253675,256570,260225,260714,263525,276865,279619,284875,287049,287272,294403,301464,304497,348252,371779,381261,397699,406330,416280,432073,484227,503655,516357,518000,536759,567489,593230,644633,716764,761737,765886,781360,809450,847197,854855,861723,894437,933242,947793,961602,969646,1008411,1026445,1100948,1103124,1107043,1109459,1118871,1128437,1141321,1141879,1171578,1247031,1256794,1266393,1305976,1326035,1338301,1345855,1351131,1354500,1360494,1381730,1413178,1488190,1535736,1536547,1548410,1581785,1591473,1604230,1640372,1648280,1674955,1701264,1733473,1763305,1804646,1831013,1841028,1848355,1851724,1857812,1886101,1891075,1973094,1991855,1996004,2001739,2002342,2011662,2013730,2022083,2033430,2036194,2039722,2052377,2053682,2065586,2067041,2067317,2085026,2148898,2175717,2181041,2191252,2197347,2207782,2227917,2249848,2256625,2257498,2267491,2270490,2270523)
+$newLoginAid
+Array
+(
+    [0] => 2257498
+    [1] => 2267491
+    [2] => 2270490
+    [3] => 2270523
+)
+newLoginLevCnt
+Array
+(
+    [901_60003_1] => 1
+    [901_60003_2] => 1
+    [901_61006_1] => 1
+)
+Count Login Today GROUP......
+
+dataInsert:
+Array
+(
+    [0] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 14
+        )
+
+    [1] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 7
+        )
+
+    [2] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 5
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [3] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 6
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [4] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 31
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [5] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 44
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [6] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 60
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [7] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 64
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [8] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 72
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [9] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 75
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [10] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 77
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [11] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 81
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [12] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 82
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [13] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 86
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [14] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 87
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 5
+        )
+
+    [15] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 88
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [16] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 89
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [17] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 90
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 4
+        )
+
+    [18] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 91
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [19] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 92
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [20] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 93
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [21] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 94
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [22] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 96
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [23] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 97
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [24] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 98
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [25] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 100
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [26] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 101
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [27] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 102
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [28] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 103
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 7
+        )
+
+    [29] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 104
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [30] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 105
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 5
+        )
+
+    [31] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 106
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [32] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 107
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [33] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 0
+            [gameid] => 5
+            [lev] => 108
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [34] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60002
+            [gameid] => 5
+            [lev] => 28
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [35] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 1
+            [online_cnt] => 1
+        )
+
+    [36] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 1
+            [online_cnt] => 2
+        )
+
+    [37] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 3
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [38] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 5
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [39] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 9
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [40] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 12
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [41] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 17
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [42] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 18
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [43] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 19
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [44] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 20
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [45] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 22
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [46] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60003
+            [gameid] => 5
+            [lev] => 48
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [47] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 5
+        )
+
+    [48] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 4
+        )
+
+    [49] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 5
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 5
+        )
+
+    [50] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 9
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [51] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 10
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [52] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 19
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [53] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 20
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [54] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 24
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [55] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 31
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [56] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 39
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [57] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60006
+            [gameid] => 5
+            [lev] => 58
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [58] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60007
+            [gameid] => 5
+            [lev] => 5
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [59] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60008
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [60] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60008
+            [gameid] => 5
+            [lev] => 16
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [61] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60008
+            [gameid] => 5
+            [lev] => 19
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [62] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60009
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [63] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60009
+            [gameid] => 5
+            [lev] => 5
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [64] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60009
+            [gameid] => 5
+            [lev] => 9
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [65] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60009
+            [gameid] => 5
+            [lev] => 11
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [66] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60009
+            [gameid] => 5
+            [lev] => 14
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [67] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60009
+            [gameid] => 5
+            [lev] => 16
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [68] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60011
+            [gameid] => 5
+            [lev] => 8
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [69] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60011
+            [gameid] => 5
+            [lev] => 9
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [70] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60014
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [71] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60014
+            [gameid] => 5
+            [lev] => 19
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [72] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60016
+            [gameid] => 5
+            [lev] => 3
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [73] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60017
+            [gameid] => 5
+            [lev] => 12
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [74] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60022
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [75] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60022
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [76] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60023
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [77] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60023
+            [gameid] => 5
+            [lev] => 5
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [78] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60023
+            [gameid] => 5
+            [lev] => 9
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [79] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60023
+            [gameid] => 5
+            [lev] => 25
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [80] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60024
+            [gameid] => 5
+            [lev] => 31
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [81] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60027
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [82] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60033
+            [gameid] => 5
+            [lev] => 11
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [83] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 60034
+            [gameid] => 5
+            [lev] => 10
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [84] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 61004
+            [gameid] => 5
+            [lev] => 26
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [85] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 61005
+            [gameid] => 5
+            [lev] => 4
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [86] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 61006
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 1
+            [online_cnt] => 2
+        )
+
+    [87] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 61006
+            [gameid] => 5
+            [lev] => 12
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [88] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 61010
+            [gameid] => 5
+            [lev] => 8
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [89] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 825307184
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [90] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 825307184
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [91] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 825307184
+            [gameid] => 5
+            [lev] => 11
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [92] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 825307184
+            [gameid] => 5
+            [lev] => 15
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [93] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 825307184
+            [gameid] => 5
+            [lev] => 36
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [94] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 825307184
+            [gameid] => 5
+            [lev] => 52
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [95] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 825307184
+            [gameid] => 5
+            [lev] => 54
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [96] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 825307184
+            [gameid] => 5
+            [lev] => 87
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [97] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [98] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [99] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 85
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [100] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 95
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [101] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 99
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [102] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 101
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [103] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 103
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [104] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 104
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [105] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 105
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [106] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 106
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [107] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 842018864
+            [gameid] => 5
+            [lev] => 109
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [108] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 4
+        )
+
+    [109] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 7
+        )
+
+    [110] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 5
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [111] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 7
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [112] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 9
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [113] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 11
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [114] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 16
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [115] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 17
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [116] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 19
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [117] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 34
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [118] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 36
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [119] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 50
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [120] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 54
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [121] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 62
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [122] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 65
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [123] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 66
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [124] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 75
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [125] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 76
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [126] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 77
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [127] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 80
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [128] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 83
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [129] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 84
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [130] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 85
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [131] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 88
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [132] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 89
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [133] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 93
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [134] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 94
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [135] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 95
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [136] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 96
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [137] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 100
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [138] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 101
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [139] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 102
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 5
+        )
+
+    [140] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 103
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [141] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 104
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [142] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 106
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [143] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 858796080
+            [gameid] => 5
+            [lev] => 107
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [144] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 875573297
+            [gameid] => 5
+            [lev] => 14
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [145] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 875573297
+            [gameid] => 5
+            [lev] => 48
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [146] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 875573297
+            [gameid] => 5
+            [lev] => 58
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [147] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 875573297
+            [gameid] => 5
+            [lev] => 59
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [148] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 875573297
+            [gameid] => 5
+            [lev] => 65
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [149] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 875573297
+            [gameid] => 5
+            [lev] => 70
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [150] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 875573297
+            [gameid] => 5
+            [lev] => 79
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [151] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 875573297
+            [gameid] => 5
+            [lev] => 84
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [152] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 875573297
+            [gameid] => 5
+            [lev] => 91
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [153] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 875704368
+            [gameid] => 5
+            [lev] => 14
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [154] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 892350513
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [155] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 892350513
+            [gameid] => 5
+            [lev] => 41
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [156] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 892350513
+            [gameid] => 5
+            [lev] => 76
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [157] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 6
+        )
+
+    [158] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 7
+        )
+
+    [159] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 3
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [160] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 5
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [161] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 9
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [162] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 11
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [163] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 15
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [164] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 18
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [165] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 25
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [166] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 31
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [167] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 32
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [168] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 39
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [169] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 44
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [170] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 45
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [171] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 50
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [172] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 52
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [173] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 53
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [174] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 55
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [175] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 57
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [176] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 60
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [177] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 62
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [178] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 63
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [179] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 64
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [180] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 65
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [181] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 69
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [182] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 70
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [183] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 71
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [184] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 72
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [185] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 73
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [186] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 74
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [187] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 75
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [188] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 76
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [189] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 78
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [190] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 79
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [191] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 80
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [192] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 81
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 4
+        )
+
+    [193] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 82
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [194] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 83
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [195] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 84
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [196] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 85
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [197] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 86
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 4
+        )
+
+    [198] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 87
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [199] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 88
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [200] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 89
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 4
+        )
+
+    [201] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 90
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [202] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 91
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [203] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 92
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [204] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 93
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [205] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 94
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [206] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 95
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [207] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 96
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [208] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 97
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [209] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 98
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [210] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 99
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 4
+        )
+
+    [211] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 100
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [212] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 101
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 3
+        )
+
+    [213] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 102
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 7
+        )
+
+    [214] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 103
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 7
+        )
+
+    [215] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 104
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 4
+        )
+
+    [216] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 105
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 5
+        )
+
+    [217] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 106
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 6
+        )
+
+    [218] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 107
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 5
+        )
+
+    [219] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127728
+            [gameid] => 5
+            [lev] => 108
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [220] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 909127729
+            [gameid] => 5
+            [lev] => 57
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [221] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 925904944
+            [gameid] => 5
+            [lev] => 36
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [222] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 925904944
+            [gameid] => 5
+            [lev] => 44
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [223] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 925904944
+            [gameid] => 5
+            [lev] => 83
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [224] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 925904944
+            [gameid] => 5
+            [lev] => 90
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [225] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 925904944
+            [gameid] => 5
+            [lev] => 95
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [226] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 925904944
+            [gameid] => 5
+            [lev] => 98
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [227] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 925904944
+            [gameid] => 5
+            [lev] => 103
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [228] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 925904944
+            [gameid] => 5
+            [lev] => 106
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [229] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 925904944
+            [gameid] => 5
+            [lev] => 107
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [230] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 942682160
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [231] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 942682160
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 4
+        )
+
+    [232] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 942682160
+            [gameid] => 5
+            [lev] => 47
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [233] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 942682160
+            [gameid] => 5
+            [lev] => 67
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [234] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 942682160
+            [gameid] => 5
+            [lev] => 72
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [235] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 942682160
+            [gameid] => 5
+            [lev] => 76
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [236] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 942682160
+            [gameid] => 5
+            [lev] => 78
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [237] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 942682160
+            [gameid] => 5
+            [lev] => 85
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [238] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 942682160
+            [gameid] => 5
+            [lev] => 92
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [239] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 942682160
+            [gameid] => 5
+            [lev] => 95
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 2
+        )
+
+    [240] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 1
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [241] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 2
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [242] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 18
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [243] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 36
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [244] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 38
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [245] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 45
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [246] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 52
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [247] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 53
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [248] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 60
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [249] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 64
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [250] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 67
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [251] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 78
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+    [252] => Array
+        (
+            [sday] => 20140601
+            [serverid] => 901
+            [fenbaoid] => 959459376
+            [gameid] => 5
+            [lev] => 89
+            [nop] => 
+            [nl] => 0
+            [online_cnt] => 1
+        )
+
+)

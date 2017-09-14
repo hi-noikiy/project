@@ -1,0 +1,268 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#tab1">家族</a></li>              
+              <li><a data-toggle="tab" href="#tab3">分成比例</a></li>              
+              <li><a data-toggle="tab" href="#tab5">创建申请<span id="tirCount" class="tir">{#{applyList['ingcount']}#}</span></a></li>
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+            <div id="tab1" class="tab-pane active">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">
+                  <form id="fiamlyform" class="form-search">
+                    <span class="find-search pull-right">
+                    <i class="icon-search icon-on-right bigger-110"></i>
+                    <input name="name" type="text" placeholder="家族名称" >
+                    <button id="fiamlysearch" type="button" class="btn btn-purple">搜索</button>
+                    </span>
+                  </form>
+                </div>
+                
+                <div class="row-fluid">
+                  <table id="tableListFiamly" class="table with-check table-purple">
+                    <thead>
+                      <tr>
+                        <th>家族名称</th>
+                        <th>家族徽章</th>
+                        <th>家族长</th>                        
+                        <th class="cursor">收益(聊币)&uarr;&darr;</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="row-fluid">
+                  <div class="total pull-left">
+                    <p class="font font18 cr-gy">
+                    <span>记录总数：</span>
+                    <span id="fiamlyCount">0</span>
+                    </p>
+                  </div>
+                  <div id="fiamlyPagination" class="pagination alternate pull-right">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div id="tab3" class="tab-pane">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">
+                  <button class="btn btn-purple" type="button" onclick="ruleDialog()">添加规则</button>
+                  <span>配置分成比例的规则，配置时请注意规则之间的冲突</span>                    
+                </div>
+                
+                <div class="row-fluid">
+                  <div class="content-box">
+                    
+                    <table id="tableListRule" class="table with-check table-purple" style="border: 0; margin-bottom: 0;">
+                      <thead>
+                        <tr>
+                          <th>规则</th>
+                          <th>分成比例</th>                       
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                    </table>
+                  </div>
+                  
+              </div>
+
+              <div class="row-fluid" style="margin-top: 10px;">
+                  <div id="rulePagination" class="pagination alternate pull-right">
+
+                  </div>
+              </div>
+                
+              </div>           
+            
+            </div>
+            
+            <div id="tab5" class="tab-pane">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                  <form id="fiamlyApplyForm" class="form-search">
+                      <input name="status" type="hidden" value="0">
+                      <span style="font-size:20px; line-height: 30px">查看：</span>
+                      <span class="tabs-group active" status="0">全部</span>
+                      &nbsp;
+                      <span class="tabs-group" status="1">等处理</span>
+                      &nbsp;
+                      <span class="tabs-group" status="2">已处理</span>
+                  
+                 <!-- <span class="find-search pull-right">
+                  <i class="icon-search icon-on-right bigger-110"></i>
+                  <input type="text" placeholder="用户名或昵称" >                      
+                  <button id="usersearch" type="button" class="btn btn-purple">查询&nbsp;</button>
+                  </span>-->
+                </form>
+                </div>
+                
+                <div class="row-fluid">
+                  <table id="tableListFiamlyApply" class="table with-check table-purple">
+                    <thead>
+                      <tr>
+                        <th>主播号</th>
+                        <th>昵称</th>
+                        <th>家族名</th>                        
+                        <th>申请时间</th>
+                        <th>状态</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="row-fluid">
+                  <div class="total pull-left">
+                    <p>
+                    <span>记录总数：</span>
+                    <span id="fiamlyApplyCount">0</span>
+                    </p>
+                  </div>
+                  <div id="fiamlyApplypagination" class="pagination alternate pull-right">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+         </div>
+        </div>
+    
+    </div>
+            
+    
+</div>
+
+<div id="ruleDialog" style="display:none"> <!--class="ui-dialog"-->
+    <form id="ruleDialogForm">
+        <div>
+            <span>满足以下</span>
+            <select name="conditions" style="width: 110px;">
+                <option value="2">全部且</option>
+                <option value="1">任意或</option>
+            </select>
+            <span>条件</span>
+            <button id="btnConditions" type="button" class="btn btn-purple" style="height: 30px;">添加条件</button>
+        </div>
+        <div style="height: 210px;width: 665px;border-radius: 4px;background-color: #f9f9f9;margin: 10px auto 30px;border: 1px solid #cccccc;overflow:auto;">
+            <div id="conditionsclone" style="display: none">
+                <div class="conditions-box" style="height: 40px;line-height: 40px;border-bottom: 1px dashed #cccccc;">
+                    <span style="margin-left: 40px;">主播等级</span>
+                    <select name="conditionsValue" class="selconditions" style="width: 110px;margin-top: 5px;margin-left: 40px;">
+
+                    </select>
+
+                    <input name="level"  type="text" class="sellevel" placeholder="请输入数字" style="width: 200px;margin-top: 5px;margin-left: 40px;" >
+                   <!-- <select name="level"  >
+                        <option value="">请选择主播等级</option>
+                    </select>-->
+                    <div class="font font20" style="cursor: pointer; color: red; width: 22px;height: 22px;margin:0 0 -4px 10px;display: inline-block;"><span class="icon-minus-sign" onclick="removCondbox(this)"></span></div>
+                </div>
+            </div>
+            <div id="conditionsclone2">
+
+            </div>
+
+        </div>
+        <div><span>请拖动指针设置分成比例：</span><span id="span_bin"></span></div>
+        <div style="width: 660px;">
+            <div style="margin-top: 45px;">
+               <!-- <input  name="sivalue" type="hidden" class="single-slider" value="0" />-->
+                <input type="number" name="sivalue" id="bedrooms" value="0" min="0" max="70" size="2" data-units="bedrooms" /><span>%</span>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+<link rel="stylesheet" href="{{static_url('web/css/e.css')}}">
+<script type="text/javascript" src="{{static_url('web/js/91ns.agent.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js/jQuery.peSlider.js')}}"></script>
+
+<script type="text/javascript">
+
+$(function(){
+    //获得家族
+    familylist();
+
+    familyApplylist();
+    fiamlyApplyFormTab();
+
+    getDataListRule();
+    getSymbol();
+    //Range();
+    //创建输入滑杆
+    $('input#price').peSlider({range: 'min'});
+    $('input#bedrooms,input#baths').peSlider({range: 'min'});
+
+});
+
+function Range(){
+    $('.single-slider').jRange({
+        from: 0,
+        to: 70,
+        step: 1,
+        scale: [0,10,20,30,40,50,60,70],
+        format: '%s',
+        width: 665,
+        showLabels: true,
+        //isRange : true
+        showScale: true
+    });
+}
+
+
+
+  function initPagination(page) {
+    $("#pagination").pagination(page, {
+        callback: pageselectCallback,
+        items_per_page:global.pagesize, // 每页只显示一条记录
+        num_display_entries : 3,
+        num_edge_entries : 1, 
+        prev_text : "上一页",  
+        next_text : "下一页", 
+    });
+  }
+
+  function pageselectCallback(page_index, jq){
+      //getDataList(page_index);
+      return false;
+  }
+  
+  
+  function initPagination2(page) {
+      $("#pagination2").pagination(page, {
+          callback: pageselectCallback,
+          items_per_page:global.pagesize, // 每页只显示一条记录
+          num_display_entries : 3,
+          num_edge_entries : 1, 
+          prev_text : "上一页",  
+          next_text : "下一页", 
+      });
+    }
+</script>

@@ -1,0 +1,76 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">绑定会员卡</div>
+    <div class="right"></div>
+  </div>
+</div>
+<div class="pages">
+  <div data-page="addcard" class="page">
+    <div class="page-content">
+		<div style="display:none" id="money">{$user['mmoney']}</div>
+		<div style="display:none" id="integral">{$user['integral']}</div>
+        <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+        </foreach>
+		<div class="content">
+           <div class="cardBind">
+                <div class="addBind">
+                	<div class="bindTip">
+                    	<p>绑定会员卡后，您账户中的余额与积分将会被覆盖，继续绑定请输入卡号和密码。解除绑定后，手机账户中的余额与积分可以使用。</p>
+                    </div>
+                    <div class="bindInput">
+                       <form action="{:U()}" method="post" id='loginform'>
+                    <div id="selectcinema" class="loginSelect" >
+                    <span><img src="__IMG__/login/icon1.png" width="100%" /></span><b>{$data[0]['cinemaName']}</b><input type="hidden" value="{$data[0]['cinemaCode']}" id="lcinemaCode"><em><img src="__IMG__/login/down.png" width="100%" /></em>
+                    <ul>
+                    <volist name='data' id='vo'>
+                    <li data-value="{$vo['cinemaCode']}">{$vo['cinemaName']}</li>
+                    </volist>
+                    </ul>
+                    </div>
+                    <div class="loginInput">
+                        <div><span><img src="__IMG__/login/icon6.png" width="100%" /></span><input  type="tel" id="cardId" placeholder="请输入会员卡号"  /></div>
+                    </div>
+                    <div class="loginInput">
+                        <div><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="password"  id="passWord" placeholder="请输入会员卡密码"  /></div>
+                    </div>
+					<div class="Button">
+                        <a href="javascript:;" id="bindBtn" >立即绑定</a>
+                    </div>
+                    </form>
+                        
+                    </div>
+                </div>
+            </div>
+    	</div>
+
+
+    </div>
+  </div>
+</div>
+<block name='script'>
+<script>
+//门店选择
+  $('#selectcinema').click(function(e){
+    $('#selectcinema').find('ul').hide();
+    $(this).find('ul').show();
+    e.stopPropagation();
+  });
+  $('#selectcinema li').hover(function(e){
+    $(this).toggleClass('on');
+    e.stopPropagation();
+  });
+  $('#selectcinema li').click(function(e){
+    var val = $(this).text();
+    $(this).parents('#selectcinema').find('b').text(val);
+    $(this).parents('#selectcinema').find('input').val($(this).attr('data-value'));
+    $('#selectcinema ul').hide();
+    e.stopPropagation();
+  });
+  $(document).click(function(){
+    $('#selectcinema ul').hide();
+  });
+</script>  
+</block>

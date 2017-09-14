@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "template/meta.html" %}
+	<title>91NS—美女视频</title>
+	{% include "template/header.html" %}
+    {% include "template/link_app.html" %}
+	<link rel="stylesheet" type="text/css" href="{{static_url('mobile/app.vie'|ns_css)}}"/>
+</head>
+<body onselectstart='return false'>
+	<div class="appBg"></div>
+	<div id="pack0" class="appMain onAppCenter">
+		<img class="bgImg" src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_bg{{imgSuffix}}.png"/>
+		<div class="body">
+			<div class="vieCloseID close" style="z-index:2;">
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_guanbi{{imgSuffix}}.png"/>
+				<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_guanbi_p{{imgSuffix}}.png"/>
+			</div>
+			<div class="text redTypeTextID" style="margin-top:0;position:absolute;width:100%;color:#efbc04;z-index:1;padding-top:0.3rem;font-size:1rem;">&nbsp;</div>
+			<div class="text nickNameID">&nbsp;</div>
+			<div class="btn btnID">
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/qiang{{imgSuffix}}.png"/>
+				<img class="forbid active" src="{{static_url('')}}web/cssimg/mobile/app/red/qiang_p{{imgSuffix}}.png"/>
+				<img class="forbided" src="{{static_url('')}}web/cssimg/mobile/app/red/qiang_d{{imgSuffix}}.png"/>
+				<img class="forbids" src="{{static_url('')}}web/cssimg/mobile/app/red/yiqiangwan_d{{imgSuffix}}.png"/>
+			</div>
+			<div class="time"><span class="timeID"></span><i></i></div>
+			<div class="time limitTextID" style="color:#efbc04;">&nbsp;</div>
+			<div class="text2 text2ID" style="margin-top:0;">小手一抖，红包到手！<br/>快来试试你的手气吧！</div>
+			<div class="showMore showMoreID">
+				<span>看看大家手气</span>
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/shangjiantou{{imgSuffix}}.png"/>
+				<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/shangjiantou_p{{imgSuffix}}.png"/>
+			</div>
+			<div class="moreOfThis moreOfThisID">
+				<div class="header">
+					<div class="left">已领<span></span>个，<span></span>聊币</div>
+					<div class="right">共<span></span>个</div>
+				</div>
+				<ul></ul>
+			</div>
+		</div>
+	</div>
+	<div class="showLeft" style="display:none;" actions="pre">
+		<img src="{{static_url('')}}web/cssimg/mobile/app/red/zuojiantou{{imgSuffix}}.png"/>
+		<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/zuojiantou_p{{imgSuffix}}.png"/>
+	</div>
+	<div class="showRight" style="display:none;" actions="next">
+		<img src="{{static_url('')}}web/cssimg/mobile/app/red/youjiantou{{imgSuffix}}.png"/>
+		<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/youjiantou_p{{imgSuffix}}.png"/>
+	</div>
+	<script type="text/javascript" data-main="{{static_url('mobile/m/app.vie'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

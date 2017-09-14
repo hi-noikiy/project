@@ -1,0 +1,75 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+               {$leftMenu}
+            </ul>
+             <div class="planBtn"><a class="button" href="javascript:addman();" >添加销售人员</a></div>
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+        	<form action="{:U()}" method="post" id='myform'>
+                <div class="inputText" >
+                	<span>按销售员名称查询</span>
+                    <input type="text" name=""  placeholder="请输入名称" value="">
+                </div>
+                <a href="#" class="button">查询</a>
+                </form>
+            </div>
+            <div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                        <tr >
+                            <td width="10%">序号</td>
+                            <td width="20%">销售员名称</td>
+                            <td width="30%">添加时间</td>
+                            <td width="10%">排序</td>
+                            <th width="30%">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>fire</td>
+                            <td>1970-01-01 08:00</td>
+                            <td>3</td>
+                            <td ><a href="javascript:editman();">编辑</a>|<a href="javascript:del();">删除</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                
+                <div class="page">
+                    {$page}
+                	
+                </div>
+                
+            </div>
+            </div>
+        </div>
+	</div>
+<script type="text/javascript">
+function addman(){
+	layer.open({
+		title :'添加销售员',
+		type: 2,
+		area: ['350px', '240px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: 'man_form.html'
+	});
+}
+function editman(){
+	layer.open({
+		title :'编辑销售员',
+		type: 2,
+		area: ['350px', '240px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: 'man_form.html'
+	});
+}
+</script> 
+</block>

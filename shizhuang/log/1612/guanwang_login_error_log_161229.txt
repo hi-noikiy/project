@@ -1,0 +1,11 @@
+ parameter error!, accountConn=81, token= ,game_id=9, 2016-12-29 13:47:21
+ parameter error!, accountConn=81, token= ,game_id=9, 2016-12-29 13:49:17
+ parameter error!, accountConn=81, token= ,game_id=9, 2016-12-29 13:49:24
+ parameter error!, accountConn=81, token= ,game_id=9, 2016-12-29 13:52:34
+ parameter error!, accountConn=81, token= ,game_id=9, 2016-12-29 13:53:35
+ sign error, post=a:0:{}, get=a:4:{s:7:"sdktype";s:2:"%i";s:5:"token";s:2:"%s";s:1:"p";s:2:"%s";s:7:"game_id";s:1:"8";}, 2016-12-29 14:13:52
+ sign error, post=a:0:{}, get=a:4:{s:7:"sdktype";s:2:"%i";s:5:"token";s:2:"%s";s:1:"p";s:2:"%s";s:7:"game_id";s:1:"8";}, 2016-12-29 14:14:11
+ sign error, post=a:0:{}, get=a:4:{s:7:"sdktype";s:2:"%i";s:5:"token";s:2:"%s";s:1:"p";s:2:"%s";s:7:"game_id";s:1:"8";}, 2016-12-29 15:03:44
+ sign error, post=a:0:{}, get=a:4:{s:7:"sdktype";s:2:"%i";s:5:"token";s:2:"%s";s:1:"p";s:2:"%s";s:7:"game_id";s:1:"8";}, 2016-12-29 15:06:06
+ sign error, post=a:0:{}, get=a:4:{s:7:"sdktype";s:2:"%i";s:5:"token";s:2:"%s";s:1:"p";s:2:"%s";s:7:"game_id";s:1:"8";}, 2016-12-29 15:06:16
+ parameter error!, accountConn=81, token= ,game_id=9, 2016-12-29 17:49:09

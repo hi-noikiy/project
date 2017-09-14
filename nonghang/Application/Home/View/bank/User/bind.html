@@ -1,0 +1,92 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">绑定手机号</div>
+    <div class="right"></div>
+  </div>
+</div>
+<div class="pages">
+  <div data-page="bind" class="page">
+    <div class="page-content">
+
+        <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+        </foreach>
+		<div class="content">
+            <!--<div class="phoneBind">
+             	<div class="noPhone">您暂时未绑定手机号<a href="javascript:" class="addPhone"><em></em><span>添加手机号</span></a></div>
+                <div class="addBind">
+                	<div class="bindTip">
+                    	<p>1、会员卡绑定没有注册过的手机号，绑定成功之后，手机号可以代替会员卡号登录，手机号默认密码与会员卡密码相同。</p>
+						<p>2、会员卡绑定已注册的手机号，绑定成功之后，余额与积分将被会员卡数据覆盖，解除绑定后手机账户中的积分与余额可以使用。</p>
+                    </div>
+                    <div class="bindInput">
+                        <div class="loginInput">
+                            <div><span><img src="__IMG__/login/icon4.png" width="100%" /></span><input  type="text" name="cardId" placeholder="请输入手机号"  /></div>
+                       </div>
+                       <div class="loginInput">
+                            <div style="position:relative;"><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="password"  name="passWord" placeholder="请输入验证码"  /><a href="javascript:;" class="getBtn">获取</a></div>
+                        </div>
+                        <div class="loginLink">
+                            <a href="javascript:;" class="loginBtn" style="width:96%;">立即绑定</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bindSuccess">
+                	<div class="bindphone">成功绑定手机号：13405913998</div>
+                    <a href="{:U('unbind')}" class="bindBtn" >解除绑定</a>
+                </div>
+            </div>-->
+            <div class="cardBind">
+             	<div class="noCard">您暂时未绑定会员卡<a href="javascript:" class="addPhone"><em></em><span>添加会员卡</span></a></div>
+                <div class="addBind">
+                	<div class="bindTip">
+                    	<p>绑定会员卡后，您账户中的余额与积分将会被覆盖，继续绑定请输入卡号和密码。解除绑定后，手机账户中的余额与积分可以使用。</p>
+                    </div>
+                    <div class="bindInput">
+                       <form action="{:U()}" method="post" id='loginform'>
+                    <div id="select" class="loginSelect" >
+                    <span><img src="__IMG__/login/icon1.png" width="100%" /></span><b>{$data[0]['cinemaName']}</b><input type="hidden" value="{$data[0]['cinemaCode']}" name="cinemaCode"><em><img src="__IMG__/login/down.png" width="100%" /></em>
+                    <ul>
+                    <volist name='data' id='vo'>
+                    <li data-value="{$vo['cinemaCode']}">{$vo['cinemaName']}</li>
+                    </volist>
+                    </ul>
+                    </div>
+                    <div class="loginInput">
+                        <div><span><img src="__IMG__/login/icon6.png" width="100%" /></span><input  type="text" name="cardId" placeholder="请输入会员卡号"  /></div>
+                    </div>
+                    <div class="loginInput">
+                        <div><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="password"  name="passWord" placeholder="请输入会员卡密码"  /></div>
+                    </div>
+					<div class="loginLink">
+                        <a href="javascript:;" class="loginBtn" style="width:96%;">立即绑定</a>
+                    </div>
+                    </form>
+                        
+                    </div>
+                </div>
+                <div class="bindSuccess">
+                	<div class="bindCard">
+                    	<h4>会员卡基本信息</h4>
+                    	<p><span>卡类型：</span>白金</p>
+                        <p><span>有效期：</span>2015-08-09到期</p>
+                        <p><span>卡状态：</span>为过期</p>
+                        <p><span>积&nbsp;&nbsp;&nbsp;分：</span>1000积分</p>
+                        <p><span>余&nbsp;&nbsp;&nbsp;额：</span>￥1000<a href="">（充值）</a></p>
+                    </div>
+                    <a href="{:U('unbindcard')}" class="bindBtn" >解除绑定</a>
+                </div>
+            </div>
+    	</div>
+
+
+    </div>
+  </div>
+</div>
+<block name='script'>
+<script>
+
+</script>  
+</block>

@@ -1,0 +1,35 @@
+<extend name='Public/shakebase1'/>
+<block name='title'></block>
+<block name='body'>
+<div data-page="drawresult" class="page">
+    <div class="main">
+        <div class="title"></div>
+        <div class="statusInfo">
+            <ul>
+                <li>恭喜你摇到了</li>
+                <li>{$prize['name']}</li>
+            </ul>
+
+            <!--体验券-->
+            <div class="ticket tyq">
+                <div class="base-info">
+                    <p>{$prize['name']}</p>
+                    <p>{$prize['note']}</p>
+                </div>
+            </div>
+            <!--/体验券-->
+
+            <p>您今天还有<i>{$hastime}</i>次摇奖机会，</p>
+            <p>每天有{$time}次摇奖机会！</p>
+            <?php if($hastime<0){ ?>
+            <a class="disabled" style="display: none">明天再来</a><?php }?>
+        </div>
+    </div>
+    <div class="decorate"></div>
+</div>
+</block>
+<block name='script'>
+<script type="text/javascript">
+
+  </script>
+</block>

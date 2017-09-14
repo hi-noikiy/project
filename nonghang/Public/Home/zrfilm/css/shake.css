@@ -1,0 +1,393 @@
+@charset "utf-8";
+/*  --------------begin 通用样式 begin-------------- */
+body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div, dl, dt, dd, input {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 12px;
+    font-family: '微软雅黑', '宋体';
+}
+
+img {
+    border: none;
+}
+
+li {
+    list-style: none;
+}
+
+input, select, textarea {
+    outline: none;
+    border: none;
+}
+
+textarea {
+    resize: none;
+}
+
+::-webkit-scrollbar /*隐藏滚动条*/
+{
+    width: 0px;
+    height: 0px;
+}
+
+/*特殊板块 浮动相关*/
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1; /*ie6,7*/
+}
+
+/*全局设定*/
+a {
+    color: #000;
+}
+
+.tac {
+    text-align: center;
+}
+
+.tal {
+    text-align: left;
+}
+
+.tar {
+    text-align: right;
+}
+
+.f14 {
+    font-size: 14px;
+}
+
+.f16 {
+    font-size: 16px;
+}
+
+.tline {
+    text-decoration: line-through;
+}
+
+.c000 {
+    color: #000;
+}
+
+.cfc9d40 {
+    color: #fc9d40;
+}
+
+.line {
+    margin: 10px 0;
+    border-bottom: 1px dashed #bebebe;
+}
+
+@font-face {
+    font-family: db;
+    src: url(font/db.ttf);
+}
+
+/*内容*/
+/*.content{
+	margin:50px 0;
+	}*/
+.navbar {
+    background: #0e7de0;
+    color: #fff;
+}
+
+.navbar-inner a {
+    color: #fff;
+    padding-right: 15px;
+}
+
+.navbar-inner a .i.icon.icon-back {
+    background: url(../images/common/back.png) no-repeat 0 0;
+}
+
+.navbar-inner .title a {
+    padding: 0 10px;
+    display: inline-block;
+    font-size: 14px;
+    color: #fff;
+    background: #0e7de0;
+    height: 30px;
+    vertical-align: middle;
+    line-height: 30px;
+}
+
+.navbar-inner .title a.titleLeft {
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    -moz-border-radius: 5px 0 0 5px;
+    -webkit-border-radius: 5px 0 0 5px;
+    border-radius: 5px 0 0 5px;
+    -khtml-border-radius: 5px 0 0 5px;
+}
+
+.navbar-inner .title a.titleRight {
+    border-right: 1px solid #fff;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    -moz-border-radius: 0 5px 5px 0;
+    -webkit-border-radius: 0 5px 5px 0;
+    border-radius: 0 5px 5px 0;
+    -khtml-border-radius: 0 5px 5px 0;
+}
+
+.navbar-inner .title a.cur {
+    background: #fff;
+    color: #0e7de0;
+}
+
+.photo-browser .navbar-fixed .navbar {
+    background: #0e7de0;
+}
+
+/*main*/
+
+span, p, li, a {
+    line-height: 1;
+}
+
+.main {
+    padding-top: 44px;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+    background: url(../images/shake/resultBg.jpg) no-repeat bottom center;
+    background-size: cover;
+}
+
+.main .title {
+    margin-top: 30px;
+    height: 57px;
+    width: 100%;
+    background: url(../images/shake/zj.png) no-repeat center top;
+    background-size: 315px auto;
+}
+.main .title.disable {
+    background: url(../images/shake/no-zj.png) no-repeat center top;
+    background-size: 315px auto;
+}
+.statusInfo > p {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: center
+}
+
+.statusInfo > p i {
+    color: #ff8630;
+    font-style: normal;
+}
+
+.statusInfo > a {
+    background: #12bbc9;
+    color: #fff;
+    display: block;
+    margin: 14px auto;
+    width: 94px;
+    height: 28px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 13px;
+    line-height: 28px;
+    position: relative;
+    z-index: 999;
+}
+.statusInfo > a.disabled { background-color:#999;}
+.statusInfo {
+    background: #fff;
+    width: 247px;
+    margin: 0 auto 0;
+    overflow: hidden;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-bottom: 11px;
+}
+
+.decorate {
+    height: 21%;
+    width: 100%;
+    background: url(../images/shake/jb.png) no-repeat center top;
+    background-size: 272px auto;
+    position: absolute;
+    z-index: 2;
+    top: 56px;
+}
+
+.statusInfo li {
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.statusInfo li:first-child, .statusInfo li:last-child {
+    font-size: 13px;
+    color: #3f3f3f;
+}
+
+.statusInfo li:nth-child(2) {
+    font-size: 15px;
+    color: #ff8630;
+}
+
+.statusInfo ul {
+    margin-top: 17px;
+}
+
+.statusInfo .ticket {
+    height: 125px;
+    position: relative;
+    z-index: 99;
+    width: 225px;
+    margin: 17px auto 14px;
+    background: url(../images/shake/ljq.png) no-repeat;
+    background-size: auto 125px;
+}
+
+.statusInfo .ticket.tyq {
+    background: url(../images/shake/tyq.png) no-repeat;
+    background-size: auto 125px;
+}
+
+.statusInfo .ticket .base-info > p {
+    color: #fff;
+    text-align: center
+}
+
+.statusInfo .ticket.tyq .base-info > p:nth-child(1) {
+    font-size: 21px;
+    margin-top: 34px;
+}
+
+.statusInfo .ticket.tyq .base-info > p:nth-child(2) {
+    font-size: 21px;
+    margin: 18px 0 18px;
+}
+
+.statusInfo .ticket.tyq .base-info > p:nth-child(3) {
+    font-size: 12px;
+}
+
+.statusInfo .ticket.dhq {
+    background: url(../images/shake/dhq.png) no-repeat;
+    background-size: auto 125px;
+}
+
+.statusInfo .ticket.dhq .base-info > p:nth-child(1) {
+    font-size: 17px;
+    margin-top: 29px;
+}
+
+.statusInfo .ticket.dhq .base-info > p:nth-child(2) {
+    font-size: 12px;
+    margin: 17px 0 0
+}
+
+.statusInfo .ticket.dhq > p {
+    color: #fc9d40;
+    margin-top: 16px;
+}
+
+.statusInfo .ticket.dyq > p {
+    color: #159eec
+}
+
+.statusInfo .ticket.dyq {
+    background: url(../images/shake/dyq.png) no-repeat;
+    background-size: auto 125px;
+}
+
+.statusInfo .ticket .base-info {
+    overflow: hidden;
+}
+
+.statusInfo .ticket > p {
+    font-size: 16px;
+    color: #38c44c;
+    text-align: center;
+    position: absolute;
+    bottom: 12px;
+    line-height: 25px;
+    width: 100%;
+}
+
+.statusInfo .right-block {
+    float:left;
+    padding-right: 7px;
+}
+
+.statusInfo .right-block p {
+    color: #fff;
+}
+
+.statusInfo .right-block p:first-child {
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.statusInfo .right-block p:nth-child(2) {
+    margin: 8px 0;
+    font-size: 27px;
+}
+
+.statusInfo .right-block p:last-child {
+    font-size: 12px;
+}
+
+.statusInfo .left-block {
+    float: left;
+    padding-top: 17px;
+    padding-left: 7px;
+}
+
+.statusInfo .left-block span {
+    float: left;
+    color: #fff;
+    vertical-align: top;
+}
+
+.statusInfo .left-block span:first-child {
+    font-size: 18px;
+    padding-top: 4px;
+}
+
+.statusInfo .left-block span:last-child {
+    font-size: 53px;
+	width:60px;
+    text-align: center;
+}
+.statusInfo .phoneBox { position: relative; z-index: 99;width: 220px;margin: 24px auto 50px;overflow: hidden;}
+.statusInfo .phoneBox p { font-size:14px; color:#666; text-align: center}
+.statusInfo .phoneBox input {     padding-left: 43px; background: url(../images/shake/inputIcon.png) no-repeat 10px center; background-size:23px auto; margin:20px auto;width: 100%; height: 38px;border: 1px solid #e5e5e5;box-sizing: border-box;border-radius: 4px;}
+.statusInfo .phoneBox a { display: block;height: 32px;background: #12bbc9;line-height: 32px;text-align: center;font-size: 16px;color: #fff;border-radius: 4px;     -webkit-tap-highlight-color: green;}
+.statusInfo .noPrize,.statusInfo .noChange  {    margin: 11px auto 13px;
+    background: url(../images/shake/nozjbg.png) no-repeat 10px top;
+    background-size: 123px;
+    width: 156px;
+    height: 136px;}
+
+.statusInfo .noChange {    background: url(../images/shake/gogo.png) no-repeat 27px top;
+    background-size: 123px; }
+

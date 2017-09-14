@@ -1,0 +1,23 @@
+<?php
+//打卡类 record
+class record extends getList {
+		
+        public function __construct(){
+                $this->tableName = '_web_record';
+                $this->key = 'id';
+                $this->wheres = ' 1=1 ';
+                $this->orders = 'id desc';
+                $this->pageReNum = 15;
+        }
+
+        public function setKw($array)
+        {
+                if($array['fromTime'])
+                    $this->setWhere("addtime>='".$array['fromTime']." 00:00:00'");
+                if($array['toTime'])
+                    $this->setWhere("addtime<='".$array['toTime']." 23:59:59'");
+                if($array['card_id'])
+                    $this->setWhere("card_id='".$array['card_id']."'");
+        }
+}
+?>

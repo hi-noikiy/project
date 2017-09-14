@@ -1,0 +1,10 @@
+<div class="main-background-top"></div>
+<div class="main-background-bottom"></div>
+<script type="text/javascript">
+	var bodyHeight = jq('.main-background-body').height()
+	var mainHeight = jq('.main-content').height()
+	var bgHeight = 0
+	var bottompadding = jq('.main-background-body').attr('bottompadding')
+	bgHeight = bodyHeight - jq('.main-background-top').height() - parseInt(bottompadding?bottompadding:0)
+	jq('.main-background-bottom').height(bgHeight)
+</script>

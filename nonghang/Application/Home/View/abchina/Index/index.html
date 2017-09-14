@@ -1,0 +1,63 @@
+<extend name='Public/base'/>
+<block name='title'>微信购票</block>
+
+ 
+<block name='navbar'>
+  <div class="navbar">
+    <div class="navbar-inner">
+    	<div class="left"></div>
+      <div class="center sliding"><img src="__IMG__/common/logo1.png" height="40" /></div>
+    </div>
+  </div>
+</block>
+<block name='body'>
+
+<div data-page="indexIndex" id="indexIndex" class="page" style="padding-top:44px; overflow:scroll;">
+             <div class="swiper" style="overflow:hidden; height:120px;">
+                <div class="index-swiper-container">
+                  <div class="swiper-wrapper">
+                    <volist name='banners' id='vo'>
+                    <div class="swiper-slide"><a href="{$vo['url']}" class="external"> <img src="__UPLOAD__/{$vo['img']}" width="100%"></a> </div>
+                    </volist>
+                  </div>
+                </div>
+                <div class="pagination"></div>
+            </div>
+             <div class="homeLink">
+              <div class="linkLeft">
+                  <a href="{:U('plan',array('op'=>'plan'))}"><img src="__IMG__/common/1.jpg" width="100%" /></a>
+                </div>
+                <div class="linkRight">
+        
+                  <a href="{:U('bank/buying')}"><img src="__IMG__/common/3.jpg" width="100%" /></a>
+
+                </div>
+       
+
+                <a href="{:U('user/user', array('op' => 'user'))}"><img src="__IMG__/common/2.jpg" width="100%" /></a>
+
+             </div>
+             <div class="ad">
+              <a href="{$ad['url']}"  class="external"><img src="__UPLOAD__/{$ad['img']}" width="100%" /></a>
+             </div>
+            </div>
+</block>
+<block name='script'>
+<script type="text/javascript">
+$(document).ready(function(){
+  var w=window.innerWidth;
+	$('#indexIndex .swiper-slide').height(w*0.33);
+  $('#indexIndex .swiper').height(w*0.33);
+	$('.swiper-slide').height(w*0.33);
+	$('.swiper-slide img').height(w*0.33);
+	$('.ad img').height(w*0.5);
+		 var indexSwiper = myApp.swiper('#indexIndex .index-swiper-container', {
+			 autoplay: 1000   //可选选项，自动滑
+			/*pagination:'.pagination',
+			loop:true,
+			grabCursor: true,
+			paginationClickable: true*/
+		  });
+})
+	</script>
+  </block>

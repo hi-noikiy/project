@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/activities.indiana'|ns_css)}}"/>
+</head>
+<body>
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+    <div class="indianaDiv">
+    	<img class="bg" src="{{static_url('web/cssimg/mobile/activities/indiana/banner1.jpg')}}" width="100%">
+    	<div id="indianaButton" class="button clearfixd">
+	    	<div showview="howplay" class="active">活动玩法</div>
+	    	<div showview="rank">夺宝金榜</div>
+	    </div>
+	    <div id="indianaCT" class="content">
+	    	<div id="howplay">
+	    		<img src="{{static_url('web/cssimg/mobile/activities/indiana/help.jpg')}}" width="100%">
+	    	</div>
+	    	<div id="rank" style="display:none;">
+		    	<ul class="header clearfixd">
+	    			<li style="width:40%;">夺宝用户</li>
+	    			<li style="width:25%;">夺得宝物</li>
+	    			<li style="width:35%;">档位 和 期数</li>
+		    	</ul>
+		    	<ul class="body">
+		    	{% set even = true %}
+		    	{% for data in betResult %}
+	    			<li class="{% if even == true %}even{% else %}odd{% endif %}">
+		    			{% set even = !even %}
+		    			<ul class="clearfixd">
+		    				<li class="first">
+			    				<span>({{ data['uid'] }}) </span>
+				    			<span class="nickName">{{ data['nickName'] }}</span>
+			    			</li>
+			    			<li class="second">{{ data['rewardName'] }}</li>
+			    			<li>{{ data['rewardMoney'] }}元 第{{ data['times'] }}期</li>
+		    			</ul>
+		    		</li>
+	    		{% endfor %}
+		    	</ul>
+	    	</div>
+	    </div>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/activities.indiana'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

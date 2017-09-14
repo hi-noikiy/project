@@ -1,0 +1,103 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+           <ul>
+                {$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+                <div class="inputSelect">
+                    <form id="serach" method="post" action="{:U()}">
+                                <div class="inputSelect">
+                                        <span>按影院分组查询：</span>
+                                        <select name="cinemaGroupId" id="cinemaGroupId">
+                                                <option value="">所有影院分组</option>
+                                                <foreach name="groupList" item="vo" key="k" >
+                                                                <option value="{$vo.id}" <if condition="$vo['id'] == $cinemaGroupId">selected="selected"</if>>{$vo.groupName}</option>
+                                                        </foreach>
+
+                                        </select>
+                                </div>
+                                
+                                <a href="javascript:submitSerach();" class="button">查询</a>
+                                </form>
+	·		</div>
+    </div>
+       		<div class="tableList">
+            	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+                 <thead>
+                    
+                      <tr>
+                        <td width="10%">序号</td>
+                        <td width="10%">所属影院分组</td>
+                        <td width="10%">岗位名称</td>
+                        <td width="60%">权限</td>
+                         <td width="10%">操作</td>
+                      </tr>
+
+                  </thead>
+                  <tbody>
+                    <foreach name="userGroupList" item="vo" key="k" >
+                    <tr>
+                        <td> {$vo.id} </td>
+                        <td> <?php echo $groupList[$vo['cinemaGroupId']]['groupName'];?></td>
+                        <td> {$vo.roleName}</td>
+                        <td id="getRulesNameTd"><div style="width:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; height:30px;" class="getRulesName">{$vo.rules|getRulesName}</div></td>
+                        <td>
+                            <if condition="$adminUserInfo['roleId'] eq $vo['id'] and !IS_ROOT">
+                                <a href="{:U('editUserGroup', array('id'=>$vo['id']))}">查看</a>
+                            <else />
+                                <a href="{:U('editUserGroup', array('id'=>$vo['id']))}">编辑</a>|<a href="javascript:del({$vo.id});">删除</a></td>
+                            </if>
+                    </tr>
+                    </foreach>
+                     </tbody>
+            </table>
+            </div>
+        </div>
+        
+</div>
+<script type="text/javascript">
+
+var loadi = '';
+var loadimsg = ''; 
+
+function submitSerach () {
+        $('#serach').submit();
+}
+
+function del(id){
+    layer.confirm('确认是否删除？',function(index){
+        loadi = layer.load(1, {shade: [0.5,'#000']});
+        loadimsg = layer.msg('正在删除...',{icon: 16, time:60000000});
+        $.ajax({
+            url:"<?php echo U('delUserGroup')?>",
+            data:{'id':id},
+            dataType:'json',
+            type:'post',
+            success:function(json){
+                if(json.status=='0'){
+                    location.reload();
+                }else{
+                    layer.close(loadi);
+                    layer.close(loadimsg);
+                    layer.msg(json.text);
+                }
+            },
+            error:function(msg){
+                layer.close(loadi);
+                layer.close(loadimsg);
+                layer.msg('网络错误，请稍候再试！');
+            }
+        });
+        
+    })
+}
+// alert($('#getRulesNameTd').width());
+$('.getRulesName').css('width', $('#getRulesNameTd').width() + 'px');
+
+</script> 
+</block>

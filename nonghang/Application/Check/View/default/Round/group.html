@@ -1,0 +1,88 @@
+<extend name="Public/groupbase"/>
+<block name="body">
+<style>
+body{
+	background:#0069ac;
+	}
+</style>
+	<div class="checkBody">
+	<form action="{:U()}" method="post" id='myform'>
+        <div class="checkInput">
+            <input type="text" placeholder="请输入验证码" name="code" id="code" value="{$data['code']}" />
+        </div>
+		<a class="queryBtn" href="javascript:query()">查询</a>
+		</form>
+	</div>
+	<div class="checkTable">
+    	<div class="checkLog"><a href="{:U('grouplist')}">历史操作记录</a></div>
+    	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+             <thead>
+                <tr>
+                    <td width="15%">订单编号</td>
+                    <td width="20%">订单时间</td>
+                    <td width="15%">商品详细</td>
+                    <td width="20%">归属影院</td>
+                    <td width="15%">兑换状态</td>
+                     <td width="15%">操作/兑换时间</td>
+                  </tr>
+            </thead>
+            <tbody>
+            <volist name='codes' id='vo'>
+                <tr>
+                    <td>{$vo['id']}</td>
+                    <td>{$vo['orderTime']}</td>
+                    <td><a href='javascript:lookgoods("{$vo[goodsName]}","{$vo[number]}","{$vo[price]}");'>查看详情</a></td>
+                    <td>{$vo['cinemaName']}</td>
+                    <td>{$vo['statustr']}</td>
+                    <td><?php if($vo['status']=='1'){ ?>{$vo['gotTime']|date='Y-m-d H:i',###}<?php }else{ ?><a href="javascript:check({$vo['id']});">兑换</a><?php } ?></td>
+                </tr>
+                </volist>
+            </tbody>
+        </table>
+       <?php if(empty($codes)){ ?><div class="nogroup"></div><?php } ?>
+    </div>
+</block>
+<block name="script">
+<script type="text/javascript">
+
+//验证
+ function query(){
+		var code=$('#code').val();
+		var searcharray='';
+		
+		if(code == '请输入验证码' || code == '' ){
+			 layer.alert("请输入验证码");
+              return;
+		}
+		$('#myform').submit();
+ }
+
+
+function lookgoods(name,number,price){
+	layer.open({
+		title :'查看商品详情',
+		type: 1,
+		area: ['350px', '240px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '<div class="checkTable"><table width="100%" cellpadding="0" cellspacing="0" border="0">'+
+		'<thead><tr ><td width="40%">商品名称</td><td width="30%">价格</td></tr></thead>'+
+   		'<tbody><tr><td>'+name+'</td><td>￥'+price+'</td></tr></tbody></table></div>'
+	});
+}
+function check(id){
+	layer.confirm('确认兑换',function(index){
+		$.get("{:U('checkCode')}",{id:id},function(json){
+			var msg=JSON.parse(json);
+			layer.alert(msg['text']);
+			if(msg['status']=='1'){
+				setTimeout(function(){window.location.reload();},2000);
+			}
+			
+		});
+	
+	
+	});
+}
+</script> 
+</block>

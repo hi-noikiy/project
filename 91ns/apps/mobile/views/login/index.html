@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/login'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+</head>
+<body>
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+		<img id="loginBg" src='{{static_url("web/cssimg/mobile/login/bg.jpg")}}' width="100%" height="100%"/>
+		<div class='pos_ab contne'>
+			<div class="pos_rel">
+				<img id="leftMenu" class='imhh' src='{{static_url("web/cssimg/mobile/btn/back1.png")}}' width="7%" />
+				<p class='pos_ab title'>登录</p>
+			</div>
+			<div class="clear_all fill">
+				<img src='{{static_url("web/cssimg/mobile/login/rne.png")}}' width='100%' />
+				<input id="userName" type='text' placeholder="用户名/手机号" class='pos_ab mobile' />
+				<input id="userPassword" type='password' placeholder="密码" class='pos_ab mobile1' />
+				<!-- <img src='{{static_url("web/cssimg/mobile/login/for.png")}}' width='7%' class='pos_ab fotget' /> -->
+			</div>
+			<div id="userLoginSubmit" class='pos_rel login'>
+				登录
+			</div>
+			<a href="/register">
+				<div class='pos_rel reg'>
+					注册
+				</div>
+			</a>
+			<div class="pos_rel other">
+				<img src='{{static_url("web/cssimg/mobile/login/line.png")}}' width="100%" />
+				<p class='pos_ab word'>或用其他帐号登录</p>
+			</div>
+			<ul>
+                <li>
+                    <a href="/login/logintel">
+                        <img src='{{static_url("web/cssimg/mobile/login/duanxinyanzheng.png")}}' width="100%" />
+                        <p style="position: absolute;top: 92%;left: 9%;">短信验证码</p><!-- nsdata="thirdLogin" nslogintype="douzi"  -->
+                    </a>
+                </li>
+				<li>
+					<img nsdata="thirdLogin" nslogintype="qqdenglu" src='{{static_url("web/cssimg/mobile/login/q.png")}}' width="100%" />
+					<p>QQ</p>
+				</li>
+				<li>
+					<img nsdata="thirdLogin" nslogintype="sinaweibo" src='{{static_url("web/cssimg/mobile/login/b.png")}}' width="100%" />
+					<p>微博</p>
+				</li>
+			</ul>
+			<div class="clear_all di"></div>
+		</div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/login'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

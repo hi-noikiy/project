@@ -1,0 +1,43 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">取票密码</div>
+    <div class="right"></div>
+  </div>
+</div>
+
+
+<div class="pages">
+  <div data-page="code" class="page">
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+
+
+       <div class="content">
+        <div class="ticketCode">
+          <ul>
+          <volist name='codes' id='vo'>
+              <li>
+                  <div class="codeLeft">
+                      <h3>{$vo['filmName']}</h3>
+                        <p>订单编号：{$vo['orderCode']}</p>
+                    </div>
+                    <div class="codeRight">
+                      <span>取票码</span><br />
+                        <b>{$vo['printNo']}</b>
+                    </div>
+                    <div class="clear"></div>
+                </li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+
+
+    </div>
+  </div>
+</div>

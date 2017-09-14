@@ -1,0 +1,78 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+           <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title">如何开通守护</div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div class="" style=" width: 800px; margin:50px auto 0; min-height:520px;">
+                                      <div >
+                                          <p style=" text-align: center;"><span style="color: #cb5494; ">1.</span>&nbsp;登陆状态下进入要守护的主播房间，点击直播窗口左侧守护图标下方的“开通”
+                                              ，如图所示：</p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px; " src="{{static_url('web/cssimg/help/help12.png')}}">
+                                          </p>
+                                          <p style=" text-align: center;margin-top: 30px"><span style="color: #cb5494; ">2.</span>&nbsp;打开商城守护页面，会显示当前要购买的守护对象昵称</p>
+                                          <p style=" text-align: center;margin-top: 30px;"><span style="color: #cb5494; ">3.</span>&nbsp;选择守护及套餐类型后，点击“购买”即可成为该主播守护。</p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px; width: 750px;" src="{{static_url('web/cssimg/help/help16.png')}}">
+                                          </p>
+                                      </div>
+
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+             {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+
+
+
+

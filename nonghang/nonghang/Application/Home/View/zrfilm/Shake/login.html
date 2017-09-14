@@ -1,0 +1,160 @@
+<extend name='Public/base'/>
+<block name='title'>登录摇奖</block>
+<block name='navbar'>
+
+</block>
+
+<block name='body'>
+
+    <foreach name="config" item="vo" key="k" >
+    <div style="display:none" id="{$k}">{$vo}</div>
+    </foreach>
+
+
+    
+    <div data-page="userLogin" class="page loginBody" style="padding-top:44px; background:#0e7de0;">
+        <style type="text/css">
+            .loginLink a {
+                width: 100%;
+                margin-left: 0;
+            }
+            .pages {  background: #0e7de0;}
+        </style>
+        <div style="display:none" id="thisUrl">{:U('login')}</div>
+    	<div class="loginLogo"><img src="__IMG__/login/logo.png" width="100%" /></div>
+        <div class="content-block">
+            <div class="buttons-row">
+                <a href="#tab1" class="button tab-link active">手机号</a>
+                <a href="#tab2" class="button tab-link">会员卡</a>
+            </div>
+        </div>
+        <div class="tabs-animated-wrap" style="height:247px">
+            <div class="tabs">
+                <!-- Tab 1, 默认激活 -->
+                <div id="tab1" class="tab active">
+                  <form action="{:U()}" method="post" >
+                    
+                    <div class="loginInput">
+                        <div><span><img src="__IMG__/login/icon4.png" width="100%" /></span><input  type="tel" name="userAccount" placeholder="请输入手机号"  /></div>
+                    </div>
+                    <div class="loginInput">
+                        <div><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="password"  name="userPasswd" placeholder="请输入密码"  /></div>
+                    </div>
+                    <div class="loginLink">
+                        <a href="javascript:;" class="loginBtn" >登录</a>
+                    </div>
+                    </form>
+                </div>
+                <!-- Tab 2 -->
+                <div id="tab2" class="tab">
+                    <form action="{:U()}" method="post" >
+                    <div id="select" class="loginSelect" >
+                    <span><img src="__IMG__/login/icon1.png" width="100%" /></span><b>{$data[0]['placeName']}</b><input type="hidden" value="{$data[0]['placeNo']}" name="cinemaCode"><em><img src="__IMG__/login/down.png" width="80%" /></em>
+                    <ul>
+                    <volist name='data' id='vo'>
+                    <li data-value="{$vo['placeNo']}">{$vo['placeName']}</li>
+                    </volist>
+                    </ul>
+                    </div>
+                    <div class="loginInput">
+                        <div><span><img src="__IMG__/login/icon6.png" width="100%" /></span><input  type="tel" name="userAccount" placeholder="请输入会员卡号"  /></div>
+                    </div>
+                    <div class="loginInput">
+                        <div><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="password"  name="userPasswd" placeholder="请输入会员卡密码"  /></div>
+                    </div>
+                    <div class="loginLink">
+                        <a href="javascript:;" class="loginBtn" >登录</a>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+
+<block name='script'>
+<script>
+$(function(){
+  $('.loginBtn').click(function(){
+    var cinemaCode=$(this).parent().prev().prev().prev().find('input[name="cinemaCode"]').val();
+    var cardId=$(this).parent().prev().prev().find('input[name="userAccount"]').val();
+    var pwd=$(this).parent().prev().find('input[name="userPasswd"]').val();
+    if(cinemaCode==undefined){
+    	if(cardId.trim()==''){
+    	      myApp.alert('请输入手机号');
+    	      return false;
+    	    }else if(pwd.trim()==''){
+    	      myApp.alert('请输入登录密码');
+    	      return false;
+    	    }
+    }else{
+    	if(cardId.trim()==''){
+    	      myApp.alert('请输入会员卡号');
+    	      return false;
+    	    }else if(pwd.trim()==''){
+    	      myApp.alert('请输入会员卡密码');
+    	      return false;
+    	    }
+    }
+
+    myApp.showIndicator();
+    $(this).parent().parent('form').ajaxSubmit({  
+            type:"post",  //提交方式  
+            dataType:"json", //数据类型 
+            url:$('#thisUrl').html(), //请求url 
+            data:{'cardId':cardId, 'pwd':pwd,'cinemaCode':cinemaCode}, 
+            success:function(data){ //提交成功的回调函数 
+              myApp.hideIndicator();
+                if(data.status == 0){
+                    // alert(data.data.url);
+                    window.location.href=data.data.url;
+                    //mainView.router.loadPage(data.data.url);
+                  }else{
+                    myApp.alert(data.content);
+                  }
+            } 
+        });
+
+  });
+});
+
+  
+
+//登录方式切换
+ var tabsSwiper = new Swiper('swiper-container',{
+     pagination: '.login-swiper-pagination',
+    onlyExternal : true,
+    speed:500
+  })
+  $(".tabs a").on('touchstart mousedown',function(e){
+    e.preventDefault()
+    $(".tabs .active").removeClass('active')
+    $(this).addClass('active')
+    tabsSwiper.swipeTo( $(this).index() )
+  })
+  $(".tabs a").click(function(e){
+    e.preventDefault()
+  })
+  //门店选择
+  $('#select').click(function(e){
+    $('#select').find('ul').hide();
+    $(this).find('ul').show();
+    e.stopPropagation();
+  });
+  $('#select li').hover(function(e){
+    $(this).toggleClass('on');
+    e.stopPropagation();
+  });
+  $('#select li').click(function(e){
+    var val = $(this).text();
+    $(this).parents('#select').find('b').text(val);
+    $(this).parents('#select').find('input').val($(this).attr('data-value'));
+    $('#select ul').hide();
+    e.stopPropagation();
+  });
+  $(document).click(function(){
+    $('#select ul').hide();
+  });
+</script>  
+
+</block>

@@ -1,0 +1,1 @@
+INSERT INTO `inv_module` (`parentId`, `moduleName`, `moduleAction`, `moduleSort`, `createTime`) VALUES ('5', '视频回放', 'playback', '5', '1447038322');

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+		function setCookie(name, value, time){
+			    time = time | 3600*1000;
+	            var exp = new Date();
+	            exp.setTime(exp.getTime() + time);
+	            document.cookie = name + '='+ escape (value) + ';expires=' + exp.toGMTString();
+		}
+		var _hmt = _hmt || [];
+		(function() {
+		    var hm = document.createElement("script");
+		    hm.src = "//hm.baidu.com/hm.js?8674fdec6f890b65fefc4f40db322a03";
+		    var s = document.getElementsByTagName("script")[0];
+		    s.parentNode.insertBefore(hm, s);
+		    if('{{ ns_source|default(0) }}' != '0'){
+		    	setCookie('sourceType', '{{ ns_source|default(0) }}');
+		    }
+		    hm.onload = hm.onreadystatechange = (function(){
+		    	function callback(){
+		    		//window.location.href = '/{{ uid }}';
+		    	}
+	            if(hm&&hm.readyState){
+	                if(hm.readyState.match(/loaded|complete/i)){
+	                    callback();
+	                }
+	            }else{
+	                callback();
+	            }
+	        });
+		})();
+	</script>
+</head>
+<body>
+
+</body>
+</html>

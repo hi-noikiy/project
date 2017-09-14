@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><block name='title'>中瑞影城后台管理系统</block></title>
+
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/layer.js"></script>
+<!--<script type="text/javascript" src="__JS__/WdatePicker.js"></script>-->
+<script type="text/javascript" src="__JS__/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="__JS__/jquery.cityselect.js"></script>
+<script type="text/javascript" src="__JS__/jquery.form.js"></script>
+<script type="text/javascript" src="__STATIC__/jqdatetiem/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="__JS__/swiper.min.js"></script>
+ 
+<link rel="stylesheet" href="__STATIC__/jqdatetiem/jquery.datetimepicker.css" type="text/css" media="screen" />
+
+
+<link rel="stylesheet" href="__JS__/skin/layer.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__JS__/skin/layer.ext.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="__CSS__/common.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__CSS__/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__CSS__/swiper.min.css" type="text/css" media="screen" />
+<block name='pageCss'></block>
+<block name='jscss'></block>
+</head>
+<body >
+    <iframe src="" style="display:none" id="postPanel" name="postPanel"></iframe>
+    <!--顶部-->
+     <div class="header">
+        <div class="logoBar">
+        	<div class="logo"><img src="__IMG__/common/logo.png" height="100%" /></div>
+            <div class="weekDate"><?php $weekarray=array("日","一","二","三","四","五","六");echo date('Y-m-d').' '."星期".$weekarray[date("w")]; ?></div>
+        </div>
+        <div class="headerMenu">
+        	<ul id="menu">
+            	{$topMenu}
+            	<li><a href="{:U('index/index')}" class="icon9" >系统主菜单</a></li>
+            </ul>
+            
+        <div class="close"><a href="{:U('Public/logout')}">退出</a></div>
+        </div>
+    </div>
+    <!--顶部结束-->
+    <div class="content">
+    <iframe name='myframe' id='myframe' style="display: none"></iframe>
+        <block name='body'></block>
+        <div style="height:43px;"></div>
+        <div class="rightFooter">
+        	<div class="footerLeft"></div>
+            <p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有  4008-12345678<span class="clearCache"><a href="javascript: clear_patch()">清除缓存</a></span></p>
+            
+        </div>
+    </div>
+<script type="text/javascript">
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+    datepicker:true,
+	timepicker:false,
+
+	format:'Y-m-d',
+	formatDate:'Y-m-d'
+});
+
+
+$('.dateTime').datetimepicker({
+    yearOffset:0,
+    lang:'ch',
+    datepicker:true,
+    timepicker:true,
+    format:'Y-m-d H:i:s',
+    formatDate:'Y-m-d H:i:s'
+});
+
+$('.time').datetimepicker({
+    yearOffset:0,
+    lang:'ch',
+    datepicker:false,
+    timepicker:true,
+    format:'H:i',
+    formatDate:'H:i'
+});
+
+
+$('.date').after('<span onclick="clearDate(this)"  style="cursor:pointer; display:inline-block; margin-left:-25px; width:25px;"><img src="__IMG__/common/out.png" width="15" style="margin:0 auto" /></span>');
+$('.dateTime').after('<span onclick="clearDate(this)"  style="cursor:pointer; margin-left:-25px; width:25px;"><img src="__IMG__/common/out.png" width="15" style="margin:0 auto" /></span>');
+$('.time').after('<span onclick="clearDate(this)"  style="cursor:pointer; margin-left:-25px; width:25px;"><img src="__IMG__/common/out.png" width="15" style="margin:0 auto" /></span>');
+
+
+function clearDate (obj) {
+    $(obj).prev().val('');
+}
+
+layer.config({
+  extend: 'layer.ext.js'
+});
+
+var nowUrl = '{:U($nowTopMenus)}';
+var arrayNowUrl = nowUrl.split('/');
+var arrayLiHref = '';
+var isSelect = '';
+var length = 0;
+
+$("#menu li a").each(function(){
+    isSelect =  true;
+	arrayLiHref =  $(this).attr('href').split('/');
+	$.each(arrayLiHref, function(key, value) {
+        length = arrayLiHref.length;
+        // alert(arrayLiHref.length);
+		if(key <= length - 1){
+            // alert(arrayNowUrl[key].toUpperCase() +'=='+ arrayLiHref[key].toUpperCase());
+			if(arrayNowUrl[key].toUpperCase() != arrayLiHref[key].toUpperCase()){
+				isSelect = false;
+				return false;
+			}
+		}
+	});
+
+
+	if(isSelect){
+		$(this).addClass('cur');
+		return false;
+	}else{
+		$(this).removeClass('cur');
+	}
+});
+
+
+//  var h=$(document).height();
+//  $('.content').height(h-120);
+  
+  
+  $("#menu > li > a").click(function(){
+	   $("#menu > li > a").removeClass('cur');
+  		$(this).addClass('cur');
+});
+  var loadi = '';
+	function clear_patch(){
+		layer.confirm('确定要清空缓存吗？',  function(){
+			loadi = layer.load('缓存正在清空中...');
+			$.ajax({
+				type: "POST",
+				url: "{:U('Public/clearCache')}",
+				dataType: "json",
+				success: function(json){
+                    layer.msg(json.content);
+					layer.close(loadi);			
+				}
+			});
+		});
+	}	
+ function jsalert(msg, url) {
+
+layer.confirm(msg, {
+btn: ['确定'], //按钮
+    shade: false //不显示遮罩
+}, function(){
+    if(url == 'reload'){
+        location.reload();
+    }
+    if (url != '') {
+        location.href=url;
+    }
+    layer.closeAll();
+});
+
+}
+var contentHeight = 0;
+
+// alert(parseInt($('body').css('height')));
+
+function resetsize () {
+    //$('html').css('height', '100%');
+    $('body').css('height', '100%');
+     contentHeight = getScrollHeight() - 165;
+    $('.rightContent').css('height', contentHeight + 'px' );
+}
+
+function getScrollHeight()
+{
+    return Math.max(document.body.scrollHeight,document.documentElement.scrollHeight);
+}
+
+window.onresize = function () {
+   resetsize();
+}
+resetsize();
+</script> 
+</body>
+</html>

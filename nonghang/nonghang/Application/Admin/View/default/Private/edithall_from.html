@@ -1,0 +1,142 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="" id="dataform" target="myframe"  onsubmit="return check();"  >
+<div class="formBody">
+    <div class="hallBox">
+    	<div class="privateInput" style="width:400px;">
+
+             <input type="hidden" name='id'  value='{$id}' />
+        	<p>影厅主题名称</p>
+            <input type="text" placeholder="请输入影厅名称" name='topicName' value='{$topicName}'/>
+        </div>
+        <div class="privateInput">
+        	<p>影厅编号</p>
+            <input type="text" placeholder="请输入影厅编号" name='videoCode' value='{$videoCode}' />
+        </div>
+        <div class="privateInput">
+        	<p>影厅座位数</p>
+            <input type="text" placeholder="请输入座位数"  name='seating' value='{$seating}'/>
+        </div>
+        <div class="privateInput">
+            <p>座位单价</p>
+            <input type="text" placeholder="请输入座位单价"  name='unitPrice' value='{$unitPrice}'/>
+        </div>
+        <div class="privateInput">
+            <p>保底人数</p>
+            <input type="text" placeholder="请输入保底人数"  name='passNum' value='{$passNum}'/>
+        </div>
+        <div class="clear"></div>
+        <div class="privateImage">
+        	
+            <a class="selectBtn" href="javascript:void(0);" id="hallImage" style="float:right;" >上传</a>
+            <p>上传影厅内景图：</p>
+            <div class="hallList">
+                <volist name='list' id='v'>
+            	 <div class="hallImage">
+                      <div  class="cancel" onclick="delpic_d(this,'{$v.id}')"></div>
+                      <img class="post_image" border=0  width="120" height="80" src="{$v.relativePath}" />
+                </div>
+                </volist >
+       
+                <div class="clear"></div>
+            </div>
+        </div>     
+    </div>
+    <div class="privateAddBtm">
+        <span>*最多支持上传5张，图片比列3:2</span>
+        <input type='submit' class="button" name='updata'  value='确定'/ >
+          <div style="display:none" id="edithall_from_upnum">{$count}</div>
+    </div>
+</div>
+</form>
+</block>
+<block name="script">
+<script type="text/javascript">
+
+	var edithall_from_upnum=5-$('#edithall_from_upnum').html();
+	//alert(edithall_from_upnum);
+//影厅海报
+$('#hallImage').uploadify({
+    'buttonClass' : 'btn_addPic',
+    'height': 30,//浏览按钮的高度
+    'width': 60,
+    'swf'   : '__JS__/uploadify/uploadify.swf',
+    'uploader': '{:U("addUpload")}',
+	'fileObjName': 'hallImage',
+    'buttonText' : '上传',
+    'multi': true,
+   // 'uploadLimit':edithall_from_upnum,
+    'fileTypeDesc' : 'Image',
+    'fileTypeExts' : '*.gif; *.jpg; *.png',
+    'onUploadSuccess' : function(file, data, response) {
+    	if (response){
+            var pic_domain = "__UPLOAD__/<?php echo CPUID;?>/";
+            var image = '<div class="hallImage">' +
+                    "<input type='hidden' name='hallImage[]'  value='"+data+"' />"+
+                    '<div  class="cancel" onclick="delpic(this,\'{$vo}\')"></div>' +
+                    '<img class="post_image" border=0  width="120" height="80" src="'+pic_domain+data+'" /></div>';
+            $(".hallList").prepend(image);
+        }
+    },
+    'onUploadError': function (file, errorCode, errorMsg, errorString) {
+        alert('xxx');
+
+    }
+
+
+
+
+
+
+
+});	
+function delpic(obj,pic){
+	// $.get('{:U("delpic")}',{pic:pic},function(json){
+		$(obj).parent().remove();
+
+	// });
+}
+
+function delpic_d(obj,id){      
+        $.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(delpic_d)}',
+            data: '&id='+id,
+            success: function(msg){
+                var res = eval("(" + msg + ")");
+                
+                if(res.statusCode == '1') { 
+                }else {
+                }
+            }
+        })    
+            $(obj).parent().remove();
+
+
+
+}
+
+function check() {
+
+if($('.hallImage').length==0){
+	layer.alert('请上传图片！');
+	return false ;	
+}
+
+if($('.hallImage').length>5){
+
+	layer.alert('上传图片超过5张！');
+	return false ;	
+}else{
+
+	return true ;	
+}
+
+
+}
+
+
+
+</script>
+</block>

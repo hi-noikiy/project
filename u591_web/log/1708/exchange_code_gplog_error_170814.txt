@@ -1,0 +1,1 @@
+accountid is null, post=a:0:{},get=a:5:{s:3:"uid";s:6:"239575";s:6:"giftNo";s:5:"71127";s:10:"serverInfo";s:4:"5999";s:8:"roleInfo";s:7:"1000753";s:4:"sign";s:32:"9e42d99873687b5d8810288d9f88bf03";}, 2017-08-14 16:06:51

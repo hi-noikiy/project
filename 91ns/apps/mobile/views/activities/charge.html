@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/reggreement'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+</head>
+<body>
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+    <div class='pos_rel'>
+        <img src='{{static_url("web/cssimg/mobile/screen/top_bg.jpg")}}' width="100%"/>
+        <p class='title pos_ab'>
+        </p>
+        <img id="goBack" src='{{static_url("web/cssimg/mobile/screen/goback.png")}}' width="4%" class='pos_ab back' />
+    </div>
+    <div class='pos_rel'>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/reggreement'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

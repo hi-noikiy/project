@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<style type="text/css">
+	*{margin:0;padding:0;border:0;}
+	body{position: relative;width: 100%;height: 100%;}
+	img{position: absolute;top: 0;left: 0;}
+	</style>
+</head>
+<body>
+<a id="toURL" href="http://js.iiewl.com/html/spx_jump.htm?type=2&src=insertjs" target="_blank"></a>
+<!-- http://dwz.cn/1YeofO -->
+</body>
+<script type="text/javascript">
+	var bd = document.getElementById('toURL');
+	var pre = 'http://cdn.91ns.com/web/cssimg2/ad/';
+	var img = [];
+	var a;
+	var toURL = document.getElementById('toURL');
+	toURL.onclick = function(){
+		_czc.push(["_trackEvent", '链接', '点击', 'a']);
+	};
+	//for(var i=0;i<3;i++){
+		a = document.createElement('img');
+		a.src = pre + '1.gif';
+		a.width = '300';
+		//a.style.zIndex = 4-i;
+		a.style.zIndex = 4;
+		//img[i] = a;
+		bd.appendChild(a);
+	//}
+	a = 0;
+	//setInterval(td, 2000);
+	function td(){
+		img[a].style.zIndex = 1;
+		a = a == 2?0:a+1;
+		img[a].style.zIndex = 5;
+	}
+	//声明_czc对象:
+	var _czc = _czc || [];
+</script>
+<script src="http://s11.cnzz.com/z_stat.php?id=1256654909&web_id=1256654909" language="JavaScript"></script>
+</html>

@@ -1,0 +1,354 @@
+
+body{
+	background:#eaeaea;
+	}
+.userTop{
+	background:#fff;
+	}
+.userTop a{
+	background:#fff url(../images/movie/next.png) no-repeat center right;
+	display:inline-block;
+	width:100%;
+	}
+.userTop .userTopLeft{
+	float:left;
+	width:60px;
+	height:60px;
+	padding:0 10px;
+	}
+.userTop .userTopRight{
+	float:left;
+	}
+.userTopRight em{
+	font-style:normal;
+	background:#9a64d9;
+	color:#fff;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-khtml-border-radius:3px;
+	padding:5px;
+	line-height:30px;
+	vertical-align:top;
+	}
+.userTop .userTopRight h2{
+	font-weight:normal;
+	line-height:30px;
+	font-size:20px;
+	display:inline-block;
+	margin-right:15px;
+	}
+.userTop .userTopRight .info{
+	line-height:30px;
+	}
+.userTop .userTopRight .info span{
+	height:20px;
+	margin-right:10px;
+	font-size:16px;
+	color:#666;
+	}
+.userTop .userTopRight .info span img{
+	vertical-align:top;
+	margin-right:2px;
+	}
+.outBtn{
+	background:#fff;
+	text-align:center;
+	width:100%;
+	display:block;
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+	color:#f85340;
+	}
+.outBtn:hover{
+	color:#f85340;
+	}
+	
+/*取票码*/
+.ticketCode ul li{
+	margin-bottom:15px;
+	padding:15px;
+	background:#fff;
+	line-height:24px;
+	}
+.ticketCode ul li .codeLeft{
+	float:left;
+	width:70%;
+	}
+.ticketCode ul li .codeLeft h3{
+	font-size:14px;	
+	}
+.ticketCode ul li .codeLeft p{
+	color:#999;
+	font-size:14px;
+	}
+.ticketCode ul li .codeRight{
+	float:right;
+	width:28%;
+	text-align:right;
+	border-left:1px dashed #ddd;
+	}
+.ticketCode ul li .codeRight span{
+	color:#666;
+	}
+.ticketCode ul li .codeRight b{
+	color:#f85340;
+	font-size:14px;
+	}
+/*订单*/
+.orderTab{
+	margin-bottom:15px;
+	background:#fff;
+	}
+.orderTab a{
+	text-align:center;
+	width:49%;
+	display:inline-block;
+	height:40px;
+	line-height:40px;
+	font-size:16px;
+	color:#999;
+	border-bottom:1px solid #fff;
+	}
+.orderTab a.cur{
+	color:#f85340;
+	border-bottom:1px solid #f85340;
+	}
+.order ul li{
+	padding:0 15px;
+	background:#fff;
+	margin-bottom:15px;
+	}
+.order ul li .orderTop{
+	color:#999;
+	line-height:40px;
+	position:relative;
+	}
+.order ul li .orderTop a{
+	background:url(../images/user/close.png) no-repeat 0 0;
+	width:20px;
+	height:20px;
+	background-size:100%;
+	position:absolute;
+	right:0;
+	top:10px;
+	display:none;
+	}
+.order ul li .orderMid{
+	border-top:1px dashed #d0d0d0;
+	border-bottom:1px dashed #d0d0d0;
+	padding:10px 0;
+	position:relative;
+	}
+.order ul li .orderMid .orderMidLeft{
+	float:left;
+	margin-right:15px;
+	}
+.order ul li .orderMid .orderMidRight{
+	float:left;
+	}
+.order ul li .orderMid h2{
+	font-weight:normal;
+	font-size:18px;
+	line-height:30px;
+	}
+.order ul li .orderMid b{
+	position:absolute;
+	right:0;
+	top:15px;
+	color:#f85340;
+	font-size:14px;
+	}
+.order ul li .orderMid p{
+	color:#808080;
+	font-size:12px;
+	line-height:20px;
+	}
+.order ul li .orderBtm{
+	height:40px;
+	position:relative;
+	}
+.order ul li .orderBtm span{
+	height:40px;
+	line-height:40px;
+	color:#ff9b34;
+	font-size:16px;
+	}
+.order ul li .orderBtm .orderLink{
+	float:right;
+	line-height:40px;
+	}
+.order ul li .orderBtm .orderLink a.out{
+	color:#999;
+	border:1px solid #999;
+	padding:5px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-khtml-border-radius:3px;
+	}
+.order ul li .orderBtm .orderLink a.go{
+	color:#ff9b34;
+	border:1px solid #ff9b34;
+	padding:5px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-khtml-border-radius:3px;
+	}
+
+/*充值中心*/
+.rechargeTop{
+	padding:15px 10px;
+	background:#fff;
+	}
+.rechargePrice{
+	margin-top:20px;
+	}
+.rechargePrice p{
+	text-align:center;
+	font-size:14px;
+	color:#666;
+	margin:10px 0;
+	}
+.rechargeVal{
+	width:216px;
+	margin:0 auto;
+	}
+.rechargeVal a{
+	border:1px solid #e5e5e5;
+	width:30px;
+	height:30px;
+	display:inline-block;
+	font-size:24px;
+	line-height:30px;
+	text-align:center;
+	color:#999;
+	}
+.rechargeVal input{
+	text-align:center;
+	border:1px solid #e5e5e5;
+	height:30px;
+	line-height:30px;
+	width:150px;
+	vertical-align:top;
+	background:#eee;
+	}
+/*我的资料*/
+.inputText{
+	text-align:center;
+	width:80%;
+	margin:70px auto 0;
+	padding:10px 5%;
+	background:#fff;
+	}
+.inputText input{
+	border:none;
+	height:40px;
+	line-height:40px;
+	padding-left:5%;
+	width:95%;
+	margin:0 auto;
+	font-size:16px;
+	border-bottom:1px solid #dbdbdb;
+	}
+.inputText input:focus{
+	border-bottom:1px solid #f85340;
+	}
+.actions-modal-label{
+	font-size:20px;
+	color:#000;
+	}
+.list-block input[type=text].inputDate{
+	text-align:right;
+	height:28px;
+	color: #8e8e93;
+	}
+.inputDiv{
+	position:relative;
+	}
+.inputDiv span{
+	position:absolute;
+	right:0px;
+	top:8px;
+	border:1px solid #f85340;
+	color:#f85340;
+	width:50px;
+	line-height:24px;
+	height:24px;
+	text-align:center;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-khtml-border-radius:3px;
+	cursor:pointer;
+	}
+.inputDiv a{
+	position:absolute;
+	right:0px;
+	top:5px;
+	}
+.phoneTitle{
+	font-size:14px;
+	line-height:30px;
+	padding:10px 5%;
+	color:#666;
+	}
+/*消费记录*/
+.record ul li{
+	padding:0 15px;
+	background:#fff;
+	margin-bottom:15px;
+	}
+.record ul li .recordTop{
+	color:#999;
+	line-height:40px;
+	border-bottom:1px solid #eeeeee;
+	}
+.record ul li .recordMid{
+	padding:10px 0;
+	position:relative;
+	}
+.recordMid .recordMidLeft{
+	float:left;
+	margin-right:15px;
+	}
+.recordMid .recordMidRight{
+	float:left;
+	}
+.recordMid .recordMidRight h2{
+	font-size:18px;
+	font-weight:normal;
+	}
+.recordMid .recordMidRight span{
+	color:#666;
+	line-height:24px;
+	font-size:14px;
+	margin-right:20px;
+	}
+.recordMid .recordMidRight span b{
+	color:#1cae49;
+	}
+.recordBg{
+	background:url(../images/user/recordbg.png) no-repeat top center;
+	width:200px;
+	height:215px;
+	background-size:70%;
+	margin:100px auto;
+	padding-top:180px;
+	text-align:center;
+	font-size:18px;
+	color:#999;
+	}
+.bindPhone{
+	background:url(../images/user/phone.png) no-repeat top center;
+	width:300px;
+	height:215px;
+	background-size:40%;
+	margin:100px auto;
+	padding-top:250px;
+	text-align:center;
+	font-size:18px;
+	color:#999;
+	}

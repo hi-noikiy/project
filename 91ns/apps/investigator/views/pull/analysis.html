@@ -1,0 +1,424 @@
+<div id="breadcrumb">
+    <a onclick="javascript:history.go(-1);" class="go-to-home tip-bottom font font18" style="cursor: pointer;">
+        <i class="icon-arrow-left"></i> 返回 &nbsp;
+    </a> 
+    <a onclick="javascript:history.go(-1);" class="font font18" style="cursor: pointer;"> &nbsp;&nbsp;<span>新用户推广 &gt</span></a>
+    <a href="/anchor/anchorinfo?uid={{info['uid']}}" class="current font font18"> <span>详情</span></a>
+    
+</div>
+
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <div class="user-info">
+        <img alt="" src="{{userInfo['avatar']}}">
+
+        <p>
+            <span class="font font20 cr-dpe">{{userInfo['nickName']}}</span>
+        </p>
+        <p>
+            <span class="font font20 cr-dpe">{{userInfo['uid']}}</span>
+            <input id="an_uid" type="hidden" value="{{userInfo['uid']}}" />
+        </p>
+        <div>
+            <div style="display: inline-block;margin-top: 8px;vertical-align: top;">备注：</div>
+            <div style="margin-top: 7px;line-height: 15px;display: inline-block;max-width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" title="{{recInfo['remark']}}">{{recInfo['remark']}}</div>
+            <i class="p-icon-edit editNickName" style="vertical-align: top;" onclick="myDilog2()"></i>
+        </div>
+        <!--<p>-->
+            <!--<span style="margin-top: 10px;margin-left: 20px;float: left;display: inline-block;">备注：</span>-->
+            <!--<span style="float: left;margin-top: 10px;"></span>-->
+            <!--<span style="float: left;"><i class="p-icon-edit editNickName"></i></span>-->
+        <!--</p>-->
+    </div>
+
+    <div class="progtrckr-box" style="top: 230px;">
+        <div class="progtrckrline" style="height: 130px;"></div>
+        <ul class="progtrckr">
+            <li><i class="custom-icon custom-icon-point"></i><a href="/pull/details?uid={{userInfo['uid']}}&id={{userInfo['id']}}">推广的用户</a></li>
+            <li><i class="custom-icon custom-icon-point"></i><a href="/pull/payoff?uid={{userInfo['uid']}}&id={{userInfo['id']}}">抽成记录</a></li>
+            <li class="active"><i class="custom-icon custom-icon-point"></i><a href="/pull/analysis?uid={{userInfo['uid']}}&id={{userInfo['id']}}">分析</a></li>
+            <!-- <li><i class="custom-icon custom-icon-point"></i><a  href="/pull/anchorchat?uid={{userInfo['uid']}}">聊天记录</a></li> -->
+
+        </ul>
+    </div>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+<div class="container-fluid">
+    <div class="row-fluid" style="margin-top: 60px;">
+        <!--<div class="thum-box pull-left" style="width: 270px;display: inline-block;">-->
+            <!--<div class="thum-top clearfix" style="width: 270px;">-->
+                <!--<div class="title">-->
+                    <!--<p style="margin-top: 15px"><span>专属链接</span></p>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="thum-content " style="width: 270px;">-->
+                <!--<p class="font font20 cr-e5">-->
+                    <!--<span style="width: 270px;display: inline-block;word-break: break-all;">{{recInfo['url']}}</span>-->
+                <!--</p>-->
+            <!--</div>-->
+
+        <!--</div>-->
+
+        <div class="thum-box pull-left" style="width: 270px;display: inline-block;">
+            <div style="margin: 0 auto; width: 280px;">
+                <div class="thum-top ggr clearfix">
+                    <div class="title ggr">
+                        <p style="margin-top: 15px"><span>抽成比例</span></p>
+                    </div>
+                </div>
+
+                <div class="thum-content ">
+                    <p class="font font20 cr-e5 clearfix">
+                        <span class="font font36 cr-ly pull-left" style="margin-left:15px; ">{{recInfo['proportion']}}%</span>
+                        <span class="pull-right" style="margin-right: 10px;"><button class="btn" onclick="myDilog1()" >修改</button></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="thum-box pull-left" style="margin-left: 4%;width: 270px;display: inline-block;">
+            <div class="pull-right">
+                <div class="thum-top bl clearfix">
+                    <div class="title bl">
+                        <p  style="margin-top: 15px"><span>抽成期限</span></p>
+                    </div>
+                </div>
+
+                <div class="thum-content " >
+                    <p class="font font20 cr-e5 clearfix">
+                        <span class="font font36 cr-ly pull-left" style="margin-left:15px; ">{{recInfo['validity']}}天</span>
+                        <span class="pull-right" style="margin-right: 10px;"><button class="btn" onclick="myDilog()" >修改</button></span>
+                        <span class="font font18 cr-ly pull-left" style="margin-left:15px; ">到期时间：{{recInfo['dueTime']}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <span style="width: 270px;display: inline-block;margin-left: 4%;margin-top: -50px;"><img src="{{recInfo['img']}}"></span>
+
+    </div>
+    <div class="content-box font18" style="background-color: #fff;margin-top:10px;padding-left: 40px;padding: 20px 40px;">
+        <button type="button" onclick="delrecommendDialog()"  class="btn btn-purple pull-right" style="margin-top: 20px;">删除</button>
+        <div><span>旧版链接：</span><span>{{recInfo['url']}}</span></div>
+        <div style="margin-top: 20px;"><span>长链接：</span><span>{{recInfo['longUrl']}}</span></div>
+        <div style="margin-top: 20px;"><span>短链接：</span><span>{{recInfo['tinyUrl']}}</span></div>
+    </div>
+    <div class="content-box" style="background: #FFF; text-align: left; margin-top:20px;  padding-bottom: 40px;">
+        <div id="box1" class="tab-box">
+            <div class="row-fluid">
+                <div class="container-fluid">
+                    <div class="nav-line">
+                        <a class="boxinfo active" onclick="TabNavline(this,'day','天')">按日</a>
+                        <a class="boxinfo" onclick="TabNavline(this,'week','周')">按周</a>
+                        <a class="boxinfo" onclick="TabNavline(this,'month','月')">按月</a>
+                        <!--<input id="dete" type="text" value="4/23/99" id="rangeA" />-->
+                        <a class="date-calendar pull-right"><i class=" icon-calendar"></i>
+                            <input id="mydate"  name="excelTime" placeholder="请输入日期"  value="" style="height: 34px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div  class="tab-box">
+                <div class="row-fluid" style="margin-top: 20px;">
+                    <div class="container-fluid">
+                        <div id="render-chart" style="height: 500px">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+    </div>
+</div>
+
+</div>
+
+<div id="delrecommendDialog" style="display:none">
+    <div style="height: 115px;line-height: 115px;text-align: center;font-size: 16px;">确定删除这个推广链接？</div>
+</div>
+
+<div id="myDilog2" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="addnumDialogForm2">
+        <div style="margin-top: 20px;">请输入输入新的备注：</div>
+        <input id="grantNum2" style="margin-top: 20px;width: 300px;height: 30px;" type="text">
+    </form>
+</div>
+
+<div id="myDilog1" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="addnumDialogForm1">
+        <div style="margin-top: 20px;">请输入输入新的抽成比例：</div>
+        <input id="grantNum1" onkeydown="onlyNum()" style="margin-top: 20px;width: 300px;height: 30px;" type="text">
+        %
+    </form>
+</div>
+
+<div id="myDilog" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="addnumDialogForm">
+        <div style="margin-top: 20px;">请输入输入新的期限：</div>
+        <input id="grantNum" onkeydown="onlyNum()" style="margin-top: 20px;width: 300px;height: 30px;" type="text">
+        天
+    </form>
+</div>
+
+<script src="{{static_url('web/js/flotr2.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<script src="{{static_url('web/js/jquery.ui.datepicker-zh-CN.js')}}"></script>
+<script type="text/javascript">
+
+    $(function() {
+        $('body').addClass('anchorinfo');
+
+        $('.nav-line a').click(function(){
+            $('.nav-line a.active').removeClass('active');
+            $(this).addClass('active');
+            return false;
+        });
+
+        $('#mydate').daterangepicker({
+                    presetRanges:[
+                        //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+                        //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+                        //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+                    ],
+                    presets:{
+                        dateRange:'自定义时间'
+                    },
+                    rangeStartTitle:'起始日期',
+                    rangeEndTitle:'结束日期',
+                    nextLinkText:'下月',
+                    prevLinkText:'上月',
+                    doneButtonText:'确定',
+                    cancelButtonText:'取消',
+                    earliestDate:'',
+                    latestDate:Date.parse('today'),
+                    constrainDates:true,
+                    rangeSplitter:'-',
+                    dateFormat:'yy-mm-dd',
+                    closeOnSelect:false,
+                    onOpen:function(){
+                        $('.ui-daterangepicker-dateRange').click().parent().hide();
+                        $('.ui-daterangepickercontain').css({left:($('#mydate').offset().left-325)+'px'});
+                    },
+                    onClose:function(){
+                        var typer=$('#mydate').attr('data');
+                        if(typer=='day'){
+                            TabNavline('',typer,'天');
+                            return false;
+                        }
+                        if(typer=='week'){
+                            TabNavline('',typer,'周');
+                            return false;
+                        }
+                        else{
+                            TabNavline('',typer,'月');
+                            return false;
+
+                        }
+                    }
+                }
+        );
+
+        TabNavline('','day','天');
+        $('#grantNum1').on('blur',checkproportion);
+    });
+
+    function checkproportion(){
+        var a=$('#grantNum1').val();
+        if(a>100||a<1){
+            $('#proportion').attr('data',1);
+            alert('限1-100的数字');
+        }
+        else{
+            $('#proportion').attr('data',0);
+        }
+    }
+
+    function TabNavline(a,typer,title){
+        $('#mydate').attr('data',typer);
+        $('#exceltype').attr('value',typer);
+        var b=$('#mydate').val();
+        var timeBegin= b.substring(0,10);
+        var timeEnd= b.substring(12,23);
+        var uid=$('#in_uid').val();
+        var data={};
+        data.type=typer;
+        data.uid=$('#an_uid').val();;
+        data.startTime=timeBegin;
+        data.endTime=timeEnd;
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: '/ajax/getRecUserData',
+            dataType: 'json',
+            success: function (res) {
+                var data = res.data;
+
+                justDraw(data, {yTitle:'人',xTitle:title});
+            }
+        })
+
+    }
+
+
+    //  修改期限1-比例2-期限3-备注
+    function myDilog(id){
+
+        $('#myDilog').dialog({
+            autoOpen:true,
+            width:400,
+            height:250,
+            title:'修改抽成期限',
+            resizable:false,
+            modal:true,
+            open:function(){
+
+            },
+            buttons: {
+                "确定": function () {
+                    var data={};
+                    data.type=2;
+                    data.uid=$('#an_uid').val();
+                    data.editInfo=$('#grantNum').val();
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/editRecInfo',
+                        dataType:'json',
+                        success:function(res){
+                            location.reload();
+                        }
+
+                    });
+
+
+                }//,
+                /*"取消": function () {
+
+
+                 }*/
+            }
+        });
+    }
+
+    //  修改比例
+    function myDilog1(id){
+
+        $('#myDilog1').dialog({
+            autoOpen:true,
+            width:400,
+            height:250,
+            title:'修改抽成比例',
+            resizable:false,
+            modal:true,
+            open:function(){
+
+            },
+            buttons: {
+                "确定": function () {
+                    var data={};
+                    data.type=1;
+                    data.uid=$('#an_uid').val();
+                    data.editInfo=$('#grantNum1').val();
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/editRecInfo',
+                        dataType:'json',
+                        success:function(res){
+                            location.reload();
+                        }
+
+                    });
+
+
+                }//,
+                /*"取消": function () {
+
+
+                 }*/
+            }
+        });
+    }
+
+    //  修改备注
+    function myDilog2(id){
+
+        $('#myDilog2').dialog({
+            autoOpen:true,
+            width:400,
+            height:250,
+            title:'修改备注',
+            resizable:false,
+            modal:true,
+            open:function(){
+
+            },
+            buttons: {
+                "确定": function () {
+                    var data={};
+                    data.type=3;
+                    data.uid=$('#an_uid').val();
+                    data.editInfo=$('#grantNum2').val();
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/editRecInfo',
+                        dataType:'json',
+                        success:function(res){
+                            location.reload();
+                        }
+
+                    });
+
+
+                }//,
+                /*"取消": function () {
+
+
+                 }*/
+            }
+        });
+    }
+
+    //  新用户推荐删除
+    function delrecommendDialog(id){
+
+        $('#delrecommendDialog').dialog({
+            autoOpen:true,
+            width:440,
+            height:250,
+            title:'删除',
+            resizable:false,
+            modal:true,
+            open:function(){
+            },
+            buttons: {
+                "确定": function () {
+                    var data={};
+                    data.id=getUrlParam('id');
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/delRec',
+                        dataType:'json',
+                        success:function(res){
+                            if(res.code!=0){
+                                alert(res.info);
+                            }
+                            location.href='/pull/reclist';
+                        }
+
+                    });
+
+                }
+            }
+        });
+    }
+</script>

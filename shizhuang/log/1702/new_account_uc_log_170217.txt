@@ -1,0 +1,4 @@
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1mobi0eec21c94b8a4bbab45cfa930c294779190238";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652390  2017-02-17 09:33:01
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1mobi13c5335dbdc841d3be31ac970bb8250e110924";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652391  2017-02-17 16:41:21
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1gamef355b20632d449ed87d21f2932a4bafc174512";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652394  2017-02-17 19:47:12
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1mobib563b5fc5b7e4f0384797a9bbbc45c45111401";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652395  2017-02-17 19:49:27

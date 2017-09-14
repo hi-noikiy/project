@@ -1,0 +1,70 @@
+
+<extend name='Public/base'/>
+
+<block name='title'>乐购_团购详情</block>
+
+<block name='navbar'>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+			<div class="center sliding">乐购_团购详情</div>
+			<div class="right"></div>
+		</div>
+	</div>
+</block>
+
+<block name='body'>
+
+	<div class="pages">
+		<div data-page="groupPurchase" class="page" id="page-info">
+
+			<link rel="stylesheet" href="__CSS__/goods.css?{:time()}">
+
+			<div class="content">
+				<div class="base-info">
+					<img src="{$goods['goodsImg']}">
+					<div class="text-info">
+						<h4>{$goods['goodsName']}<span>已售{$goods['saleNumber']}</span></h4>
+						<span>{$goods['introduce']}</span>
+					</div>
+					<div class="info-shadow"></div>
+				</div>
+				<div class="price-area">
+					<span class="color-blue">¥{$goods['price']}</span><span>¥{$goods['showPrice']}</span><a class="bg-blue external" href="{:U('user/payment')}">立即抢购</a>
+				</div>
+				<div class="seller-info">
+					<div class="item-title">商家信息</div>
+					<h4>{$goods['seller']['sellerName']}</h4>
+					<p>{$goods['seller']['address']}</p>
+					<p>{$goods['seller']['phone']}</p>
+				</div>
+				<div class="set-meal">
+					<div class="item-title">详情</div>
+					<ul class="b-info">
+						<li>名称</li>
+						<li>数量</li>
+						<li>单价</li>
+					</ul>
+					<foreach name='goods["details"]' item='vo'>
+					<ul class="b-info">
+						<li>{$vo[0]}</li>
+						<li>{$vo[1]}</li>
+						<li>¥{$vo[2]}</li>
+					</ul>
+					</foreach>
+					{:htmlspecialchars_decode($goods['tip'])}
+					<a class="detail-link color-blue" href="{:U('index/rounddetail',array('goodsid'=>$goods['id']))}">图文详情</a>
+
+					<div class="notice">
+						<div class="item-title">购买须知</div>
+						{:htmlspecialchars_decode($goods['explain'])}
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</block>
+

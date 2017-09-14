@@ -1,0 +1,326 @@
+<extend name='Public/base'/>
+<block name='body'>
+
+<!-- 主体内容 -->
+
+    <div id="main">
+        <div class="container">
+            <h1>新用户注册</h1>
+            <div class="box">
+            	<div class="register-area">
+                    <div id="tipBlock"></div>
+            		<h3>输入手机号注册中瑞账号</h3>
+                    <ul>
+                        <li><input type="text" name="mobile" maxlength="11" placeholder="请输入手机号"/></li>
+                        <li class="code1"><input type="text" name="verify" placeholder="请输入验证码"/><a href="javascript:;" onclick="changeClick(this)"><img src="{:U('public/verity',array('type'=>'register'))}"  style=" height:40px; "/> </a></li>                    
+                        <li class="code2"><input type="text" placeholder="请输入动态码" name="randomCode"/><a href="javascript:get_mobile_code()" id='zphone' >获取</a></li>                    
+                        <li><input type="password" name='passWord' placeholder="设置登录密码"/></li>                    
+                        <li><input type="password" name='passWord2' placeholder="确认登录密码"/></li>                    
+                    </ul>
+                    <a class="deal"><input type="checkbox" id='agree' checked/>我已阅读中瑞影城<i>《服务协议》</i></a>
+                    <a href="javascript:;" class="register-btn">注册</a>                
+                </div>
+                <div class="login-area" style="display: block">
+                    <h3>已有中瑞账号在此登录</h3>
+                	<h4><span class="active">会员卡登录</span><span>手机用户登录</span></h4>
+                    <div class="clubCard-login loginBlock">
+                        <div id="tipBlock2"></div>
+	                    <div class="store">
+                            <p cinemaCode='0'>选择会员卡号所属门店</p>
+                            <ul>
+                                <foreach name='cinemalist' item='cinema'>
+                                    <li cinemaCode="{$cinema['cinemaCode']}">{$cinema['cinemaName']}</li>
+                                </foreach>
+                            </ul>
+                         </div>
+                        <input class="clubCard" type="text" name="userAccount"  placeholder="请输入会员卡号"/>
+                        <input class="pw" type="password" name="userPasswd" placeholder="请输入密码"/>
+                        <a class="loginBtn">登录</a>
+                    </div>
+
+                    <div class="tel-login loginBlock">
+                        <div id="tipBlock3"></div>
+                    	<ul>
+                            <li><input type="text" name="userAccount"  placeholder="请输入手机号"/></li>
+                            <li><input type="password" name="userPasswd" placeholder="请输入密码"/></li>                    
+                            <li class="code3"><input type="text" name="verify" placeholder="请输入验证码"/><a href="javascript:;" onclick="changeClick(this)"><img src="{:U('public/verity',array('type'=>'login'))}"  style=" height:40px; "/> </a></li>  
+                        </ul>
+                        <a class="loginBtn">登录</a><a href='{:U("backpw")}' class="backPw">找回密码</a>
+                    </div>                    
+                    
+                   <!-- <div class="thirdParty-login">
+                    	<p>第三方账号登录</p>
+                        <div><a class="qq"></a><a class="alipay"></a></div>
+                    </div>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--/ 主体内容-->
+
+</block>
+<block name='script'>
+    <script type="text/javascript">
+
+    function validTip(id,text,top){
+        $(id).text(text);
+        $(id).css('top',top);
+    }
+    function ismobile(mo){
+        var t=/^1\\d{10}$/;
+        if(t.exec(mo)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function changeClick(){
+        var captcha_img = $('#captchaChange');
+        var verifyimg = captcha_img.attr("src");
+        captcha_img.attr("src", verifyimg+'?random='+Math.random());
+    }
+
+    $('input').focus(function(){
+        $('#tipBlock,#tipBlock2,#tipBlock3').text('');
+    });
+    $('.register-btn').click(function(){
+        var agree=$('#agree').prop('checked');
+        var mobile=$('.register-area input[name=mobile]');
+        var randomCode=$('.register-area input[name=randomCode]');
+        var passWord=$('.register-area input[name=passWord]');
+        var passWord2=$('.register-area input[name=passWord2]');
+        var patrn=/^1\d{10}$/;
+        if($.trim(mobile.val())==''){
+            validTip('#tipBlock','*请输入手机号','108px');
+            return false;
+        }
+        if (!patrn.exec(mobile.val())){
+            validTip('#tipBlock','*手机号格式不正确','108px');
+            return false;
+        }
+        if($.trim(randomCode.val())==''){
+            validTip('#tipBlock','*请输入手机动态码','248px');
+            return false;
+        }
+        if($.trim(passWord.val())==''){
+            validTip('#tipBlock','*请设置登录密码','317px');
+            return false;
+        }
+        if(passWord.val().length<6){
+            validTip('#tipBlock','*请重新输入（限6-20个字符、数字或组合）','317px');
+            return false;
+        }
+        if($.trim(passWord2.val())==''){
+            validTip('#tipBlock','*请再次确认登录密码','386px');
+            return false;
+        }
+        if(passWord.val()!=passWord2.val()){
+            validTip('#tipBlock','*确认密码输入不匹配','386px');
+            return false;
+        }
+        if(agree==false){
+            validTip('#tipBlock','*请阅读并勾选服务协议','432px');
+            return false;
+        }
+        var index = layer.load(2, {
+            shade: [0.1,'#000'] //0.1透明度的白色背景
+        });
+        var datas={userMobile:mobile.val(),validateCode:randomCode.val(),userPasswd:passWord.val()};
+        $.getJSON("{:U()}",datas,function(data){
+            layer.close(index);
+            changeClick($('.register-area input[name=verify]').next('a'));
+            if(data['status']=='0'){
+              switch(data.data){
+              case 1:
+                  validTip('#tipBlock','*'+data['content'],'168px');
+                  break;
+              case 2:
+                  validTip('#tipBlock','*'+data['content'],'238px');
+                  break;
+              case 3:
+                  validTip('#tipBlock','*'+data['content'],'310px');
+                  break;
+             }
+                validTip('#tipBlock',data['content'],'248px');
+                var url="{:U('Index/index')}";
+                setTimeout(function(){location.href=url},2000);
+            }else{
+                validTip('#tipBlock',data['content'],'248px');
+            }
+        });
+    });
+    function get_mobile_code(){
+    	if(document.getElementById('zphone').disabled){ 
+    		return; 
+    	} 
+    	var mobile=$('.register-area input[name=mobile]').val();
+    	var verify=$('.register-area input[name=verify]').val();
+        $.getJSON("{:U('public/getValidateCode')}", {userMobile:mobile,verify:verify,codeType:'register'}, function(data) {
+//           layer.alert(data['content']);
+            switch(data.data){
+                case 1:
+                    validTip('#tipBlock','*'+data['content'],'108px');
+                    break;
+                case 2:
+                    validTip('#tipBlock','*'+data['content'],'176px');
+                    break;
+            }
+            if(data['status']=='0'){
+            	RemainTime();
+            }else{
+            	changeClick($('.register-area input[name=verify]').next('a'));
+            }
+        });
+    }
+    var Account,iTime=59;
+    function RemainTime(){
+    	document.getElementById('zphone').disabled = true;
+    	var iSecond,sSecond="",sTime="";
+    	if (iTime >= 0){
+    		$('#zphone').addClass("disabled");
+    		iSecond = parseInt(iTime%60);
+    		iMinute = parseInt(iTime/60);
+    		if (iSecond >= 0){
+    			if(iMinute>0){
+    				sSecond = iMinute + "分" + iSecond + "秒";
+    			}else{
+    				sSecond = iSecond + "秒";
+    			}
+    		}
+    		sTime=sSecond;
+    		if(iTime==0){
+    			clearTimeout(Account);
+    			sTime='获取手机验证码';
+    			iTime = 59;
+    			$('#zphone').removeClass("disabled");
+    			document.getElementById('zphone').disabled = false;
+    		}else{
+    			Account = setTimeout("RemainTime()",1000);
+    			iTime=iTime-1;
+    		}
+    	}else{
+    		sTime='没有倒计时';
+    	}
+    	$('#zphone').html ( sTime);
+    }	
+    function changeClick(obj){  
+		var captcha_img = $(obj).find('img');
+		var verifyimg = captcha_img.attr("src");  
+		captcha_img.attr("src", verifyimg+'?random='+Math.random());  
+	}
+
+    $('.loginBtn').click(function(){
+        var cinemaCode=$(this).parent().find('p').attr('cinemaCode');
+        var userAccount=$(this).parent().find('input[name="userAccount"]').val();
+        var userPasswd=$(this).parent().find('input[name="userPasswd"]').val();
+        var verify=$(this).parent().find('input[name="verify"]').val();
+        var url="{:U('user/login')}";
+        var patrn=/^1\d{10}$/;
+        if(cinemaCode==undefined){
+            if($.trim(userAccount)==''){
+                validTip('#tipBlock3','*请输入手机号','168px');
+                return false;
+            }else if (!patrn.exec(userAccount)){
+                validTip('#tipBlock3','*请输入正确的手机号','168px');
+                return false;
+            }else if($.trim(userPasswd)==''){
+                validTip('#tipBlock3','*请输入密码','237px');
+                return false;
+            }else if(verify==''){
+                validTip('#tipBlock3','*请输入验证码','305px');
+                return false;
+            }
+        }else{
+            if(cinemaCode=='0'){
+                validTip('#tipBlock2','*请选择会员卡所属门店','168px');
+                return false;
+            }
+            if($.trim(userAccount)==''){
+                validTip('#tipBlock2','*请输入会员卡号','238px');
+                return false;
+            }else if($.trim(userPasswd)==''){
+                validTip('#tipBlock2','*请输入会员卡密码','310px');
+                return false;
+            }
+        }
+        var index = layer.load(2, {
+            shade: [0.1,'#000'] //0.1透明度的白色背景
+        });
+        var gourl="{:U('index/index')}";
+        $.getJSON(url,{'userAccount':userAccount, 'userPasswd':userPasswd,'cinemaCode':cinemaCode,verify:verify}, function(data){
+            layer.close(index);
+            if(data.status == 0){
+                location.href=gourl;
+            }else if(cinemaCode==undefined){
+                switch(data.data){
+                    case 1:
+                        validTip('#tipBlock3','*'+data.content,'168px');
+                        break;
+                    case 2:
+                        validTip('#tipBlock3','*'+data.content,'237px');
+                        break;
+                    case 3:
+                        validTip('#tipBlock3','*'+data.content,'305px');
+                        break;
+                }
+                changeClick($('.tel-login input[name=verify]').next('a'));
+            }else{
+                switch(data.data){
+                    case 1:
+                        validTip('#tipBlock2','*'+data.content,'168px');
+                        break;
+                    case 2:
+                        validTip('#tipBlock2','*'+data.content,'238px');
+                        break;
+                    case 3:
+                        validTip('#tipBlock2','*'+data.content,'310px');
+                        break;
+                }
+                changeClick($('.tel-login input[name=verify]').next('a'));
+            }
+        });
+    });
+
+        $(function(){
+            $('.login-area h4 span').each(function(i){
+                $(this).click(function(){
+                    $(this).addClass('active');
+                    $(this).siblings().removeClass();
+                    $('.loginBlock').hide();
+                    $('.loginBlock').eq(i).show();
+                })
+            });
+
+            $(".store > p").click(function(e){
+                e.stopPropagation();
+                var ul = $(".store ul");
+                if(ul.css("display")=="none"){
+                    ul.slideDown("fast");
+                }else{
+                    ul.slideUp("fast");
+                }
+            });
+
+            $(document).click(function(){
+                $(".store ul").hide();
+            });            
+
+            $(".store ul li").each(function(i){
+
+                $(this).click(function(){
+
+                    var txt = $(this).text();
+                    var cinemaCode = $(this).attr('cinemaCode');
+                    $(".store > p").attr('cinemaCode',cinemaCode).html(txt);
+                    $(".store  ul").hide();
+
+                });
+            });
+
+        })
+
+    </script>
+</block>
+

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91女神  新人尊享</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/activities.star'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+</head>
+<body style="background-color:#EEBE3E;">
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+    <div class='starContent1 pos_rel clearfix'>
+    	<img src='{{static_url("web/cssimg/mobile/activities/recommend1.jpg")}}' width="100%">
+    	<div class="description recommend recommend1">
+            <div class="recommend-mid">
+                <div class="_recommend-mid">
+                    <img src='{{static_url("web/cssimg/mobile/activities/lb.png")}}' width="70%" style="display: inline-block;">
+                </div>
+            </div>
+		</div>
+        <div class="description recommend recommend2">
+            <div class="recommend-mid">
+                <div class="_recommend-mid">
+                    <img src='{{static_url("web/cssimg/mobile/activities/bbt.png")}}' width="70%" style="display: inline-block;">
+                </div>
+            </div>
+        </div>
+        <div class="description _recommend _recommend1">
+            <div class="recommend-mid">
+                <div class="_recommend-mid">
+                    <img src='{{static_url("web/cssimg/mobile/activities/xrhz.png")}}' width="70%" style="display: inline-block;">
+                </div>
+            </div>
+        </div>
+        <div class="description _recommend _recommend2">
+            <div class="recommend-mid">
+                <div class="_recommend-mid">
+                    <img src='{{static_url("web/cssimg/mobile/activities/zxc.png")}}' width="70%" style="display: inline-block;">
+                </div>
+            </div>
+        </div>
+        <div  class="giftP">
+            <div>超值大礼包已存入您</div>
+            <div><span id="tel" style="color: #fff;font-size: 1.2em;"></span> 的账号中</div>
+        </div>
+    </div>
+    <div  class="downloadApp">
+        <a href="http://m.91ns.com/download/app">下载91女神 APP</a>
+    </div>
+    <!--<div class="ExplainHr"></div>-->
+    <!--<div  class="Explain">-->
+        <!--<img class="openExplain" src='{{static_url("web/cssimg/mobile/activities/hdsm.png")}}' width="70%" style="display: inline-block;">-->
+    <!--</div>-->
+    <div  class="Explain ExplainLQ">
+        <img class="openExplain" src='{{static_url("web/cssimg/mobile/activities/hdsm.png")}}' width="80%" style="display: inline-block;">
+    </div>
+
+    <div  class="ExplainXX ExplainXXLQ">
+        <p>1.本次活动针对在91NS平台未注册的新用户，从2015年7月31日开始，活动期限半年。</p>
+        <p style="font-weight: bolder;font-size:1.1em;text-decoration: underline;">2.发放至手机号的礼包需在App用手机号注册，或将手机号绑定至91NS账户后才能使用。</p>
+        <p>3.发放至91NS的账户的礼包登录后即可使用。</p>
+        <p>4.同一个手机号只能领取一个礼包。</p>
+        <p>5.91NS保留法律范围内允许的对活动的解释权。</p>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/activities.recommend'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

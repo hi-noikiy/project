@@ -1,0 +1,7 @@
+post=a:5:{s:4:"code";s:6:"110329";s:7:"game_id";s:1:"9";s:8:"password";s:7:"w910107";s:4:"sign";s:32:"eb0fb9545831d391607c2de44996de67";s:8:"username";s:11:"18534907753";}, 2017-05-14 11:00:34
+post=a:5:{s:4:"code";s:6:"295892";s:7:"game_id";s:1:"9";s:8:"password";s:9:"40489839a";s:4:"sign";s:32:"eb3c5e15b346d3c7813cb09975a1e5d2";s:8:"username";s:11:"13522997420";}, 2017-05-14 12:22:08
+post=a:5:{s:4:"code";s:6:"236296";s:7:"game_id";s:1:"9";s:8:"password";s:8:"mima0819";s:4:"sign";s:32:"a88e0183a740e5e9b5c20d4d967fcabf";s:8:"username";s:11:"13188286626";}, 2017-05-14 18:36:13
+post=a:5:{s:4:"code";s:6:"939951";s:7:"game_id";s:1:"9";s:8:"password";s:13:"shijianqiushi";s:4:"sign";s:32:"feead9d43cf311c76fc4e6bf56edac36";s:8:"username";s:11:"18151865261";}, 2017-05-14 20:05:07
+post=a:5:{s:4:"code";s:6:"843552";s:7:"game_id";s:1:"9";s:8:"password";s:11:"fashion1985";s:4:"sign";s:32:"e9b129b8b45983672264b96fcf43ae1e";s:8:"username";s:11:"18815615056";}, 2017-05-14 20:45:38
+post=a:5:{s:4:"code";s:6:"843522";s:7:"game_id";s:1:"9";s:8:"password";s:11:"fashion1985";s:4:"sign";s:32:"d879de9e91a21935fcc020f9c072f6ee";s:8:"username";s:11:"18815615056";}, 2017-05-14 20:45:44
+post=a:5:{s:4:"code";s:6:"309744";s:7:"game_id";s:1:"9";s:8:"password";s:12:"hx1998121955";s:4:"sign";s:32:"6ea9fd482ff38d14af3b34939400ca76";s:8:"username";s:11:"18859698932";}, 2017-05-14 22:46:00

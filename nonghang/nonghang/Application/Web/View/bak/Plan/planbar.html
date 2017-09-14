@@ -1,0 +1,154 @@
+<extend name='Public/base'/>
+
+<block name='body'>
+
+
+    <div id="main">
+        <div class="container">
+            <div class="plandata">
+                <div class="cinema-select">
+                    <div id="dropdown">
+                        <p></p>
+                        <ul>
+                        <foreach name='cinemalist' item='vo'>
+                            <li><a  rel="{$vo['cinemaCode']}">{$vo['cinemaName']}</a><p>地址：{$vo['address']}</p></li>
+                         </foreach>
+                        </ul>
+                        <input id="result" type="hidden">
+                        <div class="cinema-address">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="scrollBox" style="margin:0 auto">
+                    <div class="ohbox">
+                        <ul class="piclist time-list">
+                        <!-- <foreach name='time' item='vo'>
+                            <li <?php if($key=='0'){ ?>class="active"<?php }?>><a>{$vo['instr']}{$vo['dtime']}</a></li>
+                        </foreach> -->
+
+                        </ul>
+                    </div>
+                    <div class="pageBtn">
+                        <span class="prev">&lt;</span>
+                        <span class="next">&gt;</span>
+                        <ul class="list"><li>0</li><li>1</li></ul>
+                    </div>
+                </div>
+
+            </div>
+                <div class="movie-lists">
+                <!-- <foreach name='films' item='vo'>
+                    <div class="movie-listItem">
+                       <div class="movie-left">
+                           <img src="{$vo['image']}">
+                       </div>
+                       <div class="movie-right">
+                           <div class="movie-baseInfo">
+                               <h2><a>{$vo['filmName']}</a><span class="type-3D">{$vo['copyType']}</span></h2>
+                               <p>导演：{$vo['director']}</p>
+                               <p>主演：{$vo['cast']}</p>
+                           </div>
+                           <ul>
+                           		<foreach name='vo.planInfo' item='plan'>
+                               <li>
+                                   <a class="time">{$plan['startTime']}</a>
+                                   <a class="current-cost">￥{$plan['priceConfig']['99101']}起</a>
+                                   <a class="type">{$plan['copyLanguage']}</a>
+                                   <a class="prime-cost">{$plan['listingPrice']}</a>
+                               </li>
+                               </foreach>
+                           </ul>
+                       </div>
+                    </div>
+                    </foreach> -->
+                </div>
+            </div>
+    </div>
+
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+    function getPlanlist(cinemaCode,planDate){
+    	 	$('.movie-lists').html('');
+    	 	$('.piclist').html('');
+    	    $.getJSON("{:U('planajax')}",{
+    	        cinemaCode:cinemaCode,
+    	        startTime:planDate,
+    	        random:Math.random(),
+    	        }, function(data) {
+    	            if(data){
+    	            	if(data.planTime){
+    	            		var timestr='';
+    	            		$.each(data.planTime,function(k,value){
+    	            			timestr+='<li onclick="getPlanlist(0,'+value['time']+')"';
+    	            			if(k=='0'){
+    	            				timestr+=' class="active"';
+    	            			}
+    	            			timestr+='><a>'+value['instr']+value['dtime']+'</a></li>';
+    	            		});
+    	            		$('.piclist').html(timestr);
+    	            	}
+						if(data.films){
+							var planstr='';
+							 $.each(data.films,function(k,value){
+								 planstr+='<div class="movie-listItem"><div class="movie-left"><img src="'+value['image']+'"></div><div class="movie-right">'+
+								 '<div class="movie-baseInfo"><h2><a>'+value['filmName']+'</a><span class="type-3D">'+value['copyType']+'</span></h2>'+
+		                         '<p>导演：'+value['director']+'</p><p>主演：'+value['cast']+'</p></div><ul>';
+		                         $.each(value.planInfo,function(key,plan){
+		                        	 planstr+='<li><a class="time">'+plan['startTime']+'</a><a class="current-cost">￥'+plan['priceConfig']['99101']+'起</a>'+
+		                             '<a class="type">'+plan['copyLanguage']+'</a> <a class="prime-cost">'+plan['listingPrice']+'</a></li>';
+		                         });
+		                        planstr+=' </ul></div></div>';
+							 });
+							 $('.movie-lists').html(planstr);
+    	            	}
+    	            }
+    	    }) ;        
+    	}
+        $(function(){
+
+            //默认显示第一个
+            $("#dropdown > p").append($("#dropdown ul li:eq(0) a").clone().text()).attr('cinemaCode',$("#dropdown ul li:eq(0) a").attr('rel'));
+            $(".cinema-address > p").append($("#dropdown ul li:eq(0)").find('p').clone().text());
+            getPlanlist($("#dropdown ul li:eq(0) a").attr('rel'),0);
+
+            $("#dropdown > p").click(function(){
+                var ul = $("#dropdown ul");
+                if(ul.css("display")=="none"){
+                    ul.slideDown("fast");
+                }else{
+                    ul.slideUp("fast");
+                }
+            });
+
+            $('.cinema-address > p').eq(0).show();
+
+            $("#dropdown ul li").each(function(i){
+
+                $(this).click(function(){
+					if($(this).find('a').attr('rel') != $("#dropdown > p").attr('cinemaCode')){
+						var txt = $(this).find('a').text();
+	                    $("#dropdown > p").html(txt).attr('cinemaCode',$(this).find('a').attr('rel'));
+	                    $(".cinema-address > p").empty().append($("#dropdown ul li").eq(i).find('p').clone().text());
+	                    //切换影院
+	                    getPlanlist($(this).find('a').attr('rel'),0);
+					}
+					 $("#dropdown ul").hide();
+                });
+
+            });
+
+            $('.movie-listItem').last().css({'border-bottom':'none'});
+
+        });
+
+        jQuery(".scrollBox").slide({ titCell:".list li",pnLoop:"false", mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
+        
+        
+    </script>
+</block>
+
+
+

@@ -1,0 +1,171 @@
+<div id="breadcrumb">
+    <a onclick="javascript:history.go(-1);" class="go-to-home tip-bottom font font18" style="cursor: pointer;">
+        <i class="icon-arrow-left"></i> 返回 &nbsp;
+    </a> 
+    <a onclick="javascript:history.go(-1);" class="font font18" style="cursor: pointer;"> &nbsp;&nbsp;<span>收益结算 &gt</span></a>
+    <a onclick="javascript:history.go(-1);" class="font font18" style="cursor: pointer;"> <span>已结算&gt</span></a>
+    <a class="current font font18"> <span>详情</span></a>
+    {#{ info|json_encode }#}
+</div>
+
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <div class="user-info" style="text-align:left;position: relative;margin: 30px;">
+        <div class="l-row">
+            <p class="lable font font16 cr-b9">申请人:</p>
+            <p class="font font16">{{info['applyUser']}}</p>
+        </div>
+        <div class="l-row">
+            <p class="lable font font16 cr-b9">申请时间:</p>
+            <p class="font font16">{{info['createTime']}}</p>
+        </div>
+        <div class="l-row">
+            <p class="lable font font16 cr-b9">申请结算人数:</p>
+            <p class="font font16">{{info['peopleNum']}}</p>
+        </div>
+        <div class="l-row">
+            <p class="lable font font16 cr-b9">总金额（人民币）:</p>
+            <p class="font font16">{{info['rmb']}}</p>
+        </div>
+
+    </div>
+    <div class="user-info" style="text-align:left;;position: relative;border-bottom: 0px;margin: -10px 30px;">
+        <div class="l-row">
+            <p class="lable font font16 cr-b9">结算人:</p>
+            <p class="font font16">{{info['auditUser']}}</p>
+        </div>
+        <div class="l-row">
+            <p class="lable font font16 cr-b9">结算时间:</p>
+            <p class="font font16">{{info['auditTime']}}</p>
+        </div>
+    </div>
+</div>
+<!--end sidebar-menu-->
+
+     <div id="content">
+        <div class="row-fluid" style="margin-top: 40px;">
+            <div class="span12">
+                <div class="content-box" style="background: #FFF; text-align: left;  padding-bottom: 40px;">
+                    <div class="row-fluid" style="margin-top: 20px;">
+                        <div class="container-fluid">
+                            <input id="settledid" type="hidden" value="{{info['id']}}">
+                            <table id="tableList" class="table with-check table-purple">
+                                <thead>
+                                <tr>
+                                    <th>结算对象</th>
+                                    <th>银行账户</th>
+                                    <th>结算金额（人民币）</th>
+                                    <th>底薪</th>
+                                    <th>转账凭证</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <!--<td>-->
+                                        <!--<div class="th-header clearfix" style="width: 200px;margin: 0 auto;">-->
+                                            <!--<img style="width: 50px;height: 50px;border-radius: 50px;" class="pull-left" src="/web/img/91ns/u75.jpg">-->
+                                            <!--<div class="th-h-text pull-left">-->
+                                                <!--<p><span>主播号:</span><span>3</span></p>-->
+                                                <!--<p><span>昵称：</span><span>111</span></p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--<p><span>哈时候覅哦</span></p>-->
+                                        <!--<p><span>111sfsdgsdgsgdsgsd</span></p>-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--fjsjfojsaiof-->
+                                    <!--</td>-->
+                                    <!--<td>-->
+                                        <!--<img style="width: 100px;height: 50px;" src="/web/img/91ns/u75.jpg">-->
+                                    <!--</td>-->
+
+                                </tr>
+
+
+                                </tbody>
+                            </table>
+
+                            {% include "common/pagination.html" %}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $(function() {
+        $('body').addClass('anchorinfo');
+
+        getDataList();
+
+    });
+
+    function getDataList(index){
+        var data={};
+        data.id=$('#settledid').val();
+        data.page=index||1;
+        data.pageSize=global.pageSize;
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/getSettleInfo',
+            dataType:'json',
+            success:function(res){
+                var data=res.data;
+                var tableList=document.getElementById("tableList");
+                var tbody= tableList.getElementsByTagName('tbody')[0];
+                dataTable.clearData(tbody);
+
+                var count=document.getElementById('count');
+                count.innerHTML=data.count;
+
+                for(var i=0;i<data.list.length;i++){
+                    addRow(tbody,data.list[i]);
+                }
+                if(!index||index==0){
+                    utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                        page_index+=1;
+                        getDataList(page_index);
+                    });
+                }
+            }
+
+        });
+    }
+
+    function addRow(table,data){
+
+        var row=table.insertRow();
+        var cell=row.insertCell(0);
+        var cell1=row.insertCell(1);
+        var cell2=row.insertCell(2);
+        var cell3=row.insertCell(3);
+        var cell4=row.insertCell(4);
+
+        var html='<div class="th-header clearfix" style="width: 200px;margin: 0 auto;">';
+        html+='<img style="width: 50px;height: 50px;border-radius: 50px;" class="pull-left" src="'+data.logo+'">';
+        html+='<div class="th-h-text pull-left"><p><span></span><span>'+data.uid+'</span></p>';
+        html+='<p><span></span><span>'+data.name+'</span></p></div></div>';
+
+        cell.innerHTML=html;
+        cell1.innerHTML='<p><span>'+data.accountName+'</span></p><p><span>'+data.cardNumber+'</span></p>';
+        cell2.innerHTML=data.rmb;
+        cell3.innerHTML=data.basicSalary;
+        cell4.innerHTML=data.auditImg==null?'':'<img style="width: 100px;height: 50px;" src="'+data.auditImg+'">';
+
+
+        return row;
+    }
+</script>

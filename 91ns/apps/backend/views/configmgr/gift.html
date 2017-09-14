@@ -1,0 +1,550 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a> 
+        <a href="#" class="tip-bottom" data-original-title="">配置管理</a> 
+        <a href="#" class="current">礼物配置</a> 
+    </div>
+    
+   <!--  <h1>Tables</h1> -->
+  </div>
+  <div class="container-fluid">
+   <!--  <hr> -->
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+            <button id="btnadd" class="btn btn-success pull-right">添&nbsp;加</button>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>礼物配置</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table id="dataList" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>礼物类别</th>
+                  <th>礼物名称</th>
+                  <th>聊豆</th>
+                  <th>价格</th>
+                  <th>对方可收到的金币数</th>
+                  <th>最低vip等级</th>
+                  <th>最低富豪等级</th>
+                  <th>打折</th>
+                  <th>免费</th>
+                  <th>是否小礼物</th>
+                  <th>是否需要守护</th>
+                  <th>配置名称</th>
+                  <th>礼物描述</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="pagination" class="pagination alternate pull-right">
+              
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="dialog-form" title="Create new user" style=" display: none;">
+  <p class="validateTips"></p>
+  <div id="userinfoedit">
+   <form id="submitform" action="#" method="get" class="form-horizontal">
+      <input type="hidden" id="d_uid"> 
+
+      <table >
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">礼物名称 :</label>
+              <div class="controls">
+                <input id="name" name="name" type="text" class="span11" placeholder="">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="control-group">
+              <label class="control-label">礼物类别 :</label>
+              <div class="controls">
+                <!-- <input id="typeId" type="text" class="span11"> -->
+                <select name="typeId" id="typeId" style="width:190px">
+                  <option value="">礼物类别</option>
+                </select>
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">聊豆购买价格（虚拟币） :</label>
+              <div class="controls">
+                <input id="coin" name="coin" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="control-group">
+              <label class="control-label">聊币购买价格 :</label>
+              <div class="controls">
+                <input id="cash" name="cash" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <td>
+            <div class="control-group">
+              <label class="control-label">对方接受的聊币数量 :</label>
+              <div class="controls">
+                <input id="recvCoin" name="recvCoin" type="text" class="span11" placeholder="">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="control-group">
+              <label class="control-label">最低VIP等级 :</label>
+              <div class="controls">
+                <input id="vipLevel" name="vipLevel" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+        <td>
+            <div class="control-group">
+              <label class="control-label">最低富豪等级 :</label>
+              <div class="controls">
+                <input id="richerLevel" name="richerLevel" type="text" class="span11" placeholder="">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="control-group">
+              <label class="control-label">打折数(0表示不打折，1-9表示1折到9折) :</label>
+              <div class="controls">
+                <input id="discount" name="discount" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">免费次数 :</label>
+              <div class="controls">
+                <input id="freeCount" name="freeCount" type="text" class="span11" placeholder="">
+              </div>
+            </div>
+          </td>
+
+          <td>
+            <div class="control-group">
+              <label class="control-label">配置名称 :</label>
+              <div class="controls">
+                 <input id="configName" name="configName" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">是否小礼物 :</label>
+              <div class="controls">
+                
+                 <select id="littleFlag" name="littleFlag" class="span11">
+                     <option value="1">是</option>
+                     <option value="0">否</option>
+                 </select>
+
+                <span class="help-block"></span>
+              
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="control-group">
+              <label class="control-label">是否需要守护 :</label>
+              <div class="controls">
+                
+                 <select id="guardFlag" name="guardFlag" class="span11">
+                     <option value="1">是</option>
+                     <option value="0">否</option>
+                 </select>
+
+                <span class="help-block"></span>
+              
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">礼物描述 :</label>
+              <div class="controls">
+                <input id="description" name="description" type="text" class="span12" placeholder="">
+              </div>
+            </div>
+          </td>
+        </tr>
+
+       
+      </table>  
+      
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+$(function(){
+    getDataList();
+    getGiftTypeData();
+});
+
+function getGiftTypeData(index){
+    //basePath
+    var data={};
+    data.page=index||0;
+    data.numPerPage=pagesize;
+    $.ajax({
+      type:"post",
+      url:"/configmgr/getGiftType",
+      data:data,
+      dataType:'json',   
+      success:function(res){
+        
+        var data=res.data;
+        var carid=document.getElementById('typeId');
+        
+        for(var i=0; i<data.list.length;i++){
+          var option=document.createElement('option');
+          option.value=data.list[i].typeId;
+          option.innerText=data.list[i].name;
+          carid.appendChild(option);
+        }
+
+
+      }
+    });
+
+  }
+
+/**
+* 初始化为空
+*/
+function Initialization(){
+
+  var submitform=document.getElementById('submitform');
+    
+    submitform.typeId.value='';
+    submitform.name.value='';
+    submitform.coin.value='';
+    submitform.cash.value='';
+    submitform.recvCoin.value='';
+    submitform.vipLevel.value='';
+    submitform.richerLevel.value='';
+    submitform.discount.value='';
+    submitform.freeCount.value='';
+    submitform.littleFlag.value='';
+    submitform.guardFlag.value='';
+    submitform.configName.value='';
+    submitform.description.value='';
+    
+}
+  
+ var btnadd=document.getElementById('btnadd');
+ utils.addEvent(btnadd,'click',addData);
+
+ function addData(){
+  $( "#dialog-form" ).dialog({
+      width: 700,
+      title:'添加礼物信息',
+      modal:true,
+      closeOnEscape:true,
+      resizable:false,
+      open:function(res){
+          Initialization();
+        },
+      buttons:{
+        "添加":function(){
+
+          var submitform=document.getElementById('submitform'),
+          data={};
+
+          data.action="add";
+
+          data.typeId=submitform.typeId.value;
+          data.name=submitform.name.value;
+          data.coin=submitform.coin.value;
+          data.cash=submitform.cash.value;
+          data.recvCoin=submitform.recvCoin.value;
+          data.vipLevel=submitform.vipLevel.value;
+          data.richerLevel=submitform.richerLevel.value;
+          data.discount=submitform.discount.value;
+          data.freeCount=submitform.freeCount.value;
+          data.littleFlag=submitform.littleFlag.value;
+          data.guardFlag=submitform.guardFlag.value;
+          data.description=submitform.description.value; 
+          data.configName=submitform.configName.value; 
+
+          $.ajax({
+              type:"post",
+              url:"/configmgr/updateGift",
+              data:data,
+              dataType:'json',
+              success:function(res){
+                if(res.code==0){
+                  getDataList();
+                  $("#dialog-form" ).dialog("close");
+                }else{
+                  alert(res.info);
+                }
+              }
+          });
+
+          
+        },
+        "取消":function(){
+          $(this).dialog("close");
+        }
+
+      }
+  });
+ }
+
+ function getDataList(index){
+  var data={};
+  data.page=index||0;
+  data.numPerPage=pagesize;
+  $.ajax({
+    type:"post",
+    url:"/configmgr/getGift",
+    data:data,
+    dataType:'json',   
+    success:function(res){
+      
+      var data=res.data;
+      var table=document.getElementById("dataList");
+      var tbody= table.getElementsByTagName('tbody')[0];
+
+      dataTable.clearData(tbody);
+      
+      for(var i=0;i<data.list.length;i++){
+        addRow(tbody,'',data.list[i]);
+      }
+      
+      if(!index||index==0){
+        initPagination(data.count);
+      }
+
+    }
+  });
+}
+
+function initPagination(page) {
+  $("#pagination").pagination(page, {
+      callback: pageselectCallback,
+      items_per_page:pagesize, // 每页只显示一条记录
+      num_display_entries : 3,
+      num_edge_entries : 1, 
+      prev_text : "上一页",  
+      next_text : "下一页", 
+  });
+}
+
+function pageselectCallback(page_index, jq){
+    getDataList(page_index);
+    return false;
+}
+
+function addRow(table,index,data){
+  var row=table.insertRow();
+  var cell=row.insertCell(0);
+  var cell1=row.insertCell(1);
+  var cell2=row.insertCell(2);
+  var cell3=row.insertCell(3);
+  var cell4=row.insertCell(4);
+  var cell5=row.insertCell(5);
+  var cell6=row.insertCell(6);
+  var cell7=row.insertCell(7);
+  var cell8=row.insertCell(8);
+  var cell9=row.insertCell(9);
+  var cell10=row.insertCell(10);
+  var cell11=row.insertCell(11);
+  var cell12=row.insertCell(12);
+  var end=row.insertCell(13);
+  
+  cell.innerHTML=data.typeName;
+  cell1.innerHTML=data.name;
+  cell2.innerHTML=data.coin;
+  cell3.innerHTML=data.cash;
+  cell4.innerHTML=data.recvCoin;
+  cell5.innerHTML=data.vipLevel;
+  cell6.innerHTML=data.richerLevel;
+  cell7.innerHTML=data.discount;
+  cell8.innerHTML=data.freeCount;
+  cell9.innerHTML=data.littleFlag==1?"是":"否";
+  cell10.innerHTML=data.guardFlag==1?"是":"否";
+  cell11.innerHTML=data.configName;
+  cell12.innerHTML=data.description;
+
+  var deit=document.createElement("a"),
+  del=document.createElement("a");
+  
+  deit.innerHTML='编辑';
+  deit.className="table-edit";
+  deit.data=data.id;
+  utils.addEvent(deit,'click',dataEdit);
+
+  del.innerHTML='删除';
+  del.data=data.id; 
+  utils.addEvent(del,'click',dataDelete); 
+
+  end.appendChild(deit);
+  end.appendChild(del);
+    
+  return row;
+}
+
+
+function dataEdit(){
+  var btn=this;  
+  var url="/configmgr/updateGift/"+btn.data;
+  
+   $( "#dialog-form" ).dialog({
+        width: 700,
+        title:'修改礼物信息',
+        modal:true,
+        closeOnEscape:true,
+        resizable:false,
+        open:function(){
+          var data={};
+          data.action='';
+
+          Initialization();
+
+          $.ajax({
+            type:"post",
+            data:data,
+            url:url,
+            dataType:'json',
+            success:function(res){
+              var data= res.data;
+
+              var submitform=document.getElementById('submitform');
+              submitform.typeId.value=data.typeId;
+              submitform.name.value=data.name;
+              submitform.coin.value=data.coin;
+              submitform.cash.value=data.cash;
+              submitform.recvCoin.value=data.recvCoin;
+              submitform.vipLevel.value=data.vipLevel;
+              submitform.richerLevel.value=data.richerLevel;
+              submitform.discount.value=data.discount;
+              submitform.freeCount.value=data.freeCount;
+              submitform.littleFlag.value=data.littleFlag;
+              submitform.guardFlag.value=data.guardFlag;
+              submitform.configName.value=data.configName; 
+              submitform.description.value=data.description; 
+              
+            }
+          });
+        },
+        buttons:{
+          "修改":function(){
+            var submitform=document.getElementById('submitform'),
+            data={};
+
+            data.action="update";
+
+            data.typeId=submitform.typeId.value;
+            data.name=submitform.name.value;
+            data.coin=submitform.coin.value;
+            data.cash=submitform.cash.value;
+            data.recvCoin=submitform.recvCoin.value;
+            data.vipLevel=submitform.vipLevel.value;
+            data.richerLevel=submitform.richerLevel.value;
+            data.discount=submitform.discount.value;
+            data.freeCount=submitform.freeCount.value;
+            data.littleFlag=submitform.littleFlag.value;
+            data.guardFlag=submitform.guardFlag.value;
+            data.configName=submitform.configName.value; 
+            data.description=submitform.description.value; 
+
+            $.ajax({
+              type:"post",
+              data:data,
+              url:url,
+              dataType:'json',
+              success:function(res){
+                if(res.code==0){
+                  getDataList();
+                  $("#dialog-form" ).dialog("close");
+                }else{
+                  alert(res.info);
+                }       
+              }
+            });
+            
+          },
+          "取消":function(){
+            $(this).dialog("close");
+          }
+
+        }
+   });
+
+  
+
+}
+
+function dataDelete(){
+  if(confirm("确定要删除该数据")){
+    var btn=this;  
+    var url="/configmgr/updateGift/"+btn.data,
+    data={};
+    data.action="del";
+    $.ajax({
+      type:"post",
+      data:data,
+      url:url,
+      dataType:'json',
+      success:function(res){
+        if(res.code==0){
+          getDataList();
+         //dataTable.delTableRow(btn);
+        }else{
+          alert(res.info);
+        }       
+      }
+    });
+  }
+}
+
+</script>

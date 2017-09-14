@@ -1,0 +1,149 @@
+<extend name='Public/base'/>
+<block name='title'>限时抢购</block>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/index')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">限时抢购</div>
+    <div class="right"></div>
+  </div>
+</div>
+</block>
+<block name='body'>
+
+
+	<div data-page="buying" class="page" id="page-buying">
+    <input type="hidden" value="{:U('checkOrderNum')}" name="checkOrderNum" id="checkOrderNum">
+    <input type="hidden" value="{:U('checkSum')}" name="checkSum" id="checkSum">
+    <input type="hidden" value="{:U('cancelOrder')}" name="cancelOrder" id="cancelOrder">
+    <input type="hidden" value="{:U('public/login')}" name="loginUrl" id="loginUrl">
+    <input type="hidden" value="{:U()}" name="thisUrl" id="thisUrl">
+    	<div class="main">
+
+            <!--超时提示-->
+            <div class="error-section" style="display:none">
+                <div class="error-tip">
+                    <h2>提示</h2>
+                    <p style="line-height:25px;">您有未支付订单!
+                    <br />还有<span id="orderTimers" data=""></span>超时</p>
+                    <a class="close-btn" id="cancelBtn" couponId="" couponOrderId="" style="width:50%; float:left">取消订单</a><a class="close-btn" style="width:50%; float:left" href="javascript:continuePayOrder('{:U('pay')}')">继续支付</a>
+                </div>
+            </div>
+
+
+
+        <foreach name="couponsList" item="vo" key="k" >
+            <div class="voucher-item">
+                <div class="item-left">
+                    <h4>{$vo.iconName}</h4>
+                    <p>兑换券</p>
+                </div>
+                <div class="item-right">
+                    <h4>{$vo.couponName}</h4>
+                    <ul>
+                    <li><span>¥<b>{$vo.newPrice}</b></span><s>&nbsp;&nbsp;¥{$vo.oldPrice}&nbsp;&nbsp;</s></li>
+                        <li>有效期：{$vo.voucherStartDate|date='Y/m/d',###}-{$vo.voucherEndDate|date='Y/m/d',###}</li>
+                        <li>兑换说明：{$vo.couponDescription}</li>
+                        <li>备注：{$vo.couponRmark}</li>
+                    </ul>
+                    <?php if ($vo['buyingStartTime'] <= time()) {
+                        echo '<p id="showSelltimer'.$vo['couponId'].'" class="couponSum"><span><span class="timerText">剩</span><i></i><span class="timerText">张</span></span><a data="'.$vo['couponId'].'">立即抢购</a></p>';
+                    }else{
+                        echo '<p class="timer" data="'.($vo['buyingStartTime'] - time()).'" id="timer'.$vo['couponId'].'"><span class="timerText">剩</span><span class="timerDate"></span><span class="timerText">天</span><span class="timers"></span></p>
+                            <p id="showSelltimer'.$vo['couponId'].'" style="display:none"  class="couponSum"><span>剩余<i></i>张</span><a data="'.$vo['couponId'].'">立即抢购</a></p>
+
+                        ';
+                    }
+
+                    ?>
+                    
+                </div>
+            </div>
+        </foreach>
+            
+    	</div>
+		<div class="picker-modal picker-info" id="pay-section">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <div class="left"></div>
+                <div class="text"></div>
+                <div class="right"><a href="#" class="close-picker"></a></div>
+            </div>
+        </div>
+        <div class="picker-modal-inner">
+            <div class="content-block">
+
+                <div class="list-block">
+                    <h4>农行账户支付</h4>
+                    <ul>
+                        <li>
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="my-radio" value="Books" checked="checked">
+                                <div class="item-inner">
+                                    <div class="item-type"></div>
+                                    <p>推荐持有农行掌上银行及K码用户使用</p>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                    <p>*一个会员账号仅限购买2张；</p>
+                    <p>* 数量有限，请在<span>10</span>分钟内完成支付，超时将自动取消订单。</p>
+                </div>
+                <div class="pay-block">
+                    <span class="text">购买数量：</span>
+                    <div class="Spinner">
+                        <a class="leftBtn"></a>
+                        <input type="tel" id="couponBuySum">
+                        <a class="rightBtn"></a>
+                    </div>
+                    <input type="hidden" id="couponId">
+                    <a href="javascript:createOrder('{:U('pay')}', $('#couponId').val(), 0)">立即支付（¥<i class="cost">10</i>）</a>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="modal-overlay"></div>
+
+    </div>
+    
+</block>
+<block name='script'>
+<script type="text/javascript">
+
+    $(function(){
+
+        var myApp = new Framework7();
+        var $$ = Dom7;
+        //弹出支付小窗口
+        $$('.item-right p a').on('click', function () {
+
+            var a = $(this).parents('.item-right').find('b').text();
+            $('.cost').text(a).attr('unitPrice',a);
+            myApp.pickerModal('.picker-info');
+        });
+
+        //加减按钮功能
+        $(".Spinner").Spinner({value:1, min:1, len:2, max:99});
+        //关掉支付的弹窗提示的遮罩层
+        $('.close-picker').on('click',function(){
+
+            //清空之前的val
+            $('.Amount').val('1');
+        });
+
+        //点击按钮价格变化
+        $('.Spinner>a').on('click',function(){
+            var a = $('.cost').attr('unitPrice');
+            var b = $('.Amount').val();
+
+            allCost = parseFloat(a*b).toFixed(2)
+            $('.cost').text(allCost);
+        })
+        //关掉超时提示
+        $('.close-btn').on('click',function(){
+            $('.error-section').hide();
+        })
+    })
+</script>
+</block>

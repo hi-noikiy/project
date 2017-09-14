@@ -1,0 +1,70 @@
+<script type="text/javascript">window.location.href='/#!/{:U('', array('filmNo'=>$filmNo))}';
+document.write('<div style="display:none">');
+</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/index')}" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">{$plans[0]['cinemaName']}</div>
+    <div class="right"></div>
+  </div>
+</div>
+
+
+<div class="pages">
+  <div data-page="planFilm" class="page">
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+
+
+        <div class="planTop" id="planFilm">
+          <!-- Swiper -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                <volist name='films' id='vo'>
+                    <div class="swiper-slide" id='{$vo["filmNo"]}'  score='{$vo["score"]/10}' name='{$vo["filmName"]}'><img src="{$vo['image']}" height="72" width="54" /></div>
+                </volist>
+                </div>
+                <!-- Add Pagination 
+                <div class="swiper-pagination">
+                </div>-->
+            </div>
+            <div class="planFilmLink">
+              <a href="javascript:details('{$films[0][filmNo]}')"><span>{$films[0]['filmName']}</span><b>{$films[0]['score']/10}</b></a>
+            </div>
+        </div>
+      <div class="dateBox" style="position: static;">
+        <ul class="dateBody"  id="dateBody">
+                <volist name='time' id='vo'>
+                <li planDate="{$vo['time']}" <?php if($i=='1'){ ?>class="cur"<?php }?>>{$vo['instr']}{$vo['dtime']}</li>
+             </volist>
+            </ul>
+        </div>
+        <div class="showPlan">
+      <volist name='plans' id='vo'>
+          <a href="{:U('seat',array('featureAppNo'=>$vo['featureAppNo']))}">
+            <ul>
+                <li class="tal">
+                    <div class="ledTime">{$vo['start']}</div>
+                    <p>{$vo['end']}结束</p>
+                </li>
+                <li class="tac">
+                    <div  class="planStyle">{$vo['copyLanguage']}/{$vo['copyType']}</div>
+                    <p>{$vo['hallName']}</p>
+                </li>
+                <li class="tar">
+                    <div class="planPirce">￥{$vo['memberPrice']}</div>
+                    <s>￥{$vo['listingPrice']}</s>
+                </li>
+            </ul>
+          </a>
+            </volist>
+        </div>
+        <input type="hidden" id='filmCode' value="{$films[0]['filmNo']}"/>
+    </div>
+
+
+    </div>
+  </div>

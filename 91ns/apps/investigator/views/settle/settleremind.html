@@ -1,0 +1,113 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+                {% include "common/tab.html" %}
+            </ul>
+          </div>
+
+              <div class="tab-box" style="margin: 30px 25px 10px 25px;">
+                  <div class="row-fluid font20" style="margin-bottom: 10px;">
+                      结算申请短信通知：结算申请通知通过短信发送到下面预设的号码中
+                      <button type="button" class="btn btn-purple pull-right" onclick="addtelephone()">添加号码</button>
+                  </div>
+                  <div class="row-fluid font20">
+                      <ul>
+                          {%if remindList%}
+                          {% for list in remindList %}
+                          <li class="pull-left" style="width: 180px;height: 50px; border: 1px solid #cccccc;border-bottom: 2px solid #9a98d8;list-style: none;margin-right: 20px;">
+                              <p style="margin-top:10px;margin-left: 5px;"><span>{{list['mobile']}}</span></p>
+                              <span class="pull-right" style="font-size: 16px;margin-top:-10px;" onclick="delMobile({{list['id']}})">删除</span>
+                          </li>
+                          {%endfor%}
+                          {%endif%}
+                       </ul>
+                  </div>
+
+              </div>
+         </div>
+        </div>
+    
+    </div>
+
+<div id="addtelephone" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="addnumDialogForm">
+        <div style="margin-top: 20px;">请输入手机号码</div>
+        <input id="mobile" style="margin-top: 20px;width: 300px;height: 30px;" type="text">
+    </form>
+</div>
+
+
+<script type="text/javascript">
+
+$(function(){
+
+
+});
+
+//  添加号码
+function addtelephone(){
+
+    $('#addtelephone').dialog({
+        autoOpen:true,
+        width:345,
+        height:250,
+        title:'添加手机号码',
+        resizable:false,
+        modal:true,
+        open:function(){
+
+        },
+        buttons: {
+            "确定": function () {
+                var data={};
+                data. mobile=$('#mobile').val();
+                $.ajax({
+                    type:"POST",
+                    data:data,
+                    url:'/ajax/setSettleRemind',
+                    dataType:'json',
+                    success:function(res){
+                        location.reload();
+                    }
+
+                });
+
+            }//,
+            /*"取消": function () {
+
+
+            }*/
+        }
+    });
+}
+
+    function delMobile(id){
+        if(confirm("确定要删除")){
+            var data={};
+            data. id=id;
+            $.ajax({
+                type:"POST",
+                data:data,
+                url:'/ajax/delSettleRemind',
+                dataType:'json',
+                success:function(res){
+                    location.reload();
+                }
+
+            });
+        }
+    }
+
+
+</script>

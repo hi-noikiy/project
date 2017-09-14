@@ -1,0 +1,74 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>  
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+        	<form action="{:U()}"  id='myform'>
+                <div class="inputSelect">
+                    <span>按影院查询：</span>
+                    <select name='cinemaCode'>
+                    	<option value="0">所有影院</option>
+                         <foreach name="cinemaList" item="vo" key="k" >
+                        <option value="{$vo.cinemaCode}"<if condition="$vo['cinemaCode'] == $pageData['cinemaCode']"> selected="selected"</if>>{$vo.cinemaName}</option>
+                        </foreach>
+                    </select>
+                </div>
+                <a href="#" class="button" onclick="$('#myform').submit()">查询</a>
+                <a href="javascript:add();" class="button">添加活动</a>
+                </form>
+			</div>
+        	<div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                     <thead>
+                          <tr>
+                          <td width="10%">影院组</td>
+                            <td width="5%">appId</td>
+                            <td width="5%">appName</td>
+                            <td width="10%">帐号</td>
+                            <td width="">密码</td>
+
+                            <td width="">密码</td>
+                            <td width="">iOS版本</td>
+                            <td width="">安卓版本</td>
+                            <td width="10%">操作</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      <volist name='appAccountList' id='vo'>
+                        <tr>
+                        <td>{$cinemaGroup[$vo['cinemaGroupId']]['groupName']}</td>
+                            <td>{$vo['appId']}</td>
+                            <td>{$vo['appName']}</td>
+                            <td>{$vo['appAccount']}</td>
+                            <td>{$vo['appPasswd']}</td>                            
+                            <td>{$vo['appPasswd']}</td>
+                            <td>{$vo['iOSVersion']}</td>
+                            <td>{$vo['androidVersion']}</td>
+                            
+                            <td> <a class="editFilm" href="javascript:editAppInfo({$vo['appId']});">编辑</a> <a class="deleteFilm"  href="javascript:del({$vo['id']});">删除</a></td>
+                         </tr>
+                         </volist>
+                      </tbody>
+                </table>
+            </div>
+        </div>
+     </div>
+<script type="text/javascript">
+function editAppInfo(appId){
+  layer.open({
+    title :'修改APP配置',
+    type: 2,
+    area: ['450px', '670px'],
+    fix: false, //不固定
+    maxmin: true,
+    content: '{:U('editAppInfo')}?appId=' + appId 
+  });
+}
+</script> 
+</block>

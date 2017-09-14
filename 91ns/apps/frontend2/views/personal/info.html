@@ -1,0 +1,86 @@
+{% extends "template/personal_body.html" %}
+{% block title %}
+个人资料
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('personal.info'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('personal.info'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+<div class="personal-div getpresents clearfix">
+    <div class="title-text">个人资料</div>
+    <div class="info clearfix">
+        <img id="info-avatar" class="avatar" nsdata="userAvatar">
+        <div id="modifyAvatarBtn" class="modifyAvatar">修改头像</div>
+        <div class="msg">
+            <div class="name clearfix">
+                <span>用户名：</span>
+                <span id="info-name" class="info-contents">{{ uinfo['userName'] }}</span>
+                <input id="usernameInput" class="usernameInput" value="" style="display: none;float: none;">
+                <span class="userI" style="display: none;">
+                    <a class="userOk">确定</a>
+                    <a class="userCancel">取消</a>
+                </span>
+                {% if uinfo['canSetUserName']==1 %}
+                <span id="userNameMof" style="width: 30px;height: 20px;"><i class="p-icon-edit editIsShow"></i></span>
+                {% endif %}
+            </div>
+            <div class="userid">ID：<span id="info-id" nsdata="userUID" class="info-contents"></span></div>
+            <div class="nickname">
+                昵称：
+                <span id="info-nickName" nsdata="userNickName" class="info-contents"></span>
+                <input id="nicknameInput" class="usernameInput" value="" style="display: none;float: none;">
+                <span class="nickI" style="display: none;">
+                    <a class="nickOk">确定</a>
+                    <a class="nickCancel">取消</a>
+                </span>
+                <span id="nicknameMof" style="width: 30px;height: 20px;"><i class="p-icon-edit editNickName"></i></span>
+            </div>
+            <div class="signature clearfix">
+                <span>签名：</span>
+                <span id="info-signature" class="info-contents" nodata="{{ uinfo['signature']|default(1) }}">{{ uinfo['signature']|default('主人太懒，什么都没写') }}</span>
+                <textarea id="signatureInput" class="signatureInput" style="display: none;"></textarea>
+                <span id="signatureNumber" class="wordNumber" style="display:none;">0/30</span>
+                <span class="signatureI" style="display: none;">
+                    <a class="signatureOk">确定</a>
+                    <a class="signatureCancel">取消</a>
+                </span>
+                <span id="signatureMof" style="width: 30px;height: 20px;"><i class="p-icon-edit editNickName"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="level clearfix">
+        <div class="left" style="border: 0px;">
+            <div class="level clearfix richerLevel">
+                <div id="info-richerLevel" class="radius" nsdata="level-radius" nstype="richer" level-range="1" level-exp="0">
+                    <div class="bgs"></div>
+                    <div class="type">富豪等级</div>
+                    <i class=""></i>
+                </div>
+                <div class="text">距<i id="info-richerLevelNext" class=""></i>还需消费<span id="info-richerLevelNextExp"></span>聊币升级</div>
+            </div>
+            <!--<div class="level clearfix fansLevel">-->
+                <!--<div id="info-fansLevel" class="radius" nsdata="level-radius" nstype="fans" level-range="1" level-exp="0">-->
+                    <!--<div class="bgs"></div>-->
+                    <!--<div class="type">主粉等级</div>-->
+                    <!--<i class=""></i>-->
+                <!--</div>-->
+                <!--<div class="text">距<i id="info-fansLevelNext" class=""></i>还需<span id="info-fansLevelNextExp"></span>粉丝升级</div>-->
+            <!--</div>-->
+        </div>
+        <!--<div class="right">-->
+            <!--<div class="level clearfix anchorLevel">-->
+                <!--<div id="info-anchorLevel" class="radius" nsdata="level-radius" nstype="anchor" level-range="1" level-exp="0">-->
+                    <!--<div class="bgs"></div>-->
+                    <!--<div class="type">主播等级</div>-->
+                    <!--<i class=""></i>-->
+                <!--</div>-->
+                <!--<div class="text">距<i id="info-anchorLevelNext" class=""></i>还需<span id="info-anchorLevelNextExp"></span>主播经验升级</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
+<div class="reg-avatar-upload" id="reg-avatar-upload">
+    <div class="reg-avatar-flash" id="reg-avatar-flash"></div>
+</div>
+{% endblock %}

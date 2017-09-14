@@ -1,0 +1,72 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+           <ul>
+                {$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+        	<div class="contentBox useradd">
+                <div class="">
+                    <form id="setGrounp" method="post" action="{:U()}" target="postPanel">
+                        <input type="hidden" name="id" value="{$userGroupInfo.id}" />
+                	<div class="queryItem"><p>岗位信息</p></div>
+                    <div class="inputText inputSelect" style="margin-bottom:15px;">
+
+                        <span>影院分组：</span>
+                                        <select name="data[cinemaGroupId]" id="cinemaGroupId">
+                                                <option value="">所有影院分组</option>
+                                                <foreach name="groupList" item="vo" key="k" >
+                                                                <option value="{$vo.id}" <if condition="$vo['id'] == $userGroupInfo['cinemaGroupId']">selected="selected"</if>>{$vo.groupName}</option>
+                                                        </foreach>
+
+                                        </select>
+                    	<span>岗位名称：</span>
+                        <input name="data[roleName]" type="text"  value="{$userGroupInfo.roleName}" placeholder="岗位名称">
+                    
+                    </div>
+                
+                <div class="authority">
+                    <div class="queryItem"><p>权限设置</p></div>
+                    
+
+                    {$menuStrCheck}
+
+                    <if condition="$adminUserInfo['roleId'] neq $userGroupInfo['id'] || IS_ROOT">
+                    <div class="inputText">
+                       <input type="button" class="" style=" " value="全选" onclick="ck(true)">
+                       <input type="button" class=""  style="background:#666;" value="全不选" onclick="ck(false)">
+                    </div>
+                    <div class="" style="text-align:right; "><a href="javascript:submitSerach();" class="button"><if condition="$userGroupInfo['roleName']">更新<else />添加</if></a></div>
+                </if>
+                </div>
+            </form>
+            	<div class="clear"></div>
+            </div>
+            <div class="rightFooter">
+                <p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有  4008-12345678</p>
+            </div>
+        </div>
+        
+</div>
+</div>
+<script type="text/javascript">
+function ck(b)
+{
+    var input = $("input[name='data[rules][]']");
+
+    for (var i=0;i<input.length ;i++ )
+    {
+        if(input[i].type=="checkbox")
+            input[i].checked = b;
+    }
+}
+
+function submitSerach () {
+        $('#setGrounp').submit();
+}
+
+</script> 
+</block>

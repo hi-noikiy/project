@@ -1,0 +1,37 @@
+<link rel="stylesheet" type="text/css" href="{{static_url('base'|ns_css)}}"/>
+<link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}"/>
+
+<script type="text/javascript">
+    var nsConfig = {
+        userUid:'{{ ns_userUid|default(0) }}',
+        pre:'{{ static_url("") }}',
+        iscn:'{{ ns_iscn|default(0) }}',
+        ns_source_login:'{{ ns_source_login|default(0) }}',
+        sourceType:'{{ ns_source|default(0) }}',
+        channelType:"{{ webType['channelType'] }}",
+        domain:'{{ webType["domain"] }}',
+        name:'{{ webType["name"] }}',
+        logoURL:'{{ static_url(webType["logoURL"]) }}',
+        roomLogoURL:'{{ static_url(webType["roomLogoURL"]) }}',
+        roomLoadingURL:'{{ static_url(webType["roomLoadingURL"]) }}',
+        jsURL:'{{ static_url(jsURL) }}',
+        cssURL:'{{ static_url(cssURL) }}',
+        GMQQ:['{{GMQQ[0]}}', '{{GMQQ[1]}}', '{{GMQQ[2]}}']
+    };
+    function requireInit(){
+        require.config({
+            baseUrl:nsConfig.pre + '{{ jsURL }}',
+            urlArgs:1,
+            paths: {
+                jquery:     'tool/jquery-1.11.3.min',
+                JSON:       'tool/json2',
+                md5:        'tool/md5',
+                com:        'tool/com',
+                utils:      'tool/utils',
+                rankModule: 'module/rank',
+                swfobject:  'tool/swfobject'
+            }
+        });
+    };
+</script>
+

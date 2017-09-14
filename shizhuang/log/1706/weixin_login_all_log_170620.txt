@@ -1,0 +1,2 @@
+ post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wPU273EHfMIpe7k-rw3JWj0";s:4:"sign";s:32:"a383f6ad1e42b652a1611775b31715d8";s:7:"game_id";s:1:"9";}, 2017-06-20 13:52:46
+ post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wLVF53nF1-kLEJUa_idgPzk";s:4:"sign";s:32:"7d382b62eaf5a8b720fae09661d6c64e";s:7:"game_id";s:1:"9";}, 2017-06-20 20:02:34

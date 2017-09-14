@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/people'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+</head>
+<body>
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+	<div class='pos_rel video'>
+		<img src='/web/cssimg/mobile/people/bg.jpg' width="100%" />
+		<img src='/web/cssimg/mobile/people/info.png' width="100%" class='pos_ab mask'/>
+		<img id="leftMenu" src='/web/cssimg/mobile/btn/back1.png' width='8%' class='back pos_ab' />
+		<img id="infoAvatar" src  width="23%" class='pos_ab head' />
+        <!--='/web/cssimg/mobile/people/head.jpg'-->
+		<!--<img src='/web/cssimg/mobile/btn/icon3.png' width="5%"  class="pos_ab vip"/>-->
+        <i id="infoVip" class="pos_ab vip s_icon sprite-vip_level"></i>
+		<div class='pos_ab head_bt'>
+			<p class='c_white name ' >
+			</p>
+		</div>
+		<div class='pos_ab mark' style="clear: both;">
+			<!--<img src='/web/cssimg/mobile/btn/hg.png' width='5%' />-->
+			<!--<img src='/web/cssimg/mobile/btn/icon4.png' width='12%' />-->
+			<!--<img src='/web/cssimg/mobile/btn/wo.png' width='5%' />-->
+			<!--<img src='/web/cssimg/mobile/btn/qiandao.png' width='5%' />-->
+			<!--<img src='/web/cssimg/mobile/btn/home.png' width='8%' />-->
+			<!--<img src='/web/cssimg/mobile/btn/level.png' width='15%' />-->
+            <i id="T_zb" class="img sprite-zb_level" width='5%'></i>
+            <!--<i id="T_qd" class="img sprite-zb_level" width='5%'></i>-->
+            <i id="T_fh" class="img sprite-fh_level" width='8%'></i>
+            <i id="T_zf" class="img sprite-zf_level" width='12%'></i>
+		</div>
+	</div>
+	<div class='gx clear_all pos_rel'>
+		<div class="pt_10 top">
+			<!--<img class="fl money" src="/web/cssimg/mobile/btn/coin.png" width="5%">-->
+            <i class="fl money bill-icon bill-icon-cash"></i>
+			<p id="T_cash" class="fl title1 c_dark">
+				0
+			</p>
+            <!--<img class="fl money" src="/web/cssimg/mobile/btn/coin.png" width="5%">-->
+            <i class="fl money bill-icon bill-icon-bean"></i>
+			<p id="T_bean" class="fl title1 c_dark">
+				0
+			</p>
+			<p class="fr title2">
+				<a href="/charging" style="color: #ff9728">充值》</a>
+			</p>
+			<div class='clear_all line pt_10'></div>
+		</div>
+		<div class="choose_p">
+			<div class="zffs">
+				<p class="fl c_dark zf">
+					富豪
+				</p>
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl' width='14%' />-->
+                    <i id="T_fhLow" class="img fl sprite-fh_level" width='14%'></i>
+					<div class='progress fl'>
+						<p id="fhText" class='c_gray'>还需消费655.36万聊币</p>
+						<div class='line' >
+							<div id="fhRedLine" class='redline'></div>
+						</div>
+					</div>
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl' width='14%' />-->
+                    <i id="T_fhHigh" class="img fl sprite-fh_level" width='14%'></i>
+				<div class="clear_all"></div>
+			</div>
+			<div class="zffs">
+				<p class="fl c_dark zf">
+					主播
+				</p>
+					<!--<img src='/web/cssimg/mobile/btn/leve2.png' class='fl' width='6%' />-->
+                <i id="T_zbLow" class="img fl sprite-zb_level" width='6%'></i>
+					<div class='progress fl'>
+						<p id="zbText" class='c_gray'>经验的进口较大</p>
+						<div class='line' >
+							<div id="zbRedLine" class='redline'></div>
+						</div>
+					</div>
+					<!--<img src='/web/cssimg/mobile/btn/leve2.png' class='fl' width='6%' />-->
+                <i id="T_zbHigh" class="img fl sprite-zb_level" width='6%'></i>
+				<div class="clear_all"></div>
+			</div>
+			<div class="zffs enm">
+				<p class="fl c_dark zf">
+					主粉
+				</p>
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class='fl' width='17%' />-->
+                <i id="T_zfLow" class="img fl sprite-zf_level" width='17%'></i>
+					<div class='progress fl'>
+						<p id="zfText" class='c_gray'>还需消费655.36万聊币</p>
+						<div class='line' >
+							<div id="zfRedLine" class='redline'></div>
+						</div>
+					</div>
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class='fl' width='17%' />-->
+                <i id="T_zfHigh" class="img fl sprite-zf_level" width='17%'></i>
+				<div class="clear_all"></div>
+			</div>
+			
+		</div>
+		<div class="line_p"></div>
+	</div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/user'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

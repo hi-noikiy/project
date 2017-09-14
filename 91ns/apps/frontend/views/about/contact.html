@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+{% include "template/about_link.html" %}
+<link rel="stylesheet" type="text/css" href="{{static_url('about/index'|ns_css)}}"/>
+</head>
+<body class="clearfix">
+{% include "template/about_header.html" %}
+<div class="content contact w1000m500">
+    <i class="title"></i>
+    <div class="banner">
+    	<div class="content1"></div>
+    	<div class="content2">
+    		<p class="h3">91NS.COM</p>
+    		<p>
+    			公司地址：福建省福州市鼓楼区
+    			</br>
+    			树汤路紫荆花园办公区2号楼
+    		</p>
+			<p>邮政编码：350001</p>
+			<p>客服电话：4009990591</p>
+			<p>邮箱：cyy@91ns.com</p>
+    	</div>
+    </div>
+    <div class="content clearfix">
+    	<div class="left">
+    		<div class="top">公司地图</div>
+    		<div class="content">
+    			<h3>公交车-古三座：</h3>
+    			<p>
+    				107路、117路、121路、128路、129路、166路、
+    				</br>
+    				177路、22路、322路、51路、52路、55路、5路、
+    				</br>
+    				69路、72路、76路、9路。
+    			</p>
+    			<h3>公交车-温泉路口：</h3>
+    			<p>
+    				100路、107路、166路、177路、2路、322路、61路、
+    				</br>
+    				70路、78路、K3路。
+    			</p>
+    		</div>
+    	</div>
+    	<div class="right"></div>
+    </div>
+</div>
+{% include "template/about_footer.html" %}
+</body>
+</html>

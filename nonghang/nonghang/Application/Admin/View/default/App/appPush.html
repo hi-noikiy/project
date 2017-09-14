@@ -1,0 +1,169 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>  
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+        	<form action="{:U()}"  id='myform'>
+                <!-- <div class="inputSelect">
+                    <span>按影院查询：</span>
+                    <select name='cinemaCode'>
+                    	<option value="0">所有app</option>
+                         <foreach name="appList" item="vo" key="k" >
+                        <option value="{$vo.appId}"<if condition="$vo['appId'] == $pageData['appid']"> selected="selected"</if>>{$vo.appName}</option>
+                        </foreach>
+                    </select>
+                </div>
+                <a href="#" class="button" onclick="$('#myform').submit()">查询</a>-->
+                <a href="{:U('appAppPush')}" class="button">添加推送</a> 
+                </form>
+	·		</div>
+        	<div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                     <thead>
+                         <tr>
+                            <td width="5%">序号</td>
+                            <td width="15%">标题</td>
+                            <td width="10%">内容</td>
+                            <td width="15%">手机类型</td>
+                            <td width="10%">发送时间</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      <volist name='list' id='vo'>
+                        <tr>
+                            <td>{$vo['messageId']}</td>
+                            <td>{$vo['title']}</td>
+                            <td>{$vo['content']}</td>
+                            <td>{$vo['msgType']}</td>
+                            <td>{$vo['addtime']|date='Y-m-d H:i:s',###}</td>
+                       	</tr>
+                         </volist>
+                      </tbody>
+                </table>
+            </div>
+            <div class="rightFooter">
+                <p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有  4008-12345678</p>
+            </div>
+        </div>
+     </div>
+<script type="text/javascript">
+$(function(){
+	var urlstr="?cinemaCode={$pageData['cinemaCode']}";
+	$('.page a').each(function(){
+		$(this).attr('href',$(this).attr('href')+urlstr);
+	});
+});
+function add(){
+    layer.open({
+		   type: 1,   //0-4的选择,
+			title: false,
+			border: [0],
+			closeBtn: [0],
+			skin: 'layui-layer-rim', //加上边框
+			shadeClose: true,
+			area: ['500px', 'auto'],
+			content: '<form id="form" action="'+"{:U()}"+'" method="post" enctype="multipart/form-data" target="myframe"><div class="binding editPrice"><table border="0" cellpadding="0" cellspacing="0"><thead>'+
+			'<tr><th colspan="2">APP Banner添加</th></tr></thead><tbody>'+
+			'<tr><td>选择APP</td><td><select name="data[appid]">'+
+			<volist name='appList' id='vo'>
+			'<option value="{$vo[appId]}">{$vo[appName]}</option>'+
+			</volist>
+			'</select> </td></tr>'+
+			'<tr><td>标题</td><td><input name="data[title]" type="text" placeholder="请输入banner标题" /> </td></tr>'+
+			'<tr ><td >跳转</td><td><select name="data[way]">'+
+			<volist name='golist' id='vo'>
+			'<option value="{$vo[0]}">{$vo[1]}</option>'+
+			</volist>
+			'</select> </td></tr>'+
+			'<tr ><td >参数</td><td><input name="data[data]" type="text" placeholder="请输入参数" /></td></tr>'+
+			'<tr><td>优先级</td><td><input name="data[priority]" type="text" placeholder="请输入1-255数字"></td> </tr> '+
+			'<tr ><td>banner图片</td><td><input name="img" type="file"/></td></tr></tbody></table>'+
+			'<div class="editBtn"><a href="javascript:submit();" class="button">提交</a><a href="javascript:close()" class="cancel" >取消</a></div></div></form>'  
+		});
+}
+
+function edit(id){
+	$.get('getBanner',{id:id},function(json){
+		var data=JSON.parse(json);
+		var str='<form id="form" action="'+"{:U()}"+'" method="post" enctype="multipart/form-data" target="myframe"><div class="binding editPrice"><table border="0" cellpadding="0" cellspacing="0"><thead>'+
+		'<tr><th colspan="2">APP Banner编辑</th></tr></thead><tbody>'+
+		'<tr><td>选择影院</td><td><select name="data[appid]">';
+		<volist name='appList' id='vo'>
+		str+='<option value="{$vo[appId]}" ';
+		if(data['appid']=="{$vo[appId]}"){
+			str+='selected';
+		}
+		str+='>{$vo[appName]}</option>';
+		</volist>
+		str+='</select> </td></tr>'+
+		'<tr><td>标题</td><td><input name="data[title]" value="'+data['title']+'" type="text" placeholder="请输入banner标题" /> </td></tr>'+
+		'<tr ><td >跳转</td><td><select name="data[way]">';
+		<volist name='golist' id='vo'>
+		str+='<option value="{$vo[0]}" ';
+		if(data['way']=="{$vo[0]}"){
+			str+='selected';
+		}
+		str+='>{$vo[1]}</option>';
+		</volist>
+		str+='</select> </td></tr>'+
+		'<tr ><td >参数</td><td><input name="data[data]" value="'+data['data']+'" type="text" placeholder="请输入链接" /></td></tr>'+
+		'<tr><td>优先级</td><td><input name="data[priority]" value="'+data['priority']+'" type="text" placeholder="请输入1-255数字"></td> </tr> '+
+		'<tr ><td>banner图片</td><td><input name="img" type="file"/><input name="data[id]" type="hidden" value="'+id+'"/></td></tr></tbody></table>'+
+		'<div class="editBtn"><a href="javascript:;" onclick="submit()" class="button">提交</a><a href="javascript:close()" class="cancel" >取消</a></div></div></form>' ;
+		layer.open({
+		   type: 1,   //0-4的选择,
+			title: false,
+			border: [0],
+			closeBtn: [0],
+			skin: 'layui-layer-rim', //加上边框
+			shadeClose: true,
+			area: ['500px', 'auto'],
+			content: str
+		});
+	});
+}
+function close(){
+	layer.closeAll();
+}
+
+function submit(){
+	var title=$('input[name="data[title]"]').val();
+	var data=$('input[name="data[data]"]').val();
+	var priority=$('input[name="data[priority]"]').val();
+	if(title.trim()==''){
+		layer.alert('标题不能为空');
+		return false;
+	}
+	if(data.trim()==''){
+		layer.alert('参数不能为空');
+		return false;
+	}
+	var patrn=/^\d+$/; 
+	if(!patrn.exec(priority)||priority<1||priority>255){
+		layer.alert('请输入正确优先级');
+		return false;
+	}
+	$("#form").submit();
+}
+
+function del(id){
+	layer.confirm('确认是否删除？',function(index){
+	     $.get("{:U('delete')}",{id:id},function(msg){
+			if(msg=='1'){
+				location.reload();			
+			}else{
+				layer.alert('删除失败');
+			}
+	     });
+		},function(index){
+
+		});
+}
+</script> 
+</block>

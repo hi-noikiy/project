@@ -1,0 +1,31 @@
+<extend name='Public/bookbase'/>
+<block name='title'>新增收票地址</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="#" class="back link">
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">新增收票地址</div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+    <div class="pages">
+        <div data-page="addressReceiving" class="page">
+
+            <div class="main" id="page-addressReceiving">
+                <p>收货人</p>
+                <input type="text" id='addressReceiving_name'>
+                <p>手机号码</p>
+                <input type="text" id='addressReceiving_phone'>
+                <p>详细地址</p>
+                <textarea id='addressReceiving_address'></textarea>
+                <a href="javascript:addressReceiving_consigneeInfo()">保存</a>
+
+                <div style="display:none" id="addressReceiving_thisUrl">{:U('bookwhole/consigneeInfo')}</div>
+            </div>
+        </div>
+    </div>
+</block>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>中瑞影视2016年年会</title>
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<link rel="stylesheet" type="text/css" href="__CSS__/style.css" />
+</head>
+
+<body>
+
+<style>
+body{
+	background:#b91a35 url(__IMG__/bg.jpg) no-repeat;
+	background-size:cover;
+	font-family:'微软雅黑';
+	}
+</style>
+<div class="getTime" id="getTime"></div>
+<div id="yinyue">
+    <audio src="__IMG__/sound/1.wav" autoplay loop id="bj" class="audio"></audio>
+    <audio src="__IMG__/sound/2.wav" autoplay  class="audio"></audio>
+    <audio src="__IMG__/biao/ID{$id}.wav" autoplay loop  class="audio"></audio>
+</div>	
+
+<div class="box">
+	<div class="content">
+    	<div class="contentleft"><img src="__IMG__/num/{:intval($id/10)}.png" height="80" /><img src="__IMG__/num/{$id-intval($id/10)*10}.png" height="80" /></div>
+        <div class="contentright"><p>{$programConfig.type}：{$programConfig.name}</p><p>{$programConfig.store}</p></div>
+        <div class="clear"></div>
+    </div>
+    <div class="loading">
+        <div class="tbox" style="overflow:hidden">
+            <div class="tiao"></div>
+        </div>
+        <div class="ok"><span id="nowVote">{$nowVote}</span>票</div>
+        <div class="clear"></div>
+    </div>
+</div>
+<script>
+// document.getElementById("bj").volume = 0.1;
+
+var i=0;
+
+	
+    /*add——创建tbx下的div加文字和变宽度的方法*/
+    function add(i){
+		    var tbox =$(".tbox");
+            var tiao =$(".tiao");
+			
+			tiao.css("width",i+"%");
+			// .html(i+"%");
+}
+
+	
+	//页面倒计时
+
+	function daojis (time) {
+		// alert(time);
+		var minute = 0;
+		var m1 =  parseInt(time/10);
+		var m2 = time-m1*10;
+		var strTime = '<span><img src="__IMG__/number/0.png" /><img src="__IMG__/number/0.png" /><img src="__IMG__/number/mh.png" /><img src="__IMG__/number/' + m1 + '.png" /><img src="__IMG__/number/'+m2+'.png" />';
+
+		$('#getTime').html(strTime);
+		if (time == 0 ) {
+			$('#getTime').html('<p>投票结束</p>');
+			return ;
+		};
+		time--;
+		setTimeout("daojis("+time+")",1000);
+	}
+	daojis(30);
+
+function closeSound (time) {
+	if (time == 0 ) {
+		$('#yinyue').html(''); 
+		return ;
+	}
+
+	time--;
+	setTimeout("closeSound("+time+")",1000);
+}	
+
+
+closeSound(60);
+
+
+function getVote () {
+	var arg = {
+                    'id': {$id}
+                }
+	$.post('{:U()}', arg, function(json){
+		// alert(json.data/5);
+		add(json.data/3.5);
+        $('#nowVote').html(json.data);
+    }, 'json');
+
+    setTimeout("getVote()", 1000);
+}
+
+getVote();
+
+
+</script>
+</body>
+</html>

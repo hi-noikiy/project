@@ -1,0 +1,124 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<script src="__STATIC__/ueditorFull1.2.2/ueditor.config.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/ueditor.all.min.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
+<form method="post" action="{:U()}" class="dataform" id="dataform">
+	<div class="formBox">
+    <input type="hidden" name="sessionName" value="{$sessionName}" />
+        
+        <div class="inputText" >
+            <span>出售数量：</span>
+            {:count($voucherList)}
+        </div>
+<br />
+
+<div class="inputSelect">
+                    <span>影院分组：</span>
+                    <select name="data[cinemaGroupId]" onchange="getVoucherName(this.value)" id="cinemaGroupId">
+                    <foreach name="cinemaGroup" item="vo" key="k" >
+                        <option value="{$vo.id}" <if condition="$voucherTypeInfo['cinemaGroupId'] == $vo['id']"> selected="selected"</if>>{$vo.groupName}</option>
+                    </foreach>
+                     </select>
+                </div>
+                <br />
+
+                <div class="inputSelect" >
+            <span>适用影院：</span>
+            <select name="data[cinemaCode][]"  size="5" multiple="multiple" id="cinemaCode"  style="height:150px">
+
+            </select>
+        </div>
+<br />
+        <div class="inputSelect">
+            <span>票券类型：</span>
+            <select name="data[typeId]">
+            <option value="-1">不修改</option>
+            <foreach name="voucherTypeList" item="vo" key="k">
+                <option value="{$vo.typeId}" <if condition="$searchTypeId eq $vo['typeId'] "> selected="selected"</if>>{$vo.typeName}</option>
+            </foreach>
+             </select>
+        </div>
+<br />
+        <div class="inputText" >
+            <span>生效时间：</span>
+            <input type="text" name="data[startTime]" class="date"  placeholder="请选择生效时间" value="{$voucherTypeInfo.startTime}">
+        </div>
+        <br />
+        <div class="inputText" >
+            <span>到期时间：</span>
+            <input type="text" name="data[endTime]" class="date"  placeholder="请选择到期时间" value="{$voucherTypeInfo.endTime}">
+        </div>
+        <div style="height:20px; clear:both"><br /></div>
+        <div class="titleBox">
+            <h4>售券说明</h4>
+            <textarea name="data[remark]" id="textarea" cols="45" rows="5"></textarea>
+        </div>
+
+
+    </div>
+	<div class="formBtn">
+        <a href="javascript:ajaxSubmit()" class="button">确认</a>
+         <a href="javascript:parent.layer.closeAll();" class="cancel">取消</a>
+        
+    </div>
+</form>
+<script type="text/javascript">
+
+
+function ajaxSubmit () {
+        // alert('1');
+        $("#dataform").ajaxSubmit({  
+            type:"post",  //提交方式  
+            dataType:"json", //数据类型  
+            url:"{:U()}", //请求url 
+            success:function(json){ //提交成功的回调函数  
+                if (json.status == 1) {
+                    layer.alert(json.content);
+                }else if(json.status == 0){
+                    layer.confirm(json.content, {
+                    btn: ['返回列表'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    parent.location.reload();
+                });
+                }
+                // alert('11');
+            }  
+        });
+    }
+
+
+function getVoucherName (cinemaGroupId) {
+    $.ajax({
+        type:"post",  //提交方式  
+            dataType:"json", //数据类型  
+            url:"{:U('getVoucherName')}", //请求url 
+            data:{'cinemaGroupId':cinemaGroupId},
+            success:function(json){ 
+                $("#voucherType").html('');
+                $("#cinemaCode").html('');
+                if (json.status == 1) {
+                    
+                    layer.alert(json.content);
+                }else if(json.status == 0){
+                    $.each(json.data.cinemaList, function(i,v){
+                        $("#cinemaCode").append('<option value="'+v.cinemaCode+'">'+v.cinemaName+'</option>');
+                    });
+
+                    $.each(json.data.voucherTypeList, function(i,v){
+                        $("#voucherType").append('<option value="'+v.typeId+'">'+v.typeName+'</option>');
+                    });
+                }
+            },
+            error:function(msg) {
+                // alert(msg);
+            }
+
+    });
+}
+
+var cinemaGroupId = $('#cinemaGroupId').val();
+getVoucherName(cinemaGroupId);
+</script> 
+</block>

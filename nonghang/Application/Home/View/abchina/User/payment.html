@@ -1,0 +1,160 @@
+
+<extend name='Public/base'/>
+
+<block name='title'>乐购_支付</block>
+
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><a href="{:U('index/index')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center sliding">乐购_支付</div>
+            <div class="right"></div>
+        </div>
+    </div>
+</block>
+
+<block name='body'>
+
+    <div class="pages">
+        <div data-page="payment" class="page" id="page-payment">
+        <?php foreach ($data as $key => $value) {
+        echo '<div style="display:none" id="' . $key . '">' . $value . '</div>';
+      } ?>
+        <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+            <link rel="stylesheet" href="__CSS__/goods.css?{:time()}">
+            <div class="main">
+                <form>
+                    <div class="orderInfo-item">
+                        <span>{$goods['goodsName']}</span>
+                        <a class="unitPrice">{$goods['price']}元</a>
+                    </div>
+                    <div class="orderInfo-item">
+                        <span>数量</span>
+                        <div class="Spinner">
+                            <a class="leftBtn"><i>-</i></a>
+                            <input type="text" value="1">
+                            <a class="rightBtn"><i>+</i></a>
+                        </div>
+                    </div>
+                    <div class="orderInfo-item last">
+                        <span>总价</span>
+                        <a><i>（共<em class="num">2</em>张）</i><b class="all-price">200</b>元</a>
+                    </div>
+                    <h2>手机号</h2>
+                    <input type='telephone' id="phone" value="{$mobile}"/>
+                    <h2 class="pay-way">选择支付方式</h2>
+                    <div class="list-block">
+                        <ul>
+						<foreach name='payInfo' item='vo'>
+						<li>
+						<label class="label-radio item-content">
+                                 <input type="radio" name="my-checkbox" checked value="{$vo['type']}">
+								<div class="item-inner">
+									<div class="payIcon">
+										<img src="{$vo['icon']}" height="50" />
+									</div>
+									<div class="payInfo">
+										<p>{$vo['name']}</p>
+									</div>
+								</div>
+								<div class="item-media">
+									<i class="icon icon-form-checkbox"></i>
+								</div>
+						</label>
+						</li>
+						</foreach>
+						<!-- Another radio input -->
+
+                        </ul>
+                    </div>
+                    <div class="submit-box">
+                        <a class="bg-blue submit" href="javascript:;">确认支付</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</block>
+<block name='script'>
+<script type="text/javascript">
+function isMobil(s) {   //验证手机号 
+    var patrn=/^1\d{10}$/; 
+    if (!patrn.exec(s)){
+        return false 
+    }else{
+        return true
+    }
+}
+$(".Spinner").Spinner({ min:0, len:2, max:99});
+
+var unitPrice = $('.unitPrice').text(),
+    unitPrice = unitPrice.substr(0,unitPrice.length-1),
+    num = $('.Spinner input').val();
+
+$('.num').text(num);
+$('.all-price').text(unitPrice*num);
+
+$('.Spinner a').click(function(){
+    num = $('.Spinner input').val();
+    $('.num').text(num);
+    $('.all-price').text(unitPrice*num);
+})
+$(function(){
+$('.submit').click(function(){
+if(!isNum(num)){
+    myApp.alert("请选择数量");
+    return false;
+}
+var mobile=$('#phone').val();
+if(!isMobil(mobile)){
+	 myApp.alert("输入正确手机号");
+	 return false;
+}
+var t=$('.list-block input[type="radio"]:checked').val();
+myApp.confirm("去支付", function () {
+	myApp.showIndicator();
+    if(t=='weixinpay'){
+    	var goodsId='{$goods["id"]}';
+    	var number=num;
+    	var payType='weixinpay';
+        var configdata = {
+                appId: $("#appid").html() ,
+                timestamp:  $("#timestamp").html() ,
+                nonceStr: $("#wxnonceStr").html() , 
+                signature: $("#wxSha1").html() , 
+                debug:false,
+                jsApiList: [
+                    'chooseWXPay',
+                ]
+            };
+            wx.config(configdata);
+            var gourl="{:U('paymentsuccess')}";
+            wx.ready(function () {
+                $.post($("#payround").html(),{goodsId:goodsId,number:number,mobile:mobile,payType:payType},function(data){   
+                myApp.hideIndicator();
+                 wx.chooseWXPay({
+                         timestamp:  data['timeStamp'] ,
+                         nonceStr: data['nonceStr'] , 
+                         package: data['package'] , 
+                         signType: data['signType'] , 
+                         paySign: data['paySign'] , 
+                         success: function (res) {
+                        	 location.href=gourl+'?orderid='+data['orderid'];
+                         },
+                     });
+                },'json');
+            });
+            wx.error(function (res) {
+                myApp.alert( res.errMsg );
+            });
+        }
+    });
+});
+})
+</script>
+</block>
+

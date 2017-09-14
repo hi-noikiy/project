@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities.crowdfunded'|ns_css)}}">
+    <link rel="stylesheet" type="text/css" href="{{static_url('icon/personalicon'|ns_css)}}" />
+    <link rel="stylesheet" type="text/css" href="{{static_url('pagination2'|ns_css)}}" />
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+
+    <div class="wrapBd">
+        <div class="bodyBg" style="background-color:#f8f8f8;">
+            <div class="bodyContent">
+                <div class="content-h clearfix">
+                    <a href="/crowdfunded"><img src="{{static_url('web/cssimg2/crowdfunded/img.png')}}"></a>
+                    <div class="h_cake">
+                        <p>
+                            <a href="/crowdfunded">一元夺宝</a>
+                            <i>></i>
+                            <a href="/crowdfunded/goods">所有商品</a>
+                        </p>
+                    </div>
+                    <div class="h_menu_1">
+                        <div class="h_menu_1_top">
+                            <span class="span1">所有商品</span>
+                            <span>(共<span id="count" class="span2">0</span>件相关商品)</span>
+                        </div>
+                        <div class="h_menu_1_bottom">
+                            <div class="h_menu_1_bottom_btn h_menu_1_bottom_btn1 active pull-left" data="1">即将揭晓</div>
+                            <div class="h_menu_1_bottom_btn h_menu_1_bottom_btn2 pull-left" data="2">最热</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="content-c spe clearfix">
+                    <ul id="allGoods" class="indiana indianaList spe clearfix">
+
+                    </ul>
+                    <div class="test aaa" style="text-align: right;padding-top: 30px;">
+                        <div class="pageStyle v2">
+                            <div class="row-fluid">
+                                <div id="pagination" class="pagination alternate"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="actGotop"><a href="javascript:;" title="返回顶部"></a></div>
+            </div>
+
+
+            {% include "template/footer.html" %}
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" defer async data-main="{{static_url('goods'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>

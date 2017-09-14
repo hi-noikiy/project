@@ -1,0 +1,153 @@
+
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title>SDK Native API</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />    
+<meta name="format-detection" content="telephone=no" />
+<meta http-equiv="expires" content="0">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
+<meta http-equiv="cache-control" content="no-cache">
+<style type="text/css">
+    *{margin: 0;padding:0;font-size: 14px;color:#333;text-align: left;}
+    button{padding:0 20px;margin:10px;height:40px;}
+</style>
+<script type="text/javascript">
+window.onload=function(){
+    function connectWebViewJavascriptBridge(callback) {
+        if (window.WebViewJavascriptBridge) {
+            //alert('有window.WebViewJavascriptBridge');
+            callback(WebViewJavascriptBridge);
+        } else {
+            //alert('没有window.WebViewJavascriptBridge');
+            document.addEventListener('WebViewJavascriptBridgeReady', function() {
+                    callback(WebViewJavascriptBridge);
+            }, false);
+        }
+    }
+    connectWebViewJavascriptBridge(function(bridge) {
+        console.log(1111)
+            //alert('执行connectWebViewJavascriptBridge');
+
+        bridge.init(function(message, responseCallback) {
+                if (responseCallback) {
+                    responseCallback("Right back atcha");
+                }
+        });
+        document.getElementById("userGet").onclick=function(){
+            bridge.callHandler('User.Get', null,  function(result) {
+                //alert(JSON.stringify(result));
+                var data=result.data
+                var html='appID:'+data.appId+'<br/> uid:'+data.uid+'<br/>userName:'+data.userName;
+                document.getElementById("userinfo").innerHTML=html;
+                if (!result.data.uid) {
+                    bridge.callHandler('User.Login', null,  function(result) {
+                        alert(JSON.stringify(result));
+                    });
+                }
+            });
+        }
+        document.getElementById("userlogin").onclick=function(){
+            bridge.callHandler('User.Login', null,  function(result) {
+                //alert(JSON.stringify(result));
+                var data=result.data;
+                var html='appID:'+data.appId+'<br/> uid:'+data.uid+'<br/>userName:'+data.userName;
+                document.getElementById("userinfo").innerHTML=html;
+                if (!result.data.uid) {
+                    bridge.callHandler('User.Login', null,  function(result) {
+                        alert(JSON.stringify(result));
+                    });
+                }
+            });
+        }
+        document.getElementById("userShare").onclick=function(){
+            var shareContent = {
+                title: "分享标题",
+                content: "分享长描述",
+                imageUrl: "分享图片",
+                url: "http://share.shitaoapp.com/still?id=10"
+            };
+            bridge.callHandler('Social.Share',   shareContent, function(result) {
+                if(result.errcode==0){
+                    alert('分享成功');
+                }else if(result.errcode==-1){
+                    alert("请求取消");
+                }else if(result.errcode==3){
+                    alert("网络错误");
+                }else if(result.errcode==5){
+                    alert("应用内部出错: 可能是因为网络或者其他原因");
+                }
+            });
+        }
+        document.getElementById("usermessage").onclick=function(){
+            bridge.callHandler('Prompt.Msg',  '非打断性提示');
+        }
+        document.getElementById("useropen").onclick=function(){
+            bridge.callHandler('Navigation.Open',  "http://www.baidu.com/",function(){
+
+                bridge.callHandler('App.Info',  null, function(result) {
+                    if(result.data.domains.Navigation.open!=undefined){
+                        alert("成功");
+                    }else{
+                        alert("请在APP内实现此功能");
+                    }
+                });
+            });
+        }
+        document.getElementById("userclose").onclick=function(){
+            bridge.callHandler('Navigation.Close', null,  function(result) {
+                if(result.errcode==0){
+                    alert('成功');
+                }
+            });
+        }
+        document.getElementById("usermlogin").onclick=function(){
+            bridge.callHandler('Client.Login', null,  function(result) {
+                if(result.errcode==0){
+                    alert('成功');
+                }else if(result.errcode==1){
+                    alert("未授权的的调用");
+                }else if(result.errcode==3){
+                    alert("网络错误");
+                }
+            });
+        }
+        document.getElementById("userappinfo").onclick=function(){
+            bridge.callHandler('App.Info',  null, function(result) {
+                alert(JSON.stringify(result));
+            });
+        }
+        document.getElementById("useranything").onclick=function(){
+            bridge.callHandler('App.CallMethod',  {appid:11},  function(result) {
+                if(result.errcode==4){
+                    alert("请完善此功能")
+                }
+                //alert(JSON.stringify(result));
+            });
+        }
+    });
+}
+
+</script>
+</head>
+<body>
+<button id="userGet">获取当前App登录的用户</button><br/>
+<button id="userlogin">强制调用App的登录功能</button><br/>
+<button id="userShare">分享</button><br/>
+<button id="usermessage">提示</button><br/>
+<button id="useropen">新打开页面</button><br/>
+<button id="userclose">关闭页面</button><br/>
+<button id="usermlogin">强制SDK登录</button><br/>
+<button id="userappinfo">提供给JS app端基本信息</button><br/>
+<button id="useranything">提供给JS调用APP任意方法</button><br/>
+<div id="userinfo">
+     
+</div>
+</body>
+</html>
+

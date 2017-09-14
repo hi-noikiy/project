@@ -1,0 +1,229 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+             {% include "common/tab.html" %}
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+              <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">
+                  <form id="formSearch" class="form-search">
+                      <label style="color: #808080;font-size: 20px;margin-left: 30px;">可以查询最近7天的直播视频</label>
+                      <span class="find-search pull-right" style="margin-right: 20px;">
+                          <i class="icon-search icon-on-right bigger-110"></i>
+                          <input name="name" type="text" placeholder="用户名（uid）或昵称">
+                          <button id="btn_search" type="button" class="btn btn-purple">搜索</button>
+                      </span>
+                  </form>
+                  <input id="swfUrl" type="hidden">
+              </div>
+
+            <div id="tab2" class="tab-pane active">
+                <ul class="playBack-ul clearfix">
+                    <li data="<?php echo date('Y-m-d',strtotime('this day')); ?>"><?php echo date('m-d',strtotime('this day')); ?></li>
+                    <li class="active" data="<?php echo date('Y-m-d',strtotime('-1 day')); ?>"><?php echo date('m-d',strtotime('-1 day')); ?></li>
+                    <li data="<?php echo date('Y-m-d',strtotime('-2 day')); ?>"><?php echo date('m-d',strtotime('-2 day')); ?></li>
+                    <li data="<?php echo date('Y-m-d',strtotime('-3 day')); ?>"><?php echo date('m-d',strtotime('-3 day')); ?></li>
+                    <li data="<?php echo date('Y-m-d',strtotime('-4 day')); ?>"><?php echo date('m-d',strtotime('-4 day')); ?></li>
+                    <li data="<?php echo date('Y-m-d',strtotime('-5 day')); ?>"><?php echo date('m-d',strtotime('-5 day')); ?></li>
+                    <li data="<?php echo date('Y-m-d',strtotime('-6 day')); ?>"><?php echo date('m-d',strtotime('-6 day')); ?></li>
+                    <!--<li data="<?php echo date('Y-m-d',strtotime('-7 day')); ?>"><?php echo date('m-d',strtotime('-7 day')); ?></li>-->
+
+                </ul>
+                <div id="getRECList">
+                    <!--<div class="tab-box playBack-box clearfix">-->
+                        <!--<div class="playBack-box-left pull-left">-->
+                            <!--<img src="/userupload/default/avatars/0.jpg">-->
+                            <!--<p class="p1">hi阿斯顿哦啊</p>-->
+                            <!--<p class="p2">10587</p>-->
+                        <!--</div>-->
+                        <!--<div class="playBack-box-right pull-left">-->
+                            <!--<div class="box-right-up pull-left" onclick="isPage(this,1)"></div>-->
+                            <!--<div class="box-right-content pull-left">-->
+                                <!--<ul class="right-content-ul clearfix">-->
+                                    <!--<li>-->
+                                        <!--<div class="wrap">-->
+                                            <!--<a class="fancybox" href="{{static_url('web/video/video.mp4')}}" data-width="830" data-height="420" data="1"><img src="{{static_url('web/video/player.jpg')}}" width="250" height="150"></a>-->
+                                            <!--<p style="text-align: center">12:25</p>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                            <!--<div class="box-right-down pull-right" onclick="isPage(this,2)"></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                </div>
+                {% include "common/pagination.html" %}
+
+              </div>
+            </div>
+
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+<script type="text/javascript" src="{{static_url('web/js/jquery.fancybox.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/jquery.fancybox.css')}}">
+
+<script type="text/javascript">
+
+    $(function(){
+        getRECList();
+        $(".fancybox").fancybox({
+            fitToView: false,
+            content: '<span></span>', // create temp content
+            scrolling: 'no',
+            afterLoad: function () {
+                var $width = $(this.element).data('width'); // get dimensions from data attributes
+                var $height = $(this.element).data('height');
+                var id=$(this.element).attr('data');
+//                var id=$(this.element).addClass('active');
+                var swfUrl= $('#swfUrl').attr('data');
+                var chatUrl= $(this.element).attr('name');
+                this.content = "<embed src='{{static_url('"+swfUrl+"/Danmu.swf')}}?autostart=true&amp;wmode=opaque&videoURL="+this.href+"&id="+id+"&chatUrl="+chatUrl+"' type='application/x-shockwave-flash' allowScriptAccess='always' width='" + $width + "' height='" + $height + "'></embed>"; // replace temp content
+            }
+        });
+
+        $('.playBack-ul li').click(function(){
+            $('.playBack-ul li').removeClass('active');
+            $(this).addClass('active');
+            getRECList();
+        })
+    });
+
+    var btn_search=global.doc('btn_search');
+    utils.addEvent(btn_search,'click',function(){
+        getRECList();
+    });
+
+    function skinVideo(id,type){
+        var swfUrl= $('#swfUrl').attr('data');
+
+        if(type==1){
+            var videoId=$('.RECList'+id).next().children().children().attr('data');
+//            var viderURL=$('.RECList'+id).next().children().children().attr('href');
+            if(videoId){
+                $('.fancybox-item.fancybox-close').click();
+                $('.RECList'+id).next().children().children().click();
+            }
+            else{
+                alert('已经是最后一个了')
+            }
+
+
+//            $('embed').attr('src',"{{static_url('"+swfUrl+"/Danmu.swf')}}?autostart=true&amp;wmode=opaque&videoURL="+videoURL+"&autostart=true&amp;wmode=opaque&id="+videoId+"");
+        }
+        if(type==0){
+            var videoId=$('.RECList'+id).prev().children().children().attr('data');
+//            var viderURL=$('.RECList'+id).prev().children().children().attr('href');
+//            $('embed').attr('src',"{{static_url('"+swfUrl+"/Danmu.swf')}}?autostart=true&amp;wmode=opaque&videoURL="+videoURL+"&autostart=true&amp;wmode=opaque&id="+videoId+"");
+            if(videoId){
+                $('.fancybox-item.fancybox-close').click();
+                $('.RECList'+id).prev().children().children().click();
+            }
+            else{
+                alert('已经是第一个了')
+            }
+
+        }
+    }
+    var nowNum = 0;   //当前页的索引
+    function isPage(e,type){
+//        var mainWidth = $("#right-content-ul li").width();
+
+
+        if(type==1){
+            var mainWidth = $(e).parent().next().children('ul').children('li').width();
+            var maxCount = Math.floor($(e).parent().next().children('ul').children('li').length/5);
+            if(nowNum > 0){
+                nowNum--;
+                $(e).parent().next().children('ul').css({'margin-left':-mainWidth*5*nowNum,'opacity':1},800,function(){});
+            }
+        }
+        else if(type==2){
+            var mainWidth = $(e).parent().prev().children('ul').children('li').width();
+            var maxCount = Math.floor($(e).parent().prev().children('ul').children('li').length/5);
+            if(nowNum != maxCount){
+                nowNum++;
+                $(e).parent().prev().children('ul').css({'margin-left':-mainWidth*5*nowNum-80,'opacity':1},800,function(){})
+//                maxCount = $("#right-content-ul li").length;
+//                $("#right-content-ul").width(mainWidth*maxCount);
+            }
+
+
+        }
+
+    }
+
+    function getRECList(index){
+        var form=global.doc('formSearch');
+        var data={};
+        data.search=form.name.value;
+        data.date=$('.playBack-ul li.active').attr('data');
+        data.page=index||1;
+        data.pageSize=global.pageSize;
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/getRECList',
+            dataType:'json',
+            success:function(res){
+                var data=res.data;
+                $('#getRECList').html('');
+                $('#swfUrl').attr('data',data.swfUrl);
+                var count=document.getElementById('count');
+                count.innerHTML=data.count;
+
+                for(var i=0;i<data.data.length;i++){
+                    $('#getRECList').append(addRowList(data.data[i],data.RECConfig));
+                }
+                if(!index||index==0){
+                    utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                        page_index+=1;
+                        getRECList(page_index);
+                    });
+                }
+            }
+
+        });
+    }
+
+    function addRowList(data,data1){
+
+        var _html='';
+        _html+='<div class="tab-box playBack-box clearfix"><div class="playBack-box-left pull-left">';
+        _html+='<img src="'+data.avatar+'"><p class="p1">'+data.nickName+'</p><p class="p2">'+data.uid+'</p></div>';
+        _html+='<div class="playBack-box-right pull-left"><div class="box-right-up pull-left"><i onclick="isPage(this,1)"></i></div>';
+        _html+='<div class="box-right-content pull-left"><ul class="right-content-ul clearfix">';
+        for(var j=0;j<data.RECList.length;j++){
+            var url=data1.url+data.RECList[j].streamName+data1.format;
+            var chatUrl=data1.chatUrl+data.RECList[j].streamName+'.txt';
+            _html+="<li class='RECList"+data.RECList[j].id+"'><div class='wrap'>";
+            _html+="<a class='fancybox fancybox"+data.RECList[j].id+"' href='"+url+"' data-width='830' data-height='420' data='"+data.RECList[j].id+"' name='"+chatUrl+"'>";
+            _html+="<img src='{{static_url('web/img/91ns/slt.png')}}' width='250' height='150'></a>";
+            _html+="<p style='text-align: center'>";
+            _html+=ns_getAllTime(data.RECList[j].publicTime);
+            _html+='</p></div></li>';
+        }
+        _html+='</ul></div>';
+        _html+='<div class="box-right-down pull-right"><i onclick="isPage(this,2)"></i></div>';
+        _html+='</div> </div>';
+        return _html;
+
+    }
+</script>
+
+

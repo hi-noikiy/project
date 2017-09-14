@@ -1,0 +1,922 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#tab1">已签约</a></li>
+              <li><a data-toggle="tab" href="#tab2">未签约</a></li>
+              <li><a data-toggle="tab" href="#tab3">分成比例</a></li>
+              <li><a data-toggle="tab" href="#tab4">兑换限制</a></li>
+              <li><a data-toggle="tab" href="#tab5">签约申请<span class="tir">2</span></a></li>
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+            <div id="tab1" class="tab-pane active">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                  <form id="signingSearch" class="form-search">
+                  <input id="isFamily" type="hidden" value="0">
+                  <span style="font-size:20px; line-height: 30px">查看：</span>
+                  <span class="tabs-group active" isFamily="0">无家族</span>
+                  &nbsp;
+                  <span class="tabs-group" isFamily="1">有家族</span>
+                  <span class="find-search pull-right">
+                  <i class="icon-search icon-on-right bigger-110"></i>
+                  <input name="order" type="hidden" value="0">
+                  <input name="name" type="text" placeholder="用户名或昵称" value="" >
+                  <button id="btnSearch-user" type="button" class="btn btn-purple">搜索</button>
+                  </span>
+                </form>
+                </div>
+                
+                <div class="row-fluid">
+                  <table id="tableListSigning" class="table with-check table-purple">
+                    <thead>
+                      <tr>
+                        <th>主播号</th>
+                        <th>昵称</th>
+                        <th class="cursor" onclick="tableOrderClick('signingSearch',1)">主播等级&uarr;&darr; </th>
+                        <th class="cursor" onclick="tableOrderClick('signingSearch',3);">粉丝&uarr;&darr;</th>
+                        <th class="cursor" onclick="tableOrderClick('signingSearch',5);">收益(聊币)&uarr;&darr;</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+					
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="row-fluid">
+                  <div class="total pull-left">
+                    <p class="font font18 cr-gy">
+                    <span>记录总数：</span>
+                    <span id="signingCount">0</span>
+                    </p>
+                  </div>
+                  <div id="pagination" class="pagination alternate pull-right">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="tab2" class="tab-pane"> 
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">
+                  <form id="nosigningSearch" class="form-search">                  
+                    <span class="find-search pull-right">
+                    <i class="icon-search icon-on-right bigger-110"></i>
+                    <input name="order" type="hidden" value="0">
+                    <input name="name" type="text" placeholder="用户名或昵称" >                      
+                    <button id="btnsearch_nosigning" type="button" class="btn btn-purple">查询&nbsp;</button>
+                    </span>
+                </form>
+                </div>
+                
+                <div class="row-fluid">
+                  <table id="tableListNoSigning" class="table with-check table-purple">
+                    <thead>
+                      <tr>
+                        <th>主播号</th>
+                        <th>昵称</th>
+                        <th class="cursor" onclick="tableOrderClick('nosigningSearch',1)">主播等级&uarr;&darr;</th>
+                        <th class="cursor" onclick="tableOrderClick('nosigningSearch',3)">粉丝&uarr;&darr;</th>
+                        <th class="cursor" onclick="tableOrderClick('nosigningSearch',5)">收益(聊币)&uarr;&darr;</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="row-fluid">
+                  <div class="total pull-left">
+                    <p>
+                    <span>记录总数：</span>
+                    <span id="nosigningCount">0</span>
+                    </p>
+                  </div>
+                  <div id="pagination2" class="pagination alternate pull-right">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="tab3" class="tab-pane">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">  
+                  <span style="font-size:20px;">配置默认的主播获得的分成比例</span>
+                </div>
+                
+                <div class="row-fluid">
+                  <div class="content-box">
+                    <div class="fontsize20" style="margin: 10px 0 10px 20px;">
+                      <button class="btn btn-purple" onclick="ruleDialog()">添加规则</button>
+                      <span>配置分成比例的规则，配置时请注意规则之间的冲突</span>
+                    </div>
+                    <table id="dataListRule" class="table with-check table-purple" style="border: 0; margin-bottom: 0;">
+                      <thead>
+                        <tr>
+                          <th>规则</th>
+                          <th>分成比例</th>                       
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       <!--
+                        <tr>
+                          <td>
+                          <span>主播等级 </span>
+                          &lt; <span>口红2</span>
+                          </td>
+                          <td><span class="font font18 cr-ly">30%</span></td> 
+                          <td><span class="spanedit"><a>修改</a>&nbsp;|&nbsp;<a> 删除</a></span></td> 
+                        </tr>-->
+                      </tbody>
+                    </table>
+
+                  </div>
+
+                  <div class="row-fluid" style="margin-top: 10px;">
+                      <div id="pagination3" class="pagination alternate pull-right">
+                      </div>
+                  </div>
+                  
+                  
+                  <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">  
+                    <span style="font-size:20px;">
+                    例外的主播（单独配置TA获得的分成比例）
+                    </span>
+                  </div>
+                  <div class="content-box" >
+                    <form id="exceptionRuleSearch" class="form-search">
+                      <div class="fontsize20" style="margin: 10px 0 10px 1.32766%;">
+                        <button class="btn btn-purple"  onclick="addRuleDialog()" type="button" >添加</button>
+                        
+                        <span class="find-search pull-right" style="margin-right: 20px;">
+                        <i class="icon-search icon-on-right bigger-110"></i>
+                        <input name="name" type="text" placeholder="用户名或昵称" >
+                        <button id="btn_exceptionRulesearch" type="button" class="btn btn-purple">查询&nbsp;</button>
+                        </span>
+                      </div>
+                  </form>
+                    
+                    <ul id="exceptionListRule" class="thumbnails">
+
+                    </ul>
+                  </div>
+
+                    <div class="row-fluid" style="margin-top: 10px;">
+                        <div id="paginationExceptionRule" class="pagination alternate pull-right"></div>
+                    </div>
+                </div>
+                
+                
+              </div>           
+            
+            </div>
+            
+            <div id="tab4" class="tab-pane ">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">  
+                  <span style="font-size:20px;">配置默认的主播的聊币兑换下限</span>
+                </div>
+                
+                <div class="row-fluid">
+                  <div class="content-box content-box-padding" >
+                    <span id="limitNum" class=" font font56 cr-ly">{{limitNum}}</span>
+                    <span class="font font20">聊币</span> 
+                    <button type="button" class="btn btn-purple pull-right" style="margin-top: 18px;" onclick="exchangeDilog()">修改</button>                  
+                  </div>                  
+                </div>
+                
+                
+                <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">  
+                  <span style="font-size:20px;">
+                  例外的主播（单独配置TA的兑换下限）
+                  </span>
+                </div>
+
+                  <div class="row-fluid">
+                <div class="content-box" >
+                  <form id="exceptionSearch" class="form-search">
+                    <div class="fontsize20" style="margin: 10px 0 10px 1.32766%;">
+                      <button class="btn btn-purple"  onclick="addDialog()" type="button">添加</button>
+                      
+                      <span class="find-search pull-right" style="margin-right: 20px;">
+                      <i class="icon-search icon-on-right bigger-110"></i>
+                      <input name="name" type="text" placeholder="用户名或昵称" >
+                      <button type="button" class="btn btn-purple">查询&nbsp;</button>
+                      </span>
+                    </div>
+                </form>
+                  
+                  <ul id="exceptionList" class="thumbnails">
+                     <!-- <li class="span2">
+                      <div class="th-header clearfix">
+                        <img class="pull-left" alt="" src="{{static_url('web/img/91ns/u88.png')}}">
+                        <div class="th-h-text pull-left" >
+                        <p><span>主播号:</span><span>1528956</span></p>
+                        <p><span>昵称：</span><span>风中的树叶</span></p>
+                        </div>
+                      </div>
+                      <div class="th-content ">
+                        <p>分成比例：60%</p>
+                      </div>
+                      <div class="th-edit">
+                        <p><a>修改</a>|<a>删除</a></p>
+                      </div>
+                    </li>  -->
+                  </ul>
+                </div>
+                      
+                      <div class="row-fluid">
+                    <div id="paginationException" class="pagination alternate pull-right">
+                    </div>
+                  </div>
+
+                </div>
+                  
+              </div>
+            </div>
+            
+            <div id="tab5" class="tab-pane">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                  <form id="applySearch" class="form-search">
+                    <input name="status" type="hidden">
+                  <span style="font-size:20px; line-height: 30px">查看：</span>
+                  <span class="tabs-group active" status="0">全部</span>
+                  &nbsp;
+                  <span class="tabs-group" status="1">等处理</span>
+                  &nbsp;
+                  <span class="tabs-group" status="2">已处理</span>
+                  
+                  <!-- <span class="find-search pull-right">
+                  <i class="icon-search icon-on-right bigger-110"></i>
+                  <input type="text" placeholder="用户名或昵称" >                      
+                  <button id="usersearch" type="button" class="btn btn-purple">查询&nbsp;</button>
+                  </span> -->
+                </form>
+                </div>
+                
+                <div class="row-fluid">
+                  <table id="tableListApply" class="table with-check table-purple">
+                    <thead>
+                      <tr>
+                        <th>主播号</th>
+                        <th>昵称</th>
+                        <th>主播等级</th>
+                        <th>粉丝</th>
+                        <th>申请时间</th>
+                        <th>状态</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+					
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="row-fluid">
+                  <div class="total pull-left">
+                    <p>
+                    <span>记录总数：</span>
+                    <span id="applyCount">0</span>
+                    </p>
+                  </div>
+                  <div id="paginationApply" class="pagination alternate pull-right">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+
+<div id="addAnchorList" class="clearfix"  style="display:none">
+    <div style="width: 540px;height: 432px;float:left; background-color: #ffffff;"class="clearfix">
+        <div class="clearfix">
+            <form id="anchornavaform">
+                <input type="hidden" name="isSign">
+            <ul class="nav nav-tabs">
+                <li class="active" isSign="1"><a data-toggle="tab" href="#tab6">已签约</a></li>
+                <li  isSign="0"><a data-toggle="tab" href="#tab7">未签约</a></li>
+            </ul>
+            <div style="float: right;margin-top: -40px;margin-right: 20px;">
+            <span class="find-search pull-right">
+                  <i class="icon-search icon-on-right bigger-110"></i>
+                  <input name="name" type="text" placeholder="用户名或昵称">
+                  <button id="btn_isSign"  type="button" class="btn btn-purple">搜索</button>
+            </span>
+            </div>
+            </form>
+        </div>
+
+        <div class="widget-content tab-content clearfix" style="border-bottom: 0;padding-bottom: 0px;">
+            <div id="tab6" class="tab-pane active" >
+              <form id="excAnchorfrom">
+                <ul id="excAnchorList" class="exc-anchor clearfix" >
+
+                </ul>
+
+                <div class="row-fluid">
+                  <div id="excAnchorpagination" class="pagination alternate pull-right">
+                    
+                  </div>
+                </div>
+              </form>
+            </div>
+
+
+            <div id="tab7" class="tab-pane">2</div>
+        </div>
+    </div>
+   <div style="background-color: #f2f2f2;width: 367px;height: 432px;float: left">
+       <div style="margin: 30px 0 30px 20px;font-size: 14px;">已选(<span id="getanchorlistcount">0</span>)：</div>
+       <div>
+           <form id="getanchorform">
+           <ul id="getanchorlist" class="exc-anchor clearfix">
+               <!--<li >
+                   <div class="th-header clearfix" >
+                       <span class="icon-minus-sign"></span>
+                       <img class="pull-left" alt="" src="{{static_url('web/img/91ns/u88.png')}}">
+                       <div class="th-h-text pull-left" >
+                           <p><span>主播号:</span><span>1528956</span></p>
+                           <p><span>昵称：</span><span>风中的树叶</span></p>
+                       </div>
+                   </div>
+               </li>
+               <li style="width: 157px;height: 70px;border: 1px solid #ccc;list-style: none;float: left;margin-right: 12px;border-bottom: 2px solid #9a98d8">
+                   <div class="th-header clearfix" style="margin-top: 10px;">
+                       <img class="pull-left" alt="" src="{{static_url('web/img/91ns/u88.png')}}">
+                       <div class="th-h-text pull-left" >
+                           <p><span>主播号:</span><span>1528956</span></p>
+                           <p><span>昵称：</span><span>风中的树叶</span></p>
+                       </div>
+                   </div>
+               </li>-->
+
+           </ul>
+
+           </form>
+       </div>
+   </div>
+
+
+</div>
+
+<div id="exchangeDilog" style="display:none">
+  <div class="content-box" style="padding: 20px 20px 10px;">
+   <form >
+    <input id="exchenge-modfiy" type="text" >
+    </form>
+  </div>
+</div>
+
+<div id="addDialog" style="display:none"> <!--class="ui-dialog"-->
+  <div class="ui-dialog-header">
+    <div class="title" style="margin-left: 20px;font-size: 14px;">
+       选择主播：
+    </div>
+      <div class="clearfix">
+        <form id="addanchorform">
+          <ul id="ul_addanchorlist" class="addanchorlist" style="margin-top: 10px;">
+              <!--<li class="a_anchorinfo" >
+                <div class="th-header clearfix" >
+                    <img class="pull-left" alt="" src="{{static_url('web/img/91ns/u88.png')}}">
+                    <div class="th-h-text pull-left" >
+                    <p><span>主播号:</span><span>1528956</span></p>
+                    <p><span>昵称：</span><span>风中的树叶</span></p>
+                    </div>
+                  </div>
+              </li>
+              -->
+              <li class="add-btn-anchor" onclick="addanchorDialog()" >
+                <div style="position: relative;">
+                  <span class="font font56 cr-pe" style="margin-top: 14px; margin-left:15px;  display: inline-block;" ><i class="icon-plus"></i></span>
+                  <span  class="font font32 cr-pe" style="top:25px; display: inline-block;position: absolute;" >添加</span>
+                </div>
+              </li>
+          </ul>
+          </form>
+      </div>
+      <div style="width: 705px;height: 1px;border-bottom:1px dashed #cccccc;margin-top: 20px;"></div>
+      <div class="title" style="margin: 20px 0 20px 20px;font-size: 14px;">
+          输入兑换下限：
+      </div>
+      <div class="clearfix">
+         <input id="excvalue" type="text" style="width: 650px;height: 30px;border: 1px solid #cccccc;margin-left: 30px;">
+      </div>
+  </div>
+
+  <div class="ui-dialog-content">
+
+  </div>
+</div>
+
+<div id="ruleDialog" style="display:none"> <!--class="ui-dialog"-->
+    <form id="ruleDialogForm">
+    <div>
+        <span>满足以下</span>
+        <select name="conditions" style="width: 110px;">
+            <option value="2">全部且</option>
+            <option value="1">任意或</option>
+        </select>
+        <span>条件</span>
+        <button id="btnConditions" type="button" class="btn btn-purple" style="height: 30px;">添加条件</button>
+    </div>
+    <div style="height: 210px;width: 665px;border-radius: 4px;background-color: #f9f9f9;margin: 10px auto 30px;border: 1px solid #cccccc;overflow:auto;">
+        <div id="conditionsclone" style="display: none">
+            <div class="conditions-box" style="height: 40px;line-height: 40px;border-bottom: 1px dashed #cccccc;">
+                <span style="margin-left: 40px;">主播等级</span>
+                <select name="conditionsValue" class="selconditions" style="width: 110px;margin-top: 5px;margin-left: 40px;">
+
+                </select>
+                <select name="level" class="sellevel" style="width: 200px;margin-top: 5px;margin-left: 40px;">
+                    <option value="">请选择主播等级</option>
+
+                </select>
+                <div class="font font20" style="cursor: pointer; color: red; width: 22px;height: 22px;margin:0 0 -4px 10px;display: inline-block;"><span class="icon-minus-sign" onclick="removCondbox(this)"></span></div>
+            </div>
+        </div>
+        <div id="conditionsclone2">
+
+        </div>
+
+    </div>
+    <div><span>请拖动指针设置分成比例：</span></div>
+    <div style="width: 660px;">
+        <!--<div style="background-color: #9b98d8;border-radius: 6px;height: 13px;margin-top: 45px;"></div>-->
+        <div style="margin-top: 45px;">
+            <input name="sivalue" type="hidden" class="single-slider" value="0" />
+            <!--<button id="g1" style="display: none">获取值</button>-->
+        </div>
+
+    </div>
+    </form>
+</div>
+
+<div id="changescale" style="display:none;">
+ <div>
+     <form id="changescaleform">
+         <div class="th-header clearfix" style="margin: 20px 0 0 10px;">
+             <img id="ch_f_img" class="pull-left" style="width: 80px; height: 80px;border-radius: 50px;" alt="" src="{{static_url('web/img/91ns/u150.png')}}">
+             <div class="th-h-text pull-left"  style="margin-top: 35px;font-size: 16px;margin-left: 20px;">
+                 <p><span id="ch_f_name"><!--风中的树叶--></span><span id="ch_f_uid"><!--(1528956)--></span></p>
+             </div>
+             <div style="margin-top: 100px;"><span>请拖动指针设置分成比例：</span></div>
+             <div>
+                 <!--<div style="background-color: #9b98d8;border-radius: 6px;height: 13px;margin-top: 45px;"></div>-->
+                 <div style="margin-top: 45px;">
+                     <input name="m_scvalue" type="hidden" class="single-slider" value="" />
+                 </div>
+
+             </div>
+         </div>
+     </form>
+ </div>
+</div>
+
+
+
+<div id="addRuleDialog" style="display:none"> <!--class="ui-dialog"-->
+    <div class="ui-dialog-header">
+        <div class="title" style="margin-left: 20px;font-size: 14px;">
+            选择主播：
+        </div>
+        <div class="clearfix">
+            <form id="addanchorRuleform">
+                <ul id="ul_addanchorRulelist" class="addanchorlist" style="margin-top: 10px;">
+                    <!--<li class="a_anchorinfo" >
+                      <div class="th-header clearfix" >
+                          <img class="pull-left" alt="" src="{{static_url('web/img/91ns/u88.png')}}">
+                          <div class="th-h-text pull-left" >
+                          <p><span>主播号:</span><span>1528956</span></p>
+                          <p><span>昵称：</span><span>风中的树叶</span></p>
+                          </div>
+                        </div>
+                    </li>
+                    -->
+                    <li class="add-btn-anchor" onclick="addanchorRuleDialog()" >
+                        <div style="position: relative;">
+                            <span class="font font56 cr-pe" style="margin-top: 14px; margin-left:15px;  display: inline-block;" ><i class="icon-plus"></i></span>
+                            <span  class="font font32 cr-pe" style="top:25px; display: inline-block;position: absolute;" >添加</span>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div style="width: 705px;height: 1px;border-bottom:1px dashed #cccccc;margin-top: 20px;"></div>
+        <div class="title" style="margin: 20px 0 20px 20px;font-size: 14px;">
+            请拖动指针设置分成比例：
+        </div>
+        <!--<div class="clearfix">-->
+        <div style="margin-top: 45px;">
+            <input id="addRuleValue" type="hidden" class="single-slider" value="0" />
+        </div>
+       <!-- </div>-->
+    </div>
+
+    <div class="ui-dialog-content">
+
+    </div>
+</div>
+
+<div id="addAnchorRuleList" class="clearfix"  style="display:none">
+    <div style="width: 540px;height: 432px;float:left; background-color: #ffffff;"class="clearfix">
+        <div class="clearfix">
+            <form id="anchornavaRuleform">
+                <input type="hidden" name="isSign">
+                <ul class="nav nav-tabs">
+                    <li class="active" isSign="1"><a data-toggle="tab" href="#tab8">已签约</a></li>
+                    <li  isSign="0"><a data-toggle="tab" href="#tab8">未签约</a></li>
+                </ul>
+                <div style="float: right;margin-top: -40px;margin-right: 20px;">
+                    <span class="find-search pull-right">
+                          <i class="icon-search icon-on-right bigger-110"></i>
+                          <input name="name" type="text" placeholder="用户名或昵称">
+                          <button id="btn_isSignRule"  type="button" class="btn btn-purple">搜索</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <div class="widget-content tab-content clearfix" style="border-bottom: 0;padding-bottom: 0px;">
+            <div id="tab8" class="tab-pane active" >
+                <form id="excAnchorfromRule">
+                    <ul id="excAnchorListRule" class="exc-anchor clearfix" >
+
+                    </ul>
+
+                    <div class="row-fluid">
+                        <div id="excAnchorRulepagination" class="pagination alternate pull-right">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+            <!--<div id="tab7" class="tab-pane">2</div>-->
+        </div>
+    </div>
+    <div style="background-color: #f2f2f2;width: 367px;height: 432px;float: left">
+        <div style="margin: 30px 0 30px 20px;font-size: 14px;">已选(<span id="getanchorRulelistcount">0</span>)：</div>
+        <div>
+            <form id="getanchorRuleform">
+                <ul id="getanchorRulelist" class="exc-anchor clearfix">
+                    <!--<li >
+                        <div class="th-header clearfix" >
+                            <span class="icon-minus-sign"></span>
+                            <img class="pull-left" alt="" src="{{static_url('web/img/91ns/u88.png')}}">
+                            <div class="th-h-text pull-left" >
+                                <p><span>主播号:</span><span>1528956</span></p>
+                                <p><span>昵称：</span><span>风中的树叶</span></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li style="width: 157px;height: 70px;border: 1px solid #ccc;list-style: none;float: left;margin-right: 12px;border-bottom: 2px solid #9a98d8">
+                        <div class="th-header clearfix" style="margin-top: 10px;">
+                            <img class="pull-left" alt="" src="{{static_url('web/img/91ns/u88.png')}}">
+                            <div class="th-h-text pull-left" >
+                                <p><span>主播号:</span><span>1528956</span></p>
+                                <p><span>昵称：</span><span>风中的树叶</span></p>
+                            </div>
+                        </div>
+                    </li>-->
+
+                </ul>
+
+            </form>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script type="text/javascript" src="{{static_url('web/js/jquery.range.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js/91ns.anchor.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/jquery.range.css')}}">
+<script type="text/javascript">
+
+$(function(){
+    /*已签约*/
+    getDataAnchorList();
+
+    signingTeb();
+
+    /*未签约*/
+    getDataNoAnchorList();
+    nosigningTeb();
+
+    getDataExceptionList();
+
+    getDataApplyList();
+
+    applyTeb();
+
+    anchornavaformtab();
+    anchornavaRuleformtab();
+
+    //
+    getDataListRule();
+
+    getDataExceptionRuleList();
+
+    getSymbol();
+    getAnchorLevel();
+
+    $('.single-slider').jRange({
+      from: 0,
+      to: 70,
+      step: 1,
+      scale: [0,10,20,30,40,50,60,70],
+      format: '%s',
+      width: 665,
+      showLabels: true,
+      showScale: true
+
+    });
+    /*$('.range-slider').jRange({
+      from: 0,
+      to: 70,
+      step: 1,
+      scale: [0,10,20,30,40,50,60,70],
+      format: '%s',
+      width:665,
+      showLabels: true,
+      isRange : true
+    });
+
+    $("#g1").click(function(){
+      var aa = $(".single-slider").val();
+      alert(aa);
+    });
+    $("#g2").click(function(){
+      var aa = $(".range-slider").val();
+      alert(aa);
+    });*/
+
+
+  });
+
+  function initPagination2(page) {
+      $("#pagination2").pagination(page, {
+          callback: pageselectCallback,
+          items_per_page:global.pagesize, // 每页只显示一条记录
+          num_display_entries : 3,
+          num_edge_entries : 1, 
+          prev_text : "上一页",  
+          next_text : "下一页"
+      });
+    }
+
+
+  function getDataExceptionList(index){
+      var exceptionSearch= document.getElementById('exceptionSearch'),
+      data={};
+      data.page=index||1;
+      data.pageSize=global.pageSize;
+      data.name=exceptionSearch.name.value;
+      data.type=2;
+
+      $.ajax({
+          type:"POST",
+          data:data,
+          url:'/ajax/getException',
+          dataType:'json',
+          success:function(res){
+            var data=res.data.data,
+             eul=document.getElementById('exceptionList');
+
+            for (var i = 0; i <data.list.length; i++) {
+             addRowException(eul,data.list[i]);
+            };
+
+            if(!index||index==0){
+              paginationException(data.count);
+            }
+
+
+          }
+      });
+
+  }
+
+  function paginationException(page){
+      $("#paginationException").pagination(page, {
+          callback: pageselectCallback,
+          items_per_page:global.pagesize, // 每页只显示一条记录
+          num_display_entries : 3,
+          num_edge_entries : 1,
+          prev_text : "上一页",
+          next_text : "下一页"
+      });
+  }
+
+  function addRowException(per,data){
+    /*var oCloneNode=oList.cloneNode(true); 
+    cloneArea.appendChild(oCloneNode); */
+
+    var li =document.createElement('li'),
+    div=document.createElement('div'),
+    div2=document.createElement('div'),
+    div3=document.createElement('div');
+
+
+    div.className="th-header clearfix";
+    var img=document.createElement('img');
+    img.className="pull-left";
+    img.cssText="width:50px;";
+    img.src=data.avatar;
+
+    div.appendChild(img);
+
+    var div4=document.createElement('div');
+    div4.className="th-h-text pull-left";
+    div4.innerHTML='<p><span>主播号:</span><span>'+data.uid+'</span></p><p><span>昵称：</span><span>'+data.nickName+'</span></p>';
+
+    div.appendChild(div4);
+    
+    div2.className='th-content';
+    div2.innerHTML='<p>分成比例：'+data.value+'%</p>';
+
+    div3.className='th-edit';
+    div3.innerHTML="<p><a onclick='changescale()'>修改</a>|<a>删除</a></p>";
+
+    li.className="span2";
+    li.appendChild(div);
+    li.appendChild(div2);
+    li.appendChild(div3);
+
+    per.appendChild(li);
+  }
+
+
+
+
+
+    function exchangeDilog(){
+      $('#exchangeDilog').dialog({
+          autoOpen:true,
+          width:320,
+          height:220,
+          title:'配置默认的主播的聊币兑换下限',
+          resizable:false,
+          modal:true,
+          open:function(){
+             var limitNum= $('#limitNum').text();
+              $('#exchenge-modfiy').val(limitNum);
+
+          },
+          buttons: {
+            "确定": function () {
+
+              var data={};
+              data.value=$('#exchenge-modfiy').val();
+ 
+              $.ajax({
+                type:"POST",
+                data:data,
+                url:'/ajax/editExchange',
+                dataType:'json',
+                success:function(res){
+                  var data=res.data;
+                  if(res.code==0){
+                    location.reload();
+                  }else{
+                    alert(res.info)
+                  }
+
+                }
+              });
+
+            }
+
+          }
+      });
+    }
+
+    function applyTeb () {
+      $('#applySearch .tabs-group').click(function(){
+        $('#applySearch .tabs-group').removeClass('active');
+        $(this).addClass('active');
+        var applySearch= document.getElementById('applySearch');
+        applySearch.status.value=$(this).attr('status');
+        getDataApplyList();
+      })
+    }
+
+  //获得签约主播数据集
+  function getDataApplyList(index){
+    var applySearch= document.getElementById('applySearch'),
+    data={};
+    data.status=applySearch.status.value==''?'0':applySearch.status.value;
+    data.namelike='';
+    data.page=index||1;
+    data.pageSize=global.pageSize;
+    $.ajax({
+      type:"POST",
+      data:data,
+      url:'/ajax/anchorApplyList',
+      dataType:'json',
+      success:function(res){
+        var data=res.data.data;
+
+        var tableList=document.getElementById("tableListApply");
+        var tbody= tableList.getElementsByTagName('tbody')[0];
+        dataTable.clearData(tbody);
+
+        var applyCount=document.getElementById('applyCount');
+        applyCount.innerHTML=data.count;
+
+        for(var i=0;i<data.list.length;i++){
+          addRowApply(tbody,'',data.list[i]);
+        }
+
+        if(!index||index==0){
+          initPaginationApply(data.count);
+        }
+
+      }
+    });
+
+  }
+
+  function initPaginationApply(page){
+    $("#paginationApply").pagination(page, {
+          callback: applyCallback,
+          items_per_page:global.pagesize, // 每页只显示一条记录
+          num_display_entries : 3,
+          num_edge_entries : 1, 
+          prev_text : "上一页",  
+          next_text : "下一页"
+      });
+  }
+
+  function applyCallback(page_index, jq){
+      getDataApplyList(page_index)
+      return false;
+  }
+
+  function addRowApply(table,index,data){
+    var row=table.insertRow();
+    var cell=row.insertCell(0);
+    var cell1=row.insertCell(1);
+    var cell2=row.insertCell(2);
+    var cell3=row.insertCell(3);
+    var cell4=row.insertCell(4);
+    var cell5=row.insertCell(5);
+    var cell6=row.insertCell(6);
+    
+    cell.innerHTML=data.uid;
+
+    var div=document.createElement("div"),
+    img=document.createElement("img"),
+    span=document.createElement("span");
+
+    div.className="anchor-info";
+    img.src=global.contract+data.avatar;
+    span.innerHTML=data.uid;
+
+    div.appendChild(img);
+    div.appendChild(span);
+
+    cell1.appendChild(div);
+
+    cell2.innerHTML=data.level2;
+    cell3.innerHTML=data.fans;
+    
+    cell4.innerHTML=data.createTime;
+    
+    //0.申请中 1.同意 2.取消 3.拒绝
+    cell5.innerHTML=data.status=='0'?'申请中...':data.status==1?'同意':data.status==2?'取消申请':data.status==3?'拒绝':'';
+
+    var a=document.createElement("a");
+    a.href='/anchor/applyinfo?id='+data.id;
+    a.innerHTML="查看";
+    a.className="a-edit font font18 cr-pe cursor-pointer";
+    cell6.appendChild(a);
+  return row;
+}
+</script>

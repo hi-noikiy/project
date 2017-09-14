@@ -1,0 +1,547 @@
+{% extends "template/personal_body.html" %}
+{% block title %}
+绑定手机
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('savecenter'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('personal.safecenter'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+<!--首页-->
+<div id="save-index" class="save-index safe-item clearfix">
+	<div class="title">
+		<div class="title-txt">安全中心</div>
+	</div>
+	<div class="msg div-hiden">
+		<div class="level">
+			安全等级
+			<span class="schedule lower">
+				<span class="level">
+					<span class="left sprite-safe safe-level-left"></span>
+					<span class="level">
+						<span class=" sprite-safe safe-level-center"></span>
+					</span>
+					<span class="right sprite-safe safe-level-right"></span>
+				</span>
+				<span class="higher display-none">高</span>
+				<span class="medium display-none">中</span>
+				<span class="lower display-none">低</span>
+			</span>
+			完成<span class="font-color-f64">密保问题</span>，提升账户安全。
+		</div>
+		<div class="lastLogin">
+			最后一次登录：
+			<span class="loginTime">2015年05月21日 21:12:00</span>
+			<span class="loginLocation">福建省福州市</span>
+			<span class="loginType">网页</span>
+			<span class="loginMore">查看更多>></span>
+		</div>
+	</div>
+	<div class="other-msg clearfix loginPwd-true {% if sinfo['canSetPassword'] %}div-hiden{% endif %}">
+		<i class="pull-left sprite-safe safe-true"></i>
+		<div class="pull-left title">登录密码</div>
+		<div class="pull-left strength clearfix higher">
+			<!-- <span class="pull-left strength lower"></span>
+			<span class="pull-left strength medium"></span>
+			<span class="pull-left strength higher"></span>
+			<span class="pull-left text lower">弱</span>
+			<span class="pull-left text medium">中</span>
+			<span class="pull-left text higher">强</span> -->
+		</div>
+		<div class="pull-left texts">
+			<div>
+				安全性高的密码可以使账号更安全。建议您定期更换密码，
+				<br>
+				且设置一个包含数字和字母，并长度超过6位以上的密码。
+			</div>
+		</div>
+		<div class="pull-right sprite-safe safe-modify btn" jsfun="to-page" jsto="login-pwd-modify">修改</div>
+	</div>
+	<div class="other-msg clearfix loginPwd-false {% if !sinfo['canSetPassword'] %}div-hiden{% endif %}">
+		<i class="pull-left sprite-safe safe-false"></i>
+		<div class="pull-left title">登录密码</div>
+		<div class="pull-left strength clearfix">
+			<!-- <span class="pull-left strength lower"></span>
+			<span class="pull-left strength medium"></span>
+			<span class="pull-left strength higher"></span>
+			<span class="pull-left text lower">弱</span>
+			<span class="pull-left text medium">中</span>
+			<span class="pull-left text higher">强</span> -->
+		</div>
+		<div class="pull-left texts">
+			<div>
+				您还没有设置登录密码。设置登录密码，登录更方便、安全。
+			</div>
+		</div>
+		<div class="pull-right sprite-safe safe-modify btn" jsfun="to-page" jsto="login-pwd-set">设置</div>
+	</div>
+
+	<div class="other-msg clearfix loginSecurity-true {% if !sinfo['questionId'] %}div-hiden{% endif %}">
+		<i class="pull-left sprite-safe safe-true"></i>
+		<div class="pull-left title">密保问题</div>
+		<div class="pull-left strength"></div>
+		<div class="pull-left texts">
+			<div>
+				是您找回登录密码的方式之一。建议您设置一个容易记住，
+				<br>
+				且最不容易被他人获取的问题及答案，更有效保障您的密码安全。
+			</div>
+		</div>
+		<div class="pull-right sprite-safe safe-modify btn" jsfun="to-page" jsto="security-modify">修改</div>
+	</div>
+
+	<div class="other-msg clearfix {% if sinfo['canSetPassword'] %}pwd-false{% endif %} loginSecurity-false {% if sinfo['questionId'] %}div-hiden{% endif %}">
+		<i class="pull-left sprite-safe safe-false"></i>
+		<div class="pull-left title">密保问题</div>
+		<div class="pull-left strength"></div>
+		<div class="pull-left texts">
+			<div>
+				是您找回登录密码的方式之一。建议您设置一个容易记住，
+				<br>
+				且最不容易被他人获取的问题及答案，更有效保障您的密码安全。
+			</div>
+		</div>
+		<div id="btn-false-show-more" class="pull-right sprite-safe {% if sinfo['canSetPassword'] %}forbid{% endif %} safe-unmodify btn" jsfun="to-page" jsto="security-set">设置</div>
+		<div id="more-of-login" class="safe-tips display-table div-hiden">
+			<div class="display-table-cell">
+				<i><i></i></i>
+				您还未设置登录密码，
+				<br>
+				请先设置登录密码！
+			</div>
+		</div>
+	</div>
+
+	<div class="other-msg clearfix {% if sinfo['canSetPassword'] %}pwd-false{% endif %} bindingTel-true {% if sinfo['telephone'] == '' %}div-hiden{% endif %}">
+		<i class="pull-left sprite-safe safe-true"></i>
+		<div class="pull-left title">绑定手机</div>
+		<div class="pull-left strength"></div>
+		<div class="pull-left texts">
+			<div>
+				已绑定手机 <span nsdata="dataTelNum">{{ sinfo['telephone'] }}</span>,
+				<br>
+				您每天可以免费接收 10 条短信
+			</div>
+		</div>
+		<div id="btn-false-show-unbinding" class="pull-right sprite-safe {% if sinfo['canSetPassword'] %}forbid{% endif %} safe-unmodify btn" jsfun="to-page" jsto="unbinding-tel">解绑</div>
+		<div id="more-of-unbinding" class="safe-tips display-table div-hiden">
+			<div class="display-table-cell">
+				<i><i></i></i>
+				很抱歉，您暂时不能解绑手机。
+				<br>
+				您需要：设置登录密码
+			</div>
+		</div>
+	</div>
+
+	<div class="other-msg clearfix bindingTel-false {% if sinfo['telephone'] != '' %}div-hiden{% endif %}">
+		<i class="pull-left sprite-safe safe-false"></i>
+		<div class="pull-left title">绑定手机</div>
+		<div class="pull-left strength"></div>
+		<div class="pull-left texts">
+			<div>
+				绑定手机后，您即可享受91NS丰富的手机服务，
+				<br>
+				如手机登录、手机找回密码、登录异常提示等。
+			</div>
+		</div>
+		<div class="pull-right sprite-safe safe-modify btn" jsfun="to-page" jsto="binding-tel">绑定</div>
+	</div>
+
+	<div class="other-msg clearfix telLogin-true div-hiden ">
+		<i class="pull-left sprite-safe safe-true"></i>
+		<div class="pull-left title">手机登陆</div>
+		<div class="pull-left strength"></div>
+		<div class="pull-left texts">
+			<div>
+				已登录手机APP
+				<br>
+				手机丢失？一键退出手机上的“91女神”登录。
+			</div>
+		</div>
+		<div class="pull-right sprite-safe safe-modify btn">退出登录</div>
+	</div>
+	<div class="other-msg clearfix telLogin-false div-hiden">
+		<i class="pull-left sprite-safe safe-false"></i>
+		<div class="pull-left title">手机登陆</div>
+		<div class="pull-left strength"></div>
+		<div class="pull-left texts">
+			<div>
+				已登录手机APP
+				<br>
+				手机丢失？一键退出手机上的“91女神”登录。
+			</div>
+		</div>
+		<div class="pull-right sprite-safe safe-modify forbid btn">退出登录</div>
+	</div>
+</div>
+
+<!--密保问题-->
+<div id="security-modify" jsdata="{% if sinfo['telephone'] != '' %}tel{% else %}ans{% endif %}" class="safe-item div-hiden clearfix">
+	<div class="safe-head">
+		<div class="head-txt">密保问题</div>
+		<div jsfun="return-index" class="head-return">返回>></div>
+	</div>
+	<div class="step clearfix">
+		<div class="sprite-safe safe-step active pull-left">
+			<div class="index">1</div>
+			<div class="text">验证身份</div>
+		</div>
+		<div class="sprite-safe safe-step pull-left">
+			<div class="index">2</div>
+			<div class="text">设置新密保问题</div>
+		</div>
+		<div class="sprite-safe safe-step3 pull-left">
+			<div class="index">3</div>
+			<div class="text">修改成功</div>
+		</div>
+	</div>
+	<div class="safe-tips margin-left-more">修改密保问题涉及您的账号安全，请进行验证。</div>
+	<!-- 用手机验证 -->
+	<div jsshow="telValid" class="div-hiden one-row clearfix" style="margin-left:122px;">
+		<div class="left pull-left">手机号码：</div>
+		<div class="telPhone pull-left"><span nsdata="dataTelNum">{{ sinfo['telephone'] }}</span></div>
+	</div>
+	<div jsshow="telValid" class="div-hiden one-row clearfix" style="margin-left:122px;">
+		<div class="left pull-left">验证码：</div>
+		<input id="securityTelText" type="text" class="input-item sec-code pull-left" onpaste="return false" ondragenter="return false" oncontextmenu="return false;">
+		<div class="tip-text pull-left div-hiden">
+			<span class="red-text">验证码已发送，请注意查收。</span>
+		</div>
+		<div id="securityModifyGetCode" class="get-code">获取验证码</div>
+	</div>
+	<div id="securityTelValid" jsshow="telValid" class="div-hiden sprite-save confirm" style="margin-top:38px;margin-left:228px;">验 证</div>
+	<div jsshow="telValid" class="div-hiden question-check clearfix">
+		<i class="sprite-safe safe-tip"></i>
+		<span>验证不了？ </span>
+		<span class="go-next" jsfun="to-show-other" jsother="ans">用密保问题验证>></span>
+	</div>
+	<!-- 用问题验证 -->
+	<div id="securityAnsStr" jsshow="ansValid" class="div-hiden one-row clearfix" style="margin-left:102px;">
+		<div class="left pull-left">问题：</div>
+		<div class="telPhone pull-left">{{ sinfo['questionName'] }}</div>
+	</div>
+	<div jsshow="ansValid" class="div-hiden one-row clearfix" style="margin-left:102px;">
+		<div class="left pull-left">答案：</div>
+		<input id="securityAnsText" qusid="{{ sinfo['questionId'] }}" type="text" class="input-item pull-left" onpaste="return false" ondragenter="return false" oncontextmenu="return false;">
+		<div class="tip-text pull-left">
+			<i class="sprite-save info-no"></i><i class="sprite-save info-ok"></i><span class="red-text"></span>
+		</div>
+	</div>
+	<div id="securityAnsValid" jsshow="ansValid" class="div-hiden sprite-save confirm" style="margin-top:38px;margin-left:210px;">验 证</div>
+	<div jsshow="ansValid" class="div-hiden question-check clearfix">
+		<i jsshow="telValid" class="sprite-safe safe-tip div-hiden"></i>
+		<span jsshow="telValid" class="div-hiden">验证不了？ </span>
+		<span jsshow="telValid" class="go-next div-hiden" jsfun="to-show-other" jsother="tel">用手机验证码验证>></span>
+	</div>
+	<div class="div-hiden next-step" jsfun="to-page" jsto="security-reset"></div>
+</div>
+
+<!--修改密保问题第二步-->
+<div id="security-reset" class="safe-item div-hiden clearfix">
+	<div class="safe-head">
+		<div class="head-txt">密保问题</div>
+		<div jsfun="return-index" class="head-return">返回>></div>
+	</div>
+	<div class="step">
+		<div class="sprite-safe safe-step active">
+			<div class="index">1</div>
+			<div class="text">验证身份</div>
+		</div>
+		<div class="sprite-safe safe-step active">
+			<div class="index">2</div>
+			<div class="text">设置新密保问题</div>
+		</div>
+		<div class="sprite-safe safe-step3">
+			<div class="index">3</div>
+			<div class="text">修改成功</div>
+		</div>
+	</div>
+	<div class="safe-tips margin-left-more">请设置新的密保问题！</div>
+	<div class="one-row clearfix" style="margin-left:112px;">
+		<div class="left pull-left">新问题：</div>
+		<select id="securityResetQus" class="input-item pull-left">
+			{% set forFirst = 1 %}
+            {% for question in issues %}
+            	{% if forFirst == 1 %}
+            		<option value="{{ question['id'] }}" selected="true">{{ question['name'] }}</option>
+					{% set forFirst = 2 %}
+            	{% else %}
+            		<option value="{{ question['id'] }}">{{ question['name'] }}</option>
+            	{% endif %}
+            {% endfor %}
+		</select>
+	</div>
+	<div class="one-row clearfix" style="margin-left:112px;">
+		<div class="left pull-left">新答案：</div>
+		<input id="securityResetText" type="text" class="input-item pull-left" onpaste="return false" ondragenter="return false" oncontextmenu="return false;">
+		<div class="tip-text pull-left">
+			<i class="sprite-save info-no"></i><i class="sprite-save info-ok"></i><span class="red-text"></span>
+		</div>
+	</div>
+	<div id="securityReset" class="sprite-save confirm" style="margin-top:38px;margin-left:220px;">确 定</div>
+	<div class="div-hiden next-step" jsfun="to-page" jsto="security-ok"></div>
+</div>
+
+<!--修改密保问题第三步-->
+<div id="security-ok" class="safe-item div-hiden clearfix">
+	<div class="safe-head">
+		<div class="head-txt">密保问题</div>
+		<div jsfun="return-index" class="head-return">返回>></div>
+	</div>
+	<div class="step">
+		<div class="sprite-safe safe-step active">
+			<div class="index">1</div>
+			<div class="text">验证身份</div>
+		</div>
+		<div class="sprite-safe safe-step active">
+			<div class="index">2</div>
+			<div class="text">设置新密保问题</div>
+		</div>
+		<div class="sprite-safe safe-step3 active">
+			<div class="index">3</div>
+			<div class="text">修改成功</div>
+		</div>
+	</div>
+	<div class="ok-msg">
+		<i class="sprite-safe safe-face"></i>
+		<span class="ok-text">密保问题修改成功</span>
+		<span class="ok-tip">（密保用于找回密码，请牢记您设置的问题的答案。）</span>
+		<span class="ok-btn" jsfun="return-index">返回安全中心</span>
+	</div>
+</div>
+
+<!--密保设置-->
+<div id="security-set" class="safe-item div-hiden clearfix">
+	<div class="safe-head">
+		<div class="head-txt">密保问题</div>
+		<div jsfun="return-index" class="head-return">返回>></div>
+	</div>
+	<div class="safe-tips">添加安全问题通过设定安全问题及相对应的答案，令您的账户安全系数更上一层楼！</div>
+	<div class="one-row clearfix">
+		<div class="left pull-left">问题：</div>
+		<select id="securitySetQus" class="input-item pull-left">
+			{% set forFirst = 1 %}
+            {% for question in issues %}
+            	{% if forFirst == 1 %}
+            		<option value="{{ question['id'] }}" selected="true">{{ question['name'] }}</option>
+					{% set forFirst = 2 %}
+            	{% else %}
+            		<option value="{{ question['id'] }}">{{ question['name'] }}</option>
+            	{% endif %}
+            {% endfor %}
+		</select>
+	</div>
+	<div id="securitySetAnsRow" class="one-row clearfix">
+		<div class="left pull-left">答案：</div>
+		<input id="securitySetAns" type="text" class="input-item pull-left" onpaste="return false" ondragenter="return false" oncontextmenu="return false;">
+		<div class="tip-text pull-left">
+			<i class="sprite-save info-no"></i><i class="sprite-save info-ok"></i><span class="red-text"></span>
+		</div>
+	</div>
+	<div id="securitySetSubmit" class="sprite-save confirm">确 认</div>
+</div>
+
+<!--修改密码-->
+<div id="login-pwd-modify" class="safe-item div-hiden clearfix">
+	<div class="safe-head">
+		<div class="head-txt">修改密码</div>
+		<div jsfun="return-index" class="head-return">返回>></div>
+	</div>
+	<div class="safe-tips">旧密码和新密码不可一致，修改密码时如果忘记旧密码，请退出登录通过忘记密码找回！</div>
+	<div id="pwdModifyOldRow" class="one-row clearfix">
+		<div class="left pull-left">旧密码：</div>
+		<input id="pwdModifyOld" type="password" class="input-item pull-left" onpaste="return false" ondragenter="return false" oncontextmenu="return false;">
+		<div class="tip-text pull-left">
+			<i class="sprite-save info-no"></i><i class="sprite-save info-ok"></i><span class="red-text"></span>
+		</div>
+	</div>
+	<div id="pwdModifyTextRow" class="one-row clearfix">
+		<div class="left pull-left">新密码：</div>
+		<input id="pwdModifyText" type="password" class="input-item pull-left" onpaste="return false" ondragenter="return false" oncontextmenu="return false;">
+		<div class="tip-text pull-left">
+			<i class="sprite-save info-no"></i><i class="sprite-save info-ok"></i><span class="red-text"></span>
+		</div>
+	</div>
+	<div id="pwdModifyConfirmRow" class="one-row clearfix">
+		<div class="left pull-left">确认密码：</div>
+		<input id="pwdModifyConfirm" type="password" class="input-item pull-left" onpaste="return false" ondragenter="return false" oncontextmenu="return false;">
+		<div class="tip-text pull-left">
+			<i class="sprite-save info-no"></i><i class="sprite-save info-ok"></i><span class="red-text"></span>
+		</div>
+	</div>
+	<div id="pwdModifySubmit" class="sprite-save confirm">完 成</div>
+</div>
+
+<!--登录密码-->
+<div id="login-pwd-set" class="safe-item div-hiden clearfix">
+	<div class="safe-head">
+		<div class="head-txt">登录密码</div>
+		<div jsfun="return-index" class="head-return">返回>></div>
+	</div>
+	<div class="safe-tips">使用大小写字母、数字与标点符号的组合，可以大幅提升账号安全！</div>
+	<div id="pwdSetTextRow" class="one-row clearfix">
+		<div class="left pull-left">密码：</div>
+		<input id="pwdSetText" type="password" class="input-item pull-left" onpaste="return false" ondragenter="return false" oncontextmenu="return false;">
+		<div class="tip-text pull-left">
+			<i class="sprite-save info-no"></i><i class="sprite-save info-ok"></i><span class="red-text"></span>
+		</div>
+	</div>
+	<div id="pwdSetConfirmRow" class="one-row clearfix">
+		<div class="left pull-left">确认密码：</div>
+		<input id="pwdSetConfirm" type="password" class="input-item pull-left" onpaste="return false" ondragenter="return false" oncontextmenu="return false;">
+		<div class="tip-text pull-left">
+			<i class="sprite-save info-no"></i><i class="sprite-save info-ok"></i><span class="red-text"></span>
+		</div>
+	</div>
+	<div id="pwdSetSubmit" class="sprite-save confirm">确 定</div>
+</div>
+
+<!--登录记录-->
+<div id="login-history" class="safe-item div-hiden clearfix">
+	<div class="safe-head">
+		<div class="head-txt">登录记录</div>
+		<div jsfun="return-index" class="head-return">返回>></div>
+	</div>
+	<table class="login-history">
+		<thead>
+			<tr>
+				<td>登录时间</td>
+				<td>IP地址</td>
+				<td>参考地点</td>
+				<td>登录业务</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>2015-05-21 21:12:00</td>
+				<td>192.168.0.12</td>
+				<td>福建省福州市</td>
+				<td>
+					网页
+					<i>
+						<i class="sprite-safe safe-nomy"></i>
+						<div class="safe-tips display-table">
+							<div class="display-table-cell">
+								<i><i></i></i>
+								<div class="ismy-login">是我本人登录</div>
+								<span class="sprite-safe safe-mylogin"></span>
+							</div>
+						</div>
+					</i>
+				</td>
+			</tr>
+			<tr class="tr2">
+				<td>2015-05-21 21:12:00</td>
+				<td>192.168.0.12</td>
+				<td>福建省福州市</td>
+				<td>
+					网页
+					<i>
+						<i class="sprite-safe safe-nomy"></i>
+						<div class="safe-tips display-table">
+							<div class="display-table-cell">
+								<i><i></i></i>
+								<div class="ismy-login">是我本人登录</div>
+								<span class="sprite-safe safe-mylogin"></span>
+							</div>
+						</div>
+					</i>
+				</td>
+			</tr>
+			<tr>
+				<td>2015-05-21 21:12:00</td>
+				<td>192.168.0.12</td>
+				<td>福建省福州市</td>
+				<td>网页</td>
+			</tr>
+			<tr class="tr2">
+				<td>2015-05-21 21:12:00</td>
+				<td>192.168.0.12</td>
+				<td>福建省福州市</td>
+				<td>网页</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!--解绑手机-->
+<div id="unbinding-tel" class="safe-item div-hiden clearfix">
+	<div class="safe-head">
+		<div class="head-txt">解绑手机</div>
+		<div jsfun="return-index" class="head-return">返回>></div>
+	</div>
+	<div class="safe-tips">绑定手机用户，可通过短信接收各类验证码，安全快捷！</div>
+	<div class="one-row clearfix">
+		<div class="left pull-left">手机号码：</div>
+		<div class="telPhone pull-left" nsdata="dataTelNum">{{ sinfo['telephone'] }}</div>
+	</div>
+	<div class="one-row clearfix">
+		<div class="left pull-left">验证码：</div>
+		<input id="unbindingTelCode" type="text" class="input-item sec-code pull-left" onpaste="return false" onkeydown="onlyNum();" ondragenter="return false" oncontextmenu="return false;">
+		<div id="unbindingTelGetCode" class="get-code">获取验证码</div>
+        <div class="tip-text pull-left div-hiden">
+			<span class="red-text">验证码已发送，请注意查收。</span>
+		</div>
+	</div>
+	<div id="unbindingTelSubmit" class="sprite-save confirm">提交解绑</div>
+	<div class="smsTip noEnough">今天的免费短信已用完，请明天再来！</div>
+</div>
+
+<!--绑定手机-->
+<div id="binding-tel" class="safe-item div-hiden clearfix">
+	<div class="safe-head">
+		<div class="head-txt">绑定手机</div>
+		<div jsfun="return-index" class="head-return">返回>></div>
+	</div>
+	<div class="safe-tips">绑定手机用户，可通过短信接收各类验证码，安全快捷！</div>
+	<div class="one-row clearfix">
+		<div class="left pull-left">手机号码：</div>
+		<input id="bindingTelNumber" type="text" class="input-item pull-left" maxlength="11" onpaste="return false" onkeydown="onlyNum();" ondragenter="return false" oncontextmenu="return false;">
+	</div>
+	<div class="one-row clearfix">
+		<div class="left pull-left">验证码：</div>
+		<input id="bindingTelCode" type="text" class="input-item sec-code pull-left" maxlength="8" onpaste="return false" onkeydown="onlyNum();" ondragenter="return false" oncontextmenu="return false;">
+		<div id="bindingTelGetCode" class="get-code">获取验证码</div>
+		<div class="tip-text pull-left div-hiden">
+			<span class="red-text">验证码已发送，请注意查收。</span>
+		</div>
+	</div>
+	<div id="bindingTelSubmit" class="sprite-save confirm">绑定手机</div>
+	<div class="smsTip noEnough">今天的绑定次数已经用完，请明天再来！</div>
+</div>
+
+<!--找回用户名-->
+<div class="findusername div-hiden clearfix">
+	<div class="find-head">
+		<div class="find-head-txt">找回用户名</div>
+	</div>
+	<div class="find-remin">填写您绑定的手机号码，点击获取验证码找回用户名</div>
+	<div class="find-remin remin2">如果没有收到验证码，请再次点击获取验证码（验证码有效期3分钟）。</div>
+	<!--手机号-->
+	<div class="find-phone">
+		<div class="find-phone-tit find-font pull-left">手机号：</div>
+		<input type="text" class="find-phone-box pull-left find-font" maxlength="11">
+		<label class="phone-err-txt pull-left div-hiden">手机号格式不对</label>
+	</div>
+	<!--验证码-->
+	<div class="find-judge">
+		<div class="find-jud-tit find-font pull-left">验证码：</div>
+		<input type="text" maxlength="6" class="find-jud-box find-font pull-left">
+		<div class="find-getjud pull-left cu-a">获取验证码</div>
+		<div class="find-getjude-remin pull-left div-hiden">
+			<div class="find-code-time pull-left">
+				(
+				<div class="code-sec">60</div>
+				)秒后自动获取
+			</div>
+			<div class="find-code-ts pull-left">
+				<label>验证码已发送，请注意查收，三分钟有效</label>
+			</div>
+		</div>
+	</div>
+	<!--按钮-->
+	<div class="find-buttom sprite-save next cu-a">找回用户名</div>
+</div>
+{% endblock %}

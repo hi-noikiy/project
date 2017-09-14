@@ -1,0 +1,160 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" enctype="multipart/form-data" class="dataform" id="dataform">
+	<div class="formBox">
+		<!-- <div class="inputText" >
+            <span>票券图片：</span>
+            <input type="file" name="couponPic" value="">
+            <div><img src="{:C('IMG_URL')}{$data.couponPic}" style="width:"></div>
+        </div> -->
+        <div class="inputText" >
+            <span>票券名称：</span>
+            <input type="text" name="data[couponName]"  placeholder="请输入票券名称" value="{$data.couponName}">
+        </div>
+
+        <div class="inputText" >
+            <span>图标名称：</span>
+            <input type="text" name="data[iconName]"  placeholder="请输入图标名称" value="{$data.iconName}">
+        </div>
+        
+    	<div class="inputSelect" >
+            <span>票券类型：</span>
+            <select name="data[voucherType]" id="voucherType">
+                    <foreach name="voucherTypeList" item="vo" key="k" >
+                        <option value="{$vo.typeId}" <if condition="$data['voucherType'] == $vo['typeId']"> selected="selected"</if>>{$vo.typeName}</option>
+                    </foreach>
+                     </select>
+        </div>
+        <div class="inputText" >
+            <span>抢购时间：</span>
+            <input type="text" class="dateTime" name="data[buyingStartTime]" placeholder="请输入开始抢购时间" value="{$data.buyingStartTime|date="Y-m-d H:i",###}">
+            <span style="width:30px; text-align:center;">至</span>
+            <input type="text" class="dateTime" name="data[buyingEndTime]" placeholder="请输入结束抢购时间" value="{$data.buyingEndTime|date="Y-m-d H:i",###}">
+          </div>
+        <div class="inputText" >
+            <span>有效期：</span>
+            <input type="text" class="date" name="data[voucherStartDate]" placeholder="请输入开始日期" value="{$data.voucherStartDate|date="Y-m-d",###}">
+            <span style="width:30px; text-align:center;">至</span>
+            <input type="text" class="date" name="data[voucherEndDate]" placeholder="请输入结束日期" value="{$data.voucherEndDate|date="Y-m-d",###}">
+          </div>
+         <div class="inputSelect" >
+            <span>归属影院：</span>
+            <select name="data[belongCinemaCode]" id="belongCinemaCode">
+                <foreach name="cinemaList" item="vo" key="k" >
+                        <option value="{$vo.cinemaCode}" <if condition="$data['cinemaCode'] == $vo['cinemaCode']"> selected="selected"</if>>{$vo.cinemaName}</option>
+                    </foreach>
+            </select>
+        </div>
+        <div class="inputText" >
+            <span>兑换说明：</span>
+            <input type="text" name="data[couponDescription]"  placeholder="请输入兑换说明" value="{$data.couponDescription}">
+        </div>
+
+        <div class="inputText" >
+            <span>备注：</span>
+            <input type="text" name="data[couponRmark]"  placeholder="请输入备注" value="{$data.couponRmark}">
+        </div>
+
+        <div class="inputText" >
+            <span>票券数量：</span>
+            <input type="text" name="data[couponSum]"  placeholder="请输入票券数量" value="{$data.couponSum}">
+        </div>
+        <div class="inputText" >
+            <span>原价：</span>
+            <input type="text" name="data[oldPrice]"  placeholder="请输入原价" value="{$data.oldPrice}">
+        </div>
+        <div class="inputText" >
+            <span>售价：</span>
+            <input type="text" name="data[newPrice]"  placeholder="请输入售价" value="{$data.newPrice}">
+        </div>
+        
+
+    </div>
+    <input type="hidden" name="couponId" value="{$data.couponId}">
+	<div class="formBtn">
+        <a href="javascript:ajaxSubmit()" class="button">确认</a>
+         <a href="javascript:parent.layer.closeAll();" class="cancel">取消</a>
+        
+    </div>
+</form>
+<script type="text/javascript">
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+	timepicker:true,
+	format:'Y-m-d H:i',
+	formatDate:'Y-m-d H:i',
+});
+
+function getVoucherName (cinemaGroupId) {
+    $.ajax({
+        type:"post",  //提交方式  
+            dataType:"json", //数据类型  
+            url:"{:U('getVoucherName')}", //请求url 
+            data:{'cinemaGroupId':cinemaGroupId},
+            success:function(json){ 
+                $("#voucherType").html('');
+                $("#belongCinemaCode").html('');
+                if (json.status == 1) {
+                    
+                    layer.alert(json.content);
+                }else if(json.status == 0){
+                    $.each(json.data.cinemaList, function(i,v){
+                        $("#belongCinemaCode").append('<option value="'+v.cinemaCode+'">'+v.cinemaName+'</option>');
+                    });
+
+                    $.each(json.data.voucherTypeList, function(i,v){
+                        $("#voucherType").append('<option value="'+v.typeId+'">'+v.typeName+'</option>');
+                    });
+                }
+            },
+            error:function(msg) {
+                // alert(msg);
+            }
+
+    });
+}
+
+function showdiv (preId) {
+
+    if (preId == 1) {
+        $("#startNum").css('display', '');
+        $("#voucherBit").css('display', 'none');
+
+    }else{
+        $("#startNum").css('display', 'none');
+        $("#voucherBit").css('display', '');
+    }
+    
+}
+
+function ajaxSubmit () {
+        // alert('1');
+        $("#dataform").ajaxSubmit({  
+            type:"post",  //提交方式  
+            dataType:"json", //数据类型  
+            url:"{:U()}", //请求url 
+            success:function(json){ //提交成功的回调函数  
+                if (json.status == 1) {
+                    layer.alert(json.content);
+                }else if(json.status == 0){
+
+
+                    layer.confirm(json.content, {
+                    btn: ['返回列表','<?php if(intval($data['couponId']) == 0){echo '继续添加';}else{echo '继续修改';}?>'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    parent.location.reload();
+                }, function(){
+                    location.reload();
+                });
+                }
+
+
+                // alert('11');
+            }  
+        });
+    }
+
+</script> 
+</block>

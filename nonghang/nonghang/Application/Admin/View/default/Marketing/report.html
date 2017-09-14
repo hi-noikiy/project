@@ -1,0 +1,160 @@
+<extend name='Public/base'/>
+<block name='pageCss'>
+<link rel="stylesheet" href="__CSS__/goods.css" type="text/css" />
+</block>
+<block name='body'>
+  <div class="content">
+    <div class="leftMenu">
+      <ul>
+        {$leftMenu}
+      </ul>
+    </div>
+    <div class="rightContent">
+      <div class="queryBox">
+        <form id="searchFrom" action="{:U()}" method="post">
+          <div class="inputText"> <span>按订单编号查询</span>
+            <input type="text" value="{$pageData['serachData_orderCode']}" name="serachData_orderCode" placeholder="请输入订单编号">
+          </div>
+          <div class="inputText"> <span>按会员卡/手机号查询</span>
+            <input type="text" value="{$pageData['serachData_cardId']}" name="serachData_cardId" placeholder="请输入会员卡/手机号">
+          </div>
+          <div class="inputText"> <span>按接收手机号查询</span>
+            <input type="text" value="{$pageData['serachData_mobile']}" name="serachData_mobile" placeholder="请输入接收手机号">
+          </div>
+          <div class="inputText" > <span>按查询</span>
+            <input type="text" class="date" name="serachData_start" placeholder="请输入开始日期" value="{$pageData['serachData_start']}">
+            <span>至</span>
+            <input type="text" class="date" name="serachData_end" placeholder="请输入结束日期" value="{$pageData['serachData_end']}">
+          </div>
+
+           <div class="inputSelect">
+                <span>按订单状态查询</span>
+                <select class="select" name="serachData_status">
+                    <option value="-1">所有订单</option>
+                <option value="0" <?php if($pageData['serachData_status']=='0'){ ?>selected<?php } ?>>等待支付</option>
+                <option value="3" <?php if($pageData['serachData_status']=='3'){ ?>selected<?php } ?>>支付完成</option>
+                <option value="5" <?php if($pageData['serachData_status']=='5'){ ?>selected<?php } ?>>超时关闭</option>
+                <option value="2" <?php if($pageData['serachData_status']=='2'){ ?>selected<?php } ?>>订单取消</option>
+                <option value="9" <?php if($pageData['serachData_status']=='9'){ ?>selected<?php } ?>>退款退票</option>
+                </select>
+            </div>
+
+          <a href="javascript:formSubmit();" class="button">查询</a>
+        </form>
+      </div>
+      <div class="tableList">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+              <td width="3%">订单编码</td>
+              <td width="8%">订单时间</td>
+              <td width="8%">会员卡号/手机号</td>
+              <td width="8%">影片名称</td>
+              <td width="10%">场次时间</td>
+              <td width="6%">售价</td>
+              <td width="2%">数量</td>
+              <td width="6%">支付类型</td>
+              <td width="6%">交易号</td>
+              <td width="6%">取票码</td>
+              <td width="6%">订单状态</td>
+              <td width="6%">操作</td>
+            </tr>
+          </thead>
+          <tbody>
+            <foreach name="userOrderList" item="vo" key="k" >
+              <div id="div_{$vo.orderNo}" class="seatInfo" style="display:none">
+                <?php
+                  $seatInfo = json_decode($vo['seatInfo'], true);
+                  foreach ($seatInfo as $key => $value) {
+                    echo '<span>' . $value['seatRow'] . '排' . $value['seatColumn'] . '座</span>'; 
+                    // print_r($value);
+                  }
+                ?>
+                </div>
+            <tr>
+              <td>{$vo.orderNo}</td>
+              <td>{$vo.addTime|date='Y-m-d H:i:s',###}</td>
+              <td>{$vo.userMobile}</td>
+              <td>{$vo.filmName} </td>
+              <td>{$vo.filmStartTime}</td>
+              <td>{$vo.tickPrice}元</td>
+              <td>{$vo.tickNum}</td>
+              <td>{$vo.payType}</td>
+              <td>{$vo.payInfo}</td>
+              <td>{$vo.verifyCode}</td>
+              <td><?php
+                $arrayStatus[0] = '等待支付';
+                $arrayStatus[2] = '订单取消';
+                $arrayStatus[3] = '支付完成';
+                $arrayStatus[5] = '超时关闭';
+                $arrayStatus[9] = '退款退票';
+                echo $arrayStatus[$vo['status']];
+              ?></td>
+              <td><a href="javascript:openDetail({$vo.orderNo});">查看</a> <a href="javascript:cancelOrder({$vo.orderNo});">退票</a></td>
+            </tr>
+          </foreach>
+          </tbody>
+        </table>
+        <div class="orderTotal"> <span>订单总数：{$show['count']}笔</span> <span>总票数：{$show['tickNum']}张</span> <span>订单总金额：{$show['allprice']}元</span> <a href="{:U('orderPort')}">导出到EXCEL</a> </div>
+
+        
+        <div class="pagination">
+          <div class="page"> {$page} </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+function openDetail (divId) {
+  var html = '<div class="seatInfo">' + $("#div_" + divId).html() + '</div>';
+  layer.open({
+    type: 1,
+    skin: 'layui-layer-rim', //加上边框
+    area: ['420px', '240px'], //宽高
+    content: html,
+});
+}
+var loadi = '';
+var loadimsg = '';  
+function cancelOrder (orderNo) {
+  layer.confirm('确认是否退票？',function(index){
+    loadi = layer.load(1, {shade: [0.5,'#000']});
+    loadimsg = layer.msg('正在退票中...',{icon: 16, time:60000000});
+      $.ajax({
+          url:"<?php echo U('cancelOrder')?>",
+          data:{'orderNo':orderNo},
+          dataType:'json',
+          type:'post',
+          success:function(json){
+            layer.close(loadi);
+            layer.close(loadimsg);
+              if(json.status=='0'){
+                  location.reload();
+              }else{
+                  layer.msg(json.content);
+              }
+          },
+          error:function(msg){
+            layer.close(loadi);
+              layer.close(loadimsg);
+              layer.msg('网络错误，请稍候再试！');
+          }
+      });
+  })
+}
+
+
+function formSubmit() {
+  $("#searchFrom").submit();
+}
+
+$('.date').datetimepicker({
+  yearOffset:0,
+  lang:'ch',
+  timepicker:false,
+  datepicker:true,
+  format:'Y-m-d',
+  formatDate:'Y-m-d',
+});
+</script> 
+</block>

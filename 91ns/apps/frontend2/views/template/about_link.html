@@ -1,0 +1,13 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+{% include "template/meta.html" %}
+<script type="text/javascript">
+    function requireInit(){
+        require.config({
+            baseUrl:'{{static_url("web/js/")}}',
+            urlArgs:1,
+            paths: {
+                jquery:     'mobile/tool/jquery-1.8.0.min'
+            }
+        });
+    }
+</script>

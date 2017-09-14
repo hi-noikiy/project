@@ -1,0 +1,20 @@
+<div class="main-body">
+    <div class="main-nav" id="main-nav">
+        <div class="nav-body">
+            <div class="nav-hd ico-main-13">
+                <a href="/">
+                    <img class="nav-logo" src="{{ static_url(webType['logoURL']) }}">
+                </a>
+            </div>
+            <div class="nav-bd">
+                <!-- 个人信息 -->
+                {% include "template/infoBox.html" %}
+                <!-- 导航栏 -->
+                {% include "template/navBox.html" %}
+            </div>
+        </div>
+    </div>
+    {% block content %}
+        {{ content() }}
+    {% endblock %}
+</div>

@@ -1,0 +1,187 @@
+<extend name='Public/base'/>
+<block name='title'>影院排期</block>
+<block name='body'>
+<div class="page">
+	<div class="headerNav">
+       <div class="headerLeft"><a href="javascript:window.history.back(-1);"><img src="__IMG__/common/back.png" height="100%" /></a></div>
+        <div class="title"><span>{$plans[0]['cinemaName']}</span></div>
+        <div class="headerRight"><!-- <a href="{:U('cinemalist',array('op'=>'cinemaplan','filmNo'=>$plans[0]['filmNo']))}">更换影城</a> --></div>
+    </div>
+    <div class="content">
+    	<div class="planTop">
+        	<!-- Swiper -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                <volist name='films' id='vo'>
+                    <div class="swiper-slide" id='{$vo["filmNo"]}'  score='{$vo["score"]/10}' name='{$vo["filmName"]}'><img src="<?php if(!empty($vo['image'])){ ?>__UPLOAD__/{$vo['image']}<?php }else{ ?>imgUrl/movie/default.jpg<?php } ?>" height="72" width="54" /></div>
+                </volist>
+                </div>
+                <!-- Add Pagination 
+                <div class="swiper-pagination">
+                </div>-->
+            </div>
+            <div class="planFilmLink">
+            	<a href="#"><span>{$films[0]['filmName']}</span><b>{$films[0]['score']/10}</b></a>
+            </div>
+        </div>
+    	<div class="dateBox">
+    		<ul class="dateBody"  id="dateBody">
+                <volist name='time' id='vo'>
+                <li planDate="{$vo['time']}" <?php if($i=='1'){ ?>class="cur"<?php }?>>{$vo['instr']}{$vo['dtime']}</li>
+             </volist>
+            </ul>
+        </div>
+        <div class="showPlan">
+    	<volist name='plans' id='vo'>
+            <ul onclick="window.location.href='{:U('seat',array('featureAppNo'=>$vo['featureAppNo']))}'">
+                <li class="tal">
+                    <div class="ledTime">{$vo['start']}</div>
+                    <p>{$vo['end']}结束</p>
+                </li>
+                <li class="tac">
+                    <div  class="planStyle">{$vo['copyLanguage']}/{$vo['copyType']}</div>
+                    <p>{$vo['hallName']}</p>
+                </li>
+                <li class="tar">
+                    <div class="planPirce">￥{$vo['memberPrice']}</div>
+                    <p >￥{$vo['listingPrice']}</p>
+                </li>
+            </ul>
+            </volist>
+        </div>
+        <input type="hidden" id='filmCode' value="{$films[0]['filmNo']}"/>
+    </div>
+</div>
+
+<script type="text/javascript">
+	 var w = $("body").width();
+	 var i = $("#dateBody > li").length;
+	 var n = $("#dateBody > li").width();
+		//$("#dateBody").width((parseInt(n*i)));
+		//$("#dateBody > li").width(w*0.33);
+		$("#dateBody > li").click(function(){
+			$(this).addClass("cur").siblings().removeClass("cur")}
+		)
+		$("#dateBody").find("li").each(function(){
+			$(this).click(function(){
+				getPlanlist($(this).attr("planDate"));
+			});
+		});
+		function getPlanlist(planDate){
+			var filmNo=$('#filmCode').val();
+			$.get("{:U('cinemaplanajax')}",{
+				filmNo:filmNo,
+				startTime:planDate,
+				random:Math.random(),
+				}, function(msg) {
+					var data=JSON.parse(msg);
+					$('.showPlan').html('');
+					if(data){
+						$.each(data,function(k,value){
+							var str="";
+							 str+='<ul onclick="window.location.href=\''+"{:U('seat')}?featureAppNo="+value['featureAppNo']+'\'">'+
+				                '<li class="tal"><div class="ledTime">'+value['start']+'</div><p>'+value['end']+'结束</p></li>'+
+			                '<li class="tac"><div  class="planStyle">'+value['copyLanguage']+'/'+value['copyType']+'</div><p>'+value['hallName']+'</p></li>'+
+			                '<li class="tar"><div class="planPirce">￥'+value['memberPrice']+'</div><p >￥'+value['listingPrice']+'</p></li></ul>';
+							$('.showPlan').append(str);
+						});				
+					}
+			}) ;		
+		}
+$(".tar").click(function(){
+		var cardStyle = $(this).parent().next("div.cardPrice").css('display');
+		$(this).parent().next("div.cardPrice").slideToggle("slow").siblings(".cardPrice:visible").slideUp("slow");
+		
+		
+		$(".tar").find("em").removeClass("cur");
+		
+		 if(cardStyle == 'none'){
+			 $(this).find("em").addClass("cur");
+		}
+		
+		
+		});
+var swiper = new Swiper('.swiper-container', {
+    pagination: '.swiper-pagination',
+    slidesPerView: 5,
+    centeredSlides: true,
+    paginationClickable: true,
+    spaceBetween:0,
+    onTransitionEnd: function(swiper){
+    	var tdata=$('.swiper-slide-active').attr('id');
+    	var cdata=$('#filmCode').val();
+    	if(tdata!=cdata&&tdata!=undefined){
+    		$('#filmCode').val(tdata);
+    		$('.planFilmLink').html('<a href="#"><span>'+$('#'+tdata).attr('name')+'</span><b>'+$('#'+tdata).attr('score')+'</b></a>');
+    		$.get("{:U('cinemaajax')}",{
+    			filmNo:tdata,
+    			random:Math.random(),
+    			}, function(json) {
+    				var msg=JSON.parse(json);
+    				var data=msg.plans;
+    				var times=msg.planTime;
+    				$('#dateBody').html('');
+    				if(times){
+    					var str="";
+    					$.each(times,function(k,value){
+    						 str+='<li planDate="'+value['time']+'" ';
+    						 if(k==0){
+    							 str+='class="cur"';
+    						 }
+    						 str+='>'+value['instr']+value['dtime']+'</li>';
+    					});			
+    					$('.dateBody').append(str);
+    				}
+    				$('.showPlan').html('');
+    				if(data){
+    					$.each(data,function(k,value){
+    						var str="";
+    						 str+='<ul onclick="window.location.href=\''+"{:U('seat')}?featureAppNo="+value['featureAppNo']+'\'">'+
+    			                '<li class="tal"><div class="ledTime">'+value['start']+'</div><p>'+value['end']+'结束</p></li>'+
+    		                '<li class="tac"><div  class="planStyle">'+value['copyLanguage']+'/'+value['copyType']+'</div><p>'+value['hallName']+'</p></li>'+
+    		                '<li class="tar"><div class="planPirce">￥'+value['memberPrice']+'</div><p >￥'+value['listingPrice']+'</p></li></ul>';
+    						$('.showPlan').append(str);
+    					});				
+    				}
+    					$("#dateBody > li").click(function(){
+    						$(this).addClass("cur").siblings().removeClass("cur")}
+    					)
+    					$("#dateBody").find("li").each(function(){
+    						$(this).click(function(){
+    							getPlanlist($(this).attr("planDate"));
+    						});
+    					});
+    				$("#dateBody").find("li").each(function(){
+    					$(this).click(function(){
+    						getPlanlist($(this).attr("planDate"));
+    					});
+    				});
+    				function getPlanlist(planDate){
+    					var filmNo=$('#filmCode').val();
+    					$.get("{:U('cinemaplanajax')}",{
+    						filmNo:filmNo,
+    						startTime:planDate,
+    						random:Math.random(),
+    						}, function(msg) {
+    							var data=JSON.parse(msg);
+    							$('.showPlan').html('');
+    							if(data){
+    								$.each(data,function(k,value){
+    									var str="";
+    									 str+='<ul onclick="window.location.href=\''+"{:U('seat')}?featureAppNo="+value['featureAppNo']+'\'">'+
+    						                '<li class="tal"><div class="ledTime">'+value['start']+'</div><p>'+value['end']+'结束</p></li>'+
+    					                '<li class="tac"><div  class="planStyle">'+value['copyLanguage']+'/'+value['copyType']+'</div><p>'+value['hallName']+'</p></li>'+
+    					                '<li class="tar"><div class="planPirce">￥'+value['memberPrice']+'</div><p >￥'+value['listingPrice']+'</p></li></ul>';
+    									$('.showPlan').append(str);
+    								});				
+    							}
+    					}) ;		
+    				}
+    		}) ;
+    	}
+    	
+    },
+});
+
+</script>    
+</block>

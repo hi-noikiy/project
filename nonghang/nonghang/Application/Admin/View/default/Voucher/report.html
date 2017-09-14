@@ -1,0 +1,77 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                <{$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+        	<!-- <form action="{:U()}" method="post" id='myform'>
+            	<div class="inputText" >
+                	<span>按票券编号查询</span>
+                    <input type="text" onclick="" placeholder="请输入票券编号" value="">
+                 </div>
+                <div class="inputSelect">
+                    <span>按归属影院：</span>
+                    <select name='cinemaCode'>
+                    	<option value="0">所有影院</option>
+                    	<option value="1">厦门梦露</option>
+                    </select>
+                </div>
+                <div class="inputText" >
+                	<span>按验证时间查询</span>
+                    <input type="text" name="start" class="date" placeholder="请输入开始日期" value="{$pageData['start']}"><span>至</span>
+                    <input type="text" name="end" class="date" placeholder="请输入结束日期" value="{$pageData['end']}">
+                </div>
+                <a href="#" class="button">查询</a>
+                </form> -->
+            </div>
+            <div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <tr >
+                        <td width="8%">订单号</td>
+                        <td width="5%">销售数量</td>
+                        <td width="12%">备注</td>
+                        <td width="8%">售券时间</td>
+                        <!-- <td width="6%">销售人员</td> -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="orderList" item="vo" key="k">
+                        <tr>
+                            <td>{$vo.orderId}</td>
+                            <td>{$vo.sellNum}</td>
+
+                            <td>{$vo.remark}</td>
+                            <td>{$vo.addTime|date="Y-m-d",###}</td>
+                            <!-- <td>{$vo.adminId}</td> -->
+
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                
+                <div class="page">
+                    {$page}
+                </div>
+                
+            </div>
+            </div>
+        </div>
+	</div>
+<script type="text/javascript">
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+	timepicker:true,
+	format:'Y-m-d H:i',
+	formatDate:'Y-m-d H:i',
+});
+</script> 
+</block>

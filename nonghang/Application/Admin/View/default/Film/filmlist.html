@@ -1,0 +1,110 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>
+            
+        </div>
+		<div class="rightContent">
+        	<div class="queryBox">
+        	<form action="{:U()}" method="post" id='myform'>
+                <div class="inputText">
+                    <span>按影片查询：</span>
+                    <input type='text' name='filmName' value="{$pageData['filmName']}" />
+                </div>
+                <input type="hidden" value="{$status}" name="status">
+                <a href="#" class="button">查询</a>
+				</form>
+            </div>
+            <div class="tableList">
+
+
+                <div class="unbind">未绑定影片：
+                    <volist name='noBindFilmList' id='vo'>
+                        <span>{$vo.filmName}、</span>
+                    </volist>
+                </div>
+
+            <ul class="tabbtn" id="tabs">
+                    <li <if condition="$status eq 0 "> id="current"</if>><a href="{:U('filmlist', array('status'=>0))}">正在热映</a></li>
+                    <li <if condition="$status eq 1 "> id="current"</if>><a href="{:U('filmlist', array('status'=>1))}">即将上映</a></li>
+                    <li <if condition="$status eq 2 "> id="current"</if>><a href="{:U('filmlist', array('status'=>2))}">无排期</a></li>
+                </ul>
+
+            	
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                     <thead>
+                          <tr >
+                            <td width="5%">ID</td>
+                            <td width="12%">名称</td>
+                            <td width="6%">导演</td>
+                            <td width="18%">主演</td>
+                            <td width="10%">类型</td>
+                            <td width="7%">片长</td>
+                            <td width="6%">地区</td>
+                            <td width="6%">制式</td>
+                            <td width="6%">上映日期</td>
+
+                            <td width="10%">操作</td>
+                          </tr>
+                      </thead>
+                      <tbody  >
+                      <volist name='list' id='vo'>
+                          <tr>
+                            <td> {$vo['id']} </td>
+                            <td> {$vo['filmName']} </td>
+                            <td id="getRulesNameTd"><div style="width:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; height:30px;" class="getRulesName">{$vo.director}</div></td>
+                            <td id="castTd"><div style="width:100px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; height:30px;" class="cast">{$vo.cast}</div></td>
+                            <td > {$vo['type']} </td>
+                            <td > {$vo['duration']} 分钟</td>
+                            <td> {$vo['area']} </td>
+                            <td > {$vo['version']} </td>
+                            <td > {$vo['publishDate']|date='Y-m-d',###} </td>
+
+                            <td ><a class="editFilm"  href="{:U('filmedit', array('id'=>$vo['id']))}">编辑</a>|<a href="javascript:del({$vo['id']});" class="deleteFilm" val="1682">删除</a></td>
+                         </tr>
+                         </volist>
+                   </tbody>
+                </table>
+                {$page}
+    		</div>
+        </div>
+    </div>
+<script type="text/javascript">
+$(function(){
+	var urlstr="?filmName={$pageData['filmName']}";
+	$('.page a').each(function(){
+		$(this).attr('href',$(this).attr('href')+urlstr);
+	});
+});
+$('.button').click(function(){
+	$('#myform').submit();
+});
+	function del(id){
+	    layer.confirm('确认是否删除？',function(index){
+	    	$.ajax({
+	    		url:"<?php echo U('delete')?>",
+	    		data:{id:id},
+	    		dataType:'json',
+	    		type:'post',
+	    		success:function(json){
+	    			if(json.status=='0'){
+	    				location.reload();
+	    			}else{
+	    				layer.msg(json.text);
+	    			}
+	    		},
+	    		error:function(msg){
+	    			layer.msg('网络错误，请稍候再试！');
+	    		}
+	    	});
+	    	
+		})
+	}
+    $('.getRulesName').css('width', $('#getRulesNameTd').width() + 'px');
+	$('.cast').css('width', $('#castTd').width() + 'px');
+</script> 
+</block>

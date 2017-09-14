@@ -1,0 +1,62 @@
+
+    {% include "pull/infoheader.html" %}
+    <div class="content-box" style="background: #FFF; text-align: left; margin-top:20px;  padding-bottom: 40px;">
+        <ul class="tab-nav clearfix">
+            <li class="tabs-nav active"><a href="#">消费记录</a></li>
+            <a class="date-calendar pull-right"><i class=" icon-calendar"></i> <input id="mydate" style="height: 35px;" placeholder="请输入日期" value=""></a>
+            <a class="pull-right"><input style="height:28px;" id="searchId" name="searchId" type="text" placeholder="请输入uid" >&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </ul>
+    <div class="hr-d7"></div>
+    <div id="box1" class="tab-box">
+
+
+    <div class="row-fluid" style="margin-top: 30px;">
+        <div class="container-fluid">
+            <div style="margin-top: -30px">
+                <table id="tableList" class="table with-check table-purple">
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>消费金额(聊币)</th>
+                        <th>购买物品</th>
+                        <th>数量</th>
+                        <th>消费对象</th>
+                        <!-- <th></th> -->
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                {% include "common/pagination.html" %}
+                <div class="row-fluid">
+                    <div class="total pull-left">
+                        <!-- <p class="font font18 cr-gy">
+                            <span>消费金额(聊币)：</span>
+                            <span id="sum"></span>
+                        </p> -->
+                        <p class="font font18 cr-gy">
+                            <span>消费总金额(聊币)：</span>
+                            <span id="total"></span>
+                        </p>
+                    </div>
+                
+                    <!-- <div id="pagination" class="pagination alternate pull-right"></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div id="myDilog" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="addnumDialogForm">
+        <div style="margin-top: 20px;">请输入要发放的人民币金额：</div>
+        <input id="grantNum" style="margin-top: 20px;width: 300px;height: 30px;" type="text">
+        人民币
+    </form>
+</div>

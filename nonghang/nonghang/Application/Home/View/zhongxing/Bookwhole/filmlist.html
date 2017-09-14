@@ -1,0 +1,273 @@
+<extend name='Public/bookbase'/>
+<block name='title'>选择观看影片</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><!-- <a href="#" class="back link"> --><a href="{:U('theme')}" class="back link" > <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center sliding">选择观看影片</div>
+            <div class="right">
+
+            </div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+    <div class="pages">
+        <div data-page="filmlist" class="page">
+            <div class="wrap" id="filmList">
+                <div>
+                    <volist name='list' id='v'>
+                    <label>
+                        <input type="radio" name="filmlist" filmNo='{$v.filmNo}' filmName='{$v.filmName}'>
+                        <div  class="theme-block">
+                            <div class="left">
+                                <img src="{$v.image}">
+                                <?php if($v['copyType']=='3D'):?>
+                                <div class="tag d3"></div>
+                                <?php endif;?>
+                            </div>
+                            <div class="right">
+                                <h4>{$v.filmName}</h4>
+                                <p>主演：{$v.cast}</p>
+                                <p>片长：<span>{$v.totalTime}</span>分钟</p>
+                            </div>
+                            <a  class="external"></a>
+                        </div>
+                    </label>
+                    </volist>                  
+                </div>
+            </div>
+            <div class="stepBlock fil">
+                <p>下一步：购买附加服务及卖品（<i>3</i>/4）</p>
+                <a id="step3" class="disabled external" >下一步</a>
+            </div>
+            <div class="picker-modal picker-info timeInterval">
+                <div class="toolbar">
+                    <div class="toolbar-inner">
+                        <div class="left">*时段可连续多选</div>
+                        <div class="right"><a class="confirm" >确认</a><a href="#" class="close-picker">取消</a></div>
+                    </div>
+                </div>
+                <div class="picker-modal-inner">
+                    <div class="content-block">
+                        <div class="date">
+                            <ul>
+                                <volist name='title' id='v'>
+                                    <li <?php if($_COOKIE['time']==$v['time']):?>class="active"<?php endif;?>  onclick='search_filmlist_plan({$v.time});'>{$v.name}</li>
+                                </volist>
+                            </ul>
+                        </div>
+                        <div class="planCon" id='filmlistplannumList'>
+
+                                 <volist name='list1' id='v'>
+                                    <label class="item {$v.classesd}">
+                                        <input type="checkbox" name="filmlist_plan" time="{$v.time}" endTime="{$v.endTime}" price="{$v.price}">
+                                        <div>
+                                            <span>
+                                                <b>{$v.timeflag}<em>- {$v.endTimeflag}</em></b>
+                                                <i>预定时段</i>
+                                            </span>
+                                            <span>
+                                                <b>{$v.duration}min</b>
+                                                <i>预定时长</i>
+                                            </span>
+                                            <span>
+                                                <b>¥{$v.price}</b>
+                                                <i>{$v.oriPrice}</i>
+                                            </span>
+                                            <a  class="external" ></a>
+                                        </div>
+                                    </label>
+                                    </volist>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div style="display:none" id="search_filmlist_plan_thisUrl">{:U('bookwhole/search_plan')}</div>
+             <div style="display:none" id="filmList_service_thisUrl">{:U('bookwhole/service')}</div>
+            <div class="modal-overlay"></div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+
+        $(function() {
+            //时段
+            var wrapWidth = $(window).width(),
+            unitWidth = wrapWidth / 4,
+            ulWidth = unitWidth * $('.date li').length;
+            $('.date li').width(unitWidth);
+            $('.date ul').width(ulWidth);
+            $('.date li').on('click',function(){
+                $(this).addClass('active');
+                $(this).siblings().removeClass('active');
+            });
+
+           // 操作提示
+            var msg = function(text){
+                $('#filmList').after('<div class="msg"><div class="shad"></div></div></div>');
+                $('.shad').before('<p>'+text+'</p>');
+                setTimeout(function () {
+                    $('.msg').remove();
+                }, 2000);
+            };
+           // msg('您选择的时段没有影厅可接受预定！');
+
+            //下一步是否可点
+            $('#filmList label').on('click', function () {
+                if(($.cookie('index_duration')-0)<($(this).find('p span').text()-0)) {
+                    // alert($.cookie('index_duration'));
+                    // alert($(this).find('p span').text());
+                     $('#step3').addClass('disabled');
+                     var myApp = new Framework7({
+                        modalButtonOk: '增加时段',
+                        modalButtonCancel: '取消'
+                    });
+                    myApp.confirm('您预定的电影片长超过预定总时长，请延长预定时段！ ','温馨提示', function () {
+                       // alert( $.cookie('index_all'));
+                        myApp.pickerModal('.picker-info');
+                        $$('.modal-overlay').addClass('modal-overlay-visible');
+						var json_index_all= eval('(' + $.cookie('index_all')+ ')');
+						$.each(json_index_all,function(i,o){
+							$("#filmlistplannumList input[name='filmlist_plan']").each(function(b,a){    
+								var $this = $(this);
+								if(o.time==$this.attr("time")){
+									$this.prop('checked', true); 
+								};														   
+							}); 																		
+						})                   
+                    });
+                }else{
+                    $('#step3').removeClass('disabled');
+                }              
+                // $(this).find('p span').text();
+                // console.log($(this).find('p span').text())
+            });
+			//点击两次后有问题
+         //   $('body').on('click','.modal-button:eq(0)',function(){
+           //       $('#step3').removeClass('disabled');
+            //});
+            $$('.confirm').on('click', function () {
+
+            	 var index_all='';
+            	   var stime;
+                   var endtime;
+                   var index_price=0;
+
+                    $("input[name='filmlist_plan']:checked").each(function(i,a){ 
+
+                            var $this = $(this);
+                           if(i==0)    {
+                               stime=$this.attr("time");
+                           } 
+
+                           if(i==($("input[name='filmlist_plan']:checked").length-1) )   {
+                               endtime=$this.attr("endTime");
+                           } 
+                    
+                          
+                           var time=$this.attr("time");
+                           var price=$this.attr("price");
+                           index_all+='{"time":"'+time+'","price":"'+price+'"},'
+                           // time+= time+',';
+       					index_price+=price*1;
+                            //如果元素已经存在，不再添加                                  
+                    });
+                    index_all = "[" + index_all.substring(0, index_all.length - 1) + "]";
+                    $.cookie('index_all', index_all, { path: '/' });  
+                    $.cookie('index_duration', (endtime-stime)/60, { path: '/' });
+                    $.cookie('viewingDate', stime, { path: '/' });
+                    $.cookie('endTime', endtime, { path: '/' });
+                    $.cookie('planPrice', index_price, { path: '/' });
+                    $.cookie('index_price', index_price, { path: '/' });
+                    $('#step3').removeClass('disabled');
+                myApp.closeModal('.picker-info')
+            });
+
+
+            $('body').on('click','#filmlistplannumList label', function () {
+                setTimeout(function () {        //加入延迟避免点击label时所探测的input:checked个数未及时改变
+                    if($('.planCon input:checked').length>=2){ //判断选择的项是否连续
+                        $('#step1').removeClass('disabled');
+                        for(i=0;i<=$('.planCon input:checked').length-2;i++){
+                            if(!$('.planCon input:checked').eq(i).parents('label').next().find('input').is(':checked')){
+
+                                $('#step1').addClass('disabled');
+                                myApp.alert('必须选择连续的时间段！','温馨提醒');
+                                return false;
+                            }
+                        }
+                    }else if($('.planCon input:checked').length==0) {
+                        $('#step1').addClass('disabled');
+                        myApp.alert('请选择时间段','温馨提醒');
+                        return false;
+
+                    }else {
+                        $('#step1').removeClass('disabled');
+                    }
+
+                }, 100);
+            });
+
+
+             //按钮点击操作
+        $('#step3').on('click',function(){
+            $.cookie('filmNo', $("input[name='filmlist']:checked").attr("filmNo"), { path: '/' });
+            $.cookie('filmName', $("input[name='filmlist']:checked").attr("filmName"), { path: '/' });
+
+            mainView.router.loadPage($('#filmList_service_thisUrl').html());
+
+
+          //  alert($.cookie('endTime'));
+			// location.href='{:U("Bookwhole/service")}';
+             })
+
+        });
+
+
+        function search_filmlist_plan(time) {
+            var search_filmlist_plan_thisUrl = $('#search_filmlist_plan_thisUrl').html();
+            var sedata='';
+            if(time) {
+                sedata+='&time='+time;
+               //  $.cookie('time', time, { path: '/' });  
+            }          
+            $.ajax({
+                // global:true,
+                type: "POST",
+                url:search_filmlist_plan_thisUrl,
+                data: sedata,
+                success: function(msg){
+                    var data=msg.data;
+                  //  var data= eval("(" + msg + ")");
+                    var html='';
+                     for(var o in data){ 
+                        html+='<label class="item '+data[o].classesd+'">';
+                        html+='    <input type="checkbox" name="filmlist_plan" time="'+data[o].time+'" endTime="'+data[o].endTime+'" price="'+data[o].price+'">';
+                        html+='    <div>';
+                        html+='         <span>';
+                        html+='             <b>'+data[o].timeflag+'<em>- '+data[o].endTimeflag+'</em></b>';
+                        html+='             <i>预定时段</i>';
+                        html+='         </span>';
+                        html+='         <span>';
+                        html+='             <b>'+data[o].duration+'min</b>';
+                        html+='             <i>预定时长</i>';
+                        html+='         </span>';
+                        html+='         <span>';
+                        html+='             <b>¥'+data[o].price+'</b>';
+                        html+='             <i>'+data[o].oriPrice+'</i>';
+                        html+='         </span>';
+                        html+='         <a></a>';
+                        html+='     </div>';
+                        html+='</label>';
+                      } 
+                      $('#filmlistplannumList').empty().append(html);
+                }
+            });
+        }
+
+
+    </script>
+</block>

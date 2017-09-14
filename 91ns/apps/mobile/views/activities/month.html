@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/activities.month'|ns_css)}}"/>
+</head>
+<body>
+    {% include "template/header.html" %}
+    <h1 style="display:none;">月榜大作战</h1>
+    <img width="100%" src="{{static_url('web/cssimg/mobile/activities/month/banner.jpg')}}">
+    <div class="contents">
+        <div class="popularList">
+    		<img width="100%" src="{{static_url('web/cssimg/mobile/activities/month/popular.jpg')}}">
+            <ul>
+                {% set i = 0 %}
+                {% for user in anchorList['data'] %}
+                    {% set i = i+1 %}
+                    {% if i < 11 %}
+                    <li>{{ user['nickName'] }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="richerList">
+    		<img width="100%" src="{{static_url('web/cssimg/mobile/activities/month/richer.jpg')}}">
+            <ul>
+                {% set i = 0 %}
+                {% for user in richerList['data'] %}
+                    {% set i = i+1 %}
+                    {% if i < 11 %}
+                    <li>{{ user['nickName'] }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+	<img width="100%" src="{{static_url('web/cssimg/mobile/activities/month/footer1.jpg')}}">
+	<img width="100%" src="{{static_url('web/cssimg/mobile/activities/month/footer2.jpg')}}">
+	<script type="text/javascript" data-main="{{static_url('mobile/m/activities.month'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

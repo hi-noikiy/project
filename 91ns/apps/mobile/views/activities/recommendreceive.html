@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/activities.recommendreceive'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+    <script type="text/javascript">
+        var isAddGoogleCode = 1;
+    </script>
+</head>
+<body class="recBody">
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+    <img class="mainBG" src="{{static_url('web/cssimg/mobile/activities/rec/bg.jpg')}}" width="100%">
+    <div class="main">
+        <div class="anchorInfo">
+            <img src="{{ recUserData['avatar'] }}">
+            <p>主播昵称：{{ recUserData['nickName'] }}</p>
+            <p>房间ID：{{ recUserData['uid'] }}</p>
+        </div>
+        <!-- <img class="chestBox" src="{{static_url('web/cssimg/mobile/activities/rec/chestBox.png')}}"> -->
+        <img id="checkBox" class="chestBox" src="{{static_url('web/cssimg/mobile/activities/rec/chestBox.active.png')}}">
+        <div class="step">
+            <p>第一步</p>
+            <div class="firstStep clearfix">
+                <input id="telNum" type="tel" placeholder="请输入您的手机号码">
+                <div id="recSubmitTel" class="submit">提交</div>
+            </div>
+            <p>第二步</p>
+            <div id="downloadBtn" class="download">
+                <img src="{{static_url('web/cssimg/mobile/activities/rec/down.png')}}" width="100%">
+                <img class="active" src="{{static_url('web/cssimg/mobile/activities/rec/down.active.png')}}" width="100%">
+            </div>
+        </div>
+        <div  class="ExplainXX">
+            <img src="{{static_url('web/cssimg/mobile/activities/rec/rule.png')}}">
+            <p>☆ 本次活动针对在91NS平台未注册的新用户，从2015年7月31日开始，活动期限半年。</p>
+            <p class="blod">☆ 发放至手机号的礼包需在App用手机号注册，或将手机号绑定至91NS账户后才能使用。</p>
+            <p>☆ 发放至91NS的账户的礼包登录后即可使用。</p>
+            <p>☆ 同一个手机号只能领取一个礼包。</p>
+            <p>☆ 91NS保留法律范围内允许的对活动的解释权。</p>
+        </div>
+    </div>
+    <div id="boxShowDiv">
+        <div class="msg-bg"></div>
+        <div class="msg-content">
+            <div class="msg-text">
+                <img class="close" src="{{static_url('web/cssimg/mobile/activities/rec/close.png')}}">
+                <p class="title">超值大礼包</p>
+                <ul class="recGift clearfix">
+                    <li class="topOne">
+                        <img src="{{static_url('web/cssimg/mobile/activities/xrhz.png')}}">
+                        <p class="name">新人徽章</p>
+                        <p class="text">展示 30 天</p>
+                    </li>
+                    <li class="topTwo">
+                        <img src="{{static_url('web/cssimg/mobile/activities/lb.png')}}">
+                        <p class="name">聊币</p>
+                        <p class="text">永久 x188</p>
+                    </li>
+                    <li>
+                        <img src="{{static_url('web/cssimg/mobile/activities/jifen.png')}}">
+                        <p class="name">积分</p>
+                        <p class="text">x1000</p>
+                    </li>
+                    <li>
+                        <img class="bicycle" src="{{static_url('web/cssimg/mobile/activities/zxc.png')}}">
+                        <p class="name">座驾 - 自行车</p>
+                        <p class="text">免费使用 30 天</p>
+                    </li>
+                    <li>
+                        <img src="{{static_url('web/cssimg/mobile/activities/bbt.png')}}">
+                        <p class="name">礼物 - 棒棒糖</p>
+                        <p class="text">永久 x88</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/activities.recommendReceive'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

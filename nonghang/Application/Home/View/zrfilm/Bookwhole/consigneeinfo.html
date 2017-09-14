@@ -1,0 +1,56 @@
+<extend name='Public/bookbase'/>
+<block name='title'>收票人信息</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><!--
+                <a href="#" class="back link">
+                --><a href="{:U('Bookwhole/invoice')}" class="external link" >
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">收票人信息</div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+    <div class="pages">
+        <div data-page="" class="page">
+
+            <div class="main" id="page-consigneeInfo">
+                <volist name='list' id='v'>
+                 <div class="info-block"  id='consigneeInfo_div_{$v.id}'>
+                    <div class="address-block">
+                        <h4>{$v.name}</h4>
+                        <p>{$v.phone}</p>
+                        <p>{$v.address}</p>
+                    </div>
+                    <label class="label-radio"  onclick='changmark({$v.id});'>
+                    <input type="radio" name="my-radio" value="{$v.id}"   <?php if($v['mark']==1):?>checked="checked" <?php endif;?>>
+                    <div class="item-inner">
+                        <div class="item-type"></div>
+                    </div>
+                    <span class="default">设为默认</span>
+                    </label>
+                    <a class="delete" href="javascript:addressReceiving_del({$v.id})" >删除</a>
+                    <a class="edit" href="{:U('bookwhole/editaddressReceiving')}?id={$v.id}">编辑</a>
+                </div>
+                </volist>
+
+                <?php if(!$list):?>
+                <div id="page-consigneeEmpty">
+                    <img src="__IMG__/bookwhole/shBg.jpg">
+                </div>                 
+
+                <?php endif;?>
+                <a class="add" href="{:U('bookwhole/addressReceiving')}">新增收票人</a>
+
+
+                <div style="display:none" id="addressReceiving_del_thisUrl">{:U('bookwhole/addressReceiving_del')}</div>
+                <div style="display:none" id="consigneeInfo_thisUrl">{:U('bookwhole/consigneeInfo')}</div>
+                <div style="display:none" id="consigneeInfo_changmark_thisUrl">{:U('bookwhole/changmark')}</div>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+</block>

@@ -1,0 +1,126 @@
+body, div, p, ul, li, table, th, td, h1, h2, h3, h4, h5, h6, form, input, textarea, select, dl, dt, dd {
+    padding:0;
+    margin:0;
+    color:#000000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+/*a*/
+a { text-decoration:none; color:#999; font-size:12px;}
+a:hover { text-decoration:none; color:#390; }
+a:focus { outline:none; -moz-outline:none;}
+ul, li {list-style:none; }
+img{border:none;}
+html {font-size: 100%;}
+body {background-color:#fbfbfb;font-family:Microsoft Yahei;font-size: 1em;}
+.container {margin:0 auto; padding:0;text-align:center;min-width: 480px;width:640px}
+
+.ad_bg {position:relative; background: url("../images/ad_bg.png") no-repeat scroll 0 0; height: 2800px; min-height: 1500px; background-size: 100% auto;}
+
+.ad_bg .carousel {position: absolute; top: 1790px; width: 100%;text-align: center;}
+/*slides*/
+#slides {position:relative; height:330px; overflow:hidden;}
+.slidesImg {height:inherit;}
+.slidesImg ul.slidesul{position:relative; height: inherit;}
+.slidesImg ul.slidesul li{width:85%; height:inherit; position:absolute; left: 40px;}
+.slidesTag{position:absolute; bottom:0; left:40%;}
+.slidesTag ul li{ float:left; height: 22px; margin-left:8px; display:inline; position:relative; background: url(../images/pagination.png) no-repeat 0 0;}
+.slidesTag ul li a{ display: inline-block; width:19px; height:inherit;}
+.slidesTag li.selected{ background: url(../images/pagination.png) no-repeat 0px -22px; }
+.slidesTag img{width: 40px}
+
+.ad_bg .startpng { position: absolute; top:472px; left: 256px; width: 133px; height: 80px;text-align: center;cursor: pointer;}
+.ad_bg .downtop { position: fixed; top:1px;  width: 100%; height: 96px;background: url(../images/top.png) no-repeat ;z-index: 100;}
+.ad_bg .downtop a { display: block; height: inherit;margin-right: 42%;margin-top: 45px}
+.ad_bg .downtop img { width:105px}
+.ad_bg .down { position: absolute; top:810px; left: 167px; width: 325px; height: 96px;}
+.ad_bg .downbottom { position: absolute; bottom:80px; left: 167px; width: 325px; height: 96px;}
+.ad_bg .down a,.ad_bg .downbottom a { display: block; height: inherit;}
+.ad_bg .down img,.ad_bg .downbottom img { width:225px}
+.ad_bg .video { position: absolute; top: 1680px; left: 20px; width: 600px;}
+.ad_bg .video iframe { height: 400px;}
+#close{width: 40px;height: 40px;color: #ffffff;position: absolute;right: 60px;top: 50px;display: none}
+
+.lrcarousel{position: absolute; top: 2250px; width: 100%;}
+.lrslidesImg{}
+.lrslidesImg img{width:230px}
+.lrslidesTag{}
+.lrslidesTag ul li{display:inline-block; width: 85px;height: 85px;background: url(../images/blue.png) no-repeat;border-radius:6px;background-size: 100%;}
+.lrslidesTag .selected{background: url(../images/white.png) no-repeat;}
+.lrslidesTag img{width:80px}
+.lrdiv{width: 50px;height: 72px;position: absolute;top:66px;cursor: pointer;}
+#ldiv{left: 72px;}
+#rdiv{right: 72px}
+@media (max-width: 767px) {
+    .ad_bg { height: 3345px;}
+    .container { width: 100%;}
+    .ad_bg .carousel { top:1500px; width: 94%; left: 3%;}
+    #slides { height: 430px;}
+    .slidesTag {bottom: 10px;}
+    .slidesImg img { width: 100%;}
+    .ad_bg .down { top:29%; left: 25%; width:385px;}
+    .ad_bg .video {top: 2030px; left: 0px; width: 100%; width: 94%; left: 3%;}
+    .ad_bg .video iframe { height: 450px;}
+}
+
+@media (max-width: 480px) {
+    .ad_bg { height: 2100px;}
+    .container { width: 100%;}
+    .ad_bg .carousel { top:1330px; width: 94%; left: 9%;}
+    .slidesImg { height: inherit;}
+    .slidesImg ul.slidesul li{width:85%; height:inherit; position:absolute; left: 0px;}
+    .slidesTag {bottom: 20px;left:27%;}
+    #slides { height: 280px;}
+    .ad_bg .video {top: 220px; left: 0px;  width: 94%; left: 3%;}
+    .ad_bg .video video { height: 280px;display: none}
+   
+    .ad_bg .down { top: 593px; left: 25%; width: 240px; height: 63px;}
+    .ad_bg .downbottom { bottom: 80px; left: 25%; width: 240px; height: 63px;}
+    .ad_bg .startpng{top:353px; left: 40%; width: 100px;height: 60px;}
+	.ad_bg .startpng img{ width: 100px;cursor: pointer;}
+	 .ad_bg .downtop { top: 1px; left: 0; width: 100%; height: 97px;background-size: 100%;}
+	.ad_bg .downtop a { margin-left: 275px;margin-top: 24px}
+	.ad_bg .downtop img { width:105px}
+	.ad_bg .down a,.ad_bg .downbottom a { display: block; height: inherit;}
+	.ad_bg .down img,.ad_bg .downbottom img { width:225px}
+	#close{width: 40px;height: 40px;color: #ffffff;position: absolute;right: 60px;top: 50px;display: none}
+
+	.lrcarousel{position: absolute; top: 1640px; width: 100%;}
+	.lrslidesImg img{width:230px}
+	.lrslidesTag ul li{display:inline-block; width: 85px;height: 85px;background: url(../images/blue.png) no-repeat;border-radius:6px;background-size: 100%;}
+	.lrslidesTag .selected{background: url(../images/white.png) no-repeat;}
+	.lrslidesTag img{width:80px}
+	.lrdiv{width: 35px;height: 72px;}
+	#ldiv{position: absolute;left: 53px;top:71px}
+	#rdiv{position: absolute;right: 53px;top:71px}
+}
+@media (max-width: 360px) {
+    .ad_bg { height: 1575px;}
+    .container { width: 100%;}
+    .ad_bg .carousel { top:990px; width: 94%; left: 9%;}
+    .slidesImg { height: inherit;}
+    .slidesTag {bottom: 25px;}
+    #slides { height: 230px;}
+    .ad_bg .video {top: 220px; left: 0px;  width: 94%; left: 3%;}
+    .ad_bg .video video { height: 280px;display: none}
+    .ad_bg .downtop { top: 1px; left: 0; width: 100%; height: 97px;background-size: 100%;}
+    .ad_bg .down { top: 446px; left: 18%; width: 240px; height: 63px;}
+    .ad_bg .downbottom { bottom: 38px; left: 17%; width: 240px; height: 63px;}
+    .ad_bg .startpng{top:266px; left: 40%; width: 75px;height: 45px;}
+    .ad_bg .downtop a { margin-left: 260px;margin-top: 13px}
+	.ad_bg .downtop img { width:90px}
+	.ad_bg .startpng img{ width: 74px;}
+	.ad_bg .down img,.ad_bg .downbottom img { width:169px}
+	#close{width: 40px;height: 40px;color: #ffffff;position: absolute;right: -15px;top: -15px;display: none;z-index: 99}
+
+	.lrcarousel{position: absolute; top: 1230px; width: 100%;}
+	.lrslidesImg img{width:175px}
+	.lrslidesTag ul li{display:inline-block; width: 66px;height: 66px;background: url(../images/blue.png) no-repeat;border-radius:6px;background-size: 100%;}
+	.lrslidesTag .selected{background: url(../images/white.png) no-repeat;background-size: 100%;}
+	.lrslidesTag img{width:60px}
+	.lrdiv{position: absolute;top:53px;width: 35px;height: 72px;}
+	#ldiv{left: 37px;}
+	#rdiv{right: 37px;}
+	
+}
+

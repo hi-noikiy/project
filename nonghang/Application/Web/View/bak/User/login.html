@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>首页</title>
+
+    <link rel="stylesheet" type="text/css" href="__CSS__/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__/style.css"/>
+
+    <script src="__JS__/jquery.min.js"></script>
+    <script type="text/javascript" src="__JS__/placeholder.js"></script>
+    <script src="__JS__/album.js"></script>
+        <script src="__JS__/layer/layer.js"></script>
+            <link rel="stylesheet" href="__JS__/skin/layer.css" type="text/css" media="screen" />
+</head>
+<block name='body'>
+    <div class="login-area page-login">
+        <h4><span class="active">会员卡登录</span><span>手机用户登录</span></h4>
+        <form method="post" >
+                <div class="clubCard-login loginBlock">
+                    <div id="tipBlock-b"></div>
+                    <div class="store">
+                        <p cinemaCode='0'>选择会员卡号所属门店</p>
+                        <ul>
+                        <foreach name='cinemalist' item='cinema'>
+                            <li cinemaCode="{$cinema['cinemaCode']}">{$cinema['cinemaName']}</li>
+                        </foreach>
+                        </ul>
+                    </div>
+                    <input class="clubCard" type="text" name="userAccount" placeholder="请输入会员卡号"/>
+                    <input class="pw" type="password" name="userPasswd" placeholder="请输入密码"/>
+                    <a class="loginBtn">登录</a>
+                </div>
+         </form>
+        <form method="post" >
+            <div class="tel-login loginBlock">
+                <div id="tipBlock-a"></div>
+                <ul>
+                    <li><input type="text" name="userAccount" placeholder="请输入手机号"/></li>
+                    <li><input type="password" name="userPasswd" placeholder="请输入密码"/></li>
+                    <li class="code3"><input type="text" name="verify" placeholder="请输入验证码"/><a href="javascript:changeClick()"><img src="{:U('public/verity',array('type'=>'login'))}"  style=" height:40px; " id="captchaChange"/> </a></li>
+                </ul>
+                <a class="loginBtn">登录</a><a href="{:U('register')}" target="_parent" class="mit link" >免费注册</a><a href="{:U('backpw')}" class="link" target="_parent">找回密码</a>
+            </div>
+        </form>
+        <!--<div class="thirdParty-login">
+            <p>第三方账号登录</p>
+            <div><a class="qq"></a><a class="alipay"></a></div>
+        </div>-->
+
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+    function validTip(id,text,top){
+        $(id).text(text);
+        $(id).css('top',top);
+    }
+    function ismobile(mo){
+    	var t=/^1\\d{10}$/; 
+    	if(t.exec(mo)){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+
+    $('input').focus(function(){
+        $('#tipBlock-a,#tipBlock-b').text('');
+    });
+
+    function changeClick(){  
+		var captcha_img = $('#captchaChange');
+		var verifyimg = captcha_img.attr("src");  
+		captcha_img.attr("src", verifyimg+'?random='+Math.random());  
+	}  
+    $('.loginBtn').click(function(){
+        var cinemaCode=$(this).parent().find('p').attr('cinemaCode');
+        var userAccount=$(this).parent().find('input[name="userAccount"]').val();
+        var userPasswd=$(this).parent().find('input[name="userPasswd"]').val();
+        var verify=$(this).parent().find('input[name="verify"]').val();
+        var url="{:U()}";
+        var tourl="{$url}";
+        if(cinemaCode==undefined){
+        	if($.trim(userAccount)==''){
+                validTip('#tipBlock-a','请输入手机号','125px');
+                return false;
+              }else if(!ismobile($.trim(userAccount))){
+                validTip('#tipBlock-a','请输入正确的手机号','125px');
+                return false;
+              }else if($.trim(userPasswd)==''){
+                validTip('#tipBlock-a','请输入密码','195px');
+                  return false;
+              }else if(verify==''){
+                validTip('#tipBlock-a','请输入验证码','266px');
+      	          return false;
+      		}
+        }else{
+            if(cinemaCode=='0'){
+                validTip('#tipBlock-b','请选择会员卡所属门店','125px');
+                return false;
+            }
+            if($.trim(userAccount)==''){
+                validTip('#tipBlock-b','请输入会员卡号','195px');
+                return false;
+            }else if($.trim(userPasswd)==''){
+                validTip('#tipBlock-b','请输入会员卡密码','266px');
+                return false;
+            }
+        }
+        var index = layer.load(2, {
+			shade: [0.1,'#000'] //0.1透明度的白色背景
+		});
+    	$.getJSON(url,{'userAccount':userAccount, 'userPasswd':userPasswd,'cinemaCode':cinemaCode,verify:verify,url:tourl}, function(data){
+			layer.close(index);
+    		if(data.status == 0){
+        		if(data.data&&data.data!='0'){
+        			parent.window.location.href=data.data;
+            	}else{
+            	 	parent.location.reload();
+               	}           		           		                
+              }else{
+
+                if(cinemaCode==undefined){
+                    switch(data.data){
+                        case 1:
+                            validTip('#tipBlock-a','*'+data.content,'125px');
+                            break;
+                        case 2:
+                            validTip('#tipBlock-a','*'+data.content,'195px');
+                            break;
+                        case 3:
+                            validTip('#tipBlock-a','*'+data.content,'266px');
+                            break;
+                    }
+                    changeClick();
+                }else{
+                    switch(data.data){
+                        case 1:
+                            validTip('#tipBlock-b','*'+data.content,'125px');
+                            break;
+                        case 2:
+                            validTip('#tipBlock-b','*'+data.content,'195px');
+                            break;
+                        case 3:
+                            validTip('#tipBlock-b','*'+data.content,'266px');
+                            break;
+                    }
+                    changeClick();
+                }
+
+              }
+    	});
+      });
+        $(function(){
+            $('.login-area h4 span').each(function(i){
+                $(this).click(function(){
+                    $(this).addClass('active');
+                    $(this).siblings().removeClass();
+                    $('.loginBlock').hide();
+                    $('.loginBlock').eq(i).show();
+                })
+            });
+
+            $(".store > p").click(function(){
+                var ul = $(".store ul");
+                if(ul.css("display")=="none"){
+                    ul.slideDown("fast");
+                }else{
+                    ul.slideUp("fast");
+                }
+            });
+            $(".store ul li").each(function(i){
+
+                $(this).click(function(){
+
+                    var txt = $(this).text();
+                    var cinemaCode = $(this).attr('cinemaCode');
+                    $(".store > p").attr('cinemaCode',cinemaCode).html(txt);
+                    $(".store  ul").hide();
+
+                });
+            });
+
+            $('input').filter("[placeholder]").miPlaceholder();
+
+        })
+
+    </script>
+</block>
+

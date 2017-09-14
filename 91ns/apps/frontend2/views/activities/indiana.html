@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities.indiana'|ns_css)}}">
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+    <div class="wrapBd"></div>
+    <div class="wrapBd1">
+    	<div class="rankList">
+			<div class="header even clearfix">
+				<div class="first">夺宝用户</div>
+				<div class="second">夺得宝物</div>
+				<div class="third">档位 和 期数</div>
+			</div>
+			<div id="scrollThis" class="hasScroll">
+				<div class="no-wh g-scroll">
+	                <div class="scroll-bg"></div>
+	                <div id="scrollBan" class="scroll-ban"></div>
+	            </div>
+		    	<ul class="scroll-body clearfix">
+		    		{% set even = false %}
+			    	{% for data in betResult %}
+		    			<li class="{% if even == true %}even{% else %}odd{% endif %} clearfix">
+		    				{% set even = !even %}
+			    			<div class="first">
+			    			<span class="uidStyle">({{ data['uid'] }}) </span>
+				    			<span class="nickName">{{ data['nickName'] }}</span>
+			    			</div>
+			    			<div class="second">{{ data['rewardName'] }}</div>
+			    			<div class="third">{{ data['rewardMoney'] }}元 第{{ data['times'] }}期</div>
+			    		</li>
+		    		{% endfor %}
+		    	</ul>
+	    	</div>
+	    </div>
+    </div>
+    <div class="wrapBd2"></div>
+    <div class="wrapBd3"></div>
+    <div class="wrapBd4"></div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" defer async data-main="{{static_url('activities.indiana'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<extend name="Public/base"/>
+<block name="body">
+<style>
+body{
+	background:#0069ac;
+	}
+</style>
+	<div class="queryBox">
+            	<form action="{:U()}" method="post"  id='myform'>
+                    <div class="inputText" >
+                        <p>按兑换码查询</p>
+                        <input type="text" name="code"  placeholder="请输入票券编码" value="{$data['code']}">
+                    </div>
+                   <div class="inputText">
+                        <p>按兑换时间查询</p>
+                        <input type="datetime" name="start" class="date" placeholder="请输入开始日期" value="{$data['start']}"><span>至</span>
+                    	<input type="datetime" name="end" class="date" placeholder="请输入结束日期" value="{$data['end']}">
+                    </div>
+                   <!-- <div class="inputSelect">
+                        <p>按套餐名称查询</p>
+                        <select name=''>
+                            <option value="0">所有套餐</option>
+                            <option value="1">单人套餐</option>
+                            <option value="2">双人套餐</option>
+                         </select>
+                    </div> --> 
+                    <div class="inputSelect">
+                        <p>按操作人员</p>
+                        <select name='gotMan'>
+                            <option value="0">默认</option>
+                         <volist name='men' id='vo'>
+                            <option value="{$vo['gotMan']}">{$vo['gotMan']}</option>
+                            </volist>
+                         </select>
+                    </div>
+                    <a href="javascript:$('#myform').submit()" class="button">查询</a>
+                </form>
+            </div>
+	<div class="checkTable">
+    	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+                 <thead>
+                    <tr>
+                        <td width="10%">订单编码</td>
+                        <td width="10%">卖品名称</td>
+                        <td width="20%">套餐详细</td>
+                        <td width="10%">套餐价格</td>
+                        <td width="15%">归属影城</td>
+                        <td width="15%">兑换时间</td>
+                        <td width="10%">操作人员</td>
+                      </tr>
+				</thead>
+                <tbody>
+                    <volist name='codes' id='vo'>
+                <tr>
+                    <td>{$vo['id']}</td>
+                    <td>{$vo['goodsName']}</td>
+                    <td><a href='javascript:lookgoods("{$vo[id]}");'>查看详情</a></td>
+                    <td>{$vo['price']}</td>
+                    <td>{$vo['cinemaName']}</td>
+                    <td>{$vo['gotTime']|date='Y-m-d H:i',###}</td>
+                    <td>{$vo['gotMan']}</td>
+                </tr>
+                </volist>
+                </tbody>
+            </table>
+             {$page}
+    </div>
+</block>
+<block name="script">
+<script type="text/javascript">
+
+function lookgoods(id){
+	layer.open({
+		title :'查看商品详情',
+		type: 2,
+		area: ['350px', '240px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U("salefrom")}?orderid='+id
+	});
+}
+function check(){
+		layer.confirm('确认是否使用',function(index){
+		layer.msg('使用成功');
+		})
+	}
+
+</script> 
+</block>

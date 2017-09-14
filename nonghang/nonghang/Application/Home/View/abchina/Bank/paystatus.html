@@ -1,0 +1,70 @@
+<extend name='Public/base'/>
+<block name='title'>微信2.0</block>
+<block name='jscss'>
+    <link type="text/css" rel="stylesheet" href="__CSS__/style.css">
+ </block>
+
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/index')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">支付</div>
+    <div class="right"></div>
+  </div>
+</div>
+    </block>
+
+<block name='body'>
+<div data-page="buyingUserSuccess" class="page" style="padding-top:44px; overflow:scroll;">
+<div class="content">
+        <div id='success' <?php if($couponInfo['status'] != 3){echo 'style="display: none"';}?>>
+            
+            <div class="payStatusicon">
+                <img src="__IMG__/movie/success.png" width="50%" />
+                <p>支付成功票券已自动添加至您的券包！</p>
+                <a href="{:U('index/plan')}">去买张票看看吧></a>
+            </div>
+        </div>
+
+        <div id='ining'>
+            <div class="payStatusicon" <?php if($couponInfo['status'] == 3){echo 'style="display: none"';}?>>
+                <img src="__IMG__/movie/ing.png" width="50%" />
+                <p> 正在购券中.....</p>
+            </div>
+        </div>
+        <div class="payStatusinfo">
+            
+        </div>
+        <input id="orderInfoOrderId" type="hidden" value="{$orderInfo.orderId}">
+    </div>
+    </div>
+
+</block>
+
+<block name='script'>
+<script type="text/javascript">
+
+function getPayStatus (orderId) {
+
+    $.post('{:U()}',{'orderid':orderId}, function(json) {
+        if (json.data.status == 3) {
+            myApp.hideIndicator();
+            $('#success').css('display', 'block');  
+            $('#ining').css('display', 'none');  
+        }else{
+            $('#success').css('display', 'none');  
+            $('#ining').css('display', 'block');  
+        }
+
+    },'json')
+
+}
+
+<?php if($couponInfo['status'] != 3){echo '
+myApp.showIndicator();
+getPayStatus(\"'.$orderId.'\");
+setIntervalId = setInterval("getPayStatus('.$orderId.')",3000);
+';}?>
+
+</script>
+</block>

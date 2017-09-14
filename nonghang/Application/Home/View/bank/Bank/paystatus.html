@@ -1,0 +1,55 @@
+<extend name='Public/base'/>
+<block name='title'>微信2.0</block>
+<block name='jscss'>
+    <link type="text/css" rel="stylesheet" href="__CSS__/style.css">
+ </block>
+
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/index')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">支付</div>
+    <div class="right"></div>
+  </div>
+</div>
+    </block>
+
+<block name='body'>
+<div data-page="buyingUserSuccess" class="page" style="padding-top:44px; overflow:scroll;">
+<div class="content">
+        <div id='success' style="display: none">
+            
+            <div class="payStatusicon">
+                <img src="__IMG__/movie/success.png" width="50%" />
+                <p>支付成功票券已自动添加至您的券包！</p>
+                <a href="{:U('index/plan')}">去买张票看看吧></a>
+            </div>
+        </div>
+        <div id='fail' style="display: none">
+            <div class="payStatusicon">
+                <img src="__IMG__/movie/lose.png" width="50%" />
+                <p>支付失败</p>
+            </div>
+        </div>
+        <div id='ining'>
+            <div class="payStatusicon">
+                <img src="__IMG__/movie/ing.png" width="50%" />
+                <p> 正在购券中.....</p>
+            </div>
+        </div>
+        <div class="payStatusinfo">
+            
+        </div>
+        <input id="orderInfoOrderId" type="hidden" value="{$orderInfo.orderId}">
+    </div>
+    </div>
+
+</block>
+
+<block name='script'>
+<script type="text/javascript">
+myApp.showIndicator();
+getPayStatus();
+setIntervalId = setInterval("getPayStatus()",3000);
+</script>
+</block>

@@ -1,0 +1,325 @@
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('transition'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<html style="overflow: visible;*overflow: auto;">
+ <body style="padding: 0;margin: 0;overflow: visible;height: auto;">
+   <div class="container-sign" style="background-color: #140317">
+       <div class="container-top" style="background-color: #140317;margin: -4px auto;">
+           <div class="container-top-img">
+               <img src="{{static_url('web/cssimg/familyActivities/perinfo.png')}}">
+           </div>
+       </div>
+       <div class="container-content">
+           <div class="content-group">
+               <div class="title">
+                   <p><i class="yuan r-left pull-left"></i> <i class="yuan r-right pull-right"></i></p>
+                   <p class="title-point">(<span style="color: red;">*</span>选项都为必选项)</p>
+                   <p><i class="title-line"></i></p>
+               </div>
+               <div class="applycon">
+                   <div class="appForm">
+                       <form  method="POST" name="form1" id="bigMac" enctype="multipart/form-data">
+                           <input type="hidden" name="picurl" value="" id="poster_url">
+                           <dl>
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>真实姓名：</div>
+                                   <div class="finp">
+                                       <!--<label id="tab-lable" class="group-lable" style="display: block;">限8个字</label>-->
+                                       <input type="text" name="rName" class="input_text familyname default-value"  id="rName">
+                                       &nbsp;
+                                       <span class="warning" id="ryname" style="*margin-top: -20px;margin-top: -17px\0;"></span>
+                                   </div>
+                               </dd>
+
+                               
+
+
+                               <dd class="clearfix">
+                                   <div class="ftit" > <span style="color: red;">*</span>籍贯：</div>
+                                   <div class="finp" id="city">
+                                       <input type="text" class="input_text cgname" name='snative' id="snative">
+                                       <span class="warning" id="wsnative"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix" style="margin-top: 33px;*margin-top: 20px;">
+                                   <div class="ftit"> <span style="color: red;">*</span>身份证号：</div>
+                                   <div class="finp">
+                                       <input class="input_text" name="SID" id="SID">
+                                       <span class="warning" id="wSID"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>电话：</div>
+                                   <div class="finp">
+                                       <input type="text" name="STel" class="input_text" id="STel">
+                                       <span class="warning" id="wSTel"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>地址：</div>
+                                   <div class="finp">
+                                       <input type="text" name="SAddr" class="input_text" id="SAddr">
+                                       <span class="warning" id="wSAddr"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>开户行：</div>
+                                   <div class="finp">
+                                       <!-- <input type="text" name="Sbank" class="input_text" id="Sbank"> -->
+                                       <select name="bank" id="Sbank" style="width: 327px;height: 28px;*height: 23px;float: left;">
+                                          <option value="">-- 请选择开户行 --</option>
+                                        <!--{loop $bankList $k $val}-->
+                                          <option value='<!--{$val}-->'><!--{$val}--></option>
+                                        <!--{/loop}-->
+                                      </select>
+                                       <span class="warning" id="wSbank"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>开户姓名：</div>
+                                   <div class="finp">
+                                       <input type="text" name="Sname" class="input_text" id="Sname">
+                                       <span class="warning" id="wSname"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>银行卡号：</div>
+                                   <div class="finp">
+                                       <input type="text" name="Scid" class="input_text" id="Scid">
+                                       <span class="warning" id="wScid"></span>
+                                   </div>
+                               </dd>
+
+                               <dd class="clearfix">
+                                   <div class="ftit"> <span style="color: red;">*</span>QQ：</div>
+                                   <div class="finp">
+                                       <input type="text" name="Sqq" class="input_text" id="Sqq">
+                                       <span class="warning" id="wSqq"></span>
+                                   </div>
+                               </dd>
+
+                               
+
+                               <dd class="clearfix" style="padding-bottom:60px; ">
+                                   <div class="ftit">
+                                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                   </div>
+                                   <div class="finp" >
+                                       <input class="submbtn" style="margin-left: 66px;" type="button" name='creatSubmitBtn' value='提 交' id='perfectInfoGroup'>
+
+                                   </div>
+                               </dd>
+
+                           </dl>
+                       </form>
+
+                   </div>
+
+               </div>
+
+           </div>
+
+       </div>
+       <div style="padding-top: 80px;background-color: #140317;"></div>
+   </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+  perfectInfoGroup();
+  function perfectInfoGroup(){
+      jq('#rName').on('blur',function(){
+          var D=jq(this).val();
+          if(D==""){
+              jq('#ryname').html('<i class="prompt-icon-error"></i>不能为空');
+              return;
+          }
+         else{
+              jq('#ryname').html('');
+          }
+      });
+
+      jq('#snative').on('blur',function(){
+          var D=jq(this).val();
+          if(D==""){
+              jq('#wsnative').html('<i class="prompt-icon-error"></i>不能为空');
+              return;
+          }
+          else{
+              jq('#wsnative').html('');
+          }
+      });
+
+
+//      身份证
+      jq('#SID').on('blur',function() {
+          var D = jq(this).val();
+          if (D == "") {
+              jq("#wSID").html('<i class="prompt-icon-error"></i>不能为空');
+              return;
+          }
+          validatepid(D);
+      })
+      function validatepid(obj){
+          var reg =/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+          if(reg.test(obj)=== false){
+              jq("#wSID").html('<i class="prompt-icon-error"></i>输入不合法');
+              return;
+          }
+          jq("#wSID").html('');
+      }
+//     手机号码
+      jq('#STel').on('blur',function() {
+          var D = jq(this).val();
+          if (D == "") {
+              jq("#wSTel").html('<i class="prompt-icon-error"></i>不能为空');
+              return;
+          }
+          validateSTel(D);
+      })
+      function validateSTel(obj){
+          var reg =/^1[34578]\d{9}$/;
+          if(reg.test(obj)=== false){
+              jq("#wSTel").html('<i class="prompt-icon-error"></i>输入不合法');
+              return;
+          }
+          jq("#wSTel").html('');
+      }
+
+      jq('#SAddr').on('blur',function(){
+          var D=jq(this).val();
+          if(D==""){
+              jq('#wSAddr').html('<i class="prompt-icon-error"></i>不能为空');
+              return;
+          }
+          else{
+              jq('#wSAddr').html('');
+          }
+      });
+
+      jq('#Sbank').on('blur',function(){
+          var D=jq(this).val();
+          if(D==""){
+              jq('#wSbank').html('<i class="prompt-icon-error"></i>不能为空');
+              return;
+          }
+          else{
+              jq('#wSbank').html('');
+          }
+      });
+
+      jq('#Sbank').on('blur',function(){
+          var D=jq(this).val();
+          if(D==""){
+              jq('#wSbank').html('<i class="prompt-icon-error"></i>不能为空');
+              return;
+          }
+          else{
+              jq('#wSbank').html('');
+          }
+      });
+
+      jq('#Sname').on('blur',function(){
+          var D=jq(this).val();
+          if(D==""){
+              jq('#wSname').html('<i class="prompt-icon-error"></i>不能为空');
+              return;
+          }
+          else{
+              jq('#wSname').html('');
+          }
+      });
+
+      //     银行卡号
+      jq('#Scid').on('blur',function() {
+          var D = jq(this).val();
+          if (D == "") {
+              jq("#wScid").html('<i class="prompt-icon-error"></i>不能为空');
+              return;
+          }
+          validateSTel(D);
+      })
+      function validateSTel(obj){
+          var reg =/^\d$/;
+          if(reg.test(obj)=== false){
+              jq("#wScid").html('<i class="prompt-icon-error"></i>输入不合法');
+              return;
+          }
+          jq("#wScid").html('');
+      }
+
+//      QQ
+      jq('#Sqq').on('blur',function() {
+          var D = jq(this).val();
+          if (D == "") {
+              jq("#wSqq").html('<i class="prompt-icon-error"></i>不能为空');
+              return;
+          }
+          validateSqq(D);
+      })
+      function validateSqq(obj){
+          var reg =/^[1-9][0-9]{4,10}$/;
+          if(reg.test(obj)=== false){
+              jq("#wSqq").html('<i class="prompt-icon-error"></i>输入不合法');
+              return;
+          }
+          jq("#wSqq").html('');
+      }
+
+    jq('#perfectInfoGroup').on('click',function(){
+
+        var data={};
+
+        data.realName=jq('#rName').val();
+        data.nativePlace =jq('#snative').val();
+        data.ID =jq('#SID').val();
+        data.phone =jq('#STel').val();
+        data.address =jq('#SAddr').val();
+        data.bank=jq('#Sbank').val();
+        data.accountname =jq('#Sname').val();
+        data.cardnumber=jq('#Scid').val();
+        data.qq =jq('#Sqq').val();
+
+        if(data.realName!=''&&data.nativePlace!=''&&data.ID!=''&&data.phone!=''&&data.address!=''&&data.bank!=''&&data.accountname!=''&&data.cardnumber!=''&&data.qq!=''){
+            utils.post('ajax/ajax_perfectInfo.php', data, function(res){
+               setTimeout('location.href="91ns.group.php"',2000);
+            });
+        }
+        else{
+            alert('请完善必填资料！')
+        }
+
+
+
+    });
+  }
+</script>
+
+</body>
+</html>
+{% endblock %}
+
+{% block end %}
+{% endblock %}

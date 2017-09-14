@@ -1,0 +1,3 @@
+INSERT INTO `inv_module` (`parentId`, `moduleName`, `moduleAction`, `moduleSort`, `moduleType`, `createTime`) VALUES ('0', '一元嗨', 'onedollar', '10', '0', '1452588013');
+INSERT INTO `inv_module` (`parentId`, `moduleName`, `moduleAction`, `moduleSort`, `moduleType`, `createTime`) VALUES ('61', '商品夺宝记录', 'bettingRes', '1', '1', '1452588013');
+INSERT INTO `inv_module` (`parentId`, `moduleName`, `moduleAction`, `moduleSort`, `moduleType`, `createTime`) VALUES ('61', '商品分配', 'allocateWine', '2', '1', '1452588013');

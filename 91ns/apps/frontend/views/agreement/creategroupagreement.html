@@ -1,0 +1,63 @@
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('myAgreement'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<html style="overflow: visible;*overflow: auto;">
+ <body style="padding: 0;margin: 0;overflow: visible;height: auto;">
+<div class="container" style="background-color: #d9e5ef">
+    <div class="container-top" style="background-color: #d9e5ef;text-align: center;padding-top: 30px;" >
+        <img src="{{static_url('web/cssimg/91ns/aup.png')}}">
+    </div>
+    <div class="container-content">
+        <div class="title">
+            家族申请用户协议
+        </div>
+
+        <div class="content">
+            <ul>
+                <li>
+                    <!-- <p>1、竞拍规则</p> -->
+                    <div class="detailed"> 1.	严禁表演或播放色情、低俗、粗口的伴奏或影音。</div>
+                    <div class="detailed"> 2.	严禁非法气功表演。</div>
+                    <div class="detailed"> 3.	严禁转接其他聊天站音视频。 </div>
+                    <div class="detailed"> 4.	严禁造谣诋毁秀场良好形象。</div>
+                    <div class="detailed"> 5.	严禁聚众非法集会或扰乱秀场正常秩序 。</div>
+                    <div class="detailed"> 6.	严禁传播其他聊天站广告。</div>
+                    <div class="detailed"> 7.	严禁煽动并传播不真事件造成恶劣影响。</div>
+                    <div class="detailed"> 8.	严禁其他一切不利于秀场和谐发展的活动或事物。</div>
+                    <div class="detailed"> 9.	族长有义务和权利管理好家族使之不发生以上所严禁情况。</div>
+					<div class="detailed"> 10.	族长无法管理制止如上严禁行为时，家族及家族房间亦作取消。</div>
+					<div class="detailed"> 11.	族长保证申请时填写的所有个人资料真实有效，族长个人信息一旦填写，不可更改。</div>
+					<div class="detailed"> 12.	家族长期处于无管理状态，官方有权撤销房间家族。</div>
+					<div class="detailed"> 13.	其他秀场规范和准则（违之撤销家族）。</div>
+					<div class="detailed"> 14.	其他政策性不可抗力。</div>
+                </li>            
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="shopfooter" style="padding:100px 0 0 0; background: #d9e5ef;" >
+
+</div>
+</body>
+</html>
+{% endblock %}
+
+{% block end %}
+{% endblock %}

@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><block name='title'>中兴电影院线后台管理系统</block></title>
+
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/layer.js"></script>
+<script type="text/javascript" src="__JS__/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="__JS__/WdatePicker.js"></script>
+<script type="text/javascript" src="__JS__/jquery.cityselect.js"></script>
+<script type="text/javascript" src="__JS__/jquery.form.js"></script>
+<script type="text/javascript" src="__STATIC__/jqdatetiem/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="__JS__/swiper.min.js"></script>
+ <script src="__JS__/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+ 
+<link rel="stylesheet" type="text/css" href="__JS__/uploadify/uploadify.css">
+<link rel="stylesheet" href="__STATIC__/jqdatetiem/jquery.datetimepicker.css" type="text/css" media="screen" />
+
+
+<link rel="stylesheet" href="__JS__/skin/layer.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__JS__/skin/layer.ext.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__CSS__/swiper.min.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__CSS__/common.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__CSS__/style.css" type="text/css" media="screen" />
+<block name='pageCss'></block>
+</head>
+<body >
+<iframe name='myframe'  id='myframe'  style="display: none"></iframe>
+  <block name='body'></block>
+  <block name="script"></block>
+<script type="text/javascript">
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+    datepicker:true,
+	timepicker:false,
+
+	format:'Y-m-d',
+	formatDate:'Y-m-d'
+});
+	
+
+
+$('.dateTime').datetimepicker({
+    yearOffset:0,
+    lang:'ch',
+    datepicker:true,
+    timepicker:true,
+    format:'Y-m-d H:i:s',
+    formatDate:'Y-m-d H:i:s'
+});
+
+$('.time').datetimepicker({
+    yearOffset:0,
+    lang:'ch',
+    datepicker:false,
+    timepicker:true,
+    format:'H:i',
+    formatDate:'H:i'
+});
+
+$('.date').after('<span onclick="clearDate(this)"  style="cursor:pointer; display:inline-block; margin-left:-25px;  width:25px;"><img src="__IMG__/common/out.png" width="15" style="margin:0 auto" /></span>');
+$('.dateTime').after('<span onclick="clearDate(this)"  style="cursor:pointer; margin-left:-25px; width:25px;"><img src="__IMG__/common/out.png" width="15" style="margin:0 auto" /></span>');
+$('.time').after('<span onclick="clearDate(this)"  style="cursor:pointer; margin-left:-26px;  width:25px;"><img src="__IMG__/common/out.png" width="10" style="margin:0 auto" /></span>');
+
+function clearDate (obj) {
+    $(obj).prev().val('');
+}
+</script>
+</body>
+</html>

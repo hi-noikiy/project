@@ -1,0 +1,282 @@
+<div id="breadcrumb">
+<a onclick="javascript:history.go(-1);"  class="go-to-home tip-bottom font font18" style="cursor: pointer;">
+<i class="icon-arrow-left"></i> 返回 &nbsp;
+</a> 
+<a onclick="javascript:history.go(-1);"  class="font font18" style="cursor: pointer;"> &nbsp;&nbsp;<span>主播 &gt</span></a>
+<a onclick="javascript:history.go(-1);"  class="font font18" style="cursor: pointer;"> <span>签约申请&gt</span></a>
+<a href="/anchor/applyinfo?id={{info['id']}}" class="current font font18"> <span>申请详情</span></a>
+</div>
+
+<!--sidebar-menu-->
+<div id="applyinfo_sidebar" class="clearfix">
+  <div class="user-info">
+    <img alt="" src="{{info['avatar']}}">
+    
+    <p>
+    <span class="font font20 cr-dpe">{{info['nickName']}}</span>
+    </p>
+    <p>
+    <span class="font font20 cr-dpe">{{info['uid']}}</span>
+    </p>
+  </div>
+  <div class="progtrckr-box">
+    <div class="progtrckrline" ></div>
+
+    <div class="p-anchorinfo">
+    <div class="l-row">
+       <span class="lable font font16 cr-b9">主播等级:</span>
+       <span class="font font16">{{info['levelName']}}</span>
+    </div>
+
+    <!-- <div class="l-row">
+       <span class="lable font font16 cr-b9">粉丝:</span>
+       <span class="font font16">{{info['fans']}}</span>
+    </div>
+    
+    <div class="l-row">
+       <span class="lable font font16 cr-b9">收益(聊币):</span>
+       <span class="font font16">{{info['income']}}</span>
+    </div> -->
+
+    <div class="l-row">
+       <span class="lable font font16 cr-b9">总播出时长:</span>
+       <span class="font font16">{{info['playTime']}}</span>
+    </div>
+  </div>
+
+  <div style=" margin-top:30px;">
+    <a href="/anchor/anchorinfo?uid={{info['uid']}}" class="btn btn-purple" style="width:210px;" >查看详细资料</a>
+  </div>
+
+</div>
+
+</div>
+<!--end sidebar-menu-->
+
+<div id="applyinfo_content">
+  <div class="container-fluid">
+       <div class="row-fluid" style="margin-top: 40px;">
+         <div class="content-box" style="background: #FFF; text-align: left;  padding-bottom: 40px;">
+			
+          <div class="" style="margin:10px 10px 0 10px;">
+            <span class="apply-line font font18 cr-b9">签约申请</span>
+            <span class="font font18 cr-b9 pull-right">{{info['createTime']}}</span>
+            <div class="hr-d7" style="margin: 3px 0px 0 0px;"></div>
+          </div>
+
+          <div class="ct-anchorinfo" >
+            <div class="l-row">
+              <span class="lable font font16 cr-b9">真实姓名:</span>
+              <span class="font font16">{{info['realName']}}</span>
+            </div>
+            
+            <div class="l-row">
+              <span class="lable font font16 cr-b9">性别:</span>
+			  {% if info['gender'] == 0 %}
+              <span class="font font16">女</span>
+			  {% endif %}
+			{% if info['gender'] == 1 %}
+			<span class="font font16">男</span>
+			{% endif %}
+            </div>
+            
+            <div class="l-row">
+              <span class="lable font font16 cr-b9">生日:</span>
+              <span class="font font16">{{info['birthday']}}</span>
+            </div>
+            
+            <div class="l-row">
+              <span class="lable font font16 cr-b9">籍贯:</span>
+              <span class="font font16">{{info['birth']}}</span>
+            </div>
+            
+            <div class="l-row">
+              <span class="lable font font16 cr-b9">身份证号:</span>
+              <span class="font font16">{{info['idCard']}}</span>
+            </div>
+            
+            <div class="l-row">
+              <span class="lable font font16 cr-b9">电话:</span>
+              <span class="font font16">{{info['telephone']}}</span>
+            </div>
+            
+            <div class="l-row">
+              <span class="lable font font16 cr-b9">地址:</span>
+              <span class="font font16">{{info['address']}}</span>
+            </div>
+            
+            <div class="l-row">
+              <span class="lable font font16 cr-b9">QQ:</span>
+              <span class="font font16">{{info['qq']}}</span>
+            </div>
+
+              <div class="l-row">
+                  <span class="lable font font16 cr-b9">开户行:</span>
+                  <span class="font font16">{{info['bank']}}</span>
+              </div>
+            
+            <div class="l-row">
+              <span class="lable font font16 cr-b9">银行开户姓名:</span>
+              <span class="font font16">{{info['accountName']}}</span>
+            </div>
+            <input type="hidden" id="uid" name="uid" value ="{{info['uid']}}" />
+            <input type="hidden" id="applyId" name="id" value ="{{info['id']}}" />
+            <div class="l-row">
+              <span class="lable font font16 cr-b9">银行卡号:</span>
+              <span class="font font16">{{info['cardNumber']}}</span>
+            </div>
+           
+            <div class="l-row" style="height: 107px; position: relative;">
+              <span class="lable font font16 cr-b9" style="position:absolute; margin-top: 40px">生活照:</span>
+              <div style="position: relative;">
+                <div class="photo clearfix">
+				{% if info['lifePhotoList'] %}
+					{% for lifePhoto in info['lifePhotoList'] %}
+					   <!--<img alt="" src="{{lifePhoto['photoUrl']}}">-->
+                    <a rel="example_group" href="{{lifePhoto['photoUrl']}}" title=""><img alt="" src="{{lifePhoto['photoUrl']}}" style="width: 154px;height: 107px;"></a>
+					{% endfor %}
+				{% endif %}
+                 <!--  <img alt="" src="assets/img/91ns/u39.jpg">
+                  <img alt="" src="assets/img/91ns/u39.jpg"> -->
+                </div>
+              </div>
+            </div>
+            
+            <div class="l-row" style="height: 107px; position: relative;">
+              <span class="lable font font16 cr-b9" style="position:absolute; margin-top: 40px">证件照:</span>
+              <div style="position: relative;">
+                <div class="photo clearfix">
+				{% if info['idCardPhotoList'] %}
+					{% for idCardPhoto in info['idCardPhotoList'] %}
+					   <!--<img alt="" src="{{idCardPhoto['photoUrl']}}">-->
+                    <a rel="example_group" href="{{idCardPhoto['photoUrl']}}" title=""><img alt="" src="{{idCardPhoto['photoUrl']}}" style="width: 154px;height: 107px;"></a>
+					{% endfor %}
+				{% endif %} 
+                </div>
+              </div>
+            </div>
+
+         
+          
+            {% if info['applyStatus']==0%}<!--申请中-->
+            <div class="l-row" style="height: 107px; position: relative; text-align: center;">
+              <button  onclick="applyClick('1')" class="btn btn-purple" style="margin-right:10px;" >同意</button>
+              <button  onclick="RefuseClick()" class="btn btn-grey" >拒绝</button>
+            </div>
+            {% endif %} 
+          </div>
+
+
+
+             {% if info['applyStatus']==1 or info['applyStatus']==3 %}<!--申请已通过、或已拒绝-->
+         <div class="" style="margin:10px 10px 0 10px;">
+             <span class="apply-line font font18 cr-b9">审核记录</span>
+             <!--<span class="font font18 cr-b9 pull-right">{{info['createTime']}}</span>-->
+             <div class="hr-d7" style="margin: 3px 0px 0 0px;"></div>
+         </div>
+
+         <div id="applyRturn">
+             <table class="table">
+                 <tr>
+                     <td class="cr-b9"  style="width: 100px; text-align: right;"> 审核人： </td>
+                     <td style="width: 200px; text-align: left;"> {{info['auditUser']}} </td>
+                     <td class="cr-b9"  style="width: 100px; text-align: right;"> 审核时间： </td>
+                     <td  style="text-align: left;" > {{info['auditTime']}} </td>
+                 </tr>
+
+                 <tr>
+                     <td class="cr-b9" style="width: 100px; text-align: right;"> 审核结果： </td>
+                     <td style="width: 200px; text-align: left;"> {%if info['applyStatus']==1%}同意通过{% endif %} {%if info['applyStatus']==3%}拒绝{% endif %} </td>
+                     <td></td>
+                     <td></td>
+                 </tr>
+             </table>
+         </div>
+           {% endif %} 
+             
+         </div>
+       </div>
+       
+  </div>
+</div>
+<div id="RefuseClick" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="pDialogForm2">
+        <div style="margin-top: 30px;"><span>请填写拒绝的理由:</span></div>
+        <div><textarea id="reason" rows="5" style="width: 98%;margin-top: 10px;"></textarea></div>
+
+
+    </form>
+</div>
+<script type="text/javascript" src="{{static_url('web/js/jquery.fancybox-1.3.1.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/jquery.fancybox-1.3.1.css')}}" type="text/css" />
+<script type="text/javascript">
+  
+  $(function(){
+    $('body').addClass('anchorinfo');
+
+      $("a[rel=example_group]").fancybox({
+          'transitionIn'		: 'none',
+          'transitionOut'		: 'none',
+          'titlePosition' 	: 'over',
+          'titleFormat'		: function(title, currentArray, currentIndex, currentOpts) {
+              return '<span id="fancybox-title-over">Image ' + (currentIndex + 1) + ' / ' + currentArray.length + (title.length ? ' &nbsp; ' + title : '') + '</span>';
+          }
+      });
+  });
+  function applyClick(status){
+      var data={};
+      data.type=1;
+      data.applyId=document.getElementById('applyId').value;
+      data.uid=document.getElementById('uid').value;
+      data.status=status;
+
+     $.ajax({
+        type:"post",
+        data:data,
+        url:'/ajax/auditApply',
+        dataType:'json',
+        success:function(res){
+          location.reload();
+        }
+      });
+  }
+  function RefuseClick(){
+
+      $('#RefuseClick').dialog({
+          autoOpen:true,
+          width:500,
+          height:350,
+          title:'拒绝申请',
+          resizable:false,
+          modal:true,
+          open:function(){
+          },
+          buttons: {
+              "确定": function () {
+                  var b=$('#reason').val();
+                  var data={};
+                  data.type=1;
+                  data.applyId=document.getElementById('applyId').value;
+                  data.uid=document.getElementById('uid').value;
+                  data.status=3;
+                  data.reason=b;
+
+                  $.ajax({
+                      type:"post",
+                      data:data,
+                      url:'/ajax/auditApply',
+                      dataType:'json',
+                      success:function(res){
+                          location.reload();
+                      }
+                  });
+
+              }/*,
+               "取消": function () {
+
+
+               }*/
+          }
+      });
+  }
+</script>

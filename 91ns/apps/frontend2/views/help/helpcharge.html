@@ -1,0 +1,45 @@
+{% extends "template/help_body.html" %}
+{% block title %}
+帮助中心
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('help'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+<div class="personal-div getpresents clearfix">
+    <div class="get-head pull-re pull-re" style="display: block">
+        <div class="_help-head">如何充值聊币</div>
+        <div class="_help-contend">
+            <div class="div1 black">聊币是什么？有什么用？</div>
+            <div class="div1">91NS的增值服务都是采用聊币结算，可以充值来获得聊币，用户也可以通过参加官方活动来获得聊币。1元人民币等于100聊币。充值购买的聊币永久有效。</div>
+            <div class="div1 black">如何充值？</div>
+            <div class="div1">91NS在导航栏、个人编辑信息弹窗、直播间礼物栏下方等处都提供了充值入口（{% if ns_userUid|default(false) %}<a href="/charging" target="_blank">传送门，戳我</a>{% else %}<a onclick="userLogin()">传送门，戳我</a> {% endif %}）同时，充值方式，支持支付宝、微信、20多家银行储蓄卡及信用卡、手机充值卡的方式，方便安全。</div>
+            <div class="div1">导航栏：</div>
+            <img style="margin-top:30px;" src="{{static_url('web/cssimg2/help/charge1.jpg')}}">
+            <div class="div1">个人便捷信息弹窗：</div>
+            <img style="margin-top:30px;" src="{{static_url('web/cssimg2/help/charge2.png')}}">
+            <img style="margin-top:30px;margin-left: 30px;" src="{{static_url('web/cssimg2/help/charge3.png')}}">
+            <div class="div1">直播间礼物栏：</div>
+            <img style="margin-top:30px;" src="{{static_url('web/cssimg2/help/charge4.png')}}">
+            <div class="div1">选择支付方式和充值金额后，点击“充值”</div>
+            <img style="margin-top:30px;width: 990px;" src="{{static_url('web/cssimg2/help/charge5.jpg')}}">
+            <div class="div1 black">充值未到账怎么办？</div>
+            <div class="div1">如果充值未到账，请您提供以下信息以便我们向相关部门查询。</div>
+            <div class="div1">1、91NS账号</div>
+            <div class="div1">2、充值交易号，可在个人中心-我的账单-充值记录里查询</div>
+            <img style="margin-top:30px;width: 990px;" src="{{static_url('web/cssimg2/help/charge6.png')}}">
+            <div class="div1 black">网上银行不能使用怎么办？</div>
+            <div class="div1">部分银行只支持IE浏览器进行支付。当提示浏览器不兼容时，用IE浏览器打开91NS，在“{% if ns_userUid|default(false) %}<a href="/personal/mybill?secondpage=payrecord" target="_blank">充值记录</a>{% else %}<a onclick="userLogin()">充值记录</a> {% endif %}”页面找到未支付的订单记录，点击去支付即可。</div>
+            <div class="div1 black">订单为什么会提示已过期？该怎么处理？</div>
+            <div class="div1">每个订单都有过期时间，一般为48小时。如果没有在有效期内支付该订单就会过期。过期后，需要重新充值。</div>
+            <div class="div1 black">为什么已完成付款，订单仍然显示未付款？</div>
+            <div class="div1">一般来说，网上支付是即时到账的。但有时因为网络原因可能会有延迟，稍后重新刷新页面即可。</div>
+            <div class="div1">特殊情况下，确实已支付但4个小时后仍旧没有显示购买成功，请联系客服提供订单信息（需要的订单信息请{% if ns_userUid|default(false) %}<a href="/personal/mybill?secondpage=payrecord" target="_blank">请戳这里</a>{% else %}<a onclick="userLogin()">请戳这里</a> {% endif %}），我们会及时查询出来。。</div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock%}

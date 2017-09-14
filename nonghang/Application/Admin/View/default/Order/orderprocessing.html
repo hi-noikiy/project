@@ -1,0 +1,54 @@
+<extend name='Public/base'/>
+<block name='title'></block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+		 	<div class="queryBox">
+                <form id='form1' action="{:U('backin')}" method="post" >
+                    <div class="queryBody">
+                        <div class="inputText" style="margin-left:30px;">
+                        	<p>会员充值或退充</p>
+                            <input type="text"  name="cardId" placeholder="请输入会员卡号">
+                            <input type="text"  name="money" placeholder="请输入金额">
+                        </div>
+                        <a href="javascript:$('#form1').submit();" class="button">提交</a>
+                        <div class="clear"></div>
+                    </div>
+                   </form>
+                   <form id='form2' action="{:U('backMoney')}" method="post">
+                    <div class="queryBody">
+                        <div class="inputText" style="margin-left:30px;">
+                        	<p>退款</p>
+                            <input type="text"  name="orderid" placeholder="请输入充值订单号">
+                        </div>
+                        <a href="javascript:$('#form2').submit();" class="button">提交</a>
+                        <div class="clear"></div>
+                    </div>
+                   </form>
+                   <form id='form3' action="{:U('backticket')}" method="post">
+                    <div class="queryBody">
+                        <div class="inputText" style="margin-left:30px;">
+                        	<p>单独退票</p>
+                            <input type="text"  name="orderid" placeholder="请输入充值订单号">
+                        </div>
+                        <a href="javascript:$('#form3').submit();" class="button">提交</a>
+                        <div class="clear"></div>
+                    </div>
+                   </form>
+            </div>
+            
+		</div>
+	</div>
+<script type="text/javascript">
+function del(){
+		layer.confirm('确认是否删除？',function(index){
+		layer.msg('删除成功');
+		})
+	}
+</script> 
+</block>

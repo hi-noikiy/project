@@ -1,0 +1,4 @@
+curl error ! ret=a:2:{s:3:"msg";s:29:"signature verification failed";s:3:"ret";i:-5;}, 2017-04-21 15:03:16
+curl error ! ret=a:2:{s:3:"msg";s:29:"signature verification failed";s:3:"ret";i:-5;}, 2017-04-21 15:05:20
+curl error ! ret=a:2:{s:3:"msg";s:29:"signature verification failed";s:3:"ret";i:-5;}, 2017-04-21 15:06:30
+params error ! post=a:3:{s:5:"token";s:65:"B28AF6B695BBFB993A730B3F1070E8ED,B6605FF717A5C138BB68EFBAA0FA5EBB";s:7:"channel";s:0:"";s:7:"game_id";s:1:"8";},get=a:0:{}, 2017-04-21 17:05:46

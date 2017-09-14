@@ -1,0 +1,157 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>  
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+        	<form action="{:U()}"  id='myform'>
+                <div class="inputSelect">
+                    <span>按影院查询：</span>
+                    <select name='cinemaCode'>
+                    	<option value="0">所有影院</option>
+                         <foreach name="cinemaList" item="vo" key="k" >
+                        <option value="{$vo.cinemaCode}"<if condition="$vo['cinemaCode'] == $pageData['cinemaCode']"> selected="selected"</if>>{$vo.cinemaName}</option>
+                        </foreach>
+                    </select>
+                </div>
+                <a href="#" class="button" onclick="$('#myform').submit()">查询</a>
+                <a href="javascript:add();" class="button">添加活动</a>
+                </form>
+	·		</div>
+        	<div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                     <thead>
+                          <tr>
+                            <td width="5%">序号</td>
+                            <td width="15%">所属影城</td>
+                            <td width="10%">标题</td>
+                            <td width="25%">链接</td>
+                            <td width="25%">活动图片</td>
+                            <td width="10%">优先级</td>
+                            <td width="10%">操作</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      <volist name='banners' id='vo'>
+                        <tr>
+                            <td>{$vo['id']}</td>
+                            <td>{$vo['cinemaName']}</td>
+                            <td>{$vo['title']}</td>
+                            <td>{$vo['url']}</td>
+                            <td style="padding:10px 0;"><img src="/{$vo['img']}" width="180" height="60" /></td>
+                            <td>{$vo['priority']}</td>
+                            <td> <a class="editFilm"  href="javascript:edit({$vo['id']});">编辑</a> <a class="deleteFilm"  href="javascript:del({$vo['id']});">删除</a></td>
+                         </tr>
+                         </volist>
+                      </tbody>
+                </table>
+            </div>
+        </div>
+     </div>
+<script type="text/javascript">
+$(function(){
+	var urlstr="?cinemaCode={$pageData['cinemaCode']}";
+	$('.page a').each(function(){
+		$(this).attr('href',$(this).attr('href')+urlstr);
+	});
+});
+function add(){
+    layer.open({
+		   type: 1,   //0-4的选择,
+			title: false,
+			border: [0],
+			closeBtn: [0],
+			skin: 'layui-layer-rim', //加上边框
+			shadeClose: true,
+			area: ['500px', 'auto'],
+			content: '<form id="form" action="'+"{:U()}"+'" method="post" enctype="multipart/form-data" target="myframe"><div class="binding editPrice"><table border="0" cellpadding="0" cellspacing="0"><thead>'+
+			'<tr><th colspan="2">微信活动添加</th></tr></thead><tbody>'+
+			'<tr><td>选择影院</td><td><select name="data[cinemaCode]">'+
+			<volist name='cinemas' id='vo'>
+			'<option value="{$vo[cinemaCode]}">{$vo[cinemaName]}</option>'+
+			</volist>
+			'</select> </td></tr>'+
+			'<tr><td>标题</td><td><input name="data[title]" type="text" placeholder="请输入活动标题" /> </td></tr>'+
+			'<tr ><td >链接</td><td><input name="data[url]" type="url" placeholder="请输入链接" /></td></tr>'+
+			'<tr><td>优先级</td><td><input name="data[priority]" type="text" placeholder="请输入1-255数字"></td> </tr> '+
+			'<tr ><td>banner图片</td><td><input name="img" type="file"/></td></tr></tbody></table>'+
+			'<div class="editBtn"><a href="javascript:submit();" class="button">提交</a><a href="javascript:layer.closeAll();" class="cancel" >取消</a></div></div></form>'  
+		});
+}
+
+function edit(id){
+	$.get('getBanner',{id:id},function(json){
+		var data=JSON.parse(json);
+		var str='<form id="form" action="'+"{:U()}"+'" method="post" enctype="multipart/form-data" target="myframe"><div class="binding editPrice"><table border="0" cellpadding="0" cellspacing="0"><thead>'+
+		'<tr><th colspan="2">微信活动编辑</th></tr></thead><tbody>'+
+		'<tr><td>选择影院</td><td><select name="data[cinemaCode]">';
+		<volist name='cinemas' id='vo'>
+		str+='<option value="{$vo[cinemaCode]}" ';
+		if(data['cinemaCode']=="{$vo[cinemaCode]}"){
+			str+='selected';
+		}
+		str+='>{$vo[cinemaName]}</option>';
+		</volist>
+		str+='</select> </td></tr>'+
+		'<tr><td>标题</td><td><input name="data[title]" value="'+data['title']+'" type="text" placeholder="请输入活动标题" /> </td></tr>'+
+		'<tr ><td >链接</td><td><input name="data[url]" value="'+data['url']+'" type="url" placeholder="请输入链接" /></td></tr>'+
+		'<tr><td>优先级</td><td><input name="data[priority]" value="'+data['priority']+'" type="text" placeholder="请输入1-255数字"></td> </tr> '+
+		'<tr ><td>banner图片</td><td><input name="img" type="file"/><input name="data[id]" type="hidden" value="'+id+'"/></td></tr></tbody></table>'+
+		'<div class="editBtn"><a href="javascript:;" onclick="submit()" class="button">提交</a><a href="javascript:layer.closeAll();" class="cancel" >取消</a></div></div></form>' ;
+		layer.open({
+		   type: 1,   //0-4的选择,
+			title: false,
+			border: [0],
+			closeBtn: [0],
+			skin: 'layui-layer-rim', //加上边框
+			shadeClose: true,
+			area: ['500px', 'auto'],
+			content: str
+		});
+	});
+}
+function close(){
+	var id=$('.xubox_layer').attr('times');
+	layer.close(id);
+}
+
+function submit(){
+	var title=$('input[name="data[title]"]').val();
+	var url=$('input[name="data[url]"]').val();
+	var priority=$('input[name="data[priority]"]').val();
+	if(title.trim()==''){
+		layer.alert('标题不能为空');
+		return false;
+	}
+	if(url.trim()==''){
+		layer.alert('链接不能为空');
+		return false;
+	}
+	var patrn=/^\d+$/; 
+	if(!patrn.exec(priority)||priority<1||priority>255){
+		layer.alert('请输入正确优先级');
+		return false;
+	}
+	$("#form").submit();
+}
+
+function del(id){
+	layer.confirm('确认是否删除？',function(index){
+	     $.get("{:U('delete')}",{id:id},function(msg){
+			if(msg=='1'){
+				location.reload();			
+			}else{
+				layer.alert('删除失败');
+			}
+	     });
+		},'确认是否删除？',function(index){
+
+		});
+}
+</script> 
+</block>

@@ -1,0 +1,282 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="" id="dataform">
+<div class="formBody">
+    <div class="privateAddPlan">
+         <!-- Swiper -->
+         <h2>修改观影日期及时间</h2>
+          <input type="hidden" name='id' id='editorder_from_id'  value='{$id}' />
+         <div class="scrollDate scrollDateFrom">
+                <div class="dateBox">
+                    <ul class="datelist">
+                        <volist name='list' id='v'>
+                        <li><a href="javascript:editorder_getfilm({$v.id})" id="{$v.id}">{$v.name}<span>{$v.num}场</span></a></li>
+                        </volist>
+                    </ul>               
+                </div>
+                <div class="pageBtn">
+                    <span class="prev"></span>
+                    <span class="next"></span>
+                </div>
+
+            </div>
+         <div class="privatePlanlist" id="privatePlanlist" style="padding:0;">
+             <volist name='plantime' id='vo' >           
+	          <div class="privateSubitem" id="li_{$key}" >
+	                <foreach name='vo' item='vo1'  key='k' >
+	                <div class="itemInput"><input  <?php if($vo1['classesd']):?> disabled="true" <?php endif;?>type="checkbox" name="editorder_from_{$key}" time="{$vo1.time}" endTime="{$vo1.endTime}" price="{$vo1.price}"  {$vo1.checked} /><label for="d9"><h3>{$vo1.cc}</h3>-<h3>{$vo1.ec}</h3></label></div>
+	                </foreach>  
+	                <div class="clear"></div>            
+	          </div>           
+	          </volist>
+         
+         
+         </div>
+         <h2>修改观影影片</h2>
+         <div class="privateEditFilm">
+         	<ul id='editorder_from_film'>
+         		<volist name='list1' id='v'>
+            	<li><input type="radio" id="film1" name="editorder_from_film" filmNo='{$v.filmNo}' filmName='{$v.filmName}'  duration="{$v.duration}"  {$v.checked}/><label for="film1">{$v.filmName}</label></li>
+            	</volist>
+
+            </ul>
+            <div class="clear"></div>
+         </div>
+         <div class="privateAddBtm">
+            <span>* 请输入改签后的新订单总价<span id='editorder_from_total'  >{$reservelist.total}</span>元，已备财务进行核对</span>
+            <div class="privateInput">
+            
+            <a href="javascript:editorder_from()" class="button">确认改签</a>
+             <div style="display:none" id="editorder_from_otherPrice">{$reservelist.otherPrice}</div>
+            
+          
+    
+            </div>
+         </div>
+    </div>
+</div>
+</form>
+</block>
+<block name="script">
+<script type="text/javascript">
+    var time='{$time}'
+	//滚动切换
+	jQuery(".scrollDateFrom").slide({
+		mainCell:".datelist",
+		effect:"left",
+		vis:5,
+		scroll:5,
+		delayTime:800,
+		trigger:"click",
+		pnLoop:"false",
+		autoPage:"true",
+		easing:"easeOutCirc"
+		});
+		
+	$(document).ready(function() {
+			$(".datelist li:first").addClass("current");
+			$("#privatePlanlist .privateSubitem:first").css("display","block"); 	
+			$('.datelist li a').click(function(e) {
+				$('.datelist li').removeClass("current"); 
+				$(this).parent().addClass("current");
+				$("#privatePlanlist .privateSubitem").css("display","none");
+				$('#'+'li_'+ $(this).attr('id')).css("display","block");
+			});
+		});
+    //修改观影日期及时间(时间选中状态)
+    $('.privateSubitem a').on('click',function(){
+
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
+    });
+
+	
+    function editorder_from(obj){
+        if( $("input[name='editorder_from_"+time+"']:checked").length>=2) {
+        	for(i=0;i<=$("input[name='editorder_from_"+time+"']:checked").length-2;i++){
+                if(!$("input[name='editorder_from_"+time+"']:checked").eq(i).parents('.itemInput').next().find('input').is(':checked')){
+                    alert('必须选择连续的时间段！','温馨提醒');
+                    return false;
+                }
+            }
+         }
+
+
+        var stime='';
+        var endtime='';
+        var index_price=0;
+    	 $("input[name='editorder_from_"+time+"']:checked").each(function(i,a){ 
+    		 var $this = $(this);
+
+    		 if(i==0)    {
+                 stime=$this.attr("time");
+             } 
+
+             if(i==($("input[name='editorder_from_"+time+"']:checked").length-1) )   {
+                 endtime=$this.attr("endTime");
+             } 
+             var price=$this.attr("price");
+             // time+= time+',';
+				index_price+=price*1;
+
+
+    	 });
+        var id= $("#editorder_from_id").val();
+        var filmNo= $("input[name='editorder_from_film']:checked").attr("filmNo");
+        var filmName= $("input[name='editorder_from_film']:checked").attr("filmName");
+
+
+
+
+        var duration= $("input[name='editorder_from_film']:checked").attr("duration");
+
+        
+        if((((endtime-stime)/60)-0)<(duration-0)){
+
+        	layer.alert('片长大于预定时段，请重新选择！');
+        	return;
+
+
+         }
+        var total= $("#editorder_from_total").html();
+        var  sedata='&updata=11';
+        if(id) {
+            sedata+='&id='+id;
+        }
+        if(stime) {
+            sedata+='&viewingDate='+stime;
+        }else {
+        	layer.alert('请选择时间段！');
+        	return;
+        }
+        if(endtime) {
+            sedata+='&endTime='+endtime;
+        } 
+        if(filmNo) {
+            sedata+='&filmNo='+filmNo;
+        }else {
+			layer.alert('请选择修改的影片');
+			return;
+        }
+        if(filmName) {
+            sedata+='&filmName='+filmName;
+        }
+        if(index_price) {
+            sedata+='&planPrice='+index_price;
+        }
+        if(total){
+             sedata+='&total='+total;
+        }else {
+        	layer.alert('请输入修改后的价格！');
+        	return;
+        }
+        //alert(sedata);
+        //return;
+        $.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(editorder_from)}',
+            data: sedata,
+            success: function(msg){
+
+
+               var data = eval("(" + msg + ")");
+                if(data.statusCode == 1){
+
+                   parent.window.location.href='order';
+                  var index = parent.layer.getFrameIndex(window.name);
+                  parent.layer.close(index);
+
+
+
+                     // mainView.router.loadPage(confirmOrder_thisUrl);
+                }else{
+                    alert(data.message);
+                }
+            }
+        }) 
+
+        // alert('提交订单！');
+        // $(obj).parent().remove();
+    }
+//点击场次获取电影内容
+ function editorder_getfilm(obj){
+	time=obj;
+    $.ajax({
+      global:true,
+      type: "post",
+      url:'{:U(editorder_getfilm)}',
+      data: 'time='+obj,
+      success: function(msg) {
+         var data = eval("(" + msg + ")");
+         var html='';
+            for(var o in data){  
+               html+='<li>';
+               if(data[o].filmNo=='{$reservelist.filmNo}'){
+
+
+                   
+            	   html+='<input type="radio"  name="editorder_from_film" planNumberId="'+data[o].planNumberId+'" filmNo="'+data[o].filmNo+'" filmName="'+data[o].filmName+'" duration="'+data[o].duration+'" checked="checked"/>';
+
+               }else{
+            	   html+='<input type="radio"  name="editorder_from_film" planNumberId="'+data[o].planNumberId+'" filmNo="'+data[o].filmNo+'" filmName="'+data[o].filmName+'"  duration="'+data[o].duration+'" />';
+               }
+              
+               html+='<label for="film1">'+data[o].filmName+'</label></li>';  
+           }         
+         $('#editorder_from_film').empty().append(html);
+      }  
+   })
+   $('input[name="editorder_from_'+time+'"]').unbind("click"); 
+   $('input[name="editorder_from_'+time+'"]').on('click',function(){
+
+	   if( $("input[name='editorder_from_"+time+"']:checked").length>=2) {
+       		for(i=0;i<=$("input[name='editorder_from_"+time+"']:checked").length-2;i++){
+               if(!$("input[name='editorder_from_"+time+"']:checked").eq(i).parents('.itemInput').next().find('input').is(':checked')){
+            	   layer.alert('必须选择连续的时间段！','温馨提醒');
+                   return false;
+               }
+           }
+        }
+
+
+       var index_price=0;
+
+        $('input[name="editorder_from_'+time+'"]:checked').each(function(i,a){ 
+
+               var $this = $(this);
+               var price=$this.attr("price");
+               // time+= time+',';
+				index_price+=price*1;                  
+        });
+        //$('#editorder_from_total').val($('#editorder_from_otherPrice').html()*1+index_price);
+        $('#editorder_from_total').html($('#editorder_from_otherPrice').html()*1+index_price);
+
+
+        
+   }); 
+   
+}
+ $('input[name="editorder_from_'+time+'"]').on('click',function(){
+	 if( $("input[name='editorder_from_"+time+"']:checked").length>=2) {
+    		for(i=0;i<=$("input[name='editorder_from_"+time+"']:checked").length-2;i++){
+            if(!$("input[name='editorder_from_"+time+"']:checked").eq(i).parents('.itemInput').next().find('input').is(':checked')){
+            	layer.alert('必须选择连续的时间段！','温馨提醒');
+                return false;
+            }
+        }
+     }
+	 var index_price=0;
+	 $('input[name="editorder_from_'+time+'"]:checked').each(function(i,a){ 
+           var $this = $(this);
+           var price=$this.attr("price");
+           // time+= time+',';
+			index_price+=price*1;                  
+    });
+	   // alert($('#editorder_from_otherPrice').html()*1+index_price);
+    $('#editorder_from_total').html($('#editorder_from_otherPrice').html()*1+index_price);
+     
+ });
+
+</script>
+</block>

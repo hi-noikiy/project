@@ -1,0 +1,4 @@
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18144075313</desmobile><msgid>D9070116102209595000</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18144075313";s:4:"sign";s:32:"0633fa558bbe591f8b78ee254575e5e3";}, 2016-10-22 09:59:50
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18144075313</desmobile><msgid>C6828516102210000800</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18144075313";s:4:"sign";s:32:"0633fa558bbe591f8b78ee254575e5e3";}, 2016-10-22 10:00:08

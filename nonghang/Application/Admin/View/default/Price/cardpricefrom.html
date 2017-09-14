@@ -1,0 +1,273 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+<style type="text/css">
+	#inputEdit label{width: auto; display: inline;}
+</style>
+		<div class="content">
+				<div class="leftMenu">
+						<ul>
+								{$leftMenu}
+						</ul>	
+				</div>
+				<div class="rightContent">
+						<div class="contentBody">
+								
+								<div class="contentBox">
+									<div class="queryBody">
+											<div class="queryItem"> 
+														<span>按影院分组查询：</span>
+
+														<select name="cinemaGroup" id="cinemaGroup" class="select" onchange="getCinemaList(this.value)">
+																<option value="0">请选择影院分组</option>
+														<foreach name="cinemaGroupList" item="vo" key="k" >
+															<option value="{$vo.id}"<if condition="$memberPriceConfigInfo['cinemaGroupId'] eq $vo['id']"> selected="selected"</if>>{$vo.groupName}</option>
+														</foreach>
+														</select>
+												</div>
+												<div class="queryItem">
+														<span>按日期区间</span>
+														<input name="startTime" value="{$memberPriceConfigInfo['startDate']}" type="text" id="startTime" class="date" placeholder="请输入开始日期">&nbsp;&nbsp;至&nbsp;&nbsp;<input name="endTime" value="{$memberPriceConfigInfo['endDate']}" type="text" id="endTime" class="date" placeholder="请输入结束日期">
+												</div>
+												<div class="queryItem" id="weeks">
+														<span>按周</span>
+														<input name="weeks[]" <assign name="weeksId" value="1" /><in name="weeksId" value="$memberPriceConfigInfo['weeks']"> checked="checked"</in> type="checkbox" value="1" id="week1"><label for="week1">星期一</label>
+														<input name="weeks[]" <assign name="weeksId" value="2" /><in name="weeksId" value="$memberPriceConfigInfo['weeks']"> checked="checked"</in>type="checkbox" value="2" id="week2"><label for="week2">星期二</label>
+														<input name="weeks[]" <assign name="weeksId" value="3" /><in name="weeksId" value="$memberPriceConfigInfo['weeks']"> checked="checked"</in>type="checkbox" value="3" id="week3"><label for="week3">星期三</label>
+														<input name="weeks[]" <assign name="weeksId" value="4" /><in name="weeksId" value="$memberPriceConfigInfo['weeks']"> checked="checked"</in>type="checkbox" value="4" id="week4"><label for="week4">星期四</label>
+														<input name="weeks[]" <assign name="weeksId" value="5" /><in name="weeksId" value="$memberPriceConfigInfo['weeks']"> checked="checked"</in>type="checkbox" value="5" id="week5"><label for="week5">星期五</label>
+														<input name="weeks[]" <assign name="weeksId" value="6" /><in name="weeksId" value="$memberPriceConfigInfo['weeks']"> checked="checked"</in>type="checkbox" value="6" id="week6"><label for="week6">星期六</label>
+														<input name="weeks[]" <assign name="weeksId" value="0" /><in name="weeksId" value="$memberPriceConfigInfo['weeks']"> checked="checked"</in>type="checkbox" value="0" id="week7"><label for="week7">星期日</label>
+												</div>
+												
+												<div class="queryItem">
+														<span>按时间区间</span>
+														<input name="dayStartTime"	value="{$memberPriceConfigInfo['startTime']}" type="text" id="dayStartTime" class="time" placeholder="请输入开始时间">&nbsp;&nbsp;至&nbsp;&nbsp;<input name="dayEndTime"	value="{$memberPriceConfigInfo['endTime']}" type="text" id="dayEndTime" class="time" placeholder="请输入结束时间">
+												</div>
+
+												<div class="queryItem inputPrice" id="discount">
+													<p>设置</p>
+														<div class="inputEdit" id="inputEdit">
+
+													</div>
+													</div>
+
+												<div style="margin-top:50px;"><a href="javascript:ajaxSetMemberPrice();" class="button">提交</a></div>
+										</div> 
+								</div>
+						</div>
+				</div>
+		 </div>
+
+<script type="text/javascript">
+	
+
+
+var loadi = '';
+var loadimsg = '';
+var memberGroup = {};
+
+function ajaxSetMemberPrice () {
+
+	var cinemaGroupId = $('#cinemaGroup').val();
+	if(cinemaGroupId == 0){
+			layer.msg('请选择影院分组！', {icon: 5});
+			return ;
+	}
+
+	var startTime = $('#startTime').val();
+	if(startTime == ''){
+			layer.msg('请选择开始日期！', {icon: 5});
+			return ;
+	}
+
+	var endTime = $('#endTime').val();
+	if(endTime == ''){
+			layer.msg('请选择结束日期！', {icon: 5});
+			return ;
+	}
+	var weeks = '';
+	$("#weeks input[name='weeks[]']:checked").each(function(){
+			if(weeks == ''){
+				weeks = $(this).val();
+			}else{
+				weeks += ',' + $(this).val();
+			}
+	}); 
+
+ if(weeks == ''){
+			layer.msg('请选择生效的星期！', {icon: 5});
+			return ;
+	}
+
+
+	var dayStartTime = $('#dayStartTime').val();
+	if(dayStartTime == ''){
+			layer.msg('请选择开始时间！', {icon: 5});
+			return ;
+	}
+
+	var dayEndTime = $('#dayEndTime').val();
+	if(dayEndTime == ''){
+			layer.msg('请选择结束时间！', {icon: 5});
+			return ;
+	}
+
+
+	var flag = true;
+	planPrice = {};
+	var plantype = {};
+	$('#inputEdit .inputCard input[type="text"]').each(function(){
+		if($(this).val() == ''){
+			flag = false;
+			layer.msg('请输入要设置的' + $(this).attr('textVal') + '价格！', {icon: 5});
+			return false;
+		}else{
+			planPrice[$(this).attr('name')] = $(this).val();
+			plantype[$(this).attr('name')] = $('#inputEdit .inputCard input[name="discountType['+$(this).attr('name')+']"]:checked').val();
+		}
+		
+	});
+
+	if(flag == false){
+		return ;
+	}
+
+	loadi = layer.load(1, {shade: [0.5,'#000']});
+	loadimsg = layer.msg('正在添加会员价格配置...',{icon: 16, time:60000000});
+
+	$.ajax({		
+		url:'{:U()}',// 跳转到 action		
+		data:{'cinemaGroupId':cinemaGroupId,'startTime':startTime,'endTime':endTime,'weeks':weeks,'dayStartTime':dayStartTime,'dayEndTime':dayEndTime,'planPrice':planPrice,'plantype':plantype,'discountType':$("#discount input[name='discountType']:checked").val(),'id':<?php echo intval($memberPriceConfigInfo['id']);?>},		
+		type:'post',			 
+		dataType:'json',		
+		success:function(data) {
+				layer.close(loadi);
+				layer.close(loadimsg);
+			 
+				if(data.status == 0){
+					if(<?php echo intval($memberPriceConfigInfo['id']);?> == 0){
+						$("#weeks input[name='weeks[]']").removeAttr('checked');
+					}
+					 layer.msg(data.content, {time: 1000});
+				}else{
+					 layer.msg(data.content, {time: 1000});
+				}
+
+		},		
+		error : function() {
+				layer.close(loadi);
+				layer.close(loadimsg);
+				layer.msg('获取影院列表失败，请重试', {icon: 5});
+		}		
+		});
+
+	// alert($('#cinemaGroup').val());
+
+}
+
+	function getCinemaList(cinemaGroupId) {
+		loadi = layer.load(1, {shade: [0.5,'#000']});
+		loadimsg = layer.msg('正在获取影院会员列表...',{icon: 16, time:60000000});
+
+		$.ajax({		
+		url:'{:U("getMemberGroup")}',// 跳转到 action		
+		data:{'cinemaGroupId':cinemaGroupId},		
+		type:'post',			 
+		dataType:'json',		
+		success:function(data) {
+				layer.close(loadi);
+				layer.close(loadimsg);
+				// layer.msg(data.content, {time: 1000});
+				$('#inputEdit').html('');
+				if(data.status == 0){
+					$('#inputEdit').html('');
+					var i = 1;
+					$.each(data.data,function(groupName,groupValue) {
+						checkStr = ''; 
+	
+								$('#inputEdit').append('<div class="inputCard">'+groupValue.groupName+'&nbsp;<input type="radio" name="discountType['+groupValue.groupId+']" id="discountType'+groupValue.groupId+'" checked="checked" value="1" onclick="setDiscountType(1,'+groupValue.groupId+',0)" /><label for="discountType'+groupValue.groupId+'">价格</label><input type="radio" name="discountType['+groupValue.groupId+']" id="discountType2'+groupValue.groupId+'" value="2" onclick="setDiscountType(2,'+groupValue.groupId+',0)" /><label for="discountType2'+groupValue.groupId+'">折扣</label><input name="'+groupValue.groupId+'" type="text" textVal="'+groupValue.groupName+'" id="i_'+groupValue.groupId+'" value="" placeholder="请设置会员价"><span class="inputEditText" id="d'+groupValue.groupId+'">元</span></div>');
+				});
+				
+				setPayConfig();
+				// setTimeout(function(){location.reload()}, 1000);
+				}
+
+		},		
+		error : function() {
+				layer.close(loadi);
+				layer.close(loadimsg);
+				layer.msg('获取影院列表失败，请重试', {icon: 5});
+		}		
+		});
+	}
+
+
+function setPayConfig () {
+	<foreach name="memberPriceConfigInfo.priceConfig" item="vo" key="k">
+
+		<?php
+			if (!empty($vo[1])) {
+				echo 'setDiscountType(1,'.intval($k).', "'.$vo[1].'");';
+			}else{
+				echo 'setDiscountType(2,'.intval($k).', "'.$vo[2].'");';
+			}
+		?>
+
+	</foreach>
+}
+
+function setDiscountType (type, groupId, price) {
+	if(type == 1){
+		$('#d'+groupId).html('元');
+		$('#discountType'+groupId).attr('checked', 'checked');
+	}else{
+		$('#d'+groupId).html('折');
+		$('#discountType2'+groupId).attr('checked', 'checked');
+	}
+	if (price) {
+		$("#i_" + groupId).val(price);
+	};
+	// if(type == 1){
+	// 	$('#inputEdit .inputCard input[type="text"]').each(function(){
+	// 		$(this).attr('placeholder', '请设置会员价');
+	// 	});
+
+	// 	$('#inputEdit .inputCard input[type="radio"]').each(function(k,v){
+	// 		alert($(this).val());
+	// 		$(this).removeAttr('checked',false);
+	// 		if ($(this).val() == 1) {
+	// 			// alert('222');
+	// 			$(this).attr('checked','checked');
+	// 		}
+	// 	});
+
+	// 	$('#inputEdit .inputCard .inputEditText').each(function(){
+	// 		$(this).html('元');
+	// 	});
+	// 	$('#discountType2').removeAttr('checked');
+	// 	$('#discountType1').attr('checked', 'checked');
+
+	// }
+
+	// if(type == 2){
+	// 	$('#inputEdit .inputCard input[type="text"]').each(function(){
+	// 		$(this).attr('placeholder', '请设置折扣数');
+	// 	});
+	// 	$('#inputEdit .inputCard .inputEditText').each(function(){
+	// 		$(this).html('折');
+	// 	});
+	// 	$('#discountType1').removeAttr('checked');
+	// 	$('#discountType2').attr('checked', 'checked');
+	// }
+}
+
+$(function(){
+		<if condition="$memberPriceConfigInfo['cinemaGroupId']">
+			getCinemaList({$memberPriceConfigInfo['cinemaGroupId']});
+		</if>
+}) 
+
+	</script>
+</block>
+

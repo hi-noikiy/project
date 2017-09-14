@@ -1,0 +1,252 @@
+<extend name='Public/base'/>
+<block name='body'>
+
+    <div id="main">
+
+        <div class="container">
+            <div>
+                <ul class="breadcrumb">
+                    <li class="active">我的资料</li>
+                    <li>头像修改</li>
+                    <li>密码修改</li>
+                </ul>
+                <div class="area-revise">
+                    <ul class="inputBox">
+                        <li><input type="text" placeholder="请输入昵称" name='otherName' value="{$user['otherName']}" maxlength="11"/></li>
+                        <li class="radiolist">
+                            <span>性别：</span>
+                            <input type="radio" name="sex" <?php if($user['sex']!='女'){ ?>checked<?php }?> value='男'><label <?php if($user['sex']!='女'){ ?>class='radioChecked'<?php }?>>男</label>
+                            <input type="radio" name="sex" <?php if($user['sex']=='女'){ ?>checked<?php }?> value='女'><label style="margin-left:72px;" <?php if($user['sex']=='女'){ ?>class='radioChecked'<?php }?>>女</label>
+                        </li>
+                        <li><input class="date" type="text" name='birthday' placeholder="设置生日，仅限一次" value="{$user['birthday']}" <?php if($user['birthday']){ ?>disabled<?php }?>/></li>
+                        <li><input type="text" name='email' placeholder="设置邮箱获取观影资讯" value="{$user['email']}"/></li>
+                        <button type="submit">保存</button>
+                        <div id="tipBlock"></div>
+                    </ul>
+                </div>
+                <div class="area-revise">
+                    <iframe src="{:U('Shear/index')}" width="680px" height="425px">
+                    </iframe>
+                    <button type="submit" style="display: none">保存</button>
+                </div>
+                <div class="area-revise">
+                    <ul class="inputBox">
+                        <li><input type="password" name='oldPasswd' placeholder="请输入原始密码"/></li>
+                        <li><input type="password" name='newPasswd' placeholder="设置新密码（<?php if($user['cardNum']){ ?>6位纯数字<?php }else{ ?>6-20位数字或字符<?php } ?>） " maxlength="<?php if($user['cardNum']){ ?>6<?php }else{ ?>20<?php } ?>" /></li>
+                        <li><input type="password" name='tnewPasswd' placeholder="确认新密码（<?php if($user['cardNum']){ ?>6位纯数字<?php }else{ ?>6-20位数字或字符<?php } ?>） " maxlength="<?php if($user['cardNum']){ ?>6<?php }else{ ?>20<?php } ?>" /></li>
+                        <button type="submit">保存</button>
+                        <div id="tipBlock2"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!--/ 主体内容-->
+</block>
+<block name='script'>
+    <script type="text/javascript">
+
+    function validTip(id,text,top){
+        $(id).text(text);
+        $(id).css('top',top);
+    }
+
+    $('input').focus(function(){
+        $('#tipBlock2,#tipBlock').text('');
+    });
+
+    $('button[type=submit]').each(function(i){
+
+    	$(this).click(function(){
+    		if(i==0){
+    			var otherName=$(this).parent().find('input[name=otherName]').val();
+    	    	var sex=$(this).parent().find('.radioChecked').text();
+    	    	var email=$(this).parent().find('input[name=email]').val();
+    	    	var birthday=$(this).parent().find('input[name=birthday]').val();
+    	    	var reg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/; //验证邮箱的正则表达式
+    	    	var datas;
+    	    	if(otherName.trim()==''){
+                    validTip('#tipBlock','*请输入昵称','48px');
+    	    	}else if(!reg.test(email)){
+                    validTip('#tipBlock','*请输入正确邮箱地址','227px');
+    	    	}else{
+    	    		datas={otherName:otherName,sex:sex,email:email,birthday:birthday,page:1};
+    	    		$.getJSON("{:U()}",datas,function(data){
+    	    			layer.msg(data.content);
+    	    		});
+    	    	}
+    		}else if(i==2){
+
+    			var oldPasswd=$(this).parent().find('input[name=oldPasswd]').val();
+    			var newPasswd=$(this).parent().find('input[name=newPasswd]').val();
+    			var tnewPasswd=$(this).parent().find('input[name=tnewPasswd]').val();
+    			var cardNum="{$user['cardNum']}";
+    			if(oldPasswd==''){
+                    validTip('#tipBlock2','*请输入原密码','48px');
+    			}else if(newPasswd==''){
+                    validTip('#tipBlock2','*请输入新密码','115px');
+    			}else{
+    				var parc=/^\d*$/;
+    				if(cardNum!=''){
+    					if(newPasswd.length!=6){
+    						validTip('#tipBlock2','*密码必须6位数','115px');
+    						return false;
+    					}
+    					if(!parc.exec(newPasswd)){
+    						validTip('#tipBlock2','*请输入纯数字密码','115px');
+    						return false;
+    					}
+               	 	}else{
+               	 		if(newPasswd.length<6){
+							validTip('#tipBlock2','*密码位数至少6位','115px');
+							return false;
+						}
+               	 	}
+    				if(tnewPasswd==''){
+                        validTip('#tipBlock2','*请输入确认密码','186px');
+        			}else if(newPasswd!=tnewPasswd){
+                        validTip('#tipBlock2','*密码不一致','186px');
+        			}else{
+        				datas={oldPasswd:oldPasswd,newPasswd:newPasswd,page:2};
+        				$.getJSON("{:U()}",datas,function(data){
+            				if(data.status=='0'){
+            					window.location.href="{:U('index/index')}";
+                			}else{
+                				layer.msg(data.content);
+                    		}
+        	    		});
+        			}
+    			}
+    		}else if(i==1){
+        		
+    		}
+    	});
+    });
+   /* $('button[type=submit]').click(function(){
+    	var i = $(this).index('button.next-step')+1;
+    	
+    });*/
+        //单选框美化
+        $.fn.radio = function(options) {
+            var self = this;
+            return $('label', this).each(function() {
+                $(this).addClass('radio');
+                if ($(this).prev().is("checked")) $(this).addClass('radioChecked');
+            }).click(function(event) {
+                $(this).siblings().removeClass("radioChecked");
+                if (!$(this).prev().is(':checked')) {
+                    $(this).addClass("radioChecked");
+                    $(this).prev()[0].checked = true;
+                }
+                event.stopPropagation();
+            }).prev().hide();
+        };
+
+        $('.radiolist').radio();
+
+        //tab 切换
+        $('.area-revise').eq(0).show();
+        $('.breadcrumb li').click(function(){
+            var i = $(this).index('.breadcrumb li');
+            $('.breadcrumb li').removeClass('active');
+            $(this).addClass('active');
+            $('.area-revise').hide();
+            $('.area-revise').eq(i).show();
+        })
+
+        $('.date').datetimepicker({
+            yearOffset:0,
+            lang:'ch',
+            datepicker:true,
+            timepicker:false,
+
+            format:'Y-m-d',
+            formatDate:'Y-m-d'
+        });
+
+
+        $('.dateTime').datetimepicker({
+            yearOffset:0,
+            lang:'ch',
+            datepicker:true,
+            timepicker:true,
+            format:'Y-m-d H:i:s',
+            formatDate:'Y-m-d H:i:s'
+        });
+
+        $('.time').datetimepicker({
+            yearOffset:0,
+            lang:'ch',
+            datepicker:false,
+            timepicker:true,
+            format:'H:i',
+            formatDate:'H:i'
+        });
+
+        $('.date').after('<span onclick="clearDate(this)"  style="cursor:pointer; display:inline-block; margin-left:-25px;"><img src="__IMG__/common/out.png" width="15" style="margin:0 auto" /></span>');
+        $('.dateTime').after('<span onclick="clearDate(this)"  style="cursor:pointer; margin-left:-25px;"><img src="__IMG__/common/out.png" width="15" style="margin:0 auto" /></span>');
+        $('.time').after('<span onclick="clearDate(this)"  style="cursor:pointer; margin-left:-25px;"><img src="__IMG__/common/out.png" width="15" style="margin:0 auto" /></span>');
+
+        function clearDate (obj) {
+            $(obj).prev().val('');
+        }
+      //图片上传预览    IE是用了滤镜。
+        function previewImage(file)
+        {
+          var MAXWIDTH  = 180; 
+          var MAXHEIGHT = 120;
+          var div = document.getElementById('preview');
+          if (file.files && file.files[0])
+          {
+              div.innerHTML ='<img id=imghead>';
+              var img = document.getElementById('imghead');
+              img.onload = function(){
+                var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+                img.width  =  rect.width;
+                img.height =  rect.height;
+//                 img.style.marginLeft = rect.left+'px';
+                img.style.marginTop = rect.top+'px';
+              }
+              var reader = new FileReader();
+              reader.onload = function(evt){img.src = evt.target.result;}
+              reader.readAsDataURL(file.files[0]);
+          }
+          else //兼容IE
+          {
+            var sFilter='filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+            file.select();
+            var src = document.selection.createRange().text;
+            div.innerHTML = '<img id=imghead>';
+            var img = document.getElementById('imghead');
+            img.filters.item('DXImageTransform.Microsoft.AlphaImageLoader').src = src;
+            var rect = clacImgZoomParam(MAXWIDTH, MAXHEIGHT, img.offsetWidth, img.offsetHeight);
+            status =('rect:'+rect.top+','+rect.left+','+rect.width+','+rect.height);
+            div.innerHTML = "<div id=divhead style='width:"+rect.width+"px;height:"+rect.height+"px;margin-top:"+rect.top+"px;"+sFilter+src+"\"'></div>";
+          }
+        }
+        function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+            var param = {top:0, left:0, width:width, height:height};
+            if( width>maxWidth || height>maxHeight )
+            {
+                rateWidth = width / maxWidth;
+                rateHeight = height / maxHeight;
+                 
+                if( rateWidth > rateHeight )
+                {
+                    param.width =  maxWidth;
+                    param.height = Math.round(height / rateWidth);
+                }else
+                {
+                    param.width = Math.round(width / rateHeight);
+                    param.height = maxHeight;
+                }
+            }
+             
+            param.left = Math.round((maxWidth - param.width) / 2);
+            param.top = Math.round((maxHeight - param.height) / 2);
+            return param;
+        }
+    </script>
+</block>

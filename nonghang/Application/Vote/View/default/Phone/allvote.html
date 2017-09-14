@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
+    <title>投票</title>
+    <link rel="stylesheet" href="__CSS__/phone.css">
+    <script type="text/javascript" src="__JS__/jquery.js"></script>
+</head>
+
+<body id="page-index2">
+
+    <div class="topWrap">
+        <div class="timeArea">
+            <img src="__IMG__/time.png">
+            <div class="text"><p id="getTime"></p></div>
+        </div>
+    </div>
+    <div class="wrap" >
+
+        <div id="voteContent"></div>
+
+        <p>技术支持：福州最美影视网络科技有限公司</p>
+    </div>
+    <style type="text/css">
+		body{
+			background: url(__IMG__/phonebg1.jpg) repeat-y center top;
+			 width: 100%;
+			 background-size:100%;
+			}
+        .box{width:165px; height:22px; margin-top:16px; }
+        .ok{width:165px; height:22px; margin:0 auto; text-align:center; background:#999; line-height:100px; color:#FFF; display:none; }
+        .tbox{width:165px; height:22px; background:url(__IMG__/phoneBak.png) no-repeat; margin-top:20px;  background-size: auto 20px;}
+        .tbox div{width:0px; height:22px; background:url(__IMG__/phonePro.png) no-repeat; background-size: auto 20px; text-align:center;
+            font-family:Tahoma; font-size:18px; line-height:48px;}
+
+
+        .wrap {
+            min-height: 800px;
+            background: url(__IMG__/fsfa.jpg) no-repeat center top;
+            background-size:100%;
+            padding-top:27%;
+        }
+        .itemBlcok > div { float: left;}
+        .artCon p,.poll{ font-size:15px; color:#fff;  }
+        .artCon p { margin-bottom:5px;}
+        .itemBlcok { margin-bottom:32px; overflow: hidden}
+        .itemBlcok .poll { float:right; padding-right: 10px;}
+        .itemBlcok .poll span { text-align: center; width:55px; display: inline-block}
+        .itemBlcok .poll a { display: block; width:55px; height:32px; line-height: 32px; font-size: 15px; text-align: center; border-radius: 6px; background: #faac05;margin-top: 30px;}
+        .itemBlcok .poll a.diabled { background: #949494;}
+        .itemBlcok .artId { width:50px;
+            padding-left:5px;}
+        .artId i img{
+            width: 20px;
+            height: 25px;
+        }
+        .wrap > p { text-align: center; font-size: 13px; color:#92c8ff; width: 100%;
+            text-align: center; margin-bottom:15px;}
+    </style>
+<script type="text/javascript">
+
+    var i=0;
+
+    /*add——创建tbx下的div加文字和变宽度的方法*/
+    function add(i){
+        var tbox =$(".tbox");
+        var tiao =$(".tiao");
+
+        tiao.css("width",i+"%");
+    }
+
+    $(window).load(function(){
+        var a = parseInt($('.zanArea img').width())/ 2,
+            b = parseInt($('.timeArea img').height())/2;
+        $('.zanArea').css({'margin-left':'-'+a+'px','width':a*2+'px' });
+        $('.timeArea').css({'margin-left':'-'+b+'px','height':b*2+'px' });
+    })
+	
+	//倒计时
+    function daojis (time) {
+        // alert(time);
+        var minute = 0;
+        var m1 =  parseInt(time/10);
+        var m2 = time-m1*10;
+        var strTime = '<span><img src="__IMG__/number/0.png" /><img src="__IMG__/number/0.png" /><img src="__IMG__/number/mh.png" /><img src="__IMG__/number/' + m1 + '.png" /><img src="__IMG__/number/'+m2+'.png" />';
+
+        $('#getTime').html(strTime);
+        if (time == 0 ) {
+            $('#getTime').html('投票结束');
+            return ;
+        };
+        time--;
+        setTimeout("daojis("+time+")",1000);
+    }
+    daojis(30);
+
+
+
+function getVote () {
+
+    $.post('{:U()}', '', function(json){
+        var content = '';
+        $.each(json.data,function(key,data){
+            var t = parseInt(data.id / 10);
+            var t1 = data.id - parseInt(data.id / 10) * 10;
+
+
+            if (data.diabled!='') {
+                if (data.diabled=='stop') {
+                    data.diabled = 'diabled';
+                    str = '结束'; 
+                }else{
+                    str = '已投'; 
+                }
+                
+            }else{
+                str = '投票';
+            }
+
+             content += '<div class="itemBlcok"><div class="artId"><i><img src="__IMG__/num/'+t+'.png"></i><i><img src="__IMG__/num/'+t1+'.png"></i></div>            <div class="artCon"><p>'+data.type+'&nbsp;'+data.name+'</p>                <p>'+data.store+'</p>                <div class="box">                   <div class="ok"></div>                    <div class="tbox">                        <div class="tiao" style="width:'+data.vote/5+'%"></div>                    </div>                </div>            </div>            <div class="poll"><span>'+data.vote+'票</span><a class="'+data.diabled+'" id="'+data.id+'">'+str+'</a></div>        </div>'; 
+                $("#voteContent").html(content);
+        });
+
+
+        $('.poll a').not('disabled').click(function(){
+            var arg = {
+                    'id': $(this).attr('id')
+                }
+                $.post('{:U('index')}', arg, function(json){
+                    if (json.status == 0) {
+                        $('#nowVote'+$(this).attr('id')).html(json.data);
+                    }else{
+                        alert(json.content);
+                    }
+                }, 'json');
+            $(this).addClass('diabled');
+        })
+    }, 'json');
+
+    setTimeout("getVote()", 1000);
+}
+
+getVote();
+
+</script>
+</body>
+</html>

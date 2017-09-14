@@ -1,0 +1,82 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+          <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title">VIP等级如何提升</div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div  style=" margin:30px auto 0; min-height:520px;">
+                                      <div >
+                                          <h3 ></h3>
+                                          <p style="padding: 0px 50px;"><span style="color: #cb5494; ">1.</span>首先，用户必须先去商城购买VIP，成为一名VIP用户。</p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px;" src="{{static_url('web/cssimg/help/help14.png')}}">
+                                          </p>
+                                      </div>
+                                      <div >
+                                          <h3 ></h3>
+                                          <p style=" text-align: center;padding: 0 50px;margin-top: 30px;"><span style="color: #cb5494; ">2.</span>之后每次充值的金额换算成聊币数量，均会成为用户的VIP经验。在商城和充值页面均可以看到自己的VIP经验槽，越高等级的VIP用户享受的VIP权限也就越高</p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px;" src="{{static_url('web/cssimg/help/help15.png')}}">
+                                          </p>
+                                          <p style=" text-align: center;margin-top: 30px;"><span style="color: #cb5494; ">3.</span>重复购买VIP时间是可以叠加的，不会覆盖。如果中间有间断续约，后面再次续约成为VIP，之前的累积的VIP经验，等级不会发生任何变化。</p>
+                                      </div>
+
+
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+
+
+
+

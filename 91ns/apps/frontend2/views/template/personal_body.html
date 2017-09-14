@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <script type="text/javascript">var ns_active = '{{ ns_active }}';</script>
+
+    <link rel="stylesheet" type="text/css" href="{{static_url('personal'|ns_css)}}" />
+    <link rel="stylesheet" type="text/css" href="{{static_url('icon/personalicon'|ns_css)}}" />
+    <link rel="stylesheet" type="text/css" href="{{static_url('pagination2'|ns_css)}}" />
+    {% block head %}{% endblock %}
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+    <div class="main">
+        <div class="head clearfix">
+            <!--信息-->
+            <div class="head-info" style="border-bottom: 0px;">
+                <div class="info-content  pull-re">
+                    <!--头像信息-->
+                    <div class="con-pic pull-left">
+                        <img nsdata="userAvatar" src="{{ personalBaseInfo['avatar'] }}" width="100" height="100" />
+                    </div>
+                    <!--文字信息-->
+                    <div class="con-text pull-left">
+                        <!--第一行-->
+                        <div class="con-title">
+                            <div class="con-text-name pull-left" nsdata="userNickName"></div>
+                            <!-- <div class="con-xg sprite-concern change2 pull-left cu-a"></div> -->
+                            <div class="con-fh-icon pull-left sprite-fh_level fh{{ personalBaseInfo['levelInfo']['richerLevel'] }}"></div>
+                            {% if personalBaseInfo['isAnchor']|default(false) %}
+                            <div class="con-zb-iocn pull-left sprite-zb_level zb{{ personalBaseInfo['levelInfo']['anchorLevel'] }}"></div>
+                            <div class="con-zf-icon pull-left sprite-zf_level zf{{ personalBaseInfo['levelInfo']['fansLevel'] }} "></div>
+                            {% endif %}
+                        </div>
+                        <!-- <div class="con-ID">({{ personalBaseInfo['uid'] }})</div> -->
+                        <!--第二行-->
+                        <div class="con-cf">
+                            <div class="con-coin pull-left">
+                                <div class=" sprite-concern coin pull-left"></div>
+                                <div class="coin-txt pull-left" nsdata="cash"></div>
+                            </div>
+                            <div class="con-fenge pull-left">|</div>
+                            <div class="con-beans pull-left">
+                                <div class=" sprite-concern integral pull-left"></div>
+                                <div class="coin-txt" nsdata="integral"></div>
+                            </div>
+                            <div class="con-fenge pull-left">|</div>
+                            <div class="con-beans pull-left">
+                                <div class=" sprite-concern beans pull-left"></div>
+                                <div class="coin-txt" nsdata="coin"></div>
+                            </div>
+                        </div>
+                        <div class="con-icon-div clearfix">
+                            <div class="sprite-vip_level VIP{{personalBaseInfo['levelInfo']['vipLevel']}} pull-left"></div><!--vip等级-->
+                            {% for badge in personalBaseInfo['badge'] |default([]) %}
+                            <div class="sprite-pericon {{ badge['configName'] }} pull-left"></div><!--棋牌-->
+                            {% endfor %}
+
+                            {% if personalBaseInfo['family'] |default([]) %}
+                            <div class="sprite-pericon family1 pull-left" style="margin-top:0px;color:#fff;text-align:center;margin-left: 5px;">{{personalBaseInfo['family']}}</div><!--家族徽章-->
+                            {% endif %}
+                        </div>
+                    </div>
+                    <!--充值按钮-->
+                    <a href="/charging"><div class="con-cz pull-ab sprite-personal fudai cu-a"></div></a>
+                </div>
+                <div class="head-info-hr">
+                    <div class="info-hr1 pull-left"></div>
+                    <div class="info-hr2 pull-left"></div>
+                    <div class="info-hr3 pull-left"></div>
+                    <div class="info-hr1 pull-left"></div>
+                </div>
+            </div>
+        </div>
+        <!--内容块-->
+        <div class="content">
+            <div class="content-div clearfix">
+                <!--内容块左边导航-->
+                <div class=" content-left pull-left clearfix">
+                    <div urlname="info" class="siderbarinfo sider-list clearfix sider-openurl">
+                        <div class="sider-list-div">
+                            <div class="sider-list-icon pull-left sprite-aa usermsg"></div>
+                            <div class="sider-list-txt pull-left clearfix">个人资料</div>
+                        </div>
+                    </div>
+                    <div urlname="savecenter" class="siderbarsavecenter sider-list clearfix sider-openurl">
+                        <div class="sider-list-div">
+                            <div class="sider-list-icon pull-left sprite-aa safety"></div>
+                            <div class="sider-list-txt pull-left clearfix">安全中心</div>
+                        </div>
+                    </div>
+                    <div urlname="props" class="siderbarprops sider-list clearfix sider-openurl">
+                        <div class="sider-list-div">
+                            <div class="sider-list-icon pull-left sprite-aa prop"></div>
+                            <div class="sider-list-txt pull-left clearfix">我的道具</div>
+                        </div>
+                    </div>
+
+                    <div urlname="concern" class="siderbarconcern sider-list clearfix  sider-openurl">
+                        <div class="sider-list-div">
+                            <div class="sider-list-icon pull-left sprite-aa attention"></div>
+                            <div class="sider-list-txt pull-left clearfix">我的关注</div>
+                            <div id="fansCount" class="sider-list-num pull-left fon-num">({{ personalBaseInfo['focusCount'] }})</div>
+                        </div>
+                    </div>
+
+                    <div class="mybillmenu sider-list clearfix list-down-div siderbarmybill">
+                        <div class="sider-list-div">
+                            <div class="sider-list-icon pull-left sprite-aa bill"></div>
+                            <div class="sider-list-txt pull-left clearfix">我的账单</div>
+                            <div class="sider-list-arrows pull-right sprite-aa arrows"></div>
+                        </div>
+                    </div>
+
+                    <!--下拉-->
+                    <div pagename="mybill" class="sider-down-list clearfix div-hiden">
+
+                        <div urlname="consume" title="消费记录" class="sider-down-txt ">消费记录</div>
+                        <div class="cut-line pull-right"></div>
+
+                        <div urlname="payrecord" title="充值记录" class="sider-down-txt">充值记录</div>
+                    </div>
+
+                    <!--我的收益-->
+                    <div class="myincomemenu sider-list clearfix  list-down-div siderbarmyincome">
+                        <div class="sider-list-div">
+                            <div class="sider-list-icon pull-left sprite-aa myincome"></div>
+                            <div class="sider-list-txt pull-left clearfix">我的收益</div>
+                            <div class="sider-list-arrows pull-right sprite-aa arrows"></div>
+                        </div>
+                    </div>
+                    <!--下拉-->
+                    <div pagename="myincome" class="sider-down-list clearfix div-hiden">
+                        <div urlname="overview" title="概况" class="sider-down-txt ">概况</div>
+                        <div class="cut-line pull-right"></div>
+                        {% if personalBaseInfo['isAnchor']|default(false) %}
+                        <div urlname="anincome" title="主播收益" class="sider-down-txt ">主播收益</div>
+                        <div class="cut-line pull-right"></div>
+                        {% endif %}
+
+                        {% if familyHeader|default(false) %}
+                        <div urlname="familincome" title="家族长收益" class="sider-down-txt">家族长收益</div>
+                        <div class="cut-line pull-right"></div>
+                        {% endif %}
+
+                        <div urlname="activitiesaward" title="活动奖励" class="sider-down-txt ">活动奖励</div>
+                        <div class="cut-line pull-right"></div>
+
+                        <div urlname="gamecommission" title="游戏提成" class="sider-down-txt ">游戏提成</div>
+                        <div class="cut-line pull-right"></div>
+
+                        <div urlname="commissionwithdraw" title="佣金题现" class="sider-down-txt ">佣金提现</div>
+                        <div class="cut-line pull-right"></div>
+
+                        <div urlname="dealdetail" title="交易明细" class="sider-down-txt dealdetail">交易明细</div>
+                    </div>
+                    {% if personalBaseInfo['isAnchor']|default(false) %}
+                    <div class="imanchormenu sider-list clearfix  list-down-div siderbarimanchor">
+                        <div class="sider-list-div">
+                            <div class="sider-list-icon pull-left sprite-aa anchors"></div>
+                            <div class="sider-list-txt pull-left clearfix">我是主播</div>
+                            <div class="sider-list-arrows pull-right sprite-aa arrows"></div>
+                        </div>
+                    </div>
+                    <!--下拉-->
+                    <div pagename="imanchor" class="sider-down-list clearfix div-hiden">
+                        <div urlname="aboutedit" title="主播资料" class="sider-down-txt ">主播资料</div>
+                        <div class="cut-line pull-right"></div>
+                        <div urlname="myliveroom" title="我的直播间" class="sider-down-txt ">我的直播间</div>
+                        <div class="cut-line pull-right"></div>
+
+                        <div urlname="roommanage" title="我的房管" class="sider-down-txt ">我的房管</div>
+                        <div class="cut-line pull-right"></div>
+
+                        <div urlname="myGuard" title="我的守护" class="sider-down-txt ">我的守护(<span id="guardNum">{{personalBaseInfo['guardNum']}}</span>)</div>
+                        <div class="cut-line pull-right"></div>
+
+                       <!--  {% if personalBaseInfo['family']|default(false) %}
+                        <div urlname="myfamil" title="我的家族" class="sider-down-txt ">我的家族</div>
+                        <div class="cut-line pull-right"></div>
+                        {% endif %}-->
+                        <div urlname="livedata" title="直播数据" class="sider-down-txt ">直播数据</div>
+                        <div class="cut-line pull-right"></div>
+
+                        <div urlname="anchordetails" title="推广" class="sider-down-txt ">推广</div>
+                        <div class="cut-line pull-right"></div>
+                    </div>
+                    {% endif %}
+                    {% if familyHeader|default(false) %}
+                    <div class="imfamilyheader sider-list clearfix  list-down-div siderbarfamilyheader">
+                        <div class="sider-list-div">
+                            <div class="sider-list-icon pull-left sprite-aa familyheader"></div>
+                            <div class="sider-list-txt pull-left clearfix">我是家族长</div>
+                            <div class="sider-list-arrows pull-right sprite-aa arrows"></div>
+                        </div>
+                    </div>
+                    <!--下拉-->
+                    <div pagename="familyheader" class="sider-down-list clearfix div-hiden">
+                        <div urlname="familymanage" title="家族管理" class="sider-down-txt ">家族管理</div>
+                        <div class="cut-line pull-right"></div>
+
+                        <div urlname="memberaudit" title="成员审核" class="sider-down-txt ">成员审核(<span id="auditNum">{{personalBaseInfo['auditNum']}}</span>)</div>
+                        <div class="cut-line pull-right"></div>
+
+                        <div urlname="livedatafamily" title="直播数据" class="sider-down-txt ">直播数据</div>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="content-right pull-right">{% block content %}{% endblock %}</div>
+            </div>
+            <div class="test aaa" style="text-align: center;">
+                <div class="pageStyle v2">
+                    <div class="row-fluid">
+                        <div id="pagination" class="pagination alternate"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--页脚部分-->
+    {% include "template/footer.html" %}
+</div>
+</body>
+</html>

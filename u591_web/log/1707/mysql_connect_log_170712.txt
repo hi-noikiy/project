@@ -1,0 +1,12 @@
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 14:43:05
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 14:43:05
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 14:43:05
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 14:43:05
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 14:43:06
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 14:44:16
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 14:44:16
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 14:44:16
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 14:44:16
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 14:44:16
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 15:48:35
+mysql connect error,Host '220.160.57.183' is not allowed to connect to this MySQL server, 123.206.111.43:3356,gameuser,rio8t89o,690.60fk,pokegametx, 2017-07-12 15:49:13

@@ -1,0 +1,457 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a> 
+        <a href="#" class="tip-bottom" data-original-title="">配置管理</a> 
+        <a href="#" class="current">banner管理</a>
+    </div>
+    
+   <!--  <h1>Tables</h1> -->
+  </div>
+  <div class="container-fluid">
+   <!--  <hr> -->
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+            <button id="btnadd" class="btn btn-success pull-right">添&nbsp;加</button>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>banner列表</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table id="dataList" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>序号</th>
+                  <th>类型</th>
+                    <th>标题</th>
+                  <th>图片</th>
+                    <th>显示时长</th>
+                  <th>背景色</th>
+                  <th>扩展</th>
+                  <th>描述</th>
+                  <th>状态</th>
+                    <th>排序</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                       
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="pagination" class="pagination alternate pull-right">
+              
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="dialog-form" title="Create new user" style=" display: none;">
+  <p class="validateTips"></p>
+
+   <form id="submitform" action="#" method="get" class="form-horizontal">
+       <div class="control-group">
+           <label class="control-label">标题 :</label>
+           <div class="controls">
+               <input name="title" type="text" class="span11" placeholder="">
+           </div>
+       </div>
+       <div class="control-group">
+           <label class="control-label">图片:</label>
+           <div class="controls">
+               <input name="imgfile" type="file" id="imgfile" size="40"  />
+
+           </div>
+            <input type="hidden" name="imgUrl" id="imgUrl">
+           <img name="showimg" id="showimg" src="" style="display:none;" alt="预览图片" />
+           <input type="button" name="imgsubmit" id="imgsubmit" value="上传">
+       </div>
+      <div class="control-group">
+        <label class="control-label">背景颜色 :</label>
+        <div class="controls">
+          <input name="backgroundcolor" type="text" class="span11" placeholder="">
+        </div>
+      </div>
+       <div class="control-group">
+           <label class="control-label">显示时长 :</label>
+           <div class="controls">
+               <input name="time" type="text" class="span11" placeholder="">
+           </div>
+       </div>
+      <div class="control-group">
+        <label class="control-label">扩展 :</label>
+        <div class="controls">
+          <textarea name="extracontent"></textarea>
+          <span class="help-block"></span>
+        </div>
+      </div>
+
+       <div class="control-group">
+           <label class="control-label">描述 :</label>
+           <div class="controls">
+               <textarea name="description"></textarea>
+               <span class="help-block"></span>
+           </div>
+       </div>
+       <div class="control-group">
+           <label class="control-label">排序 :</label>
+           <div class="controls">
+               <input name="border" type="text" class="span11" placeholder="">
+           </div>
+       </div>
+       <div class="control-group">
+           <label class="control-label">类型 :</label>
+           <div class="controls">
+               <select name="btype" id="btype">
+                   <option value="0">pc</option>
+                   <option value="1">app</option>
+                   <option value="2">mobile</option>
+               </select>
+               <span class="help-block"></span>
+           </div>
+       </div>
+       <div class="control-group">
+           <label class="control-label">状态 :</label>
+           <div class="controls">
+               <select name="status" id="status">
+                   <option value="0">禁用</option>
+                   <option value="1">启用</option>
+               </select>
+               <span class="help-block"></span>
+           </div>
+       </div>
+    </form>
+
+</div>
+<iframe id='imgIframe'name = 'imgIframe' style='display:none;'></iframe>
+<script type="text/javascript">
+
+$(function(){
+    getDataList();
+    $('#imgsubmit').click(function(){
+        $('#submitform').attr('action', "/configmgr/uploadMessageImg");
+        $('#submitform').attr('target', 'imgIframe');
+        $('#submitform').attr('method', 'post');
+        $('#submitform').attr('enctype', 'multipart/form-data');
+        $('#submitform').submit();
+//        alert('aa');
+//        $.post('/configmgr/uploadMessageImg', $('#submitform').serialize(), function(){
+//alert('aa');
+//        })
+
+//        $.ajax({
+//            type : "POST",
+//            url : "/configmgr/uploadMessageImg",
+//            data : $('#submitform').serialize(),// 你的formid
+//            error: function(request) {
+//                alert("Connection error");
+//            },
+//            success: function(data) {
+//                alert('aa');
+//            }
+//        });
+    })
+});
+
+$(function(){
+  laydate.skin('molv');
+
+  laydate({
+     elem: '#dateline'
+  });
+
+});
+
+function uploadImgReturn(url){
+    $('#showimg').attr('src', url);
+    $('#imgUrl').val(url);
+    $('#showimg').show();
+}
+
+/**
+* 初始化为空
+*/
+function Initialization(){
+
+    var submitform=document.getElementById('submitform');
+    $('#showimg').attr('src', '');
+    submitform.imgUrl.value='';
+    submitform.title.value='';
+    submitform.backgroundcolor.value='';
+    submitform.extracontent.value='';
+    submitform.description.value='';
+    submitform.btype.value='';
+    submitform.status.value='';
+    submitform.time.value='';
+    submitform.border.value='';
+    //submitform.image.value='';
+}
+
+ var btnadd=document.getElementById('btnadd');
+ utils.addEvent(btnadd,'click',addData);
+
+ function addData(){
+  $( "#dialog-form" ).dialog({
+      width: 600,
+      title:'添加公告',
+      modal:true,
+      closeOnEscape:true,
+      resizable:false,
+      open:function(res){
+          Initialization();
+        },
+      buttons:{
+        "添加":function(){
+
+          var submitform=document.getElementById('submitform'),
+          data={};
+
+          data.action="add"
+          data.bannerurl=submitform.imgUrl.value;
+          data.btype=submitform.btype.value;
+            data.title = submitform.title.value;
+          data.backgroundcolor= submitform.backgroundcolor.value;
+          data.extracontent= submitform.extracontent.value;
+          data.description= submitform.description.value;
+          data.status= submitform.status.value;
+            data.time= submitform.time.value;
+            data.border= submitform.border.value;
+          $.ajax({
+              type:"post",
+              url:"/configmgr/updateBanner",
+              data:data,
+              dataType:'json',
+              success:function(res){
+                if(res.code==0){
+                  getDataList();
+                  $("#dialog-form" ).dialog("close");
+                }else{
+                  alert(res.info);
+                }
+              }
+          });
+
+          
+        },
+        "取消":function(){
+          $(this).dialog("close");
+        }
+
+      }
+  });
+ }
+
+function getDataList(index){
+  var data={};
+  data.page=index||0;
+  data.numPerPage=pagesize;
+  $.ajax({
+    type:"post",
+    url:"/configmgr/getBanner",
+    data:data,
+    dataType:'json',   
+    success:function(res){
+      
+      var data=res.data;
+      var table=document.getElementById("dataList");
+      var tbody= table.getElementsByTagName('tbody')[0];
+
+      dataTable.clearData(tbody);
+      
+      for(var i=0;i<data.list.length;i++){
+        addRow(tbody,'',data.list[i]);
+      }
+      
+      if(!index||index==0){
+        initPagination(data.count);
+      }
+
+    }
+  });
+}
+
+function initPagination(page) {
+  $("#pagination").pagination(page, {
+      callback: pageselectCallback,
+      items_per_page:pagesize, // 每页只显示一条记录
+      num_display_entries : 3,
+      num_edge_entries : 1, 
+      prev_text : "上一页",  
+      next_text : "下一页", 
+  });
+}
+
+function pageselectCallback(page_index, jq){
+    getDataList(page_index);
+    return false;
+}
+
+function addRow(table,index,data){
+    var typeArr = new Array(
+             'pc','app','mobile'
+    );
+    var statusArr = new Array(
+            '禁用','正常'
+    );
+  var row=table.insertRow();
+  var cell=row.insertCell(0);
+  var cell1=row.insertCell(1);
+  var cell2=row.insertCell(2);
+  var cell3=row.insertCell(3);
+  var cell4=row.insertCell(4);
+  var cell5=row.insertCell(5);
+  var cell6=row.insertCell(6);
+    var cell7=row.insertCell(7);
+    var cell8=row.insertCell(8);
+    var cell9=row.insertCell(9);
+    var cell10=row.insertCell(10);
+  cell.innerHTML=data.id;
+    cell1.innerHTML=data.title;
+    cell2.innerHTML=typeArr[data.btype];
+  cell3.innerHTML=data.bannerurl ? '<img src="' + data.bannerurl + '">' : '';
+    cell4.innerHTML=data.time;
+  cell5.innerHTML=data.backgroundcolor;
+  cell6.innerHTML=data.extracontent;
+  cell7.innerHTML=data.description;
+  cell8.innerHTML=statusArr[data.status];
+    cell9.innerHTML=data.border;
+  //cell2.innerHTML=data.image;
+//  cell2.innerHTML=new Date(data.createTime*1000).format("yyyy-MM-dd");
+
+  var deit=document.createElement("a"),
+  del=document.createElement("a");
+  
+  deit.innerHTML='编辑';
+  deit.className="table-edit";
+  deit.data=data.id;
+  utils.addEvent(deit,'click',dataEdit);
+
+  del.innerHTML='删除';
+  del.data=data.id; 
+  utils.addEvent(del,'click',dataDelete); 
+
+  cell10.appendChild(deit);
+  cell10.appendChild(del);
+    
+  return row;
+}
+  
+
+function dataEdit(id){
+  var btn=this;  
+  var url="/configmgr/updateBanner/"+btn.data;
+
+   $( "#dialog-form" ).dialog({
+        width: 600,
+        title:'修改公告信息',
+        modal:true,
+        closeOnEscape:true,
+        resizable:false,
+        open:function(){
+          var data={};
+          data.action='';
+
+          Initialization();
+          
+          $.ajax({
+            type:"post",
+            data:data,
+            url:url,
+            dataType:'json',
+            success:function(res){
+                  var data= res.data;
+                  var submitform=document.getElementById('submitform');
+
+                  submitform.imgUrl.value=data.bannerurl;
+                    if(data.bannerurl){
+                        $('#showimg').attr('src', data.bannerurl);
+                        $('#showimg').show();
+                    }
+
+                      submitform.backgroundcolor.value= data.backgroundcolor;
+                      submitform.extracontent.value= data.extracontent;
+                      submitform.description.value= data.description;
+                      submitform.status.value= data.status;
+                      submitform.btype.value=data.btype;
+                submitform.title.value=data.title;
+                submitform.border.value=data.border;
+                submitform.time.value=data.time;
+                }
+          });
+        },
+        buttons:{
+          "修改":function(){
+
+            var submitform=document.getElementById('submitform');
+
+            data={};
+
+              data.action="update";
+              data.bannerurl=submitform.imgUrl.value;
+              data.backgroundcolor= submitform.backgroundcolor.value;
+              data.extracontent= submitform.extracontent.value;
+              data.description= submitform.description.value;
+              data.status= submitform.status.value;
+              data.btype= submitform.btype.value;
+              data.time= submitform.time.value;
+              data.border= submitform.border.value;
+              data.title = submitform.title.value;
+            $.ajax({
+              type:"post",
+              data:data,
+              url:url,
+              dataType:'json',
+              success:function(res){
+                if(res.code==0){
+                  getDataList();
+                  $("#dialog-form" ).dialog("close");
+                }   
+                else{
+                  alert(res.info);
+                }     
+              }
+            });
+
+          },
+          "取消":function(){
+            $(this).dialog("close");
+          }
+
+        }
+   });
+
+}
+
+function dataDelete(){
+  if(confirm("确定要删除该数据")){
+    var btn=this;
+    var url="/configmgr/updateBanner/"+btn.data,
+    data={};
+    data.action="del";
+    $.ajax({
+      type:"post",
+      data:data,
+      url:url,
+      dataType:'json',
+      success:function(res){
+        if(res.code==0){
+          getDataList();
+        }else{
+          alert(res.info);
+        }
+      }
+    });
+  }
+}
+
+
+</script>

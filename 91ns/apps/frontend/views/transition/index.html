@@ -1,0 +1,121 @@
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('transition'|ns_css)}}">
+<script type="text/javascript" src="{{static_url('transition'|ns_js)}}"></script>
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<html style="overflow: visible;*overflow: auto;">
+ <body style="padding: 0;margin: 0;overflow: visible;height: auto;">
+   <div class="container-live">
+       <div class="container-top">
+           <div class="container-top-img">
+               <img src="{{static_url('web/cssimg/familyActivities/live.png')}}">
+           </div>
+           <div class="container-top-bottom" style="position: relative;margin-top:-190px;z-index: 2;">
+               <div class="container-bottom">
+                   <ul class="live-tabs clearfix">
+                       <li class="open-live">
+                            {% if first %}
+                                <a href="/{{ ns_userUid }}">开启直播</a>
+                            {% else %}
+                                <a onclick="checkToOrNo('/{{ ns_userUid }}','/help/helpVideo');">开启直播</a>
+                            {% endif %}
+                       </li>
+                       <li class="open-live spaceing"><a onclick="signzb()">签约主播</a></li>
+                       <li class="open-live"> <a onclick="joingroup()" id="joingroupBtn" gmqq="{{GMQQ[0]}}" >加入家族</a></li>
+                   </ul>
+
+               </div>
+               <div class="container-bottom1"></div>
+               <div class="container-bottom2">
+                   <div class="bottom2-f"></div>
+               </div>
+           </div>
+       </div>
+       <div class="container-content" style="position: relative;z-index: 2;">
+           <div class="content-group">
+               <div>
+                   <div class="live-content clearfix">
+                       <div class="liveleft"><img src="{{static_url('web/cssimg/familyActivities/live-left.png')}}"> </div>
+                       <div class="live-content-left pull-left" >
+                           <div class="small-box">开启直播</div>
+                           <div class="small-box">签约主播</div>
+                           <div class="small-box">加入家族</div>
+                           <div class="big-box">处理签约</div>
+                       </div>
+                       <div class="live-content-right pull-left">
+                           <div class="right-smallbox">
+                               <div class="small1"></div>
+                               <div class="small2"><p>非签约用户也可直接开启直播，简单快捷。</p></div>
+                               <div class="small3"></div>
+                           </div>
+                           <div class="right-smallbox">
+                               <div class="small1"></div>
+                               <div class="small2"><p>签约后主播收益可兑换，全新待遇，等你开启。</p></div>
+                               <div class="small3"></div>
+                           </div>
+                           <div class="right-smallbox">
+                               <div class="small1"></div>
+                               <div class="small2"><p>加入家族的前提必须先成为签约主播，成为家族主播后，获得家族长统一管理，条理更清晰，待遇更稳定。</p></div>
+                               <div class="small3"></div>
+                           </div>
+                           <div class="right-bigbox">
+                               <div class="big1"></div>
+                               <div class="big2">
+                                   <div style="margin-top: 56px;">
+                                       <p>签约主播成功后，想要转入家族主播，有以下两种方法：</p>
+                                       <p><span style="margin-left: 5px;color: red;">1.结账</span>：由客服记录主播信息，并在后台为该主播结清当前所有签约收益。</p>
+                                       <p><span style="margin-left: 5px;color: red;">2.冻结</span>：系统会冻结主播在加入家族前的所有收益，且冻结状态主播无法兑换收益。</p>
+                                       <p>冻结用户想要兑换之前冻结的收益，必须先退出家族。</p>
+                                   </div>
+                               </div>
+                               <div class="big3"></div>
+                           </div>
+                       </div>
+                       <div class="liveleft"><img  src="{{static_url('web/cssimg/familyActivities/live-right.png')}}"> </div>
+                   </div>
+                   <div  class="live-footer1"></div>
+                   <div class="live-footer2"></div>
+                   <div class="live-footer3"></div>
+           </div>
+
+       </div>
+   </div>
+       <div style="padding-top: 80px;"></div>
+</div>
+
+<div class="sign-alert msgBox">
+    <div id="sign-win" class="win" style="margin-top: -85px; display: none; ">
+        <div class="header">
+            <i class="ico-main-12 alert-logo"></i>
+            <span>提示您</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body confirm_"><div class="alert-content"></div><div>您必须先选择冻结或结算您的签约账户</div><div id="checkout-sign" class="alert-confirm ok_">冻结</div><div id="frozen-sign" class="alert-confirm cancel_">结算</div></div>
+        <div class="bottom"></div>
+    </div>
+</div>
+
+</body>
+</html>
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+
+
+
+
+

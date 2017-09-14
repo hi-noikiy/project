@@ -1,0 +1,1 @@
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1game8e483a6b731541f9ae4624834b44a74e179528";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-16 17:09:25

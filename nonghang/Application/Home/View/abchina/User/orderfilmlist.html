@@ -1,0 +1,124 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('user/user')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">影票订单</div>
+    <div class="right"></div>
+  </div>
+</div>
+
+
+<div class="pages">
+  <div data-page="userOrder" class="page">
+    <div class="page-content">
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+      <div style="display:none" id="lockTime">{$order['lockTime']-time()}</div>
+      <div style="display:none" id="orderCode">{$order['orderCode']}</div>
+      <div style="display:none" id="cancelurl">{:U('cancelOrder')}</div>
+      <div style="display:none" id="delurl">{:U('delOrderFilm')}</div>
+      <div style="display:none" id="supplyurl">{:U('supply')}</div>
+
+       <div class="content">
+            <div class="orderTab">
+               <!-- <a href="#tab1" class="cur" status='-1'>全部订单</a>-->
+                <a href="#tab2" class=""  status='1'>完成订单</a>
+                <!--<a href="#tab3" class=""  status='2'>等待支付</a>-->
+                <a href="#tab4" class=""  status='3'>异常订单</a>
+            </div>
+            
+            <div class="order">
+            
+                <ul>
+                <?php if(empty($orders)){ ?>
+              <div class="orderBg">没有发现任何购票信息</div>
+               <?php }else{ ?>
+                  <volist name='orders' id='vo'>
+                    <li>
+                        <div class="orderTop">
+                            <span>订单号：{$vo['orderCode']}</span>
+                            <span style="float:right;">{$vo['downTime']|date='Y-m-d H:i:s',###}</span>
+                            <a href="#" class="confirm-ok"></a>
+                        </div>
+                        <div class="orderMid">
+                            <div class="orderMidLeft"><img src="{$vo['filmImg']}" width="67.5" height="90"></div>
+                            <div class="orderMidRight">
+                                <h2>{$vo['filmName']}</h2>
+                                <b>￥{$vo['allprice']}</b>
+                                <p>{$vo['startTime']|date='Y-m-d H:i',###}</p>
+                                <p><span>{$vo['cinemaName']}</span><span>{$vo['hallName']}</span></p>
+                                <p>{$vo['seatIntroduce']}</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--等待支付-->
+                        <div class="orderBtm">
+                        	<div class="orderLink">
+                        	<input type='hidden' value="{$vo['orderCode']}" >
+                        	<?php if($vo['status']=='0'){ ?>
+                            <a href="javascript:;" onclick="cancelOrder(this)" class="out" >取消订单</a>
+                            <a href="{:U('user/pay')}" class="go external">立即支付</a>
+                            <?php }?>
+                            <?php if($vo['isdel']!='1'){ ?>
+                            <a href="javascript:;" onclick="delOrder(this)" class="out" >删除订单</a>
+                            <?php }elseif($vo['status']=='3'){ ?>
+                            <!-- <a href="" class="go send"  orderid="{$vo['orderCode']}"  onclick="send(this)">补发短信</a> -->
+                            <?php }?>
+                            </div>
+                     <?php if($vo['status']=='3'){ ?>
+                     	<div class="orderBtmInfo">
+                            	<b>手机号：{$vo['mobile']}</b>
+                                <b>取票码：{$vo['printNo']}</b>
+                            </div>
+                        <?php }else{ ?>
+                        <p>{$vo['str']}</p>
+                        <?php }?>
+                        </div>
+                        <?php if($vo['status']=='3'){ ?>
+                        <!-- <div class="orderCode">
+                            <span class="on" onclick="openCode(this);">查看二维码</span>
+                            <div class="orderCodeImg" style="display:none;">
+                                <img src="{$vo['qrcode']}" width="200" height="200" />
+                            </div>
+                        </div> -->
+                        <?php }?>
+                    </li>
+                    </volist>
+                    <?php } ?>
+                </ul>
+                 
+            </div>
+        </div>
+
+
+    </div>
+  </div>
+</div>
+
+<block name='script'>
+
+<script type="text/javascript">
+
+function openCode(obj){ 
+
+	if($(obj).hasClass("on") )	{
+		
+
+		$('.orderCodeImg').css("display","block");
+		$(obj).addClass('off');
+		$(obj).removeClass('on');
+		
+		
+	}else{
+
+		$('.orderCodeImg').css("display","none");
+		$(obj).addClass('on');
+		$(obj).removeClass('off');
+		
+		
+		}
+}
+</script>
+
+</block>

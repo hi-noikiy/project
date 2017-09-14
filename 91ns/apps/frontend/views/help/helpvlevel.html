@@ -1,0 +1,95 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+           <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title">富豪等级</div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div class="HAL-text">
+                                      <p style="text-align: center;">富豪等级是由用户消费的聊币数量来升级。</p>
+                                  </div>
+
+                                  <div>
+                                      <table cellpadding="0" cellspacing="0">
+                                          <thead>
+                                          <tr>
+                                              <th class="td166">图标</th>
+                                              <th class="td166">富豪等级</th>
+                                              <th class="td216 tdright">消费聊币数量</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh0"></i></td> <td class="td166">屌丝</td>    <td class="td216 tdright">初始等级</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh1"></i></td> <td class="td166">1富</td>    <td class="td216 tdright">1,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh2"></i></td> <td class="td166">2富</td>    <td class="td216 tdright">2,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh3"></i></td> <td class="td166">3富</td>    <td class="td216 tdright">4,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh4"></i></td> <td class="td166">4富</td>    <td class="td216 tdright">8,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh5"></i></td> <td class="td166">5富</td>    <td class="td216 tdright">16,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh6"></i></td> <td class="td166">6富</td>    <td class="td216 tdright">32,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh7"></i></td> <td class="td166">7富</td>    <td class="td216 tdright">64,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh8"></i></td> <td class="td166">8富</td>    <td class="td216 tdright">128,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh9"></i></td> <td class="td166">9富</td>    <td class="td216 tdright">256,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh10"></i></td> <td class="td166">男爵</td>   <td class="td216 tdright">512,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh11"></i></td> <td class="td166">子爵</td>   <td class="td216 tdright">1,024,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh12"></i></td> <td class="td166">伯爵</td>   <td class="td216 tdright">2,048,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh13"></i></td> <td class="td166">侯爵</td>   <td class="td216 tdright">4,096,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh14"></i></td> <td class="td166">公爵</td>   <td class="td216 tdright">8,192,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh15"></i></td> <td class="td166">王爵</td>   <td class="td216 tdright">16,384,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-fh_level fh16"></i></td> <td class="td166">皇帝</td>   <td class="td216 tdright">32,768,000</td></tr>
+                                          <tr><td class="td166" style="border-bottom: 1px solid #000"><i class="sprite-fh_level fh17"></i></td> <td class="td166" style="border-bottom: 1px solid #000">教皇</td>   <td class="td216 tdright" style="border-bottom: 1px solid #000">65,536,000</td></tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+

@@ -1,0 +1,66 @@
+<extend name="Public/base"/>
+<style>
+body{
+	background:#0069ac;
+	}
+</style>
+<block name="body">
+	<div class="queryBox">
+            	<form id='myform' action="{:U()}">
+                    <div class="inputText" >
+                        <p>按票券编码查询</p>
+                        <input type="text" name="voucherNumber"  placeholder="请输入票券编码" value="{$pageData['voucherNumber']}">
+                    </div>
+                    <div class="inputText">
+                            <p>按操作日期查询</p>
+                            <input type="datetime" name="start" class="date" placeholder="请输入开始日期" value="{$pageData['start']}"><span>至</span>
+                    <input type="datetime" name="end" class="date" placeholder="请输入结束日期" value="{$pageData['end']}">
+                        </div>
+                    <a href="javascript:$('#myform').submit()" class="button">查询</a>
+                </form>
+            </div>
+	<div class="checkTable">
+    	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+                 <thead>
+                    <tr>
+                        <td width="13%">票券编码</td>
+                        <td width="15%">适用影院</td>
+                        <td width="10%">票券名称</td>
+                        <td width="10%">操作时间</td>
+                        <td width="10%">操作员</td>
+                      </tr>
+				</thead>
+                <tbody>
+                   <volist name='codes' id='vo'>
+                    <tr>
+                        <td>{$vo['voucherNumber']}</td>
+                        <td>{$vo['cinemaName']}</td>
+                        <td>{$voucherTypeList[$vo['typeId']]['typeName']}</td>
+                        <td>{$vo['useTime']}</td>
+                        <td>{$vo['checkuser']}</td>
+                    </tr>
+                    </volist>
+                </tbody>
+            </table>
+            {$page}
+    </div>
+</block>
+<block name="script">
+<script type="text/javascript">
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+	timepicker:true,
+	format:'Y-m-d H:i',
+	formatDate:'Y-m-d H:i',
+});
+
+function check(){
+		layer.confirm('确认是否使用',function(index){
+		layer.msg('使用成功');
+		})
+	}
+
+
+</script> 
+</block>

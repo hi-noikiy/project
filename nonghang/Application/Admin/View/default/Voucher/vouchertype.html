@@ -1,0 +1,131 @@
+<extend name='Public/base'/>
+<block name='title'>票券列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu"> 
+            <ul>
+               {$leftMenu}
+            </ul>
+            <div class="planBtn"><a class="button" href="javascript:addtype();" >添加类型</a></div>
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+        	<form method="post" action="{:U()}" class="searchform" id="searchform">
+                <div class="inputSelect">
+                    <span>影院分组：</span>
+                    <select name='cinemaGroupId'>
+                    <foreach name="cinemaGroup" item="vo" key="k" >
+                        <option value="{$vo.id}" <?php if($cinemaGroupId==$vo['id']){ ?>selected<?php }?>>{$vo.groupName}</option>
+                    </foreach>
+                     </select>
+                </div>
+                <div class="inputText">
+                	<span>票券名称查询：</span>
+                	<input type="text" name="typeName"  placeholder="票券名称" value="{$typeName}">
+                </div>
+                <a href="#" class="button" id='search'>查询</a>
+                </form>
+            </div>
+            <div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <tr >
+                        <td width="5%"><input type="checkbox" onclick="select_other(this);" /></td>
+                        <td width="5%">序号</td>
+                        <td width="5%">影院分组</td>
+                        <td width="20%">票券名称</td>
+                        <td width="15%">所属类型</td>
+                        <td width="15%">价值</td>
+                        <td width="10%">排序</td>
+                        <td width="20%">操作</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <foreach name="voucherTypeList" item="vo" key="k" >
+                        <tr>
+                        <td><input type="checkbox" name='id[]' value="{$vo.typeId}"  /></td>
+                        <td>{$vo.typeId}</td>
+                        <td><?php echo $cinemaGroup[$vo['cinemaGroupId']]['groupName'];?></td>
+                        <td>{$vo.typeName}</td>
+                        <td>{$vo.typeClass|select=$typeConfig,'##'}</td>
+                        <td>{$vo.typeValue}</td>
+                        <td>{$vo.sortOrder}</td>
+                        <td><a href="javascript:edittype({$vo.typeId});">编辑</a> | <a href="javascript:deltype({$vo.typeId});">删除</a></td>
+                        </tr>
+                    </foreach>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                
+                <div class="page">
+                    {$page}
+                	
+                </div>
+                
+            </div>
+            </div>
+        </div>
+	</div>
+<script type="text/javascript">
+$('.queryBox #search').click(function(){
+    $('#searchform').submit();
+});
+//全选
+function select_other(){
+	    jQuery.each($("input[name='id[]']"), function(i, n){
+	    n.checked = !n.checked;
+	    }); 
+	}
+//添加类型
+function addtype(){
+	layer.open({
+		title :'添加票券类型',
+		type: 2,
+		area: ['400px', '400px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U('addVoucherType')}'
+	});
+}
+function edittype(typeId){
+	layer.open({
+		title :'编辑票券类型',
+		type: 2,
+		area: ['400px', '400px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U('editVoucherType')}?typeId=' + typeId
+	});
+}
+
+function deltype(typeId){
+            layer.confirm('确认是否删除？',function(index){
+                loadi = layer.load(1, {shade: [0.5,'#000']});
+                loadimsg = layer.msg('正在删除...',{icon: 16, time:60000000});
+                $.ajax({
+                    url:"{:U('delVoucherType')}",
+                    data:{'typeId':typeId},
+                    dataType:'json',
+                    type:'post',
+                    success:function(json){
+                        if(json.status=='0'){
+                            layer.alert(json.content);
+                            location.reload();
+                        }else{
+                            layer.close(loadi);
+                            layer.close(loadimsg);
+                            layer.msg(json.content);
+                        }
+                    },
+                    error:function(msg){
+                        layer.close(loadi);
+                        layer.close(loadimsg);
+                        layer.msg('网络错误，请稍候再试！');
+                    }
+                });
+                
+        })
+    }
+
+</script> 
+</block>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('pay'|ns_css)}}"/>
+</head>
+<body>
+<div class="wrap">
+	{% include "template/header.html" %}
+	<div class="wrapBd">
+		<div class="ns-alert js-id-change">
+		    <div class="win" style="margin-top: -58px; display: none; opacity: 1;">
+		        <div class="header">
+		            <span class="_title">礼包兑换</span>
+		            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+		        </div>
+		        <div class="body">
+		        	<div class="alert-content">
+		        		<div id="bagChangeCode" class="bagChangeCode clearfix">
+			        		<div class="contents clearfix">
+				        		<input class="default" type="text">
+				        		<div id="bagChangeCodeSubmit" class="submit">兑换</div>
+				        		<div class="text"></div>
+				        	</div>
+				        	<div class="tipsShow">
+				        		<p>91NS礼包兑换码可用于兑换聊币、聊豆、VIP或其他增值服务；</p>
+				        		<p>您可通过参加我们的各种运营活动获得兑换码</p>
+				        		<p>兑换码需在有效期内兑换，过期失效。</p>
+				        	</div>
+		        		</div>
+		       		</div>
+		      	</div>
+		        <div class="bottom"></div>
+		    </div>
+		</div>
+		<div class="ns-alert js-id-payOther">
+		    <div class="win" style="margin-top: -58px; display: none; opacity: 1;">
+		        <div class="header">
+		            <span class="_title">为他人充值</span>
+		            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+		        </div>
+		        <div class="body">
+		        	<div class="alert-content">
+		        		<div class="bagChangeCode clearfix">
+			        		<div class="contents clearfix">
+				        		<div class="texts">充值到账户ID：</div>
+				        		<input id="otherUserUID" class="default" type="text">
+				        	</div>
+				        	<div class="tipsShow"></div>
+				        	<div class="contents clearfix">
+				        		<div class="texts">确认账号ID：</div>
+				        		<input id="otherUserUIDConfirm" class="default" type="text">
+				        	</div>
+				        	<div class="btns clearfix">
+				        		<div class="left js-exitAlert-control">取消</div>
+				        		<div class="right">确定</div>
+				        	</div>
+		        		</div>
+		       		</div>
+		      	</div>
+		        <div class="bottom"></div>
+		    </div>
+		</div>
+		<div class="w_1200">
+			<div class="AD_1200"><a class="cur" href="/activities/charge"><img alt="vip" src="{{static_url('web/cssimg2/upload/AD_1200_4.jpg')}}"></a></div>
+			<div class="payBox">
+				<div class="payBox_hd">
+					<h3>聊币充值</h3>
+					<p>(提示：人民币和聊币兑换比例为1:100)</p>
+					<div class="IHaveBag" id="IHavaBagChangeCode">我有礼包兑换码</div>
+					<div class="f_r">当前账户：<i nsdata="userNickName"></i><span>（<i nsdata="userUID"></i>）</span></div>
+				</div>
+				<div class="payBox_hd_bm">
+					<p>您的账户余额：<i class="i_L"></i><i nsdata="cash"></i><i class="i_Dou"></i><i nsdata="coin"></i></p>
+					{% if ns_userType|default(0) == 3 %}
+					<div class="exchange">
+						<div class="msg clearfix">
+							<div id="seeExchangeLog" class="right" onselectstart ='return false'>
+								查看兑换记录
+							</div>
+							<div class="left">
+								元宝余额：<span id="ingot_number"></span>元宝
+							</div>
+						</div>
+						<table id="exchangeLog" class="win" id="ingotDataList">
+							<thead>
+								<tr>
+									<td>兑换时间</td>
+									<td>兑换的元宝</td>
+									<td>获得的聊币</td>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+					{% endif %}
+				</div>
+				<div class="payForm">
+					<div id="payFor" class="user">
+						充值到账户：<span class="userNickName" nsdata="userNickName"></span> ( <span class="userUID" nsdata="userUID"></span> ) <span class="toUser" id="payForOther">为他人充值</span>
+					</div>
+					<div class="payForm_select">
+						<b>支付方式：</b>
+						{% if webType['channelType'] == 2 %}
+						<a class="cur" nstype="select_pay_type" payType="wx"><i class="i_weixin">微信支付</i><span class="sup"></span><span class="sub"></span></a>
+						{% else %}
+						<a class="cur" nstype="select_pay_type" payType="zfb"><i class="i_alipay">支付宝</i><span class="sup"></span><span class="sub"></span></a>
+						<a nstype="select_pay_type" payType="wx"><i class="i_weixin">微信支付</i><span class="sup"></span><span class="sub"></span></a>
+						{% endif %}
+						<a nstype="select_pay_type" payType="wy" id="bankControl"><b></b><i class="i_deposit">储蓄卡</i><span class="sup"></span><span class="sub"></span></a>
+						<!-- <a nstype="select_pay_type" payType="xyk"><i class="i_credit">信用卡</i><span class="sup"></span><span class="sub"></span></a> -->
+						<a nstype="select_pay_type" payType="szf"><i class="i_phone">手机充值卡</i><span class="sup"></span><span class="sub"></span></a>
+						{% if ns_userType|default(0) == 3 %}
+						<a nstype="select_pay_type" payType="ybdh"><i class="i_sycee">元宝兑换</i><span class="sup"></span><span class="sub"></span></a>
+						{% endif %}
+					</div>
+					<div class="payForm_select payForm_cost normals">
+						<b>充值金额：</b>
+						<a nstype="select_pay_number" rmb="10" class="cur"><strong>10元</strong><span>1,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="50"><strong>50元</strong><span>5,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="100"><strong>100元</strong><span>10,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="500"><strong>500元</strong><span>50,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="1000"><strong>1,000元</strong><span>100,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="5000"><strong>5000元</strong><span>500,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="10000"><strong>10,000元</strong><span>1,000,000聊币</span><span class="sup"></span></a>
+						<div class="a_write" nstype="select_pay_number" rmb="other">
+                            <div class="pay_other">
+                                <p>自定义</p>
+                            </div>
+                            <span class="sup"></span>
+                        </div>
+                        <div class="otherBox">
+                            <p class="textP">请输入您要充值的金额</p>
+                            <input id="otherRMB" class="otherRMBtext" type="text" placeholder="10~10000">
+                            <div class="otherOK">确定</div>
+                            <i class="textI"></i>
+                            <div class="head-s"><div class="head-bottom-s"></div></div>
+                        </div>
+                        <!--<div class="a_write" nstype="select_pay_number" rmb="other"><p class="pay_write"><input id="otherRMB" type="text" placeholder="">元</p><span></span><span class="sup"></span><p class="pay_tips">注：1元=100聊币</p></div>-->
+						<div class="a_write cur err" nstype="select_pay_number" style="display:none"><p class="pay_write"><input type="text" placeholder="请输入">元</p><span>格式填写不正确</span><span class="sup_err"></span></div>
+					</div>
+					<div class="payForm_select payForm_cost ybdh" style="display:none;">
+						<b>充值金额：</b>
+						<a nstype="select_pay_number" rmb="50" class="cur"><strong>50元宝</strong><span>5,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="100"><strong>100元宝</strong><span>10,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="500"><strong>500元宝</strong><span>50,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="1000"><strong>1,000元宝</strong><span>100,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="5000"><strong>5,000元宝</strong><span>500,000聊币</span><span class="sup"></span></a>
+						<a nstype="select_pay_number" rmb="10000"><strong>10,000元宝</strong><span>1,000,000聊币</span><span class="sup"></span></a>
+					</div>
+					<div id="bankList" class="bank_select clearfix" style="display:none">
+						<div class="bank_pic">
+							{% for bank in bankList %}
+	                        <a><i class="sprite-bank {{ bank['val'] }}" >{{ bank['name'] }}</i></a>
+	                        {% endfor %}
+						</div>
+					</div>
+					<div class="payNow">
+						{% if userAccountInfo['internalType'] == 1 %}
+							<a class="forbid">贵宾号不能充值</a>
+                        {% else %}
+							<a id="chargingGo">充值</a>
+                        {% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <script type="text/javascript" defer async data-main="{{static_url('charging'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+	{% include "template/footer.html" %}
+</div>
+</body>
+</html>

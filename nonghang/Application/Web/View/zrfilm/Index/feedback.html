@@ -1,0 +1,81 @@
+﻿<extend name='Public/base'/>
+
+<block name='body'>
+
+<div id="main">
+    <div class="container">
+
+
+            <div>
+                <span>手机号</span>
+                <input type="text" placeholder="请留下您的手机号便于联系" value='{$mobile}' name='mobile' id='feedback_mobile'>
+            </div>
+            <div>
+                <span>建议</span>
+                <textarea placeholder="中瑞影城欢迎您，请留下您宝贵的意见或建议，谢谢~~~" name='content' id='feedback_content'></textarea>
+            </div>
+            <button  onclick='sumbit_feedback()'>提交</button>
+
+
+    </div>
+</div>
+
+</block>
+
+
+<block name='script'>
+    <script type="text/javascript">
+
+
+    function sumbit_feedback() {
+
+
+        var feedback_mobile=$('#feedback_mobile').val();
+        var feedback_content=$('#feedback_content').val();
+
+
+        var sedata='';
+
+
+        if(feedback_mobile){
+        	sedata+='&mobile='+feedback_mobile;
+        }else{
+
+			layer.alert('请输入手机号码！');
+			 return;
+
+        }
+
+        if(feedback_content){
+        	sedata+='&content='+feedback_content;
+        }else{
+			layer.alert('请输入意见内容！');
+			 return;
+        }       
+        $.ajax({
+            type:'POST',
+            url:'{:U("feedback_add")}',
+            data:sedata,
+            success:function(mag) {
+                if(mag.status==0){
+                	parent.window.location.href="{:U(feedbackstatus)}";
+                }else{
+                	layer.alert(mag.content);
+
+                }
+            }
+
+			
+
+
+
+         })
+
+
+
+
+     }
+    
+
+    </script>
+</block>

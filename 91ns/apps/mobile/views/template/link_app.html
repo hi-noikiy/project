@@ -1,0 +1,17 @@
+{% include "template/link.html" %}
+<script type="text/javascript">
+	/*
+	 * imgSuffix:图片大小2x/3x
+	 * urlPara:url必带参数
+	 */
+	nsConfig['imgSuffix'] = '{{imgSuffix|default("@2x")}}';
+	nsConfig['urlPara'] = '{{urlPara}}';
+	nsConfig['restURL'] = '{{restURL}}';
+</script>
+<style type="text/css">
+	/*debug模式不能透明，否则chrome下无法调试UI*/
+	{% if static_url('') != '/' %}
+	body,html{background-color: transparent;position: inherit;overflow: hidden;}
+	{% endif %}
+	.appBg{position: absolute;top: 0;left: 0;right: 0;bottom: 0;background-color: #000;opacity: 0.5;}
+</style>

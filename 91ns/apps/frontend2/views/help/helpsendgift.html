@@ -1,0 +1,24 @@
+{% extends "template/help_body.html" %}
+{% block title %}
+帮助中心
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('help'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+<div class="personal-div getpresents clearfix">
+    <div class="get-head pull-re pull-re" style="display: block">
+        <div class="_help-head">如何给主播赠送礼物</div>
+        <div class="_help-contend">
+            <div class="div1">在直播间下发的礼物框，双击礼物，即可快捷为主播赠送一个该礼物，</div>
+            <div class="div1">也可以通过输入数量，赠送多个礼物，将一簇礼物抛洒在舞台上，</div>
+            <div class="div1">91NS还提供了特殊数字含义的礼物组合形状，赠送可触发酷炫特效哦。</div>
+            <img style="margin-top:30px;" src="{{static_url('web/cssimg2/help/sendgift1.png')}}">
+        </div>
+    </div>
+
+</div>
+
+{% endblock%}

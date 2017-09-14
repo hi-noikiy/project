@@ -1,0 +1,40 @@
+<extend name='Public/base'/>
+<block name='title'>购券订单</block>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">购券订单</div>
+    <div class="right"></div>
+  </div>
+</div>
+</block>
+<block name='body'>
+	<div data-page="bankOrder" class="page" id="page-bankOrder">
+    	<div class="main">
+
+            <foreach name="couponsList" item="vo">
+            <div class="voucher-item">
+                <p><span>订单编号：{$vo.couponOrderId}</span><span>{$vo.orderTime|date='Y-m-d H:i:s',###}</span></p>
+                <div class="item-left">
+                    <h4>{:str_replace('兑换券','',$vo['couponName'])}</h4>
+                    <p>兑换券</p>
+                </div>
+                <div class="item-right">
+                    <h4>{$vo.couponName}<span>¥{$vo.couponPrice}</span></h4>
+                    <ul>
+                        <li>数量：{$vo.couponSum}张</li>
+                        <li>{:str_replace(',','</li><li>',$vo['voucherList'])}</li>
+                    </ul>
+                </div>
+            </div>
+     
+        </foreach>
+    	</div>
+
+
+    </div>
+    
+</block>
+<block name='script'>
+</block>

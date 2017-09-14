@@ -1,0 +1,282 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+
+
+
+
+<script src="__STATIC__/ueditorFull1.2.2/ueditor.config.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/ueditor.all.min.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
+
+
+<form method="post" action="{:U()}" class="dataform" id="dataform">
+	<div class="formBox">
+
+        <div class="queryItem"><p>基本信息</p></div>
+        <div class="inputText" >
+            <span>分组名称：</span>
+            <input type="text" name="data[groupName]"  placeholder="请输入影院分组名称" value="{$data.groupName}">
+        </div>
+
+        <div class="inputText" >
+            <span>模板名称：</span>
+            <input type="text" name="data[tempName]"  placeholder="请输入影院分组对应模板" value="{$data.tempName}">
+        </div>
+
+        <div class="inputText" >
+            <span>MAX标识：</span>
+            <input type="text" name="data[maxName]"  placeholder="对应的max标识" value="{$data.maxName}">
+        </div>
+
+        <div class="inputText" >
+            <span>LOGO：</span>
+            <input type="file" name="image"  placeholder="添加影城LOGO图片" value="">
+        </div>
+        <div class="inputText" style="width:300px">
+        <span>短信平台</span>
+        <input name="data[smsType]" type="radio" value="ihyi" id="ihyi" <if condition="$data['smsType'] == 'ihyi'">checked="checked"</if>><label for="ihyi" style=" width:70px;" <if condition="$data['smsType'] == 'ihyi'">checked="checked"</if>>互亿</label>
+        <input name="data[smsType]" type="radio" value="weiw" id="weiw" <if condition="$data['smsType'] == 'weiw'">checked="checked"</if>><label for="weiw" style="width:60px;">微网</label>                        
+        </div>
+
+        <div class="inputText" >
+            <span>短信帐号：</span>
+            <input type="text" name="data[smsAccount]"  placeholder="请输入短信接帐号" value="{$data.smsAccount}">
+        </div>
+        <div class="inputText" >
+            <span>短信密码：</span>
+            <input type="text" name="data[smsPassword]"  placeholder="请输入短信接密码" value="{$data.smsPassword}">
+        </div>
+
+        <div class="inputText" >
+            <span>短信签名：</span>
+            <input type="text" name="data[smsSign]"  placeholder="请输入短信接签名" value="{$data.smsSign}">
+        </div>
+        <br />
+        <div class="inputText" >
+            <span>兑换比例：</span>
+            <input type="text" name="data[proportion]"  placeholder="请输入积分兑换比例" value="{$data.proportion}">
+        </div>
+        <div class="inputText" >
+            <span>获得比例：</span>
+            <input type="text" name="data[getProportion]"  placeholder="请输入积分消费获得积分比例" value="{$data.getProportion}">
+        </div>
+
+
+        <div class="inputText" >
+            <span>调试开关：</span>
+            <input type="radio" id="isDebug0" name="data[isDebug]" value="0" <if condition="$data['isDebug'] == '0'">checked="checked"</if>> <label for="isDebug0">关闭</label>
+            <input type="radio" id="isDebug1" name="data[isDebug]" value="1" <if condition="$data['isDebug'] == '1'">checked="checked"</if>> <label for="isDebug1">开启</label>
+        </div>
+
+        <div class="inputText" >
+            <span>默认会员：</span>
+            <select name="data[defaultLevel]" id="defaultLevel">
+                <option value="">所有影院分组</option>
+                <foreach name="memberGroupList" item="vo" key="k" >
+                    <option value="{$vo.groupId}" <if condition="$vo['groupId'] == $data['defaultLevel']">selected="selected"</if>>{$vo.groupName}</option>
+                </foreach>
+
+        </select>
+        </div>
+
+        
+        <div class="queryItem" style="margin-top:10px;margin-bottom:5px"><p>渠道信息</p></div>
+        <div class="inputText" >
+            <input type="checkbox" name="data[channelConfig][]" value="web" id="channelConfigWeb" <if condition="in_array('web', $data['channelConfig'])">checked="checked"</if>><label for="channelConfigWeb">PC官网</label>
+        </div>
+
+
+    <div class="inputText" >
+        <input type="checkbox" name="data[channelConfig][]" value="wap" id="channelConfigWap"  <if condition="in_array('wap', $data['channelConfig'])">checked="checked"</if>><label for="channelConfigWap">微信官网</label>
+    </div>
+
+    <div class="inputText" >
+        <input type="checkbox" name="data[channelConfig][]" value="app" id="channelConfigApp" <if condition="in_array('app', $data['channelConfig'])">checked="checked"</if>><label for="channelConfigApp">APP</label>
+    </div>
+
+    <div id="channelConfigwebDiv" style="display:none">
+        <div class="inputText" ><span>官网域名：</span>
+            <input type="text" name="data[domain]"  placeholder="请输入短信接帐号" value="{$data.domain}"></div>
+    </div>
+
+    <div id="channelConfigwapDiv" style="display:none">
+    <div class="inputText" ><span>微信编码：</span>
+            <input type="text" name="data[token]"  placeholder="请输入短信接帐号" value="{$data.token}"></div>
+    </div>
+
+    <div id="channelConfigappDiv" style="display:none">
+    <div class="inputText" ><span>APP帐号：</span>
+            <input type="text" name="data[appAccount]"  placeholder="请输入短信接帐号" value="{$data.appAccount}"></div>
+
+    <div class="inputText" ><span>APP密码：</span>
+            <input type="text" name="data[appPasswd]"  placeholder="请输入短信接帐号" value="{$data.appPasswd}"></div>
+    </div>
+
+<div class="queryItem" style="margin-top:10px;margin-bottom:5px"><p>渠道支付方式配置</p></div>
+
+                        <div class="inputText">
+                        <span>会员支付:</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="account" id="pcPayWay1" <if condition="in_array('account', $data['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay1" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="account" id="weixinPayWay1" <if condition="in_array('account', $data['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay1" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="account" id="appPayWay1" <if condition="in_array('account', $data['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay1" style="width:60px;">APP</label>
+                        </div>
+
+
+
+                          
+                        <div class="inputText">
+                        <span style="width:90px">兑换券支付:</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="exchange" id="pcPayWay1exchange" <if condition="in_array('exchange', $data['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay1exchange" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="exchange" id="weixinPayWay1exchange" <if condition="in_array('exchange', $data['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay1exchange" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="exchange" id="appPayWay1exchange" <if condition="in_array('exchange', $data['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay1exchange" style="width:60px;">APP</label>
+                        </div>
+                        <div class="inputText">
+                        <span style="width:90px">立减券支付:</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="reduce" id="pcPayWay1reduce" <if condition="in_array('reduce', $data['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay1reduce" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="reduce" id="weixinPayWay1reduce" <if condition="in_array('reduce', $data['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay1reduce" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="reduce" id="appPayWay1reduce" <if condition="in_array('reduce', $data['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay1reduce" style="width:60px;">APP</label>
+                        </div>
+
+                        <div class="inputText">
+                        <span style="width:90px">卖品券支付:</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="sale" id="pcPayWay1sale" <if condition="in_array('sale', $data['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay1sale" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="sale" id="weixinPayWay1sale" <if condition="in_array('sale', $data['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay1sale" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="sale" id="appPayWay1sale" <if condition="in_array('sale', $data['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay1sale" style="width:60px;">APP</label>
+                        </div>
+
+
+                        <div class="inputText">
+                        <span style="width:90px">积分支付:</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="integral" id="pcPayWay1integral" <if condition="in_array('integral', $data['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay1integral" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="integral" id="weixinPayWay1integral" <if condition="in_array('integral', $data['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay1integral" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="integral" id="appPayWay1integral" <if condition="in_array('integral', $data['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay1integral" style="width:60px;">APP</label>
+                        </div>
+
+
+                         <div class="inputText">
+                        <span>支付宝：</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="alipay" id="pcPayWayalipay" <if condition="in_array('alipay',$data['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWayalipay" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="alipay" id="weixinPayWayalipay" <if condition="in_array('alipay',$data['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWayalipay" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="alipay" id="appPayWayalipay" <if condition="in_array('alipay',$data['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWayalipay" style="width:60px;">APP</label>
+                        </div>
+
+                         <div class="inputText">
+                        <span>微信支付：</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="weixinpay" id="pcPayWay3" <if condition="in_array('weixinpay',$data['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay3" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="weixinpay" id="weixinPayWay3" <if condition="in_array('weixinpay',$data['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay3" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="weixinpay" id="appPayWay3" <if condition="in_array('weixinpay',$data['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay3" style="width:60px;">APP</label>
+                        </div>
+
+
+
+                          <div class="inputText">
+                        <span>银联支付：</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="unionpay" id="pcPayWay4" <if condition="in_array('unionpay',$data['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay4" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="unionpay" id="weixinPayWay4" <if condition="in_array('unionpay',$data['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay4" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="unionpay" id="appPayWay4" <if condition="in_array('unionpay',$data['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay4" style="width:60px;">APP</label>
+                        </div>
+
+<div class="inputText">
+                        <span>农行支付：</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="abchinapay" id="abchinapc" <if condition="in_array('abchinapay',$data['payWay']['pcPayWay'])">checked="checked"</if>><label for="abchinapc" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="abchinapay" id="abchinawx" <if condition="in_array('abchinapay',$data['payWay']['weixinPayWay'])">checked="checked"</if>><label for="abchinawx" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="abchinapay" id="abchinaapp" <if condition="in_array('abchinapay',$data['payWay']['appPayWay'])">checked="checked"</if>><label for="abchinaapp" style="width:60px;">APP</label>
+                        </div>
+
+        <div class="queryItem" style="margin-top:10px;margin-bottom:5px"><p>注册协议</p></div>
+        <div class="inputText2" >
+
+            <script type="text/plain" id="registrationProtocol" name="data[registrationProtocol]" style="width:100%;height:240px;">
+                                            {:htmlspecialchars_decode($data['registrationProtocol'])}
+                                        </script>
+
+        </div>
+<div class="queryItem" style="margin-top:10px;margin-bottom:5px"><p>票券规则</p></div>
+        <div class="inputText2" >
+
+            <script type="text/plain" id="voucherRule" name="data[voucherRule]" style="width:100%;height:240px;">
+                                            {:htmlspecialchars_decode($data['voucherRule'])}
+                                        </script>
+
+        </div>
+
+<input type="hidden" name="cinemaGroupId" value="{$data.id}">
+
+    </div>
+	<div class="formBtn">
+        <a href="javascript:ajaxSubmit()" class="button">确认</a>
+         <a href="javascript:parent.layer.closeAll();" class="cancel">取消</a>
+        
+    </div>
+</form>
+<script type="text/javascript">
+
+var ue2 = UE.getEditor('registrationProtocol', {
+    toolbars: [
+        ['source','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify','fontsize','bold','forecolor','link', 'unlink','insertunorderedlist', 'fullscreen',]
+    ],
+    // serverUrl:'{:U('addUpload')}',
+    autoHeightEnabled: false,
+    autoFloatEnabled: false
+});
+var ue2 = UE.getEditor('voucherRule', {
+    toolbars: [
+        ['source','simpleupload', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify','fontsize','bold','forecolor','link', 'unlink','insertunorderedlist', 'fullscreen',]
+    ],
+    imageUrlPrefix:'http://www.baidu.com',
+    // serverUrl:'{:U('addUpload')}',
+    autoHeightEnabled: false,
+    autoFloatEnabled: false
+});
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+	timepicker:true,
+	format:'Y-m-d H:i',
+	formatDate:'Y-m-d H:i',
+});
+
+function setDivShow () {
+$.each($("input[name='data[channelConfig][]']"), function(name, value) {
+    if ($(this).attr('checked') == 'checked') {
+        $('#channelConfig'+$(this).val()+'Div').css('display','');
+    }else{
+       $('#channelConfig'+$(this).val()+'Div').css('display','none'); 
+    }
+});
+}
+
+$("input[name='data[channelConfig][]']").click(function(){
+   setDivShow(); 
+});
+
+function ajaxSubmit () {
+        // alert('1');
+        $("#dataform").ajaxSubmit({  
+            type:"post",  //提交方式  
+            dataType:"json", //数据类型  
+            url:"{:U()}", //请求url 
+            success:function(json){ //提交成功的回调函数  
+                if (json.status == 1) {
+                    layer.alert(json.content);
+                }else if(json.status == 0){
+
+
+                    layer.confirm(json.content, {
+                    btn: ['返回列表','<?php if(intval($data['id']) == 0){echo '继续添加';}else{echo '继续修改';}?>'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    parent.location.reload();
+                }, function(){
+                    location.reload();
+                });
+                }
+
+
+                // alert('11');
+            }  
+        });
+    }
+setDivShow();
+</script> 
+</block>

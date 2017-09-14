@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>中瑞影城</title>
+
+    <link rel="stylesheet" type="text/css" href="__CSS__/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__/style.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__/seat.css"/>
+    <link rel="stylesheet" type="text/css" href="__CSS__/swiper.min.css"/>
+    <link rel="stylesheet" href="__JS__/skin/layer.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="__JS__/skin/layer.ext.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="__STATIC__/jqdatetiem/jquery.datetimepicker.css" type="text/css" media="screen" />
+
+    <script src="__JS__/jquery.min.js"></script>
+    <script src="__JS__/jquery.easing.js"></script>
+    <script src="__JS__/script.js"></script>
+    <script src="__JS__/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="__JS__/jquery.Spinner.js"></script>
+    <script src="__JS__/layer/layer.js"></script>
+    <script src="__JS__/jquery.cookie.js"></script>
+    <script src="__JS__/jquery.nicescroll.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/jqdatetiem/jquery.datetimepicker.js"></script>
+    <script type="text/javascript" src="__JS__/placeholder.js"></script>
+</head>
+<body id="{$pageId}">
+<!-- 导航 -->
+<div id="header">
+    <div class="container">
+        <div class="logo"></div>
+        <ul class="nav">
+            <li class="index"><a href="{:U('Index/index')}">首页</a></li>
+            <li class="film"><a href="{:U('Film/filmlist')}">电影</a></li>
+            <li class="plan"><a href="{:U('Plan/plan')}">排期</a></li>
+            <!--<li class="bookwhole"><a href="{:U('bookwhole/index')}">包场</a></li>-->
+            <li class="goods"><a href="{:U('goods/index')}">卖品</a></li>
+            <!--<li class="cinema"><a>影院</a></li>-->
+            <li class="activity"><a href="{:U('activity/activitylist')}">活动</a></li>
+            <li class="phone"><a href="{:U('mobile/index')}">移动购票</a></li>
+        </ul>
+        <div class="login-block">
+        <a class="portrait" ><img src="{$headImage}"></a>
+            <?php if(empty($user)){ ?>
+            <a class="login">登录</a>
+            <a href="{:U('user/register')}">注册</a>
+            <?php }else{ ?>
+            <a href="{:U('user/movieorder')}" class="name">{$user['otherName']}</a>
+            <a class="logout">退出</a>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+<div class="fillMargin"></div>
+<!--/ 导航 -->
+
+<div id="main" class="recharge">
+<div class="user-operation">
+        <div class="container">
+            <a href="{:U('movieorder')}" class="order <?php if(ACTION_NAME=='movieorder'||ACTION_NAME=='goodsorder'){ ?>active<?php }?>" >我的订单</a>
+            <a href="{:U('vouchers',array('voucherClass'=>1))}" class="certificate <?php if(ACTION_NAME=='vouchers'){ ?>active<?php }?>">我的券包</a>
+            <a href="{:U('user/userinfo')}" class="account <?php if(ACTION_NAME=='userinfo'){ ?>active<?php }?>">
+                <p class="cardId">{$user['loginNum']}</p>
+                <p class="balance"><span>余额：￥{$user['userMoney']}</span><span>&nbsp;&nbsp;积分：<?php if($user['cardNum']):?>{$user['integralBalance']}<?php else:?>{$user['integral']}<?php endif;?>分</span></p>
+            </a>
+            <a href="{:U('recharge')}" class="acRecharge <?php if(ACTION_NAME=='recharge'){ ?>active<?php }?>">账户充值</a>
+            <a href="{:U('returnticket')}" class="rtTicket  <?php if(ACTION_NAME=='returnticket'){ ?>active<?php }?>">退票中心</a>
+        </div>
+    </div>
+    <block name='body'></block>
+    </div>
+<block name='script'>
+</block>
+<script type="text/javascript">
+<?php if($nologin=='1'){ ?>
+login();
+<?php } ?>
+$('.logout').click(function(){
+	$.getJSON("{:U('user/logout')}",function(data){
+		window.location.href='{:U("index/index")}';
+		//location.reload();
+	});
+});
+    //登录弹窗
+    function login(url){
+    	 //iframe层
+        layer.open({
+            type: 2,
+            skin: 'service-theme',
+            title:'  ',
+            shadeClose: false,
+            shade: 0.8,
+            area: ['480px', '460px'],
+            content: "{:U('User/login')}?url="+url//iframe的url
+        });
+    }
+    $('.login').click(function(){
+    	login(0);
+    });
+
+    //登录弹窗
+    $('.portrait').click(function(){
+
+    	   $.ajax({
+
+         	  type:'POST',
+               url:'{:U("index/pduserlogin")}',
+               data:'',
+               success:function(mag) {
+
+
+                   if(mag.status==0){
+
+                     //  alert(mag.content);
+
+                 	 window.location.href="{:U('user/movieorder')}";
+
+
+                   }else{
+
+                 	  //iframe层
+                       layer.open({
+                           type: 2,
+                           skin: 'service-theme',
+                           title:'  ',
+                           shadeClose: false,
+                           shade: 0.8,
+                           area: ['480px', '460px'],
+                           content: "{:U('User/login')}?url={:U('user/movieorder')}"//iframe的url
+                       });
+                    }
+               }
+          }) 	
+    });
+
+    $(function(){
+        $('input').filter("[placeholder]").miPlaceholder();
+    })
+
+
+    
+</script>
+<div id="footer">
+    <div class="containers">
+        <ul>
+            <li><a></a><a>关于中瑞 / </a><a>服务协议 / </a><a>客服中心 /</a><a>网站导航 /</a> <a>版权所有</a> </li>
+            <li>Copyright © 1998 - 2015 ZRFILM. All Rights Reserved</li>
+            <li> 技术支持：最美影视网络</li>
+        </ul>
+        <span class="tel">400-1234554665</span>
+        <span class="publicize">精彩在握，移动购票</span>
+    </div>
+</div>

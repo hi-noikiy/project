@@ -1,0 +1,204 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<!--js、css引入-->
+{% endblock %}
+
+{% block title %}
+我的关注
+{% endblock %}
+
+{% block titleList %}
+<ul class="nav">
+    <li class="active"><a onclick="AllAttention()" href="#AllAttention">全部关注(<strong id="AllAttentionCount">0</strong>)</a></li>
+    <li><a onclick="Important()" href="#Important">重点关注(<strong id="ImportantCount">0</strong>)</a></li>
+    <li><a onclick="MutualList()" href="#MutualList">互相关注(<strong id="MutualListCount">0</strong>)</a></li>
+</ul>
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent">
+    <div class="center-box-content">
+        <div class="center-box main-background-body" bottompadding="42">
+            <div class="center-top">
+                <div class="rope-left">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+
+                <div class="rope-right">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+            </div>
+            <div class="center-content">
+                <div class="widget-box">
+                    <div id="AllAttention" class="tab-container">
+
+                        <ul class="tabs clearfix">
+                            <li class="tab active">
+                                <div class="navs">
+                                    <a class="nav active" type='0' onclick="AllAttention('0',jq('#all_search_text').val())"  >关注时间</a>
+                                    <a class="nav" type='1' onclick="AllAttention('1',jq('#all_search_text').val())" >主播等级</a>
+                                    <a class="nav" type='2' onclick="AllAttention('2',jq('#all_search_text').val())" >富豪等级</a>
+                                </div>
+                            </li>
+                            <li class="tab pull-right">
+                                <div class="search">
+                                    <label>请输入房间号</label>
+                                    <input id="all_search_text" class="search-text" type="text">
+                                    <button class="btn-search" onclick="FindAllAttention(jq('#AllAttention .navs .nav.active').attr('type'),jq('#all_search_text').val())"><i class="gmc-icon gmc-icon-search"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div id="tabs1" class="tab-box">
+                            <div id="AllDelBox"  class="row" style="text-align: left; margin-bottom:20px; display: none;">
+
+                                <div class="all checkbox" data="0" onclick="allcheckbox(this)">
+                                    <img src="{{static_url('web/cssimg/room/pri-send-gift-right.png')}}" >
+                                </div>
+                                <span style="margin-left:30px">全选</span>
+                                <button class="all btndelete" onclick="AlldeleteAttention('#Allthumbnail .checkbox')">删除</button>
+                            </div>
+                            <div class="clearfix">
+                                <ul id="Allthumbnail" class="thumbnail-box clearfix">
+
+                                </ul>
+                                <div class="no-notData" style="display: none;"><span></span>您还没有关注的主播哦！</div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <!--重点关注-->
+                    <div id="Important" class="tab-container" style="display:none">
+                        <ul class="tabs clearfix">
+                            <li class="tab active">
+                                <div class="navs">
+                                    <a class="nav active" type='0' onclick="Important('0',jq('#Imp_search_text').val())">关注时间</a>
+                                    <a class="nav" type='1' onclick="Important('1',jq('#Imp_search_text').val())" >主播等级</a>
+                                    <a class="nav" type='2' onclick="Important('2',jq('#Imp_search_text').val())" >富豪等级</a>
+                                </div>
+                            </li>
+                            <li class="tab pull-right">
+                                <div class="search">
+                                    <label>请输入房间号</label>
+                                    <input id="Imp_search_text" class="search-text" type="text">
+                                    <button class="btn-search" onclick="FindfoucsAttention(jq('#Important .navs .nav.active').attr('type'),jq('#Imp_search_text').val())"><i class="gmc-icon gmc-icon-search"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div id="tabs2" class="tab-box">
+                            <div id="AllChkImpBox" class="row" style="text-align: left; margin-bottom:20px;">
+
+                                <div  class="all checkbox" data="0" onclick="allcheckbox(this)">
+                                    <img src="{{static_url('web/cssimg/room/pri-send-gift-right.png')}}" >
+                                </div>
+                                <span style="margin-left:30px">全选</span>
+                                <button class="all btndelete" onclick="AlldeleteAttention('#ImportantThumbnail .checkbox')">删除</button>
+                            </div>
+                            <div class="clearfix">
+                                <ul id="ImportantThumbnail" class="thumbnail-box clearfix">
+
+                                </ul>
+
+                                <div class="no-notData" style="display: none;"><span></span>您还没有重点关注的主播哦！</div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!--/重点关注-->
+
+
+                    <div id="MutualList" class="tab-container" style="display:none">
+
+                        <ul class="tabs clearfix">
+                            <li class="tab active">
+                                <div class="navs">
+                                    <a class="nav active" type='0' onclick="MutualList('0',jq('#mut_search_text').val())">关注时间</a>
+                                    <a class="nav" type='1' onclick="MutualList('1',jq('#mut_search_text').val())">主播等级</a>
+                                    <a class="nav" type='2' onclick="MutualList('2',jq('#mut_search_text').val())">富豪等级</a>
+                                </div>
+                            </li>
+                            <li class="tab pull-right">
+                                <div class="search">
+                                    <label>请输入房间号</label>
+                                    <input id="mut_search_text" class="search-text" type="text">
+                                    <button class="btn-search" onclick="FindMutualAttention(jq('#MutualList .navs .nav.active').attr('type'),jq('#mut_search_text').val())"><i class="gmc-icon gmc-icon-search"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div id="tabs3" class="tab-box">
+                            <div  id="AllChkMutuaBox" class="row" style="text-align: left; margin-bottom:20px;">
+
+                                <div class="all checkbox" data="0" onclick="allcheckbox(this)">
+                                    <img src="{{static_url('web/cssimg/room/pri-send-gift-right.png')}}" >
+                                </div>
+                                <span style="margin-left:30px">全选</span>
+                                <button class="all btndelete" onclick="AlldeleteAttention('#MutualListthumbnail .checkbox')">删除</button>
+                            </div>
+                            <div class="clearfix">
+                                <ul id="MutualListthumbnail" class="thumbnail-box clearfix">
+
+                                </ul>
+
+                                <div class="no-notData" style="display: none;"><span></span>您还没有互相关注的主播哦！</div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+            <div class="center-bottom">
+
+            </div>
+        </div>
+        <div class="center-footer-bg" >
+        </div>
+        {% include "template/background.html" %}
+    </div>
+</div>
+
+<div class="ns-alert ns-dialog">
+    <div class="win" >
+        <div class="header">
+            <i class="ico-main-12 alert-logo"></i>
+            <span>备注</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body">
+            <div>
+                <div id="d_fuid" class="show-text">123456</div>
+                <div>备注：<input id="bzName" class="name-text" type="text"></div>
+                <div class="btn-box">
+                    <button id="ns_btn_OK" fuid="" class="btn btn-purple">确定</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button id="ns-dialog-colse" class="btn btn-purple">取消</button>
+                </div>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript">var right_ico_pre = "{{static_url('web/cssimg/room/pri-send-gift-right.png')}}";</script>
+<script type="text/javascript" src="{{static_url('91ns.userattention'|ns_js)}}"></script>
+{% endblock %}

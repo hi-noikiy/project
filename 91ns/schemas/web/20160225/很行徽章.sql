@@ -1,0 +1,1 @@
+INSERT INTO `pre_item_configs` (`type`, `name`, `description`, `configName`) VALUES ('2', '很行', '很行', 'henxing');

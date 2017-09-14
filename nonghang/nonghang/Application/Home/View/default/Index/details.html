@@ -1,0 +1,60 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">{$film['filmName']}</div>
+    <div class="right"></div>
+  </div>
+</div>
+
+
+<div class="pages">
+  <div data-page="filmDetails" class="page">
+    <div class="page-content" style="padding-bottom:40px;">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+
+
+
+<volist name='film["imgs"]' id='vo'>
+  <div style="display:none" class="phpotoList">__UPLOAD__/{$vo}</div>
+</volist>
+
+        <div class="filmDetails">
+                        <div class="filmImg">
+                            <img src="__UPLOAD__/{$film['image']}" height="90" width="67.5"  />
+                        </div>
+                        <div class="filmInfo">
+                            <p>导演：{$film['director']}</p>
+                            <p>主演：{$film['cast']}</p>
+                            <p>片长：{$film['duration']}分</p>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="filmDetails">
+                        <div class="titleTop"><span>剧照</span></div>
+                        <ul>
+                          <volist name='film["imgs"]' id='vo'>
+                            <li><img src="__UPLOAD__/{$vo}" height="60" width="90"></li>
+                            </volist>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="filmDetails">
+                        <div class="titleTop"><span>剧情</span></div>
+                        <div class="filmContent">{$film['introduction']}</div>
+                    </div>
+                   
+
+
+    </div>
+    <?php if(!empty($film['filmNo'])){ ?>
+      <div class="filmButton"><a href="{:U('cinemaplan',array('filmNo'=>$film['filmNo']))}" class="filmBtn">选座购票</a></div>
+      <?php }else{ ?>
+      <div class="filmButton"><a href="" class="filmBtn cur">等待排片</a></div>
+   <?php } ?>
+  </div>
+   
+</div>

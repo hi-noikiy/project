@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>中瑞影城后台管理系统</title>
+
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/layer.js"></script>
+<link rel="stylesheet" href="__CSS__/common.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__CSS__/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__JS__/skin/layer.css" type="text/css" media="screen" />
+
+</head>
+<style>
+html{
+	height:100%;
+	}
+body{
+	background:#354052;
+	background: -webkit-linear-gradient(right top, #4f90a5 , #574b7a); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(bottom left, #4f90a5, #574b7a); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(bottom left, #4f90a5, #574b7a); /* Firefox 3.6 - 15 */
+	background: linear-gradient(to bottom left, #4f90a5 , #574b7a); /* 标准的语法 */
+	}
+</style>
+<body>
+<iframe src="" style="display:none" id="postPanel" name="postPanel"></iframe>
+     <div class="header">
+        <div class="logo" style=" position:absolute; top:20px; left:20px;"><img src="__IMG__/common/logo.png" height="80"  /></div>
+        <div class="title">中瑞影城后台管理系统</div>
+        <div class="close"><a href="{:U('Public/logout')}">退出</a></div>
+    </div>
+    <!--顶部结束-->
+    <div >
+     	<div class="manageMenu">
+        	<div class="manageUser">
+            	<div class="userImg"><img src="__IMG__/common/user.gif" /></div>
+                <div class="userInfo">
+                    <h2>{$adminUserInfo.username}</h2>
+                    <p>{$adminUserInfo.realName}</p>
+                    <p>{$adminUserInfo.lastLoginTime|date='Y-m-d H:i:s',###}</p>
+                    <p><a  href="javascript:editPassWord({$adminUserInfo['uid']})">修改密码</a></p>
+                </div>
+            </div>
+            <ul>
+<!-- class="cur" -->
+                <foreach name="menus[0]" item="vo" key="k" >
+                    <li class="homeMenus cur" id="menus_{$vo[0]}"><a href="javascript:tip();" data="{:U('admin/index/goUrl', array('mid' => $vo[0]))}"><img src="__IMG__/menu/{$vo[3]}" /><span>{$vo[1]}</span></a></li>
+                </foreach>
+
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有  4008-12345678</p>
+    </div>
+<script type="text/javascript">
+
+
+function editPassWord(uid){
+
+    layer.open({
+           type: 2,   //0-4的选择,
+            title: false,
+            border: [0],
+            closeBtn: [0],
+            shadeClose: false,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['300px', '230px'],
+            content: '{:U('admin/user/editPassWord')}?uid=' + uid
+        });
+}
+
+ function jsalert(msg, url) {
+
+layer.confirm(msg, {
+btn: ['确定'], //按钮
+    shade: false //不显示遮罩
+}, function(){
+    if(url == 'reload'){
+        location.reload();
+    }
+    if (url != '') {
+        location.href=url;
+    }
+    layer.closeAll('dialog');
+
+});
+
+}
+
+function tip(){
+    layer.msg('该系统未开通');
+}
+var loadi = '';
+$(".homeMenus a").each(function(){
+    loadi = layer.load(1, {shade: [0.5,'#000']});
+    $.ajax({
+    url:$(this).attr('data'),
+    dataType:'json',
+    type:'post',
+    success:function(json){
+        layer.close(loadi);
+        if(json.status=='0'){
+            // alert(json.data);
+            // alert($(this).attr('href'));
+            $('#menus_' + json.data.mid + ' a').attr('href', json.data.url);
+            $('#menus_' + json.data.mid).removeClass('cur');
+        }
+    },
+    error:function(msg){
+        layer.close(loadi);
+        layer.msg('网络错误，请稍候再试！');
+    }
+});
+
+   // alert($(this).attr('data'));
+});
+// $.ajax({
+//     url:"<?php echo U('delMenu')?>",
+//     data:{'mid':mid},
+//     dataType:'json',
+//     type:'post',
+//     success:function(json){
+//         if(json.status=='0'){
+//             location.reload();
+//         }else{
+//             layer.close(loadi);
+//             layer.close(loadimsg);
+//             layer.msg(json.text);
+//         }
+//     },
+//     error:function(msg){
+//         layer.close(loadi);
+//         layer.close(loadimsg);
+//         layer.msg('网络错误，请稍候再试！');
+//     }
+// });
+
+
+</script>  
+</body>
+</html>

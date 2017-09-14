@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+{% include "template/about_link.html" %}
+<link rel="stylesheet" type="text/css" href="{{static_url('about/index'|ns_css)}}"/>
+</head>
+<body class="clearfix">
+{% include "template/about_header.html" %}
+<div class="pic"></div>
+<div class="content w1000m500 index">
+    <div class="content clearfix">
+        <div class="left clearfix">
+            <div class="title">平台项目</div>
+            <div class="content">
+                <i></i>
+                </br>
+                在线演艺
+                </br>
+                福建最大才艺表演直播网站
+            </div>
+        </div>
+        <div class="right clearfix">
+            <div class="title">公司简介</div>
+            <div class="content">
+                <p>福州小伙伴网络科技以“内容立本，服务兴业”为宗旨，以互联网为依托，凭借专业的技术与服务，致力于通过各种网络终端为用户提供多元化的内容、娱乐服务。</p>
+                <p>并在研发上大胆探求未来用户的需求，为向用户提供真正有乐趣性的、有丰富文化内涵的文化内容娱乐服务。</p>
+                <p>旗下平台91NS，致力于发掘培养优质的福建本土主播，为观众提供优质的演唱，舞蹈，脱口秀等各类表演服务，全力打造互联网企业新典范，向成功不断迈进。</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "template/about_footer.html" %}
+</body>
+</html>

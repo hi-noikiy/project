@@ -1,0 +1,157 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<script type="text/javascript">
+    function download(){
+        var data={};
+        data.input='secret-input';
+        window.open("{{static_url('publisher/91ns.exe')}}");
+        return false;
+    }
+</script>
+<link rel="stylesheet" type="text/css" href="{{static_url('base'|ns_css)}}">
+<link rel="stylesheet" type="text/css" href="{{static_url('download'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+下载中心
+{% endblock %}
+
+{% block titleList %}
+<ul class="nav">
+    <li class="active"><a href="#APP">APP</a></li>
+    <li class=""><a href="#Assistant">助手</a></li>
+</ul>
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<!--APP-->
+<div id="APP" class="tabs">
+    <!-- <div class="APP-head"><div class="Assistant-head-pic"><img src="{{static_url('web/cssimg/91ns/download/app.png')}}"></div></div>
+    <div class="center-box" style="min-height: 370px;">
+        <div class="shade_left"></div>
+        <div class="center-content app-center-content" style="min-height: 370px">
+            <div class="widget-box app-widget">
+                <div class="app-box clearfix">
+                    <div class="app-left"></div>
+                    <div class="app-right">
+                        <div class="iphone-p sprite iphone">
+                            <div class="download-sprite">
+                                <span class="download-span1">iPhone</span>
+                                <span class="download-span2">获取该应用程序</span>
+                            </div>
+                        </div>
+                        <div class="android-p sprite android">
+                            <div class="download-sprite">
+                                <span class="download-span1">Android</span>
+                                <span class="download-span2">获取该应用程序</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shade_right"></div>
+    </div> -->
+
+    <div class="bannerShow">
+        <div id="downBanner" class="bcontent">
+            <div class="bLeft">
+                <div>
+                    <ul>
+                        <li>
+                            <img src="{{static_url('web/cssimg/91ns/download/bxb.png')}}">
+                        </li>
+                        <li>
+                            <img src="{{static_url('web/cssimg/91ns/download/wba.png')}}">
+                        </li>
+                        <li>
+                            <img src="{{static_url('web/cssimg/91ns/download/yyt.png')}}">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bContent">
+                <i class="bradius"></i>
+                <i class="btext"></i>
+            </div>
+            <div class="bRight">
+                <img src="{{static_url('web/cssimg/91ns/QRcode.png')}}">
+                <div class="bios clearfix">
+                    <span><i></i></span>
+                    <div>
+                        <i></i>
+                        <span nsdownload="down" nsdata="{{ downloads['pcios'] }}">立即下载</span>
+                    </div>
+                </div>
+                <div class="bandroid clearfix">
+                    <span><i></i></span>
+                    <div>
+                        <i></i>
+                        <span nsdownload="down" nsdata="{{ downloads['android'] }}">立即下载</span>
+                    </div>
+                </div>
+            </div>
+            <div class="iconShow">
+                <div class="iLeft">
+                    <span class="iTitle">聊天送礼</span>
+                    <span class="iText">火速跟女神熟络</span>
+                </div>
+                <div class="iContent">
+                    <span class="iTitle">开播通知</span>
+                    <span class="iText">让你不再错过</span>
+                </div>
+                <div class="iRight">
+                    <span class="iTitle">精彩纷呈</span>
+                    <span class="iText">好节目目不暇接</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--助手-->
+<div id="Assistant" class="tabs" style="display:none;">
+    <div class="Assistant-head"><div class="Assistant-head-pic"><img src="{{static_url('web/cssimg/91ns/download/banner.png')}}"></div></div>
+    <div class="center-box">
+        <div class="shade_left"></div>
+        <div class="center-content">
+            <div class="pc-download" onclick="download()">
+                <div class="pc-download-in">立即下载</div>
+            </div>
+            <!--<div class="widget-box">-->
+                <!--<div class="help-box clearfix">-->
+                    <!--<div class="advert">-->
+                        <!--<img src="{{static_url('web/cssimg/91ns/download/advert03.png')}}">-->
+                    <!--</div>-->
+                    <!--<div class="pc-download sprite pc" onclick="download()">-->
+                        <!--<div class="download-sprite">-->
+                            <!--<span class="download-span1">点击下载</span>-->
+                            <!--<!--<span class="download-span2">开启直播</span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="c-f-all clearfix">
+                <div class="c-f-00">
+                    <img src="{{static_url('web/cssimg/91ns/download/function.png')}}">
+                    <div class="see-help"><a href="/help/helpVideo">查看教程</a></div>
+                </div>
+                <!--<img class="c-f-01" src="{{static_url('web/cssimg/91ns/download/pc_01.png')}}">-->
+                <!--<img class="c-f-02" src="{{static_url('web/cssimg/91ns/download/pc_02.png')}}">-->
+                <!--<img class="c-f-03" src="{{static_url('web/cssimg/91ns/download/pc_03.png')}}">-->
+                <img class="c-f-01" src="{{static_url('web/cssimg/91ns/download/pc_04.png')}}">
+            </div>
+        </div>
+        <div class="shade_right"></div>
+    </div>
+</div>
+{% include "template/footer.html" %}
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript" src="{{static_url('download'|ns_js)}}"></script>
+{% endblock %}

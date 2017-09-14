@@ -1,0 +1,184 @@
+<extend name='Public/base'/>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+		 	<div class="queryBox">
+                <form action="{:U('orderlist')}" method="post" id='myform'>
+                    <div class="queryBody">
+                        <div class="inputText">
+                            <span>按订单编号查询</span>
+                            <input type="text" value="{$pageData['orderCode']}" name="orderCode" placeholder="请输入订单编号">
+                        </div>
+
+                        <div class="inputText">
+                            <span>按接收手机号查询</span>
+                            <input type="text" value="{$pageData['mobile']}" name="mobile" placeholder="请输入接收手机号">
+                        </div><br />
+                        <div class="inputText"  style="width:48%">
+                            <span>按下单日期查询</span>
+                            <input name="start" type="text"  value="{$pageData['start']}" class="date" placeholder="请输入开始日期"><span>至</span><input name="end" type="text" value="{$pageData['end']}" class="date" placeholder="请输入结束日期">
+                        </div>
+                        <div class="inputText">
+                            <span>按放映日期查询</span>
+                            <input name="start1" type="text"  value="{$pageData['start1']}" class="date" placeholder="请输入开始日期"><span>至</span><input name="end1" type="text" value="{$pageData['end1']}" class="date" placeholder="请输入结束日期">
+                        </div><br />
+                        <div class="inputSelect">
+                            <span>按影院查询</span>
+                            <select name="cinemaCode" id="cinemaCode">
+                        <option value="0">所有影院</option>
+                        <foreach name="cinemaList" item="vo" key="k" >
+                        <option value="{$vo.cinemaCode}"<if condition="$vo['cinemaCode'] == $pageData['cinemaCode']"> selected="selected"</if>>{$vo.cinemaName}</option>
+                        </foreach>
+
+                    </select>
+                        </div>
+                        <!-- <div class="inputSelect">
+                            <span>按支付方式查询</span>
+                            <select name="payType">
+                                <option value="0">所有支付方式</option>
+                                <option value="1">会员卡支付</option>
+                                <option value="2">微信/手机余额支付</option>
+                                <option value="3">支付宝/手机余额支付</option>      
+                                 <option value="4">手机余额支付</option>      
+                            </select>
+                        </div>  -->
+                        
+                        
+                        <div class="inputSelect">
+                            <span>按订单状态查询</span>
+                            <select class="select" id="selb" name="status">
+                                <option value="-1">所有订单</option>
+                                <option value="0" <?php if($pageData['status']=='0'){ ?>selected<?php } ?>>等待支付</option>
+                        		<option value="3" <?php if($pageData['status']=='3'){ ?>selected<?php } ?>>支付完成</option>
+                        		<option value="2" <?php if($pageData['status']=='2'){ ?>selected<?php } ?>>支付异常</option>
+                        		<option value="5" <?php if($pageData['status']=='5'){ ?>selected<?php } ?>>超时关闭</option>
+                        		<option value="6" <?php if($pageData['status']=='6'){ ?>selected<?php } ?>>订单取消</option>
+                        		<option value="7" <?php if($pageData['status']=='7'){ ?>selected<?php } ?>>订单异常</option>
+                       			<option value="8" <?php if($pageData['status']=='8'){ ?>selected<?php } ?>>购票失败退款</option>
+                        		<option value="9" <?php if($pageData['status']=='9'){ ?>selected<?php } ?>>退款退票</option>
+                        		<option value="10" <?php if($pageData['status']=='10'){ ?>selected<?php } ?>>退款失败</option>
+                            </select>
+                        </div>
+                       <a href="#" class="button" onclick="$('#myform').submit()">查询</a>
+                        <div class="clear"></div>
+                    </div>
+                   </form>
+            </div>
+
+            <div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                     <thead>
+                          <tr>
+                            <td width="12%">订单编号</td>
+                            <td width="10%">下单时间</td>
+                            <td width="8%">会员卡号/手机号</td>
+                            <td width="10%">放映时间</td>
+                            <td width="12%">影院名称</td>
+                            <td width="11%">影片名称</td>
+                            <td width="5%">上报金额</td>
+                            <td width="8%">接收手机</td>
+                            <td width="6%">订单状态</td>
+                            <td width="8%">操作</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                        <volist name='orderlist' id='vo'>
+                            <td><a  href="javascript:orderStatus('{$vo[orderCode]}');">{$vo['orderCode']}</a></td>
+                            <td style="line-height:20px;">{$vo['downTime']|date='Y-m-d H:i:s',###}</td>
+                            <td><?php if(!empty($vo['cardId'])){ ?><a href="{:U('member/record',array('cardId'=>$vo['cardId']))}">{$vo['cardId']}</a>
+                            <?php }else{ ?>{$vo['mobile']}<?php }?></td>
+                            <td>{$vo['startTime']|date='Y-m-d H:i',###}</td>
+                            <td>{$vo['cinemaName']}</td>
+                            <td>{$vo['filmName']} </td>
+                            <td>￥{$vo['price'] * $vo['seatCount']}</td>
+                            <td>{$vo['mobile']}</td>
+                            <td><?php echo $orderConfig[$vo['status']];?></td>
+                            <td><a  href="javascript:filmQuery({$vo['orderCode']});">详细</a> <?php if($vo['status']=='3'&&$vo['startTime']>time()+30*60){ ?><a  href="javascript:cancelOrder({$vo['orderCode']});">取消订单</a><?php } ?></td>
+                         </tr>
+                         </volist>
+                         </tbody>
+                </table>
+                <div class="orderTotal">
+                    <span>订单总数：{$show['count']}笔</span>
+                    <span>总票数：{$show['allcount']}张</span>
+                    <span>订单总金额：{$show['allprice']}元</span>
+                    <a href="{:U('orderPort',$pageData)}">导出到EXCEL</a> 
+                </div>
+                {$page}
+            </div>
+		</div>
+	</div>
+<script type="text/javascript">
+// $(function(){
+// 	var urlstr="?cardId={$pageData['cardId']}&orderCode={$pageData['orderCode']}&mobile={$pageData['mobile']}&cinemaCode={$pageData['cinemaCode']}&status={$pageData['status']}&start={$pageData['start']}&end={$pageData['end']}&mobileNum={$pageData['mobileNum']}&payType={$pageData['payType']}&start1={$pageData['start1']}&end1={$pageData['end1']}";
+// 	$('.page a').each(function(){
+// 		$(this).attr('href',$(this).attr('href')+urlstr);
+// 	});
+// 	$('.orderTotal a').attr('href',$('.orderTotal a').attr('href')+urlstr);
+// });
+  
+function filmQuery(id){
+	$.get("{:U('orderDetail')}",{id:id},function(msg){
+		var data=JSON.parse(msg);
+		 layer.open({
+			   type: 1,   //0-4的选择,
+				title: false,
+				border: [0],
+				closeBtn: [0],
+				skin: 'layui-layer-rim', //加上边框
+				shadeClose: true,
+				area: ['500px', 'auto'],
+				content: '<div class="binding"><table border="0" cellpadding="0" cellspacing="0"><thead><tr><th colspan="4">订单详情</th></tr></thead><tbody>'+
+				'<tr><td width="15%">订单号</td><td id="no">'+data['orderCode']+'</td><td width="15%">订单时间</td><td id="createdDatetime">'+data['time']+'</td></tr>'+
+				'<tr><td>订单金额</td><td id="amountTotal">￥'+(data['seatCount']*data['myPrice'])+'</td><td>订单状态</td><td id="status">'+data['status']+'</td></tr>'+
+				'<tr><td>电影名称</td><td id="filmName">'+data['filmName']+'</td><td>影院名称</td><td id="placeName">'+data['cinemaName']+'</td></tr>'+
+				'<tr><td>影厅名称</td><td id="hallName">'+data['hallName']+'</td><td>放映时间</td><td id="timetableDate">'+data['startTime']+'</td></tr>'+
+				'<tr><td>片长</td><td id="totalTime">'+data['totalTime']+'</td><td>制式</td><td id="copyType">'+data['copyType']+'</td></tr>'+
+				'<tr><td>语言</td><td id="copyLanguage">'+data['copyLanguage']+'</td><td>取票码</td><td id="printPassword">'+data['printNo']+'</td></tr>'+
+				'<tr><td>座位信息</td><td colspan="3" id="filmData">'+data['seatIntroduce']+'</td></tr>'+
+				'<tr style="display: none;"><td>套餐信息</td><td colspan="3" id="packagesData"></td></tr></tbody></table></div>' 
+			});
+	});
+}
+function orderStatus(orderCode){
+	$.get("{:U('queryOrderStatus')}",{orderCode:orderCode},function(json){
+		var data=JSON.parse(json);
+		 layer.open({
+			   type: 1,   //0-4的选择,
+				title: false,
+				border: [0],
+				closeBtn: [0],
+				skin: 'layui-layer-rim', //加上边框
+				shadeClose: true,
+				area: ['300px', 'auto'],
+				content: '<div class="binding"><table border="0" cellpadding="0" cellspacing="0" style="width:300px;"><thead><tr><th colspan="2">购票订单状态</th></tr></thead><tbody>'+
+				'<tr><td width="30%">订单号</td><td id="no">'+orderCode+'</td></tr><tr><td>订单状态</td><td>'+data['OrderStr']+'</td></tr><tr><td>验证码</td><td>'+data['PrintNo']+'</td></tr></tbody></table></div>' 
+			});
+	});
+}
+
+function cancelOrder(orderid){
+	  layer.confirm('确认取消该订单？',function(index){
+		  	layer.load('正在取消,请稍候……');
+		  	$.post('{:U("cancelOrder")}',{orderid:orderid},function(json){
+		  		
+				  if(json['status'] == 0){
+					  layer.alert(json['content']);
+					  setTimeout(function(){location.reload()},2000);
+				  }else{
+                    layer.closeAll();
+                    // alert('111');
+                        layer.alert(json['content']);
+				  }
+			  },'json');
+		})
+}
+
+</script> 
+</block>

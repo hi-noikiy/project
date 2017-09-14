@@ -1,0 +1,201 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+<!--顶部结束-->
+<style type="text/css">
+  div.member2{
+    color: green;
+    display: inline;
+  }
+  div.member1{
+    color: red;
+    display: inline;
+  }
+  div.member0{
+    color: #000;
+    display: inline;
+  }
+</style>
+    <div class="content">
+        <div class="leftMenu">
+           <ul>
+                {$leftMenu}
+            </ul> 
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+                <div class="inputText">
+                    <span>影院添加分组：</span>
+                    <input name="groupName" id="groupName" type="text" class="text" value="" placeholder="请输入分组名称">
+
+                </div> <a href="javascript:;" class="button" >搜索</a>
+                 <a href="javascript:addgroup();" class="button" >添加</a>                 
+            </div>
+        	<div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                     <thead>
+                          <tr>
+                            <td width="5%">序号</td>
+                            <td width="15%">影院组名</td>
+                            <td width="">会员卡分组</td>
+                            <td width="40%">操作</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <foreach name="groupList" item="vo" key="k" >
+                        <tr>
+                            <td> {$vo.id} </td>
+                            <td> {$vo.groupName} </td>
+                            <td> <foreach name="memberGroupList[$vo[id]]" item="groupInfo"><div class="member{$groupInfo.type}">{$groupInfo.groupName}</div> <em onclick="delMemberGroupInfo({$groupInfo.groupId})"></em>、</foreach> </td>
+                            <td>
+                            <a href="javascript:addCiname({$vo.id})">影城列表({:$vo['cinemaList']!=''? substr_count($vo['cinemaList'],',')+1:0})</a>|<a href="javascript:addMemberGroup({$vo.id},0)">会员卡分组</a>(<a href="{:U('cardTypeList', array('cinemaGroupId'=>$vo['id']))}">查看</a>)|<a href="javascript:addMemberGroup({$vo.id},1)">注册分组</a><!--|<a href="javascript:addMemberGroup({$vo.id},2)">专享分组</a>-->|<a href="javascript:setMemberGroupName({$vo.id})">编缉</a>|<a href="javascript:del({$vo.id})">删除</a></td>
+                         </tr> 
+                       </foreach>                 
+                   </tbody>
+                </table>
+            </div>
+            <div class="rightFooter">
+                <p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有  4008-12345678</p>
+            </div>
+        </div>
+        
+</div>
+<script type="text/javascript">
+var loadi = '';
+var loadimsg = ''; 
+
+function delMemberGroupInfo (groupId) {
+
+  layer.confirm('确认是否删除？',function(index){
+        loadi = layer.load(1, {shade: [0.5,'#000']});
+        loadimsg = layer.msg('正在删除...',{icon: 16, time:60000000});
+        $.ajax({
+          url:"<?php echo U('delCinemaMemberGroup')?>",
+          data:{'groupId':groupId},
+          dataType:'json',
+          type:'post',
+          success:function(json){
+            if(json.status=='0'){
+              location.reload();
+            }else{
+              layer.close(loadi);
+              layer.close(loadimsg);
+              layer.msg(json.text);
+            }
+          },
+          error:function(msg){
+            layer.close(loadi);
+            layer.close(loadimsg);
+            layer.msg('网络错误，请稍候再试！');
+          }
+        });
+        
+    })
+
+}
+
+
+function addMemberGroup(cinemaGroupId, type){
+
+if (type==0) {
+  var title = '请输入会员卡分组名称，并确认';
+}else{
+  var title = '请输入注册会员分组名称，并确认';
+}
+layer.prompt({
+    title: title,
+    formType: 0 //prompt风格，支持0-2
+}, function(pass){
+    loadi = layer.load(1, {shade: [0.5,'#000']});
+
+    $.ajax({    
+    url:'{:U('addMemberGroup')}',// 跳转到 action    
+    data:{'groupName':pass,'cinemaGroupId':cinemaGroupId, 'type':type},    
+    type:'post',       
+    dataType:'json',    
+    success:function(data) {
+      layer.close(loadi);
+      if(data.status == 0){
+        layer.alert(data.content, {icon: 6});
+        setTimeout(function(){location.reload()}, 1000);
+      }else{
+        layer.alert(data.content, {icon: 5});
+      }
+     },    
+     error : function() {    
+        // view("异常！");    
+        alert("异常！");    
+     }    
+  });
+
+});
+}
+
+
+function addCiname (cinemaGroupId) {
+  layer.open({
+    title :'影院添加分组',
+    type: 2,
+    area: ['350px', '550px'],
+    fix: false, //不固定
+    maxmin: true,
+    content: '{:U('setCinemaGroup')}?cinemaGroupId=' + cinemaGroupId
+  });
+}
+
+
+function setMemberGroupName(cinemaGroupId){
+
+    layer.open({
+    title :'添加影院分组',
+    type: 2,
+    area: ['750px', '670px'],
+    fix: false, //不固定
+    maxmin: true,
+    content: '{:U('setMemberGroupName')}?cinemaGroupId=' + cinemaGroupId
+  });
+}
+
+
+function addgroup () {
+    layer.open({
+    title :'添加影院分组',
+    type: 2,
+    area: ['750px', '670px'],
+    fix: false, //不固定
+    maxmin: true,
+    content: '{:U('addGroup')}' 
+  });
+}
+
+
+
+  function del(cinemaGroupId){
+      layer.confirm('确认是否删除？',function(index){
+        loadi = layer.load(1, {shade: [0.5,'#000']});
+        loadimsg = layer.msg('正在删除...',{icon: 16, time:60000000});
+        $.ajax({
+          url:"<?php echo U('delCinemaGroup')?>",
+          data:{'cinemaGroupId':cinemaGroupId},
+          dataType:'json',
+          type:'post',
+          success:function(json){
+            if(json.status=='0'){
+              location.reload();
+            }else{
+              layer.close(loadi);
+              layer.close(loadimsg);
+              layer.msg(json.text);
+            }
+          },
+          error:function(msg){
+            layer.close(loadi);
+            layer.close(loadimsg);
+            layer.msg('网络错误，请稍候再试！');
+          }
+        });
+        
+    })
+  }
+</script> 
+</block>

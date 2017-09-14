@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/rank'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+</head>
+<body>
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+		<div class='pos_rel video'>
+			<img src='{{static_url("web/cssimg/mobile/screen/top_bg.jpg")}}' width="100%"/>
+			<p class='title pos_ab'>
+				<span nsdata="selectRankType">主播榜</span>
+			</p>
+			<img id="leftMenu" src='{{static_url("web/cssimg/mobile/btn/back1.png")}}' width="7%" class='pos_ab back' />
+			<img nsdata="selectRankType" src='{{static_url("web/cssimg/mobile/btn/up_a.png")}}' width="4%" class='pos_ab arrow' />
+			<div id="rankType" data="0" class='pos_ab pull_menu' style="display:none;">
+				<p class='c_white' onclick="rankTypes(this,0)">主播榜</p>
+				<p class='c_white' onclick="rankTypes(this,1)">富豪榜</p>
+				<p class='c_white' onclick="rankTypes(this,2)">魅力榜</p>
+				<p class='c_white' onclick="rankTypes(this,3)">家族榜</p>
+			</div>
+		</div>
+
+		<div class='menu'>
+			<ul>
+				<li nsdata="selectRankDate">
+					<p class='on' data="day">
+						日榜
+					</p>
+				</li>
+				<li class='pos_ab line' style="z-index: -1;position: absolute;"></li>
+				<li nsdata="selectRankDate" >
+					<p data="week">
+						周榜
+					</p>
+				</li>
+				<li class='pos_ab line1'></li>
+				<li nsdata="selectRankDate" >
+					<p data="month">
+						月榜
+					</p>
+				</li>
+			</ul>
+			<div class='clear_all'></div>
+		</div>
+		<div id="getRankData" class='list'>
+			<ul>
+				<!--<li>-->
+					<!--<p class="c_pink fl">-->
+						<!--1-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/viewer/head.jpg")}}" width="16%" class="pos_rel fl head_show">-->
+					<!--<p class="c_gray fl">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/btn/icon4.png")}}" width="13%" class='fr icon_show'>-->
+					<!--<div class="clear_all"></div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<p class="c_pink fl">-->
+						<!--1-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/viewer/head.jpg")}}" width="16%" class="pos_rel fl head_show">-->
+					<!--<p class="c_gray fl">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/btn/icon4.png")}}" width="13%" class='fr icon_show'>-->
+					<!--<div class="clear_all"></div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<p class="c_pink fl">-->
+						<!--1-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/viewer/head.jpg")}}" width="16%" class="pos_rel fl head_show">-->
+					<!--<p class="c_gray fl">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/btn/icon4.png")}}" width="13%" class='fr icon_show'>-->
+					<!--<div class="clear_all"></div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<p class="c_pink fl">-->
+						<!--1-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/viewer/head.jpg")}}" width="16%" class="pos_rel fl head_show">-->
+					<!--<p class="c_gray fl">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/btn/icon4.png")}}" width="13%" class='fr icon_show'>-->
+					<!--<div class="clear_all"></div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<p class="c_pink fl">-->
+						<!--1-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/viewer/head.jpg")}}" width="16%" class="pos_rel fl head_show">-->
+					<!--<p class="c_gray fl">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/btn/icon4.png")}}" width="13%" class='fr icon_show'>-->
+					<!--<div class="clear_all"></div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<p class="c_pink fl">-->
+						<!--1-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/viewer/head.jpg")}}" width="16%" class="pos_rel fl head_show">-->
+					<!--<p class="c_gray fl">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/btn/icon4.png")}}" width="13%" class='fr icon_show'>-->
+					<!--<div class="clear_all"></div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<p class="c_pink fl">-->
+						<!--1-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/viewer/head.jpg")}}" width="16%" class="pos_rel fl head_show">-->
+					<!--<p class="c_gray fl">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/btn/icon4.png")}}" width="13%" class='fr icon_show'>-->
+					<!--<div class="clear_all"></div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<p class="c_pink fl">-->
+						<!--1-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/viewer/head.jpg")}}" width="16%" class="pos_rel fl head_show">-->
+					<!--<p class="c_gray fl">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/btn/icon4.png")}}" width="13%" class='fr icon_show'>-->
+					<!--<div class="clear_all"></div>-->
+				<!--</li>-->
+				<!--<li>-->
+					<!--<p class="c_pink fl">-->
+						<!--1-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/viewer/head.jpg")}}" width="16%" class="pos_rel fl head_show">-->
+					<!--<p class="c_gray fl">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src="{{static_url("web/cssimg/mobile/btn/icon4.png")}}" width="13%" class='fr icon_show'>-->
+					<!--<div class="clear_all"></div>-->
+				<!--</li>-->
+			</ul>
+		</div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/rank'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

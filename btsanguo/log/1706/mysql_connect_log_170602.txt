@@ -1,0 +1,8 @@
+mysql杩炴帴寮傚父,Host '106.75.27.180' is not allowed to connect to this MySQL server,   106.75.101.108:3316,gameaccuser,rif,g8td,650.6uj90,account, 2017-06-02 17:06:28
+mysql杩炴帴寮傚父,Host '106.75.27.180' is not allowed to connect to this MySQL server,   106.75.101.108:3316,gameaccuser,rif,g8td,650.6uj90,account, 2017-06-02 17:07:19
+mysql杩炴帴寮傚父,Connecting to 3.22, 3.23 & 4.0 servers is not supported,   106.75.101.108:3316,gameaccuser,rif,g8td,650.6uj90,account, 2017-06-02 17:24:59
+mysql连接异常,,   106.75.101.108:3316,gameaccuser,rif,g8td,650.6uj90,account, 2017-06-02 17:37:39
+mysql连接异常,,   106.75.101.108:3316,gameaccuser,rif,g8td,650.6uj90,account, 2017-06-02 17:52:21
+mysql连接异常,,   106.75.101.108:3316,gameaccuser,rif,g8td,650.6uj90,account, 2017-06-02 17:54:06
+mysql连接异常,,   106.75.101.108:3316,gameaccuser,rif,g8td,650.6uj90,account, 2017-06-02 18:00:47
+mysql杩炴帴寮傚父,,   106.75.101.108:3316,gameaccuser,rif,g8td,650.6uj90,account, 2017-06-02 18:02:26

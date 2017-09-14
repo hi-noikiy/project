@@ -1,0 +1,4 @@
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:1:"1";s:4:"sign";s:32:"1ea4df31fe6a359ed63de81084a247e6";s:8:"username";s:6:"test56";}, 2016-11-14 13:53:08
+sql=insert into web_token (account_id, game_id, token, addtime) values ('2106152', '9', 'BDAPZQRqWjEBUA8_bXzJRalc7ByJUdwd3XDNWIQJoUTZZZwFvBDoIcgliASpbJlVmVDdQdQI1BWUNZFQ_bAXBUPAQjD1sEblowATIPZV9nUWdXNAc1VDcHNlxwVjYCflEnWWMBeARiCGIJOgFoW2ZVZFQ4UGICZAU0DTBUaQE9', '1479102788'), 2016-11-14 13:53:08
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:6:"lb0102";s:4:"sign";s:32:"a60862415ca36fdbb200111107f24b56";s:8:"username";s:11:"15980259808";}, 2016-11-14 20:32:47
+sql=insert into web_token (account_id, game_id, token, addtime) values ('6231808', '9', 'BTEMZlI8C2BbCg4_aDWBVblU5VHFUdwh4AW4HcAZsAGcEOl0zVmgAPwoxDm8PPlBmAWYNOwJtCDMBOwU4VXcHYAU1DGRSPgtwWzsOIg1bVTpVZFRqVDQIOQE4BzMGOgA2BG9dcFYwAHYKdA4_aD3RQMwEwDTMCZQg_aATwFOVVgBzMFYAwwUmcLMg==', '1479126767'), 2016-11-14 20:32:47

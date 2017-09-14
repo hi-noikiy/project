@@ -1,0 +1,73 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+            {% include "common/tab.html" %}
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+            <div id="tab1" class="tab-pane active">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                  <form id="formSearch" class="form-search">
+                      <input id="isFamily" type="hidden" value="0">
+                      <span style="font-size:20px; line-height: 30px">查看：</span>
+                      <span class="tabs-group active" isFamily="0">无家族</span>
+                      &nbsp;
+                      <span class="tabs-group" isFamily="1">有家族</span>
+                      <span class="find-search pull-right">
+                      <i class="icon-search icon-on-right bigger-110"></i>
+                      <input name="order" type="hidden" value="0">
+                      <input name="isSign" type="hidden" value="1">
+                      <input name="name" type="text" placeholder="用户名或昵称" value="" >
+                      <button id="btnSearch" type="button" class="btn btn-purple">搜索</button>
+                      </span>
+                  </form>
+                </div>
+                
+				{% include "common/pagination.html" %}
+
+                <div class="row-fluid">
+                  <table id="tableList" class="table with-check table-purple">
+                    <thead>
+                      <tr>
+                        <th>主播号</th>
+                        <th>昵称</th>
+                        <th class="cursor" onclick="tableOrderClick('formSearch',1,getDataList)">主播等级&uarr;&darr; </th>
+                        <th class="cursor" onclick="tableOrderClick('formSearch',3,getDataList);">粉丝&uarr;&darr;</th>
+                        <th class="cursor" onclick="tableOrderClick('formSearch',5,getDataList);">收益(聊币)&uarr;&darr;</th>
+                        <th>直播状态</th>
+                        <th>账号状态</th>
+                        <th>结算状态</th>
+                        <th>房间显示</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+					
+                    </tbody>
+                  </table>
+                </div>
+                
+              </div>
+            </div>
+
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+
+<script type="text/javascript" src="{{static_url('web/js/91ns.anchor.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js/91ns.sgin.js')}}"></script>

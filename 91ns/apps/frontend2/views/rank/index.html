@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('rank'|ns_css)}}"/>
+    <script type="text/javascript" defer async data-main="{{static_url('rank'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</head>
+<body>
+<div class="wrap">
+	{% include "template/header.html" %}
+    <div class="wrapBd">
+        <div class="w_1200">
+            <!-- <div class="countdown"><span></span></div> -->
+            <div class="theRank">
+                <div class="theRank_item theRank_star">
+                    <div class="theRank_hd"><i class="hd_i"></i><h2>主播榜</h2><em class="help"></em><p class="help_info"><i></i><span>根据主播收到聊币数量排名</span></p></div>
+                    <div id="rankAnchor" class="theRank_bd">
+                        <div class="rank_top">
+                            <div nsdata="rank2" class="rank_top2">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"></div>
+                                <div class="bm">第<b>2</b>名</div>
+                            </div>
+                            <div nsdata="rank1" class="rank_top1">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"><a><img src=""></a><a href="#"></a></div>
+                                <div class="bm">第<b>1</b>名</div>
+                            </div>
+                            <div nsdata="rank3" class="rank_top3">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"><a><img src=""></a><a href="#"></a></div>
+                                <div class="bm">第<b>3</b>名</div>
+                            </div>
+                        </div>
+                        <div class="rank_list">
+                            <ul class="L_ul">
+                                <li nsdata="rank4"><span class="num">4.</span><div class="txt"></div></li>
+                                <li nsdata="rank5"><span class="num">5.</span><div class="txt"></div></li>
+                                <li nsdata="rank6"><span class="num">6.</span><div class="txt"></div></li>
+                                <li nsdata="rank7"><span class="num">7.</span><div class="txt"></div></li>
+                                <li nsdata="rank8"><span class="num">8.</span><div class="txt"></div></li>
+                            </ul>
+                            <ul class="R_ul">
+                                <li nsdata="rank9"><span class="num">9.</span><div class="txt"></div></li>
+                                <li nsdata="rank10"><span class="num">10.</span><div class="txt"></div></li>
+                                <li nsdata="rank11"><span class="num">11.</span><div class="txt"></div></li>
+                                <li nsdata="rank12"><span class="num">12.</span><div class="txt"></div></li>
+                                <li nsdata="rank13"><span class="num">13.</span><div class="txt"></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="theRank_tab">
+                        <a nsdata="day" class="cur"><span>日</span></a>
+                        <a nsdata="week"><span>周</span></a>
+                        <a nsdata="month"><span>月</span></a>
+                        <!-- <a nsdata="total"><span class="last">总榜</span></a> -->
+                    </div>
+                </div>
+                <div class="theRank_item theRank_rich">
+                    <div class="theRank_hd"><i class="hd_i"></i><h2>富豪榜</h2><em class="help"></em><p class="help_info"><i></i><span>根据用户所消费的聊币总额排名</span></p></div>
+                    <div id="rankRicher" class="theRank_bd">
+                        <div class="rank_top">
+                            <div nsdata="rank2" class="rank_top2">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"></div>
+                                <div class="bm">第<b>2</b>名</div>
+                            </div>
+                            <div nsdata="rank1" class="rank_top1">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"></div>
+                                <div class="bm">第<b>1</b>名</div>
+                            </div>
+                            <div nsdata="rank3" class="rank_top3">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"></div>
+                                <div class="bm">第<b>3</b>名</div>
+                            </div>
+                        </div>
+                        <div class="rank_list">
+                            <ul class="L_ul">
+                                <li nsdata="rank4"><span class="num">4.</span><div class="txt"></div></li>
+                                <li nsdata="rank5"><span class="num">5.</span><div class="txt"></div></li>
+                                <li nsdata="rank6"><span class="num">6.</span><div class="txt"></div></li>
+                                <li nsdata="rank7"><span class="num">7.</span><div class="txt"></div></li>
+                                <li nsdata="rank8"><span class="num">8.</span><div class="txt"></div></li>
+                            </ul>
+                            <ul class="R_ul">
+                                <li nsdata="rank9"><span class="num">9.</span><div class="txt"></div></li>
+                                <li nsdata="rank10"><span class="num">10.</span><div class="txt"></div></li>
+                                <li nsdata="rank11"><span class="num">11.</span><div class="txt"></div></li>
+                                <li nsdata="rank12"><span class="num">12.</span><div class="txt"></div></li>
+                                <li nsdata="rank13"><span class="num">13.</span><div class="txt"></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="theRank_tab">
+                        <a nsdata="day" class="cur"><span>日</span></a>
+                        <a nsdata="week"><span>周</span></a>
+                        <a nsdata="month"><span>月</span></a>
+                        <!-- <a nsdata="total"><span class="last">总榜</span></a> -->
+                    </div>
+                </div>
+                <div class="theRank_item theRank_hot">
+                    <div class="theRank_hd"><i class="hd_i"></i><h2>魅力榜</h2><em class="help"></em><p class="help_info"><i></i><span>根据主播收到的魅力星数量高低排名</span></p></div>
+                    <div id="rankCharm" class="theRank_bd">
+                        <div class="rank_top">
+                            <div nsdata="rank2" class="rank_top2">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"></div>
+                                <div class="bm">第<b>2</b>名</div>
+                            </div>
+                            <div nsdata="rank1" class="rank_top1">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"></div>
+                                <div class="bm">第<b>1</b>名</div>
+                            </div>
+                            <div nsdata="rank3" class="rank_top3">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"></div>
+                                <div class="bm">第<b>3</b>名</div>
+                            </div>
+                        </div>
+                        <div class="rank_list">
+                            <ul class="L_ul">
+                                <li nsdata="rank4"><span class="num">4.</span><div class="txt"></div></li>
+                                <li nsdata="rank5"><span class="num">5.</span><div class="txt"></div></li>
+                                <li nsdata="rank6"><span class="num">6.</span><div class="txt"></div></li>
+                                <li nsdata="rank7"><span class="num">7.</span><div class="txt"></div></li>
+                                <li nsdata="rank8"><span class="num">8.</span><div class="txt"></div></li>
+                            </ul>
+                            <ul class="R_ul">
+                                <li nsdata="rank9"><span class="num">9.</span><div class="txt"></div></li>
+                                <li nsdata="rank10"><span class="num">10.</span><div class="txt"></div></li>
+                                <li nsdata="rank11"><span class="num">11.</span><div class="txt"></div></li>
+                                <li nsdata="rank12"><span class="num">12.</span><div class="txt"></div></li>
+                                <li nsdata="rank13"><span class="num">13.</span><div class="txt"></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="theRank_tab">
+                        <a nsdata="day" class="cur"><span>日</span></a>
+                        <a nsdata="week"><span>周</span></a>
+                        <a nsdata="month"><span>月</span></a>
+                        <!-- <a nsdata="total"><span class="last">总榜</span></a> -->
+                    </div>
+                </div>
+                <div class="theRank_item theRank_family">
+                    <div class="theRank_hd"><i class="hd_i"></i><h2>家族榜</h2><em class="help"></em><p class="help_info"><i></i><span>根据家族旗下主播收到聊币数量排名</span></p></div>
+                    <div id="rankFamily" class="theRank_bd">
+                        <div class="rank_top">
+                            <div nsdata="rank2" class="rank_top2">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"><a class="family_name_" href="#"></a></div>
+                                <div class="bm">第<b>2</b>名</div>
+                            </div>
+                            <div nsdata="rank1" class="rank_top1">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"><a class="family_name_" href="#"></a></div>
+                                <div class="bm">第<b>1</b>名</div>
+                            </div>
+                            <div nsdata="rank3" class="rank_top3">
+                                <div class="pic"><a><img src=""></a><a><span class="pic_cover"></span></a></div>
+                                <div class="txt"><a class="family_name_" href="#"></a></div>
+                                <div class="bm">第<b>3</b>名</div>
+                            </div>
+                        </div>
+                        <div class="rank_list">
+                            <ul class="L_ul">
+                                <li nsdata="rank4"><span class="num">4.</span><em class="V_ye"></em><a class="family_name_" href="#"></a></li>
+                                <li nsdata="rank5"><span class="num">5.</span><em class="V_ye"></em><a class="family_name_" href="#"></a></li>
+                                <li nsdata="rank6"><span class="num">6.</span><em class="V_ye"></em><a class="family_name_" href="#"></a></li>
+                                <li nsdata="rank7"><span class="num">7.</span><em class="V_ye"></em><a class="family_name_" href="#"></a></li>
+                                <li nsdata="rank8"><span class="num">8.</span><em class="V_ye"></em><a class="family_name_" href="#"></a></li>
+                            </ul>
+                            <ul class="R_ul">
+                                <li nsdata="rank9"><span class="num">9.</span><em class="V_ye"></em><a class="family_name_" href="#"></a></li>
+                                <li nsdata="rank10"><span class="num">10.</span><em class="V_ye"></em><a class="family_name_" href="#"></a></li>
+                                <li nsdata="rank11"><span class="num">11.</span><em class="V_ye"></em><a class="family_name_" href="#"></a></li>
+                                <li nsdata="rank12"><span class="num">12.</span><em class="V_ye"></em><a class="family_name_" href="#"></a></li>
+                                <li nsdata="rank13"><span class="num">13.</span><em class="V_ye"></em><a class="family_name_" href="#"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="theRank_tab">
+                        <a nsdata="day" class="cur"><span>日</span></a>
+                        <a nsdata="week"><span>周</span></a>
+                        <a nsdata="month"><span>月</span></a>
+                        <!-- <a nsdata="total"><span class="last">总榜</span></a> -->
+                    </div>
+                </div>
+                <div class="theRank_item theRank_gift">
+                    <div class="theRank_hd">
+                        <i class="hd_i"></i><h2>礼物之星</h2>
+                        <p>(如果礼物数量相同，则按照“先到先得”规则评选礼物之星)</p>
+                        <div id="giftRankControl" class="f_r tab"><a nsdata="thisWeek" class="cur">本周</a><a nsdata="lastWeek">上周</a></div>
+                    </div>
+                    <div id="rankGift" class="theRank_bd">
+                        <div class="theRank_gift_hd"></div>
+                        <div id="rankGiftList" class="theRank_gift_bd rank_list">
+                            <ul>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">1.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">2.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">3.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">4.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">5.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">6.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">7.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">8.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">9.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">10.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">11.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">12.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">13.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">14.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">15.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">16.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">17.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">18.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">19.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">20.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">21.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">22.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">23.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">24.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">25.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">26.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">27.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">28.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">29.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                                <li>
+                                    <p class="f_l">
+                                        <span class="num">30.</span>
+                                        <span class="txt"></span>
+                                    </p>
+                                    <p class="f_r"></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="theRank_gift_bm"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	{% include "template/footer.html" %}
+</div>
+</body>
+</html>

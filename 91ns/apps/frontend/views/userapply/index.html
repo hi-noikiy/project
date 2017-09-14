@@ -1,0 +1,92 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<!--js、css引入-->
+{% endblock %}
+
+{% block title %}
+我的通知
+{% endblock %}
+
+{% block titleList %}
+<ul class="nav">
+    <li class="active"><a data="message">我的消息</a><i class="sprite-icon-tz _red" id="messageCount" style="display:none;">0</i></li>
+    <li>
+        <a data="apply">我的申请</a>
+        <i class="sprite-icon-tz _red" id="applyCount" {% if tipNumber['apply'] == 0 %}style="display:none;"{% endif %}>{{ tipNumber['apply'] }}</i>
+    </li>
+    <li>
+        <a data="auditing">我的审批</a>
+        <i class="sprite-icon-tz _red" id="auditingCount" {% if tipNumber['auditing'] == 0 %}style="display:none;"{% endif %}>{{ tipNumber['auditing'] }}</i>
+    </li>
+</ul>
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent _v2">
+    <div class="center-box-content">
+        <div class="center-box main-background-body _v2" bottompadding="42">
+            <div class="center-top _v2">
+                <div class="rope-left">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+                <div class="rope-right">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+            </div>
+            <div class="center-content _v2 _v3">
+                <div class="widget-box _v3">
+                    <div id="message-box" class="appliy-box clearfix _v2">
+                        <span class="_select _click _unread active" data="0">未读</span>
+                        <span class="_select _click _beread" data="1">已读</span>
+                        <span class="_select _back" data="1" onclick="msgContentShowBack();"><<返回</span>
+                        <span class="_fright _delete _readHide forbid" id="deleteSelectButtom" onclick="deleteSelectId();">删除所选消息</span>
+                        <span class="_fright _text _readHide">全选</span>
+                        <span class="_fright _left sprite-icon-tz _readHide" onclick="selectAllMessage(this);"></span>
+                        <ul id="messageList" class="_message-ul clearfix"></ul>
+                        <div id="messageContentDiv" class="_message-content" style="display:none;"></div>
+                        <ul id="messagePage" class="clearfix _page-controll"></ul>
+                        <div class="no-notData"><span></span>没有相关消息！</div>
+                    </div>
+                    <div id="apply-box" class="appliy-box clearfix _v2" style="display:none;">
+                        <ul id="applyList" class="thumbnail-box clearfix"></ul>
+                        <ul id="applyPage" class="clearfix _page-controll"></ul>
+                        <div class="no-notData" style="display:none;"><span></span>您还没有任何的申请哦！</div>
+                    </div>
+                    <div id="auditing-box" class="appliy-box clearfix _v2" style="display:none;">
+                        <ul id="auditingList" class="thumbnail-box clearfix" style="height:510px;"></ul>
+                        <ul id="auditingPage" class="clearfix _page-controll"></ul>
+                        <div class="no-notData" style="display: none;"><span></span>您还没有任何需要审批的申请哦！</div>
+                    </div>
+                </div>
+            </div>
+            <div><img src="{{static_url('web/cssimg/mybill/bottom.png')}}"></div>
+        </div>
+        {% include "template/background.html" %}
+    </div>
+</div>
+<div class="ns-alert ns-dialog">
+    <div class="win" >
+        <div class="header">
+            <span class="_title">{{ webType['name'] }}</span>
+            <span>申请表</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body">
+            <div>
+                <div class="UI-d-content"></div>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript">var defaultSignAnchorUrl = '{{static_url("web/cssimg/91ns/signAnchor.jpg")}}';</script>
+<script type="text/javascript" src="{{static_url('91ns.userapply'|ns_js)}}"></script>
+{% endblock %}

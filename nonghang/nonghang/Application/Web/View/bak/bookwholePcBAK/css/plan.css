@@ -1,0 +1,154 @@
+body {
+    background:#f6f6f6;
+}
+.cinema-select {
+    float:left;
+    width:605px;
+    padding-top:28px;
+}
+.plandata {
+    background: #ededed none repeat scroll 0 0;
+    height: 104px;
+    margin:60px 0 50px;
+    width: 100%;
+
+}
+#dropdown {
+    margin-left: 30px;
+    overflow: hidden;
+    width: 100%;
+}
+#dropdown > p {
+    color: #3e4148;
+    cursor: pointer;
+    font-size: 20px;
+    display: inline-block;
+    padding-right: 31px;
+    background:url("../images/selectBg.png") no-repeat scroll right 1px;
+}
+#dropdown ul {
+    background: #e8f5fe none repeat scroll 0 0;
+    border: 1px solid #a9c9e2;
+    display: none;
+    margin-top: 2px;
+    position: absolute;
+    width: 184px;
+}
+#dropdown ul li {
+    height: 24px;
+    line-height: 24px;
+    text-indent: 10px;
+}
+#dropdown ul li a {
+    color: #3e4148;
+    display: block;
+    font-size: 14px;
+}
+#dropdown ul li a:hover {
+    background: #c6dbfc none repeat scroll 0 0;
+    color: #369;
+}
+#result {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.cinema-address > p {
+    color: #3e4148;
+    font-size: 12px;
+    margin-top: 14px;
+    display:none;
+}
+
+
+.movie-lists { background:#fff; overflow:hidden; margin-bottom:60px;}
+
+.movie-listItem {
+    border-bottom: 1px solid #d5d5d5;
+    overflow: hidden;
+    padding: 50px 0;
+}
+
+.movie-left {width:242px; padding-left:38px; float:left;}
+.movie-left img {width:204px; height:294px;}
+.movie-right { float:right; width:926px;}
+.movie-right h2 {font-size:28px; color:#3e4148; margin:8px 0 22px; overflow:hidden;}
+.movie-right h2 a,.movie-right h2 span { float:left; font-size:28px;}
+.movie-right h2 span { background: #ee763b; color: #fff; margin-left:20px; line-height: 28px;width: 60px;text-align: center; border-radius: 4px;}
+.movie-right h2 span.type-3D { background: #ee763b; color: #fff; font-size: 17px;}
+.movie-right h2 span.type-ZMAX { background: #74b0a7; color: #fff; font-size: 16px;}
+.movie-right p { color:#313131; font-size:12px; margin-bottom:23px; }
+.movie-right ul { overflow:hidden;}
+.movie-right li { width:210px; height:70px; margin-bottom:12px; border-radius:4px; border:1px solid #e4e4e4; margin-right:14px;
+    float: left; position: relative;}
+.movie-right li a {
+    float: left;
+    position: absolute;
+}
+.movie-right li a.time {
+    font-family: "宋体";
+    font-size: 30px;
+    left: 23px;
+    top: 7px;
+}
+.movie-right li a.current-cost {
+    color: #74b0a7;
+    font-size: 22px;
+    right: 28px;
+    top: 10px;
+}
+.movie-right li a.type, .movie-right li a.prime-cost {
+    font-family: "宋体";
+    font-size: 16px;
+}
+.movie-right li a.type {
+    bottom: 8px;
+    left: 47px;
+}
+.movie-right li a.prime-cost {
+    bottom: 8px;
+    right:50px;
+    text-decoration: line-through;
+}
+
+.scrollBox{ width:595px; float:right;  padding:0;border-top:1px solid #fff; position:relative; }
+.scrollBox .piclist{ overflow:hidden; zoom:1;}
+.scrollBox .ohbox{   left: 80px;
+    overflow: hidden;
+    position: relative;
+    width: 430px;}
+.scrollBox {position:relative;overflow:hidden;zoom:1;}
+.scrollBox .piclist li{
+    float:left;
+    color: #fff;
+    display: inline;
+    font-size: 16px;
+    height: 38px;
+    line-height: 38px;
+    margin: 32px 5px 0 0;
+    text-align: center; width:104px;}
+.scrollBox .piclist li a { display: block; width:104px; border-radius: 3px; color: #3e4148;}
+
+.scrollBox .piclist li a:active,.scrollBox .piclist li.active a {  background: #ee763b none repeat scroll 0 0; color: #fff;}
+.scrollBox .piclist li span{height:25px;line-height:25px;display:block;text-align:center;   }
+.scrollBox .pageBtn span{
+    border: 1px solid #ee763b;
+    border-radius: 4px;
+    color: #ee763b;
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    height: 36px;
+    line-height: 34px;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    top: 32px;
+    width: 30px;
+}
+.scrollBox .pageBtn .prev{left:25px;}
+.scrollBox .pageBtn .next{right:32px;}
+.scrollBox .pageBtn span.nextStop,.scrollBox .pageBtn span.prevStop { border:1px solid #757575; color:#757575;}
+.scrollBox .pageBtn .list{overflow:hidden;zoom:1;margin:10px 0 0 413px; display:none; }
+.scrollBox .pageBtn .list li{ background:#0e7de0; float:left; display:inline; width:15px;height:15px;background-position:-86px -57px ;cursor:pointer;margin-left:10px;line-height:10000px;overflow:hidden;  }
+.scrollBox .pageBtn .list li.on{background-position:-114px -57px }

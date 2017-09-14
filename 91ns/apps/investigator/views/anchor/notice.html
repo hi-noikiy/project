@@ -1,0 +1,125 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+             {% include "common/tab.html" %}
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+
+            <div id="tab2" class="tab-pane active">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0;overflow: hidden;">
+                  <form id="formSearch" class="form-search">
+                    <input id="isFamily" type="hidden" value="0">
+                    <span class="find-search pull-right">
+                    <i class="icon-search icon-on-right bigger-110"></i>
+                    <input name="order" type="hidden" value="0">
+                    <input name="isSign" type="hidden" value="0">
+                    <input name="name" type="text" placeholder="用户名或昵称" >                      
+                    <button id="btnSearch" type="button" class="btn btn-purple">查询&nbsp;</button>
+                    </span>
+                </form>
+                </div>
+
+                 {% include "common/pagination.html" %}
+
+                <div class="row-fluid">
+                  <table id="tableList" class="table with-check table-purple">
+                    <thead>
+                      <tr>
+                        <th>发送给</th>
+                        <th>发送时间</th>
+                        <th>内容</th>
+                        <th>操作人</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      
+                    </tbody>
+                  </table>
+                </div>
+
+                </div>
+              </div>
+            </div>
+
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $(function(){
+        noticeData();
+    });
+
+    function noticeData(index){
+        var form=global.doc('formSearch');
+        var data={};
+        data.page=index||1;
+        data.pageSize=global.pageSize;
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/getNoticeLog',
+            dataType:'json',
+            success:function(res){
+                var data=res.data;
+                var tableList=document.getElementById("tableList");
+                var tbody= tableList.getElementsByTagName('tbody')[0];
+                dataTable.clearData(tbody);
+
+                var count=document.getElementById('count');
+                count.innerHTML=data.count;
+
+                for(var i=0;i<data.data.length;i++){
+                    addRow(tbody,data.data[i]);
+                }
+                if(!index||index==0){
+                    utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                        page_index+=1;
+                        noticeData(page_index);
+                    });
+                }
+            }
+
+        });
+    }
+
+    function addRow(table,data){
+
+        var row=table.insertRow();
+        var cell=row.insertCell(0);
+        var cell1=row.insertCell(1);
+        var cell2=row.insertCell(2);
+        var cell3=row.insertCell(3);
+
+
+
+        cell.innerHTML=data.nickName;
+        cell1.innerHTML=ns_getTime(data['l'].createTime);
+
+        cell2.innerHTML=data['l'].content;
+
+        cell3.innerHTML=data['l'].operator;
+
+        return row;
+    }
+
+</script>
+
+

@@ -1,0 +1,236 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<script type="text/javascript" charset="utf-8" src="{{static_url('ueditor/ueditor.config'|ns_js)}}"></script>
+<script type="text/javascript" charset="utf-8" src="{{static_url('ueditor/ueditor.all.min'|ns_js)}}"> </script>
+<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+<script type="text/javascript" charset="utf-8" src="{{static_url('ueditor/lang/zh-cn/zh-cn'|ns_js)}}"></script>
+{% endblock %}
+
+{% block title %}
+我的家族
+{% endblock %}
+
+{% block titleList %}
+<ul class="nav">
+    <!-- <li class="active"><a href="#family-box">家族首页</a></li> -->
+    <!-- <li><a href="#appliy-box">我的审批(0)</a></li> -->
+</ul>
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent">
+    <div class="center-box-content">
+        <div class="group-box">
+            <div class="group-top-box">
+                <ul class="group-thumbnail clearfix">
+                    <li id="familyId" class="thumbnail familyimg" f="{{ familyInfo['id'] }}"><img src="{{ familyInfo['logo'] }}"></li>
+                    <li class="thumbnail familyinfo">
+                        <div class="clearfix" style="margin-top:47px;">
+                            <span class="name pull-left">{{ familyInfo['name'] }}</span>
+                            <span class="badge pull-left">{{ familyInfo['shortName'] }}</span>
+                        </div>
+                        <div style="margin:12px 0;">家族成员：<span >{{ familyMembers|length }}</span></div>
+                        <div style="margin:8px 0;">家族成立时间：<span >{{ familyInfo['createTime']|ns_date }}</span></div>
+                        <div style="margin:8px 0 0;">家族地址：{{ familyInfo['address'] }}</div>
+                        <!-- {% if !visitor %}
+                        <div class="income-box">
+                            <a href="/userfamily/myincome"><span class="income gmc-icon gmc-icon-income" >个人收益</span></a>
+                        </div>
+                        {% endif %} -->
+                    </li>
+                    <li class="thumbnail notice">
+                        <div>
+                            <div class="title">家族公告</div>
+                            <div id="noticetext" class="notice-content">{{ familyInfo['announcement'] }}</div>
+                            <textarea id="noticeedittext"></textarea>
+                        </div>
+                        {% if familyCreator %}
+                        <div class="notice-dite">
+                            <div id="btn-dite" class="btn-dite">
+                                <i class="gmc-icon gmc-icon-dite"></i>
+                            </div>
+                            <div id="btn-diteOK" class="btn-diteOK">
+                                <i class="gmc-icon gmc-icon-diteOK"></i>
+                            </div>
+
+                        </div>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div><!--/group-top-box-->
+
+            <div class="group-content-box clearfix">
+                <div class="group-content pull-left">
+                    <div class="tab-container">
+                        <ul class="tabs clearfix">
+                            <li class="tab active"><a href="#tab-0">家族介绍</a></li>
+                            <li class="tab"><a href="#tab-1">正在直播的主播</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="tab-0" class="tabContent">
+                        {% if familyCreator %}
+                        <div><button id="btnEdit" class="btnEdit">编辑</button></div>
+                        {% endif %}
+                        <div id="ueIntroduce" >{{ familyInfo['description'] }}</div>
+
+                        <div class="ueeditbox" style="display:none">
+                            <div class="ueeditbox-top clearfix" >
+                                <span class="ueeditbox-colse pull-right" >X</span>
+                            </div>
+
+                            <form name="myForm" method="post" target='iframe'>
+                                <!-- 加载编辑器的容器 -->
+                                <div id="content" ></div>
+                            </form>
+
+                            <div class="clearfix" >
+                                <input class="btnHtmlEdit pull-right" id="btnHtmlEdit" type="button" value="发 布"  />
+                                <div class="clearfix"></div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="tab-1" class="tabContent" style="display: none;">
+                        <div id="thumbnail2" class="thumbnail clearfix">
+
+                            <ul class="clearfix item-content js-data-anchorItemUl">
+
+                                {% for onlineMember in familyMembers %}
+                                {% if onlineMember['liveStatus'] == 1 %}
+                                <li class="m-item" style="display: list-item;">
+                                    <a href="{{ onlineMember['uid'] }}" target="_blank" class="i-user" title="{{ onlineMember['nickName'] }}">
+                                        <img src="{{ onlineMember['poster'] }}" class="i-avatar" alt="{{ onlineMember['nickName'] }}" title="{{ onlineMember['nickName'] }}">
+                                        <span class="i-tags index-roomlist-1 _status active"><i class="txt">直播</i></span>
+                                        <i class="index-roomlist-1 _play ico-play"></i>
+                                        <div class="i-bg"></div>
+                                        <div class="i-info2">
+                                            <i class="index-roomlist-1 _number"></i>
+                                            <span class="number">{{ onlineMember['onlineNum'] }}</span>
+                                            <span class="i-city">{{ onlineMember['location'] }}</span>
+                                        </div>
+                                        <!--<div class="i-title">{{ onlineMember['nickName'] }}</div>-->
+                                    </a>
+                                    <div class="i-info">
+                                        <div class="i-info1">
+                                            <div class="i-name">
+                                                <a href="/{{ onlineMember['uid'] }}" target="_blank" title="{{ onlineMember['nickName'] }}" class="name">{{ onlineMember['nickName'] }}</a>
+                                            </div>
+                                            <span class="i-actor sprite-zb_level zb{{ onlineMember['anchorLevel'] }}" oldclass="zb{{ onlineMember['anchorLevel'] }}"></span>
+                                            <i class="sprite-family_level family1">{{ onlineMember['familyShortName'] }}</i>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="i-info">
+                                        <div class="i-info2">
+                                            <div class="i-name">
+                                                <a href="/{{ onlineMember['uid'] }}" target="_blank" title="{{ onlineMember['title'] }}" class="name">{{ onlineMember['title'] }}</a>
+                                            </div>
+                                            <i class="sprite-family_level family1">{{ onlineMember['familyShortName'] }}</i>
+                                        </div>
+                                        <div class="i-info1">
+                                            <i class="index-roomlist-1 _number"></i>
+                                            <span class="number">{{ onlineMember['onlineNum'] }}</span>
+                                            <span class="i-actor sprite-zb_level zb{{ onlineMember['anchorLevel'] }}"></span>
+                                            <span class="i-city">{{ onlineMember['location'] }}</span>
+                                        </div>
+                                    </div> -->
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+
+                            </ul>
+
+                        </div>
+                    </div>
+
+
+                </div><!--/content-->
+
+
+                <div class="group-right pull-right">
+                    <div class="group-chief">
+                        <div class="group-chief-title">
+                            族长
+                            <div style="position: absolute; top:0; right: 0;"><img src="{{static_url('web/cssimg/group/ba_bg.png')}}" alt=""></div>
+                        </div>
+                        <div class="group-chiefC clearfix">
+                            <div style="float: left; padding-left:20px;">
+                                <img style="width: 60px;" src="{{ familyCreatorInfo['avatar'] }}">
+                            </div>
+
+                            <div class="info">
+                                <div class="name">{{ familyCreatorInfo['nickName'] }}</div>
+                                <div class="zb"><i class="sprite-zb_level zb{{ familyCreatorInfo['anchorLevel'] }}"></i></div>
+                            </div>
+
+                            <!-- <div style="position: absolute;right: 5px; bottom:0px; bottom:3px;">
+                                {% if familyCreator %}
+                                <a href="/userfamily/incomeFamily?fid={{ familyInfo['id'] }}"><span class="income gmc-icon gmc-icon-income" >家族收益</span></a>
+                                {% endif %}
+                            </div> -->
+                        </div>
+                    </div>
+                    <div style="height:15px; background:#bfdfeb "></div>
+
+
+
+                    <div class="group-list" style="">
+                        <div class="group-list-title">
+                            <span>家族主播</span>
+                            {% if !visitor and !familyCreator %}
+                                <div class="outGroup" onclick="outGroup()">退出家族</div>
+                            {% endif %}
+
+                        </div>
+
+                        <div class="groupListC hasScroll clearfix">
+
+                            <div class="no-wh g-scroll">
+                                <div class="scroll-bg" style="margin-left: 219px; height: 170px; margin-top: 3px; display: block;"></div>
+                                <div class="scroll-ban" style="margin-left: 219px; height: 35.8658536585366px; margin-top: -170px; display: block;"></div>
+                            </div>
+
+                            <div class="scroll-body">
+
+                                <div class="groupListC clearfix" >
+                                    {% for onlineMember in familyMembers %}
+                                    <div class="info zid-{{ onlineMember['uid'] }}" >
+                                        <div>
+                                            {% if familyCreator %}
+                                            <div class="no-wh">
+                                                <div class="authorizLevel authorizLevel0"></div>
+                                            </div>
+                                            {% endif %}
+                                            <a href="/{{ onlineMember['uid'] }}" target="_blank"><img src="{{ onlineMember['avatar'] }}"></a>
+                                        </div>
+                                        <div>
+                                            <div class="name">{{ onlineMember['nickName'] }}</div>
+                                            <div class="zb"><i class="sprite-zb_level zb{{ onlineMember['anchorLevel'] }}"></i></div>
+                                        </div>
+                                    </div>
+
+                                    {% endfor %}
+                                </div><!--/groupListC-->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript" src="{{static_url('91ns.userfamily'|ns_js)}}"></script>
+{% endblock %}

@@ -1,0 +1,8 @@
+sql=update account set limitType='1' where id='1652218', 2017-04-13 15:07:03
+sql=update account set limitType='1' where id='1652454', 2017-04-13 15:12:20
+sql=update account set limitType='0' where id='1652454', 2017-04-13 15:13:46
+sql=update account set limitType='1' where id='1652452', 2017-04-13 15:15:37
+sql=update account set limitType='1' where id='1652454', 2017-04-13 15:49:04
+sql=update account set limitType='0' where id='1652454', 2017-04-13 15:50:31
+sql=update account set limitType='0' where id='1652452', 2017-04-13 15:51:40
+sql=update account set limitType='0' where id='1652218', 2017-04-13 15:55:02

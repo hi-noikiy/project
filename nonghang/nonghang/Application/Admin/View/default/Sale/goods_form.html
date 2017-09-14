@@ -1,0 +1,90 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="dataform" id="dataform" target="myframe" enctype="multipart/form-data">
+	<div class="formBox">
+		<input type="hidden" name="id"   value="{$goods['id']}"/>
+		<?php if(!empty($cinemagroups)){ ?>
+		<div class="inputSelect" >
+            <span>影院组：</span>
+            <select name="cinemaGroupId">
+            <volist id='vo' name='cinemagroups'>
+               <option value="{$vo['id']}"  <?php if($vo['id']==$goods['cinemaGroupId']){ ?>selected<?php }?>>{$vo['groupName']}</option>
+              </volist>
+            </select>
+        </div>
+        <?php } ?>
+    	<div class="inputSelect" >
+            <span>所属影院：</span>
+            <select name="data[cinemaCode]">
+            <volist id='vo' name='cinemaList'>
+               <option value="{$key}"  <?php if($k==$goods['cinemaCode']){ ?>selected<?php }?>>{$vo}</option>
+              </volist>
+            </select>
+        </div>
+        <div class="inputText" >
+            <span>卖品名称：</span>
+            <input type="text" name="data[goodsName]"  placeholder="请输入卖品名称" value="{$goods['goodsName']}">
+        </div>
+        <div class="inputText" >
+            <span>卖品详细：</span>
+            <input type="text" name="data[detail]"  placeholder="请输入卖品详细" value="{$goods['detail']}">
+        </div>
+        <div class="inputText" >
+            <span>卖品原价：</span>
+            <input type="text" name="data[showPrice]"  placeholder="请输入卖品原价" value="{$goods['showPrice']}">元
+        </div>
+        <div class="inputText" >
+            <span>卖品售价：</span>
+            <input type="text" name="data[price]"  placeholder="请输入卖品售价" value="{$goods['price']}">元
+        </div>
+        <div class="inputText" >
+            <span>卖品图片：</span>
+        	<input name="image" type="file"><b>（图片尺寸300×200）</b>
+        </div>
+        <div class="inputText" >
+            <span>优先级：</span>
+            <input type="text" name="data[priority]"  placeholder="请输入优先级" value="{$goods['priority']}">
+        </div>
+    </div>
+	<div class="formBtn">
+        <a href="#" class="button">确认</a>
+         <a href="#" class="cancel">取消</a>
+    </div>
+</form>
+<script>
+$('.button').click(function() {
+	var tt=/^[1-9][0-9]*(\.\d{1,2})?$/;
+	var tt1=/^[0]|([1-9][0-9]*)$/;
+	var flag=true;
+	$('input[type="text"]').each(function(){
+		var name=$(this).prev('span').html();
+		var value=$(this).val();
+		if(value==''){
+			layer.alert(name+'不能为空');
+			flag=false;
+			return false;
+		}else if($(this).attr('name')=='data[showPrice]'||$(this).attr('name')=='data[price]'||$(this).attr('name')=='data[priority]'){
+			if(!tt.test(value)){
+				layer.alert(name+'填写错误');
+				flag=false;
+				return false;
+			}
+		}
+	});
+	if(flag){
+		$('#dataform').submit();
+	}
+});
+$('select[name="cinemaGroupId"').change(function(){
+	$.getJSON("{:U('getCinemas')}",{cinemaGroupId:$(this).val()},function(json){
+		$('select[name="data[cinemaCode]"').html('');
+		var str='';
+		$.each(json.data,function(k,value){
+			str+='<option value="'+k+'">'+value+'</option>';
+		});
+		$('select[name="data[cinemaCode]"').append(str);
+	});
+});
+
+</script>
+</block>

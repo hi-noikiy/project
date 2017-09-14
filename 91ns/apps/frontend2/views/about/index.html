@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+{% include "template/about_link.html" %}
+<link rel="stylesheet" type="text/css" href="{{static_url('about/index'|ns_css)}}"/>
+</head>
+<body class="clearfix">
+{% include "template/about_header.html" %}
+<div class="pic"></div>
+<div class="content w1000m500 index">
+    <div class="content clearfix">
+        <div class="left clearfix">
+            <div class="title">平台项目</div>
+            <div class="content">
+                <i></i>
+                <br>
+                在线演艺
+                <br>
+                福建最大才艺表演直播网站
+            </div>
+        </div>
+        <div class="right clearfix">
+            <div class="title">公司简介</div>
+            <div class="content">
+                <p>厦门奈斯文化传媒有限公司旗下公司上海秀吧网络科技有限公司成立于2015年4月7日，致力于网络直播的开发和运营，为大众提供最高品质的网络娱乐产品和服务，立志为国内互动娱乐产业注入新元素。</p>
+                <p>公司强大的技术实力和富有创造力的设计能力，加之对国内外文化的深刻理解和丰富的运营经验，使公司能够迅速推出适合于大众的直播，以满足用户不断变化的需求及直播市场的发展。</p>
+                <p>面对更多的市场需求和层出不穷的挑战，秀吧网络科技坚持“为所有用户创造更好、更新、更完善的直播环境”的宗旨，为用户提供高品质互动性的直播内容，通过直播内容，为用户创造轻松、愉悦的快乐体验，最大限度的为用户挖掘网络娱乐产业的乐趣。我们把休闲直播、社交网络、多人网络直播和虚拟世界中诸多精华整合在一起，提供一个全新互动平台，来让用户和朋友一起体验直播中的快乐与收获。</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% include "template/about_footer.html" %}
+</body>
+</html>

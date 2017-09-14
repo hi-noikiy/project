@@ -1,0 +1,11 @@
+parseStr=game_id=9&username=1486611766&account_id=1652359&expired=1486611767, 2017-02-09 11:42:48
+parseStr=game_id=9&username=1486611840&account_id=1652360&expired=1486611841, 2017-02-09 11:44:02
+parseStr=game_id=9&username=1486621506&account_id=1652362&expired=1486621507, 2017-02-09 14:25:08
+parseStr=game_id=9&username=1486621601&account_id=1652363&expired=1486621607, 2017-02-09 14:26:48
+parseStr=game_id=9&username=1486621674&account_id=1652364&expired=1486621679, 2017-02-09 14:28:00
+parseStr=game_id=9&username=1486621957&account_id=1652365&expired=1486621963, 2017-02-09 14:32:44
+parseStr=game_id=9&username=1486622050&account_id=1652366&expired=1486622055, 2017-02-09 14:34:16
+parseStr=game_id=9&username=1486622301&account_id=1652367&expired=1486622302, 2017-02-09 14:38:23
+parseStr=game_id=9&username=1486622364&account_id=1652368&expired=1486622365, 2017-02-09 14:39:26
+parseStr=game_id=9&username=0E1DAFCE41C7&account_id=1652250&expired=1486622859, 2017-02-09 14:47:40
+parseStr=game_id=9&username=1486633675&account_id=1652369&expired=1486633676, 2017-02-09 17:47:57

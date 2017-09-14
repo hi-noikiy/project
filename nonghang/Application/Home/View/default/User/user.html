@@ -1,0 +1,102 @@
+<extend name="Public/base"/>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="<if condition="$pflag neq ''">{:U('index/cinema')}<else/>{:U('index/index')}</if>" class="external link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">我的</div>
+    <div class="right"></div>
+  </div>
+</div>
+  </block>
+<block name='body'>
+  <div data-page="userIndex" class="page">
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+      
+       <div class="userTop">
+          <a href="{:U('info')}" class=" link">
+                <div class="userTopLeft"><img src="__IMG__/user/my_icon.png" width="100%" /></div>
+                <div class="userTopRight">
+                    <h2>{$user['cardNum']}</h2><em>{$user['levelName']}</em>
+                    <div class="info"><span>账户余额：￥{$user['basicBalance']+$user['donateBalance']}</span><!--<span>积分：{$user['integralBalance']}</span>--></div>
+                </div>
+                <div class="clear"></div>
+            </a>
+        </div>
+        <div class="list-block media-list">
+          <ul>
+            <li>
+              <a href="javascript:getcode()" class="item-link item-content">
+                <div class="item-media"><img src="__IMG__/user/u1.png" width="25"></div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">取票密码</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="javascript:getpaying()" class="item-link item-content">
+                <div class="item-media"><img src="__IMG__/user/u2.png" width="25"></div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">等待支付</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="{:U('order')}" class="item-link item-content">
+                <div class="item-media"><img src="__IMG__/user/u3.png" width="25"></div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">影票订单</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="{:U('Otherpay/index')}" class="item-link item-content">
+                <div class="item-media"><img src="__IMG__/user/u4.png" width="25"></div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">充值中心</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="{:U('user/record')}" class="item-link item-content">
+                <div class="item-media"><img src="__IMG__/user/u5.png" width="25"></div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">消费记录</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="{:U('User/feedback')}" class="item-link item-content">
+                <div class="item-media"><img src="__IMG__/user/u6.png" width="25"></div>
+                <div class="item-inner">
+                  <div class="item-title-row">
+                    <div class="item-title">意见反馈</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <a href="{:U('Public/logout')}" class="outBtn">退出登录</a>
+    </div>
+</div>
+  </block>
+
+  <block name='script'>
+<script>
+  </script>
+  </block>
+

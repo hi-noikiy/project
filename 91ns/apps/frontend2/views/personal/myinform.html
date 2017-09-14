@@ -1,0 +1,364 @@
+{% extends "template/personal_body.html" %}
+{% block title %}
+我的消息
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('myinform'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('personal.myinform'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+<!--------------------------------头部---------------------------------------------->
+
+
+<div class="personal-div myinform-div mynews">
+
+
+
+  <div class="news-head pull-of">
+  	<div class="news-head-tit ">我的消息</div>
+  	<!----切换按钮---->
+  	<div class="news-buttom pull-left ">
+  		<div class="but-unread  pull-left sprite-mynews tab_left unread-select" onclick="myInformData('','Message',0)">未读</div>
+  		<div class="but-read  pull-left sprite-mynews tab_right" onclick="myInformData('','Message',1)">已读</div>
+        <input id="idArray" type="hidden">
+        <input id="Informstatus" type="hidden">
+  	</div>
+
+  	<!----删除所有消息---->
+  	<div class="news-delete pull-right">
+  	    <div class="selectall pull-left sprite-mynews check cu-a"></div>
+  	    <div class="news-del-txt pull-left">全选</div>
+  	    <div class="delete-but pull-left sprite-mynews delete cu-a" onclick="AlldeleteInform('.deleteinform .list-check')">删除所选消息</div>
+  	</div>
+  </div>
+
+  <!------------------------------消息列表---------------------------------------->
+     <div class="unread-news-div isreadonshow deleteinform">
+         <!--<div class="news-list1 news-list">-->
+             <!--<div class="list-left">  &lt;!&ndash;--列表左边--&ndash;&gt;-->
+                <!--<div class="list-check pull-left sprite-mynews check"></div>-->
+                <!--<div class="list-red-state pull-left sprite-mynews unread"></div>-->
+                <!--<div class="news-content pull-left">您申请的签约未通过</div>-->
+             <!--</div>-->
+             <!--<div class="list-right">  &lt;!&ndash;--列表右边--&ndash;&gt;-->
+               <!--<div class="news-date-day pull-left">2015-05-01</div>-->
+               <!--<div class="news-date-sec pull-left">12:13:24</div>-->
+               <!--<div class="news-list-del pull-left">删除</div>-->
+             <!--</div>-->
+         <!--</div>-->
+         <!--<div class=" news-list">-->
+             <!--<div class="list-left">  &lt;!&ndash;--列表左边--&ndash;&gt;-->
+                <!--<div class="list-check pull-left sprite-mynews check"></div>-->
+                <!--<div class="list-red-state pull-left sprite-mynews unread"></div>-->
+                <!--<div class="news-content pull-left">您申请的签约未通过</div>-->
+             <!--</div>-->
+             <!--<div class="list-right">  &lt;!&ndash;--列表右边--&ndash;&gt;-->
+               <!--<div class="news-date-day pull-left">2015-05-01</div>-->
+               <!--<div class="news-date-sec pull-left">12:13:24</div>-->
+               <!--<div class="news-list-del pull-left">删除</div>-->
+             <!--</div>-->
+         <!--</div>-->
+     </div>
+
+
+
+
+ <!------------------------------已读消息列表---------------------------------------->
+
+     <div class="read-news-div div-hiden deleteinform">
+         <!--<div class="news-list1 news-list">-->
+             <!--<div class="list-left">  &lt;!&ndash;--列表左边--&ndash;&gt;-->
+                <!--<div class="list-check pull-left sprite-mynews check"></div>-->
+                <!--<div class="list-red-state pull-left sprite-mynews read"></div>-->
+                <!--<div class="news-content pull-left">您申请的签约未.........通过</div>-->
+             <!--</div>-->
+             <!--<div class="list-right">  &lt;!&ndash;--列表右边--&ndash;&gt;-->
+               <!--<div class="news-date-day pull-left">2015-05-01</div>-->
+               <!--<div class="news-date-sec pull-left">12:13:24</div>-->
+               <!--<div class="news-list-del pull-left">删除</div>-->
+             <!--</div>-->
+         <!--</div>-->
+
+         <!--<div class=" news-list">-->
+             <!--<div class="list-left">  &lt;!&ndash;--列表左边--&ndash;&gt;-->
+                <!--<div class="list-check pull-left sprite-mynews check"></div>-->
+                <!--<div class="list-red-state pull-left sprite-mynews read"></div>-->
+                <!--<div class="news-content pull-left">您申请的签约未通过</div>-->
+             <!--</div>-->
+             <!--<div class="list-right">  &lt;!&ndash;--列表右边--&ndash;&gt;-->
+               <!--<div class="news-date-day pull-left">2015-05-01</div>-->
+               <!--<div class="news-date-sec pull-left">12:13:24</div>-->
+               <!--<div class="news-list-del pull-left">删除</div>-->
+             <!--</div>-->
+         <!--</div>-->
+    </div>
+
+</div>
+
+
+<!--我的申请-->
+<div class="personal-div myinform-div myapply clearfix div-hiden">
+    <div class="apply-head">
+    <div class="apply-head-txt">
+        我的申请
+    </div>
+
+
+    <!------------------------------------导航菜单-------------------------------------------------->
+    <div class="apply-menu">
+       <div div-name="myapply-untreated" class="menu-untreated pull-left menu1 menu-selsect" onclick="myInformData('','Apply',0)">未处理</div>
+       <div div-name="myapply-agreed" class="menu-agreed pull-left menu1" onclick="myInformData('','Apply',1)">已同意</div>
+       <div div-name="myapply-refuse" class="menu-refuse pull-left menu1" onclick="myInformData('','Apply',3)">已拒绝</div>
+
+    </div>
+    </div>
+
+
+     <!--------------------------------------内容分块---------------------------------------------->
+    <div class="toup8px"></div>
+
+                 <!--<<<<<<<<<<..............第一行...........................>>>>>>>>>-->
+    <div class="myapply-div myapply-untreated">
+
+        <!--<div class="apply-div">-->
+            <!--<div class="apply-time">2015-03-19</div>-->
+            <!--<div class="apply-info clearfix">-->
+                <!--<img src="../../../../public/web/cssimg/91ns/head-pic.jpg" class="apply-pic pull-left">-->
+                <!--<div class="apply-info-div pull-left">-->
+                    <!--<div class="apply-name">尚流会所会所...</div>-->
+                    <!--<div class="apply-state state-agree">已通过</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="apply-div">-->
+            <!--<div class="apply-time">2015-03-19</div>-->
+            <!--<div class="apply-info clearfix">-->
+                <!--<img src="../../../../public/web/cssimg/91ns/head-pic.jpg" class="apply-pic pull-left">-->
+                <!--<div class="apply-info-div pull-left">-->
+                    <!--<div class="apply-name">尚流会所会所...</div>-->
+                    <!--<div class="apply-state state-refuse">已拒绝</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="apply-div">-->
+            <!--<div class="apply-time">2015-03-19</div>-->
+            <!--<div class="apply-info clearfix">-->
+                <!--<img src="../../../../public/web/cssimg/91ns/head-pic.jpg" class="apply-pic pull-left">-->
+                <!--<div class="apply-info-div pull-left">-->
+                    <!--<div class="apply-name">尚流会所会所...</div>-->
+                    <!--<div class="apply-state">状态：审核中...</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    </div>
+
+    <!--已同意-->
+    <div class="myapply-div myapply-agreed div-hiden">
+
+
+
+    </div>
+
+    <!--已拒绝-->
+    <div class="myapply-div myapply-refuse div-hiden">
+
+    </div>
+</div>
+
+
+
+<!----我的审批---->
+<div class="personal-div myinform-div myapproval clearfix div-hiden">
+    <div class="approval-head clearfix">
+        <div class="approval-head-txt">
+            我的审批
+        </div>
+    <!----------------------------------导航菜单-------------------------------------------->
+        <div class="approval-menu">
+           <div div-name="approval-untreated" class="menu-untreated pull-left menu1 menu-selsect" onclick="myInformData('','Auditing',0)">未处理</div>
+           <div div-name="approval-agreed" class="menu-agreed pull-left menu1" onclick="myInformData('','Auditing',1)">已同意</div>
+           <div div-name="approval-refuse" class="menu-refuse pull-left menu1" onclick="myInformData('','Auditing',3)">已拒绝</div>
+        </div>
+    </div>
+    <!----------------------------------审批内容块------------------------------------------>
+
+
+    <div class="toup8px"></div>
+
+    <!------------------------------------未处理块------------------------------------------>
+    <div class="approval-box-div approval-untreated clearfix">
+        <!--<div class="approval-div">-->
+            <!--<div class="approval-info">-->
+                <!---->
+                <!--<img src="" class="approval-pic pull-left">-->
+            <!---->
+                <!--<div class="approval-info-div pull-left">-->
+                    <!--<div class="name-info-div">-->
+                        <!--<div class="approval-name">淡淡的忧伤额</div>-->
+                        <!--<div class="approval-id-div">(<div class="approval-id">123456789</div>)</div>-->
+                    <!--</div>-->
+                    <!--<div class="approval-icon">-->
+                        <!--<div class="icon-zb pull-left sprite-zb_level zb15"></div>   &lt;!&ndash;--主播等级图标--&ndash;&gt;-->
+                        <!--<div class="icon-fh pull-left sprite-fh_level fh17"></div>   &lt;!&ndash;--富豪等级图标--&ndash;&gt;-->
+                    <!--</div>-->
+                    <!--<a href="#" class="approval-check clearfix">查看申请表</a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;------同意拒绝按钮--------&ndash;&gt;-->
+            <!--<div class="approval-buttom-div">-->
+                <!--<div class="agree-but sprite-mynews agree ">同意</div>-->
+                <!--<div class="refuse-but sprite-mynews refuse">拒绝</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <!------------------------------------已同意-------------------------------------------->
+    <div class="approval-box-div approval-agreed div-hiden">
+        <!--<div class="approval-div">-->
+            <!--<div class="approval-info">-->
+                <!---->
+                <!--<img src="" class="approval-pic pull-left">-->
+            <!---->
+                <!--<div class="approval-info-div pull-left">-->
+                    <!--<div class="name-info-div">-->
+                        <!--<div class="approval-name">淡淡的忧伤额</div>-->
+                        <!--<div class="approval-id-div">(<div class="approval-id">123456789</div>)</div>-->
+                    <!--</div>-->
+                 <!---->
+                    <!--<div class="approval-icon">-->
+                        <!--<div class="icon-zb pull-left sprite-zb_level zb15"></div>   &lt;!&ndash;--主播等级图标--&ndash;&gt;-->
+                        <!--<div class="icon-fh pull-left sprite-fh_level fh17"></div>   &lt;!&ndash;--富豪等级图标--&ndash;&gt;-->
+                    <!--</div>-->
+                 <!---->
+                    <!--<a href="#" class="approval-check clearfix">查看申请表</a>-->
+                <!--</div>-->
+            <!--</div>-->
+                <!--&lt;!&ndash;------同意拒绝按钮--------&ndash;&gt;-->
+            <!--<div class="approval-buttom-div">-->
+                <!--<div class="agree-but sprite-mynews agree ">同意</div>-->
+                <!--<div class="refuse-but sprite-mynews refuse">拒绝</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+    <!------------------------------------已拒绝-------------------------------------------->
+    <div class="approval-box-div approval-refuse div-hiden">
+        <!--<div class="approval-div">-->
+            <!--<div class="approval-info">-->
+                <!---->
+              <!--<img src="" class="approval-pic pull-left">-->
+            <!---->
+              <!--<div class="approval-info-div pull-left">-->
+                    <!--<div class="name-info-div">-->
+                        <!--<div class="approval-name">淡淡的忧伤额jujue</div>-->
+                        <!--<div class="approval-id-div">(<div class="approval-id">123456789</div>)</div>-->
+                    <!--</div>-->
+                 <!---->
+                 <!--<div class="approval-icon">-->
+                    <!--<div class="icon-zb pull-left sprite-zb_level zb15"></div>   &lt;!&ndash;--主播等级图标--&ndash;&gt;-->
+                    <!--<div class="icon-fh pull-left sprite-fh_level fh17"></div>   &lt;!&ndash;--富豪等级图标--&ndash;&gt;-->
+                 <!--</div>-->
+                 <!---->
+                 <!--<a href="#" class="approval-check clearfix">查看申请表</a>-->
+                <!---->
+              <!--</div>-->
+            <!--</div>-->
+                <!---->
+
+                <!--&lt;!&ndash;------同意拒绝按钮--------&ndash;&gt;-->
+            <!--<div class="approval-buttom-div">-->
+                <!--<div class="agree-but sprite-mynews agree ">同意</div>-->
+                <!--<div class="refuse-but sprite-mynews refuse">拒绝</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+
+
+    <!--弹出显示信息块-->
+    <div class="show-bg div-hiden"></div>
+    <div class="show-info-div div-hiden">
+        <div class="show-head">主播家族资料</div>
+        <div class="show-close sprite-mynews close"></div>
+
+        <div class="show-info">
+            <div class="show-dian pull-left" >.</div>
+            <div class="show-tit pull-left">真实姓名：</div>
+            <div id="audRealName" class="show-txt pull-left"></div>
+        </div>
+
+        <div class="show-info">
+            <div class="show-dian pull-left" >.</div>
+            <div class="show-tit pull-left">籍贯：</div>
+            <div id="audAd" class="show-txt pull-left"></div>
+        </div>
+
+        <div class="show-info">
+            <div class="show-dian pull-left" >.</div>
+            <div class="show-tit pull-left">生日：</div>
+            <div id="audBrithday" class="show-txt pull-left"></div>
+        </div>
+
+        <div class="show-info">
+            <div class="show-dian pull-left" >.</div>
+            <div class="show-tit pull-left">身份证号：</div>
+            <div id="idCard" class="show-txt pull-left"></div>
+        </div>
+
+        <div class="show-info">
+            <div class="show-dian pull-left" >.</div>
+            <div class="show-tit pull-left">电话：</div>
+            <div id="audTel" class="show-txt pull-left"></div>
+        </div>
+
+        <div class="show-info">
+            <div class="show-dian pull-left" >.</div>
+            <div class="show-tit pull-left">地址：</div>
+            <div id="audAd1" class="show-txt pull-left"></div>
+        </div>
+
+        <div class="show-info">
+            <div class="show-dian pull-left" >.</div>
+            <div class="show-tit pull-left">QQ：</div>
+            <div id="audQQ" class="show-txt pull-left"></div>
+        </div>
+
+        <div class="show-info">
+            <div class="show-dian pull-left" >.</div>
+            <div class="show-tit pull-left">开户行：</div>
+            <div id="audBank" class="show-txt pull-left"></div>
+        </div>
+
+        <div class="show-info">
+            <div class="show-dian pull-left" >.</div>
+            <div class="show-tit pull-left">开户人：</div>
+            <div id="audBankName" class="show-txt pull-left"></div>
+        </div>
+
+        <div class="show-info">
+            <div class="show-dian pull-left" >.</div>
+            <div class="show-tit pull-left">银行卡号：</div>
+            <div id="audBankNum" class="show-txt pull-left"></div>
+        </div>
+
+        <!--分割线-->
+        <div class="cutoff-line"></div>
+
+        <!--生活照-->
+        <div class="show-pic-tit">生活照</div>
+
+        <div class="show-pic">
+            <img id="show-pic1" src class="life-pic life-pic-lift pull-left">
+            <img id="show-pic2" src class="life-pic pull-left">
+            <img id="show-pic3" src class="life-pic pull-left">
+        </div>
+
+        <div class="id-photo-tit">证件照</div>
+        <div class="id-photo">
+            <img id="id-photo1" src class="life-pic life-pic-lift pull-left">
+            <img id="id-photo2" src class="life-pic pull-left">
+        </div>
+    </div>
+</div>
+
+{% endblock %}

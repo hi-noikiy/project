@@ -1,0 +1,3 @@
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:6:"asd123";s:4:"sign";s:32:"690c7cfcc15541c12966ab902aed9946";s:8:"username";s:9:"test65987";}, 2017-07-14 17:59:03
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:0:"";s:4:"sign";s:32:"04253866ec505c6e66a8122a79abbcf2";s:8:"username";s:36:"74a24cc3-d1dc-388b-b4af-d235ab0f3aed";}, 2017-07-14 19:00:15
+sql=insert into web_token (account_id, game_id, token, addtime) values ('1652490', '9', 'AzcOZAxiCGMMXQAxXDENNlY6V3JTcAFxCmVTJAdtCG9YZlk3AjwPNl1nDDVdZgQ2XWsBYVE0U30MYgI2AmIGYwN9DjYMNwg_bDGAAdVw3DT9WYlcyUygBZgoyU2UHNghvWGlZYgJnDzJdMgwxXTAEJF1pAWFRZFM_aDHMCaQJyBl8DOQ5hDDIINww0AG1cZw0_aVjpXZFMjAWcKeFMmB2oIfFhuWTYCPA8wXWYMZF1kBDJdOwEyUTdTYQwz', '1500030015'), 2017-07-14 19:00:15

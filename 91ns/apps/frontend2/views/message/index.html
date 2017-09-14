@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('message'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('pagination2'|ns_css)}}" />
+</head>
+<body>
+<div class="wrap">
+	{% include "template/header.html" %}
+	<div class="wrapNav"></div>
+	<div class="msgBd">
+		<ul id="msgController" class="header">
+			<li jsdata="rec" class="active">
+				<span>官方通知</span>
+			</li>
+			<li jsdata="msg">
+				<span>系统消息</span>
+			</li>
+		</ul>
+		<table id="sysMsg" class="body" border="0" cellpadding="2" cellspacing="0" style="display:none;">
+			<thead>
+				<tr>
+					<td width="80" class="headSelect">
+						<i nsdata="select" class="sprite-message selected"></i>
+						<span nsdata="select" class="selectAll">全选</span>
+						<span class="delete">删除</span>
+					</td>
+					<td width="810">消息内容</td>
+					<td width="130">时间</td>
+					<td width="160" class="option">操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<!-- <td><i class="sprite-message selected"></i><i class="sprite-message visitied"></i></td>
+					<td class="msg title">消息内容</td>
+					<td class="time">2015-05-01 12:13:24</td>
+					<td class="option"><span>删除</span><span>查看</span></td> -->
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+			</tbody>
+		</table>
+		<table id="recMsg" class="body" border="0" cellpadding="2" cellspacing="0">
+			<thead>
+				<tr>
+					<td width="80" class="headSelect">
+						<i nsdata="select" class="sprite-message selected"></i>
+						<span nsdata="select" class="selectAll">全选</span>
+						<span class="delete">删除</span>
+					</td>
+					<td width="300">标题</td>
+					<td width="510">内容</td>
+					<td width="130">时间</td>
+					<td width="160" class="option">操作</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<!-- <td><i class="sprite-message selected"></i><i class="sprite-message visitied"></i></td>
+					<td class="title msg">消息标题</td>
+					<td class="msg">消息内容。。。。。。。。。。。。。。。</td>
+					<td class="time">2015-05-01 12:13:24</td>
+					<td class="option"><span>删除</span><span>查看</span></td> -->
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr class="f7">
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td class="title msg"></td>
+					<td class="msg title"></td>
+					<td class="time"></td>
+					<td class="option"></td>
+				</tr>
+			</tbody>
+		</table>
+		<div id="emptyMsg" class="emptyMsg" style="display:none;">
+			暂时没有内容
+		</div>
+		<div class="pageStyle v2">
+			<div class="row-fluid">
+	        	<div id="msgPage" class="pagination alternate"></div>
+	    	</div>
+		</div>
+	</div>
+	<div id="msgWin" class="msgWin">
+		<div class="head">
+			<span></span>
+			<i class="close"></i>
+		</div>
+		<div class="body">
+			<div class="header">
+				<div class="title"></div>
+				<div class="time"></div>
+			</div>
+			<p class="cts"></p>
+		</div>
+	</div>
+	<div class="showPoster" id="showPoster"></div>
+    <script type="text/javascript" defer async data-main="{{static_url('message'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+	{% include "template/footer.html" %}
+</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18905012143</desmobile><msgid>D1061517041317363400</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18905012143";s:4:"sign";s:32:"d69a7934c94b52fc3a441ca0618578b5";}, 2017-04-13 17:36:34
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18606023293</desmobile><msgid>E1558417041317435600</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18606023293";s:4:"sign";s:32:"3aa6457c10f86746c03e28e9e39471f6";}, 2017-04-13 17:44:04

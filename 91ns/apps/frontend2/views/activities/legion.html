@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities.legion'|ns_css)}}">
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+    <div class="wrapBd">
+    	<div class="legionMain">
+    		<div class="legionDiv introduction">
+    			<div class="titleDiv">活动介绍</div>
+    			<p>军团系统预热，徽章系统预先推出。</p>
+    			<p>用户可以自发组织小团体，向客服申请创建军团，其他用户可向军团长申请加入军团。</p>
+    			<p>独有的军团徽章，让你瞬间提升逼格。</p>
+    			<span class="leader">军团长徽章</span>
+    			<span class="member">成员徽章</span>
+    			<i class="bottomLine"></i>
+    		</div>
+    		<div class="legionDiv apply">
+    			<div class="titleDiv">军团申请</div>
+    			<p>爵位以上用户，可以向客服申请创建军团。</p>
+    			<p>用户需提供<span>军团名称、军团徽章名字等信息</span>。客服人员将会创建军团，并且，申请创建的用户会成为军团长。</p>
+    			<div class="pointer clearfix">
+    				<span class="circle">爵位以上</span>
+    				<i class="line"></i>
+    				<span class="circle addLine three">
+                        <span>提供信息</span>
+                        <span class="children">军团名称</span>
+                        <span class="children">徽章名字</span>
+                        <span class="children">···</span>
+                    </span>
+    				<i class="line"></i>
+    				<span class="circle">创建军团</span>
+    				<i class="line"></i>
+    				<span class="circle">成为团长</span>
+    			</div>
+    			<i class="bottomLine"></i>
+    		</div>
+    		<div class="legionDiv manage">
+    			<div class="titleDiv">成员管理</div>
+    			<p>军团长，可向客服人员提供需要<span>添加的军团团员ID</span>。客服会将军团长提供的用户加入到军团中，并且可获得徽章。</p>
+    			<div class="pointer clearfix">
+    				<span class="circle">军团长</span>
+    				<i class="line"></i>
+    				<span class="circle addLine one">
+                        <span>添加</span>
+                        <span class="children">军团团员ID</span>
+                    </span>
+    				<i class="line"></i>
+    				<span class="circle">加入军团</span>
+    				<i class="line"></i>
+    				<span class="circle">获得徽章</span>
+    			</div>
+    			<p>军团长也可申请<span>撤销</span>军团成员。</p>
+    			<div class="pointer clearfix twoMember">
+    				<span class="circle">军团长</span>
+    				<i class="line"></i>
+    				<span class="circle">申请撤销</span>
+    			</div>
+    			<i class="bottomLine"></i>
+    		</div>
+    		<div class="legionTip">
+    			<h3>温馨提示</h3>
+    			<p>1.军团徽章为永久徽章，身为军团成员，即可拥有徽章；</p>
+    			<p>2.添加和踢出军团成员需谨慎，不宜过于频繁；</p>
+    			<p>3.军团系统更多功能敬请期待</p>
+    		</div>
+    	</div>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" defer async data-main="{{static_url('activities.legion'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</body>
+</html>

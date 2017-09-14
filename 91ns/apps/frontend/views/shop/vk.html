@@ -1,0 +1,204 @@
+<link rel="stylesheet" type="text/css" href="{{static_url('mall_vip'|ns_css)}}">
+<div class="AD_1200"><img alt="vip" src="{{static_url('web/cssimg/new/upload/AD_1200.jpg')}}"></div>
+<div class="M_vip">
+	<div class="M_vip_hd">
+		{%if ns_userUid%}
+			<h3>VIP购买<i class="line"></i></h3>
+			<p>您的账户余额：<i class="i_L"></i><span nsdata="cash"></span><i class="i_Dou"></i><span nsdata="coin"></span></p>
+		{%else%}
+			<h3>VIP购买</h3>
+		{%endif%}
+		<div class="f_r"><a class="bt_bag" onclick="userAction('userprop','{{ ns_userUid }}');">查看已有道具</a><a class="bt_pay" onclick="userAction('charging','{{ ns_userUid }}');">充值</a></div>
+	</div>
+	<div class="M_vip_item">
+		<ul>
+			<li><div class="pic"><img src="{{static_url('web/cssimg/new/V/vip_1.png')}}"></div><div class="txt"><h4>专属标识</h4><p>昵称前有专属VIP标识</p></div></li>
+			<li><div class="pic"><img src="{{static_url('web/cssimg/new/V/vip_2.png')}}"></div><div class="txt"><h4>专属表情</h4><p>可以使用VIP专属表情</p></div></li>
+			<li><div class="pic"><img src="{{static_url('web/cssimg/new/V/vip_3.png')}}"></div><div class="txt"><h4>魅力升级</h4><p>只需在线5分钟可自动获取1点魅力星<br>至尊VIP每日领取上限升至50点<br>普通VIP每日领取上限升至30点</p></div></li>
+			<li style="margin-right: 0;"><div class="pic"><img src="{{static_url('web/cssimg/new/V/vip_4.png')}}"></div><div class="txt"><h4>领取专属礼物</h4><p>至尊VIP每日可免费领取“金玫瑰”20个<br>普通VIP每日可免费领取“金玫瑰”10个</p></div></li>
+			<li><div class="pic"><img src="{{static_url('web/cssimg/new/V/vip_5.png')}}"></div><div class="txt"><h4>初级防御</h4><p>除房主以外，防止被踢、被禁言！</p></div></li>
+			<li><div class="pic"><img src="{{static_url('web/cssimg/new/V/vip_6.png')}}"></div><div class="txt"><h4>高级防御</h4><p>除主播等级6皇冠(含)以上的房主外，防止被禁言<br>免疫所有踢人</p></div></li>
+			<li><div class="pic"><img src="{{static_url('web/cssimg/new/V/vip_7.png')}}"></div><div class="txt"><h4>专属座驾</h4><p>至尊VIP获得专属座驾“法拉利”使用权<br>普通VIP获得专属座驾“特斯拉”使用权</p></div></li>
+		</ul>
+	</div>
+	<div class="M_vip_info M_vip_info_1">
+		<div class="th"><h4>至尊</h4><em></em></div>
+		<div class="td td_center"><em></em><p>1. 购买后即时生效并享受至尊VIP的对应增值功能。<br>2. 在使用期内续费则叠加使用时间。<br>3.	若已经拥有普通VIP的情况下又购买至尊VIP，则至尊VIP功能立即生效，之前的普通VIP功能依然存在，两种VIP使用时间不叠加。</p></div>
+		<div class="td">
+			<ul>
+			{%set firstfor=true%}
+			<!--{%for vip in vipConfig['2']%}-->
+				<!--<li><label><em class="radio{%if firstfor%} cur{%set firstfor=false%}{%endif%}" vipname="至尊VIP" nstype="radio" nsname="vip2" cash="{{vip[1]}}" day="{{vip[0]}}" vipid="{{vip[2]}}"></em>{{vip[0]}}天：</label><i class="i_L"></i><span class="t_yellow2">{{vip[1]}}</span></li>-->
+			<!--{%endfor%}-->
+			</ul>
+            <div class="buyPrice">100000聊币/月</div>
+            <a class="buyNow bt_vipSend2" onclick="sendType(2)">赠送</a>
+			<a class="buyNow bt_vip2" onclick="buyType(2);">{% if vipInfo|default(false) and vipInfo['vipLevel2'] %}续费{% else %}购买{% endif %}</a>
+		</div>
+	</div>
+	<div class="M_vip_info M_vip_info_2">
+		<div class="th"><h4>普通</h4><em></em></div>
+		<div class="td td_center"><em></em><p>1. 购买后即时生效并享受普通VIP的对应增值功能。<br>2. 在使用期内续费则叠加使用时间。</p></div>
+		<div class="td">
+			<ul>
+			{%set firstfor=true%}
+			<!--{%for vip in vipConfig['1']%}-->
+				<!--<li><label><em class="radio{%if firstfor%} cur{%set firstfor=false%}{%endif%}" vipname="普通VIP" nstype="radio" nsname="vip1" cash="{{vip[1]}}" day="{{vip[0]}}" vipid="{{vip[2]}}"></em>{{vip[0]}}天：</label><i class="i_L"></i><span class="t_yellow2">{{vip[1]}}</span></li>-->
+			<!--{%endfor%}-->
+			</ul>
+            <div class="buyPrice">30000聊币/月</div>
+            <a class="buyNow bt_vipSend1" onclick="sendType(1)">赠送</a>
+			<a class="buyNow bt_vip1" onclick="buyType(1)">{% if vipInfo|default(false) and vipInfo['vipLevel1'] %}续费{% else %}购买{% endif %}</a>
+		</div>
+	</div>
+	<div class="M_vip_hd"><h3>VIP特权</h3></div>
+	<div class="M_vip_table">
+		<table>
+			<tr>
+				<th width="22%" class="left">特权名称</th>
+				<th width="26%">至尊VIP</th>
+				<th width="26%">普通VIP</th>
+				<th width="26%" class="right">普通用户</th>
+			</tr>
+			<tr class="odd">
+				<td>专属标识</td>
+				<td><i class="i_yes"></i></td>
+				<td><i class="i_yes"></i></td>
+				<td class="right"><i class="i_no"></i></td>
+			</tr>
+			<tr>
+				<td>专属表情</td>
+				<td><i class="i_yes"></i></td>
+				<td><i class="i_yes"></i></td>
+				<td class="right"><i class="i_no"></i></td>
+			</tr>
+			<tr class="odd">
+				<td>魅力升级</td>
+				<td><i class="i_yes"></i></td>
+				<td><i class="i_yes"></i></td>
+				<td class="right"><i class="i_no"></i></td>
+			</tr>
+			<tr>
+				<td>初级防御</td>
+				<td><i class="i_yes"></i></td>
+				<td><i class="i_yes"></i></td>
+				<td class="right"><i class="i_no"></i></td>
+			</tr>
+			<tr class="odd">
+				<td>高级防御</td>
+				<td><i class="i_yes"></i></td>
+				<td><i class="i_no"></i></td>
+				<td class="right"><i class="i_no"></i></td>
+			</tr>
+			<tr>
+				<td>领取专属礼物</td>
+				<td><i class="i_yes"></i></td>
+				<td><i class="i_yes"></i></td>
+				<td class="right"><i class="i_no"></i></td>
+			</tr>
+			<tr class="odd">
+				<td>专属座驾</td>
+				<td><i class="i_yes"></i></td>
+				<td><i class="i_yes"></i></td>
+				<td class="right"><i class="i_no"></i></td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="alartDia">
+    <div class="dia-win buy" style="margin-top: -222.5px; display: none; opacity: 1;border: 1px solid #ccc;background-color: white;width: 555px;">
+        <div class="header">
+            <!-- <i class="ico-main-12 alert-logo"></i> -->
+            <span class="_tip" style="margin-left: 20px;">购买VIP会员</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control pull-right" onclick="closedia()"></i>
+        </div>
+        <div class="alert-content clearfix">
+            <div class="pull-left" style="width: 226px;height: 262px;">
+                <div class="leftImg"><img src="{{static_url('web/cssimg/new/Dvip.png')}}"> </div>
+                <div class="leftType">普通VIP</div>
+                <div class="leftPrice">价格：<span id="_buyVipP" class="buyVipFontColor">30000</span>聊币/月</div>
+
+            </div>
+            <div class="bugInfo pull-left"  style="width: 300px;height: 262px;">
+                <ul>
+                    <li>
+                        <span>&nbsp;&nbsp;&nbsp;我的账号ID：</span>
+                        <span id="_userID">您还未登录</span>
+                        <a class="sendFriend" onclick="sendType()">赠送好友</a>
+                        <!--<input type="text" style="width: 120px;height: 24px;padding: 2px;border: 1px solid #ccc;">-->
+                    </li>
+                    <li>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购买时长：</span>
+                        <a class="_buyTime active" vipid="1">30天</a>
+                        <a class="_buyTime" vipid="3">90天</a>
+                        <a class="_buyTime" vipid="6">180天</a>
+                        <a class="_buyTime" vipid="12" style="margin-left: 90px;margin-top: 8px;">360天</a>
+                    </li>
+                    <li>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应付金额：</span>
+                        <span id="totalPrice" class="buyVipFontColor">0</span>&nbsp;聊币
+                        <a href="/charging" class="goCharing">充值</a>
+                    </li>
+                    <li>
+                        <span>您的账户余额：</span>
+                        <span id="myCash" class="buyVipFontColor">0</span>&nbsp;聊币
+                    </li>
+                    <li>
+                        <div id="goBuyVip-ok" class="goBuyVip" type="1" onclick="buyVIP(this,1)">购买</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="alartDia">
+    <div class="dia-win send" style="margin-top: -222.5px; display: none; opacity: 1;border: 1px solid #ccc;background-color: white;width: 555px;">
+        <div class="header">
+            <!-- <i class="ico-main-12 alert-logo"></i> -->
+            <span class="_tip" style="margin-left: 20px;">购买VIP会员</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control pull-right" onclick="closedia()"></i>
+        </div>
+        <div class="alert-content clearfix">
+            <div class="pull-left" style="width: 226px;height: 330px;">
+                <div class="leftImg"><img src="{{static_url('web/cssimg/new/Dvip.png')}}"> </div>
+                <div class="leftType">普通VIP</div>
+                <div class="leftPrice">价格：<span id="buyVipO" class="buyVipFontColor">30000</span>聊币/月</div>
+
+            </div>
+            <div class="bugInfo pull-left"  style="width: 300px;height: 330px;">
+                <ul>
+                    <li>
+                        <span>&nbsp;&nbsp;&nbsp;好友账号ID：</span>
+                        <input id="Fuid" class="inputText" type="text">
+                        <a class="sendFriend" style="margin-left: 20px;" onclick="buyType()">买给自己</a><br>
+                        <label id="pointId" style="color: red;margin-left: 90px;"></label>
+                    </li>
+                    <li style="margin-top: 5px;">
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;购买时长：</span>
+                        <a class="_sendTime active" vipid="1">30天</a>
+                        <a class="_sendTime" vipid="3">90天</a>
+                        <a class="_sendTime" vipid="6">180天</a>
+                        <a class="_sendTime" vipid="12" style="margin-left: 90px;margin-top: 8px;">360天</a>
+                    </li>
+                    <li>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;应付金额：</span>
+                        <span id="sendTotal" class="buyVipFontColor">0</span>&nbsp;聊币
+                        <a href="/charging" class="goCharing">充值</a>
+                    </li>
+                    <li>
+                        <span>您的账户余额：</span>
+                        <span id="_viptotal" class="buyVipFontColor">0</span>&nbsp;聊币
+                    </li>
+                    <li id="_telephone"></li>
+                    <li id="_smsCode"></li>
+                    <li>
+                        <div id="goSendVip-ok" class="goBuyVip" style="margin-top: -9px;" type="1" onclick="buyVIP(this,2)">赠送</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

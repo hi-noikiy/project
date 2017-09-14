@@ -1,0 +1,208 @@
+<extend name='Public/bookbase'/>
+<block name='title'>支付</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+
+                <a href="{:U('Bookwhole/confirmorder')}" class="external link" >
+                <!-- <a href="#" class="back link"> -->
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">支付</div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+<?php 
+      foreach ($data as $key => $value) {
+        echo '<div style="display:none" id="' . $key . '">' . $value . '</div>';
+      }
+
+      //print_r($data);?>
+    <div class="pages">
+        <div data-page="payoff" class="page">
+            <div class="main" id="page-payoff">
+            <input type="hidden" value="{$token}" name="token">
+                <p>选择付款类型</p>
+                <div class="payp">
+                    <volist name='list' id='v'>
+                        <div class="item">
+                            <label class="label-radio payoff_type">
+                                <input type="radio" name="payoff_type" value="{$v.id}" <?php if($v['ratio']=='100'):?> checked="checked" <?php endif;?> ratio='{$v.ratio}'>
+                                <div class="item-inner">
+                                    <div class="item-type"></div>
+                                </div>
+                                <h4>{$v.name}</h4>
+                                <p>{$v.detail}</p>
+                            </label>
+                        </div>
+                    </volist>
+                </div>
+               <!--  <div class="payoff-shade"></div>--> 
+               <!--  <div class="item">
+                    <label class="label-radio">
+                    <input type="radio" name="my-radio1" value="invoice" checked="checked">
+                    <div class="item-inner">
+                        <div class="item-type"></div>
+                    </div>
+                    <h4>支付预定金</h4>
+                    <p>可在观影前<span>5</span>天申请退订或调整，过时不返还预定金</p>
+                    </label>
+                </div>
+                <div class="item">
+                    <label class="label-radio">
+                    <input type="radio" name="my-radio1" value="invoice" checked="checked">
+                    <div class="item-inner">
+                        <div class="item-type"></div>
+                    </div>
+                    <h4>全额支付</h4>
+                    <p>可在观影前<span>3</span>天申请退订或调整，过时不返还预定金</p>
+                    </label>
+                </div> -->
+                <p>选择支付方式</p>
+                <!-- <div class="item">
+                    <label class="label-radio">
+                    <input type="radio" name="paymentMethod_payoff_my-radio2" value="1" checked="checked">
+                    <div class="item-inner">
+                        <div class="item-type"></div>
+                    </div>
+                    <h4>余额支付</h4>
+                    <p>您当前账户余额为<span>{$Think.session.buyUserInfo.balance}</span>元</p>
+                    <a class="recharge" href="#">立即充值</a>
+                    </label>
+                </div> -->
+
+                <div class="pay-method">
+                    <div class="item">
+                        <label class="label-radio" style="border-bottom:none">
+                            <input type="radio" name="paymentMethod_payoff_my-radio2" value="weixinpay" checked="checked">
+                            <div class="item-inner">
+                                <div class="item-type"></div>
+                            </div>
+                            <h4>微信支付</h4>
+                            <p>推荐安装微信客户端使用</p>
+                        </label>
+                    </div>
+                </div>
+             <!--    <div class="item">
+                    <label class="label-radio">
+                    <input type="radio" name="paymentMethod_payoff_my-radio2" value="3" checked="checked">
+                    <div class="item-inner">
+                        <div class="item-type"></div>
+                    </div>
+                    <h4>银联支付</h4>
+                    <p>支持储蓄卡信用卡，无需开通网银</p>
+                    </label>
+                </div> -->
+                <p>发票信息</p>
+                <h5 class="invoice-h5">
+                    <a href="{:U('bookwhole/invoice')}" class="external">是否开具发票<span id='payoff_invoice_flag'><?php if($_SESSION['confirmOrder']['invoice_type']):?>是<?php else:?>否<?php endif;?></span></a>
+                </h5>
+                <div class="submitBlock">
+                 
+                     <input type="hidden" id='payoff_all_price' value='{$Think.cookie.all_price}'/>
+                    <p>应付金额：<em> <span class="price">￥</span><span class="price" id='payoff_all_price_html'>{$Think.cookie.all_price}</span> <span class="price">(总额：￥{$Think.cookie.all_price})</span></em>
+                        <a href="javascript:payoff_paymentSuccess()" id='payoff_paymentSuccess_input' attr="disabled" class="external" >提交订单</a>
+                    </p>
+                </div>
+                 <div style="display:none" id="payoff_thisUrl">{:U('bookwhole/paymentSuccess')}</div>
+                <div style="display:none" id="payoff_index_thisUrl">{:U('Bookwhole/index')}</div>
+                 
+            </div>
+        </div>
+    </div>
+</block>
+<block name='script'>
+
+<script type="text/javascript">
+function payoff_paymentSuccess(){
+	var orderCode = "{$orderCode}";
+	var  paymentTypeId=$('input[name=payoff_type]:checked').val();
+    var  paymentMethod=$('input[name=paymentMethod_payoff_my-radio2]:checked').val();
+    var  ratio=$('input[name=payoff_type]:checked').attr('ratio');
+    var payoff_all_price=$('#payoff_all_price').val();
+    var payoff_now_price=payoff_all_price*ratio/100;
+   var confirmOrder_thisUrl = $('#payoff_thisUrl').html();
+
+$('#payoff_paymentSuccess_input').attr('href',"javascript:myApp.alert('请不要重新提交！','')");
+myApp.showIndicator();
+	var configdata = {
+	        appId: $("#appid").html() ,
+	        timestamp:  $("#timestamp").html() ,
+	        nonceStr: $("#wxnonceStr").html() , 
+	        signature: $("#wxSha1").html() , 
+	        debug:false,
+	        jsApiList: [
+	            'chooseWXPay',
+	        ]
+	    };
+		var turl="{:U('paymentSuccess')}";
+	    wx.config(configdata);
+	    wx.ready(function () {
+	        $.getJSON("{:U('main')}",{orderid:orderCode,ratio:ratio,payType:paymentMethod},function(data){   
+	        	 myApp.hideIndicator();
+	        	 wx.chooseWXPay({
+	                 timestamp:  data['timeStamp'] ,
+	                 nonceStr: data['nonceStr'] , 
+	                 package: data['package'] , 
+	                 signType: data['signType'] , 
+	                 paySign: data['paySign'] , 
+	                 success: function (res) {
+	                     mainView.router.loadPage(turl);
+	                 },
+	             });
+	        });
+	    });
+	    wx.error(function (res) {
+	        myApp.alert( res.errMsg );
+	    });
+}
+
+
+    function cost(obj){
+        var obj = obj.find('input').attr('ratio');
+        var payoff_all_price=$('#payoff_all_price').val();
+        payoff_all_price=parseFloat(payoff_all_price*obj/100).toFixed(1);
+        $('#payoff_all_price_html').text(payoff_all_price);
+    }
+
+    //页面初始应付金额显示(默认全额支付)
+    cost($('.payp .item').eq(0));
+
+    //点击单选框价格变化
+     $('#page-payoff label.payoff_type').click(function(){
+         cost($(this));
+     });
+
+    //弹窗提示
+    $$('.payp .item').on('click', function () {
+    	 if($(this).find('input').attr('ratio')!=100){
+             myApp.alert('预定金为订单总额的'+$(this).find('input').attr('ratio')+'%','提醒');
+         }else if($(this).find('input').attr('ratio')!=100){
+             myApp.confirm('预定金为订单总额的'+$(this).find('input').attr('ratio')+'%','提醒');
+         }
+
+
+
+
+     });
+
+    var time = 15*60;
+
+    var payoff_index_thisUrl=$('#payoff_index_thisUrl').html();
+    var t=setInterval(function  () {
+        time--;
+        // console.log(time);
+        if (time==0) {
+            clearInterval(t);
+            myApp.alert('支付超时，请返回重新抢票！','温馨提醒');
+window.location.href=payoff_index_thisUrl;
+                // mainView.router.loadPage(payoff_index_thisUrl);
+
+        }
+    },1000)
+
+
+</script>
+</block>

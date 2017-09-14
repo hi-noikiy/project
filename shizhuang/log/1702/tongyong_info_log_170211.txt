@@ -1,0 +1,4 @@
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1gamee4aa8653d7b84e59ac77d2a26f58bea6118402";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-11 10:38:47
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1gameaedf6619c46d489da32e4892f22cab10153333";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-11 10:56:24
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1gamef86a77b306f048808d3b0dfc0c0a00a3104133";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-11 11:27:36
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1gameff4a5098a9cb43869607c5a19ab6a563130104";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-02-11 20:04:07

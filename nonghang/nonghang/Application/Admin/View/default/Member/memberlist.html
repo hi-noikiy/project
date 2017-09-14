@@ -1,0 +1,85 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+           <ul>
+                {$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+			<div class="queryBox">
+        	<form action="{:U()}" method="post" id='myform'>
+            	<div class="inputSelect">
+                    <span>按影院查询：</span>
+                    <select name='cinemaCode'>
+                    	<option value="0">所有影院</option>
+                    	<volist name='cinemaList' id='vo'>
+                    	<option value="{$vo['cinemaCode']}"  <?php if($pageData['cinemaCode']==$vo['cinemaCode']){ ?>selected<?php } ?>>{$vo['cinemaName']}</option>
+                    	</volist>
+                    </select>
+                </div>
+                <div class="inputText">
+                    <span>按会员卡/手机查询：</span>
+                    <input type='hidden' name='type' value="{$data['type']}" />
+                    <input type='text' name='loginNum' value="{$data['loginNum']}" />
+                </div>
+                <a href="javascript:$('form').submit();" class="button">查询</a>
+				</form>
+            </div>
+        	<div class="tableList">
+
+
+            <ul class="tabbtn" id="tabs">
+                    <li <if condition="$data['type'] eq 0 "> id="current"</if>><a href="{:U('memberList', array('type'=>0))}">会员卡用户</a></li>
+                    <li <if condition="$data['type'] eq 1 "> id="current"</if>><a href="{:U('memberList', array('type'=>1))}">手机用户</a></li>
+                </ul>
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                     <thead>
+                          <tr >
+                            <td width="10%">会员ID</td>
+                            <?php if($data['type']!='1'){ ?><td width="10%">归属影院</td>
+							 <td width="10%">会员卡号</td><?php }?>
+                            <?php if($data['type']=='1'){ ?><td width="10%">手机号</td>
+                            <td width="10%">所属分组</td><?php }?>
+                            <td width="10%">会员昵称</td>
+                            <td width="10%">余额</td>
+                            <td width="10%">注册日期</td>
+                           	<!-- <?php if($data['type']!='1'){ ?> <td width="10%">消费记录</td><?php }?> -->
+                            <td width="10%">订单记录</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <foreach name="memberList" item="vo" key="k" >
+                          <tr>
+                            <td>{$vo.id}</td>
+                            <?php if($data['type']!='1'){ ?><td>{$vo.businessName}</td>
+                            <td>{$vo.cardNum}</td><?php }?>
+                            <?php if($data['type']=='1'){ ?><td>{$vo.mobile}</td>
+                            <td>{$cinemaGroup[$vo['cinemaGroupId']]}</td><?php }?>
+                            <td>{$vo.userName}</td>
+                            <td><?php if($data['type']!='1'){ ?><?php echo round($vo['basicBalance']+$vo['donateBalance'],2); ?><?php }else{ ?>{$vo.mmoney}<?php }?></td>
+                            <td>{$vo.bindTime|date='Y-m-d H:i:s',###}</td>
+                            <!-- <?php if($data['type']!='1'){ ?><td><a href="{:U('record',array('cardId'=>$vo['cardNum']))}">查询</a></td><?php }?> -->
+                            <td><?php if($data['type']!='1'){ ?><a href="{:U('order/orderlist',array('cardId'=>$vo['cardNum']))}">
+                            <?php }else{ ?><a href="{:U('order/orderlist',array('mobile'=>$vo['mobile']))}"><?php }?>查询订单</a></td>
+                         </tr>
+                     </foreach>
+        
+                   </tbody>
+                </table>
+                <div class="pagination">
+                <div class="page"> 
+                    {$page}
+                </div>
+            </div>
+            </div>
+        </div>
+        
+</div>
+<script type="text/javascript">
+$('input[name="type"').change(function(){
+	$('#myform').submit();
+});
+</script> 
+</block>

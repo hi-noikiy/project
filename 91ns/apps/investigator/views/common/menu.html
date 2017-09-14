@@ -1,0 +1,11 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+    <ul style="display: block;">
+
+        <!--左边导航栏-->
+        {% for menu in moduleList %}
+        <li class="{% if menu['moduleAction']==currentModule[0] %}active{% endif %}"><a href="/{{ menu['moduleAction']}}"><i class="icon {{ menu['moduleCss']}}"></i> <span>{{ menu['moduleName']}}</span></a> </li>
+        {% endfor %}
+    </ul>
+</div>
+<!--end sidebar-menu-->

@@ -1,0 +1,107 @@
+Array
+(
+    [0] => Array
+        (
+            [serverid] => 0
+            [fenbaoid] => 28
+            [day] => 140528
+            [daytime] => 1401249328
+            [rmb_sum] => 0
+            [rmb_pay] => 0
+            [rmb_sys] => 0
+            [rmb_used] => 0
+            [rmb_left] => 0
+        )
+
+    [1] => Array
+        (
+            [serverid] => 950
+            [fenbaoid] => 0
+            [day] => 140528
+            [daytime] => 1401249328
+            [rmb_sum] => 457751
+            [rmb_pay] => 29109
+            [rmb_sys] => 428140
+            [rmb_used] => 457751
+            [rmb_left] => 457751
+        )
+
+    [2] => Array
+        (
+            [serverid] => 950
+            [fenbaoid] => 8
+            [day] => 140528
+            [daytime] => 1401249328
+            [rmb_sum] => 158308
+            [rmb_pay] => 8688
+            [rmb_sys] => 149584
+            [rmb_used] => 158308
+            [rmb_left] => 158308
+        )
+
+    [3] => Array
+        (
+            [serverid] => 950
+            [fenbaoid] => 9
+            [day] => 140528
+            [daytime] => 1401249328
+            [rmb_sum] => 144251
+            [rmb_pay] => 4839
+            [rmb_sys] => 139400
+            [rmb_used] => 144251
+            [rmb_left] => 144251
+        )
+
+    [4] => Array
+        (
+            [serverid] => 950
+            [fenbaoid] => 10
+            [day] => 140528
+            [daytime] => 1401249328
+            [rmb_sum] => 113161
+            [rmb_pay] => 4415
+            [rmb_sys] => 108702
+            [rmb_used] => 113161
+            [rmb_left] => 113161
+        )
+
+    [5] => Array
+        (
+            [serverid] => 950
+            [fenbaoid] => 14
+            [day] => 140528
+            [daytime] => 1401249328
+            [rmb_sum] => 109900
+            [rmb_pay] => 3065
+            [rmb_sys] => 106481
+            [rmb_used] => 109900
+            [rmb_left] => 109900
+        )
+
+    [6] => Array
+        (
+            [serverid] => 950
+            [fenbaoid] => 18
+            [day] => 140528
+            [daytime] => 1401249328
+            [rmb_sum] => 101171
+            [rmb_pay] => 2740
+            [rmb_sys] => 98345
+            [rmb_used] => 101171
+            [rmb_left] => 101171
+        )
+
+    [7] => Array
+        (
+            [serverid] => 950
+            [fenbaoid] => 28
+            [day] => 140528
+            [daytime] => 1401249328
+            [rmb_sum] => 89391
+            [rmb_pay] => 1420
+            [rmb_sys] => 87940
+            [rmb_used] => 89391
+            [rmb_left] => 89391
+        )
+
+)

@@ -1,0 +1,54 @@
+﻿<extend name='Public/base'/>
+
+<block name='body'>
+
+    <div id="main">
+        <div class="container wait">
+        </div>
+        <div class="container" id='success' style="display: none">
+            <p>支付成功，兑换码：<b id='printNo'></b></p>
+            <p>兑换地点：{$order['cinemaName']}<a href="{:U('user/goodsorder')}">查看订单></a></p>
+        </div>
+        <div class="container fail" style="display: none" id='fail'>
+            <p>支付失败</p>
+            <p class="color-orange">返回></p>
+        </div>
+    </div>
+
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            //加减
+            $(".Spinner").Spinner({value:0, min:0, len:2, max:99});
+            //滚动
+            var num = Math.ceil($('.piclist li').length/3);
+            $('.list').empty();
+            for(i=1;i<=num;i++){
+                $('.list').append('<li></li>');
+            }
+            jQuery(".scrollBox").slide({ titCell:".list li",pnLoop:"false", mainCell:".piclist", effect:"left",vis:4,scroll:3,delayTime:800,trigger:"click",easing:"easeOutCirc"});
+        });
+var id=setInterval("getPayStatus()",3000);
+var orderid = "{$order['id']}";
+function getPayStatus(){      
+    $.getJSON("{:U('getGoodsStatus')}",{orderid:orderid},function(data){
+    	var msg=data.data;
+        if(msg.status != '0'){
+            clearInterval(id);
+        	$('.wait').hide();
+            if(msg.status =='1'){
+                $("#success b").text(msg['convcode']);
+                $("#success").show();
+            }else{
+            	$("#fail").show();
+            }   
+        }
+    });
+}
+    </script>
+
+</block>
+
+
+

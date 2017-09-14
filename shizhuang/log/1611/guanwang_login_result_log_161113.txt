@@ -1,0 +1,2 @@
+parseStr=game_id=9&username=15980259808&account_id=6231808&expired=1479020711, 2016-11-13 15:05:13
+parseStr=game_id=9&username=F6A3F120-776B-43EC-8C9B-111042A0D3AB&account_id=6228964&expired=1479025759, 2016-11-13 16:29:21

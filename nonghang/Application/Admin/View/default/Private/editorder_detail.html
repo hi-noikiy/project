@@ -1,0 +1,33 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="" id="dataform">
+<div class="formBody">
+    <div class="privateOrderInfo">
+		<div class="fromLeft">
+            <h2>改签前</h2>
+            <p>观影时间：<span>{$timeOld}</span></p>
+            <p>观影时段：<span>{$ccOld}-{$ecOld}</span></p>
+            <p>观影影片：<span>{$filmNameOld}</span></p>
+            <p>观影影厅：<span>{$topicName}</span></p>
+            <p>订单总额：<span>{$totalOld}</span></p>
+            <p>已付金额：<span>￥{$prepay}</span></p>
+            <p>订单差价：<span>￥{$crOld}</span></p>
+		</div>
+        <div class="fromRight">
+            <h2>改签后</h2>
+            <p>观影时间：<span>{$time}</span></p>
+            <p>观影时段：<span>{$cc}-{$ec}</span></p>
+            <p>观影影片：<span>{$filmName}</span></p>
+            <p>观影影厅：<span>{$topicName}</span></p>
+            <p>合计总价：<span>{$total}</span></p>
+             <p>已付金额：<span>￥{$prepay}</span></p>
+            <p>订单差价：<span>￥{$cr}</span></p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+</form>
+</block>
+<block name="script">
+
+</block>

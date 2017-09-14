@@ -1,0 +1,52 @@
+.fenyeiWrap{ margin-top:5px; height:22px;}
+.fenyeiWrap .perPageBox,
+.fenyeiWrap .whickPage{
+    width:30px;
+    height:20px;
+    line-height: 20px;
+    padding:1px 2px;
+    border:1px solid #999;
+}
+.fenyeiWrap .whichPageWrap{
+    float:right;
+    line-height:20px;
+    height:20px;
+    color:#2A5E88
+}
+
+.fenyeiWrap ul {
+    float:right;
+    margin-right:5px;
+}
+.fenyeiWrap li{
+    display:inline;
+    margin-left:2px;
+}
+.fenyeiWrap li a,
+.qd input{
+    padding: 4px;
+    display:inline-block;
+    text-align:center;
+    width:22px;
+    cursor:pointer;
+    border:1px solid #99b7d0;
+    color:#000;
+}
+.fenyeiWrap li a:hover{
+    text-decoration: none;
+    background-color: #005f8d;
+    color:#FFF;
+}
+.fenyeiWrap .qd input{ width:40px;}
+.fenyeiWrap li a.prevBtn,
+.fenyeiWrap li a.nextBtn{ width:50px; }
+.fenyeiWrap li a.firstPage,
+.fenyeiWrap li a.lastPage{
+    width:40px;
+}
+
+.fenyeiWrap a.current{
+    color:#0761ad;
+    cursor:auto;
+    background:#c7e4fd;
+}

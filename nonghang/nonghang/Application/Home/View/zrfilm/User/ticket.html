@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+</head>
+<body>
+<div class="mianWrap">
+    <div class="inputContent">
+        <h2>请输入消费金额：</h2>
+        <div class="inputBlock">
+            <input type="tel" placeholder="询问服务员后输入">
+            <span>￥</span>
+        </div>
+    </div>
+    <div class="payContent">
+        <h4>选择支付方式</h4>
+        <div class="payItem wechat">
+            <label class="label-radio">
+                <p><span></span>微信客户端支付</p>
+                <input type="radio" name="radio" value="" checked="checked">
+                <em></em>
+            </label>
+        </div>
+    </div>
+    <a class="submit" onclick="submit()">确认买单</a>
+</div>
+    <script type="text/javascript" src="__JS__/jquery.js"></script>
+   <script type="text/javascript" src="__JS__/jweixin-1.0.0.js"></script>
+<script>
+function submit(){
+	var payurl="{:U('ticketmain')}";
+	 var configdata = {
+	            appId: "{$data['appid']}" ,
+	            timestamp:  "{$data['timestamp']}" ,
+	            nonceStr: "{$data['wxnonceStr']}" , 
+	            signature: "{$data['wxSha1']}" , 
+	            debug:false,
+	            jsApiList: [
+	                'chooseWXPay',
+	            ]
+	        };
+	        wx.config(configdata);
+	        wx.ready(function () {
+	            $.getJSON(payurl,function(data){   
+	            	 wx.chooseWXPay({
+	                     timestamp:  data['timeStamp'] ,
+	                     nonceStr: data['nonceStr'] , 
+	                     package: data['package'] , 
+	                     signType: data['signType'] , 
+	                     paySign: data['paySign'] , 
+	                     success: function (res) {
+	                        // mainView.router.loadPage($("#userIndex").html());
+	                     },
+	                 });
+	            });
+	        });
+	        wx.error(function (res) {
+	            alert( res.errMsg );
+	        });
+}
+</script>
+<style type="text/css">
+    body, h1, h2, h3, h4, h5, h6, hr, p,
+    blockquote,
+    dl, dt, dd, ul, ol, li,
+    pre,
+    form, fieldset, legend, button, input, textarea,
+    th, td,
+    img {
+        border: medium none;
+        margin: 0;
+        padding: 0;
+        font-family: "Microsoft YaHei";
+    }
+    .mianWrap {     background: #f6f6f6}
+    .mianWrap h2 { font-weight: normal; line-height: 60px; color: #808080; font-size: 18px;}
+    .mianWrap .inputBlock { position:relative;}
+    .mianWrap input { height:45px; margin-bottom:22px; display: block; }
+    .mianWrap input {
+        height: 45px;
+        margin-bottom: 22px;
+        display: block;
+        width: 100%;
+        border: 1px solid #e5e5e5;
+        border-radius: 3px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+    .mianWrap .inputBlock span {
+        color: #aaa;
+        font-size: 32px;
+        position: absolute;
+        top: 1px;
+        left: 18px;
+    }
+    .mianWrap .inputContent { padding:0 15px; background: #fff; margin-bottom: 10px;     overflow: hidden;}
+    .mianWrap .payContent { padding:0 15px; margin-bottom:75px; background: #fff}
+    .mianWrap .payContent h4 { font-size: 16px; color:#808080; font-weight: normal; line-height: 50px;}
+    .mianWrap .payItem { position: relative;     overflow: hidden;}
+    .mianWrap .payItem p { line-height: 35px;}
+    .mianWrap .payItem label p { font-size:18px; color:#3f3f3f;}
+    .mianWrap .payItem label span {
+        width: 35px;
+        height: 35px;
+        background: url(__IMG__/user/wecharIcon.png) no-repeat;
+        background-size:contain;
+        float: left;
+        margin-right: 20px;
+    }
+    .mianWrap input[type=radio] { display: none; }
+    .mianWrap label input[type=radio]:checked + em { }
+    .mianWrap label em {
+        position:absolute;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        background: url(__IMG__/user/radioIcon.png) no-repeat;
+        background-size:contain;
+        position: absolute;
+        right: 0;
+        top:32px;
+    }
+    .mianWrap label.label-radio {
+        margin:23px 0 20px;
+        display: block;
+    }
+    .mianWrap a.submit { height:40px; display: block; line-height:40px; text-align: center; color:#fff; font-size:16px; background: #ff8630; margin:0 15px}
+</style>
+</body>
+</html>
+

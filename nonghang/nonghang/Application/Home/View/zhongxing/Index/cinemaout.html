@@ -1,0 +1,21 @@
+<extend name='Public/base'/>
+<block name='title'>{$cinema['cinemaName']}</block>
+
+<block name='navbar'>
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><if condition="$pflag eq ''"><a href="{:U('index/index')}" class="external link"> <i class="icon icon-back"></i><span></span></a></if></div>
+    <div class="center sliding">{$cinema['cinemaName']}</div>
+    <div class="right"></div>
+  </div>
+  </div>
+  </block>
+
+<block name='body'>
+<div data-page="cinemaIndex" class="page" style="padding-top:44px; overflow:scroll;">
+<div class="content">
+    <div class="closeBg">影院服务时间已到期<br/>请联系影城：{$cinema['phone']}</div>
+   </div>      
+ </div>  
+</block>

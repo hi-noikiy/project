@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>login</title>
+	<script type="text/javascript">
+	function getParam(name){
+	    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	    var r = window.location.search.substr(1).match(reg);
+	    if (r!=null) return unescape(r[2]); return null;
+	}
+    function setCookie(name,value,time,path){
+        time = time || 360000000;
+        path = path || '/';
+        var exp = new Date();
+        exp.setTime(exp.getTime() + time);
+        document.cookie = name + '='+ escape (value) + '; expires=' + exp.toGMTString() + ';path='+path;
+    }
+	var state = getParam('state')+'?state='+getParam('state2');
+	var code = getParam('status');
+	if(code != '0'){
+		var msg = decodeURI(escape(getParam('msg')));
+		if(code == 'USER_NOT_ACTIVE'){
+			alert('您的账号已被禁用，请联系客服协调该问题！');
+		}else{
+			alert('登录出现异常，请联系客服。\n异常信息:' + msg);
+		}
+	}
+
+	var ns_source = getParam('ns_source');
+	var type = getParam('type');
+	var first = getParam('first');
+	var isRecommend = getParam('isRecommend');
+
+    setCookie('sourceType', ns_source);
+    setCookie('thirdType', type);
+    setCookie('ThirdCallbackType', first);
+    if(isRecommend && isRecommend == 1){
+    	setCookie('isRecommendByThird', 1);
+    }
+
+	try{
+		window.opener.window.location.href = state;
+		if(window.opener.window.location.href == window.opener.window.location.href){}
+		window.opener=null;window.open('','_self');window.close();
+	}catch(e){
+		window.location.href = state;
+	}
+	</script>
+</head>
+<body>
+</body>
+</html>

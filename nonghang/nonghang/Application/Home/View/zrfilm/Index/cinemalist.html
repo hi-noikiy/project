@@ -1,0 +1,48 @@
+<extend name="Public/base"/>
+
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">影院列表</div>
+    <div class="right"></div>
+  </div>
+</div>
+  </block>
+
+<block name='body'>
+  <div data-page="cinemaList" class="page">
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+
+
+        <div class="cinemaList">
+        <volist name='citys' id='city'>
+          <dl>
+              <dt>{$city['city']}（<?php echo count($city["cinemas"]); ?>）</dt>
+              <volist name='city["cinemas"]' id='vo'>
+                <dd>
+                  <a href="{$vo['url']}"  <if condition="$vo['type'] != 'load'">class="external"</if>>
+                        <h2>{$vo['cinemaName']}</h2>
+                        <p>{$vo['address']}</p>
+                        <!--<span><em><img src="__IMG__/movie/area.png" height="100%" /></em>{$vo['distance']}km</span>-->
+                    </a>
+                </dd>
+                </volist>
+            </dl>
+            </volist>
+        </div>
+
+
+    </div>
+  </div>
+  </block>
+  <block name='script'>
+<script type="text/javascript">
+
+
+  </script>
+  </block>

@@ -1,0 +1,116 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+            <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title">主播等级 </div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div class="HAL-text">
+                                      <p>主播等级是由主播获得的礼物兑换成收益决定。主播等级信息栏会形成一个经验槽，每次增加收益均会增加槽的长度，如果该等级的经验达到升级条件，槽便会注满。下一等级开始，经验槽又会重新开始灌注经验。</p>
+                                  </div>
+
+                                  <div>
+                                      <table cellpadding="0" cellspacing="0">
+                                          <thead>
+                                          <tr>
+                                              <th class="td166">图标</th>
+                                              <th class="td166">主播等级</th>
+                                              <th class="td216 tdright">粉丝为主播消费产生的经验值</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb0"></i></td><td class="td166">新秀</td><td class="td216 tdright"> 初始等级</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb1"></i></td><td class="td166">1星</td><td class="td216 tdright"> 1,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb2"></i></td><td class="td166">2星</td><td class="td216 tdright"> 5,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb3"></i></td><td class="td166">3星</td><td class="td216 tdright"> 15,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb4"></i></td><td class="td166">4星</td><td class="td216 tdright"> 30,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb5"></i></td><td class="td166">5星</td><td class="td216 tdright"> 50,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb6"></i></td><td class="td166">1钻</td><td class="td216 tdright"> 100,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb7"></i></td><td class="td166">2钻</td><td class="td216 tdright"> 200,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb8"></i></td><td class="td166">3钻</td><td class="td216 tdright"> 350,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb9"></i></td><td class="td166">4钻</td><td class="td216 tdright"> 550,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb10"></i></td><td class="td166">5钻</td><td class="td216 tdright">  800,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb11"></i></td><td class="td166">1皇冠</td><td class="td216 tdright"> 1,200,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb12"></i></td><td class="td166">2皇冠</td><td class="td216 tdright"> 1,500,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb13"></i></td><td class="td166">3皇冠</td><td class="td216 tdright"> 2,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb14"></i></td><td class="td166">4皇冠</td><td class="td216 tdright"> 3,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb15"></i></td><td class="td166">5皇冠</td><td class="td216 tdright"> 5,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb16"></i></td><td class="td166">6皇冠</td><td class="td216 tdright"> 8,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb17"></i></td><td class="td166">7皇冠</td><td class="td216 tdright"> 12,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb18"></i></td><td class="td166">8皇冠</td><td class="td216 tdright"> 18,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb19"></i></td><td class="td166">9皇冠</td><td class="td216 tdright"> 25,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb20"></i></td><td class="td166">10皇冠</td><td class="td216 tdright">  33,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb21"></i></td><td class="td166">11皇冠</td><td class="td216 tdright">  41,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb22"></i></td><td class="td166">12皇冠</td><td class="td216 tdright">  50,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb23"></i></td><td class="td166">13皇冠</td><td class="td216 tdright">  60,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb24"></i></td><td class="td166">14皇冠</td><td class="td216 tdright">  70,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb25"></i></td><td class="td166">15皇冠</td><td class="td216 tdright">  80,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb26"></i></td><td class="td166">16皇冠</td><td class="td216 tdright">  90,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb27"></i></td><td class="td166">17皇冠</td><td class="td216 tdright">  100,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb28"></i></td><td class="td166">18皇冠</td><td class="td216 tdright">  110,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb29"></i></td><td class="td166">19皇冠</td><td class="td216 tdright">  125,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb30"></i></td><td class="td166">20皇冠</td><td class="td216 tdright"> 150,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb31"></i></td><td class="td166">21皇冠</td><td class="td216 tdright"> 175,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb32"></i></td><td class="td166">22皇冠</td><td class="td216 tdright"> 200,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb33"></i></td><td class="td166">23皇冠</td><td class="td216 tdright"> 230,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb34"></i></td><td class="td166">24皇冠</td><td class="td216 tdright"> 260,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb35"></i></td><td class="td166">25皇冠</td><td class="td216 tdright"> 290,000,000</td></tr>
+                                          <tr><td class="td166"><i class="sprite-zb_level zb36"></i></td><td class="td166">26皇冠</td><td class="td216 tdright"> 330,000,000</td></tr>
+                                          <tr><td class="td166" style="border-bottom: 1px solid #000"><i class="sprite-zb_level zb37"></i></td><td class="td166" style="border-bottom: 1px solid #000">27皇冠</td><td class="td216 tdright" style="border-bottom: 1px solid #000"> 370,000,000</td></tr>
+
+
+                                          </tbody>
+                                      </table>
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}

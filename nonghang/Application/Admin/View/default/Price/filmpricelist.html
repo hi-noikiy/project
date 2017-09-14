@@ -1,0 +1,490 @@
+<extend name='Public/base'/>
+<block name='jscss'>
+<style>
+html{
+	background:#354052;
+	}
+body{
+	background:#354052;
+	}
+</style>
+</block>
+<block name='body'>
+		<div class="content">
+				<div class="leftMenu">
+						<ul>
+							{$leftMenu}
+						</ul>	
+				</div>
+				<div class="rightContent">
+						<div class="contentBox">
+								<form action="/Admin/Price1/filmPrice.html" id="myform" method="post">
+										<div class="queryBody">
+									 
+										<div class="queryItem"> 
+									 			<span>按影院分组查询：</span>
+														<select name="cinemaGroup" id="cinemaGroup" class="select" onchange="getCinemaList(this.value)">
+														<foreach name="cinemaGroupList" item="vo" key="k" >
+																<option value="{$vo.id}">{$vo.groupName}</option>
+														</foreach>
+														</select>
+												</div>
+											<div class="queryItem">
+													<p>按影院选择</p>
+													<div id="cinemaLists">
+
+													</div>
+											 </div>
+												<div class="queryItem">
+														<p>按日期</p>
+														<div id="planDate"></div>
+												</div>
+
+
+												<div class="queryItem">
+
+														<p>其它条件</p>
+														<div class="inputEdit">
+														<span>放映时间：</span>
+															<input type="text" class="time inputEditText" id="beginTime" onblur="javascript:getPlanList();">-<input type="text" class="time inputEditText"  id="endTime" onblur="javascript:getPlanList();">
+
+														</div>
+														<div id="hallName"></div>
+
+												</div>
+
+												<div class="queryItem">
+											<p>按影片显示场次</p>
+												<div class="ccicon"><em class="cc3"></em><span>选中状态</span><em class="cc1"></em><span>未设置价格</span><em class="cc2"></em><span>会员卡配置价格</span>
+														<em class="cc4"></em><span>排期配置价格</span></div>
+											<div id="filminfo" class="selectFilm">
+							 				</div>
+							 		 </div>
+												<div class="queryItem inputPrice" id="discount">
+													<p>设置</p>
+														<div class="inputEdit" id="inputEdit">
+
+													</div>
+													</div>
+
+												<div style="margin-top:30px;"><a href="javascript:ajaxSetPlanPrice();" class="button">提交</a></div>
+										</div>
+								</form>
+				</div>		
+				</div>
+		 </div>
+<script type="text/javascript">
+var loadi = '';
+var loadimsg = '';
+var memberGroup = {};
+	function getCinemaList(cinemaGroupId) {
+		loadi = layer.load(1, {shade: [0.5,'#000']});
+		loadimsg = layer.msg('正在获取影院会员列表...',{icon: 16, time:60000000});
+
+		$.ajax({		
+		url:'{:U("getCinemaList")}',// 跳转到 action		
+		data:{'cinemaGroupId':cinemaGroupId},		
+		type:'post',			 
+		dataType:'json',		
+		success:function(data) {
+				layer.close(loadi);
+				layer.close(loadimsg);
+				// layer.msg(data.content, {time: 1000});
+				$('#cinemaLists').html('');
+				$('#inputEdit').html('');
+				$('#filminfo').html('');
+				$('#planDate').html('');
+				if(data.status == 0){
+					$('#cinemaLists').html('');
+					var i = 1;
+					$.each(data.data.cinemaList,function(name,value) {
+						checkStr = ''; 
+						$('#cinemaLists').append('<input name="type" type="radio" value="'+value.cinemaCode+'" id="cinema'+value.cinemaCode+'" style="vertical-align: text-bottom;" onchange="getPlanDate('+value.cinemaCode+')" '+checkStr+'><label for="cinema'+value.cinemaCode+'">'+value.cinemaName+'</label>');
+						i++;
+				});
+
+				
+				$('#inputEdit').html('');
+					var i = 1;
+					$.each(data.data.memberGroupList,function(groupValue,groupValue) {
+						checkStr = ''; 
+							memberGroup[groupValue.groupId] = groupValue.groupName;
+								$('#inputEdit').append('<div class="inputCard">'+groupValue.groupName+'&nbsp;<input type="radio" name="discountType['+groupValue.groupId+']" id="discountType'+groupValue.groupId+'" checked="checked" value="1" onclick="setDiscountType(1,'+groupValue.groupId+',0)" /><label for="discountType'+groupValue.groupId+'">价格</label><input type="radio" name="discountType['+groupValue.groupId+']" id="discountType2'+groupValue.groupId+'" value="2" onclick="setDiscountType(2,'+groupValue.groupId+',0)" /><label for="discountType2'+groupValue.groupId+'">折扣</label><input name="'+groupValue.groupId+'" type="text" textVal="'+groupValue.groupName+'" id="i_'+groupValue.groupId+'" value="" placeholder="请设置会员价"><span class="inputEditText" id="d'+groupValue.groupId+'">元</span></div>');
+				});
+				
+				setPayConfig();
+
+
+				// setTimeout(function(){location.reload()}, 1000);
+				}
+
+		},		
+		error : function() {
+				layer.close(loadi);
+				layer.close(loadimsg);
+				layer.msg('获取影院列表失败，请重试', {icon: 5});
+		}		
+		});
+	}
+
+	function getPlanDate (cinemaCode) {
+		loadi = layer.load(1, {shade: [0.5,'#000']});
+		loadimsg = layer.msg('正在获取排期时间...',{icon: 16, time:60000000});
+
+		$.ajax({		
+		url:'{:U("getPlanDate")}',// 跳转到 action		
+		data:{'cinemaCode':cinemaCode},		
+		type:'post',			 
+		dataType:'json',		
+		success:function(data) {
+				layer.close(loadi);
+				layer.close(loadimsg);
+				$('#planDate').html('');
+				$('#filminfo').html('');
+				if(data.status == 0){
+					
+					
+					var i = 1;
+					$.each(data.data,function(name,value) {
+					checkStr = 'checked'; 
+						$('#planDate').append('<input name="planDate[]" onclick="getPlanList('+cinemaCode+')" type="checkbox" id="planDate'+name+'" value="'+value+'" '+checkStr+'><label for="planDate'+name+'">'+value+'</label>');
+	 
+						i++;
+				});
+					getPlanList();
+					
+
+				// setTimeout(function(){location.reload()}, 1000);
+				}
+		},		
+		error : function() {
+				layer.close(loadi);
+				layer.close(loadimsg);
+				layer.msg('获取排期时间失败，请重试', {icon: 5});
+		}		
+		});
+	}
+var dateTime = '';
+	function getPlanList () {
+		loadi = layer.load(1, {shade: [0.5,'#000']});
+		loadimsg = layer.msg('正在获取排期时间...',{icon: 16, time:60000000});
+		// $('#cinemaLists input').each(function(){
+		//	 alert($(this).val()+'22');
+
+		// });
+		var cinemaCode = $("#cinemaLists input[name='type']:checked").val();
+		var beginTime = $('#beginTime').val();
+		var endTime = $('#endTime').val();
+		var planDateList = new Array();
+		var hallNo = new Array();
+		var i=0;
+		$("#planDate input[name='planDate[]']:checked").each(function(){
+				planDateList[i] = $(this).val();
+				i++;
+		}); 
+
+		i=0;
+		$("#hallName input[name='hallNo[]']:checked").each(function(){
+				hallNo[i] = $(this).val();
+				i++;
+		}); 
+
+
+		$.ajax({		
+		url:'{:U("getPlanList")}',// 跳转到 action		
+		data:{'cinemaCode':cinemaCode, 'planDateList':planDateList, 'beginTime':beginTime,'endTime':endTime,'hallNo':hallNo},		
+		type:'post',			 
+		dataType:'json',		
+		success:function(data) {
+
+
+				layer.close(loadi);
+				layer.close(loadimsg);
+				$('#filminfo').html('');
+				$('#hallName').html('<span>影厅：</span>');
+				if(data.status == 0){
+					var planList = data.data.planList;
+					var hallNo = data.data.hallNo;
+					var calssStr = '';
+					var array = new Array();
+					var isCheck = '';
+					$.each(hallNo,function(name,value) {
+						isCheck = '';
+						if (value.isCheck) {
+							isCheck = ' checked="checked"';
+						};
+
+						$("#hallName").append('<input type="checkbox" name="hallNo[]" value="'+name+'" id="hallNo'+name+'"  onchange="javascript:getPlanList();" '+isCheck+' /><label for="hallNo'+name+'">' + value.value + '</label>');
+
+					});
+
+
+					$.each(planList,function(name,value) {
+
+						// alert(name);
+
+						calssStr = '';
+						$('#filminfo').append('<div class="filmTitle"><h2 id="filmName'+name+'">'+name+'</h2><input type="button" class="addFilm" value="全选" onclick="checkAll(true,film_'+name+')"><input class="editFilm" type="button" value="取消全选" onclick="checkAll(false,film_'+name+')"></div>');
+						$.each(value,function(dateName,dateValue) {
+							$('#filminfo').append('<div class="selectPlan" id="film_'+name+'"><h4>'+formatDateYmd(dateName)+'</h4><div class="planItem" id="planItem'+name+dateName+'"></div></div>');
+								$.each(dateValue,function(planName,planValue) {
+									// alert(planValue.filmName);
+									$('#filmName'+name).html(planValue.filmName + '['+ planValue.standardPrice +'元]');
+
+									if(planValue.priceConfig){
+										calssStr='class="cur"';
+									}
+
+									if (planValue.isAotuPrice == 1) {
+										calssStr='class="blue"';
+									}
+
+									if(planValue.priceConfig){
+
+											$('#planItem'+name+dateName).append('<span style="display:none" id="spanlab'+planValue.featureAppNo+'">'+planValue.priceConfig+'</span>');
+									}
+									
+									// array = JSON.parse(planValue.priceConfig);
+									$('#planItem'+name+dateName).append('<label id="lab'+planValue.featureAppNo+'" for="'+planValue.featureAppNo+'" onclick="onlyck(this)" onmouseover="showTips(this)" '+calssStr+'>'+formatDateHi(planValue.startTime)+'</label><span><input id="'+planValue.featureAppNo+'" type="checkbox" name="planInfo[]" value="'+planValue.featureAppNo+'"></span>');
+								})
+
+						});	 
+				});
+
+					// getPlanList(cinemaCode, data.data);
+
+				// setTimeout(function(){location.reload()}, 1000);
+				}
+		},		
+		error : function() {
+				layer.close(loadi);
+				layer.close(loadimsg);
+				layer.msg('获取排期时间失败，请重试', {icon: 5});
+		}		
+		});
+
+	}
+
+
+
+function setDiscountType (type, groupId, price) {
+	if(type == 1){
+		$('#d'+groupId).html('元');
+		$('#discountType'+groupId).attr('checked', 'checked');
+	}else{
+		$('#d'+groupId).html('折');
+		$('#discountType2'+groupId).attr('checked', 'checked');
+	}
+	if (price) {
+		$("#i_" + groupId).val(price);
+	};
+	// if(type == 1){
+	// 	$('#inputEdit .inputCard input[type="text"]').each(function(){
+	// 		$(this).attr('placeholder', '请设置会员价');
+	// 	});
+
+	// 	$('#inputEdit .inputCard input[type="radio"]').each(function(k,v){
+	// 		alert($(this).val());
+	// 		$(this).removeAttr('checked',false);
+	// 		if ($(this).val() == 1) {
+	// 			// alert('222');
+	// 			$(this).attr('checked','checked');
+	// 		}
+	// 	});
+
+	// 	$('#inputEdit .inputCard .inputEditText').each(function(){
+	// 		$(this).html('元');
+	// 	});
+	// 	$('#discountType2').removeAttr('checked');
+	// 	$('#discountType1').attr('checked', 'checked');
+
+	// }
+
+	// if(type == 2){
+	// 	$('#inputEdit .inputCard input[type="text"]').each(function(){
+	// 		$(this).attr('placeholder', '请设置折扣数');
+	// 	});
+	// 	$('#inputEdit .inputCard .inputEditText').each(function(){
+	// 		$(this).html('折');
+	// 	});
+	// 	$('#discountType1').removeAttr('checked');
+	// 	$('#discountType2').attr('checked', 'checked');
+	// }
+}
+
+function	 formatDateYmd(nS)	 {
+	 
+		var now = new Date(parseInt(nS) * 1000);
+		var year=now.getFullYear();		 
+		var month=now.getMonth()+1;		 
+		var date=now.getDate();		 
+		var hour=now.getHours();		 
+		var minute=now.getMinutes();		 
+		var second=now.getSeconds();		 
+		return	year+"-"+month+"-"+date;	
+}	
+
+
+function	 formatDateHi(nS)	 {
+	 
+		var now = new Date(parseInt(nS) * 1000);
+		var year=now.getFullYear();		 
+		var month=now.getMonth()+1;		 
+		var date=now.getDate();		 
+		var hour=now.getHours();		 
+		var minute=now.getMinutes();		 
+		var second=now.getSeconds();	
+
+		if(hour<10){
+			hour = '0' + hour;
+		}
+
+		if(minute<10){
+			minute = '0' + minute;
+		}
+
+		return	 hour+":"+minute;	
+}	
+
+$(function(){	 
+	getCinemaList($('#cinemaGroup').val());
+})
+
+
+function onlyck(obj) {
+
+	if($('#'+$(obj).attr('for')).attr('checked') == 'checked'){
+			$(obj).removeClass('select');
+			$('#'+$(obj).attr('for')).removeAttr('checked');
+	}else{
+			$(obj).addClass('select'); 
+			$('#'+$(obj).attr('for')).attr('checked', 'checked')
+	}
+	
+	// body...
+}
+
+function checkAll (type, filmDiv) {
+	// alert(filmDiv);
+	$(filmDiv).find("div span input").each(function(){
+			if(type){
+				$('#lab'+$(this).attr('id')).addClass('select'); 
+				$('#'+$(this).attr('id')).attr('checked', 'checked')
+			}else{
+				$('#lab'+$(this).attr('id')).removeClass('select');
+				$('#'+$(this).attr('id')).removeAttr('checked');
+			}
+				
+		}); 
+}
+
+var planPrice = {};
+function ajaxSetPlanPrice () {
+var featureAppNo = '';
+	$('#filminfo').find('.planItem > span > input[checked="checked"]').each(function(){
+			if(featureAppNo == ''){
+				featureAppNo = $(this).val();
+			}else{
+				featureAppNo += ',' + $(this).val();
+			}
+	}); 
+
+	if(featureAppNo == ''){
+			layer.msg('请选择要设置价格的排期！', {icon: 5});
+			return false;
+	}
+var flag = true;
+planPrice = {};
+	$('#inputEdit .inputCard input[type="text"]').each(function(){
+		if($(this).val() == ''){
+			flag = false;
+			layer.msg('请输入要设置的' + $(this).attr('textVal') + '价格！', {icon: 5});
+			return false;
+		}else{
+			planPrice[$(this).attr('name')] = $(this).val();
+		}
+		
+	});
+
+	if(flag == false){
+		return ;
+	}
+loadi = layer.load(1, {shade: [0.5,'#000']});
+loadimsg = layer.msg('正在设置价格...',{icon: 16, time:60000000});
+cinemaGroupId = $('#cinemaGroup').val();
+	
+var plantype = {};
+$('#inputEdit .inputCard input[type="text"]').each(function(){
+	if($(this).val() == ''){
+		flag = false;
+		layer.msg('请输入要设置的' + $(this).attr('textVal') + '价格！', {icon: 5});
+		return false;
+	}else{
+		planPrice[$(this).attr('name')] = $(this).val();
+		plantype[$(this).attr('name')] = $('#inputEdit .inputCard input[name="discountType['+$(this).attr('name')+']"]:checked').val();
+	}
+	
+});
+
+$.ajax({		
+		url:'{:U()}',// 跳转到 action		
+		data:{'featureAppNo':featureAppNo,'planPrice':planPrice,'plantype':plantype,'cinemaGroupId':cinemaGroupId},		
+		type:'post',			 
+		dataType:'json',		
+		success:function(data) {
+				layer.close(loadi);
+				layer.close(loadimsg);
+				if(data.status == 0){
+					
+					layer.msg(data.content, {icon: 1});
+
+					// alert($("#cinemaLists input[type='radio']:checked").val());
+
+					// alert($("#cinemaLists input[type='radio']:checked").val());
+					getPlanList($("#cinemaLists input[type='radio']:checked").val());
+				}
+		},		
+		error : function() {
+				layer.close(loadi);
+				layer.close(loadimsg);
+				layer.msg('获取排期时间失败，请重试', {icon: 5});
+		}		
+		});
+
+
+	// alert(featureAppNo);
+}
+
+var jsonVal = {};
+var jsonStr = '';
+var tipText = '';
+var temp = '';
+var cinemaGroupId = '';
+function showTips (obj) {
+	jsonStr = $('#span'+$(obj).attr('id')).html();
+	cinemaGroupId = $('#cinemaGroup').val();
+	// alert(cinemaGroup);
+	// alert(jsonStr);
+	if(jsonStr != undefined){
+		// alert(jsonStr);
+		jsonVal = eval('(' + jsonStr + ')');
+		if(jsonVal[cinemaGroupId]){
+			tipText = '';
+			temp = '元 ';
+			$.each(jsonVal[cinemaGroupId],function(name,value) {
+				tipText += memberGroup[name] + '：' + value + temp;
+				
+			})
+
+			layer.tips(tipText, '#' + $(obj).attr('id'));
+			// alert(tipText);
+		}
+
+	}
+	// $.each(tipText,function(key,value) {
+	//	 alert(key);
+	// });
+}
+
+</script> 
+</block>

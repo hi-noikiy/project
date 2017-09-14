@@ -1,0 +1,53 @@
+{% if wap|default(false) %}
+{{ content() }}
+{% elseif ns_static|default(false) %}
+{{ content() }}
+{% else %}
+    <!DOCTYPE html>
+    <html>
+    <head lang="en">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ webType["name"] }}-福建第一人气帅哥美女主播娱乐互动平台！美女视频_美女直播_视频交友_真人秀场</title>
+        <script type="text/javascript">
+        var nsConfig = {
+            userUid:'{{ ns_userUid|default(0) }}',
+            pre:'{{ static_url("") }}',
+            iscn:'{{ ns_iscn|default(0) }}',
+            ns_source_login:'{{ ns_source_login|default(0) }}',
+            sourceType:'{{ ns_source|default(0) }}',
+            channelType:"{{ webType['channelType'] }}",
+            domain:'{{ webType["domain"] }}',
+            name:'{{ webType["name"] }}',
+            logoURL:'{{ static_url(webType["logoURL"]) }}',
+            roomLogoURL:'{{ static_url(webType["roomLogoURL"]) }}',
+            roomLoadingURL:'{{ static_url(webType["roomLoadingURL"]) }}',
+            GMQQ:['{{GMQQ[0]}}', '{{GMQQ[1]}}', '{{GMQQ[2]}}']
+        }
+        </script>
+        {% include "template/meta.html" %}
+        {% if ns_room|default('') == '' %}
+            {% include "template/link.html" %}
+        {% else %}
+            {% include "template/room_link.html" %}
+        {% endif %}
+    </head>
+    <body>
+        {% if ns_room|default('') == '' %}
+            {{ content() }}
+            {% include "template/commonHeader.html" %}
+        {% else %}
+            <div id="room_iframe_content">
+                {% include "template/commonHeader.html" %}
+                <iframe id="room_iframe" width="100%" height="100%" style="position:absolute;top:0;left:0;border:0;z-index:-1;opacity: 0; filter: alpha(opacity=0);"></iframe>
+            </div>
+            {{ content() }}
+        {% endif %}
+        {% if isAddGoogleCode|default(true) %}
+        <script type="text/javascript" src="{{static_url('ga'|ns_js)}}?1.2"></script>
+        {% endif %}
+        <script type="text/javascript" src="{{static_url('ns'|ns_js)}}?1.0"></script>
+    </body>
+    </html>
+{% endif %}

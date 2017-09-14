@@ -1,0 +1,175 @@
+<extend name='Public/base'/>
+
+<block name='body'>
+
+
+    <div class="main">
+        <div class="container">
+            <div class="plandata">
+                <div class="cinema-select">
+                    <div id="dropdown">
+                        <p></p>
+                        <ul>
+                        <foreach name='cinemalist' item='vo'>
+                            <li><a  rel="{$vo['cinemaCode']}">{$vo['cinemaName']}</a><p>地址：{$vo['address']}</p></li>
+                         </foreach>
+                            <div class="triangle-character tc-border">◆</div>
+                            <div class="triangle-character tc-background">◆</div>
+                        </ul>
+                        <input id="result" type="hidden">
+                        <div class="cinema-address">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="scrollBox" style="margin:0 auto">
+                    <div class="ohbox">
+                        <ul class="piclist time-list">
+
+                        </ul>
+                    </div>
+                    <div class="pageBtn">
+                        <span class="prev">&lt;</span>
+                        <span class="next">&gt;</span>
+                        <ul class="list"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="plan-con">
+                <div class="movie-lists">
+                    
+                </div>
+                
+            </div>
+
+            </div>
+
+    </div>
+
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+	
+	
+	
+    function getPlanlist(cinemaCode,planDate){
+	 	$('.movie-lists').html('');
+	    $.getJSON("{:U('planajax')}",{
+	        cinemaCode:cinemaCode,
+	        startTime:planDate,
+	        random:Math.random()
+	        }, function(data) {
+	            if(data){
+	            	if(data.planTime){
+	            	 	$('.piclist').html('');
+	            		var timestr='';
+	            		$.each(data.planTime,function(k,value){
+	            			timestr+='<li at='+value['time']+' onclick="getPlanlist(0,'+value['time']+')"';
+	            			if(k=='0'){
+	            				timestr+=' class="active"';
+	            			}
+	            			timestr+='><a>'+value['instr']+'</a></li>';
+	            		});
+	            		$('.piclist').html(timestr);
+	            	}else{
+	            		if(cinemaCode=='0'){
+	            			$('li[at='+planDate+']').attr('class','active').siblings().removeClass('active');
+	            		}
+	            	}
+					if(data.films){
+						var planstr='';
+						var indexSeat="{:U('seat')}";
+						 $.each(data.films,function(k,value){
+							 planstr+='<div class="movie-lists"><div class="movie-listItem"><div class="base-info"><div class="movie-left"><a><img src="'+value['image']+'"></a></div><div class="movie-right">'+
+							 '<div class="movie-baseInfo"><h2><a>'+value['filmName']+'</a></h2>'+
+	                         '<p>导演：'+value['director']+'</p><p>主演：'+value['cast']+'</p><div class="score1">'+Math.round(value['score']/10)+'.</div><div class="score2">'+value['score']%10+'</div></div></div></div><ul>';
+	                         $.each(value.planInfo,function(key,plan){
+	                        	 planstr+='<a  class="ticketBtn" href="'+indexSeat+'?featureAppNo='+plan['featureAppNo']+'"><span class="time">'+plan['startTime']+'</span><span class="current-cost">￥'+plan['memberPrice'];
+	                        	 if(data.hasuser!='1'){
+	                        		 planstr+='起';   		          
+	    	       		         }
+	                        	 planstr+='</span><span class="type">'+plan['copyLanguage']+plan['copyType']+'</span> <span class="prime-cost">'+plan['listingPrice']+'</span></a>';
+	                         });
+	                        planstr+=' </ul></div></div>';
+						 });
+						 $('.movie-lists').html(planstr);
+						 $('.ticketBtn').click(function(){
+							 //loading层
+								var index = layer.load(2, {
+									shade: [0.1,'#000'] //0.1透明度的白色背景
+								});
+							 })
+	            	}
+	            }
+            //滚动
+            var num = Math.ceil($('.piclist li').length/4);
+            $('.list').empty();
+            for(i=1;i<=num;i++){
+                $('.list').append('<li></li>');
+            }
+            jQuery(".scrollBox").slide({ titCell:".list li",pnLoop:"false", mainCell:".piclist", effect:"left",vis:4,scroll:4,delayTime:800,trigger:"click",easing:"easeOutCirc"});
+	    }) ;        
+	}
+    $(function(){
+
+/*下拉列表*/
+        //默认显示第一个
+        $("#dropdown > p").append($("#dropdown ul li:eq(0) a").clone().text()).attr('cinemaCode',$("#dropdown ul li:eq(0) a").attr('rel'));
+        $(".cinema-address > p").append($("#dropdown ul li:eq(0)").find('p').clone().text());
+        getPlanlist($("#dropdown ul li:eq(0) a").attr('rel'),0);
+
+        $("#dropdown > p").click(function(e){
+            e.stopPropagation();
+            var ul = $("#dropdown ul");
+            if(ul.css("display")=="none"){
+                ul.slideDown("fast");
+            }else{
+                ul.slideUp("fast");
+            }
+        });
+
+        $('.cinema-address > p').eq(0).show();
+
+        $("#dropdown ul li").each(function(i){
+
+            $(this).click(function(){
+				if($(this).find('a').attr('rel') != $("#dropdown > p").attr('cinemaCode')){
+					var txt = $(this).find('a').text();
+                    $("#dropdown > p").html(txt).attr('cinemaCode',$(this).find('a').attr('rel'));
+                    $(".cinema-address > p").empty().append($("#dropdown ul li").eq(i).find('p').clone().text());
+                    //切换影院
+                    getPlanlist($(this).find('a').attr('rel'),0);
+				}
+				 $("#dropdown ul").hide();
+            });
+
+        });
+
+        $(document).click(function(){
+            $("#dropdown ul").hide();
+        });
+
+        $('.movie-listItem').last().css({'border-bottom':'none'});
+
+/*滚动跟随*/
+        var scrollN = $('.plandata').offset().top;
+
+         $(window).scroll(function () {
+            var scrollH = $(this).scrollTop();
+            if (scrollH > scrollN) {
+                $('.plandata').addClass('scroll');
+                $('.plan-con').css('margin-top','220px');
+            } else {
+                $('.plandata').removeClass('scroll');
+                $('.plan-con').css('margin-top','50px');
+            }
+        });
+
+    });
+    
+    </script>
+</block>
+
+
+

@@ -1,0 +1,31 @@
+<extend name='Public/base'/>
+<block name='title'>活动列表</block>
+<block name='body'>
+<div class="views">
+  <div class="view view-main">
+	<div class="headerNav">
+        <div class="headerLeft"><a href="javascript:window.history.back()"><img src="__IMG__/common/back.png" height="100%" /></a></div>
+        <div class="title"><span>活动</span></div>
+        <div class="headerRight"></div>
+    </div>
+    <div class="content">
+        <div class="activity">
+        	 <?php if(empty($acts)){ ?>
+            	<div class="noBg">目前没有任何活动信息</div>
+               <?php }else{ ?>
+        	<ul>
+        	<volist name='acts' id='vo'>
+            	<li>
+                	<a href="{$vo['url']}">
+                    	<img src="__UPLOAD__/{$vo['img']}" width="100%" />
+                        <p>{$vo['title']}</p>
+                    </a>
+                </li>
+                </volist>
+            </ul>
+            <?php } ?>
+        </div>
+    </div>
+</div>
+</div>   
+</block>

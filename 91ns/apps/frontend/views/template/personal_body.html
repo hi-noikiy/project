@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  {% block title %}
+ {% endblock %}
+</title>
+<script type="text/javascript">
+  var ns_active = '{{ ns_active }}';
+</script>
+
+<link rel="stylesheet" type="text/css" href="{{static_url('personal'|ns_css)}}"/>
+<link rel="stylesheet" type="text/css" href="{{static_url('icon/personalicon'|ns_css)}}"/>
+<link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+<script type="text/javascript" src="{{static_url('jquery.min'|ns_js)}}"）></script>
+<script type="text/javascript" src="{{static_url('personal'|ns_js)}}"></script>
+{% block head %}
+{% endblock %}
+</head>
+<div class="main">
+  <div class="head">
+  <!--头部导航-->
+    <div class="head-content">
+     <img src="../../../../public/web/cssimg/91ns/logo.png"  height="40" />
+     
+     <!--导航文字-->
+     <div class="head-daohang">
+       <div class="head-div"><a href="#">首页</a></div>
+       <div class="head-div"><a href="#">排行榜</a></div>
+       <div class="head-div"><a href="#">商城</a></div>
+       <div class="head-div"><a href="#">充值</a></div>
+    </div>
+    <!--app下载-->
+    <div class="head-app pull-left cu-a">
+    <div class="app-img"></div>
+     <div class="app-txt">APP下载</div>
+    </div>
+    
+    <div class="info pull-right">
+    
+    <!--邮件-->
+    <div class="head-mail pull-left">
+    <a href="#"> <img /></a>
+    </div>
+    
+    <!--头像-->
+      <div class="head-pic pull-left">
+       <a href="#"><img src="../../../../public/web/cssimg2/upload/113_113.jpg" width="40" height="40" /></a>
+      </div>
+      
+     <!--我要直播-->
+     <div class="head-zhibo pull-left cu-a">
+       我要直播
+     </div>
+     
+     </div>
+    </div>
+ 
+  
+  <!--信息-->
+    <div class="head-info">
+    <div class="info-content  pull-re">
+    <!--头像信息-->
+     <div class="con-pic pull-left">
+       <img src="../../../../public/web/cssimg2/upload/113_113.jpg" width="113" height="113" alt="信息头像" />
+     </div>
+     
+     <!--文字信息-->
+     <div class="con-text pull-left">
+        <!--第一行-->
+       <div class="con-title">
+         <div class="con-text-name pull-left">
+           迷路的鱼什么的
+         </div>
+         <div class="con-xg sprite-concern change2 pull-left cu-a">
+         </div>
+      </div>
+         <!--第二行-->
+       <div class="con-ID">
+         (12345678)
+       </div>
+       
+         <!--第三行-->
+         <div class="con-cf">
+         <div class="con-coin pull-left">
+            <div class=" sprite-concern coin pull-left"></div>
+            <div class="coin-txt pull-left">9999</div>
+         </div>
+         <div class="con-fenge pull-left">|</div> 
+         <div class="con-beans pull-left">
+            <div class=" sprite-concern beans pull-left"></div>
+            <div class="coin-txt">8888</div>
+         </div>
+         </div>
+       
+     
+     
+     </div>
+     
+     <!--进度条块-->
+     <div class="con-jdt pull-ab">
+          <!--地位--> 
+          
+       <div class="con-dw clearfix pull-left pull-re ">
+           <div class="pull-ab info-div">
+             <div style="margin-top:-2px" >
+                <div class="dw-info-txt">还需消费</div>
+                <div class="dw-info-num">1000</div>
+                <div class="dw-info-txt">个聊币</div>
+             </div>
+                <div class="san pull-re"><!--用户制作向下箭头-->
+                    <div class="san-bai pull-ab"></div>
+                </div>
+          </div>    
+         <!--地位的图标-->
+         <div class="con-dw-tb  sprite-fh_level fh15 dw-gj ">
+             
+
+         </div>
+         <!--显示进度条-->
+         <div class="con-dw-jdt pull-left pull-of">
+           <div class="con-dw-jd pull-left"></div>
+         </div>
+         <!--进步图标-->
+         <div class="con-dw-tb  sprite-fh_level fh16 pull-left  dw-gw" style="margin-left:4px"></div>
+       </div>
+       
+         <!--等级-->
+       <div class="con-dj pull-left pull-re">
+
+            <!--显示框-->
+            <div class="info-div2 pull-ab">
+               <div style="margin-top:-2px">
+                  <div class="dw-info-txt">还需消费</div>
+                <div class="dw-info-num">1000</div>
+                <div class="dw-info-txt">个聊币</div>    
+                </div>  
+                 <div class="san pull-re"><!--用户制作向下箭头-->
+                    <div class="san-bai pull-ab"></div>
+                </div>        
+
+            </div>
+
+
+
+
+             <!--等级图标-->
+          <div class="sprite-zb_level zb19 pull-left dj-26">
+          </div>
+            <!--显示进度条-->
+          <div class="con-dw-jdt pull-left">
+             <div class="con-dj-jd pull-left"></div>
+          </div>
+          <div class="sprite-zb_level zb20 pull-left dj-27" style="margin-left:4px">
+          </div>
+       </div>
+     </div>
+     
+     <!--充值按钮-->
+    <a href="#"> <div class="con-cz sprite-personal paybut pull-ab">充值
+     </div></a>
+    </div>
+     </div>
+  </div>
+  
+  
+  <!--内容块-->
+  <div class="content">
+    <div class="content-div clearfix">
+    
+      <!--内容块左边导航-->
+
+        <div class=" content-left pull-left clearfix">
+          <div urlname="props" class="siderbarprops sider-list clearfix sider-openurl">
+            <div class="sider-list-div">
+              <div class="sider-list-icon pull-left sprite-aa prop"></div><!--图标-->
+              <div class="sider-list-txt pull-left clearfix">我的道具</div>
+              <div class="sider-list-num pull-left fon-num">(24)</div>
+            </div>
+          </div>  
+
+          <div urlname="concern" class="siderbarconcern sider-list clearfix  sider-openurl">
+            <div class="sider-list-div">
+              <div class="sider-list-icon pull-left sprite-aa attention"></div><!--图标-->
+              <div class="sider-list-txt pull-left clearfix">我的关注</div>
+              <div class="sider-list-num pull-left fon-num">(24)</div>
+            </div>
+          </div>  
+
+          <div urlname="myfans" class="siderbarmyfans sider-list clearfix sider-openurl">
+            <div class="sider-list-div">
+              <div class="sider-list-icon pull-left sprite-aa fans"></div><!--图标-->
+              <div class="sider-list-txt pull-left clearfix">我的粉丝</div>
+              <div class="sider-list-num pull-left">(<div class="inline  fon-num">24</div>)</div>
+            </div>
+          </div>   
+
+
+          <div  class="sider-list list-down-div clearfix siderbarmyinform">
+            <div class="sider-list-div">
+              <div class="sider-list-icon pull-left sprite-aa inform"></div><!--图标-->
+              <div class="sider-list-txt pull-left clearfix">我的通知</div>
+              <div class="sider-list-arrows pull-right sprite-aa arrows"></div>
+            </div>
+          </div>  
+          <!--下拉-->
+          <div pagename="myinform" class="sider-down-list clearfix div-hiden ">
+            <div urlname="mynews" title="我的消息" class="sider-down-txt "><div class="inline">我的消息</div>(<div class="inline">17</div>)</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="myapply" title="我的申请" class="sider-down-txt "><div class="inline">我的申请</div>(<div class="inline">17</div>)</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="myapproval" title="我的审批" class="sider-down-txt "><div class="inline">我的审批</div>(<div class="inline">17</div>)</div>
+            
+          </div>      
+
+
+          <div class="sider-list clearfix  list-down-div siderbarsavecenter ">
+            <div class="sider-list-div">
+              <div class="sider-list-icon pull-left sprite-aa safety"></div><!--图标-->
+              <div class="sider-list-txt pull-left clearfix">安全中心</div>
+              <div class="sider-list-arrows pull-right sprite-aa arrows"></div>
+            </div>
+          </div>  
+          <!--下拉-->
+          <div pagename="savecenter" class="sider-down-list clearfix div-hiden">
+            <div urlname="binding" title="绑定手机" class="sider-down-txt ">绑定手机</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="savequestion" title="安全问题" class="sider-down-txt ">安全问题</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="changehead" title="修改头像" class="sider-down-txt ">修改头像</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="changepsw" title="修改密码" class="sider-down-txt ">修改密码</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="findusername" title="找回用户名" class="sider-down-txt ">找回用户名</div>
+          </div>
+
+          <div class="mybillmenu sider-list clearfix  list-down-div siderbarmybill">
+            <div class="sider-list-div">
+              <div class="sider-list-icon pull-left sprite-aa bill"></div><!--图标-->
+              <div class="sider-list-txt pull-left clearfix">我的账单</div>
+              <div class="sider-list-arrows pull-right sprite-aa arrows"></div>
+            </div>
+          </div>  
+          <!--下拉-->
+          <div pagename="mybill" class="sider-down-list clearfix div-hiden">
+            <div urlname="getpresents" title="收到礼物" class="sider-down-txt  ">收到礼物</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="sentpresents" title="送出礼物" class="sider-down-txt ">送出礼物</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="payrecord" title="充值记录" class="sider-down-txt ">充值记录</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="consume" title="消费记录" class="sider-down-txt ">消费记录</div>
+          </div>
+
+
+          <div class="imanchormenu sider-list clearfix  list-down-div siderbarimanchor">
+            <div class="sider-list-div">
+              <div class="sider-list-icon pull-left sprite-aa anchors"></div><!--图标-->
+              <div class="sider-list-txt pull-left clearfix">我是主播</div>
+              <div class="sider-list-arrows pull-right sprite-aa arrows"></div>
+            </div>
+          </div>  
+          <!--下拉-->
+          <div pagename="imanchor" class="sider-down-list clearfix div-hiden">
+            <div urlname="aboutedit" title="相关编辑" class="sider-down-txt ">相关编辑</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="roommanage" title="我的房管" class="sider-down-txt ">我的房管</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="myfamil" title="我的家族" class="sider-down-txt ">我的家族</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="myincome" title="我的收益" class="sider-down-txt ">我的收益</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="livedata" title="直播数据" class="sider-down-txt ">直播数据</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="livenotes" title="直播须知" class="sider-down-txt ">直播须知</div>
+            <div class="cut-line pull-right"></div>
+            <div urlname="#" class="sider-down-txt ">下载直播伴侣</div>
+          </div>    
+
+
+
+
+      </div>
+
+      <div class="content-right pull-right">
+        {% block content %}
+        {% endblock %}
+      
+      </div>
+    
+    </div>
+ 
+  
+   <!--页脚部分-->
+  <div class="bottom d-absolute" style="border:1px sold blue">
+     
+   <div class="bottom-con pull-of">
+        <div class="bottom-up">
+          <a href="#">首页</a>-
+          <a href="#">广场</a>-
+          <a href="#">排行榜</a>-
+          <a href="#">充值</a>-
+          <a href="#">商务合作</a>-
+          <a href="#">加入我们</a>
+        </div>
+        <div class="bottom-down">
+        闽ICP备06050721号.Copyright&copy;1998-2015 91ns.All Rights Resever
+        </div>
+   
+   
+   </div>
+  </div>
+ </div> 
+</div>
+<body>
+</body>
+</html>

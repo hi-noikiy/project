@@ -1,0 +1,2 @@
+ post=a:4:{s:7:"game_id";s:1:"9";s:9:"imageName";s:32:"9C3697169298CEA46B1DCC6D42750B3F";s:4:"sign";s:32:"f216dc2a25e5fd0dd412403b582351cb";s:3:"act";s:3:"end";}, file=a:1:{s:8:"filepath";a:5:{s:4:"name";s:36:"9C3697169298CEA46B1DCC6D42750B3F.png";s:4:"type";s:24:"application/octet-stream";s:8:"tmp_name";s:14:"/tmp/phpekXDh1";s:5:"error";i:0;s:4:"size";i:181940;}},2017-03-29 18:02:02
+ post=a:0:{}, file=a:1:{s:8:"filepath";a:5:{s:4:"name";s:36:"9C3697169298CEA46B1DCC6D42750B3F.png";s:4:"type";s:0:"";s:8:"tmp_name";s:0:"";s:5:"error";i:3;s:4:"size";i:0;}},2017-03-29 18:02:04

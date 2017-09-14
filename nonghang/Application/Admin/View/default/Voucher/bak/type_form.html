@@ -1,0 +1,76 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="dataform" id="dataform">
+	<div class="formBox">
+    <div class="inputSelect">
+                    <span>影院分组：</span>
+                    <select name="data[cinemaGroupId]">
+                    <foreach name="cinemaGroup" item="vo" key="k" >
+                        <option value="{$vo.id}" <if condition="$voucherTypeInfo['cinemaGroupId'] == $vo['id']"> selected="selected"</if>>{$vo.groupName}</option>
+                    </foreach>
+                     </select>
+                </div>
+        <div class="inputText" >
+            <span>票券类型</span>
+            <input type="text" name="data[typeName]"  placeholder="请输入票券类型名称" value="{$voucherTypeInfo.typeName}">
+        </div>
+        <div class="inputText" >
+            <span>价值</span>
+            <input type="text" name="data[typeValue]"  placeholder="请输入价值" value="{$voucherTypeInfo.typeValue}">
+        </div>
+        <div class="inputText" >
+            <span>所属类型：</span>
+            <input type="radio" name="data[typeClass]"  value="0" checked="checked" id="way1" value="0"><label for="way1">兑换</label>
+            <input type="radio" name="data[typeClass]"  value="1" <if condition="$voucherTypeInfo['typeClass'] == 1"> checked="checked"</if> id="way2" value="1"><label for="way2">立减</label>
+            <input type="radio" name="data[typeClass]"  value="2" <if condition="$voucherTypeInfo['typeClass'] == 2"> checked="checked"</if> id="way3" value="2"><label for="way3">卖品</label>
+        </div>
+
+         <div class="inputText" >
+            <span>排序</span>
+            <input type="text" name="data[sortOrder]"  placeholder="请输入序号" value="{$sortOrder ? $sortOrder : $voucherTypeInfo.sortOrder}">
+        </div>
+    </div>
+	<div class="formBtn">
+        <a href="javascript:ajaxSubmit();" class="button">确认</a>
+         <a href="javascript:cancelLayer();" class="cancel">取消</a>
+        
+    </div>
+    <input type="hidden" name="typeId"  placeholder="请输入序号" value="{$voucherTypeInfo.typeId}">
+</form>
+</block>
+<block name="script">
+    <script type="text/javascript">
+    function ajaxSubmit () {
+        // alert('1');
+        $("#dataform").ajaxSubmit({  
+            type:"post",  //提交方式  
+            dataType:"json", //数据类型  
+            url:"{:U()}", //请求url 
+            success:function(json){ //提交成功的回调函数  
+                if (json.status == 1) {
+                    layer.alert(json.content);
+                }else if(json.status == 0){
+
+
+                    layer.confirm(json.content, {
+                    btn: ['返回列表','<?php if(intval($cinemaInfo['cinemaCode']) == 0){echo '继续添加';}else{echo '继续修改';}?>'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    parent.location.reload();
+                }, function(){
+                    location.reload();
+                });
+                }
+
+
+                // alert('11');
+            }  
+        });
+    }
+
+    function cancelLayer () {
+       parent.layer.closeAll();
+    }
+    </script>
+</block>
+

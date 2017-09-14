@@ -1,0 +1,38 @@
+<div id="ruledialog" style="display:none">
+    <form id="ruleDialogForm">
+        <div>
+            <span>满足以下</span>
+            <select name="conditions" style="width: 110px;">
+                <option value="2">全部且</option>
+                <option value="1">任意或</option>
+            </select>
+            <span>条件</span>
+            <button id="btnConditions" type="button" class="btn btn-purple" style="height: 30px;">添加条件</button>
+        </div>
+        <div style="height: 210px;width: 665px;border-radius: 4px;background-color: #f9f9f9;margin: 10px auto 30px;border: 1px solid #cccccc;overflow:auto;">
+            <div id="conditionsclone" style="display: none">
+                <div class="conditions-box" style="height: 40px;line-height: 40px;border-bottom: 1px dashed #cccccc;">
+                    <span style="margin-left: 40px;">主播等级</span>
+
+                    <select name="conditionsValue" class="selconditions" style="width: 110px;margin-top: 5px;margin-left: 40px;">
+                    </select>
+
+                    <select name="level" class="sellevel" style="width: 200px;margin-top: 5px;margin-left: 40px;">
+                        <option value="">请选择主播等级</option>
+                    </select>
+
+                    <div class="font font20" style="cursor: pointer; color: red; width: 22px;height: 22px;margin:0 0 -4px 10px;display: inline-block;">
+                        <span class="icon-minus-sign" onclick="removeCondbox(this)"></span>
+                    </div>
+                </div>
+            </div>
+            <div id="conditionsclone2"></div>
+
+        </div>
+        <div><span>请拖动指针设置分成比例：</span></div>
+        <div style="width: 660px;">
+            <div id="de_range" style="margin-top: 45px; margin-left: 10px">
+            </div>
+        </div>
+    </form>
+</div>

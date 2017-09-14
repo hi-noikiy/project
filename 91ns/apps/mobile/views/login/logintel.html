@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/activities.star'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/login'|ns_css)}}"/>
+</head>
+<body>
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+    <div class='pos_rel'>
+        <img src='{{static_url("web/cssimg/mobile/screen/top_bg.jpg")}}' width="100%"/>
+        <p class='title pos_ab'>
+        短信验证码登录
+        </p>
+        <img id="goBack" src='{{static_url("web/cssimg/mobile/screen/goback.png")}}' width="4%" class='pos_ab back' />
+    </div>
+    <div class='starContent1 pos_rel'>
+        <div class="telLoginDiv">
+            <label class="telLabel">手机号</label>
+            <input id="telText" class="telText" type="text">
+            <p id="userRegisterGetSMS"class='fr yzm'>
+                <span>获取验证码</span>
+                <i class="_all_code" style="display:none;">
+                    <i>60</i>
+                </i>
+            </p>
+            <label class="telLabel1" style="">验证码</label>
+            <input id="telcodetext" class="telcodetext" type="text" placeholder="请输入手机短信中的验证码">
+        </div>
+        <div class="telLoginBtn" onclick="loginTelSubmit()">
+            验证并登录
+        </div>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+<!-- 多账号登录 -->
+<div id="selUserAct" class="selUserAct">
+    <div class="header">请选择要登录的账户</div>
+    <img class="ns_icon_close" src="{{static_url('web/cssimg/mobile/login/close.png')}}">
+    <ul class="actBody">
+
+    </ul>
+</div>
+<div id="selUserActBg"></div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/logintel'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

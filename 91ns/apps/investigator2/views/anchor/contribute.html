@@ -1,0 +1,148 @@
+<div id="breadcrumb">
+<a href="/anchor" class="go-to-home tip-bottom font font18" data-original-title="Go to Home">
+<i class="icon-arrow-left"></i> 返回 &nbsp;
+</a> 
+<a href="#" class="font font18"> &nbsp;&nbsp;<span>主播 &gt</span></a>
+<a href="#" class="font font18"> <span>{{anchorInfo['status']}}&gt</span></a>
+<a href="#" class="current font font18"> <span>主播详情</span></a>
+</div>
+
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <div class="user-info">
+        <img alt="" src="{{anchorInfo['avatar']}}">
+
+        <p>
+            <span class="font font20 cr-dpe">{{anchorInfo['nickName']}}</span>
+        </p>
+        <p>
+            <span class="font font20 cr-dpe" id="_uid">{{anchorInfo['uid']}}</span>
+            <input id="in_uid" type="hidden" value="{{anchorInfo['uid']}}">
+        </p>
+        <p>
+            <span class="i-actor sprite-zb_level zb{{anchorInfo['level2']}}"></span><span class="font font20 cr-dpe">{{anchorInfo['name']}}</span>
+        </p>
+        <p>
+            <!-- <span class="font font20 cr-dpe">{{anchorInfo['status']}}</span> -->
+            <span class="font font20 cr-dpe">
+                {{anchorInfo['status']}}
+                {% if anchorInfo['status']=='已签约' and !familyId %}<!--  and !familyId  -->
+                <button class="btn" onclick="unbind({{anchorInfo['uid']}})">解约</button>
+                {% endif %}
+            </span>
+        </p>
+    </div>
+  <div class="progtrckr-box" style="top:260px;">
+    <div class="progtrckrline" ></div>
+    <ul class="progtrckr" style="width: 212px;">
+        <li ><i class="custom-icon custom-icon-point"></i><a href="/anchor/anchorinfo?uid={{anchorInfo['uid']}}">个人资料</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/income?uid={{anchorInfo['uid']}}">收益</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/fans?uid={{anchorInfo['uid']}}">粉丝</a></li>
+        <li class="active"><i class="custom-icon custom-icon-point"></i><a href="/anchor/contribute?uid={{anchorInfo['uid']}}">贡献</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/trend?uid={{anchorInfo['uid']}}">趋势分析</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/worktable?uid={{anchorInfo['uid']}}">导出工作情况表</a></li>
+    </ul>
+  </div>
+</div>
+<!--end sidebar-menu-->
+
+
+<div id="content">
+
+<div class="container-fluid">
+
+	<div class="content-box" style="background: #FFF; text-align: left; margin-top:20px;  padding-bottom: 40px;">
+		<ul class="tab-nav clearfix">
+			<li class="tabs-nav active"><a href="#box1" onclick="getData('thisMonth');">本月</a></li>
+			<li class="tabs-nav"><a href="#box2" onclick="getData('lastMonth');">上月</a></li>
+		</ul>
+		<div class="hr-d7"></div>
+
+		<div id="box1" class="box-pane" style="margin: 30px 25px 10px 25px;">
+            <table  class="table with-check table-purple">
+                <thead>
+                <tr>
+                    <th>排名</th>
+                    <th>头像</th>
+                    <th>uid</th>
+                    <th>昵称</th>
+                    <th>贡献值（聊币）</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+		</div>
+        <div id="box2" class="box-pane" style="margin: 30px 25px 10px 25px;display: none">
+            <table  class="table with-check table-purple">
+                <thead>
+                <tr>
+                    <th>排名</th>
+                    <th>头像</th>
+                    <th>uid</th>
+                    <th>昵称</th>
+                    <th>贡献值（聊币）</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+		{% include "common/pagination.html" %}
+	</div>
+</div>
+</div>
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<script type="text/javascript" src="{{static_url('web/js/91ns.anchor1.js')}}"></script>
+<script type="text/javascript">
+$(function(){
+	$('body').addClass('anchorinfo');
+	  //$('#dete').datepicker({arrows:true});
+    $('.tabs-nav').click(function(){
+        $('.tabs-nav.active').removeClass('active');
+        $(this).addClass('active');
+        var id=$(this).children('a').attr('href');
+        $('.box-pane').hide();
+        $(id).show();
+        return false;
+    });
+    //初始化页面（本月数据，默认前20）
+    getData('thisMonth');
+});
+function getData(type,index){
+    var data={};
+    data.type = type;
+    data.uid = $('#in_uid').val();
+    data.page=index||1;
+    data.pageSize=global.pageSize;
+    $.ajax({
+        type: "POST",
+        data: data,
+        url: '/ajax/contributionAnchor',
+        dataType: 'json',
+        success: function (res) {
+            var data = res.data;
+            $('.box-pane tbody').html('');
+            var count=document.getElementById('count');
+            count.innerHTML=data.count;
+            for(var i=0;i<data.list.length;i++){
+                $('.box-pane tbody').append(gethtml(data.list[i]));
+            }
+            if(!index||index==0){
+                utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                    page_index+= 1;
+                    getData(type,page_index);
+                });
+            }
+        }
+    })
+}
+function gethtml(data){
+    var html='';
+    html+='<tr><td>'+data.num+'</td><td><img style="border-radius:50%; width:50px;" src="'+data.avatar+'"></td><td>'+data.uid+'</td><td>'+data.nickName+'</td><td>'+data.income+'</td></tr>';
+    return html;
+}
+</script>
+

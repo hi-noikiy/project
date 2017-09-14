@@ -1,0 +1,102 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="" id="dataform">
+<div class="formBody">
+    <div class="queryBox">
+        <div class="inputText" >
+            <span>方案名称</span>
+            <input type="text" name=""  placeholder="请输入方案名称" value="">
+        </div>
+    </div>
+    <ul class="tabbtn" id="tabs">
+		<li><a href="tab1">贵宾券</a></li>
+		<li><a href="tab2">市场券</a></li>
+		<li><a href="tab3">特价券</a></li>
+		<li><a href="tab4">通兑券A</a></li>
+	</ul><!--tabbtn end-->
+	<div class="tabcon" id="tablist">
+		<div class="sublist" id="tab1">
+			<div class="subitem">
+            	<span>星期一&nbsp;时段：</span><input type="text" name="" value="" class="time"  />-<input type="text" name="" value="" class="time"  /><span>2D价格：</span><input type="text" /> <span>3D价格：</span><input type="text" /><span>IMAX价格：</span><input type="text" /><span>可用数量：</span><input type="text" />
+            </div>
+            <div class="subitem">
+            	<span>星期二&nbsp;时段：</span><input type="text" name="" value="" class="time"  />-<input type="text" name="" value="" class="time"  /><span>2D价格：</span><input type="text" /> <span>3D价格：</span><input type="text" /><span>IMAX价格：</span><input type="text" /><span>可用数量：</span><input type="text" />
+            </div>
+            <div class="subitem">
+            	<span>星期三&nbsp;时段：</span><input type="text" name="" value="" class="time"  />-<input type="text" name="" value="" class="time"  /><span>2D价格：</span><input type="text" /> <span>3D价格：</span><input type="text" /><span>IMAX价格：</span><input type="text" /><span>可用数量：</span><input type="text" />
+            </div>
+             <div class="subitem">
+            	<span>星期四&nbsp;时段：</span><input type="text" name="" value="" class="time"  />-<input type="text" name="" value="" class="time"  /><span>2D价格：</span><input type="text" /> <span>3D价格：</span><input type="text" /><span>IMAX价格：</span><input type="text" /><span>可用数量：</span><input type="text" />
+            </div>
+             <div class="subitem">
+            	<span>星期五&nbsp;时段：</span><input type="text" name="" value="" class="time"  />-<input type="text" name="" value="" class="time"  /><span>2D价格：</span><input type="text" /> <span>3D价格：</span><input type="text" /><span>IMAX价格：</span><input type="text" /><span>可用数量：</span><input type="text" />
+            </div>
+             <div class="subitem">
+            	<span>星期六&nbsp;时段：</span><input type="text" name="" value="" class="time"  />-<input type="text" name="" value="" class="time"  /><span>2D价格：</span><input type="text" /> <span>3D价格：</span><input type="text" /><span>IMAX价格：</span><input type="text" /><span>可用数量：</span><input type="text" />
+            </div>
+             <div class="subitem">
+            	<span>星期日&nbsp;时段：</span><input type="text" name="" value="" class="time"  />-<input type="text" name="" value="" class="time"  /><span>2D价格：</span><input type="text" /> <span>3D价格：</span><input type="text" /><span>IMAX价格：</span><input type="text" /><span>可用数量：</span><input type="text" />
+            </div>
+		</div><!--tabcon end-->
+		<div class="sublist" id="tab2">
+         <div class="subitem">
+			<span>星期日&nbsp;时段：</span><input type="text" name="" value="" class="time"  />-<input type="text" name="" value="" class="time"  /><span>2D价格：</span><input type="text" /> <span>3D价格：</span><input type="text" /><span>IMAX价格：</span><input type="text" /><span>可用数量：</span><input type="text" />
+            </div>
+            <div class="subitem">
+            	<span>星期日&nbsp;时段：</span><input type="text" name="" value="" class="time"  />-<input type="text" name="" value="" class="time"  /><span>2D价格：</span><input type="text" /> <span>3D价格：</span><input type="text" /><span>IMAX价格：</span><input type="text" /><span>可用数量：</span><input type="text" />
+            </div>
+            <div class="subitem">
+            	<span>星期日&nbsp;时段：</span><input type="text" name="" value="" class="time"  />-<input type="text" name="" value="" class="time"  /><span>2D价格：</span><input type="text" /> <span>3D价格：</span><input type="text" /><span>IMAX价格：</span><input type="text" /><span>可用数量：</span><input type="text" />
+            </div>
+		</div><!--tabcon end-->
+		<div class="sublist" id="tab3">
+			
+		</div><!--tabcon end-->
+		<div class="sublist" id="tab4">
+			
+		</div><!--tabcon end-->
+	</div><!--tabcon end-->
+
+	
+    <div class="formBtn">
+        <a href="#" class="button">确认</a>
+         <a href="#" class="cancel">取消</a>
+        
+    </div>
+</div>
+</form>
+</block>
+<block name="script">
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+<script type="text/javascript" src="__STATIC__/jqdatetiem/jquery.datetimepicker.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#tablist div.sublist").hide(); // Initially hide all content
+	$("#tabs li:first").attr("id","current"); // Activate first tab
+	$("#tablist div:first").fadeIn(); // Show first tab content
+    
+    $('#tabs a').click(function(e) {
+        e.preventDefault();        
+        $("#tablist div.sublist").hide(); //Hide all content
+        $("#tabs li").attr("id",""); //Reset id's
+        $(this).parent().attr("id","current"); // Activate this
+        $('#' + $(this).attr('href')).fadeIn(); // Show content for current tab
+    });
+});
+	
+//左右滑动选项卡切换
+//	$("#tab").tabso({
+//		cntSelect:"#tablist",
+//		tabEvent:"mouseover",
+//		tabStyle:"normal"
+//	});
+
+	
+	
+$('.time').datetimepicker({
+	datepicker:false,
+	format:'H:i',
+	step:5
+});
+</script>
+</block>

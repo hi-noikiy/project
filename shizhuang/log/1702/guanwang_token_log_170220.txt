@@ -1,0 +1,2 @@
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:0:"";s:4:"sign";s:32:"42d4825e751e2689359ab0b751b463fd";s:8:"username";s:36:"E1FCAC41-80D0-43BE-A86A-00480B1F6B25";}, 2017-02-20 15:36:45
+sql=insert into web_token (account_id, game_id, token, addtime) values ('1652144', '9', 'VmIMZgNtDmVdDAg5C2ZXbFY6UHVYewl5D2AFcgVvCG9RbwxiBTsASw4xDxEMRgRDXUsCNQNkAC4LOQM2AkJTZVYoDDMDMw5CXRYIfQtDV2lWNVASWCMJOg81BTQFOQg_bUUAMNgVAADgOQg9lDDAEJF1pAmIDNgBsC3QDaAJyUwpWbAxjAz0OMV1lCGULMFdgVjdQZ1goCW8PfQVwBWgIfFFnDGMFOwA_aDjQPbwwyBDddPwI3A2cAMws0', '1487576205'), 2017-02-20 15:36:45

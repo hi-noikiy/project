@@ -1,0 +1,491 @@
+<extend name='Public/base'/>
+<block name='body'>
+<div class="content">
+    <div class="leftMenu">
+        <ul>
+                {$leftMenu}
+        </ul>
+    </div>
+    <div class="rightContent">
+        <div class="tableList">
+            <a class="addButton" href="javascript:hall();">添加影厅信息</a>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <thead>
+                <tr>
+                  <td width="10%">序号</td>
+                  <td width="30%">影厅名称</td>
+                  <td width="10%">影厅编号</td>
+                  <td width="10%">座位数</td>
+                  <td width="5%">座位单价</td>
+                  <td width="5%">保底人数</td>
+                  <td width="20%">状态</td>
+                  <td width="20%">操作</td>
+                </tr>
+              </thead>
+              <tbody>
+
+               <volist name='list1' id='v'> 
+                <tr>
+                  <td>{$v.id}</td>
+                  <td>{$v.topicName}</td>
+                  <td>{$v.videoCode}</td>
+                  <td>{$v.seating}</td>
+                  <td>{$v.unitPrice}</td>
+                  <td>{$v.passNum}</td>
+                  <td>
+                    <input type="radio" name="state{$v.id}" onclick='set_state({$v.id},1);' 
+                    <?php if($v['state']==1):?>
+                      checked="checked"
+                    <?php endif;?>
+                    /><label for="on1">启用</label>
+                    <input type="radio" name="state{$v.id}" onclick='set_state({$v.id},2);' 
+                    <?php if($v['state']==2):?>
+                      checked="checked"
+                    <?php endif;?>
+                    /><label for="off1">停用</label>
+                  </td>
+                  
+                  <?php if($v['classesd']):?>
+                  <td><a href="javascript:noedithall({$v.id});">修改</a>|<a href="javascript:nohall_delete({$v.id});">删除</a></td>
+                  <?php else:?>
+                  <td><a href="javascript:edithall({$v.id});">修改</a>|<a href="javascript:hall_delete({$v.id});">删除</a></td>
+                  <?php endif;?>
+                </tr>
+                </volist>
+               
+                
+              </tbody>
+            </table>
+        </div>
+        <div class="tableList">
+            <a class="addButton" href="javascript:package();">添加套餐信息</a>
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <thead>
+                <tr>
+                  <td width="5%">序号</td>
+                  <td width="15%">套餐名称</td>
+                  <td width="30%">套餐详细</td>
+                  <td width="10%">套餐价格</td>
+                  <!--<td width="10%">购票连带优惠</td>-->
+                   <td width="20%">状态</td>
+                  <td width="20%">操作</td>
+                </tr>
+              </thead>
+              <tbody>
+                <volist name='list2' id='v'> 
+                <tr>
+                  <td>{$v.id}</td>
+                  <td>{$v.name}</td>
+                  <td>{$v.detail}</td>
+                  <td>{$v.price}</td>
+                  <!--<td>
+                    <?php if($v['state']==1):?>
+                    是
+                    <?php else: ?>
+                    否
+                    <?php endif;?>
+    
+                  </td>-->
+                   <td>
+                    <input type="radio" name="package_status{$v.id}" onclick='set_package_status({$v.id},1);' 
+                    <?php if($v['status']==1):?>
+                      checked="checked"
+                    <?php endif;?>
+                    /><label for="on1">启用</label>
+                    <input type="radio" name="package_status{$v.id}" onclick='set_package_status({$v.id},2);' 
+                    <?php if($v['status']==2):?>
+                      checked="checked"
+                    <?php endif;?>
+                    /><label for="off1">停用</label>
+                  </td>
+                  <td><a href="javascript:editpackage({$v.id});">修改</a>|<a href="javascript:package_delete({$v.id});">删除</a></td>
+                </tr>
+                </volist>
+              </tbody>
+            </table>
+        </div>
+        <div class="addInfo">
+        	
+            <div class="tableList">
+            	<a class="addButton" href="javascript:other();">添加附加信息</a>
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <thead>
+                    <tr>
+                      <td width="10%">序号</td>
+                      <td width="30%">服务类别</td>
+                      <td width="20%">服务价格</td>
+                       <td width="20%">状态</td>
+                      <td width="20%">操作</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <volist name='list3' id='v'>
+                    <tr>
+                      <td>{$v.id}</td>
+                      <td>{$v.name}</td>
+                      <td>￥{$v.price}</td>
+                             <td>
+                        <input type="radio" name="other_status{$v.id}" onclick='set_other_status({$v.id},1);' 
+                        <?php if($v['status']==1):?>
+                          checked="checked"
+                        <?php endif;?>
+                        /><label for="on1">启用</label>
+                        <input type="radio" name="other_status{$v.id}" onclick='set_other_status({$v.id},2);' 
+                        <?php if($v['status']==2):?>
+                          checked="checked"
+                        <?php endif;?>
+                        /><label for="off1">停用</label>
+                      </td>
+                      <td><a href="javascript:editother({$v.id});">修改</a>|<a href="javascript:other_delete({$v.id});">删除</a></td>
+                    </tr>
+                    </volist>
+                   
+                  </tbody>
+                </table>
+                <div class="pagination">
+                  <div class="page"> {$page} </div>
+                </div>
+        	</div>
+        </div>
+        <div class="addInfo">
+            <div class="tableList">
+            	<a class="addButton" href="javascript:pay();">添加付款信息</a>
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                  <thead>
+                    <tr>
+                      <td width="10%">序号</td>
+                      <td width="30%">付款类别</td>
+                      <td width="20%">付款说明</td>
+                      <td width="20%">付款比列</td>
+                      <td width="20%">操作</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <volist name='list4' id='v'>
+                    <tr>
+                      <td>{$v.id}</td>
+                      <td>{$v.name}</td>
+                      <td>{$v.detail}</td>
+                      <td>{$v.ratio}%</td>
+                      <td><a href="javascript:editpay({$v.id});">修改</a></td>
+                    </tr>
+                  </volist>
+                  </tbody>
+                </table>
+                <div class="pagination">
+                  <div class="page"> {$page} </div>
+                </div>
+        	</div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+	/*添加Banner信息*/
+	function banner(){
+		layer.open({
+			title :'添加首页广告',
+			type: 2,
+			area: ['400px', '600px'],
+			fix: false, //不固定
+			maxmin: true,
+			content: 'banner_from.html'
+		});
+	}
+	function editbanner(id){
+		layer.open({
+			title :'修改首页广告',
+			type: 2,
+			area: ['400px', '600px'],
+			fix: false, //不固定
+			maxmin: true,
+			content: 'editbanner_from.html?id='+id
+		})
+	}
+	
+  //删除首页广告
+    function banner_from_delete(id){
+    layer.confirm('确定要删除此广告？',function(index){
+
+
+
+      $.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(banner_from_delete)}',
+            data: '&id='+id,
+            success: function(msg){
+                var res = eval("(" + msg + ")");
+                
+                if(res.statusCode == '1') { 
+
+
+                    parent.window.location.href="{:U(info)}";
+                        // var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        // parent.layer.close(index);        
+                }else {
+                }
+            }
+        });
+
+
+
+
+    })
+  }
+
+    function nohall_delete(id){
+    	layer.confirm('主题影厅已被客户预订，不能被删除', {
+    	title :'温馨提醒',
+        btn: ['确认'] //按钮
+    	}, function(index){
+
+    		layer.close(index);
+    	})
+    }
+  //删除主题影厅
+    function hall_delete(id){
+    layer.confirm('确定要删除此主题影厅？',function(index){
+
+
+
+      $.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(hall_delete)}',
+            data: '&id='+id,
+            success: function(msg){
+                var res = eval("(" + msg + ")");
+                
+                if(res.statusCode == '1') { 
+
+
+                    parent.window.location.href="{:U(info)}";
+                        // var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        // parent.layer.close(index);        
+                }else {
+                }
+            }
+        });
+
+
+
+
+    })
+  }
+  //删除套餐信息功能
+  function package_delete(id){
+    layer.confirm('确定要删除此套餐信息？',function(index){
+
+
+
+      $.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(package_delete)}',
+            data: '&id='+id,
+            success: function(msg){
+                var res = eval("(" + msg + ")");
+                
+                if(res.statusCode == '1') { 
+
+
+                    parent.window.location.href="{:U(info)}";
+                        // var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        // parent.layer.close(index);        
+                }else {
+                }
+            }
+        });
+    })
+  }
+  //删除附加信息功能
+  function other_delete(id){
+    layer.confirm('确定要删除此附加信息？',function(index){
+
+
+
+      $.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(other_delete)}',
+            data: '&id='+id,
+            success: function(msg){
+                var res = eval("(" + msg + ")");
+                
+                if(res.statusCode == '1') { 
+
+
+                    parent.window.location.href="{:U(info)}";
+                        // var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        // parent.layer.close(index);        
+                }else {
+                }
+            }
+        });
+
+
+
+
+    })
+  }
+
+	/*添加影厅信息*/
+	function hall(){
+		layer.open({
+			title :'添加影厅信息',
+			type: 2,
+			area: ['800px', '500px'],
+			fix: false, //不固定
+			maxmin: true,
+			content: 'hall_from.html'
+		});
+	}
+	 function noedithall(id){
+	    	layer.confirm('主题影厅已被客户预订，不能被修改', {
+	    	title :'温馨提醒',
+	        btn: ['确认'] //按钮
+	    	}, function(index){
+
+	    		layer.close(index);
+	    	})
+	    }
+	function edithall(id){
+		layer.open({
+			title :'修改影厅信息',
+			type: 2,
+			area: ['800px', '500px'],
+			fix: false, //不固定
+			maxmin: true,
+			content: 'edithall_from.html?id='+id
+		});
+	}
+
+  function set_state(id,state){
+
+   
+    $.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(set_state)}',
+            data: '&id='+id+'&state='+state,
+            success: function(msg){
+                var res = eval("(" + msg + ")");
+                
+                if(res.statusCode == '1') { 
+
+
+                    // parent.window.location.href="{:U(info)}";
+                        // var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        // parent.layer.close(index);        
+                }else {
+                }
+            }
+     });
+  }
+  function set_package_status(id,state){
+
+	   
+	    $.ajax({
+	            global:true,
+	            type: "post",
+	            url:'{:U(set_package_status)}',
+	            data: '&id='+id+'&state='+state,
+	            success: function(msg){
+	                var res = eval("(" + msg + ")");
+	                
+	                if(res.statusCode == '1') { 
+
+
+	                    // parent.window.location.href="{:U(info)}";
+	                        // var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+	                        // parent.layer.close(index);        
+	                }else {
+	                }
+	            }
+	     });
+	  }
+  function set_other_status(id,state){
+
+	   
+	    $.ajax({
+	            global:true,
+	            type: "post",
+	            url:'{:U(set_other_status)}',
+	            data: '&id='+id+'&state='+state,
+	            success: function(msg){
+	                var res = eval("(" + msg + ")");	                
+	                if(res.statusCode == '1') {        
+	                }else {
+	                }
+	            }
+	     });
+	  }
+
+	/*添加套餐信息*/
+	function package(){
+		layer.open({
+			title :'添加套餐信息',
+			type: 2,
+			area: ['800px', '400px'],
+			fix: false, //不固定
+			maxmin: true,
+			content: 'package_from.html'
+		});
+	}
+	function editpackage(id){
+		layer.open({
+			title :'修改套餐信息',
+			type: 2,
+			area: ['800px', '400px'],
+			fix: false, //不固定
+			maxmin: true,
+			content: 'editpackage_from.html?id='+id
+		});
+	}
+	
+	/*添加套餐信息*/
+	function other(){
+		layer.open({
+			title :'添加附加信息',
+			type: 2,
+			area: ['400px', '333px'],
+			fix: false, //不固定
+			maxmin: true,
+			content: 'other_from.html'
+		});
+	}
+	function editother(id){
+		layer.open({
+			title :'修改附加信息',
+			type: 2,
+			area: ['400px', '333px'],
+			fix: false, //不固定
+			maxmin: true,
+			content: 'editother_from.html?id='+id
+		});
+	}
+/*添加付款信息*/
+	function pay(){
+		layer.open({
+			title :'添加付款信息',
+			type: 2,
+			area: ['360px', '360px'],
+			fix: false, //不固定
+			maxmin: true,
+			content: 'pay_from.html'
+		});
+	}
+	function editpay(id){
+		layer.open({
+			title :'修改付款信息',
+			type: 2,
+			area: ['360px', '360px'],
+			fix: false, //不固定
+			maxmin: true,
+			content: 'editpay_from.html?id='+id
+		});
+	}
+
+</script> 
+</block>

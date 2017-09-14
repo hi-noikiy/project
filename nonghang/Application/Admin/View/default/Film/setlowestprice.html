@@ -1,0 +1,78 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+<div class="content">
+<div class="leftMenu">
+	<ul>
+		{$leftMenu}
+	</ul>
+		
+</div>
+<div class="rightContent">
+	<div class="queryBox">
+			
+	</div>
+	<div class="tableList">
+	<ul class="tabbtn" id="tabs">
+	<foreach name="groupList" item="vo" key="k" >
+                    <li <if condition="$cinemaGroupId eq $vo['id'] "> id="current"</if>><a href="{:U('', array('cinemaGroupId'=>$vo['id']))}">{$vo.groupName}</a></li>
+    </foreach>
+                </ul>
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+			 <thead>
+					<tr >
+						<td width="100">影片名称</td> 
+						<td>影院名称-保护价</td>
+					</tr>
+				</thead>
+				<tbody	>
+				<foreach name="filmList" item="vo" key="k" >
+				<tr>
+					<td nowrap="nowrap">{$vo.filmName}[{$vo.copyType}]</td>
+					<td height="50">
+						<foreach name="cinemaList" item="cinema">
+							<div style="float:left; margin-right:5px; border:1px solid #ccc; padding-left:3px; padding-right:3px; -moz-border-radius: 5px; -webkit-border-radius: 5px;border-radius:5px;">{$cinema.shortName}<input type="text" value="{$vo['lowestPrice'][$cinema['cinemaCode']]}" onchange="setLowestPrice(this.value, '{$vo.filmNo}',  '{$cinema.cinemaCode}')" />元</div>
+						</foreach>
+					 </td>
+				</tr>
+				</foreach>
+		 </tbody>
+	</table>
+	</div>
+	</div>
+</div>
+<script type="text/javascript">
+var loadi = '';
+var loadimsg = ''; 
+function setLowestPrice(lowestPrice, filmNo, cinemaCode){
+
+		loadi = layer.load(1, {shade: [0.5,'#000']});
+		loadimsg = layer.msg('正在更新价格...',{icon: 16, time:60000000});
+
+		$.ajax({
+			url:"<?php echo U('setLowestPrice')?>",
+			data:{'lowestPrice':lowestPrice,'filmNo':filmNo,'cinemaCode':cinemaCode, 'cinemaGroupId':<?php echo $cinemaGroupId;?>},
+			dataType:'json',
+			type:'post',
+			success:function(json){
+				if(json.status=='0'){
+					layer.msg(json.content);
+				}else{
+					layer.msg(json.content);
+				}
+				layer.close(loadi);
+			},
+			error:function(msg){
+				layer.close(loadi);
+				layer.close(loadimsg);
+				layer.msg('网络错误，请稍候再试！');
+			}
+		});
+}
+
+function submitSerach () {
+$('#serach').submit();
+}
+
+</script> 
+</block>

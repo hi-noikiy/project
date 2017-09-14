@@ -1,0 +1,259 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<!--js、css引入-->
+{% endblock %}
+
+{% block title %}
+我的账单
+{% endblock %}
+
+{% block titleList %}
+<ul class="nav">
+    <!-- <li class="active _getGift"><a onclick="getbillinfo('getGift')" href="#received">收到礼物</a></li> -->
+    <li class="active _sendGift"><a onclick="getbillinfo('sendGift')" href="#send">送出礼物</a></li>
+    <li class="_recharge"><a onclick="getbillinfo('recharge')" href="#recharge">充值记录</a></li>
+    <li class="_consumer"><a onclick="getbillinfo('consumer')" href="#consumption">消费记录</a></li>
+</ul>
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent" style="background-color: transparent;">
+    <div class="center-box-content">
+        <div class="center-box main-background-body" bottompadding="42" style="border-bottom: 0px;width: 1000px;">
+            <div class="center-top special-position">
+                <div class="rope-left">
+                    <i class="bill-icon bill-icon-shen"></i>
+                </div>
+                <div class="rope-right">
+                    <i class="bill-icon bill-icon-shen"></i>
+                </div>
+            </div>
+            <div id="received" class="center-content" style="display: none;min-height: 430px;background-color: #fff;padding-top: 0px;border: 1px solid #cacaca;">
+               <div class="content-top clearfix">
+                   <div class="top-left"><span class="nowtime"></span>收到的礼物
+                       <i class="bill-icon bill-icon-calendar calendar"></i>
+                       <div id="calendar-box" class="calendar-box" style="display: none">
+                           <div class="calendar-box-top" value="0"><!--过去三十天收到的礼物--></div>
+                           <ul style="margin:4px 0 0 4px; ">
+                               <!--<li class="box-mid" style="border: 1px solid red;width: 70px;height: 30px;"></li>-->
+
+                           </ul>
+
+
+                       </div>
+                   </div>
+                   <div class="top-right">
+                       <span>您的账户余额</span>
+                       <span style="width: 20px;"><i class="bill-icon bill-icon-cash"></i></span>
+                       <span>聊币</span>：
+                       <span class="billcash">0</span>
+                       <span style="width: 20px;"><i class="bill-icon bill-icon-bean"></i></span>
+                       <span>聊豆</span>：
+                       <span class="billcoin">0</span>
+                   </div>
+               </div>
+                <div class="content-mid special-mid">
+                    <table class="tablebox-bill">
+                        <thead>
+                            <tr>
+                                <th style="width: 180px;">时间</th>
+                                <th style="width: 270px;">赠送人</th>
+                                <th style="width: 175px;">礼物</th>
+                                <th style="width: 175px;">数量</th>
+                                <th style="width: 200px;">过程</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+
+                    </table>
+                    <div class="no-notData"></div>
+                </div>
+            </div>
+            <div id="send" class="center-content" style="display:block; min-height: 430px;background-color: #fff;padding-top: 0px;border: 1px solid #cacaca;">
+                <div class="content-top special-position clearfix">
+                    <div class="top-left"><span class="nowtime"></span>送出的礼物
+                        <i class="bill-icon bill-icon-calendar calendar"></i>
+                        <div id="calendar1-box" class="calendar-box" style="display: none">
+                            <div class="calendar-box-top" value="0"><!--过去三十天收到的礼物--></div>
+                            <ul style="margin:4px 0 0 4px; ">
+                                <!--<li class="box-mid" style="border: 1px solid red;width: 70px;height: 30px;"></li>-->
+
+                            </ul>
+
+
+                        </div>
+                    </div>
+                    <div class="top-right">
+                        <span>您的账户余额</span>
+                        <span style="width: 20px;"><i class="bill-icon bill-icon-cash"></i></span>
+                        <span>聊币</span>：
+                        <span class="billcash">0</span>
+                        <span style="width: 20px;"><i class="bill-icon bill-icon-bean"></i></span>
+                        <span>聊豆</span>：
+                        <span class="billcoin">0</span>
+                    </div>
+                </div>
+                <div class="content-mid special-mid">
+                    <table class="tablebox-bill">
+                        <thead>
+                        <tr>
+                            <th style="width: 180px;">时间</th>
+                            <th style="width: 270px;">接收人</th>
+                            <th style="width: 175px;">礼物</th>
+                            <th style="width: 175px;">数量</th>
+                            <th style="width: 200px;">过程</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                        </tbody>
+
+                    </table>
+                    <div class="no-notData"></div>
+                </div>
+            </div>
+            <div id="recharge" class="center-content" style="display: none; min-height: 430px;background-color: #fff;padding-top: 0px;border: 1px solid #cacaca;">
+                <div class="content-top special-position clearfix">
+                    <div class="top-left">
+                        <span class="TTtime"></span>
+                        <span style="color: #2b2b2b;">至</span>
+                        <span class="nowtime"></span>
+                    </div>
+                    <div class="top-right">
+                        <!-- <span>您的账户余额</span>
+                        <span>聊币</span>：
+                        <span class="billcash">0</span>
+                        <span style="width: 20px;"><i class="bill-icon bill-icon-bean"></i></span>
+                        <span>聊豆</span>：
+                        <span class="billcoin">0</span>
+                        <span style="width: 20px;"><i class="bill-icon-sum"></i></span> -->
+						<span>此区间充值金额</span>：
+                        <span class="billsum">0</span>
+                        <span style="width: 20px;"><i class="bill-icon bill-icon-cash"></i></span>
+                        <span style="margin-left:40px;">我的总充值金额</span>：
+                        <span class="billallsum">0</span>
+                        <span style="width: 20px;margin-right:80px;"><i class="bill-icon bill-icon-cash"></i></span>
+                    </div>
+                </div>
+                <div class="content-mid special-mid">
+                    <table class="tablebox-bill">
+                        <thead>
+                        <tr>
+                            <th style="width: 148px;">交易号</th>
+                            <th style="width: 120px;">交易时间</th>
+                            <th style="width: 138px;">充值聊币（个）</th>
+                            <th style="width: 260px;">充值目标</th>
+                            <th style="width: 116px;">支付金额（元）</th>
+                            <th style="width: 126px;">交易通道</th>
+                            <th style="width: 92px;">交易状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+
+                    </table>
+                    <div class="no-notData"></div>
+                </div>
+            </div>
+            <div id="consumption" class="center-content" style="display: none; min-height: 430px;background-color: #fff;padding-top: 0px;border: 1px solid #cacaca;">
+                <div class="content-top special-position clearfix">
+                    <div class="top-left"><span class="nowtime"></span>消费记录
+                        <i class="bill-icon bill-icon-calendar calendar"></i>
+                        <div id="calendar2-box" class="calendar-box" style="display: none">
+                            <div class="calendar-box-top" value="0"><!--过去三十天收到的礼物--></div>
+                            <ul style="margin:4px 0 0 4px; ">
+                                <!--<li class="box-mid" style="border: 1px solid red;width: 70px;height: 30px;"></li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="top-right">
+                        <!-- <span>您的账户余额</span>
+
+                        <span>聊币</span>：
+                        <span class="billcash">0</span>
+                        
+                        <span>聊豆</span>：
+                        <span class="billcoin">0</span>
+						<span style="width: 20px;"><i class="bill-icon-sum"></i></span> -->
+						<span>当天消费金额</span>：
+                        <span class="billsum">0</span>
+                        <span style="width: 20px;"><i class="bill-icon bill-icon-cash"></i></span>
+                        <span style="margin-left:40px;">我的总消费金额</span>：
+                        <span class="billallsum">0</span>
+                        <span style="width: 20px;margin-right:80px;"><i class="bill-icon bill-icon-cash"></i></span>
+                    </div>
+                </div>
+                <div class="content-mid special-mid">
+                    <table class="tablebox-bill">
+                        <thead>
+                        <tr>
+                            <th style="width:130px;">时间</th>
+                            <th style="width: 140px;">消费行为</th>
+                            <th style="width: 200px;">物品</th>
+                            <th style="width: 230px;">消费目标</th>
+                            <th style="width: 150px;">数量</th>
+                            <th style="width: 150px;">支付聊币</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                        </tbody>
+
+                    </table>
+                    <div class="no-notData"></div>
+
+                </div>
+            </div>
+
+            <div>
+                <img src="{{static_url('web/cssimg/mybill/bottom.png')}}">
+            </div>
+
+        </div>
+
+
+        {% include "template/background.html" %}
+    </div>
+</div>
+{% if isFirstCharge==1 %}
+<div class="ns-alert ns-dialog">
+    <div class="win" style="display: block;">
+        <div class="header">
+            <i class="ico-main-12 alert-logo"></i>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body">
+            <div>
+                <div id="d_fuid" class="show-text">您刚刚完成了累充活动，</div>
+                <div class="show-text">是否要现在领取奖励？</div>
+                <div class="btn-box">
+                    <a id="ns_btn_OK" href="/activities/charge" fuid="" class="btn btn-purple leiOK pull-left">是</a>
+                </div>
+                <div class="btn-box">
+                    <a id="ns_btn_cancel" href="/" fuid="" class="btn btn-purple leiCL pull-right">否</a>
+                </div>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript">
+    var chargingSourceType = '{{ chargingSourceType|default(0) }}';
+</script>
+<script type="text/javascript" src="{{static_url('91ns.userbill'|ns_js)}}"></script>
+{% endblock %}

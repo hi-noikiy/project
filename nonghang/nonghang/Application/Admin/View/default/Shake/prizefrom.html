@@ -1,0 +1,123 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="dataform" id="dataform" target="myframe">
+	<div class="formBox">
+        <div class="inputText" >
+            <span>奖品名称：</span>
+            <input type="text" name="data[name]"  placeholder="请输入奖品名称" value="{$data.name}">
+        </div>
+		<br />
+        <div class="inputText" >
+            <span>奖品类型：</span>
+            <input name="data[type]" id="prize1" type="radio" value="0" <if condition="$data['type'] != 1"> checked</if>/><label for="prize1">票券</label>
+            <input name="data[type]" id="prize2" type="radio" value="1" <if condition="$data['type'] == 1"> checked</if>/><label for="prize2">实物</label>
+        </div>
+        <br />
+    	<div class="inputSelect" >
+            <span>票券类型：</span>
+            <select name="data[voucherType]" id="voucherType">
+            <option value="12" <if condition="$data['voucherType'] == 12"> selected="selected"</if>>2/3D立减券</option>
+
+
+            <option value="5" <if condition="$data['voucherType'] == 5"> selected="selected"</if>>ZMAX立减券</option>
+
+
+            <option value="14" <if condition="$data['voucherType'] == 14"> selected="selected"</if>>5元卖品立减券</option>
+
+
+            <option value="1" <if condition="$data['voucherType'] == 1"> selected="selected"</if>>市场劵</option>
+
+                     </select>
+        </div>
+        <div class="inputText" >
+            <span>有效期：</span>
+            <input type="text" class="date" name="data[startTime]" placeholder="请输入开始日期" value="{$data.startTime|date="Y-m-d",###}">
+            <span style="width:30px; text-align:center;">至</span>
+            <input type="text" class="date" name="data[endTime]" placeholder="请输入结束日期" value="{$data.endTime|date="Y-m-d",###}">
+          </div>
+         <div class="inputSelect" >
+            <span>归属影院：</span>
+            <select name="data[cinemaCode]" id="belongCinemaCode">
+                <foreach name="cinemaList" item="vo" key="k" >
+                        <option value="{$vo.cinemaCode}" <if condition="$data['cinemaCode'] == $vo['cinemaCode']"> selected="selected"</if>>{$vo.cinemaName}</option>
+                    </foreach>
+            </select>
+        </div>
+         <div class="inputText" >
+            <span>奖品数量：</span>
+            <input type="text" name="data[allNum]"  placeholder="请输入数量" value="{$data.allNum}">
+        </div>
+
+
+       <div class="inputText" >
+            <span>当天数量：</span>
+            <input type="text" name="data[dateNum]"  placeholder="当天数量" value="{$data.dateNum}">
+        </div> 
+
+        <div class="inputText" >
+            <span>中奖概率：</span>
+            <input type="text" name="data[odds]"  placeholder="请输入中奖概率" value="{$data.odds}"> ‱
+        </div>
+
+        <div class="inputText" >
+            <span>备注：</span>
+            <input type="text" name="data[note]"  placeholder="请输入备注" value="{$data.note}">
+        </div>
+
+		<div class="inputText" >
+            <span>优先级：</span>
+            <input type="text" name="data[priority]"  placeholder="请输入优先级" value="{$data.priority}">
+        </div>      
+    </div>
+    <input type="hidden" name="id" value="{$data.id}">
+	<div class="formBtn">
+        <a href="javascript:;" class="button" onclick="$('#dataform').submit()">确认</a>
+         <a href="javascript:parent.layer.closeAll();" class="cancel">取消</a>
+        
+    </div>
+</form>
+<script type="text/javascript">
+
+function showdiv (preId) {
+
+    if (preId == 1) {
+        $("#startNum").css('display', '');
+        $("#voucherBit").css('display', 'none');
+
+    }else{
+        $("#startNum").css('display', 'none');
+        $("#voucherBit").css('display', '');
+    }
+    
+}
+
+function ajaxSubmit () {
+        // alert('1');
+        $("#dataform").ajaxSubmit({  
+            type:"post",  //提交方式  
+            dataType:"json", //数据类型  
+            url:"{:U()}", //请求url 
+            success:function(json){ //提交成功的回调函数  
+                if (json.status == 1) {
+                    layer.alert(json.content);
+                }else if(json.status == 0){
+
+
+                    layer.confirm(json.content, {
+                    btn: ['返回列表','<?php if(intval($data['couponId']) == 0){echo '继续添加';}else{echo '继续修改';}?>'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    parent.location.reload();
+                }, function(){
+                    location.reload();
+                });
+                }
+
+
+                // alert('11');
+            }  
+        });
+    }
+
+</script> 
+</block>

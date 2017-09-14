@@ -1,0 +1,50 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">意见反馈</div>
+    <div class="right"></div>
+  </div>
+</div>
+
+
+<div class="pages">
+  <div data-page="userFeedback" class="page" style="background:#fff;">
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+      <div style="display:none" id="lockTime">{$order['lockTime']-time()}</div>
+      <div style="display:none" id="orderCode">{$order['orderCode']}</div>
+
+
+       <div class="content">
+        <div class="toolbar-fixed">
+          <div class="toolbar messagebar" style="position:fixed;">
+                    <div class="toolbar-inner"><!--<a href="#" id="sendPhoto" class="link icon-only"><i class="icon icon-camera"></i></a>-->
+                        <textarea id='content' placeholder="请输入您的意见"></textarea><a href="javascript:;" class="sendBtn link">发表</a>
+                    </div>
+                </div>
+            <div class="page-content messages-content">
+            <div class="messages">
+              <volist name='feedbacks' id='vo'>
+             <div class="messages-date">{$vo['time']|date='Y-m-d',###} <span>{$vo['time']|date='H:i:s',###}</span></div>
+              <div class="message message-sent">
+                <div class="message-text">{$vo['content']}</div>
+              </div>
+              <volist name='vo["answer"]' id='v'>
+              <div class="message message-received">
+                <div class="message-name">系统</div>
+                <div class="messages-text">{$v['content']}</div>
+              </div>
+              </volist>
+              </volist>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+  </div>
+</div>

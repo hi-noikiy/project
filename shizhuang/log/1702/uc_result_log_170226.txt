@@ -1,0 +1,1 @@
+result={"id":1488104697,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"2e060b414800f7947c7226c58c00ca26","nickName":"九游玩家703213537442","creator":"JY"}} 2017-02-26 18:24:57

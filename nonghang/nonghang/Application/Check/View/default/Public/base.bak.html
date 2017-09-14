@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>影城票券验证系统-中瑞影城</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<link rel="stylesheet" type="text/css" href="__CSS__/style.css" media="all">
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="__STATIC__/jquery1.min.js"></script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script type="text/javascript" src="__STATIC__/jquery2.min.js"></script>
+<!--<![endif]-->
+<link rel="stylesheet" href="__STATIC__/layer/skin/layer.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__STATIC__/layer/skin/layer.ext.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="__STATIC__/layer/layer.js?t={$__TIME__}"></script>
+<script type="text/javascript" src="__STATIC__/jqdatetiem/jquery.datetimepicker.js?t={$__TIME__}"></script>
+<script type="text/javascript">
+	
+$(document).ready(function(){
+	$(".open").click(function(){
+		$('.modify').show().animate({left:'0px'},1000);
+	});
+	$(".off").click(function(){
+		$('.modify').animate({left:'-100%'},1000);
+	});
+	$('.guanbi').click(function(){
+		$('.check_body').css('display','none');
+	})
+	function blockdiv(){
+		$('.check_body').css('display','block');
+	}
+	$('.close').click(function(){
+		if(confirm("您确定要退出吗？")){
+		    location.href="{:U('public/logout')}";
+		}
+	});
+
+});
+	function edit_passwd(){
+		//alert('111');
+   		$("#edit_from").submit();
+    }
+</script>
+<block name="style"></block>
+</head>
+<body>
+<div class="header">
+    <div class="title">影城票券验证系统</div>
+</div>
+<div class="nav">
+	<div class="user"><img src="__IMG__/user.jpg" width="50" /><span class="open"><?php echo $_SESSION['adminUserInfo']['realName'];?></span></div>
+	<ul>
+    	<li><a href="{:U('Index/index')}" <if condition="U() eq U('Index/index') ">class="hover"</if>>丝绸之路验证</a></li>
+        <li><a href="{:U('List/index')}" <if condition="U() eq U('List/index') ">class="hover"</if>>操作记录</a></li>
+    </ul>
+    <div class="close">退出登录</div>
+    <div class="clear"></div>
+</div>
+<div class="modify">
+	<form action="{:U('Public/up_pass')}" method="post" id="edit_from">
+	<div class="modify_box">
+    	<input type="text" placeholder="原始密码" name="password" />
+        <input type="text" placeholder="新密码" name="newpass" />
+        <input type="text" placeholder="确认新密码" name="newpass_2" />
+        <a class="on" href="javascript:edit_passwd()">修改</a><a href="#" class="off">&lt;</a>
+    </div></form>
+    <div class="modify_bg"></div>
+</div>
+    <block name="body"> </block>
+<div class="footer">
+	<span style="float:left">上次登录 <?php echo date("Y-m-d h:i:s",$_SESSION['adminUserInfo']['lastLoginTime']);?></span>
+    <span style="float:right">版权所有:福州最美影视网络科技有限公司</span>
+</div>
+    <block name="script"></block>
+</body>
+</html>

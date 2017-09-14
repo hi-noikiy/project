@@ -1,0 +1,375 @@
+{% extends "template/personal_body.html" %}
+{% block title %}
+我的道具
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('props'|ns_css)}}">
+{% endblock %}
+{% block content %}
+
+<!--内容头部-->
+<div class="content-head clearfix ">
+    <div class="con-head-title ">
+        <div class="head-txt ">我的道具</div>
+    </div>
+    <div class="con-head-menu clearfix">
+        <div id="propsController" class="head-left pull-left">
+            <div class="propsmenu" datas="prop">道具</div>
+            <div class="propsmenu" datas="car">座驾</div>
+            <div class="propsmenu" datas="guard">守护</div>
+            <div class="propsmenu" datas="overdue">已过期</div>
+        </div>
+    </div>
+</div>
+<ul id="propsCT" class="contents">
+    <li class="overdue">
+        <div class="selectDelete clearfix">
+            <i checkBtn class="sprite-props select pull-left"></i>
+            <span checkBtn class="selectAll pull-left">全选</span>
+            <span class="deleteSelect sprite-delete delete pull-left">删除</span>
+        </div>
+        <ul class="clearfix frame1">
+            <!-- <li>
+                <div class="img">
+                    <div>
+                        <i class="sprite-car_img_big Haley"></i>
+                    </div>
+                </div>
+                <div class="boot">
+                    <span class="itemName">名字而气愤地</span>
+                    <div class="btn">续费</div>
+                </div>
+                <i class="sprite-props delete"></i>
+                <i class="angle"><i class="sprite-props right"></i></i>
+            </li> -->
+        </ul>
+        <div class="page pageStyle v2">
+            <div class="row-fluid">
+                <div id="overduePage" class="pagination alternate"></div>
+            </div>
+        </div>
+        <div class="noData">
+            <i class="bgs"></i>
+        </div>
+    </li>
+    <li class="car">
+        <ul class="clearfix">
+            <!-- <li>
+                <div class="img">
+                    <div>
+                        <i class="sprite-car_img_big Haley"></i>
+                    </div>
+                </div>
+                <div class="name">辅导费第三方<span class="sprite-props use">使用</span></div>
+                <div class="boot">
+                    <span>有效期：</span>
+                    <span>2015/08/12</span>
+                    <div class="btn">续费</div>
+                </div>
+                <i class="propsStatus"></i>
+            </li> class="use will-overdue"  propType="car" unitPrice="10000"-->
+        </ul>
+        <div class="page">
+            <div class="row-fluid">
+                <div id="carPage" class="pagination alternate"></div>
+            </div>
+        </div>
+        <div class="noData">
+            <i class="bgs"></i>
+            <div class="btn">去商城</div>
+        </div>
+    </li>
+    <li class="guard">
+        <ul class="clearfix">
+            <!-- <li>
+                <div class="img">
+                    <div>
+                        <img src="/userupload/default/avatars/3.jpg">
+                    </div>
+                </div>
+                <i class="guardIcon"></i>
+                <div class="name">辅导费第三方</div>
+                <div class="boot">
+                    <span>有效期：</span>
+                    <span>2015/08/12</span>
+                    <div class="btn">续费</div>
+                </div>
+            </li> -->
+        </ul>
+        <div class="page">
+            <div class="row-fluid">
+                <div id="guardPage" class="pagination alternate"></div>
+            </div>
+        </div>
+        <div class="noData">
+            <i class="bgs"></i>
+        </div>
+    </li>
+    <li class="prop">
+        <ul class="clearfix">
+            <!-- <li>
+                <div class="img">
+                    <div>
+                        <img src="/userupload/default/avatars/3.jpg">
+                    </div>
+                </div>
+                <div class="name">辅导费第三方</div>
+                <div class="boot">
+                    <span>有效期：</span>
+                    <span>2015/08/12</span>
+                    <div class="btn">续费</div>
+                </div>
+            </li> -->
+        </ul>
+        <div class="page">
+            <div class="row-fluid">
+                <div id="propPage" class="pagination alternate"></div>
+            </div>
+        </div>
+        <div class="noData">
+            <i class="bgs"></i>
+            <div class="btn">去商城</div>
+        </div>
+    </li>
+</ul>
+<div id="propWin" class="propWin">
+    <div class="header">
+        <span>续费</span>
+        <i></i>
+    </div>
+    <div class="body clearfix">
+        <div class="left">
+            <div class="img"><div></div></div>
+            <div class="name"></div>
+            <div class="price">
+                <span>价格：</span>
+                <span id="unitPrice" class="fontColor1"></span>
+                <span>聊币/月</span>
+            </div>
+        </div>
+        <ul class="right">
+            <li class="clearfix userAccunt">
+                <span class="title">用户账号：</span>
+                <div class="cts"><span class="fontColor2" nsdata="userNickName"></span>(<span class="fontColor2" nsdata="userUID"></span>)</div>
+            </li>
+            <li class="clearfix times">
+                <span class="title">购买时长：</span>
+                <div class="cts clearfix">
+                    <div class="select" price="30">30天</div>
+                    <div class="select" price="90">90天</div>
+                    <div class="select" price="180">180天</div>
+                    <div class="select" price="360">360天</div>
+                </div>
+            </li>
+            <li class="clearfix">
+                <span class="title">应付金额：</span>
+                <div class="cts">
+                    <span id="willPay" class="fontColor1"></span>
+                    <span>聊币</span>
+                </div>
+            </li>
+            <li class="clearfix">
+                <span class="title">你的账户余额：</span>
+                <div class="cts">
+                    <span id="moneyHave" class="fontColor1" nsdata="cash"></span>
+                    <span>聊币</span>
+                    <a class="charging" href="/charging" target="_blank">充值</a>
+                </div>
+            </li>
+            <li class="clearfix">
+                <span class="title"></span>
+                <div class="cts">
+                    <span id="winTips" class="tips">你的账户余额不足，请先充值再购买</span>
+                </div>
+            </li>
+            <li class="clearfix">
+                <span class="title"></span>
+                <div class="cts">
+                    <div id="renew" class="btn sprite-prop-renew renew">续费</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" defer async data-main="{{static_url('personal.props'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+
+<!--全部道具表格-->
+<table class="props-table props-tb-all" style="display:none;">
+    <tr class="tr1 pro-tb-tit">
+        <td class="tb-props tit-myprops">我的道具</td>
+        <td class="tb-effect tit-result">我的效果</td>
+        <td class="tb-validity tit-validity">有效期</td>
+    </tr>
+    {% if ns_sonType == 'all' or ns_sonType == 'normal' %}
+        {% for vip in allData['vipList']|default([]) %}
+            <tbody class="prors-tbody props-tb-regular ">
+            <tr class="pro-tb-list props-tr-regular">
+                <td class="list-myprops">
+                    <div class=" sprite-vip_level VIP{{ vip['vipLevel'] }} inline"></div>
+                </td>
+                <td class="list-result">
+                    <ul>
+                        <li>{{ vip['description'] }}</li>
+                    </ul>
+                </td>
+                <td class="list-validity">
+                    <div class=" list-val-time">
+                        {% if severTime > vip['itemExpireTime'] %}
+                        <span style="color:red;font-weight: bold;">{{ vip['itemExpireTime']|ns_date }}</span>
+                        {% else %}
+                        {{ vip['itemExpireTime']|ns_date }}
+                        {% endif %}
+                         <!--<div class="font-num inline">2014</div>年<div class="font-num inline">12</div>月<div class="font-num inline">13</div>-->
+                    </div>
+                    <a href="/shop/vip"><div class="reguvali-but sprite-bu renew cu-a ">续费</div></a>
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+<!--常规-->
+        {% for horn in allData['hornList']|default([]) %}
+            <tbody class="prors-tbody props-tb-regular">
+                <tr class="pro-goldenbugle br-bottom">
+                    <td class="bugle-pro br-right txt-cen br-bottom"><i class="sprite-icon {{ horn['configName'] }}"></i>{{ horn['name'] }}</td>
+                    <td class="bugle-eff br-right txt-cen br-bottom"> {{ horn['description'] }}</td>
+                    <td class="bugle-va br-bottom">
+                        <div class="va-div">
+                            <!--剩余-->
+                            <div class="surplus-txt txt-cen">剩余:</div>
+                            <div class="surplus-num txt-cen  font1">{{ horn['itemCount'] }}</div>
+                        </div>
+                        <div class="va-div bugle-va-div">
+                            <div class="va-txt">有效期：
+
+                            </div>
+                            <div class="va-time">永久</div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    {% endif %}
+<!--座驾-->
+    {% if ns_sonType == 'all' or ns_sonType == 'car' %}
+        {% for car in allData['carList']|default([]) %}
+            <tbody class="prors-tbody props-tb-car">
+                <tr class="pro-tb-list props-tr-car">
+
+                    <td class="list-myprops">
+                        <div class="props-car-div clearfix inline">
+                            <div class="props-car-icon sprite-car_img {{ car['configName'] }} pull-left inline "></div>
+                            <div class="props-car-txt pull-left inline">{{ car['carName'] }}</div>
+                        </div>
+                    </td>
+                    <td class="list-result  result-car-txt ">
+                        进入主播房间时在公聊框提示<br/>
+                        {% if car['carTypeDescription']>0%}
+                        （{{ car['carTypeDescription'] }}）
+                        {% endif %}
+                    </td>
+                    <td class="list-validity">
+                        <div class="carvali-but-div inline clearfix" nsdata="car">
+                            <div class=" pull-left inline">当前状态:</div>
+                            <div nsdata="open" class="carvali-but-open pull-left sprite-bu cu-a {% if car['status']==1 %}isopen{% else %}open{% endif %}" onclick="openCar({{ car['itemId'] }},this);">开启</div>
+                            <div nsdata="close" class="pull-left sprite-bu cu-a {% if car['status']!=1 %}isclose{% else %}close{% endif %}" onclick="closeCar({{ car['itemId'] }},this);">关闭</div>
+                        </div>
+                        <div class="carvali-time-div inline clearfix">
+                            {% if car['carTypeId'] != 4 %}
+                                <div class="inline">有效期:</div>
+                                <div class="inline">
+                                    {% if severTime > car['itemExpireTime'] %}
+                                    <span style="color:red;font-weight: bold;">{{ car['itemExpireTime']|ns_date }}</span>
+                                    {% else %}
+                                    {{ car['itemExpireTime']|ns_date }}
+                                    {% endif %}
+                                </div>
+                            {% else %}
+                                <div class="inline" style="color:#25DA35;">富豪专属</div>
+                                <div class="inline">若不是VIP则无法开启</div>
+                            {% endif %}
+                        </div>
+                        <div class="carvali-renew-div clearfix ">
+                            {% if car['carTypeId']<4%}
+                                <a href="/shop/car"><div class="sprite-bu renew cu-a inline">续费</div></a>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    {% endif %}
+<!-- 守护 -->
+    {% if ns_sonType == 'all' or ns_sonType == 'guard' %}
+        {% for guard in allData['guardList']|default([]) %}
+            <tbody class="prors-tbody props-tb-guard" >
+                <tr class="pro-tb-list props-tr-guard">
+                    <td class="list-props">守护的主播</td>
+                    <td class="list-result"><i class="sprite guard{{ guard['level'] }}"></i><br>专属坐席，进场提示，守护表情，守护礼物，房间特权</td>
+                    <td class="list-validity">
+                        <div class="guardvali-tit-div inline clearfix">
+                            <div class=" inline">守护的主播：</div>
+                            <div class=" inline">{{ guard['beGuardedName']}}</div>
+                        </div>
+                        <div class="guardvali-time-div clearfix">
+                            <div class="inline">有效期:</div>
+                            <div class="inline">
+                                {% if severTime > guard['expireTime'] %}
+                                <span style="color:red;font-weight: bold;">{{ guard['expireTime']|ns_date }}</span>
+                                {% else %}
+                                {{ guard['expireTime']|ns_date }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="guardvali-but-div inline clearfix">
+                            <a href="/{{ guard['beGuardedUid'] }}" target='_blank'><div class="guardvali-but-enter sprite-bu enter cu-a pull-left">进入房间</div></a>
+                            <a href="/shop/guard?uid={{ guard['beGuardedUid'] }}"><div class="guardvali-but-renew sprite-bu minrenew cu-a pull-left">续费</div></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    {% endif %}
+    <!-- 徽章 -->
+    {% if ns_sonType == 'all' or ns_sonType == 'badge' %}
+        {% for badge in allData['badgeList']|default([]) %}
+            <tbody class="prors-tbody props-tb-badge">
+                <tr class="pro-tb-list props-tr-badge">
+                    <td class="list-props">
+                        {% if badge['isSignBadge']==1 %}
+                        <i class="sprite-icon {{ badge['configName'] }}{{ badge['itemCount'] }}"></i>
+                        {% else %}
+                        <i class="sprite-icon {{ badge['configName'] }}"></i>
+                        {% endif %}
+
+                        <span>{{ badge['name'] }}</span>
+                    </td>
+                    <td class="list-result">{{ badge['description'] }}</td>
+                    <td class="list-validity">
+                        <div class="inline clearfix">
+                            <!--剩余-->{% if badge['isSignBadge']==1 %}
+                            <div class="inline">当前等级：</div>
+                            <div class="badgevali-num inline font-num">{{ badge['itemCount'] }}</div>
+                            {%endif%}
+                        </div>
+                        <div class="badgevali-time-div clearfix">
+                            <!--<div class="inline">有效期：</div>-->
+                            <!--<div class="inline">永久</div>-->
+                            <div class="inline">有效期：</div>
+                            {% if !badge['itemExpireTime'] or badge['itemExpireTime']==0%}
+                            <div class="inline">永久</div>
+                            {% else %}
+                            {% if severTime > badge['itemExpireTime'] %}
+                            <div class="inline" style="color: red;font-weight: bold;">{{ badge['itemExpireTime']|ns_date }}</div>
+                            {% else %}
+                            <div class="inline">{{ badge['itemExpireTime']|ns_date }}</div>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    {% endif %}
+</table>
+
+{% endblock %}

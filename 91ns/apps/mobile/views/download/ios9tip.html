@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <style type="text/css">
+    .dlbg{position: relative;top: 0;z-index: 1;}
+/*    .dlbg2{position: absolute;top: 0;z-index: 2;}
+    .dlbg3{position: absolute;top: 0;z-index: 3;}*/
+    .gotoDlbg2{position: absolute;z-index: 2;}
+    .gotoDlbg3{position: absolute;z-index: 2;}
+    html body{background-color: #FFF;}
+    </style>
+</head>
+<body>
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+    <img class="dlbg dlbg1" src="{{static_url('web/cssimg/mobile/download/ios9tip1.jpg')}}" width="100%">
+    <img class="dlbg dlbg2" src="{{static_url('web/cssimg/mobile/download/ios9tip2.jpg')}}" width="100%">
+    <img class="dlbg dlbg3" src="{{static_url('web/cssimg/mobile/download/ios9tip3.jpg')}}" width="100%">
+    <div class="gotoDlbg2"></div>
+    <div class="gotoDlbg3"></div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/ios9tip'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

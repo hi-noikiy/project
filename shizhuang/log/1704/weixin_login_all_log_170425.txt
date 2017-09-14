@@ -1,0 +1,3 @@
+ post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wNBrWezvwfrNJgfce2aawfs";s:4:"sign";s:32:"6338de3978777b4422549bf5857bf5a2";s:7:"game_id";s:1:"9";}, 2017-04-25 12:17:54
+ post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wNBrWezvwfrNJgfce2aawfs";s:4:"sign";s:32:"6338de3978777b4422549bf5857bf5a2";s:7:"game_id";s:1:"9";}, 2017-04-25 12:24:11
+ post=a:0:{}, get=a:3:{s:6:"openid";s:28:"ojKm5wNBrWezvwfrNJgfce2aawfs";s:4:"sign";s:32:"6338de3978777b4422549bf5857bf5a2";s:7:"game_id";s:1:"9";}, 2017-04-25 12:39:14

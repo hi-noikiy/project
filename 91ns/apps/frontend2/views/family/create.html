@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('family.create'|ns_css)}}"/>
+    <script type="text/javascript">
+        var SWF_URL = "{{ swfUrl|default('web/swf') }}";
+    </script>
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+    <div class="wrapNav"></div>
+    <div class="wrapBd">
+        <div class="transition applySign">
+            <div class="head" >
+                <div class="head-p apply">
+                    <div class="step clearfix">
+                        <div class="apply-step active pull-left mar apply-step1">填写资料</div>
+                        <div class="hd-div active pull-left apply-step1">
+                            <div class="hd pull-left"></div>
+                        </div>
+                        <div class="apply-step pull-left apply-step2 {% if familyStatus %} active {% endif %}"> 官方审核</div>
+                        <div class="hd-div pull-left apply-step2 {% if familyStatus %} active {% endif %}">
+                            <div class="hd pull-left"></div>
+                        </div>
+                        <div class="apply-step pull-left">创建成功</div>
+                    </div>
+                </div>
+            </div>
+            <div id="create" class="content {% if familyStatus %} div-hide{% endif %}" style="position: relative;">
+
+                <div class="pwd-left">
+                    <div jsshow="telValid" class="one-row clearfix">
+                        <div class="l-row">
+                            <span>申请创建账号:</span>
+                            <label nsdata="userNickName"></label>
+                            (<label nsdata="userUID"></label>)
+                        </div>
+                        <div class="l-row">
+                            <span>家族名称:</span>
+                            <input id="groupName" type="text" class="inputText" placeholder="请填写家族名称，限8个字">
+                            <span class="showTips"></span>
+                        </div>
+                        <div class="l-row">
+                            <span>家族徽章:</span>
+                            <input id="groupShrotName" type="text" class="inputText" placeholder="请填写家族徽章，必须为2个字">
+                            <span class="showTips"></span>
+                        </div>
+                        <div class="l-row clearfix">
+                            <span class="pull-left">家族图标:</span>
+                            <div style="width: 400px;height: 440px;margin-left: 110px;">
+                                <object id="forfun" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="400" height="300"
+                                        codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0">
+                                    <param name="movie" value="{{static_url('')}}{{ swfUrl|default('web/swf') }}/uploadFamilyIcon.swf">
+                                    <param name="quality" value="high">
+                                    <param name="menu" value="false">
+                                    <param name="wmode" value="opaque"><!--Window|Opaque|Transparent-->
+                                    <param name="FlashVars" value="">
+                                    <param name="allowScriptAccess" value="always">
+                                    <embed id="forfunex" src="{{static_url('')}}{{ swfUrl|default('web/swf') }}/uploadFamilyIcon.swf" width="400" height="440" align="middle" quality="high" menu="false" play="true" loop="false" FlashVars="" allowScriptAccess="always" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/go/getflashplayer">
+                                </object>
+                            </div>
+                        </div>
+                        <div class="l-row">
+                            <span>代理公司名称:</span>
+                            <input id="AgentName" type="text" class="inputText">
+                            <span class="showTips"></span>
+                        </div>
+                        <div class="l-row">
+                            <span>代理公司地址:</span>
+                            <input id="AgentAddress" type="text" class="inputText">
+                            <span class="showTips"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hr hr3" style="margin-top: 60px;"></div>
+                <div id="settleSubmit" class="applySubmit">提交申请</div>
+            </div>
+            <div id="aduit" class="content {% if !familyStatus %} div-hide{% endif %} " style="position: relative;text-align: center;min-height:622px;">
+                <img src="{{static_url('web/cssimg/familyActivities/creatAduit.png')}}">
+                <p class="_p1">我们正在审核您的家族创建申请...</p>
+                <div class="hr hr3" style="margin-top: 24px;"></div>
+                <p class="_p2">如果在此期间您有任何疑问，请联系客服咨询。</p>
+                <a class="zxkf" href="tencent://message/?v=3&uin={{GMQQ[0]}}&site=qq&menu=yes"><i>在线客服</i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="room_iframe_content">
+    <iframe id="room_iframe" width="100%" height="100%" style="position:absolute;top:0;left:0;border:0;z-index:-1;opacity: 0; filter: alpha(opacity=0);"></iframe>
+</div>
+    {% include "template/footer.html" %}
+    <script type="text/javascript" defer async data-main="{{static_url('family.create'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</body>
+</html>

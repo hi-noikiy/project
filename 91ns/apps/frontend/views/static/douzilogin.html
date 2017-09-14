@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	{% include "template/static_head.html" %}
+	<script type="text/javascript" src="{{static_url('douzilogin'|ns_js)}}"></script>
+</head>
+<body>
+<div class="dialog-login _register" id="loginbox" style="display:block;margin-left:-210px;margin-top:-178px;">
+    <div class="dialog-content clearfix">
+        <div class="d-l-left" style="height:345px;">
+            <!--登录-->
+            <div id="login_user_box" class="login_user_box" style="display:block;">
+                <div class="row _texts d_focus clearfix">
+                    <span class="_login_title">现在登录,</span>
+                    <span class="_login_title">您就可以与主播聊天互动了！</span>
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>用户名</span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <input class="login_username_input _regLogin _loginInput" type="text" name="lf_username" id="lf_username" autocomplete="off" size="12" fwin="login">
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>密码</span>
+                    <span class="_loginmsg status-tips lb-tips" style="float:right;"></span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <input class="login_pwd_input _regLogin _loginInput" type="password" id="lf_password" name="lf_password" size="30" class="px p_fre" fwin="login">
+                </div>
+                <div class="row btn">
+                    <div class="login-btn">
+                        <div id="loginSubmit" class="_btn _loginSub" onclick="loginSubmitToDouzi();" onselectstart="return false">登 录</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

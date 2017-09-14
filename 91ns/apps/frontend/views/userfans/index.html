@@ -1,0 +1,217 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<!--js、css引入-->
+{% endblock %}
+
+{% block title %}
+我的粉丝
+{% endblock %}
+
+{% block titleList %}
+<ul class="nav">
+    <li class="active"><a href="#total">超级粉丝榜</a></li>
+    <li><a href="#month">30天内粉丝榜</a></li>
+    <li><a href="#guard">我的房间守护({{ guardcount['count'] }})</a></li>
+</ul>
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent">
+    <div class="center-box-content">
+        <div class="center-box main-background-body" bottompadding="42">
+            <div class="center-top">
+                <div class="rope-left">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+
+                <div class="rope-right">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+            </div>
+            <div class="center-content">
+                <div class="widget-box">
+                    <div id="total" class="tabs">
+                        <table class="table purple fans-body">
+                            <thead>
+                            <tr>
+                                <th class="-name">排名</th>
+                                <th class="-content">超级粉丝</th>
+                                <th class="-time">贡献财富</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if fansData %}
+                            {% for i in 0..fansData|length-1 %}
+                            <tr>
+                                <td>
+                                    {% if i <= 2 %}
+                                    <img class="fansLevel" src="{{static_url('web/cssimg/mgtcenter/myFans')}}{{ i+1 }}.png">
+                                   {% else %}
+                                    <span class="tbe-ph">{{ i+1 }}</span>
+                                    {% endif %}
+                                </td>
+                                <td class="fansInfo">
+                                    <div class="fansInfo-box clearfix">
+                                        <div class="head clearfix">
+                                            <a target="_blank">
+                                                <img src="{{ fansData[i]['avatar'] }}">
+                                            </a>
+                                        </div>
+                                        <div class="content-info clearfix">
+                                            <div class="name"><a href="/{{ fansData[i]['uid'] }}" target="_blank">{{ fansData[i]['nickName'] }}</a><span>({{ fansData[i]['uid'] }})</span></div>
+                                            <div class="level clearfix">
+                                                <span class="pull-left">富豪：</span>
+                                                <span class="pull-left"><i class="sprite-fh_level fh{{ fansData[i]['richerLevel'] }}"></i></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="countr-value"><span class="tbe-cw">{{ fansData[i]['amount'] }}</span></td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+
+                        {% if !fansData %}
+                        <div class="no-prop"><span></span>您没有粉丝有贡献哦！</div>
+                        {% endif %}
+
+                    </div>
+
+                    <div id="month" class="tabs" style="display:none;">
+                        <table class="table purple fans-body">
+                            <thead>
+                            <tr>
+                                <th class="-name">排名</th>
+                                <th class="-content">超级粉丝</th>
+                                <th class="-time">贡献财富</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if FData %}
+                            {% for i in 0..FData|length-1 %}
+                            <tr>
+                                <td>
+                                    {% if i <= 2 %}
+                                    <img src="{{static_url('web/cssimg/mgtcenter/myFans')}}{{ i+1 }}.png">
+                                    {% else %}
+                                    <span class="tbe-ph">{{ i+1 }}</span>
+                                    {% endif %}
+                                </td>
+                                <td class="fansInfo">
+                                    <div class="fansInfo-box clearfix">
+                                        <div class="head clearfix">
+                                            <a target="_blank">
+                                                <img src="{{ FData[i]['avatar'] }}">
+                                            </a>
+                                        </div>
+                                        <div class="content-info clearfix">
+                                            <div class="name"><a href="/{{ FData[i]['uid'] }}" target="_blank">{{ FData[i]['nickName'] }}</a><span>({{ FData[i]['uid'] }})</span></div>
+                                            <div class="level clearfix">
+                                                <span class="pull-left">富豪：</span>
+                                                <span class="pull-left"><i class="sprite-fh_level fh{{ FData[i]['richerLevel'] }}"></i></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="countr-value"><span class="tbe-cw">{{ FData[i]['amount'] }}</span></td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+
+                        {% if !FData %}
+                        <div class="no-prop"><span></span>您没有粉丝有贡献哦！</div>
+                        {% endif %}
+
+
+                    </div>
+
+
+                    <div id="guard"  class="tabs" style="display:none;">
+                        <table class="table purple fans-body">
+                            <thead>
+                            <tr>
+                                <th class="-name">排名</th>
+                                <th class="-content">我的房间守护</th>
+                                <th class="-time">贡献财富</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% if fansGuardData %}
+                            {% for i in 0..fansGuardData|length-1 %}
+                            <tr>
+                                <td>
+                                    {% if i <= 2 %}
+                                    <img src="{{static_url('web/cssimg/mgtcenter/myFans')}}{{ i+1 }}.png">
+                                    {% else %}
+                                    <span class="tbe-ph">{{ i+1 }}</span>
+                                    {% endif %}
+                                </td>
+                                <td class="fansInfo">
+                                    <div class="fansInfo-box clearfix">
+                                        <div class="head clearfix">
+                                            <a target="_blank">
+                                                <img src="{{ fansGuardData[i]['avatar'] }}">
+                                            </a>
+                                        </div>
+                                        <div class="content-info clearfix">
+                                            <div class="name"><a href="/{{ fansGuardData[i]['id'] }}" target="_blank">{{ fansGuardData[i]['nickName'] }}</a><span>({{ fansGuardData[i]['uid'] }})</span></div>
+                                            <div class="level clearfix">
+                                                <span class="pull-left">富豪：</span>
+                                                <span class="pull-left"><i class="sprite-fh_level fh{{ fansGuardData[i]['richerLevel'] }}"></i></span>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="countr-value"><span class="tbe-cw">{{ fansGuardData[i]['amount'] }}</span></td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                            </tbody>
+                        </table>
+
+                        {% if !fansGuardData %}
+                        <div class="no-prop"><span></span>还没有人为您开通守护哦！</div>
+                        {% endif %}
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="center-bottom">
+
+            </div>
+        </div>
+        <div class="center-footer-bg" >
+
+        </div>
+        {% include "template/background.html" %}
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript">
+    (function($){
+        $('.navbar .nav li').click(function(){
+            $('.navbar .nav li.active').removeClass('active');
+            $(this).addClass('active');
+            var id=$(this).children('a').attr('href');
+            $('.tabs').hide();
+            $(id).show();
+            return false;
+        });
+    })(jQuery);
+</script>
+{% endblock %}

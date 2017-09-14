@@ -1,0 +1,35 @@
+<extend name='Public/bookbase'/>
+<block name='title'>场次搜索</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="#" class="back link">
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">场次搜索</div>
+        </div>
+    </div>
+</block>
+
+<block name='body'>
+       
+        <div data-page="search" class="page">
+
+            <div style="display:none" id="thisUrl">{:U('Bookwhole/schedule')}</div>
+            <div class="main" id="page-search">
+                 <p>选择观看影片</p>
+                <select name='filmNo' id='filmNo_search'>
+                    <option value=''>选择观看影片</option>
+                    <volist name='list' id='v'>
+                    <option value='{$v.filmNo}'>{$v.filmName}</option>
+                    </volist>
+                </select>
+                <p>选择观看日期</p>
+                <label for="date"></label>
+
+                <input name="date" id="date">
+                <a  name="submit" >开始搜索</a>
+            </div>
+        </div>
+</block>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities.crowdfunded'|ns_css)}}">
+    <link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+
+    <div class="wrapBd">
+        <div class="bodyBg" style="background-color:#f8f8f8;">
+            <div class="bodyContent">
+                <a href="/crowdfunded"><img src="{{static_url('web/cssimg2/crowdfunded/img.png')}}"></a>
+                <div class="content-h clearfix">
+                    <div class="Carousel-left pull-left">
+                        <div class="control left" jsdata="left">
+                            <i class="bgs"></i>
+                            <i class="sprite-index arrow2Left"></i>
+                        </div>
+                        <div class="control right" jsdata="right">
+                            <i class="bgs"></i>
+                            <i class="sprite-index arrow2Right"></i>
+                        </div>
+                        <div id="scrollPics" class="clearfix">
+                            <ul class="slider pull-left">
+                                {% if banners['list'] %}
+                                    {% for banner in banners['list']%}
+                                        <li style="float: left"><a style="display:block;height: 448px;width:720px;" href="{{banner['extracontent']}}" target="_blank"><img style="height: 448px;width:720px;" src="{{banner['bannerurl']}}"/></a></li>
+                                    {% endfor %}
+                                {% endif %}
+
+                            </ul>
+                            <ul class="num">
+                                {% if banners['list'] %}
+                                    {% for i in 1..banners['list']|length %}
+                                        <li {% if i==1 %} class="on" {% endif %}>{{i}}</li>
+                                    {% endfor %}
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="Carousel-right pull-right">
+                        <p class="title">最新揭晓</p>
+                        <ul id="pointUl" class="pointUl">
+                        </ul>
+
+                    </div>
+
+                </div>
+                <div class="content-c clearfix">
+                    <h3>&nbsp;即将揭晓</h3>
+                    <a href="/crowdfunded/goods?gt=1" target="_blank" class="click_look pull-right">更多即将揭晓，点击查看>></a>
+                    <ul id="indiana-open" class="indiana minheight clearfix">
+
+                    </ul>
+                </div>
+
+                <div class="content-c clearfix">
+                    <h3>&nbsp;最热人气商品</h3>
+                    <a href="/crowdfunded/goods?gt=2" target="_blank" class="click_look pull-right">更多商品，点击查看>></a>
+                    <ul id="indiana-getHottest" class="indiana minheight clearfix">
+
+                    </ul>
+                </div>
+                <div class="actGotop"><a href="javascript:;" title="返回顶部"></a></div>
+            </div>
+
+            {% include "template/footer.html" %}
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" defer async data-main="{{static_url('crowdfunded'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>

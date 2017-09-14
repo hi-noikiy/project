@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <style type="text/css">
+    .wrap{position: relative;}
+    .dlbg{position: relative;top: 0;z-index: 1;}
+    .dlcontent{position: absolute;z-index: 2;top: 0;left:0;right:0;}
+    .dlcontent .setnow{position: absolute;padding: 85% 26% 0;width: 48%;}
+    .dlcontent .setnow .active{display: none;}
+    .dlcontent .setnow:active img{display: none;}
+    .dlcontent .setnow:active img.active{display: block;}
+    .dlcontent .loading{position: absolute;margin: 85% 43% 0;display: none;}
+    .dlAnd{display: none;right: 0;left: 0;position: absolute;top: 0;z-index: 3;background-color: rgba(0, 0, 0, 0.8);}
+    .dlcontent .loading.active{
+        -webkit-animation: myanimate 3s infinite linear;
+        -moz-animation: myanimate 3s infinite linear;
+        -ms-animation: myanimate 3s infinite linear;
+        -o-animation: myanimate 3s infinite linear;
+        animation: myanimate 3s infinite linear;
+    }
+    .dlcontent .dltip{width: 100%; margin: 101.5% auto 0;font-size:1.2rem;color: #000;position: absolute;text-align: center;display: none;}
+    .dlcontent .dltip span{color: #F91D1D;}
+    .dlcontent .dlios9{margin: 75% auto 0; width: 100%;text-align: center;display: none;position: absolute;}
+    .dlcontent .dlios9 a{color: #F91D1D;text-decoration: underline;font-size:1.2rem;}
+    html body{background-color: #FFF;}
+
+    @-webkit-keyframes myanimate{0%{-webkit-transform:rotate(0deg);}100%{-webkit-transform:rotate(360deg);}}
+    @-moz-keyframes myanimate{0%{-moz-transform:rotate(0deg);}100%{-moz-transform:rotate(360deg);}}
+    @-ms-keyframes myanimate{0%{-ms-transform:rotate(0deg);}100%{-ms-transform:rotate(360deg);}}
+    @-o-keyframes myanimate{0%{-o-transform:rotate(0deg);}100%{-o-transform:rotate(360deg);}}
+    @keyframes myanimate{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+    </style>
+</head>
+<body>
+<img class="dlAnd" id="dlAnd" alt="点击右上角，在浏览器（Safari）中打开" width="100%">
+<div id="topDiv" class="wrap" style="display: none;">
+    {% include "template/header.html" %}
+    <img class="dlbg" src="{{static_url('web/cssimg/mobile/download/dlbg.jpg')}}" width="100%">
+    <div class="dlcontent">
+        <div class="dlios9 isIosItem"><a href="/download/ios9tip">IOS9 无法安装点此解决</a></div>
+        <div class="setnow" id="downBtn">
+            <img src="{{static_url('web/cssimg/mobile/download/setnow.png')}}" width="100%">
+            <img class="active" src="{{static_url('web/cssimg/mobile/download/setnow.active.png')}}" width="100%">
+        </div>
+        <img id="loadingBtn" class="loading active" src="{{static_url('web/cssimg/mobile/download/loading.png')}}" width="14%">
+        <div id="loadingText" class="dltip">正在安装，<span>按 Home 键</span>在桌面查看</div>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/downapp'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

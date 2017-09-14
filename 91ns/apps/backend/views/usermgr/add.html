@@ -1,0 +1,103 @@
+<?php use \Phalcon\Tag as Tag; ?>
+ 
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> 
+            <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a> 
+            <a href="#" class="tip-bottom" data-original-title="">用户管理</a> 
+            <a href="#" class="current">添加用户</a> 
+        </div>
+    
+    <!--  <h1>Tables</h1> -->
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>添加用户</h5>
+        </div>
+        <div class="widget-content nopadding">
+          <form action="#" method="get" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">First Name :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="First name">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Last Name :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="Last name">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Password input</label>
+              <div class="controls">
+                <input type="password" class="span11" placeholder="Enter Password">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Company info :</label>
+              <div class="controls">
+                <input type="text" class="span11" placeholder="Company name">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Description field:</label>
+              <div class="controls">
+                <input type="text" class="span11">
+                <span class="help-block">Description field</span> </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Message</label>
+              <div class="controls">
+                <textarea class="span11"></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success pull-right">确定</button>
+            </div>
+          </form>
+        </div>
+      </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Sending the form by method POST -->
+<!--<?= Tag::form("usermgr/search") ?>
+    <label for="q">用户名:</label>
+    <?= Tag::textField("username") ?> <br/>
+    <label for="q">用户uid:</label>
+    <?= Tag::textField("uid") ?><br/>
+    <?= Tag::submitButton(array("Search", "name" => "Search")) ?>
+</form>-->
+<!-- {% if users %}
+    {% for users in page.items %}
+        {% if loop.first %}
+            <table class="table table-bordered table-striped" align="center">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>username</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% endif %}
+        <tr>
+            <td>{{ users.uid }}</td>
+            <td>{{ users.username }}</td>
+            <td width="7%">{{ link_to("usermgr/edit/" ~ users.uid, '<i class="glyphicon glyphicon-edit"></i> Edit', "class": "btn btn-default") }}</td>
+            <td width="7%">{{ link_to("usermgr/delete/" ~ users.uid, '<i class="glyphicon glyphicon-remove"></i> Delete', "class": "btn btn-default") }}</td>
+        </tr>
+    {% endfor %}
+{% else %}
+    No users are recorded
+{% endif %} -->
+<!-- {% if users %}
+        </tbody>
+    </table>
+{% endif %} -->

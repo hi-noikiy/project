@@ -1,0 +1,2 @@
+update pre_gift_package_configs set items='[{"type":0,"cash":188},{"type":0,"points":1000},{"type":3,"id":10,"num":88,"validity":0},{"type":2,"id":30,"num":1,"validity":2592000},{"type":4,"id":9,"num":1,"validity":2592000}]' where id=38;
+insert into pre_gift_package_configs(id,`name`,`desc`,items)values(52,'新用户礼包','手机号注册新用户礼包','[{"type":0,"cash":88},{"type":0,"points":1000},{"type":3,"id":10,"num":66,"validity":0},{"type":2,"id":30,"num":1,"validity":2592000},{"type":4,"id":9,"num":1,"validity":2592000}]');

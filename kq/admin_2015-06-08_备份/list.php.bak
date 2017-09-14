@@ -1,0 +1,114 @@
+<?php
+$className=$_GET['cn'];
+$classStr=$_type[$className];
+if($className=='record')
+{
+    if(!$_GET['fromTime'])
+    {
+        $_GET['fromTime'] = date('Y-m')."-01";
+    }
+    if(!$_GET['toTime'])
+    {
+        $_GET['toTime'] = date('Y-m-d');
+    }
+}
+$class=new $className();
+$class->setKw($_GET);
+$class->p=$_GET['p'];
+
+if(in_array($className,array('hugh','overtime','leave','sign','outrecord'))){
+	$no=strtr($className,array('hugh'=>'73','overtime'=>'72','leave'=>'74','sign'=>'75','outrecord'=>'76'));
+	$is_search1=mysql_fetch_assoc(mysql_query("select id from _sys_group_perm where perm_id='$no' and admin_id='".$_SESSION['ADMIN_ID']."'"));
+	$is_search2=mysql_fetch_assoc(mysql_query("select id from _sys_group_perm where group_id='".$_SESSION['gpid']."' and perm_id='$no'"));
+	
+	if($is_search1['id']||$is_search2['id']){
+	 	$allow_show=true;
+	  	if(!$fromTime)$fromTime=date('Y-m-').'01';
+	    if(!$toTime)$toTime=date('Y-m-d');
+	}  
+}
+
+if(in_array($className,array('hugh','overtime','leave','sign','outrecord'))&&($_POST['uid']||$_GET['uid'])){
+  	$fromTime=mysql_real_escape_string($_POST['fromTime']?$_POST['fromTime']:$_GET['fromTime']);
+  	$toTime=mysql_real_escape_string($_POST['toTime']?$_POST['toTime']:$_GET['toTime']);
+  	$uid=mysql_real_escape_string($_POST['uid']?$_POST['uid']:$_GET['uid']);
+  	if($className!='sign'){
+  		$class->setWhere(" uid='$uid' and fromTime>='$fromTime' and toTime<='$toTime'");
+  	}
+  	else{
+  		$class->setWhere(" uid='$uid' and addDate between '$fromTime' and '$toTime'");
+  	}
+  	$class->setOrder(' id desc');
+  	$list=$class->getList();
+	$pageCtrl=$class->getPageInfoHTML('',"index.php?type=web&do=list&cn=$className&uid=$uid&fromTime=$fromTime&toTime=$toTime&p=");
+  	if($className!='sign'){
+  		$sql="select sum(totalTime) as total from _web_$className where uid='$uid' and fromTime>='$fromTime' and toTime<='$toTime'";
+  		$result=mysql_fetch_assoc(mysql_query($sql));
+  		$total=$result['total'];
+  		unset($result);
+  	}
+	
+}
+else
+{
+	//需要特殊显示的类 配置文件admin/common.inc.php
+	if(in_array($className,$ar) && $_SESSION['role']=='3')
+	{
+	    $class->setWhere(" uid='".$_SESSION['ADMIN_ID']."'");
+	}
+	elseif(in_array($className,$ar) && $_SESSION['role']=='2')
+	{
+	    $admin = new admin();
+	    $depIds = $admin->getInfo($_SESSION['ADMIN_ID'], 'depId', 'pass');
+	    $class->setWhere(" uid='".$_SESSION['ADMIN_ID']."' or depId='$depIds'");
+	}
+	
+	if($className=='record')
+	{
+	    $admin = new admin();
+	    $seartag = $admin->getInfo($_SESSION['ADMIN_ID'], '', 'pass');
+	    $is_sear=mysql_fetch_assoc(mysql_query("select id from _sys_group_perm where perm_id='77' and admin_id='".$_SESSION['ADMIN_ID']."'"));
+	     print_r($_GET);
+	    if($seartag['seartag']!='1'&&!$is_sear['id']){//普通员工
+	        $class->setWhere("card_id = '".$seartag['card_id']."'");
+	    }
+	    if($is_sear['id']&&$_POST['card_id']){
+	    	$depname=mysql_fetch_assoc(mysql_query("select name from _web_department where id='".$_SESSION['depId']."'"));
+	    	$class->setWhere("depname='".$depname['name']."'");
+	    }
+	    if($is_sear['id']&&!$_POST['card_id']){//主管
+	    	$class->setWhere("card_id = '".$seartag['card_id']."'");
+	    }
+	    $class->setWhere("gong_id != '0' and card_id!='5326068'");  //5326068为老大卡
+	}
+	if($_GET['order']) $class->setOrder($_GET['order']);
+	$list=$class->getList();
+	$pageCtrl=$class->getPageInfoHTML();
+}
+
+
+?>
+ <h1 class="title"><span><?=$classStr?>列表</span></h1>
+ <div class="pidding_5">
+  <?include($_GET['type'].'/'.$className.'.list.php');?>
+  <div class="news-viewpage"><?=$pageCtrl?></div>
+ </div>
+<script>
+function searchFun(){
+	var url=$('#searchForm').attr('action');
+	$('#searchForm').find(':input[name]').each(function (){
+		if($(this).val()){
+			url+='&'+$(this).attr('name')+'='+$(this).val();
+		}
+	});
+	window.location.href=url;
+	return false;
+}
+</script>
+<script>
+$('input[postType]').blur(function (){
+	var param={};
+	param[$(this).attr('name')]=$(this).val();
+	$.post('command.php?action=edit&type='+$(this).attr('postType')+'&id='+$(this).attr('postId'),param,function (){ })
+})
+</script>

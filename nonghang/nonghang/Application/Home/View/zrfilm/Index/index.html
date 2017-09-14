@@ -1,0 +1,62 @@
+<extend name='Public/base'/>
+<block name='title'>微信购票</block>
+
+ 
+<block name='navbar'>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="center sliding">{$weiXinInfo['groupName']}</div>
+      <div class="right"><a href="{:U('cinemalist',array('op'=>'plan'))}" class="link open-links more-cinema">{$cinema['shortName']}</a></div>
+    </div>
+  </div>
+</block>
+<block name='body'>
+
+<div data-page="indexIndex" class="page" style="padding-top:44px; overflow:scroll;">
+             <div class="swiper">
+                <div class="index-swiper-container">
+                  <div class="swiper-wrapper">
+                    <volist name='banners' id='vo'>
+                    <div class="swiper-slide"> <a href="{$vo['url']}" class="external"> <img src="__UPLOAD__/{$vo['img']}" width="100%" ></a> </div>
+                    </volist>
+                  </div>
+                </div>
+                <div class="pagination"></div>
+            </div>
+             <div class="homeLink reviseRb">
+              <div class="linkLeft">
+                  <a href="{:U('plan',array('op'=>'plan'))}"><img src="__IMG__/common/1.jpg" width="100%" /></a>
+                    <div class="linkFilm">
+                      <a href="<?php if($data['curin']=='0'){ ?>javascript:;<?php }else{ ?>{:U('film')}<?php }?>"><b>{$data['curin']}</b><span>正在热映</span></a>
+                        <a href="<?php if($data['prein']=='0'){ ?>javascript:;<?php }else{ ?>{:U('soon')}<?php }?>"><b>{$data['prein']}</b><span>即将上映</span></a>
+                    </div>
+                </div>
+                <div class="linkRight">
+                  <a href="{:U('user/user', array('op' => 'login'))}"><img src="__IMG__/common/2.jpg" width="100%" /></a>
+                  <a href="{:U('user/recharge')}" class='external'><img src="__IMG__/common/3.jpg" width="100%" /></a>
+                  <a href="{:U('index/goodslist')}"><img src="__IMG__/common/4.jpg" width="100%" /></a>
+                  <a href="{:U('bookwhole/index')}" class='external'><img src="__IMG__/common/5.jpg" width="100%" /></a>
+                </div>
+             </div>
+             <div class="">
+              <a href="{$ad['url']}" class='external'><img src="__UPLOAD__/{$ad['img']}" width="100%" height="120" /></a>
+             </div>
+            </div>
+</block>
+<block name='script'>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var w=$(document).width();
+            $('.swiper-slide').height(w*0.33);
+            $('.swiper-slide img').height(w*0.33);
+            $('.index-swiper-container').height(w*0.33);
+             var indexSwiper = myApp.swiper('.index-swiper-container', {
+                    pagination: '.pagination',
+                    autoplay: 3000//可选选项，自动滑动
+                });
+
+    });
+
+
+	</script>
+  </block>

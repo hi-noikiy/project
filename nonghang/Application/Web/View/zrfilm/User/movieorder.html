@@ -1,0 +1,104 @@
+<extend name='Public/nbase'/>
+
+<block name='body'>
+
+<div id="main" class="recharge">
+     <div class="odContent">
+        <div class="container">
+            <div class="orderHeader">
+                <div class="orderClassify">
+                    <a class="active"  href="{:U('user/movieorder')}">影票订单</a><a href="{:U('user/goodsorder')}">卖品订单</a>
+                </div>
+                <div class="orderStatus">
+                    <span class="active" status='1'>完成订单</span>
+                    <span status='2'>退票订单</span>
+                    <span status='3'>异常订单</span>
+                </div>
+            </div>
+            <!--完成订单-->
+            <div class="order-section">
+            </div>
+        </div>
+    </div>
+</div>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+    orderinfo(1,1);
+    function orderinfo(status,p){
+    	$.getJSON("{:U()}",{status:status,p:p},function(data){
+    		$('.order-section').html('');
+    		var str='';
+    		if(data.status=='0'){
+    			$.each(data.data.orders,function(i,vo){
+    				str+='<div class="orderBlock"><div class="orderItem"><img src="'+vo['filmImg']+'"><h4>'+vo['filmName']+'<span>￥'+vo['allprice']+'</span></h4>'+
+    				'<p>影院：'+vo['cinemaName']+'&nbsp;'+vo['hallName']+'</p><p>场次：'+vo['startTime']+'</p><p class="seatNum">座位：'+vo['seatIntroduce']+'</p>'+
+    				'<p class="orderNum">订单：'+vo['orderCode']+'&nbsp;'+vo['orderTime']+'</p><p class="codeTicket">';
+    				if(status=='1'){
+    					str+='取票码：'+vo['printNo'];
+    				}else if(status=='2'){
+    					str+='状态：退票退款';
+    				}else if(status=='3'){
+    					str+='状态：'+vo['str'];
+    				}
+    				str+='</p>';
+    				if(vo.nodel != '1'){
+    					str+='<a onclick="delorder(this)" orderid="'+vo['orderCode']+'"></a>';
+    				}
+    				str+='</div></div>'
+    			});
+    			str+=data.data.page;
+    		}else{
+    			str='<div class="orderNone"></div>';
+    		}
+    		$('.order-section').html(str);
+    	 	$('.page a').each(function(){
+    	 		var s=$(this).attr('href').split('/p/');
+    	 		s=s[1].split('.');
+    	 		$(this).attr('href','javascript:orderinfo('+status+','+s[0]+')');
+    	 	});
+    	});
+    }
+    function delorder(obj){
+    	var _this = $(obj);
+    	var orderid = $(obj).attr('orderid');
+    	var url="{:U('delOrderFilm')}";
+        layer.open({
+            type: 1,
+            shift:5,
+            title: false,
+            skin: 'warn',
+            closeBtn:0,
+            border: 1,
+            shadeClose: true,
+            area: ['404px', '200px'],
+            btn:['确认','取消'],
+            content: '\<\p id="tipCon">\确认要删除该订单？<\/p>',
+            yes: function(index){
+            	$.getJSON(url,{orderid:orderid},function(data){
+            		layer.msg(data.content);
+            		if(data.status=='0'){
+            			 _this.parents('.orderBlock').remove();
+            		}
+            		layer.close(index); //一般设定yes回调，必须进行手工关闭
+            	});
+               
+            }
+        });
+    }
+    $(function(){
+        $('.orderStatus span').each(function(i){
+            $(this).click(function(){
+                $('.orderStatus span').removeClass('active');
+                $(this).addClass('active');
+                orderinfo($(this).attr('status'));
+            })
+        });
+    })
+    </script>
+
+</block>
+
+
+

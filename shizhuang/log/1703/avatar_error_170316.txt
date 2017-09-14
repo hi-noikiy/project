@@ -1,0 +1,1 @@
+ sql=insert into sz_user_avatar(account_id, avatar, addtime) values('1652322', '148965149516523229797.', '1489651496');, 2017-03-16 16:04:56

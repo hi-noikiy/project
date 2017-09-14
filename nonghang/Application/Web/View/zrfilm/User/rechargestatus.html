@@ -1,0 +1,41 @@
+<extend name='Public/base'/>
+
+<block name='body'>
+
+    <div id="main">
+        <div class="container wait">
+        </div>
+        <div class="container rcStatus" id='success' style="display: none">
+            <p>充值成功！您当前账户余额：<a href="#">￥1000</a></p>
+            <a href="{:U('plan/plan')}">立即购票></a>
+        </div>
+        <div class="container rcStatus fail" id='fail' style="display: none">
+            <p>充值失败</p>
+            <p class="color-orange">返回></p>
+        </div>
+    </div>
+    <script>
+    var orderid="{$orderid}";
+    if(orderid!=''){
+    	var id=setInterval(function(){
+    		   $.getJSON("{:U()}",{orderid:orderid},function(data){
+    			   if(data.data.status!='0'){
+    				   $('.wait').hide();
+    				   clearInterval(id);
+    				   if(data.data.status =='1'){
+    		                $("#success a").eq(0).text('￥'+data.data.lastMoney);
+    		                $("#success").show();
+    		            }else{
+    		            	$("#fail").show();
+    		            }   
+    			   }
+    		   });
+    	},3000);
+    }
+    </script>
+</block>
+
+
+
+
+

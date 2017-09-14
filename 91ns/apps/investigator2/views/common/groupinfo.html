@@ -1,0 +1,99 @@
+<div id="groupDialog" style="display:none;padding:0;">
+  <div class="widget-box" style="margin:0">
+    
+    <div class="widget-content clearfix">
+      <div class="span3" style="margin-left:0;">
+        <form action="#" method="get" class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">家族名:</label>
+            <div class="controls">
+              <input type="text" class="span11" readonly style="width:120px;">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label">家族徽章:</label>
+            <div class="controls">
+              <input type="text" class="span11" readonly style="width:120px;">
+            </div>
+          </div>
+          
+          <div class="control-group">
+            <label class="control-label">家族LOGO:</label>
+            <div class="controls">
+               <img src="{{static_url('web/img/demo/av1.jpg')}}"/>
+            </div>
+          </div>
+          
+          
+        </form>
+        
+      </div>
+
+      <div class="span3" style="margin-left:0;">
+        <form action="#" method="get" class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label">真实姓名:</label>
+            <div class="controls">
+              <input type="text" class="span11" readonly style="width:120px;">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">性别:</label>
+            <div class="controls">
+               <select style="width:60px;" readonly>
+                 <option value="1">男</option>
+                 <option value="0">女</option>
+               </select>
+            </div>
+          </div>
+
+           <div class="control-group">
+            <label class="control-label">身份证号:</label>
+            <div class="controls">
+              <input type="text" class="span11" readonly style="width:120px;">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">电话:</label>
+            <div class="controls">
+              <input type="text" class="span11" readonly style="width:120px;">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">地址:</label>
+            <div class="controls">
+              <input type="text" class="span11" readonly style="width:120px;">
+            </div>
+          </div>
+
+          <div class="control-group">
+            <label class="control-label">夜场地址:</label>
+            <div class="controls">
+              <input type="text" class="span11" readonly style="width:120px;">
+            </div>
+          </div>
+          
+        </form>
+      </div>
+
+      
+  </div>
+
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  function GroupDialog(){
+    $('#groupDialog').dialog({
+      width: 600,
+      title:'创建家族申请信息',
+      modal:true,
+      closeOnEscape:true,
+      resizable:false,
+    });
+  }
+</script>

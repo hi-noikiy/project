@@ -1,0 +1,161 @@
+<extend name="Public/base"/>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/index')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">我的</div>
+    <div class="right"></div>
+  </div>
+</div>
+  </block>
+<block name='body'>
+  <div data-page="userIndex" class="page" style="overflow:scroll;">
+    <div class="page-content" style="padding-bottom:50px;">
+	<div class="userTop">
+        <img src="__IMG__/user/user2.png" width="100%" />
+       <!-- <div class="userSet"><a href="" class=" link"></a></div>-->
+        <div class="userInfo">
+        	<a class="userFace" href="{:U('info')}"><span><img src="{$user['userIcon']}" width="100%" height="100%" /></span></a>
+            <a href="{:U('info')}" class="name">{$user['userNickname']}</a>
+        </div>
+        <div class="userBalance"><span>余额<br />￥{$user['userMoney']}</span><em></em><span>积分<br />{$user['integral']}</span></div>
+        
+         <!-- <a href="{:U('info')}" class=" link">
+                <div class="userTopLeft"><img src="__IMG__/user/my_icon.png" width="100%" /></div>
+                <div class="userTopRight">
+                    <h2>{$user['cardNum']}</h2><em>{$user['levelName']}</em>
+                    <div class="info"></div>
+                </div>
+                <div class="clear"></div>
+            </a>-->
+    </div>
+            <div class="list-block media-list">
+              <ul>
+              	<li>
+                  <a href="{:U('user/recharge')}"  class="external item-link item-content">
+                    <div class="item-media"><img src="__IMG__/user/u6.png" width="20"></div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title">账户充值</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="{:U('user/returnticket')}" class="item-link item-content">
+                    <div class="item-media"><img src="__IMG__/user/u7.png" width="20"></div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title">退票中心</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="{:U('Bookwhole/orderBc')}" class="external item-link item-content">
+                    <div class="item-media"><img src="__IMG__/user/u8.png" width="20"></div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title">包场订单</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                
+                <li>
+                  <a href="{:U('ordergoodslist')}" class="item-link item-content">
+                    <div class="item-media" style=" padding-left:3px; width:20px;"><img src="__IMG__/user/u2.png" height="25"></div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title">卖品订单</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="{:U('orderfilmlist',array('status'=>'-1'))}" class="item-link item-content">
+                    <div class="item-media"><img src="__IMG__/user/u1.png" width="20"></div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title">影票订单</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                </ul>
+                </div>
+           <div class="list-block media-list">
+                <ul>
+                	<li>
+                      <a href="{:U('package')}" class="item-link item-content">
+                        <div class="item-media"><img src="__IMG__/user/u9.png" width="20"></div>
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">我的券包</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                	<li>
+                      <a href="{:U('user/record')}" class="item-link item-content">
+                        <div class="item-media"><img src="__IMG__/user/u3.png" width="20"></div>
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">消费记录</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{:U('mycomment')}" class="item-link item-content">
+                        <div class="item-media"><img src="__IMG__/user/u4.png" width="20"></div>
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">我的评论</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                     <!--<li>
+                      <a href="{:U('User/feedback')}" class="item-link item-content">
+                        <div class="item-media"><img src="__IMG__/user/u5.png" width="25"></div>
+                        <div class="item-inner">
+                          <div class="item-title-row">
+                            <div class="item-title">消息中心</div>
+                          </div>
+                        </div>
+                      </a>
+                    </li>-->
+              </ul>
+            </div>
+        <a href="{:U('Public/logout')}" class="outBtn">退出登录</a>
+    </div>
+</div>
+</block>
+<!--<block name='toolbar'>
+    <div class="toolbar tabbar tabbar-labels">
+        <div class="toolbar-inner">
+            <a href="#tab1" class="tab-link active">
+                <i class="icon icon1"></i>
+                <span class="tabbar-label">电影</span>
+            </a>
+            <a href="{:U('plan',array('op'=>'plan'))}" class="tab-link">
+                <i class="icon icon2"></i>
+                <span class="tabbar-label">排期</span>
+            </a>
+            <a href="#tab3" class="tab-link">
+                <i class="icon icon3"></i>
+                <span class="tabbar-label">乐购</span>
+            </a>
+            <a href="#tab4" class="tab-link">
+                <i class="icon icon4"></i>
+                <span class="tabbar-label">我的</span>
+            </a>
+        </div>
+    </div>
+</block>-->
+<block name='script'>
+<script>
+</script>
+</block>
+

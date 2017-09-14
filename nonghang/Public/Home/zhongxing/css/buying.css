@@ -1,0 +1,410 @@
+@charset "utf-8";
+.swiper-slide {
+  background: #43a6fa;
+  box-sizing: border-box;
+}
+.swiper-slide-active{
+	background:#3d97e3;
+	}
+.swiper-slide.cur {
+	background:#3d97e3;
+	}
+.swiper-slide span {
+  text-align:center;
+  display:block;
+  font-size:12px;
+  color:#fff;
+  line-height:40px;
+  height:40px;
+}
+.buy-swiper-container {
+  height:40px;
+  overflow:hidden;
+  background: #43a6fa;
+}
+.buyDate{
+	height:40px;
+	line-height:40px;
+	padding:0 15px;
+	background:#eeeeee;
+	}
+.buyDate span{
+	color:#fc9d40;
+	font-size:14px;
+	}
+.buyDate span.setdate{
+	float:right;
+	}
+.buyDate span.setdate em{
+	background:url(../images/buying/date.png) no-repeat center center;
+	width:20px;
+	height:20px;
+	display:inline-block;
+	background-size:100%;
+	vertical-align:top;
+	margin:10px 5px 10px 0px;
+	}
+.buyList{
+	background:#fff;
+	}
+.buyList ul li{
+	padding:10px 0;
+	margin:0 5px;
+	border-bottom:1px solid #e5e5e5;
+	height:90px;
+	position:relative;
+	}
+.buyList ul li:last-child{
+	border:none;
+	}
+.buyList ul li .filmImg{
+	float:left;
+	margin-right:3px;
+	position:relative;
+	}
+
+.buyList ul li .filmInfo{
+	width:70%;
+	float:left;
+	}
+.buyList ul li .filmInfo h2{
+	color:#2e2e2e;
+	font-size:16px;
+	line-height:24px;
+	}
+.buyList ul li .filmInfo p{
+	color:#999;
+	font-size:12px;
+	line-height:24px;
+	width:95%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+	}
+.buyList ul li .filmInfo p span{
+	color:#3383c7;
+	font-size:14px;
+	}
+.buyList ul li .filmPrice{
+	position:absolute;
+	right:0;
+	top:10px;
+	color:#008aff;
+	}
+.buyList ul li .filmPrice span{
+	font-size:20px;
+	color:#fc9d40;
+	margin-right:5px;
+	}
+.buyList ul li .filmPrice i{
+	font-size:12px;
+	text-decoration:line-through;
+	color:#999;
+	font-style:normal;
+	}
+.buyList ul li .buyBtn{
+	position:absolute;
+	right:0;
+	bottom:10px;
+	}
+.buyList ul li .buyBtn a{
+	padding:3px 5px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius:3px;
+	border-radius: 3px;
+	color:#3383c7;
+	border:1px solid #3383c7;
+	}
+.buyList ul li .buyBtn span{
+	padding:3px 5px;
+	-moz-border-radius: 3px;
+	-khtml-border-radius: 3px;
+	-webkit-border-radius:3px;
+	border-radius: 3px;
+	color:#999;
+	border:1px solid #999;
+	}
+.filmContent .bak{
+	background:#fff191;
+	padding:0 15px;
+	line-height:30px;
+	font-size: 12px;
+	color:#ff3e3e;
+	}
+
+.filmContent .filmInfo{
+	position:relative;
+	background:#fff;
+	padding:10px 15px;
+	}
+.filmContent .filmInfo h2{
+	color:#2e2e2e;
+	font-size:16px;
+	line-height:24px;
+	}
+.filmContent .filmInfo p{
+	color:#999;
+	font-size:12px;
+	line-height:24px;
+	width:95%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+	}
+.filmContent .filmInfo p span{
+	color:#3383c7;
+	font-size:14px;
+	}
+.filmContent .filmInfo .filmPrice{
+	position:absolute;
+	right:15px;
+	top:10px;
+	color:#008aff;
+	}
+.filmContent .filmInfo .filmPrice span{
+	font-size:20px;
+	color:#fc9d40;
+	margin-right:5px;
+	}
+.filmContent .filmInfo .filmPrice i{
+	font-size:12px;
+	text-decoration:line-through;
+	color:#999;
+	font-style:normal;
+	}
+	
+	
+.filmBak{
+	background:#fff;
+	margin-top:20px;
+	padding:10px 15px;
+	}
+.filmBak span{
+	font-size:16px;
+	line-height:30px;
+	}
+.filmBak .djsLed{
+	font-family:db;
+	color:#3383c7;
+	text-align:center;
+	font-size:36px;
+	font-weight:bold;
+	line-height:50px;
+	}
+.filmBak .inputBox{
+	position:relative;
+	margin:10px 0;
+	}
+.filmBak .inputBox input.phone {
+	z-index:99999;
+    border: 1px solid #cdcdcd;
+    height: 36px;
+    line-height: 36px;
+    -moz-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+	padding-left:25px;
+	width:90%;
+	
+}
+.filmBak  .inputBox em {
+    position: absolute;
+    background: url(../images/movie/edit.png) no-repeat 0 0;
+    background-size: 100%;
+    height: 20px;
+    width: 20px;
+    left:5px;
+    top: 8px;
+    display: inline-block;
+}
+.filmBak p{
+	line-height:24px;
+	color:#666;
+	font-size:14px;
+	}
+.buyBtm{
+	padding:0;
+	}
+.buyBtm .cartVal{
+	display:inline-block;
+	padding:12px 0;
+	}
+.buyBtm .cartVal span{
+	padding-left:15px;
+	font-size:16px;
+	color:#666;
+	vertical-align:top;
+	}
+
+.buyBtm .cartVal .minus{
+	background:#b7b7b7;
+	border-radius: 10px;
+	width:20px;
+	height:20px;
+	display:inline-block;
+	color:#fff;
+	text-align:center;
+	line-height:20px;
+	vertical-align:top;
+	}
+.buyBtm .cartVal input{
+	width:30px;
+	text-align:center;
+	vertical-align:top;
+	height:20px;
+	}
+.buyBtm .cartVal .plus{
+	background:#b7b7b7;
+	border-radius: 10px;
+	width:20px;
+	height:20px;
+	display:inline-block;
+	color:#fff;
+	text-align:center;
+	line-height:20px;
+	vertical-align:top;
+	}
+.buyBtm .cartVal .plus:hover{
+	background:#3383c7;
+	}
+.buyBtm .buylink{
+	position:absolute;
+	right:0;
+	bottom:0;
+	font-size:16px;
+	background:#3383c7;
+	color:#fff;
+	height:44px;
+	padding:0 10px;
+	line-height:44px;
+	display:inline-block;
+	}
+.remindBtn{
+	width:100%;
+	background:#3383c7;
+	color:#fff;
+	height:44px;
+	text-align:center;
+	line-height:44px;
+	}
+.remindBtn.cur{
+	background:#999;
+	}
+
+
+
+
+
+
+.closePay{
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    background: url(../images/buying/close.png) no-repeat 0 0;
+    background-size: 100%;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+}	
+.selectPay ul{
+	background:#fff;
+	padding-left:10px;
+	}
+.selectPay ul li{
+	margin-right:10px;
+	padding:10px 0;
+	position:relative;
+	background:url(../images/movie/next.png) no-repeat right center;
+	border-bottom: 1px solid #e5e5e5;
+	}
+.selectPay ul li .payIcon{
+	width:50px;
+	float:left;
+	padding:5px 15px 5px 0;
+	}
+.selectPay ul li .payInfo{
+	float:left;
+	line-height:24px;
+	padding:6px 0;
+	}
+.selectPay ul li .payInfo p{
+	font-size:18px;
+	}
+.selectPay ul li .payInfo span{
+	color:#a4a4a4;
+	font-size:12px;
+	}
+.selectPay ul li .payInfo span b{
+	color:#fc9d40;
+	}
+.selectPay ul li .inputRadio{
+	float:right;
+	}
+.selectPay ul li .inputRadio input{
+	width:20px;
+	height:20px;
+	}
+.selectPay ul li .inputRadio input[type=radio]:checked+{
+	background:#F00;
+	}
+.selectPay ul li .payBtn{
+	position:absolute;
+	right:10px;
+	top:25px;
+	}
+.selectPay ul li .payBtn a{
+	padding:0 10px;
+	height:30px;
+	line-height:30px;
+	color:#fff;
+	-moz-border-radius: 3px;
+	-khtml-border-radius:3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	display:inline-block;
+	background:#ff9b34;
+	}
+.selectPay label.label-checkbox input[type=radio]:checked+.item-media i.icon-form-checkbox{
+	background:#008aff;
+	}
+.pickerInfo h4{
+	margin:0;
+	}
+
+.login-screen-content .buttons-row a.button.active {
+    background:#008aff;
+	
+    color: #fff;
+}
+.login-screen-content .buttons-row{
+	margin:15px 15px 0;
+	}
+
+.cinemaInfo{
+	padding:15px;
+	background:#fff;	
+	}
+.cinemaInfo h2{
+	color:#666;
+	font-size:18px;
+	}
+.cinemaInfo p{
+	font-size:16px;
+	border-bottom:1px solid #d6d6d6;
+	line-height:30px;
+	padding:15px 0;
+	position:relative;
+	}
+.cinemaInfo p em{
+	position:absolute;
+	width:24px;
+	height:24px;
+	left:0;
+	top:20px;
+	}
+.cinemaInfo p span{
+	display:inline-block;
+	line-height:30px;
+	padding-left:30px;
+	color:#000;
+	}
+.cinemaInfo p a{
+	font-size:18px;
+	}

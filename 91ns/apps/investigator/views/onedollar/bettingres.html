@@ -1,0 +1,117 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+    <div class="container-fluid" style="padding: 0;">
+
+        <div class="widget-box tab-tabs" >
+            <div class="widget-title">
+                <ul class="nav nav-tabs">
+                    {% include "common/tab.html" %}
+                </ul>
+            </div>
+            <div class="widget-content tab-content" style="overflow: hidden;">
+
+                <div class="row-fluid" style="margin-top: 30px;">
+
+                    <div id="query" class="countBox container-fluid" style="padding: 0;">
+
+                        <form action="/onedollar/getBetResultLogsExcel" method="post">
+
+                            <button type="submit" id="exportTable" class="btn btn-purple pull-right" style="margin-right: 40px;margin-bottom: 10px;">导出表格</button>
+                        </form>
+                        <div class="row-fluid" style="margin-bottom: 50px;margin-top: 20px;">
+                            <table id="tableList" class="table with-check table-purple">
+                                <thead>
+                                <tr>
+                                    <th>商品名称</th>
+                                    <th>商品ID</th>
+                                    <th>归属ID</th>
+                                    <th>期数</th>
+                                    <th>夺宝者ID</th>
+                                    <th>夺宝时间</th>
+                                    <th>用户电话</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            {% include "common/pagination.html" %}
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script>
+    $(function() {
+        $('body').css('overflow-x', 'auto');
+        getRecentBetRes();
+    })
+    function getRecentBetRes(index){
+        var data={};
+        data.page=index||1;;
+        data.pageSize=global.pageSize;
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/getRecentBetRes',
+            dataType:'json',
+            success:function(res){
+                var data=res.data;
+                var tableList=global.doc('tableList');
+                var tbody= tableList.getElementsByTagName('tbody')[0];
+                dataTable.clearData(tbody);
+
+                var count=global.doc('count');
+                count.innerHTML=data.count;
+
+                for(var i=0;i<data.data.length;i++){
+                    $('#tableList tbody').append(listRow(data.data[i]));
+                }
+                if(!index||index==0){
+                    utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                        page_index+=1;
+                        getRecentBetRes(page_index);
+                    });
+                }
+
+            }
+        });
+    }
+    function listRow(data){
+        var html='';
+
+        html+='<tr>';
+        html+='<td>'+data.name+'</td>';
+        html+='<td>'+data.id+'</td>';
+        html+='<td>'+data.type+'</td>';
+        html+='<td>'+data.times+'</td>';
+        html+='<td>'+data.uid+'</td>';
+        html+='<td>'+ns_getAllTime(data.openTime)+'</td>';
+        if(data.mobile && data.mobile!="0"){
+            html+='<td>'+data.mobile+'</td>';
+        }
+        else{
+            html+='<td>无</td>';
+        }
+
+        html+='</tr>';
+
+        return html;
+    }
+</script>
+

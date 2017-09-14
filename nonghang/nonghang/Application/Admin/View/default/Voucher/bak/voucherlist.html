@@ -1,0 +1,258 @@
+<extend name='Public/base'/>
+<block name='title'>票券列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu"> 
+            <ul>
+               {$leftMenu}
+            </ul>
+            <div class="planBtn"><a class="button" href="javascript:addvoucher();" >生成票券</a></div>
+        </div>
+        <div class="rightContent">
+        	
+            <div class="tableList">
+            	<ul class="tabbtn" id="tabs">
+                    <li><a href="{:U('voucherlist')}">票券列表</a></li>
+                    <li><a href="{:U('voucherlist')}">销售票券</a></li>
+                    <li><a href="{:U('voucherlist')}">已售票券</a></li>
+                </ul><!--tabbtn end-->
+                <div class="tabcon" id="tablist">
+                    <div class="sublist" id="tab1">
+                    	<div class="queryBox">
+                            <form>
+                            <div class="inputSelect">
+                                <span>生成批次：</span>
+                                <select name=''>
+                                    <option value="0">20151212</option>
+                                    <option value="1">20151212</option>
+                                 </select>
+                            </div>
+                            <div class="inputText" >
+                                <span>票券编号：</span>
+                                <input type="text" onclick="" placeholder="请输入票券编号" value="">
+                             </div>
+                             <div class="inputSelect">
+                                <span>适用影院：</span>
+                                <select name=''>
+                                    <option value="0">厦门梦工坊</option>
+                                    <option value="1">厦门梦露</option>
+                                 </select>
+                            </div>
+                            <a href="#" class="button">查询</a>
+                            </form>
+                        </div>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <thead>
+                              <tr >
+                               <td width="5%"><input type="checkbox" onclick="select_other(this);" /></td>
+                                <td width="15%">票券编码</td>
+                                <td width="10%">归属影城</td>
+                                <td width="14%">票券名称</td>
+                                <td width="10%">适用影城</td>
+                                <td width="12%">生效时间</td>
+                                <td width="12%">到期时间</td>
+                                <td width="12%">生成时间</td>
+                                <td width="5%">销售状态</td>
+                                <td width="5%">使用状态</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <foreach name="voucherList" item="vo" key="k">
+                                    <tr>
+                                    <td><input type="checkbox" name='id'  /></td>
+                                    <td>{$vo.voucherNumber}</td>
+                                    <td>{$vo.belongCinemaCode}</td>
+                                    <td>{$vo.typeId}</td>
+                                    <td>{$vo.cinemaCode}</td>
+                                    <td>{$vo.cinemaCode}</td>
+                                    <td>{$vo.cinemaCode}</td>
+                                    <td>{$vo.addTime|date="Y-m-d",###}</td>
+                                    <td>自动</td>
+                                    <td>可用</td>
+                                    </tr>
+                                </foreach>
+
+                            </tbody>
+                        </table>
+                        <div class="orderTotal">
+                            <span>票券总张数：116张</span>
+                            <a href="">导出到EXCEL</a>
+                        </div>
+                        <div class="pagination"><div class="page">{$page}</div></div>
+                    </div>
+                    <div class="sublist" id="tab2">
+                    	<div class="queryBox">
+                            <form>
+                                <div class="inputSelect">
+                                    <span>生成批次：</span>
+                                    <select name=''>
+                                        <option value="0">20151212</option>
+                                        <option value="1">20151212</option>
+                                     </select>
+                                </div>
+                                 <div class="inputText" >
+                                    <span>票券编号：</span>
+                                    <input type="text" onclick="" placeholder="请输入票券编号" value="">
+                                 </div>
+                                 <div class="inputSelect">
+                                    <span>适用影院：</span>
+                                    <select name=''>
+                                        <option value="0">厦门梦工坊</option>
+                                        <option value="1">厦门梦露</option>
+                                     </select>
+                                </div>
+                            	<a href="#" class="button">查询</a>
+                                <a href="#" class="button">选中票券</a>
+                                <a href="#" class="button">全部票券</a>
+                            </form>
+                        </div>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <thead>
+                              <tr >
+                               <td width="5%"><input type="checkbox" onclick="select_other(this);" /></td>
+                                <td width="15%">票券编码</td>
+                                <td width="10%">归属影城</td>
+                                <td width="14%">票券名称</td>
+                                <td width="10%">适用影城</td>
+                                <td width="12%">生效时间</td>
+                                <td width="12%">到期时间</td>
+                                <td width="12%">生成时间</td>
+                                <td width="5%">销售状态</td>
+                                <td width="5%">使用状态</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                    <tr>
+                                    <td><input type="checkbox" name='id'  /></td>
+                                    <td>梦工坊影城</td>
+                                    <td>12321312</td>
+                                    <td>10元抵值券</td>
+                                    <td>梦工坊影城</td>
+                                    <td>2015-09-25 22:00</td>
+                                    <td>2015-09-25 22:00</td>
+                                    <td>2015-09-25 22:00 </td>
+                                    <td>自动</td>
+                                    <td>可用</td>
+                                    </tr>
+                                      <tr>
+                                    <td><input type="checkbox" name='id'  /></td>
+                                    <td>梦工坊影城</td>
+                                    <td>12321312</td>
+                                    <td>10元抵值券</td>
+                                    <td>梦工坊影城</td>
+                                    <td>2015-09-25 22:00</td>
+                                    <td>2015-09-25 22:00</td>
+                                    <td>2015-09-25 22:00 </td>
+                                    <td>自动</td>
+                                    <td>可用</td>
+                                    </tr>
+                                      <tr>
+                                    <td><input type="checkbox" name='id'  /></td>
+                                    <td>梦工坊影城</td>
+                                    <td>12321312</td>
+                                    <td>10元抵值券</td>
+                                    <td>梦工坊影城</td>
+                                    <td>2015-09-25 22:00</td>
+                                    <td>2015-09-25 22:00</td>
+                                    <td>2015-09-25 22:00 </td>
+                                    <td>自动</td>
+                                    <td>可用</td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                        <div class="pagination"><div class="page">{$page}</div></div>
+                    </div>
+                    <div class="sublist" id="tab3">
+                    	<div class="queryBox">
+                            <form>
+                            <div class="inputText" >
+                                <span>票券编号查询</span>
+                                <input type="text" onclick="" placeholder="请输入票券编号" value="">
+                             </div>
+                             <div class="inputSelect">
+                                <span>按影院查询</span>
+                                <select name=''>
+                                    <option value="0">厦门梦工坊</option>
+                                    <option value="1">厦门梦露</option>
+                                 </select>
+                            </div>
+                            <div class="inputText" >
+                                <span>按有效期查询</span>
+                                <input type="text" name="start" class="date" placeholder="请输入开始日期" value="{$pageData['start']}"><span>至</span>
+                                <input type="text" name="end" class="date" placeholder="请输入结束日期" value="{$pageData['end']}">
+                            </div>
+                            <a href="#" class="button">查询</a>
+                            </form>
+                        </div>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <thead>
+                              <tr >
+                               <td width="5%"><input type="checkbox" onclick="select_other(this);" /></td>
+                                <td width="5%">序号</td>
+                                <td width="10%">销售对象</td>
+                                <td width="10%">销售员</td>
+                                <td width="30%">备注</td>
+                                <td width="15%">销售时间</td>
+                                <td width="10%">操作人员</td>
+                                <td width="10%">数量</td>
+                                <td width="5%">查看详情</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <foreach name="voucherList" item="vo" key="k">
+                                    <tr>
+                                    <td><input type="checkbox" name='id'  /></td>
+                                    <td>1</td>
+                                    <td>中瑞影城</td>
+                                    <td>林林</td>
+                                    <td>梦工坊影城（23）</td>
+                                    <td>2015-09-25 22:00</td>
+                                    <td>琳琳</td>
+                                    <td>100张 </td>
+                                    <td><a href="#">查看详细</a></td>
+                                    </tr>
+                                </foreach>
+                            </tbody>
+                        </table>
+                        <div class="orderTotal">
+                            <a href="">导出到EXCEL</a>
+                        </div>
+                        <div class="pagination"><div class="page">{$page}</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+<script type="text/javascript">
+//全选
+function select_other(){
+	    jQuery.each($("input[name='id']"), function(i, n){
+	    n.checked = !n.checked;
+	    }); 
+	}
+// $(document).ready(function() {
+// 	$("#tablist div.sublist").hide(); // Initially hide all content
+// 	$("#tabs li:first").attr("id","current"); // Activate first tab
+// 	$("#tablist div:first").fadeIn(); // Show first tab content
+    
+//     $('#tabs a').click(function(e) {
+//         e.preventDefault();        
+//         $("#tablist div.sublist").hide(); //Hide all content
+//         $("#tabs li").attr("id",""); //Reset id's
+//         $(this).parent().attr("id","current"); // Activate this
+//         $('#' + $(this).attr('href')).fadeIn(); // Show content for current tab
+//     });
+// });
+
+function addvoucher(){
+	layer.open({
+		title :'添加票券',
+		type: 2,
+		area: ['400px', '630px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U('addVoucher')}'
+	});
+}
+</script> 
+</block>

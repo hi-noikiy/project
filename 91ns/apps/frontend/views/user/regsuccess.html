@@ -1,0 +1,70 @@
+{% block begin %}
+{% endblock %}
+
+{% block title %}
+<style type="text/css">
+    #main-nav{display: none;}
+    .regSuccess{position: absolute;width:490px;height: 500px; left: 50%;top:50%;margin-left: -245px;margin-top: -350px;
+        background: url("../web/cssimg/common/reg_success.png") no-repeat;
+        padding-top: 238px;
+        padding-left: 200px;
+    }
+    .regSuccess .rs-content .rsc-text ._text{font-size: 16px;color: #2b2b2b;font-weight: bold;}
+    .regSuccess .rs-content .rsc-text ._btn{font-size: 16px;color: #fff;font-weight: bold;text-align: center;line-height:40px;width: 154px;height: 40px;
+        background: url("../web/cssimg/common/rs_more.png") no-repeat;
+        cursor: pointer;margin-top: 32px;
+    }
+    .regSuccess .rs-bottom{font-size: 12px; color: #272424;
+        background: url("../web/cssimg/common/rs_right_star.png") no-repeat right top;
+        margin-left: -60px;
+        height: 166px;width: 340px;
+        margin-top: -5px;
+        padding-top: 86px;
+    }
+    .regSuccess .rs-bottom a{color: #2a90df;text-decoration: underline;}
+    .regSuccess .rs-content .rsc-text ._btn:hover{background: url("../web/cssimg/common/rs_more_hover.png") no-repeat;}
+</style>
+{% endblock %}
+
+{% block titleList %}
+<!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div id="regSuccess" class="regSuccess">
+    <div class="rs-content">
+        <div class="rsc-text">
+            <div class="_text">{{ userName }}，恭喜你注册成功啦！</div>
+            <div class="_btn" onclick="hrefTo('/user/updateprofile')">马上去完善资料</div>
+        </div>
+    </div>
+    <div class="rs-bottom">
+        你也可以选择<a href="/">返回首页</a>，或者<b id="regSuccessTime">8</b>秒后自动进入首页
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="application/javascript">
+    jq(function(){
+        setInterval(countTime,1000)
+    })
+    function countTime(){
+        var time = jq('#regSuccessTime').html()
+        if(time > 1){
+            jq('#regSuccessTime').html(time - 1)
+        }else{
+            location.href = '/'
+        }
+    }
+</script>
+{% endblock %}
+
+
+
+
+

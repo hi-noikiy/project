@@ -1,0 +1,262 @@
+{% extends "template/personal_body.html" %}
+{% block title %}
+个人资料
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('personal.familyheader'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('personal.familyheader'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+
+{% endblock %}
+{% block content %}
+<!--家族管理-->
+<div class="personal-div familymanage clearfix">
+    <div class="info clearfix" style="border: 1px solid #dadada;padding: 16px 16px 18px 14px;">
+        <img id="info-avatar" data="{{ familyInfo['id'] }}" class="avatar" src="{{ familyInfo['logo'] }}">
+        <div id="modifyAvatarBtn" class="modifyAvatar">修改头像</div>
+        <div class="msg">
+            <div class="name clearfix">
+                <span class="familyName">{{ familyInfo['name']}}</span>
+                <span class="sprite-pericon family1 familyShortname">{{ familyInfo['shortName'] }}</span>
+                <div>家族成立时间：<span class="info-contents">{{ familyInfo['createTime']|ns_date }}</span></div>
+                <div class="goFamilyHome"><a href="/family/family?familyid={{ familyInfo['id'] }}"></a></div>
+            </div>
+        </div>
+        <div class="famil-notice pull-right pull-re">
+            <div class="notice-tit">家族公告</div>
+            <div class="famil-notice-txt" title="{{ familyInfo['announcement'] }}">
+                {% if familyInfo['announcement'] %}
+                {{ familyInfo['announcement'] }}
+                {% else %}
+                您还没有设置家族公告。
+                {% endif %}
+            </div>
+            <textarea class="famil-notice-box div-hiden"  maxlength="150">{{ familyInfo['announcement']}}</textarea>
+
+            {% if familyCreator %}
+            <div class="notice-edit-but pull-ab cu-a ">编辑</div>
+            {% endif %}
+            <div class="notice-save-div pull-ab div-hiden">
+                <div class="save-but cu-a pull-left" f="{{ familyInfo['id'] }}">保存</div>
+                <div class="cancel-but cu-a pull-left">取消</div>
+            </div>
+        </div>
+    </div>
+    <div class="level clearfix">
+        <div class="levelbox">
+            <span class="span1">成员管理</span>
+            <i class="member"></i>
+            <span id="membernum" class="membernum">0</span>
+            <div class="head-search-div pull-right">
+                <input id="memberDataSearch" type="text" placeholder="请输入昵称搜索旗下主播" class="search pull-left" style="ime-mode:Disabled">
+                <div id="memberSearch" class="serch-icon sprite-concern serch pull-left cu-a"></div>
+            </div>
+        </div>
+        <table id="memberData" class="memberData">
+            <thead>
+            <tr>
+                <td style="width: 92px;">头像</td>
+                <td style="width: 192px;">昵称</td>
+                <td style="width: 100px;">主播等级</td>
+                <td style="width: 142px;">粉丝等级</td>
+                <td style="width: 200px;">最后一次开播时间</td>
+                <td style="width: 128px;">详细资料</td>
+                <td style="width: 128px;">操作</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!--<tr>-->
+                <!--<td>-->
+                    <!--<img src="/userupload/default/avatars/8.jpg" width="50px" height="50px" style="border-radius: 50px;">-->
+                <!--</td>-->
+                <!--<td>昵称昵称昵称</td>-->
+                <!--<td><div class="con-zb-iocn sprite-zb_level zb6"></div></td>-->
+                <!--<td><div class="con-zf-icon sprite-zf_level zf0 "></div></td>-->
+                <!--<td>2015-05-05 04:44</td>-->
+                <!--<td><a onclick="memberInfo()">查看</a></td>-->
+                <!--<td><a onclick="delmember()">删除</a></td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<div class="show-bg div-hiden"></div>
+<div id="show-info-div" class="show-info-div div-hiden">
+    <div class="show-head">主播家族资料</div>
+    <div class="show-close close"></div>
+
+    <div class="show-info">
+        <div class="show-dian pull-left" >.</div>
+        <div class="show-tit pull-left">真实姓名：</div>
+        <div id="audRealName" class="show-txt pull-left"></div>
+    </div>
+
+    <div class="show-info">
+        <div class="show-dian pull-left" >.</div>
+        <div class="show-tit pull-left">性别：</div>
+        <div id="audSex" class="show-txt pull-left"></div>
+    </div>
+
+    <div class="show-info">
+        <div class="show-dian pull-left" >.</div>
+        <div class="show-tit pull-left">生日：</div>
+        <div id="audBrithday" class="show-txt pull-left"></div>
+    </div>
+
+    <div class="show-info">
+        <div class="show-dian pull-left" >.</div>
+        <div class="show-tit pull-left">所在地：</div>
+        <div id="idAd" class="show-txt pull-left"></div>
+    </div>
+
+    <div class="show-info">
+        <div class="show-dian pull-left" >.</div>
+        <div class="show-tit pull-left">手机：</div>
+        <div id="audTel" class="show-txt pull-left"></div>
+    </div>
+
+    <div class="show-info">
+        <div class="show-dian pull-left" >.</div>
+        <div class="show-tit pull-left">QQ：</div>
+        <div id="audQQ" class="show-txt pull-left"></div>
+    </div>
+
+    <div class="show-info">
+        <div class="show-dian pull-left" >.</div>
+        <div class="show-tit pull-left">邮箱：</div>
+        <div id="audEmail" class="show-txt pull-left"></div>
+    </div>
+
+    <div class="show-info">
+        <div class="show-dian pull-left" >.</div>
+        <div class="show-tit pull-left">联系地址：</div>
+        <div id="audAd1" class="show-txt pull-left"></div>
+    </div>
+
+    <!--分割线-->
+    <div class="cutoff-line"></div>
+
+    <!--生活照-->
+    <div class="show-pic-tit">生活照</div>
+
+    <div class="show-pic">
+        <img id="show-pic1" src class="life-pic life-pic-lift pull-left">
+        <img id="show-pic2" src class="life-pic pull-left">
+        <img id="show-pic3" src class="life-pic pull-left">
+    </div>
+</div>
+<div id="audit" class="show-info-div show-audit div-hiden">
+    <div class="show-head">审批</div>
+    <div class="show-close close"></div>
+    <div class="show-info">
+        <div id="auditBtnOK" class="auditBtn" style="margin-right: 30px;">同意</div>
+        <div id="auditBtnRF" class="auditBtn">拒绝</div>
+    </div>
+</div>
+<!--成员审核-->
+<div class="personal-div memberaudit div-hiden clearfix">
+    <div class="audit clearfix">
+        <div class="levelbox clearfix">
+            <div class="span1">成员审核</div>
+            <div class="memberauditTab clearfix">
+                <ul id="memberAuditTab">
+                    <li data="0" name="auditWait" class="_auditTab active">待审核</li>
+                    <li data="1" name="auditComplete" class="_auditTab">审核完成</li>
+                </ul>
+            </div>
+
+        </div>
+        <table id="auditWait" class="memberData auditTable pull-left">
+            <thead>
+            <tr>
+                <td style="width: 260px;">申请人</td>
+                <td style="width: 194px;">主播等级</td>
+                <td style="width: 232px;">申请时间</td>
+                <td style="width: 296px;">操作</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!--<tr>-->
+                <!--<td>-->
+                    <!--<img src="/userupload/default/avatars/8.jpg" width="50px" height="50px" style="border-radius: 50px;">-->
+                    <!--<span class="auditTable-name">昵称昵称昵称</span>-->
+                <!--</td>-->
+                <!--<td><div class="con-zf-icon sprite-zf_level zf0 "></div></td>-->
+                <!--<td>2015-05-05 04:44</td>-->
+                <!--<td><a onclick="memberInfo()">查看资料</a><a onclick="delmember()">审批</a></td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+        <table id="auditComplete" class="memberData auditTable pull-left div-hiden">
+            <thead>
+            <tr>
+                <td style="width: 260px;">申请人</td>
+                <td style="width: 126px;">主播等级</td>
+                <td style="width: 232px;">申请时间</td>
+                <td style="width: 150px;">审核结果</td>
+                <td style="width: 214px;">审核时间</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!--<tr>-->
+                <!--<td>-->
+                    <!--<img src="/userupload/default/avatars/8.jpg" width="50px" height="50px" style="border-radius: 50px;">-->
+                    <!--<span class="auditTable-name">昵称昵称昵称</span>-->
+                <!--</td>-->
+                <!--<td><div class="con-zf-icon sprite-zf_level zf0 "></div></td>-->
+                <!--<td>2015-05-05 04:44</td>-->
+                <!--<td>同意</td>-->
+                <!--<td>2015-05-05 04:44</td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<!--直播数据-->
+<div class="personal-div livedatafamily div-hiden clearfix">
+    <div class="audit clearfix">
+        <div class="levelbox clearfix">
+            <div class="span1">直播数据</div>
+            <div class="livedatafamilyTab clearfix">
+                <div class="livedataleft pull-left"></div>
+                <input id="startTime" class="Wdate pull-left" type="text" value="<?php echo date('Y-m-d',strtotime('-1 day')); ?>" minTime="<?php echo date('Y-m-d',strtotime('-1 year')); ?>" maxTime="<?php echo date('Y-m-d'); ?>" onClick="WdatePicker({minDate:'<?php echo date('Y-m-d',strtotime('-1 year')); ?>',maxDate:'%y-%M-%d'})">
+                <div class="livedataright pull-left"></div>
+                <div class="liveDataSearch pull-left"></div>
+            </div>
+        </div>
+        <table id="liveData" class="memberData liveDataTable pull-left" style="margin-top: 20px;*margin-top:50px;">
+            <thead>
+            <tr>
+                <td style="width: 260px;">主播</td>
+                <td style="width: 194px;">开播时间</td>
+                <td style="width: 232px;">结束时间</td>
+                <td style="width: 296px;">播出时长</td>
+            </tr>
+            </thead>
+
+            <tbody>
+            <!--<tr>-->
+                <!--<td>-->
+                    <!--<img src="/userupload/default/avatars/8.jpg" width="50px" height="50px" style="border-radius: 50px;">-->
+                    <!--<span class="auditTable-name">昵称昵称昵称</span>-->
+                <!--</td>-->
+                <!--<td>2015-05-05 04:44</td>-->
+                <!--<td>2015-05-05 04:44</td>-->
+                <!--<td>2小时0分钟</td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<div class="reg-avatar-upload" id="reg-avatar-upload">
+    <div class="reg-avatar-flash" id="reg-avatar-flash"></div>
+</div>
+{% endblock %}

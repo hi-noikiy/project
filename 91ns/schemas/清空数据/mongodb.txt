@@ -1,0 +1,9 @@
+db.account.remove()
+db.account_qq.remove()
+db.follow.remove()
+db.ownfollow.remove()
+db.rooms.remove()
+
+---------------------------------
+db.account_sina.remove()
+db.contacts.remove()

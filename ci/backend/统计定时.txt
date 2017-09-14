@@ -1,0 +1,51 @@
+#05 * * * * /usr/local/php-5.6.15/bin/php -f /var/www/html/ci/index.php AutoRunHour run
+#10 * * * * /usr/local/php-5.6.15/bin/php -f /var/www/html/ci/index.php AutoRunHour reg2
+#15 * * * * /usr/local/php-5.6.15/bin/php -f /var/www/html/ci/index.php AutoRunHour reg1
+#10 00 * * * /usr/local/php-5.6.15/bin/php -f /var/www/html/ci/index.php AutoRunDay run
+#20 00 * * * /usr/local/php-5.6.15/bin/php -f /var/www/html/ci/index.php AutoRunDay OnlineTime
+#30 00 * * * /usr/local/php-5.6.15/bin/php -f /var/www/html/ci/index.php AutoRunDay SystemAnalysis
+#40 00 * * * /usr/local/php-5.6.15/bin/php -f /var/www/html/ci/index.php AutoRunDay au
+#50 00 * * * /usr/local/php-5.6.15/bin/php -f /var/www/html/ci/index.php AutoRunDay UserRemain
+#10 01 * * * /usr/local/php-5.6.15/bin/php -f /var/www/ci/index.php ActiveAccountCount au
+# 20 01 * * * /usr/local/php-5.6.15/bin/php -f /var/www/html/ci/index.php AutoRunDay user_lost_0
+# 20 05 * * * /usr/local/php-5.6.15/bin/php -f /var/www/html/ci/index.php AutoRunDay user_lost_1
+#20 01 * * * curl http://guntj.u591.com:8080/index.php/AutoRunDay/UserLost >> /data/log/web/user_lost.log
+#20 04 * * * sh /data/shells/mysql_back.sh
+#10 0 * * * /home/del.sh >/dev/null 2>&1
+#* * * * * /home/monitor.sh >/dev/null 2>&1
+05 * * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunHour run
+35 * * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunHour run_summary
+10 * * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunHour reg2
+15 * * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunHour reg1
+# 20 01 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay user_lost_0
+# 20 05 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay user_lost_1
+# 20 01 * * * curl http://guntj.u591.com:8080/index.php/AutoRunDay/UserLost >> /data_new/log/web/user_lost.log
+# 20 04 * * * sh /data_new/shells/mysql_back.sh
+04 03 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay run >> /data/log/web/run/run.log
+10 03 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay CliNewPlayer >> /data/log/web/run/CliNewPlayer.log
+15 03 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay CliLogin >> /data/log/web/run/CliLogin.log
+20 03 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay OnlineTime >> /data/log/web/run/OnlineTime.log
+30 03 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay SystemAnalysis >> /data/log/web/run/SystemAnalysis.log
+40 03 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay au >> /data/log/web/run/au.log
+50 03 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay UserRemain >> /data/log/web/run/UserRemain.log
+59 03 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay ActiveAccountCount >> /data/log/web/run/ActiveAccountCount.log
+10 04 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay UserLost >> /data/log/web/run/UserLost.log
+20 04 15 * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunMonth run >> /data/log/web/run/Createtable.log
+30 04 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay UserRemainNew >> /data/log/web/run/UserRemainNew.log
+40 06 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay ActionCountByAct >> /data/log/web/run/run_action.log
+50 04 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay ItemCount >> /data/log/web/run/run_action.log
+10 0 * * * /home/del.sh >/dev/null 2>&1
+01 00 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php GameRunDay EmoneyCount >> /data/log/site/getemoney.log
+02 00 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php GameRunDay MoneyCount >> /data/log/site/getemoney.log
+03 00 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php GameRunDay EmoneyServer50 >> /data/log/site/getemoney.log
+04 00 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php GameRunDay MoneyServer50 >> /data/log/site/getemoney.log
+15 01 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay joinCount
+05 00 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php GameRunDay EudemonCount >> /data/log/site/getemoney.log
+* * * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunMonth warninfo
+20 04 15 * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunMonth deltable
+04 01 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php AutoRunDay run_summary
+03 00 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php GameRunDay process
+13 00 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php GameRunDay dan
+00 00 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php GameRunDay stone
+00 00 * * * /usr/local/php/bin/php -f /var/www/html/ci/index.php GameRunDay run
+* * * * * /home/monitor.sh >/dev/null 2>&1

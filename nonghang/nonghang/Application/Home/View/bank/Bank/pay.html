@@ -1,0 +1,71 @@
+<extend name='Public/base'/>
+<block name='title'>微信2.0</block>
+<block name='jscss'>
+	<link type="text/css" rel="stylesheet" href="__CSS__/style.css">
+ </block>
+
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a  href="#" class="back link"> <i class="icon icon-back"></i></a></div>
+    <div class="center sliding">支付</div>
+    <div class="right"></div>
+  </div>
+</div>
+    </block>
+
+<block name='body'>
+<div data-page="bankPay" class="page" style="padding-top:44px; overflow:scroll;">
+    <div class="content" style="background: none">
+        <div class="selectPay list-block media-list">
+            <h2>支付方式</h2>
+            <div class="totalPrice">
+            	<span>应付金额：<b>￥{$order['myPrice']*$order['seatCount']}</b></span>
+            </div>
+            <ul>
+               <li>
+                <label class="label-checkbox item-content">
+                    <div class="item-inner">
+                        <div class="payIcon"><img src="__IMG__/movie/nhbank.png" height="50" /></div>
+                        <div class="payInfo">
+                            <p>农行账户支付</p>
+                            <span>推荐持有农行网上银行用户使用</span>
+                        </div>
+                    </div>
+					<input type="radio" name="my-checkbox" checked="checked">
+                    <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                </label>
+                </li>
+                <!--<li>
+                 	<label class="label-checkbox item-content">
+                    <div class="item-inner">
+                        <div class="payIcon"><img src="__IMG__/movie/balance.png" height="50" /></div>
+                        <div class="payInfo">
+                            <p>账户余额支付</p>
+                            <span>您当前账户余额为<b>{$user['basicBalance']+$user['donateBalance']}</b>元</span>
+                        </div>
+                    </div>
+					<input type="radio" name="my-checkbox">
+                    <div class="item-media"><i class="icon icon-form-checkbox"></i>
+                    
+                    </div><div class="payBtn"><a href="{:U('otherpay/index')}" class="external">充值</a></div>
+                </label>
+                </li>	-->
+            </ul>
+			
+        </div>
+        <div class="Button" id="payButton">
+        	<a href="{:U('paystatus')}" class="">确认支付</a>
+        </div>
+    </div>
+    </div>
+
+</block>
+
+<block name='script'>
+
+<script type="text/javascript">
+	
+</script>
+
+</block>

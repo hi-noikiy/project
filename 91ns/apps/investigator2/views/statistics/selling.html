@@ -1,0 +1,208 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+    <ul style="display: block;">
+        {% include "common/menu.html" %}
+    </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+    <div class="container-fluid" style="padding: 0;">
+        <div class="widget-box tab-tabs" >
+            <div class="widget-title">
+                <ul class="nav nav-tabs">
+                    {% include "common/tab.html" %}
+                </ul>
+            </div>
+            <div class="widget-content tab-content">
+                <div id="tab1" class="tab-pane active">
+
+                    <div class="row-fluid" style="margin-top: 30px;">
+                        <div class="container-fluid">
+                            <div id="nav-line" class="nav-line">
+                                <a class="_nav active" data-type="hour" data="toDay" onclick="giftlist('toDay')">今天</a>
+                                <a class="_nav" data-type="day" data="yesterDay" onclick="giftlist('yesterDay')">昨天</a>
+                                <a class="_nav" data-type="month" data="sevenDay" onclick="giftlist('sevenDay')">最近7天</a>
+                                <a class="_nav" data-type="year" data="thirtyDays" onclick="giftlist('thirtyDays')">最近30天</a>
+
+                                <a id="giftdate" class="date-calendar pull-right"><i class=" icon-calendar"></i> <input id="mydate" data="toDay"  placeholder="请输入日期"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="formSearch" class="form-search">
+                    <input name="order" type="hidden" value="0">
+                    </form>
+                    <div class="row-fluid" style="margin-top: 20px;">
+                        <div class="container-fluid">
+                        <table id="tableList" data="toDay" class="table with-check table-purple">
+                            <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>礼物名称</th>
+                                <th onclick="tableOrderClick('formSearch',0,giftlist)">消费次数&uarr;&darr;</th>
+                                <th onclick="tableOrderClick('formSearch',2,giftlist)">送出总数&uarr;&darr;</th>
+                                <th onclick="tableOrderClick('formSearch',4,giftlist)">总金额（聊币）&uarr;&darr;</th>
+                                <th onclick="tableOrderClick('formSearch',6,giftlist)">消费用户数（人）&uarr;&darr;</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    </div>
+                    {% include "common/pagination.html" %}
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<script src="{{static_url('web/js/flotr2.js')}}"></script>
+<script type="text/javascript">
+
+    $(function(){
+
+        $('#nav-line ._nav').click(function(){
+            $('._nav.active').removeClass('active');
+            $(this).addClass('active');
+            var d=$(this).attr('data');
+            $('#mydate').attr('data',d);
+            return false;
+        });
+
+        giftlist('toDay');
+
+//        $('#mydate').on('blur',function(){
+//            var c=$('#mydate').attr('data');
+//            giftlist(c);
+//        })
+
+    });
+
+    $('#mydate').daterangepicker({
+                presetRanges:[
+                    //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+                    //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+                    //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+                ],
+                presets:{
+                    dateRange:'自定义时间'
+                },
+                rangeStartTitle:'起始日期',
+                rangeEndTitle:'结束日期',
+                nextLinkText:'下月',
+                prevLinkText:'上月',
+                doneButtonText:'确定',
+                cancelButtonText:'取消',
+                earliestDate:'',
+                latestDate:Date.parse('today'),
+                constrainDates:true,
+                rangeSplitter:'-',
+                dateFormat:'yy-mm-dd',
+                closeOnSelect:false,
+                onOpen:function(){
+                    $('.ui-daterangepicker-dateRange').click().parent().hide();
+                    $('.ui-daterangepickercontain').css({left:($('#mydate').offset().left-325)+'px'});
+                },
+                onClose:function(){
+                    var c=$('#mydate').attr('data');
+                    giftlist(c);
+                }
+            }
+    );
+
+    function tableOrderClick(doc,type,callback){
+        var form= global.doc(doc),
+                value=form.order.value;
+        if(type>5){
+            if(value==6){
+                form.order.value=7;
+            }else{
+                form.order.value=6;
+            }
+        }
+       else if(type>3){
+            if(value==4){
+                form.order.value=5;
+            }else{
+                form.order.value=4;
+            }
+        }else if(type>1){
+            if(value==2){
+                form.order.value=3;
+            }else{
+                form.order.value=2;
+            }
+        }else{
+            if(value==0){
+                form.order.value=1;
+            }else{
+                form.order.value=0;
+            }
+        }/*else{
+            form.order.value=0;
+        }*/
+        callback();
+    }
+
+    function giftlist(type,index){
+        var form= global.doc('formSearch');
+        var a=$('#mydate').val();
+        var starTime= a.substring(0,10);
+        var stopTime= a.substring(12,23);
+        $('#tableList').attr('data',type);
+        var s=$('#tableList').attr('data');
+        var data={};
+        data.typeDay=s;
+        data.starTime=starTime;
+        data.stopTime=stopTime;
+        data.page=index||1;
+        data.pageSize=global.pageSize;
+        data.sort=form.order.value;
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: '/ajax/GiftList',
+            dataType: 'json',
+            success: function (res) {
+                var data = res.data;
+                $('#tableList tbody').html('');
+                var count=document.getElementById('count');
+                count.innerHTML=data.count;
+                for(var i=0;i<data.list.length;i++){
+                    $('#tableList tbody').append(gethtml(data.list[i]));
+                }
+                if(!index||index==0){
+                    utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                        page_index+= 1;
+                        giftlist(type,page_index);
+                    });
+                }
+            }
+        })
+    }
+
+    function gethtml(data){
+        var html='';
+        html+='<tr></tr><td>'+data.num+'</td><td>'+data.name+'</td><td>'+data.consume+'</td><td>'+data.counts+'</td><td>'+data.amount+'</td><td>'+data.uidCount+'</td></tr>';
+        return html;
+    }
+
+
+</script>

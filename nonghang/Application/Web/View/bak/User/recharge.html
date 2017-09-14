@@ -1,0 +1,114 @@
+<extend name='Public/nbase'/>
+
+<block name='body'>
+
+<div id="main" class="recharge">
+    <div class="form">
+        <div class="container">
+            <h3>充值金额</h3>
+            <div class="item-content ic-ticket mn-qy">
+                <div class="Spinner">
+                    <a class="leftBtn">-</a>
+                    <input type="text" id="sumMoney" placeholder="输入充值金额" maxlength="6">
+                    <a class="rightBtn">+</a>
+                </div>
+            </div>
+            <h3 class="pay-way">支付方式</h3>
+            <div class="item-content pay">
+                <div class="radiolist">
+                	<foreach name='payInfo' item='vo'>
+                    <input type="radio" value="{$vo['type']}" name="3">
+                    <label class="radio {$vo['type']}">
+                        <p class="pay-name">{$vo['name']}</p>
+                        <p class="pay-hint">{$vo['instruction']}"</p>
+                    </label>
+                    </foreach>
+                </div>
+            </div>
+            <div class="submit-block">
+                <button type="submit">确认支付</button>
+            </div>
+        </div>
+    </div>
+    <!--<div class="container">-->
+            <!--<div class="base-info">-->
+                <!--<img src="__IMG__/pic/user1.png">-->
+                <!--<h1>12344567</h1>-->
+                <!--<p class="seat"> <span>姓名：{$user['otherName']}</span><?php if(!empty($user['cardNum'])){ ?><span>会员卡： </span><span>卡属:{$user['businessName']} </span><?php }else{ ?>手机：{$user['loginNum']}<?php } ?><span class="cost">总价：<i>￥</i><b>35</b></span></p>-->
+            <!--</div>-->
+
+    <!--</div>-->
+</div>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+	$('button[type=submit]').click(function(){
+        var amountTotal=$("#sumMoney").val();
+        if(amountTotal=="" || !$.isNumeric(amountTotal)){
+            layer.msg("请选择充值金额");
+            return false;
+        }
+        var t=$('.radiolist input[type=radio]:checked').val();
+        if(t==undefined){
+        	layer.msg('请选择充值方式');
+        }else{
+        	//layer.confirm("您当前充值帐号为：{$user['loginNum']}\n 充值金额为："+amountTotal+"元", function (index) {
+        		if(t=='alipay'){
+          			 $.getJSON("{:U()}",{fee:amountTotal,payType:t},function(data){
+                   		if(data.status=='0'){
+                   			location.href=data.data;
+                   		}else{
+                   			layer.msg(data.content);
+                   		}
+                   	});
+              	}else if(t=='unionpay'){
+              	
+              	}
+          	
+         // },function(){});
+        }
+	});
+        $(function(){
+            //单选框美化
+            $.fn.radio = function(options) {
+                var self = this;
+                return $('label', this).each(function() {
+                    $(this).addClass('radio');
+                    if ($(this).prev().is(":checked")) $(this).addClass('radioChecked');
+                }).click(function(event) {
+                    $(this).siblings().removeClass("radioChecked");
+                    if (!$(this).prev().is(':checked')) {
+                        $(this).addClass("radioChecked");
+                        $(this).prev()[0].checked = true;
+                    }
+                    event.stopPropagation();
+                }).prev().hide();
+            };
+
+            $('.radiolist').radio();
+
+        //金额加减
+            $('#sumMoney').keyup(function(){
+                $(this).val(parseInt($(this).val().replace(/[^\d]/g,'')||0)); //输入英文 强制显示0
+            });
+
+            $(".leftBtn").click(function () {
+                $('#sumMoney').val(parseInt($('#sumMoney').val() - 100));
+                if(parseInt($('#sumMoney').val())<0){
+                    $('#sumMoney').val(parseInt(0));
+                }
+            });
+
+            $(".rightBtn").click(function () {
+                console.log($('#sumMoney').val());
+                $('#sumMoney').val(parseInt($('#sumMoney').val() - 0 + 100));
+            })
+
+        })
+    </script>
+
+</block>
+
+
+

@@ -1,0 +1,96 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/index')}" class="back link external"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">{$film['filmName']}</div>
+    <div class="right"></div>
+  </div>
+</div>
+
+
+<div class="pages">
+  <div data-page="filmDetails" class="page">
+      <link rel="stylesheet" href="__CSS__/comment.css?{:time()}">
+    <div class="page-content" style="padding-bottom:40px;">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+<div style="display:none" id="addview">{:U('user/addView',array('filmId'=>$film['id'],'pid'=>0))}</div>
+<div style="display:none" id="zanurl">{:U('user/addClick')}</div>
+<div style="display:none" id="delzanurl">{:U('user/delClick')}</div>
+<div style="display:none" id="pinglunurl">{:U('user/comment')}</div>
+
+
+<volist name='film["imgs"]' id='vo'>
+  <div style="display:none" class="phpotoList">__UPLOAD__/{$vo}</div>
+</volist>
+
+        <div class="filmDetails">
+                        <div class="filmImg">
+                            <img src="__UPLOAD__/{$film['image']}" height="90" width="67.5"  />
+                        </div>
+                        <div class="filmInfo">
+                            <p>导演：{$film['director']}</p>
+                            <p>主演：{$film['cast']}</p>
+                            <p>片长：{$film['duration']}分</p>
+                        </div>
+                        <div class="clear"></div>
+         </div>
+
+        <?php if(!empty($film['filmNo'])){ ?>
+        <div class="filmButton"><a href="{:U('cinemaplan',array('filmNo'=>$film['filmNo']))}" class="filmBtn">选座购票</a></div>
+        <?php }else{ ?>
+        <div class="filmButton"><a href="" class="filmBtn cur">等待排片</a></div>
+        <?php } ?>
+
+                    <div class="filmDetails" style="margin-top:80px">
+                        <div class="titleTop"><span>剧照</span></div>
+                        <ul>
+                          <volist name='film["imgs"]' id='vo'>
+                            <li><img src="__UPLOAD__/{$vo}" height="60" width="90"></li>
+                            </volist>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="filmDetails">
+                        <div class="titleTop"><span>剧情</span></div>
+                        <div class="filmContent">{:htmlspecialchars_decode($film['introduction'])}</div>
+                    </div>
+
+        <div class="comment-section">
+        	<div class="titleTop"><span>评论</span></div>
+        	<?php if(empty($views)){ ?>
+            	<div class="nocomment">影片暂无评论</div>
+            	<?php }else{ ?>
+<foreach name='views' item='vo'>
+            <div class="comment-main" >
+                <a onclick='pinglun(this)' pid='{$vo[id]}'>
+                    <h4><img src="{$vo['headImage']}">{$vo['otherName']}</h4>
+                    <article>
+                        {$vo['content']}
+                    </article>
+                </a>
+                <section>
+                    <div class="item-block">
+                        <div class="datetime">{$vo['time']}</div>
+                        <div class="comment-area"><span hasclick="{$vo['hasClick']}" <?php if(!empty($user)){ ?>onclick='zan(this)' pid='{$vo[id]}'<?php } ?>>{$vo['clickNum']}</span><a onclick='pinglun(this)' pid='{$vo[id]}'>{$vo['lookNum']}</a></div>
+                    </div>
+                </section>
+            </div>
+</foreach>
+<?php } ?>
+        </div>
+
+
+    </div>
+
+
+      <?php if(!empty($user)){ ?><div class="reply-area" id='reply-area'>
+          <textarea placeholder="写评论..."></textarea>
+          <a>发表</a>
+      </div><?php } ?>
+
+  </div>
+   
+</div>

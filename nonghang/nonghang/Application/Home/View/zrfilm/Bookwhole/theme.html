@@ -1,0 +1,108 @@
+<extend name='Public/bookbase'/>
+<block name='title'>选择主题影厅</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><!-- <a href="#" class="back link"> --><a href="{:U('index')}" class="back link" > <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center sliding">选择主题影厅</div>
+            <div class="right">
+
+            </div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+    <div class="pages">
+        <div data-page="theme" class="page">
+            <div class="wrap" id="theme">
+                <volist name='list' id='v'>
+                <label passNum="{$v['passNum']}" unitPrice="{$v['unitPrice']}">
+                    <input type="radio" name="theme" uuid='{$v.id}' seating='{$v.seating}' topicName='{$v.topicName}' videoCode='{$v.videoCode}'>
+                    <div  class="theme-block">
+                        <div class="left"><a>{$v.seating}</a></div>
+                        <div class="right">
+                            <h4>中瑞影城三坊七巷店</h4>
+                            <p>影厅主题：{$v.topicName}</p>
+                            <p>影厅编号：{$v.videoCode}</p>
+                            <div class="album">
+                                <div class="img-list">
+                                    <volist name='v["relativePath"]' id='vs'>
+                                    <img src="{$vs.relativePath}">
+                                    </volist>
+                                    <?php if(!$v["relativePath"]):?>
+                                    <img src="__IMG__/pic/theme1.jpg">
+                                    <?php endif;?>
+                                    <!-- <img src="__IMG__/pic/theme1.jpg">
+                                    <img src="__IMG__/pic/theme1.jpg">
+                                    <img src="__IMG__/pic/theme1.jpg">
+                                    <img src="__IMG__/pic/theme1.jpg"> -->
+                                </div>
+                            </div>
+                        </div>
+                        <a class="external" > </a>
+                    </div>
+                </label>
+                </volist>
+                <div style="width:100%; height:50px;"></div>
+            </div>
+            <div class="stepBlock">
+                <p>下一步：选择观看影片（<i>2</i>/4）</p>
+                <a class="disabled external" id="step2" >下一步</a>
+                <div style="display:none" id="theme_filmList_thisUrl">{:U('bookwhole/filmList')}</div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+
+
+        $(function() {
+
+            //相册排列宽度初始
+            var unitWidth = 80,
+            totalWidth = $(window).width();
+            $('.img-list').each(function () {
+                var ulWidth = unitWidth * $(this).find('img').length;
+                $(this).width(ulWidth);
+            });
+            $('.theme-block .right').width(totalWidth-113);
+
+            //下一步是否可点
+            $('#theme label').on('click', function () {
+
+                $('#step2').removeClass('disabled');
+
+            });
+
+            //点击时打开图片浏览器
+            $('.img-list').on('click', function () {
+                var photos = [];
+                $(this).find('img').each(function (i) {
+                    photos[i] = $(this).attr('src');
+                });
+                var myPhotoBrowserStandalone = myApp.photoBrowser({
+                    'photos': photos,
+                    'backLinkText': '关闭',
+                    'ofText': '/'
+                });
+                myPhotoBrowserStandalone.open();
+            })
+        });
+
+        //按钮点击操作
+        $('#step2').on('click',function(){
+            var passnum = $('#theme input:checked').parents('label').attr('passnum');
+            var unitprice = $('#theme input:checked').parents('label').attr('unitprice');
+            myApp.confirm('您预订的时段定价为最低保底'+passnum+'人价格。不足'+passnum+'人按'+passnum+'人计算，人员超出部分，每人需额外补差'+'<i class="orange">'+unitprice+'元</i>，感谢您的支持！','温馨提示', function () {
+                $.cookie('videoId', $("input[name='theme']:checked").attr("uuid"), { path: '/' });
+                $.cookie('topicName', $("input[name='theme']:checked").attr("topicName"), { path: '/' });
+                $.cookie('videoCode', $("input[name='theme']:checked").attr("videoCode"), { path: '/' });
+                $.cookie('seating', $("input[name='theme']:checked").attr("seating"), { path: '/' });
+                mainView.router.loadPage($('#theme_filmList_thisUrl').html());
+                // location.href = '{:U("Bookwhole/filmList")}';
+            });
+        });
+     
+    </script>
+</block>

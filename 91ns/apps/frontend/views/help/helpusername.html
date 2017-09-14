@@ -1,0 +1,79 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+            <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title">如何修改昵称</div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div class="" style="  margin:50px auto 0; min-height:520px;">
+                                      <div >
+                                          <h3></h3>
+                                          <p style=" padding-left:50px;padding-right: 50px;"><span style="color: #cb5494; ">1.</span>登录后，在首页个人信息区域鼠标漂浮到头像区域会弹出修改昵称按钮，点击后在昵称处输入新的昵称（新的昵称不可与其他用户昵称重复），这里要注意的是，如果用户修改新昵称，原昵称可能被抢注，就不可以改回去了。</p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px;" src="{{static_url('web/cssimg/help/help3.png')}}">
+                                          </p>
+                                      </div>
+                                      <div >
+                                          <h3></h3>
+                                          <p style=" padding-left:50px;padding-right: 50px;margin-top: 30px;"><span style="color: #cb5494; ">2.</span>登录后，进入直播页面，点击用户头像向右弹出个人信息框，点击昵称旁边的修改昵称按钮，规则同上。</p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px; " src="{{static_url('web/cssimg/help/help4.png')}}">
+                                          </p>
+                                      </div>
+
+
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+
+

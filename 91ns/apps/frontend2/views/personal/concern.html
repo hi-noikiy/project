@@ -1,0 +1,82 @@
+{% extends "template/personal_body.html" %}
+{% block title %}
+我的关注
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('concern'|ns_css)}}">
+{% endblock %}
+{% block content %}
+<div class="concern-head">
+	<div class="con-head-txt pull-left">我的关注</div>
+	<!--搜索框-->
+	<div class="head-search-div pull-right">
+		<input id="focusSearchInput" type="text" placeholder="请输入昵称" class="search pull-right" >
+		<div class="serch-icon sprite-concern serch pull-left"></div>
+	</div>
+</div>
+<!--全选框-->
+<div class="select-all-div">
+	<div id="listDelete" class="select-left-div pull-left">
+		<div checkbtn="select" class="check-all sprite-concern check pull-left"></div>
+		<div checkbtn="select" class="check-all-txt pull-left">全选</div>
+		<div checkbtn="delete" class="sprite-ideletebig ideletebig pull-left">取消关注</div>
+	</div>
+	<!--关注时间菜单导航-->
+	<ul id="selectFocusList" class="selects" onSelectStart="return false;">
+		<li class="select"><span></span><i class="angle"><i></i></i></li>
+		<li class="options">
+			<ul>
+				<li class="option" sortType="0" orderType="0"><span>关注时间</span><i class="sprite-concerns ilower"></i></li>
+				<li class="option" sortType="0" orderType="1"><span>关注时间</span><i class="sprite-concerns iup"></i></li>
+				<li class="option" sortType="1" orderType="0"><span>主播等级</span><i class="sprite-concerns ilower"></i></li>
+				<li class="option" sortType="1" orderType="1"><span>主播等级</span><i class="sprite-concerns iup"></i></li>
+			</ul>
+		</li>
+	</ul>
+</div>
+<!--关注主播信息-->
+<div class="noData">
+	<i class="sprite-concerns iunable"></i>
+	<div>没有符合条件的主播</div>
+</div>
+<div id="unAnyFocus" class="unAnyFocus">
+	<div class="headers clearfix">
+		<i class="sprite-concerns recfocus"></i>
+		<span>您还没有关注的主播，请看看下面的推荐吧</span>
+	</div>
+	<ul class="clearfix frame1">
+		<!-- <li>
+			<img class="avatar" src="/userupload/default/avatars/8.jpg">
+			<div class="name">这里是名字</div>
+			<div class="uid">(10086)</div>
+			<div class="level"><i class="sprite-zb_level zb37"></i><i class="sprite-zf_level zf1"></i></div>
+			<div class="goRoom"><i class="sprite-concerns ivideo"></i><a>去直播间</a></div>
+			<div class="btn">
+				<div class="sprite-concerns ifocus">+关注</div>
+			</div>
+		</li> -->
+	</ul>
+</div>
+<ul id="concernCTS" class="concernCTS clearfix frame1">
+	<!-- <li uid="10086">
+		<img class="avatar" src="/userupload/default/avatars/8.jpg">
+		<i class="sprite-concerns playing active"></i>
+		<div class="name">这里是名字</div>
+		<div class="uid">(10086)</div>
+		<div class="level"><i class="sprite-zb_level zb37"></i><i class="sprite-zf_level zf1"></i></div>
+		<div class="remarks"><span>备注：</span><span class="mark">备注的名字</span><span class="editNickName"></span></div>
+		<div class="btn">
+			<div class="sprite-concerns iunfocus">取消关注</div>
+		</div>
+        <i class="angle"><i class="sprite-props right"></i></i>
+	</li> -->
+</ul>
+<div class="pageCTS">
+	<div class="page pageStyle v2">
+	    <div class="row-fluid">
+	        <div id="concernPage" class="pagination alternate"></div>
+	    </div>
+	</div>
+</div>
+<script type="text/javascript" defer async data-main="{{static_url('personal.concern'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}

@@ -1,0 +1,108 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                <{$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+        	<form action="{:U()}" method="post" id='myform'>
+            	<div class="inputText" >
+                	<span>按订单号查询</span>
+                    <input type="text"  placeholder="请输入订单号" name='id' value="{$data['id']}">
+                 </div>
+                 <div class="inputText">
+                 	<span>按会员卡/手机号查询</span>
+                    <input type="text" name='loginNum' value="{$data[loginNum]}" placeholder="请输入会员卡/手机号">
+                  </div>
+                <div class="inputSelect">
+                        <span>请选择影城查询：</span>
+                        <select name='cinemaCode'>
+                         <option value="0">所有影城</option>
+                        <volist name='cinemaList' id='vo'>
+                           <option value="{$vo['cinemaCode']}" <?php if($data['cinemaCode']==$vo['cinemaCode']){ ?>selected<?php }?>>{$vo['cinemaName']}</option>
+                        </volist>
+                         </select>
+                    </div>
+                <div class="inputText" >
+                	<span>按订单时间查询</span>
+                    <input type="text" name="start" class="date" placeholder="请输入开始日期" value="{$data['start']}"><span>至</span>
+                    <input type="text" name="end" class="date" placeholder="请输入结束日期" value="{$data['end']}">
+                </div>
+                <div class="inputSelect">
+                <span>按订单状态查询</span>
+                    <select class="select" name="status">
+                       <option value="-1">所有订单</option>
+                    <option value="0" <?php if($data['status']=='0'){ ?>selected<?php } ?>>等待支付</option>
+                    <option value="1" <?php if($data['status']=='1'){ ?>selected<?php } ?>>支付完成</option>
+                    </select>
+                </div>
+                <a href="javascript:$('#myform').submit()" class="button">查询</a>
+                </form>
+            </div>
+            <div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <tr >
+                        <td width="5%">订单号</td>
+                        <td width="6%">会员卡号/手机号</td>
+                        <td width="12%">订单时间</td>
+                        <td width="12%">商品名称</td>
+                        <td width="12%">商家名称</td>
+                        <td width="12%">归属门店</td>
+                        <td width="6%">支付方式</td>
+                        <td width="5%">支付金额</td>
+                        <td width="6%">支付状态</td>
+                        <td width="5%">商品详情</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                     <volist name='orders' id='vo'>
+                        <tr>
+                            <td>{$vo['id']}</td>
+                            <td>{$vo['showName']}</td>
+                            <td>{$vo['downTime']|date='Y-m-d H:i:s',###}</td>
+                            <td>{$vo['goodsName']}</td>
+                            <td>{$vo['sellerName']}</td>
+                            <td>{$vo['cinemaName']}</td>
+                            <td>{$vo['payType']}</td>
+                            <td>{$vo['otherpay']}元</td>
+                            <td>{$vo['status']}</td>
+                            <td><a href="javascript:look('{$vo[goodsName]}');">查看</a></td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+                <div class="orderTotal">
+                    <span>订单总数：{$show['count']}笔</span>
+                    <span>订单总金额：{$show['allprice']}元</span>
+                    <a href="{:U('salePort',$data)}">导出到EXCEL</a>
+                </div>
+                {$page}
+            </div>
+        </div>
+	</div>
+<script type="text/javascript">
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+	timepicker:true,
+	format:'Y-m-d H:i',
+	formatDate:'Y-m-d H:i',
+});
+
+function look(detail){
+	layer.open({
+		title :'查看商品详情',
+		type: 1,
+		area: ['350px', '240px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '<div class="bak">'+detail+'</div>'
+	});
+}
+</script> 
+</block>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities.month'|ns_css)}}">
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+
+    <h1 style="display:none;">月榜大作战</h1>
+
+    <div class="wrapBd">
+        <div class="banner"></div>
+        <div class="contents">
+            <div class="popularList">
+                <ul>
+                {% set i = 0 %}
+                {% for user in anchorList['data'] %}
+                    {% set i = i+1 %}
+                    {% if i < 11 %}
+                    <li><a target="_blank" href="/{{ user['uid'] }}">{{ user['nickName'] }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+            <div class="richerList">
+                <ul>
+                {% set i = 0 %}
+                {% for user in richerList['data'] %}
+                    {% set i = i+1 %}
+                    {% if i < 11 %}
+                    <li>{{ user['nickName'] }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="footer1"></div>
+        <div class="footer2"></div>
+    </div>
+    {% include "template/footer.html" %}
+    <script type="text/javascript" defer async data-main="{{static_url('activities.month'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</div>
+</body>
+</html>

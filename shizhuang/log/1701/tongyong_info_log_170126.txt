@@ -1,0 +1,2 @@
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"ssh1upmb4cb294e0513d46c69925568b94b3a0e5180072";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-01-26 09:13:03
+post=a:0:{},get=a:4:{s:7:"sdktype";s:1:"4";s:5:"token";s:46:"sst1upmb40b34394dea04a61a4fe83407cdf073c196432";s:1:"p";s:7:"android";s:7:"game_id";s:1:"8";}, 2017-01-26 18:32:24

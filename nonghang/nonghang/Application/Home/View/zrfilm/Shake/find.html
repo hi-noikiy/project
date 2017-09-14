@@ -1,0 +1,43 @@
+<extend name='Public/base'/>
+<block name='title'>{$cinema['cinemaName']}</block>
+
+<block name='navbar'>
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="javascript:window.history.back()" class="external link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">找回密码</div>
+    <div class="right"></div>
+  </div>
+  </div>
+</block>
+
+<block name='body'>
+    <foreach name="config" item="vo" key="k" >
+    	<div style="display:none" id="{$k}">{$vo}</div>
+    </foreach>
+    <div data-page="find" class="page" style="padding-top:44px; background:#0e7de0;">
+    <div style="display:none" id="findUrl">{:U('findPasswd')}</div>
+    <div style="display:none" id="codeUrl">{:U('getValidateCode')}</div>
+    <div style="display:none" id="loginUrl">{:U('login')}</div>
+        <div class="loginBody">
+        <form action="{:U()}" method="post" id='loginform'>
+            <div class="loginInput">
+                <div><span><img src="__IMG__/login/icon4.png" width="100%" /></span><input  type="tel" id="userMobile" placeholder="请输入手机号"  /></div>
+           </div>
+           <div class="loginInput">
+                <div style="position:relative;"><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="text"  id="validateCode" placeholder="请输入验证码"  /><a href="javascript:;" class="getBtn">获取</a></div>
+           </div>
+           <div class="loginInput">
+                <div><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="password"  id="newUserPasswd" placeholder="6-20个字母、数字或符号"  /></div>
+           </div>
+           <div class="loginInput">
+                <div><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="password"  id="tnewUserPasswd" placeholder="6-20个字母、数字或符号"  /></div>
+            </div>
+            <div class="loginLink">
+                <a href="javascript:;" class="registerBtn" id="findBtn" style="width:100%;">完成</a>
+            </div>
+        </form>
+        </div>
+    </div>
+</block>

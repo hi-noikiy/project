@@ -1,0 +1,107 @@
+.main {
+	Font-size: 12px;
+	Margin-top:3px;
+	Margin-left:3px;
+}	
+.bott01 {
+	Border-top-width: 1px; Border-left-width: 1px; Font-size: 12px; Border-bottom-width: 1px; Border-right-width: 1px
+}
+.font14 {
+	font-size: 14px;
+}
+.font16 {
+	font-size: 16px;
+}
+.font18 {
+	font-size: 18px;
+}
+.title14 {
+	font-size: 14px;
+	font-weight: bold;
+}
+.title16 {
+	font-size: 16px;
+	font-weight: bold;
+}
+.title18 {
+	font-size: 18px;
+	font-weight: bold;
+}
+.gao150 {
+	line-height:150%;
+	font-size: 14px;
+}
+.input01 {
+	font-size: 12px;
+	border: 1px solid #666666;
+}
+A
+{
+TEXT-DECORATION: none;
+}
+A:hover
+{
+COLOR: #0099FF;
+}
+A:link {
+color: #000099;
+}
+A:visited {
+color: #000099;
+}
+
+body 
+{
+    FONT-SIZE: 12px;
+    COLOR: #000000;
+}
+TD{
+font-size: 12px; 
+}
+td.forumRow
+{
+    background-color:#ECECED;
+}
+.tableBorder
+{
+    border: 1px #6595D6 solid; 
+    background-color: #FFFFFF;
+}
+.tableBorder1
+{
+    border: 1px #6595D6 solid; 
+    background-color: #efefef;
+}
+th
+{
+	color: #000000;
+	font-size: 12px;
+	font-weight:bold;
+    background-color: #9FCDE7;
+	height: 23px;
+}
+input,select,Textarea{
+font-family:Tahoma,Verdana,瀹嬩綋; font-size: 12px; line-height: 15px;}
+}
+.input_readonly {
+	BACKGROUND-COLOR:#CCCCCC;BORDER-RIGHT: #0066CC 1px solid; BORDER-TOP: #0066CC 1px solid; BORDER-LEFT: #0066CC 1px solid; BORDER-BOTTOM: #0066CC 1px solid
+}
+.input_all {
+	BACKGROUND-COLOR:#ffffff;BORDER-RIGHT: #0066CC 1px solid; BORDER-TOP: #0066CC 1px solid; BORDER-LEFT: #0066CC 1px solid; BORDER-BOTTOM: #0066CC 1px solid
+}
+.menu_text {
+	font-size: 12px;
+	color: #0A396A;
+	background-repeat: no-repeat;
+}
+.twomenu {
+	color: #226BB8;
+	background-image: url(../images/twomenu_back.gif);
+	background-repeat: no-repeat;
+}
+.onemenu {
+	background-image: url(../images/menu_top.gif);
+	background-repeat: no-repeat;
+	height: 22px;
+	color: #0A396A;
+}

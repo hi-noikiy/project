@@ -1,0 +1,8 @@
+post=a:5:{s:4:"code";s:6:"530085";s:7:"game_id";s:1:"9";s:8:"password";s:6:"940420";s:4:"sign";s:32:"8f72f89d8ebb72432bc30d2192d7fd95";s:8:"username";s:11:"13600301756";}, 2017-05-18 00:01:45
+post=a:5:{s:4:"code";s:6:"543795";s:7:"game_id";s:1:"9";s:8:"password";s:7:"jyr0852";s:4:"sign";s:32:"309bbb74cf4306d5ad5cff6b7dc751ad";s:8:"username";s:11:"18891558227";}, 2017-05-18 00:03:26
+post=a:5:{s:4:"code";s:6:"223064";s:7:"game_id";s:1:"9";s:8:"password";s:10:"sz19861214";s:4:"sign";s:32:"1a745981821fd6872f02d219c9eef680";s:8:"username";s:11:"15153689116";}, 2017-05-18 15:39:21
+post=a:5:{s:4:"code";s:6:"266805";s:7:"game_id";s:1:"9";s:8:"password";s:7:"onelove";s:4:"sign";s:32:"a9aa98c5e054a9b53942a4e344f0d550";s:8:"username";s:11:"15088682126";}, 2017-05-18 17:05:38
+post=a:5:{s:4:"code";s:6:"636730";s:7:"game_id";s:1:"9";s:8:"password";s:11:"18052482076";s:4:"sign";s:32:"5c8221e4e5739cfb427ab8069d8e6873";s:8:"username";s:11:"18052482076";}, 2017-05-18 18:29:37
+post=a:5:{s:4:"code";s:6:"861101";s:7:"game_id";s:1:"9";s:8:"password";s:7:"bugaoni";s:4:"sign";s:32:"e7b0c0ee966db1f21d90eb50c0e7d423";s:8:"username";s:11:"13015417180";}, 2017-05-18 19:48:46
+post=a:5:{s:4:"code";s:6:"397582";s:7:"game_id";s:1:"9";s:8:"password";s:9:"123123231";s:4:"sign";s:32:"c0e508ba4186b6f8b3b18a2ad6f9f3ab";s:8:"username";s:11:"18370033343";}, 2017-05-18 20:22:47
+post=a:5:{s:4:"code";s:6:"493116";s:7:"game_id";s:1:"9";s:8:"password";s:11:"wjc19941218";s:4:"sign";s:32:"d9eedfb2f69d7e5691f02a68ea57309f";s:8:"username";s:11:"18816258821";}, 2017-05-18 23:52:28

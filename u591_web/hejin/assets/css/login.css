@@ -1,0 +1,275 @@
+body{
+    font:12px "microsoft yahei",Arial,Helvetica,sans-serif;
+    color:#666;
+    margin:0;
+    padding:0;
+}
+.lt{
+    float:left;
+}
+ul{
+    list-style:none;
+}
+a{
+    text-decoration:none;
+}
+
+div#register1{
+    width:740px;
+    height:585px;
+    border:1px solid #A8A8A8;
+    margin:0 auto;
+    position:relative;
+}
+
+ul li {
+    margin:20px 0 20px 60px;
+}
+ul li h2{
+    font-weight:bold;
+}
+
+ul li.form-group input{
+    height:30px;
+    width:290px;
+}
+ul .first{
+    font-weight:bold;
+    font-size:22px;
+}
+
+ul li.form-group button{
+    width:294px;
+    color:#EDF9FD;
+    background-color:#00A8FF;
+    border:0px;
+    height:30px;
+}
+
+pre{
+    color:#47C0FE;
+    float: right;
+    margin: 2px 25px 0 0;
+}
+
+.pr{
+    position: relative;
+}
+
+.f-l{
+    float: left;
+}
+
+li, div, ul{
+    *zoom:1;
+}
+li:after, div:after, ul:after{
+    content: '';
+    display: table;
+    clear: both;
+}
+.tran{
+    transition:all 0.3s ease-out;
+    -webkit-transition:all 0.3s ease-out;
+    -moz-transition:all 0.3s ease-out;
+    -o-transition:all 0.3s ease-out;
+}
+
+/*--------------样式重置------------*/
+/***********/
+
+
+.login-box{
+    width: 320px;
+    margin:0 auto;
+    overflow-x: hidden;
+}
+.box-con{
+    width: 1600px;
+}
+.login-con{
+    width: 300px;
+    margin:0 10px;
+}
+.login-box .form-group{
+    margin-top: 20px;
+}
+
+.login-box input, .signup-form{
+    width: 300px;
+    height:50px;
+    line-height: 48px \9;
+    padding-left: 10px;
+    border: 1px #d9d9d9 solid;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    transition:all 0.3s ease-out;
+    -webkit-transition:all 0.3s ease-out;
+    -moz-transition:all 0.3s ease-out;
+}
+.login-box input:focus{
+    border-color: #03a9f4;
+    box-shadow: 0 0 15px #03a9f4;
+    -webkit-box-shadow: 0 0 15px #03a9f4;
+    -moz-box-shadow: 0 0 15px #03a9f4;
+}
+.login-box button{
+    width: 300px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    border: 0;
+    background-color: #03a9f4;
+    color: #fff;
+    border-radius: 5px;
+}
+.login-box button a{
+    display: block;
+}
+.login-box button a:hover{
+    padding-top: 3px;
+}
+.login-box button:hover{
+    background-color: #0096da;
+}
+.from-line{
+    height: 0;
+    overflow: hidden;
+    border-top: 1px #c2c2c2 solid;
+    margin-top: 20px;
+}
+.a-tag{
+    position: relative;
+    display: block;
+    height: 48px;
+    border: 1px #c2c2c2 solid;
+    text-align: center;
+    line-height: 48px;
+    color: #c2c2c2;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.blue-border{
+    border:1px #03a9f4 solid;
+    color: #03a9f4;
+}
+
+.a-tag:hover{
+    background-color: #aaa;
+    color: #fff;
+}
+.blue-border:hover{
+    background-color: #03a9f4;
+    color: #fff;
+}
+.a-tag i{
+    position: absolute;
+    right: 20px;
+    top: 0;
+    font-size: 24px;
+    color: #fff;
+}
+.a-tag:hover i{
+    right: 10px;
+}
+.signup, .mimachongzhi, .mobile-success{
+    width: 300px;
+    margin: 0 10px;
+}
+
+
+.signup-form {
+    margin-top: 20px;
+}
+.signup-form input{
+    border: 0;
+    height: 48px;
+    width: 220px;
+}
+.signup-form input:focus{
+    box-shadow:0 0 0 #fff;
+}
+.signup-form.border{
+    border-color: #03a9f4;
+    box-shadow: 0 0 15px #03a9f4;
+    -webkit-box-shadow: 0 0 15px #03a9f4;
+    -moz-box-shadow: 0 0 15px #03a9f4;
+}
+.signup-form a{
+    color: #03a9f4;
+}
+.view-clause{
+    padding-top: 20px;
+    line-height: 14px;
+    text-align: center;
+    color: #808080;
+}
+.view-clause a{
+    color: #03a9f4;
+}
+.view-clause a:hover{
+    text-decoration: underline;
+}
+.error-notic{
+    color: #ff4e00;
+    display: none;
+}
+
+.mobile-success{
+    padding-top: 20px;
+}
+.mobile-success p{
+    text-align: center;
+    color: #666;
+}
+.mobile-success p span{
+    font-weight: bold;
+    padding: 0 10px;
+}
+.mobile-success p a{
+    color: #03a9f4;
+    padding-left: 5px;
+}
+.mobile-success p a:hover{
+    text-decoration: underline;
+}
+.loading{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    display: none;
+
+}
+.iconfont {
+    font-family:"iconfont" !important;
+    font-size:16px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.signup-tel.signup-form .get-code {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 106px;
+}
+.signup-form .get-code {
+    background: #fff3dd none repeat scroll 0 0;
+    border: 1px solid #ffe2ac;
+    color: #f59f00;
+    cursor: pointer;
+    display: inline-block;
+    height: 46px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    width: 102px;
+}
+a {
+    color: #2f3031;
+}

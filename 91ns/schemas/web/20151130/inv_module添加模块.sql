@@ -1,0 +1,1 @@
+INSERT INTO `inv_module` (`parentId`, `moduleName`, `moduleAction`, `moduleSort`, `moduleType`, `createTime`) VALUES ('54', '活动统计', 'activityStatistics', '2', '1', '1449025711');

@@ -1,0 +1,173 @@
+<extend name="Public/privatebase"/>
+<block name="style">
+<style>
+body{
+	background:#0069ac;
+	}
+</style>
+</block>
+<block name="body">
+
+	<div class="checkBody">
+	<form action="{:U()}" method="post" id='privatelist_index_myform' target="myframe">
+    	<div class="checkInput">
+            <input type="text" placeholder="请输入订单号" name="id" id="orderNum" value="{$map.id}" />
+        </div>
+        <div class="checkInput">
+            <input type="text" placeholder="请输入验证码" name="code" id="code" value="{$map.code}" />
+        </div>
+        <a class="queryBtn" href="javascript:query();">查询</a>
+      <!-- <a class="queryBtn" href="javascript:$('#privatelist_index_myform').submit()">查询</a>-->
+		</form>
+	</div>
+	<div class="checkTable">
+    	<div class="checkLog"><a href="{:U('privatelist')}">历史操作记录</a></div>
+    	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+             <thead>
+                <tr>
+                    <td width="10%">订单编号</td>
+                    <td width="15%">订单时间</td>
+                    <td width="10%">订单总额</td>
+                    <td width="15%">归属影院</td>
+                    <td width="10%">支付状态</td>
+                    <td width="10%">订单差额</td>
+                    <td width="10%">订单详情</td>
+                    <td width="10%">验证状态</td>
+                    <td width="10%">操作</td>
+                  </tr>
+            </thead>
+            <tbody id='check_index_bookwhole'>
+                <volist name='list' id='v'>
+                <tr>
+                    <td>{$v.id}</td>
+                    <td>{$v.paymentTimeflag}</td>
+                    <td>{$v.total}</td>
+                    <td>南华</td>
+                    <td>预付：{$v.prepay}</td>
+                    <td>{$v.cr}</td>
+                    <td><a href='javascript:order({$v.id});'>查看详情</a></td>
+                    <td>{$v.stateflag}</td>
+                    <td><?php if($v['state']=='2'): ?>{$v.realName}<?php else: ?><a href="javascript:check({$v.id});">兑换</a><?php endif;?></td>
+                </tr>
+                </volist>
+
+
+   
+            </tbody>
+        </table>
+       <?php if(empty($list)){ ?><div class="noprivate" id='nothing_pic'></div><?php } ?>
+    </div>
+</block>
+<block name="script">
+<script type="text/javascript">
+//查询
+  function query(){
+		var orderNum=$('#orderNum').val();
+		var code=$('#code').val();
+		
+		var searcharray='';
+		if(orderNum == ''|| orderNum == '请输入订单号'){
+			 layer.alert("请输入订单号");
+			 return;
+		}else{
+              searcharray+='&id='+orderNum;
+
+
+        }
+			if(code == ''|| code == '请输入验证码'){
+			 layer.alert("请输入验证码");
+              return;
+		}else{
+              searcharray+='&code='+code;
+			
+
+        }
+
+         $.ajax({
+                global:true,
+                type: "post",
+                url:"{:U('Private/index_search')}",
+                data: searcharray,
+                success: function(msg){
+
+
+                    var data = eval("(" + msg + ")");
+
+
+                    if(data.status == 1){
+   
+                         var h=$(window).height();
+						var l=h-70
+                       var html='';
+                       for(var o in data.list){  
+                          html+='<tr>';
+                          html+='    <td>'+data.list[o].id+'</td>';
+                          html+='    <td>'+data.list[o].paymentTimeflag+'</td>';
+                          html+='    <td>'+data.list[o].total+'</td>';
+                          html+='    <td>南华</td>';
+                          html+='    <td>预付：'+data.list[o].prepay+'</td>';
+                          html+='    <td>'+data.list[o].cr+'</td>';
+                          html+='    <td><a href="javascript:order('+data.list[o].id+');">查看</a></td>';
+                          html+='    <td>'+data.list[o].stateflag+'</td>';
+                          if(data.list[o].state=='2') {
+                            html+='    <td>'+data.list[o].realName+'</td>';
+                          }else{
+                            html+='    <td><a href="javascript:check('+data.list[o].id+');">兑换</a></td>';
+                          }
+                          html+='</tr>';           
+                        }             
+                        $('#check_index_bookwhole').empty().append(html);
+						
+                       $('#nothing_pic').hide();
+    					$('.checkRight').height(l);
+                    }else{
+                        layer.alert(data.message);
+                        $('#nothing_pic').show();
+                    } 
+                       
+
+                  
+
+                }
+         })
+
+
+
+
+
+  }
+
+
+	
+
+
+function check(id){
+    layer.confirm('是否确认兑换？',function(index){
+		
+        layer.close(index);
+
+		$.get("{:U('checkCode')}",{id:id},function(json){
+			var msg=JSON.parse(json);
+			layer.alert(msg['text']);
+			if(msg['status']=='1'){
+				setTimeout(function(){query();},2000);
+			}
+		});
+	})
+	
+}
+
+
+function order(id){
+	layer.open({
+		title :'订单详情',
+		type: 2,
+		area: ['500px', '490px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: 'order_from.html?id='+id
+	});
+}
+
+</script> 
+</block>

@@ -1,0 +1,57 @@
+
+<extend name='Public/base'/>
+<block name='navbar'>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="left"><a href="{:U('index/goodslist')}" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+			<div class="center sliding">卖品支付</div>
+			<div class="right"></div>
+		</div>
+	</div>
+</block>
+
+<block name='body'>
+
+	<div class="pages">
+		<div data-page="paymentSuccess" class="page" id="page-paymentSuccess">
+			<link rel="stylesheet" href="__CSS__/goods.css?{:time()}">
+			<div class="main">
+            	`<div class="payment clearfix wait">
+					<h4>请稍等正在支付中...</h4>
+				</div>
+				<div class="payment clearfix success" style="display: none ">
+					<h4>您已支付成功</h4>
+					<div class="text-box">
+                        <p>兑换地点：<span class="color-blue">{$cinema['shortName']}</span></p>
+						<p>卖品兑换码：<span id='color-blue' class="color-blue">12345678</span></p>
+					</div>
+					<div class="btns">
+						<a href="{:U('index/goodslist')}">继续购买</a>
+						<a href="{:U('index/index')}">返回首页</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</block>
+<block name='script'>
+<script type="text/javascript">
+var id=setInterval("getPayStatus()",3000);
+var orderid = "{$orders[0]['orderid']}";
+function getPayStatus(){      
+    $.post("{:U('User/getGoodsStatus')}",{orderid:orderid},function(data){
+        if(data.data.status != '0'){
+            clearInterval(id);
+            $(".wait").hide();
+            if(data.data.status =='1'){
+                $(".success #color-blue").text(data.data.convcode);
+                $(".success").show();
+            }
+        }
+    },'json');
+}
+</script>
+    </block>
+
+

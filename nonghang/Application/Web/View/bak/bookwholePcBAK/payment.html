@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>支付</title>
+
+    <link rel="stylesheet" type="text/css" href="css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+
+    <script type="text/javascript" src="js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="js/jquery.Spinner.js"></script>
+
+</head>
+<body id="page-payment">
+
+<!-- 导航 -->
+
+<div id="header">
+    <div class="container">
+        <div class="logo"></div>
+        <ul class="nav">
+            <li class="index"><a>首页</a></li>
+            <li class="film"><a>电影</a></li>
+            <li class="period"><a>排期</a></li>
+            <li class="bookwhole active"><a>包场</a></li>
+            <li class="goods"><a>卖品</a></li>
+            <li class="cinema"><a>影院</a></li>
+            <li class="activity"><a>活动</a></li>
+            <li class="phone"><a>移动购票</a></li>
+            <li class="login"><a></a></li>
+            <li class="suggestion"><a>意见反馈</a></li>
+        </ul>
+        <div class="login-block">
+            <span><img src="images/user.png"></span>
+            <a>登录</a>
+            <a>注册</a>
+        </div>
+    </div>
+</div>
+<!--/ 导航 -->
+
+<!-- 主体内容 -->
+<div id="main">
+    <div class="container">
+        <h2>订单支付</h2>
+        <h3>付款类型</h3>
+        <div class="item-content i-1">
+            <div class="radiolist">
+                <input type="radio" value="预定金支付" name="1">
+                <label class="radio">预定金支付</label>
+                <input type="radio" value="全额支付" name="1">
+                <label class="radio">全额支付</label>
+            </div>
+        </div>
+        <h3 class="quan">
+       		 票券使用
+        </h3>
+        <div class="item-content">
+            <div class="radiolist">
+                <input type="radio" value="抵值券" name="2">
+                <label class="radio">抵值券</label>
+                <input type="radio" value="兑换券" name="2">
+                <label class="radio">兑换券</label>
+                <input type="radio" value="卖品券" name="2">
+                <label class="radio">卖品券</label>
+            </div>
+
+            <div class="item-inner">
+                <h4>·您有<b>5</b>张卖品券可用</h4>
+                <p>
+                    <input type="text" placehold="请输入票券密码"><a>兑换</a><span>（已兑换现金<b>￥30</b>）</span>
+                </p>
+                <ul class="quan-list">
+                    <li>
+
+                        <div class="left-block">
+                            <span class="price"><b>¥</b><i>10</i></span>
+                            <span class="quan">卖品券</span>
+                        </div>
+                        <div class="right-block">
+                            <p class="num">ABCDEFGHIJKL</p>
+                            <p class="time-limit">有效期至2015-09-08</p>
+                            <a>立即使用</a>
+                        </div>
+
+                    </li>
+                    <li>
+
+                        <div class="left-block">
+                            <span class="price"><b>¥</b><i>10</i></span>
+                            <span class="quan">卖品券</span>
+                        </div>
+                        <div class="right-block">
+                            <p class="num">ABCDEFGHIJKL</p>
+                            <p class="time-limit">有效期至2015-09-08</p>
+                            <a>立即使用</a>
+                        </div>
+
+                    </li>
+                    <li>
+
+                        <div class="left-block">
+                            <span class="price"><b>¥</b><i>10</i></span>
+                            <span class="quan">卖品券</span>
+                        </div>
+                        <div class="right-block">
+                            <p class="num">ABCDEFGHIJKL</p>
+                            <p class="time-limit">有效期至2015-09-08</p>
+                            <a>立即使用</a>
+                        </div>
+
+                    </li>
+                    <li>
+
+                        <div class="left-block">
+                            <span class="price"><b>¥</b><i>10</i></span>
+                            <span class="quan">卖品券</span>
+                        </div>
+                        <div class="right-block">
+                            <p class="num">ABCDEFGHIJKL</p>
+                            <p class="time-limit">有效期至2015-09-08</p>
+                            <a>立即使用</a>
+                        </div>
+
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <h3>支付方式</h3>
+        <div class="item-content pay">
+            <div class="radiolist">
+                <input type="radio" value="账户余额支付" name="3">
+                <label class="radio alance">
+                    <p class="pay-name">账户余额支付</p>
+                    <p class="pay-hint">您当前账户余额<i>5</i>元<span>立即充值></span></p>
+                </label>
+                <input type="radio" value="支付宝支付" name="3">
+                <label class="radio alipay">
+                    <p class="pay-name">支付宝支付</p>
+                    <p class="pay-hint">推荐安装支付宝的用户使用</p>
+                </label>
+                <input type="radio" value="银联支付" name="3">
+                <label class="radio unionPay">
+                    <p class="pay-name">银联支付</p>
+                    <p class="pay-hint">支持储蓄卡信用卡，无需开通开通网银</p>
+                </label>
+            </div>
+        </div>
+        <div class="submit-block">
+            <span>应付金额：￥60</span>
+            <button>确认支付</button>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        <ul>
+            <li><a href=""></a><a href="">关于中瑞 / </a><a href="">服务协议 / </a><a href="">客服中心 /</a><a href="">网站导航 /</a> <a href="#">版权所有</a> </li>
+            <li>Copyright © 1998 - 2015 ZRFILM. All Rights Reserved</li>
+            <li> 技术支持：最美影视网络</li>
+        </ul>
+        <span class="tel">400-1234554665</span>
+        <span class="publicize">精彩在握，移动购票</span>
+    </div>
+</div>
+
+<!--/ 主体内容-->
+<script type="text/javascript">
+    $(function(){
+        //单选框美化
+        $.fn.radio = function(options) {
+            var self = this;
+            return $('label', this).each(function() {
+                $(this).addClass('radio');
+                if ($(this).prev().is("checked")) $(this).addClass('radioChecked');
+            }).click(function(event) {
+                $(this).siblings().removeClass("radioChecked");
+                if (!$(this).prev().is(':checked')) {
+                    $(this).addClass("radioChecked");
+                    $(this).prev()[0].checked = true;
+                }
+                event.stopPropagation();
+            }).prev().hide();
+        };
+
+        $('.radiolist').radio();
+
+        //加减
+        $(".Spinner").Spinner({value:0, min:0, len:2, max:99});
+
+    })
+</script>
+</body>
+</html>
+

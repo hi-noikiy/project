@@ -1,0 +1,84 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">卖品订单</div>
+    <div class="right"></div>
+  </div>
+</div>
+
+
+<div class="pages">
+  <div data-page="goodsOrder" class="page">
+    <div class="page-content goodsorder">
+	<div style="display:none" id="delordergoodsurl">{:U('delOrderGoods')}</div>
+	<div style="display:none" id="delorderroundurl">{:U('delOrderRound')}</div>
+	<div style="display:none" id="goodsurl">{:U('getMyGoods')}</div>
+	<div style="display:none" id="roundurl">{:U('getMyRound')}</div>
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+        <!--<div class="content-block">
+            <div class="buttons-row">
+                <a href="#tab1" class="button tab-link active" type='1'>卖品</a>
+                <a href="#tab2" class="button tab-link" type='2'>团购</a>
+            </div>
+        </div>-->
+        <div class="tabs-animated-wrap">
+            <div class="tabs record">
+                <!-- Tab 1, 默认激活 -->
+                <div id="tab1" class="tab active order goodsorder">
+                	<?php if(empty($goodsorders)){ ?>
+                      <div class="goodsBg">没有发现任何商品记录</div>
+                	<?php }else{ ?>
+                  	<ul>
+                        <foreach name='goodsorders' item='vo'>
+                        <li>
+                            <div class="orderTop">
+                                <span>订单号:{$vo['id']}</span>
+                                <span style="float:right;">{$vo['orderTime']|date='Y-m-d H:i:s',###}</span>
+                                <a href="#" class="confirm-ok"></a>
+                            </div>
+                            <div class="orderMid">
+                            <foreach name='vo["details"]' item='goods'>
+                            	<div class="orderMidItem">
+                                    <div class="orderMidLeft"><img src="{$goods['goodsImg']}" width="120" height="80"></div>
+                                    <div class="orderMidRight">
+                                        <h2>{$goods['goodsName']}</h2>
+                                        <b>×{$goods['number']}</b>
+                                        <p><span>单价：￥{$goods['price']}</span><span>总额：￥{$goods['price']*$goods['number']}</span></p>
+                                    </div>
+                                    <div class="clear"></div>
+                               </div>
+                               </foreach>
+                            </div>
+                            <div class="orderNum">
+                            	<span>共{$vo['number']}件商品，共付：<b>￥{$vo['price']}</b></span>
+                            </div>
+                            <div class="orderBtm">
+                                <span>兑换码：{$vo['convcode']}<b>（{$vo['cinemaName']}）</b></span>
+                                <a href="javascript:;" onclick='delordergoods(this,{$vo[id]})'  class="delOrderBtn">删除订单</a>
+                            </div>
+                        </li>
+                         </foreach>
+                	</ul>
+                	 <?php }?>
+                </div>
+                <!-- Tab 2 -->
+                <div id="tab2" class="tab order goodsorder">
+                <?php if(empty($roundorders)){ ?>
+                      <div class="goodsBg">没有发现任何商品记录</div>
+                	<?php }else{ ?>
+                    <ul>
+                    </ul>
+                    <?php }?>
+                </div>
+            </div>
+        </div>
+
+       
+
+
+    </div>
+  </div>
+</div>

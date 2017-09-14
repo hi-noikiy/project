@@ -1,0 +1,146 @@
+<extend name='Public/nbase'/>
+
+<block name='body'>
+
+<div id="main" class="recharge">
+
+    
+     <div class="odContent">
+         <!--退票-空-->
+         <?php if(empty($orders)){ ?>
+         <div class="container none"></div>
+         <?php }else{ ?>
+        <div class="container" style="margin-bottom:50px;">
+            <div class="returnTicket-tip">
+                <a class="rule">退票规则></a>
+                <div class="tipCon tc2">
+                    <p>1、选择你要预订的座位单击选中，重复点击取消所选座位、选择你要预订的座位单击选中，重复点击取消所选座位；</p>
+                    <p>2、每笔订单最多可选购4张电影票，情侣座不单卖；</p>
+                    <p>3、部分影院3D眼镜需要押金，请观影前准备好现金；</p>
+                    <p>4、订单提交后，请在15分钟内完成支付，超时系统将释放座位；</p>
+                    <p>5、所购影票一经售出，不退不换，感谢您的支持;</p>
+                    <p>6、所购影票一经售出，不退不换，感谢您的支持;</p>
+                    <p>7、部分影院3D眼镜需要押金，请观影前准备好现金；</p>
+                    <a class="close-btn"></a>
+                    <div class="triangle-character tc-border">◆</div>
+                    <div class="triangle-character tc-background">◆</div>
+                </div>
+            </div>
+			<foreach name='orders' item='vo'>
+            <div class="orderBlock">
+                <p class="orderTitle">订单：{$vo['orderCode']}&nbsp;&nbsp;&nbsp;{$vo['orderTime']}</p>
+                <div class="orderItem">
+                    <img src="{$vo['filmImg']}">
+                    <h4>{$vo['filmName']}</h4>
+                    <p>影院：{$vo['cinemaName']} {$vo['hallName']}</p>
+                    <p>场次：{$vo['startTime']}</p>
+                    <p>座位：{$vo['seatIntroduce']}</p>
+                    <p>状态：支付成功</p>
+                    <span class="tp" orderid="{$vo['orderCode']}">申请退票 </span>
+                </div>
+            </div>
+            </foreach>
+        </div>
+        <?php } ?>
+    </div>
+</div>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+
+
+    $(function(){
+        //单选框美化
+        $.fn.radio = function(options) {
+            var self = this;
+            return $('label', this).each(function() {
+                $(this).addClass('radio');
+                if ($(this).prev().is(":checked")) $(this).addClass('radioChecked');
+            }).click(function(event) {
+                $(this).siblings().removeClass("radioChecked");
+                if (!$(this).prev().is(':checked')) {
+                    $(this).addClass("radioChecked");
+                    $(this).prev()[0].checked = true;
+                }
+                event.stopPropagation();
+            }).prev().hide();
+        };
+
+//退票操作提示
+        $('.tp').on('click',function(){
+        	var orderid=$(this).attr('orderid');
+        	var url="{:U('backTicket')}";
+            var _this = $(this);
+            layer.open({
+                type: 1,
+                shift:5,
+                skin: '',
+                title:'退票申请',
+                area: ['450px', '338px'],
+                shadeClose: true, //点击遮罩关闭
+                content: '<div class="selectCon">' +
+                '<div class="chklist">' +
+                '<p>退票原因：</p>'+
+                '<input type="radio" name="cause" value="1" /><label>价格太贵了，不想看；</label>' +
+                '<input type="radio" name="cause" value="2" /><label>影城服务态度很差；</label>'+
+                '<input type="radio" name="cause" value="3" /><label>买错场次了，不好意思；</label>'+
+                '<input type="radio" name="cause" value="4" /><label>临时有事，看不了；</label>'+
+                '<input type="radio" id="inputHi" name="cause" value="4" /><label class="hi">fsff</label>'+
+                ' </div>' +
+                '<input class="inputCon" type="text" placeholder="我有其他原因">'+
+                ''+
+                '</div>',
+                btn: ['退票'],
+                yes: function(index){
+                	var backTip='';
+                	backTip=$('.selectCon input[type=radio]:checked').next('label').html();
+                	if(backTip!=undefined){
+                		backTip+=$('.selectCon .inputCon').val();
+                	}else{
+                		backTip=$('.selectCon .inputCon').val();
+                		if(backTip==''){
+                			layer.msg('请选择退票理由');
+                    		return false;
+                		}
+                	}
+                	var ind = layer.load(1, {
+            			shade: [0.1,'#000']
+            		});
+					$.getJSON(url,{orderid:orderid,backTip:backTip},function(data){
+						layer.msg(data.content); 
+						 parent.location.reload();
+					});
+                }
+            });
+
+            $('.chklist').radio();
+            $('label').click(function(){
+                var flag = $('#inputHi').is(':checked');
+                if(flag){
+                    $('.hi').hide();
+                    $('.inputCon').focus();
+                }else{
+                    $('.hi').show();
+                }
+            })
+
+        });
+
+//退票规则提示
+
+        $('.rule').click(function(){
+            $('.tipCon').show();
+        });
+
+        $('.close-btn').click(function(){
+            $(this).parent().hide();
+        });
+
+    })
+    </script>
+
+</block>
+
+
+

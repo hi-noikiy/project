@@ -1,0 +1,147 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="dataform" id="dataform">
+	<div class="formBox">
+
+        <div class="inputSelect">
+                    <span>影院分组：</span>
+                    <select name="data[cinemaGroupId]" onchange="getVoucherName(this.value)" id="cinemaGroupId">
+                    <foreach name="cinemaGroup" item="vo" key="k" >
+                        <option value="{$vo.id}" <if condition="$voucherTypeInfo['cinemaGroupId'] == $vo['id']"> selected="selected"</if>>{$vo.groupName}</option>
+                    </foreach>
+                     </select>
+                </div>
+
+    	<div class="inputSelect" >
+            <span>票券名称：</span>
+            <select name="data[voucherType]" id="voucherType">
+                    <foreach name="voucherTypeList" item="vo" key="k" >
+                        <option value="{$vo.typeId}" <if condition="$voucherTypeInfo['cinemaGroupId'] == $vo['typeId']"> selected="selected"</if>>{$vo.typeName}</option>
+                    </foreach>
+                     </select>
+        </div>
+        <div class="inputText" >
+            <span>生成方式：</span>
+            <input type="radio" name="data[addType]" checked="checked"  value="1" id="way1" onclick="showdiv(1)"><label for="way1">顺序生成</label>
+            <input type="radio" name="data[addType]"  value="2" id="way2" onclick="showdiv(0)"><label for="way2">随机生成</label>
+        </div>
+        
+        <div class="inputText" >
+            <span>前缀：</span>
+            <input type="text" name="data[voucherPre]"  placeholder="请输入前缀" value="">
+        </div>
+
+        <span id="startNum">
+        <div class="inputText" >
+            <span>起始编号：</span>
+            <input type="text" name="data[startNum]"  placeholder="请输入起始编号" value="">
+        </div>
+        </span>
+
+        <span id="voucherBit" style="display:none">
+        <div class="inputText" >
+            <span>票券位数：</span>
+            <input type="text" name="data[voucherBit]"  placeholder="请输入票券位数" value="">
+        </div>
+        </span>
+
+        <div class="inputText" >
+            <span>生成数量：</span>
+            <input type="text" name="data[voucherSum]"  placeholder="请输入生成数量" value="">
+        </div>
+        <div class="inputSelect" >
+            <span>归属影院：</span>
+            <select name="data[belongCinemaCode]" id="belongCinemaCode">
+
+            </select>
+        </div>
+
+    </div>
+	<div class="formBtn">
+        <a href="javascript:ajaxSubmit()" class="button">确认</a>
+         <a href="javascript:parent.layer.closeAll();" class="cancel">取消</a>
+        
+    </div>
+</form>
+<script type="text/javascript">
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+	timepicker:true,
+	format:'Y-m-d H:i',
+	formatDate:'Y-m-d H:i',
+});
+
+function getVoucherName (cinemaGroupId) {
+    $.ajax({
+        type:"post",  //提交方式  
+            dataType:"json", //数据类型  
+            url:"{:U('getVoucherName')}", //请求url 
+            data:{'cinemaGroupId':cinemaGroupId},
+            success:function(json){ 
+                $("#voucherType").html('');
+                $("#belongCinemaCode").html('');
+                if (json.status == 1) {
+                    
+                    layer.alert(json.content);
+                }else if(json.status == 0){
+                    $.each(json.data.cinemaList, function(i,v){
+                        $("#belongCinemaCode").append('<option value="'+v.cinemaCode+'">'+v.cinemaName+'</option>');
+                    });
+
+                    $.each(json.data.voucherTypeList, function(i,v){
+                        $("#voucherType").append('<option value="'+v.typeId+'">'+v.typeName+'</option>');
+                    });
+                }
+            },
+            error:function(msg) {
+                // alert(msg);
+            }
+
+    });
+}
+
+function showdiv (preId) {
+
+    if (preId == 1) {
+        $("#startNum").css('display', '');
+        $("#voucherBit").css('display', 'none');
+
+    }else{
+        $("#startNum").css('display', 'none');
+        $("#voucherBit").css('display', '');
+    }
+    
+}
+
+function ajaxSubmit () {
+        // alert('1');
+        $("#dataform").ajaxSubmit({  
+            type:"post",  //提交方式  
+            dataType:"json", //数据类型  
+            url:"{:U()}", //请求url 
+            success:function(json){ //提交成功的回调函数  
+                if (json.status == 1) {
+                    layer.alert(json.content);
+                }else if(json.status == 0){
+
+
+                    layer.confirm(json.content, {
+                    btn: ['返回列表','<?php if(intval($cinemaInfo['cinemaCode']) == 0){echo '继续添加';}else{echo '继续修改';}?>'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    parent.location.reload();
+                }, function(){
+                    location.reload();
+                });
+                }
+
+
+                // alert('11');
+            }  
+        });
+    }
+var cinemaGroupId = $('#cinemaGroupId').val();
+getVoucherName(cinemaGroupId);
+</script> 
+</block>

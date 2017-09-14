@@ -1,0 +1,145 @@
+<extend name="Public/base"/>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/index')}" class="link external"> <i class="icon icon-back"></i><!--<span>Back</span>--></a></div>
+    <div class="center sliding">{$cinema['cinemaName']}</div>
+    <div class="right"><a href="{:U('cinemalist',array('op'=>'plan'))}" class="link open-links more-cinema">{$cinema['shortName']}</a></div>
+  </div>
+</div>
+  </block>
+
+
+<block name='body'>
+  <div data-page="plan" class="page">
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+
+      <div id="nowCinemaCode" style="display:none">{$cinema['cinemaCode']}</div>
+
+		<div class="dateBox">
+            <ul class="dateBody"  id="dateBody">
+              <volist name='time' id='vo'>
+                <li planDate="{$vo['time']}" <?php if($i=='1'){ ?>class="cur"<?php }?>>{$vo['instr']}{$vo['dtime']}</li>
+                </volist>
+            </ul>
+        </div>
+
+        <div class="planList">
+          <volist name='films' id='vo'>
+          <dl>
+              <dt>
+                    <a class="filmLink"  href="javascript:details('{$vo['filmNo']}')" >
+                        <div class="filmImg">
+                            <img src="{$vo['film']['image']}" height="100%"  />
+                        </div>
+                        <div class="filmInfo">
+                            <h2>{$vo['filmName']}</h2><span><?php if(!empty($vo['film'])){ ?>{$vo['film']['score']/10}<?php }else{ ?>0<?php } ?></span>
+                            <p>影片片长:{$vo['totalTime']}分钟</p>
+                        </div>
+                        <div class="clear"></div>
+                    </a>
+                </dt>
+                <volist name='vo["planInfo"]' id='plan'>
+                    <a class="planInfo" href="{:U('seat',array('featureAppNo'=>$plan['featureAppNo']))}">
+                      <div class="planDate"><span>{$plan['startTime']}</span><em>￥{$plan['memberPrice']}</em><!--{$plan['hallNo']}--></div>
+                        <div class="planType"><span>{$plan['copyLanguage']}{$plan['copyType']}</span><em>￥{$plan['listingPrice']}</em></div>
+                    </a>
+                </volist>
+                <div class="clear"></div>
+            </dl>
+            </volist>
+        </div>
+
+
+    </div>
+  </div>
+  </block>
+<!--<block name='toolbar'>
+    <div class="toolbar tabbar tabbar-labels">
+        <div class="toolbar-inner">
+            <a href="#tab1" class="tab-link active">
+                <i class="icon icon1"></i>
+                <span class="tabbar-label">电影</span>
+            </a>
+            <a href="{:U('plan',array('op'=>'plan'))}" class="tab-link">
+                <i class="icon icon2"></i>
+                <span class="tabbar-label">排期</span>
+            </a>
+            <a href="#tab3" class="tab-link">
+                <i class="icon icon3"></i>
+                <span class="tabbar-label">乐购</span>
+            </a>
+            <a href="#tab4" class="tab-link">
+                <i class="icon icon4"></i>
+                <span class="tabbar-label">我的</span>
+            </a>
+        </div>
+    </div>
+</block>-->
+<block name='script'>
+<script>
+var w = $("body").width();
+var i = $("#dateBody > li").length;
+var n = $("#dateBody > li").width();
+var planDate = '';
+$("#dateBody > li").width(w*0.33);
+$("#dateBody").width((parseInt(w*i*0.33)+ 10 +'px'));
+$("#dateBody > li").click(function(){
+$(this).addClass("cur").siblings().removeClass("cur")}
+);
+$("#dateBody").find("li").each(function(){
+    // alert($(this).attr("planDate"));
+    $(this).click(function(){
+        planDate = $(this).attr("planDate");
+        getPlanlist(planDate);
+    });
+});
+
+$("#dateBody li").eq(0).addClass("cur").siblings().removeClass("cur");
+getPlanlist($("#dateBody li").eq(0).attr("planDate"));
+
+function getPlanlist(planDate){
+var details = $('#details').html();
+myApp.showIndicator();
+    $.get($('#planajax').html(),{
+        cinemaCode:$('#nowCinemaCode').html(),
+        startTime:planDate,
+        random:Math.random(),
+        }, function(msg) {
+            myApp.hideIndicator();
+            var data=JSON.parse(msg);
+            $('.planList').html('');
+            if(data){
+                var indexSeat = $('#indexSeat').html();
+                $.each(data,function(k,value){
+                    var str="";
+                     str+='<dl><dt><a class="filmLink" href="javascript:details(\''+ value['filmNo'] +'\')" ><div class="filmImg">'+
+                        '<img src="';
+                     str+= value['film']['image'];
+                     str+='" height="100%"  /></div><div class="filmInfo"><h2>'+
+                        value['filmName']+'</h2><span>'+value['film']['score']/10+'</span><p>影片片长:'+value['totalTime']+'分钟</p>'+
+                    '</div><div class="clear"></div> </a></dt>';
+                    $.each(value.planInfo,function(key,v){
+                         var bool = v['copyType'].indexOf("MAX");
+                         var nowClass = '';
+                         // alert(bool);
+                         if (bool >= 0) {
+                            v['copyLanguage'] = '';
+                            nowClass = 'MAX';
+                         };
+                         str+='<a class="planInfo" href="'+indexSeat+'?featureAppNo='+v['featureAppNo']+'"><div class="planDate"><span>'
+                                 +v['startTime']+'</span><em>￥'+v['memberPrice']+'</em></div><div class="planType"><span class="'+nowClass+'">'
+                                 +v['copyLanguage']+v['copyType']+'</span><em>￥'+v['listingPrice']+'</em></div></a>';
+                    });
+                    str+='<div class="clear"></div></dl>';
+                    $('.planList').append(str);
+                });             
+            }
+    }) ;        
+}
+  </script>
+    </block>

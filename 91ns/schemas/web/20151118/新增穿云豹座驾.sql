@@ -1,0 +1,1 @@
+insert into pre_car_configs(id,typeId,name,description,price,orderType,sort,status,configName) values(47,10,'穿云豹','生活在云雾缭绕的峰顶，行动迅捷。',0,0,400,0,'Leopard');

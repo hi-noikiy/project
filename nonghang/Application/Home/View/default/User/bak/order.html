@@ -1,0 +1,105 @@
+<extend name='Public/base'/>
+<block name='title'>取票密码</block>
+<block name='body'>
+<div class="views">
+	<div class="view view-main">
+        <div class="headerNav">
+            <div class="headerLeft"><a href="javascript:window.history.back();" class="external"><img src="__IMG__/common/back.png" height="100%" /></a></div>
+            <div class="title"><span>影票订单</span></div>
+            <div class="headerRight"><a href="javascript:" id="edit">编辑</a></div>
+        </div>
+        <div class="content">
+            <div class="orderTab">
+                <a href="#tab1" class="cur" status='3'>完成订单</a>
+                <a href="#tab2" class=""  status='7'>异常订单</a>
+            </div>
+            <div class="order">
+            
+                <ul>
+                <?php if(empty($orders)){ ?>
+            	<div class="orderBg">没有发现任何购票信息</div>
+               <?php }else{ ?>
+                	<volist name='orders' id='vo'>
+                    <li>
+                        <div class="orderTop">
+                            <span>订单号：{$vo['orderCode']}</span>
+                            <span>订单时间：{$vo['downTime']|date='Y-m-d H:i:s',###}</span>
+                            <a href="#" class="confirm-ok"></a>
+                        </div>
+                        <div class="orderMid">
+                            <div class="orderMidLeft"><img src="__UPLOAD__/{$vo['image']}" width="67.5" height="90"></div>
+                            <div class="orderMidRight">
+                                <h2>{$vo['filmName']}</h2>
+                                <b>￥{$vo['allprice']}</b>
+                                <p>{$vo['startTime']|date='Y-m-d H:i',###}</p>
+                                <p><span>{$vo['cinemaName']}</span><span>{$vo['hallName']}</span></p>
+                                <p>{$vo['seatIntroduce']}</p>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="orderBtm">
+                            <p>取票码：{$vo['printNo']}</p>
+                        </div>
+                    </li>
+                    </volist>
+                    <?php } ?>
+                </ul>
+                 
+            </div>
+        </div>
+	</div>
+</div>
+<script type="text/javascript" src="__JS__/framework7.min.js"></script>
+<script type="text/javascript">
+	var myApp = new Framework7({
+		modalTitle:'',
+		modalButtonOk:'确认',
+		modalButtonCancel:'取消'
+		});
+	var $$ = Dom7;
+	$$('.confirm-ok').on('click', function () {
+		myApp.confirm('请确认是否删除订单', function () {
+			myApp.alert('You clicked Ok button');
+		});
+	});
+	
+	$('.orderTab > a').click(function(){
+		$('.orderTab > a').removeClass('cur');
+		$(this).addClass('cur');
+		var status=$(this).attr('status');
+		var str="";
+		$.get("{:U('orderajax1')}",{status:status},function(json){
+			var data=JSON.parse(json);
+			$('.order ul').html('');
+			if(data){
+				$.each(data,function(k,value){
+					 str+='<li><div class="orderTop">'+
+					 '<span>订单号：'+value['orderCode']+'</span>'+
+                     '<span>订单时间：'+value['downTime']+'</span>'+
+                     '<a href="#" class="confirm-ok"></a></div><div class="orderMid"><div class="orderMidLeft">'+
+                     '<img src="uploadUrl/'+value['image']+'" width="67.5" height="90"></div><div class="orderMidRight">'+
+                     '<h2>'+value['filmName']+'</h2>'+
+                     '<b>'+value['allprice']+'</b>'+
+                     '<p>'+value['startTime']+'</p>'+
+                     '<p><span>'+value['cinemaName']+'</span><span>'+value['hallName']+'</span></p>'+
+                     '<p>'+value['seatIntroduce']+'</p></div><div class="clear"></div></div>';
+                     if(value['status']=='3'){
+                         str+='<div class="orderBtm"><p>取票码：'+value['printNo']+'</p></div>';
+                     }
+                    str+='</li>';
+				});				
+				$('.order ul').append(str);
+			}else{
+				str+='<div class="orderBg">没有发现任何购票信息</div>';
+				$('.order ul').html(str);
+			}
+		});
+	});
+			
+	$('#edit').click(function(){
+		$('.confirm-ok').css('display','block');
+		$(this).replaceWith("<a href='javascript:' id='finish'>完成</a>");
+		})
+			
+</script>
+</block>

@@ -1,0 +1,1 @@
+result={"id":1487516993,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"bc0c131ca020e1311a36c4472d9403d6","nickName":"jianfeng88","creator":"JY"}} 2017-02-19 23:09:53

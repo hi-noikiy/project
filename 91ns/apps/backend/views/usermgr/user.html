@@ -1,0 +1,713 @@
+<?php use \Phalcon\Tag as Tag; ?>
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a> 
+        <a href="#" class="tip-bottom" data-original-title="">用户管理</a> 
+        <a href="#" class="current">用户列表</a> 
+    </div>
+    
+   <!--  <h1>Tables</h1> -->
+  </div>
+  <div class="container-fluid">
+   <!--  <hr> -->
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+          <form class="form-search">
+            用户uid ：<input id="uid" type="text" class="input-medium search-query" placeholder="用户uid" >
+            &nbsp;&nbsp;用户名 ：<input id="username" type="text" class="input-medium search-query" placeholder="用户名" >
+            <button id="usersearch" type="button" class="btn  btn-success">查&nbsp;询</button>
+
+            <!-- <button id="btnAdd" class="btn btn-success pull-right">添&nbsp;加</button> -->
+          </form>
+            
+            
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>用户列表</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table id="dataList" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>用户uid</th>
+                  <th>用户昵称</th>
+                  <th>账号类型</th>
+                  <th>激活状态</th>
+                  <th>注册时间</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="pagination" class="pagination alternate pull-right">
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="dialog-form" title="Create new user" style=" display: none;">
+  <p class="validateTips"></p>
+  <div id="userinfoedit">
+   <form action="#" method="get" class="form-horizontal">
+      <input type="hidden" id="d_uid"> 
+
+      <table >
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">聊豆 :</label>
+              <div class="controls">
+                <input id="bean" type="text" class="span11" placeholder="">
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="control-group">
+              <label class="control-label">聊币 :</label>
+              <div class="controls">
+                <input id="gold" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+            <div class="control-group">
+              <label class="control-label">vip经验值 :</label>
+              <div class="controls">
+                <input id="vipExp" type="text" class="span11" placeholder="">
+              </div>
+            </div>
+          </td>
+          <!-- <td>
+            <div class="control-group">
+              <label class="control-label">vip等级 :</label>
+              <div class="controls">
+                <input id="vip" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td> -->
+		   <td>
+            <div class="control-group">
+              <label class="control-label">富豪经验值 :</label>
+              <div class="controls">
+                <input id="regalExp" type="text" class="span11" placeholder="">
+              </div>
+            </div>
+          </td>
+        </tr>
+
+         <!--<td>
+            <div class="control-group">
+              <label class="control-label">vip过期时间 :</label>
+              <div class="controls">
+
+                <input id="vip_expire" type="text" class="span11" placeholder="如：2015-07-01">
+               
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="control-group">
+              <label class="control-label">背包等级 :</label>
+              <div class="controls">
+                <input id="bagLevel" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td> 
+        </tr>-->
+
+       
+         <!--  <td>
+            <div class="control-group">
+              <label class="control-label">富豪等级 :</label>
+              <div class="controls">
+                <input id="regalLevel" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td> 
+        </tr>-->
+
+        <td>
+            <div class="control-group">
+              <label class="control-label">魅力经验值 :</label>
+              <div class="controls">
+                <input id="charmExp" type="text" class="span11" placeholder="">
+              </div>
+            </div>
+          </td>
+         <!--  <td>
+            <div class="control-group">
+              <label class="control-label">主播等级 :</label>
+              <div class="controls">
+                <input id="hostLevel" type="text" class="span11">
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td> 
+        </tr>-->
+		
+			<td>
+            <div class="control-group">
+              <label class="control-label">粉丝经验值 :</label>
+              <div class="controls">
+                <input id="fanExp" type="text" class="span11" placeholder="">
+              </div>
+            </div>
+          </td>
+         <!--  <td>
+            <div class="control-group">
+              <label class="control-label">拒绝好友标识 :</label>
+              <div class="controls">
+                 <select id="rejectFriend" class="span11">
+                     <option value="0">允许</option>
+                     <option value="1">拒绝</option>
+                 </select>
+
+                <span class="help-block"></span>
+              </div>
+            </div>
+          </td> -->
+        </tr>
+      </table>  
+      
+    </form>
+  </div>
+</div>
+<div id="innerpay-form" title="推广充值" style=" display: none;">
+  <p class="validateTips"></p>
+
+   <form action="#" method="get" class="form-horizontal">
+      <input type="hidden" id="d_uid"> 
+
+      <div class="control-group">
+        <label class="control-label">充值金额 :</label>
+        <div class="controls">
+          <input id="rmb" type="text" class="span11" placeholder="">
+        </div>
+      </div>
+      
+      
+    </form>
+
+</div>
+
+<script type="text/javascript">
+
+  var search=document.getElementById('usersearch');
+
+  utils.addEvent(search,'click',searchCallback);
+
+  function searchCallback(index){
+    var uid=document.getElementById('uid'),
+    username=document.getElementById('username'),
+    data={};
+    if(typeof index=='object'){
+        var page=0;
+        data.page=0;
+    }
+    else{
+        var page=index;
+        data.page=index;
+    }
+    data.uid=uid.value;
+    data.username=username.value;
+    data.numPerPage=pagesize;
+
+    $.ajax({
+          type:"post",
+          data:data,
+          url:"/usermgr/search",
+          dataType:'json',
+          success:function(res){
+            var data= res.data;
+            var table=document.getElementById("dataList");
+            removeAllRow(table);
+            for(var i=0;i<data.list.length;i++){
+              addRow(table,'',data.list[i]);
+            }
+            if(!page||page==0){
+             initPagination1(data.count);
+            }
+          }
+    });
+  }
+
+  function initPagination1(page) {
+      $("#pagination").pagination(page, {
+          callback: pageselectCallback1,
+          items_per_page:pagesize, // 每页只显示一条记录
+          num_display_entries : 3,
+          num_edge_entries : 1,
+          prev_text : "上一页",
+          next_text : "下一页",
+      });
+  }
+
+  function pageselectCallback1(page_index, jq){
+      page_index+=1;
+      searchCallback(page_index);
+      return false;
+  }
+
+  $(function(){
+    // get data
+    getDataList();
+  });
+
+  function getDataList(index){
+    var data={};
+    data.page=index||0;
+    data.numPerPage=pagesize;
+    $.ajax({
+      type:"post",
+      url:"/usermgr/getUser",
+      data:data,
+      dataType:'json',   
+      success:function(res){
+        
+        var data=res.data;
+        var table=document.getElementById("dataList");
+        var tbody= table.getElementsByTagName('tbody')[0];
+
+        dataTable.clearData(tbody);
+        
+        for(var i=0;i<data.list.length;i++){
+          addRow(tbody,'',data.list[i]);
+        }
+        
+        if(!index||index==0){
+          initPagination(data.count);
+        }
+
+      }
+    });
+  }
+
+  function initPagination(page) {
+    $("#pagination").pagination(page, {
+        callback: pageselectCallback,
+        items_per_page:pagesize, // 每页只显示一条记录
+        num_display_entries : 3,
+        num_edge_entries : 1, 
+        prev_text : "上一页",  
+        next_text : "下一页", 
+    });
+  }
+
+  function pageselectCallback(page_index, jq){
+    getDataList(page_index);
+    return false;
+  }
+
+  function addRow(table,index,data){
+    var row=table.insertRow();
+    var cell=row.insertCell(0);
+    var cell1=row.insertCell(1);
+    var cell2=row.insertCell(2);
+    var cell3=row.insertCell(3);
+    var cell4=row.insertCell(4);
+    var cell5=row.insertCell(5);
+
+    cell.innerHTML=data.uid;
+    cell1.innerHTML=data.nickName;
+    cell2.innerHTML=data.userType;
+    cell3.innerHTML=data.status ? '激活' : '未激活';
+    cell4.innerHTML=new Date(data.createTime*1000).format("yyyy-MM-dd HH:mm:ss");
+
+    var a=document.createElement('a');
+    a.innerHTML="&nbsp;编辑";
+    a.onclick=function(){userEdit(data.uid);}
+    cell5.appendChild(a);
+
+
+    var b=document.createElement('a');
+    b.innerHTML=data.internalType==1 ? "&nbsp;取消贵宾号" : '&nbsp;设置贵宾号';  //0 - 普通账号 1 - 贵宾号
+    var guiBinType=data.internalType==1?0:1;
+    b.onclick=function(){setInternalType(data.uid, guiBinType);}
+    cell5.appendChild(b);
+
+    var c=document.createElement('a');
+    c.innerHTML=data.isChatRecord==0 ? "&nbsp;设置为水军账号" : '&nbsp;取消水军账号';
+    c.onclick=function(){setUserChatRecord(data.uid, 1-data.isChatRecord);}
+    cell5.appendChild(c);
+
+    /*if(data.internalType == 1){
+      var d = document.createElement('a');
+      d.innerHTML = '&nbsp;推广充值';
+      d.onclick=function(){innerPay(data.uid);}
+      cell5.appendChild(d);
+    }*/
+    //设置超级管理员
+    var d=document.createElement('a');
+    d.innerHTML=data.manageType==0 ? "&nbsp;设置超级管理员" : '&nbsp;取消超级管理员';
+    d.onclick=function(){setManageType(data.uid, 1-data.manageType);}
+    cell5.appendChild(d);
+    
+    //设置托账号
+    var e=document.createElement('a');
+    e.innerHTML=data.internalType==2 ? "&nbsp;取消托账号" : '&nbsp;设置托账号';
+    var tuoType=data.internalType==2?0:2;
+    e.onclick=function(){setTuo(data.uid, tuoType);}
+    cell5.appendChild(e);
+      
+  }
+
+  function setInternalType(uid, internalType) {
+    data={};
+    data.targetInternalType = internalType;
+    $.ajax({
+          type:"post",
+          url:"/usermgr/setUserInteralType/"+uid,
+          data:data,
+          dataType:'json',
+          success:function(res){
+            var data= res;
+
+            if (data.code != 0) {
+              alert(data.info);
+            }
+            else {
+              alert('操作成功');
+              location.reload();
+            }
+          }
+        });
+  }
+
+  function setUserChatRecord(uid, isChatRecord) {
+    data={};
+    data.isChatRecord = isChatRecord;
+    $.ajax({
+          type:"post",
+          url:"/usermgr/setUserChatRecord/"+uid,
+          data:data,
+          dataType:'json',
+          success:function(res){
+            var data= res;
+
+            if (data.code != 0) {
+              alert(data.info);
+            }
+            else {
+              alert('操作成功');
+              location.reload();
+            }
+          }
+        });
+  }
+
+  function userDel(uid){
+    $.ajax({
+          type:"post",
+          url:"/usermgr/delUser/"+uid,
+          dataType:'json',
+          success:function(res){
+            var data= res.data;
+
+            if (data.code != 0) {
+              alert(data.info);
+            }
+            else {
+              alert('操作成功');
+              location.reload();
+            }
+          }
+        });
+  }
+
+  function innerPay(uid){
+    var url = "/usermgr/innerPay/" + uid;
+    $("#innerpay-form").dialog({
+      width: 700,
+      title:'推广充值',
+      modal:true,
+      closeOnEscape:true,
+      resizable:false,
+      open:function(){
+        var rmb = document.getElementById('rmb');
+        rmb.value=1000;
+      },
+      buttons:{
+        "确定":function(){
+          var rmb = document.getElementById('rmb'),
+              data={};
+              data.rmb=rmb.value;
+              data.uid=uid;
+          $.ajax({
+            type:"post",
+            url:url,
+            data:data,
+            dataType:'json',
+            success:function(res){
+              if(res.code==0){
+                  alert('操作成功');
+                location.reload();
+              }else{
+                alert(res.info);
+              }
+            }
+          });
+        },
+        "取消":function(){
+          $(this).dialog("close");
+        }
+      }
+    });
+  }
+
+  function setManageType(uid, manageType){
+    data={};
+    data.uid = uid;
+    data.manageType = manageType;
+    $.ajax({
+          type:"post",
+          url:"/usermgr/setManageType",
+          data:data,
+          dataType:'json',
+          success:function(res){
+            var data= res;
+            if (data.code != 0) {
+              alert(data.info);
+            }
+            else {
+                alert('操作成功');
+              location.reload();
+            }
+          }
+        });
+  }
+  
+    function setTuo(uid, manageType){
+    data={};
+    data.uid = uid;
+    data.manageType = manageType;
+    $.ajax({
+          type:"post",
+          url:"/usermgr/setTuoType",
+          data:data,
+          dataType:'json',
+          success:function(res){
+            var data= res;
+            if (data.code != 0) {
+              alert(data.info);
+            }
+            else {
+                alert('操作成功');
+              location.reload();
+            }
+          }
+        });
+  }
+
+  function userEdit(id){
+  var url="/usermgr/userCount/"+id;
+  
+   $( "#dialog-form" ).dialog({
+        width: 700,
+        title:'修改用户信息',
+        modal:true,
+        closeOnEscape:true,
+        resizable:false,
+        open:function(){
+          var data={};
+          data.action='';
+          initialization();
+          $.ajax({
+            type:"post",
+            data:'data',
+            url:url,
+            dataType:'json',
+            success:function(res){
+            var data= res.data;
+            var bean=document.getElementById('bean'),
+                gold=document.getElementById('gold'),
+                vipExp=document.getElementById('vipExp'),              
+                regalExp=document.getElementById('regalExp'),               
+                charmExp=document.getElementById('charmExp'),              
+                fanExp=document.getElementById('fanExp'),
+               rejectFriend=document.getElementById('rejectFriend');			   
+			    /* vip=document.getElementById('vip'),
+                vip_expire=document.getElementById('vip_expire'),
+                bagLevel=document.getElementById('bagLevel'),
+				regalLevel=document.getElementById('regalLevel'),
+				hostLevel=document.getElementById('hostLevel'),*/
+
+                bean.value=data.coin;
+                gold.value=data.cash;
+                vipExp.value=data.exp1;               
+                regalExp.value=data.exp3;                
+               charmExp.value=data.exp5;               
+                fanExp.value=data.exp4;				
+				/*regalLevel.value=data.regalLevel;
+				hostLevel.value=data.hostLevel;
+                rejectFriend.value=data.rejectFriend;
+				vip.value=data.vip;
+                vip_expire.value=new Date(data.vip_expire*1000).format("yyyy-MM-dd");;
+                bagLevel.value=data.bagLevel;*/
+            }
+          });
+        },
+        buttons:{
+          "修改":function(){
+
+            var bean=document.getElementById('bean'),
+                gold=document.getElementById('gold'),
+                vipExp=document.getElementById('vipExp'),
+				regalExp=document.getElementById('regalExp'),
+				charmExp=document.getElementById('charmExp'),
+				fanExp=document.getElementById('fanExp'),
+               /* vip=document.getElementById('vip'),
+                vip_expire=document.getElementById('vip_expire'),
+                bagLevel=document.getElementById('bagLevel'),              
+                regalLevel=document.getElementById('regalLevel'),               
+                hostLevel=document.getElementById('hostLevel'),                
+                rejectFriend=document.getElementById('rejectFriend');*/
+				
+                data={};
+
+                data.bean=bean.value;
+                data.gold=gold.value;
+                data.vipExp=vipExp.value;
+				data.regalExp=regalExp.value;
+				data.charmExp=charmExp.value;
+				data.fanExp=fanExp.value;
+                /*data.vip=vip.value;
+                data.vip_expire=datetime_to_unix(vip_expire.value+" 00:00:00");
+                data.bagLevel=bagLevel.value;               
+                data.regalLevel=regalLevel.value;              
+                data.hostLevel=hostLevel.value;               
+                data.rejectFriend=rejectFriend.value;*/
+
+              $.ajax({
+                type:"post",
+                url:"/usermgr/userCountUpdate/"+id,
+                data:data,
+                dataType:'json',
+                success:function(res){
+                  alert(res.info);
+                  if(res.code==0){
+
+                    location.reload();
+
+                  }else{
+                    
+                  }
+                }
+              });
+          },
+          "取消":function(){
+            $(this).dialog("close");
+          }
+
+        }
+   });
+
+}
+
+  
+
+getDatepicker();
+
+function getDatepicker(){
+  //$('.datepicker').datetimepicker();
+  $('#vip_expire').datepicker({
+    changeMonth: true,
+    changeYear: true,
+    showOtherMonths: true,
+    selectOtherMonths: true
+  });
+}
+
+ 
+/**
+* 初始化为空
+*/
+function initialization(){
+
+    var bean=document.getElementById('bean'),
+    gold=document.getElementById('gold'),
+    vipExp=document.getElementById('vipExp'),   
+    regalExp=document.getElementById('regalExp'),   
+    charmExp=document.getElementById('charmExp'),  
+    fanExp=document.getElementById('fanExp'),
+   rejectFriend=document.getElementById('rejectFriend');
+   
+    //vip=document.getElementById('vip'),
+    //vip_expire=document.getElementById('vip_expire'),
+    //bagLevel=document.getElementById('bagLevel'),
+	 // hostLevel=document.getElementById('hostLevel'),
+	 // regalLevel=document.getElementById('regalLevel'),
+
+    bean.value="";
+    gold.value="";
+    vipExp.value="";
+	regalExp.value="";
+	charmExp.value="";
+	fanExp.value="";
+	
+   /*vip.value="";
+    vip_expire.value="";
+    bagLevel.value="";   
+    regalLevel.value="";    
+   hostLevel.value="";    
+    rejectFriend.value="";*/
+
+}
+
+</script>
+
+<!-- Sending the form by method POST -->
+<!--<?= Tag::form("usermgr/search") ?>
+    <label for="q">用户名:</label>
+    <?= Tag::textField("username") ?> <br/>
+    <label for="q">用户uid:</label>
+    <?= Tag::textField("uid") ?><br/>
+    <?= Tag::submitButton(array("Search", "name" => "Search")) ?>
+</form>
+{% if users %}
+    {% for users in page.items %}
+        {% if loop.first %}
+            <table class="table table-bordered table-striped" align="center">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>username</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% endif %}
+        <tr>
+            <td>{{ users.uid }}</td>
+            <td>{{ users.username }}</td>
+            <td width="7%">{{ link_to("usermgr/edit/" ~ users.uid, '<i class="glyphicon glyphicon-edit"></i> Edit', "class": "btn btn-default") }}</td>
+            <td width="7%">{{ link_to("usermgr/delete/" ~ users.uid, '<i class="glyphicon glyphicon-remove"></i> Delete', "class": "btn btn-default") }}</td>
+        </tr>
+    {% endfor %}
+{% else %}
+    No users are recorded
+{% endif %}
+{% if users %}
+        </tbody>
+    </table>
+{% endif %}-->

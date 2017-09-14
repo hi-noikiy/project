@@ -1,0 +1,51 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">绑定手机号</div>
+    <div class="right"></div>
+  </div>
+</div>
+<div class="pages">
+  <div data-page="addphone" class="page">
+    <div class="page-content">
+
+        <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+        </foreach>
+        <div style="display:none" id="codeUrl">{:U('public/getValidateCode')}</div>
+		<div class="content">
+            <div class="phoneBind">
+                <div class="addBind">
+                	<div class="bindTip">
+                    	<p>1、会员卡绑定没有注册过的手机号，绑定成功之后，手机号可以代替会员卡号登录，手机号默认密码与会员卡密码相同。</p>
+						<p>2、会员卡绑定已注册的手机号，绑定成功之后，余额与积分将被会员卡数据覆盖，解除绑定后手机账户中的积分与余额可以使用。</p>
+                    </div>
+                    <div class="bindInput">
+                        <div class="loginInput">
+                            <div><span><img src="__IMG__/login/icon4.png" width="100%" /></span><input  type="tel" id="userMobile" placeholder="请输入手机号"  /></div>
+                       </div>
+                       <div class="loginInput">
+                            <div style="position:relative;"><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="text"  id="validateCode" placeholder="请输入验证码"  /><a href="javascript:;" class="getBtn">获取</a></div>
+                        </div>
+                        <div class="Button">
+                            <a href="javascript:;"  id="bindBtn">立即绑定</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    </form>
+                        
+                    </div>
+                </div>
+            </div>
+    	</div>
+
+
+    </div>
+  </div>
+</div>
+<block name='script'>
+<script>
+</script>  
+</block>

@@ -1,0 +1,1 @@
+update pre_rooms set streamName = concat('livestream',uid);

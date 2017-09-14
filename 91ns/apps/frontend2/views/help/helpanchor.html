@@ -1,0 +1,22 @@
+{% extends "template/help_body.html" %}
+{% block title %}
+帮助中心
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('help'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+<div class="personal-div getpresents clearfix">
+    <div class="get-head pull-re pull-re" style="display: block">
+        <div class="_help-head">什么是主播等级</div>
+        <div class="_help-contend">
+            <div class="div1">主播等级由主播获得的礼物兑换成聊豆的数量决定。</div>
+            <img style="margin-top:30px;" src="{{static_url('web/cssimg2/help/anchor1.png')}}">
+        </div>
+    </div>
+
+</div>
+
+{% endblock%}

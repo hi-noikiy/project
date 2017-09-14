@@ -1,0 +1,315 @@
+<extend name='Public/base'/>
+<block name='body'>
+  <div class="content">
+    <div class="leftMenu">
+      <ul>
+        {$leftMenu}
+      </ul>
+    </div>
+    <div class="rightContent">
+         
+        <div class="queryBox">
+            <form id="searchFrom" action="{:U()}" method="post"> 
+              <div class="inputText">
+                    <span>按日期查询</span>
+                    <input name="start" type="text"  value="{$pageData['start']}" class="date" placeholder="请输入开始日期"><span>至</span><input name="end" type="text" value="{$pageData['end']}" class="date" placeholder="请输入结束日期">
+              </div>
+              <div class="inputText">
+              	<span>按订单查询</span>
+                <input type="text" value="{$pageData['id']}" name="id"  placeholder="请输入订单号">
+              </div>
+              <div class="inputSelect">
+                    <span>按订单状态查询</span>
+                    <select class="select" name="state" >
+                        <option value="">所有订单</option>
+                        <option value="2" <?php if($pageData['state']=='2'){ ?>selected<?php } ?>>已兑换</option>
+                        <option value="1" <?php if($pageData['state']=='1'){ ?>selected<?php } ?>>未兑换</option>
+                        <option value="3" <?php if($pageData['state']=='3'){ ?>selected<?php } ?>>退订</option>
+                    </select>
+              </div>
+               <div class="inputText">
+              	<span>按手机号/会员查询</span>
+                <input type="text" value="{$pageData['tel']}" name="tel"  placeholder="请输入手机号">
+              </div>
+              <a href="javascript:$('#searchFrom').submit();" class="button">查询</a>
+            </form>
+        </div>
+        <div class="tableList">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+          <thead>
+            <tr>
+           	  <td width="10%">观影日期</td>
+              <td width="8%">预订时段</td>
+              <td width="10%">会员/手机</td>
+              <td width="5%">订单总额</td>
+              <td width="5%">已付款金额</td>
+              <td width="5%">订单差额</td>
+              <td width="8%">支付方式</td>
+              <td width="5%">订单详情</td>
+               <td width="6%">订单状态</td>
+              <td width="6%">开票状态</td>
+              <td width="6%">发票详情</td>
+              <td width="6%">订单改签</td>
+               <td width="6%">改签详情</td>
+              <td width="6%">订单退订</td>
+              <td width="8%">操作员</td>
+            </tr>
+          </thead>
+          <tbody id='report_admin'>
+          
+          <volist name='list' id='v'>
+          	<tr>
+              <td>{$v.time}</td>
+              <td>{$v.cc}-{$v.ec}</td>
+              <td>{$v.tel}</td>
+              <td>{$v.total}</td>
+              <td>{$v.prepay}</td>
+              <td>{$v.cr}</td>
+              <td>{$v.paymentMethodflag}</td>
+              <td><a href="javascript:order({$v.id});">查看</a></td>
+              <td>{$v.stateflag}</td>
+              <td>{$v.invoiceflag}</td>
+              <td>      
+                <a href="javascript:invoice({$v.id});">查看</a>
+              </td>
+              
+              <td>
+              <?php ?>
+              <?php if($v['changeState']==1):?>
+               <?php if($v['state']==1):?>
+              <a href="javascript:editOrder({$v.id});">改签</a>
+              <?php endif;?>
+              <?php endif;?>
+              
+              </td>
+              
+              <td>
+              
+               <?php if($v['changeState']==2):?>
+              <a href="javascript:editOrder_detail({$v.id});">查看</a>
+              
+                <?php endif;?>
+              </td>
+              <td>
+              <?php if($v['state']==1):?>
+              
+              <a href="javascript:del({$v.id});">退订</a>
+              
+              <?php endif;?>
+              
+              </td>
+             
+            
+              <td>{$v.realName}</td>
+            </tr> 
+           </volist>
+          <!-- <tr>
+              <td>10:0-12:00</td>
+              <td>13333313333</td>
+              <td>￥123</td>
+              <td>￥12</td>
+              <td>￥12</td>
+              <td>支付宝</td>
+              <td><a href="javascript:order({$v.id});">查看</a></td>
+              <td>已兑换</td>
+              <td>已开票</td>
+              <td><a href="javascript:invoice();">查看</a></td>
+              <td><a href="javascript:editOrder();">改签</a></td>
+              <td><a href="javascript:editOrder_detail();">查看</a></td>
+              <td><a href="javascript:del();">退订</a></td>
+              <td>{$v.realName}</td>
+            </tr> 
+          -->
+             
+          </tbody>
+        </table>
+        <div class="orderTotal">
+        	<span>订单总数：{$show['count']}笔</span>
+            <span>订单总金额：{$show['allprice']}元</span>
+        	<a href="{:U('orderPort',$pageData)}">导出到EXCEL</a>
+        </div>  
+        <div class="pagination">
+          <div class="page"> {$page} </div>
+        </div>
+        </div>
+    </div>
+  </div>
+<script type="text/javascript">
+var prependNumber = 1;
+var swiper = new Swiper('.swiper-container', {
+	slideToClickedSlide:true,
+	nextButton: '.swiper-button-next',
+	prevButton: '.swiper-button-prev',
+	slidesPerView: 3,
+	centeredSlides: false,
+	paginationClickable: true,
+	spaceBetween: 10
+});
+   
+    //$('#dateTabs > div.swiper-slide > a').click(function(e) {
+//		 $('#dateTabs > div.swiper-slide').removeClass('swiper-slide-active');
+//		 $('#dateTabs > div.swiper-slide').removeClass('swiper-slide-next');
+//         $(this).parent().addClass('swiper-slide-active'); 
+//    });
+
+function invoice(id){
+	layer.open({
+		title :'发票详情',
+		type: 2,
+		area: ['500px', '400px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U("invoice_from")}?id='+id
+	});
+}
+
+function order(id){
+	layer.open({
+		title :'订单详情',
+		type: 2,
+		area: ['600px', '530px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U("order_from")}?id='+id
+	});
+}
+
+function editOrder(id){
+	layer.open({
+		title :'改签',
+		type: 2,
+		area: ['620px', '500px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U("editorder_from")}?id='+id
+	});
+}
+
+function del(id){
+	
+	layer.confirm('订单退订后将不可恢复,确认要退订吗？',{
+		title :'温馨提醒'
+		}, function(index){
+		
+      $.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(report_delete)}',
+            data: 'id='+id,
+            success: function(msg){
+               var res = eval("(" + msg + ")");
+                
+                if(res.statusCode == '1') { 
+                	window.location.href="{:U(order)}";
+
+               // report_search();
+                layer.close(index);
+                  // parent.window.location.href="{:U(report)}";
+                        // var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        //  parent.layer.close(index);        
+                }else {
+                }
+              
+            }
+       }) 
+	})
+}
+
+
+
+function report_search(viewingDate) {
+
+
+  if(!viewingDate) {
+
+    viewingDate=$('#report_viewingDate').val(); 
+
+
+  }else {
+     $('#report_viewingDate').val(viewingDate); 
+  }
+
+  var  serachData_report_mobile=$('#serachData_report_mobile').val();
+  var  serachData_report_videoId=$('#serachData_report_videoId').val();
+
+  
+
+
+  var searcharray='';
+  if(viewingDate) {
+    searcharray+='&viewingDate='+viewingDate;
+  }
+ 
+  if(serachData_report_mobile) {
+    searcharray+='&mobile='+serachData_report_mobile;
+  }
+  if(serachData_report_videoId) {
+    searcharray+='&videoId='+serachData_report_videoId;
+  }
+
+
+
+
+
+  // id='report_admin'
+  $.ajax({
+      global:true,
+      type: "post",
+      url:'{:U(report_seach)}',
+      data: searcharray,
+      success: function(msg) {
+
+
+         var data = eval("(" + msg + ")");
+         var html='';
+           for(var o in data){  
+              html+='<tr>';
+              html+='    <td>'+data[o].cc+'</td>';
+              html+='    <td>'+data[o].time+'</td>';
+              html+='    <td>'+data[o].filmName+'</td>';
+              html+='    <td>'+data[o].topicName+'</td>';
+              html+='    <td>'+data[o].num+'</td>';
+              html+='    <td>'+data[o].paymentypeName+'</td>';
+              html+='    <td>'+data[o].paymentMethodflag+'</td>';
+              html+='    <td>'+data[o].paymentStateflag+'</td>';
+              html+='    <td>'+data[o].tel+'</td>';
+              html+='    <td><a href="javascript:order('+data[o].id+');">查看</a></td>';
+              html+='    <td>'+data[o].stateflag+'</td>';
+              html+='    <td><a href="javascript:invoice('+data[o].id+');">查看</a></td>';
+              html+='    <td>';
+              if(data[o].changeState==1) {
+
+
+                if(data[o].state==1) {
+                  html+='     <a href="javascript:editOrder('+data[o].id+');">改签</a>|<a href="javascript:del('+data[o].id+');">退订</a>';
+                }
+                 
+              }else {
+                 html+='     <a href="javascript:editOrder_detail('+data[o].id+');">改签详情</a>';
+
+
+
+              }
+             
+              html+='    </td>';
+              html+='</tr>';           
+            }         
+          $('#report_admin').empty().append(html);
+        
+      }
+  })
+}
+
+function editOrder_detail(id){
+  layer.open({
+    title :'改签详情',
+    type: 2,
+    area: ['630px', '330px'],
+    fix: false, //不固定
+    maxmin: true,
+    content: '{:U("editOrder_detail")}?id='+id
+  });
+}
+
+</script> 
+</block>

@@ -1,0 +1,74 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('user/user')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">退票中心</div>
+    <div class="right"></div>
+  </div>
+</div>
+
+<div class="pages">
+  <div data-page="returnticket" class="page">
+    <div id="page-returnTicket">
+        <div class="modal-overlay "></div>
+    	<?php if(empty($orders)){ ?>
+        <div class="none">
+        </div>
+        <?php }else{ ?>
+        <p>您有<span><?php echo count($orders); ?></span>个订单可申请退票<a href="{:U('user/rtrule')}">了解退票规则>></a></p>
+        <foreach name='orders' item='vo'>
+        <div class="itemCon">
+            <div class="leftBlock">
+                <img src="{$vo['filmImg']}">
+                <div class="tag">
+                    3D
+                </div>
+            </div>
+            <h4>{$vo['filmName']} <span>￥{$vo['allprice']}</span></h4>
+            <p>{$vo['week']}</p>
+            <p>{$vo['cinemaName']}  {$vo['hallName']}</p>
+            <p>{$vo['seatIntroduce']}</p>
+            <div class="orderStatus">
+                <p>订单编号：{$vo['orderCode']}  {$vo['downTime']|date='Y-m-d H:i:s',###}</p>
+                <a href="#" class="open-info" orderid="{$vo['orderCode']}">申请退票>></a>
+            </div>
+        </div>
+        </foreach>
+        <?php } ?>
+    </div>
+
+    <input type="text" id='delod' value=""/>
+    <input type="text" id='url' value="{:U('backTicket')}"/>
+    <input type="text" id='turl' value="{:U('returnticket')}"/>
+      <div class="picker-modal picker-info reason">
+          <div class="toolbar">
+              <div class="toolbar-inner">
+                  <div class="center">* 退款金额将退回原支付账户</div>
+                  <div class="right"><a href="#" class="close-picker"></a></div>
+              </div>
+          </div>
+          <div class="picker-modal-inner">
+              <div class="content-block">
+                    <div class="reasonCon">
+                        <label>价格太贵 <input type="radio" name="reason"/><a></a></label>
+                        <label>临时有事去不了 <input type="radio" name="reason"/><a></a></label>
+                        <label>不好意思，买错场次了 <input type="radio" name="reason"/><a></a></label>
+                        <label>影城服务不好，真心不想再去 <input type="radio" name="reason"/><a></a></label>
+                        <div class="box">
+                            <input type="text" placeholder="我有其他原因..." class="otherReason">
+                            <a>确认</a>
+                        </div>
+                    </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<block name='script'>
+
+<script type="text/javascript">
+
+</script>
+
+</block>

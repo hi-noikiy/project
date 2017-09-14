@@ -1,0 +1,293 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+                {% include "common/tab.html" %}
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+            <div id="tab1" class="tab-pane active">
+              <div class="container-fluid">
+                <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                <!-- 机器人的富豪等级(随机使用):<= <span id="robotMaxRicherLevel">0</span> -->
+                    <form id="signingSearch" class="form-search">
+                        <input id="isFamily" type="hidden" >
+                        <div id="resetRobotButton">重置机器人数据</div>
+                        <span style="font-size:20px; line-height: 30px">配置给正在直播的房间加机器人的规则</span>
+                        <span class="find-search pull-right">
+                        <button  type="button" class="btn btn-purple" onclick="addroomDialog(1,1)">添加规则</button>
+                        </span>
+                    </form>
+                </div>
+
+                <div class="row-fluid">
+                    <table id="tableListRobotConfig" class="table with-check table-purple">
+                        <thead>
+                        <tr>
+                            <th>条件</th>
+                            <th>规则</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!--<tr>-->
+                            <!--<td>-->
+                                <!--<span>用户数 ＜ 500人</span>-->
+                            <!--</td>-->
+                            <!--<td><span class="font font18 cr-ly">1代N，1个用户增加5个机器人</span></td>-->
+                            <!--<td><span class="spanedit"><a>修改</a>&nbsp;|&nbsp;<a onclick="delroomDialog()"> 删除</a></span></td>-->
+                        <!--</tr>-->
+
+                        <!--<tr>-->
+                            <!--<td>-->
+                                <!--<span>用户数 ＜ 500人</span>-->
+                            <!--</td>-->
+                            <!--<td><span class="font font18 cr-ly">直接增加，每1分钟加50个机器人</span></td>-->
+                            <!--<td><span class="spanedit"><a>修改</a>&nbsp;|&nbsp;<a onclick="delroomDialog()"> 删除</a></span></td>-->
+                        <!--</tr>-->
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--<div class="row-fluid">-->
+                    <!--<div class="total pull-left">-->
+                        <!--<p class="font font18 cr-gy">-->
+                            <!--<span>记录总数：</span>-->
+                            <!--<span id="robotConfigCount" >0</span>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <!--<div id="pagination" class="pagination alternate pull-right">-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+                <div class="container-fluid">
+                    <div class="row-fluid" style="margin: 20px 0 ;overflow: hidden;">
+                        <form id= class="form-search">
+                            <input  type="hidden" >
+                            <span style="font-size:20px; line-height: 30px">配置结束的直播的房间，机器人退出的规则，按顺序执行</span>
+                            <span class="find-search pull-right">
+                  <button  type="button" class="btn btn-purple" onclick="endaddDialog('','',1)">添加规则</button>
+                  </span>
+                        </form>
+                    </div>
+
+                    <div class="row-fluid">
+                        <table id="tableListRobotOutConfig"  class="table with-check table-purple">
+                            <thead>
+                            <tr>
+                                <th style="width: 800px;">规则</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <!--<tr>-->
+                                <!--<td>-->
+                                    <!--<span>等待3秒</span>-->
+                                <!--</td>-->
+
+                                <!--<td><span class="spanedit"><a>修改</a>&nbsp;|&nbsp;<a> 删除</a>&nbsp;|&nbsp;<a> 上移</a>&nbsp;|&nbsp;<a> 下移</a></span></td>-->
+                            <!--</tr>-->
+
+                            <!--<tr>-->
+                                <!--<td>-->
+                                    <!--<span>直接减少，减少50%机器人</span>-->
+                                <!--</td>-->
+                                <!--<td><span class="spanedit"><a>修改</a>&nbsp;|&nbsp;<a> 删除</a>&nbsp;|&nbsp;<a> 上移</a>&nbsp;|&nbsp;<a> 下移</a></span></td>-->
+                            <!--</tr>-->
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!--<div class="row-fluid">-->
+                        <!--<div class="total pull-left">-->
+                            <!--<p class="font font18 cr-gy">-->
+                                <!--<span>记录总数：</span>-->
+                                <!--<span id="robotConfigOutCount">0</span>-->
+                            <!--</p>-->
+                        <!--</div>-->
+                        <!--<div id="paginationrobotConfigOut" class="pagination alternate pull-right">-->
+
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+            
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+<div id="addroomDialog" style="display:none"> <!--class="ui-dialog"-->
+    <form id="roomruleDialogForm">
+        <div style="margin-top: 30px;">
+            <span>请选择条件：</span>
+            <!--<span>满足以下</span>-->
+            <!--<select name="conditions" style="width: 110px;">-->
+                <!--<option value="2">全部且</option>-->
+                <!--&lt;!&ndash;<option value="1">任意或</option>&ndash;&gt;-->
+            <!--</select>-->
+            <!--<span>条件</span>-->
+            <!--<button id="btnConditions" type="button" class="btn btn-purple" style="height: 30px;">添加条件</button>-->
+        </div>
+        <!--<div style="height: 210px;width: 665px;border-radius: 4px;background-color: #f9f9f9;margin: 10px auto 30px;border: 1px solid #cccccc;overflow:auto;">-->
+            <div id="roomconditionsclone" style="display:block;">
+                <div class="roomconditions-box" style="height: 40px;line-height: 40px;">
+                    <span style="margin-left: 40px;">用户数</span>
+                    <!--<select name="conditionsValue" class="selconditions" style="width: 110px;margin-top: 5px;margin-left: 40px;">-->
+                        <!---->
+                    <!--</select>-->
+                    <input id="mincount" name="minCount" class="inputlevel" type="text" style="width: 180px;margin: -5px 0 0 10px;"><span style="margin-left: 10px;">至</span>
+                    <input id="maxcount" name="maxCount" class="inputlevel" type="text" style="width: 180px;margin: -5px 0 0 10px;"><span style="margin-left: 10px;">人</span>
+                    <!--<div class="font font20" style="cursor: pointer; color: red; width: 22px;height: 22px;margin:0 0 -4px 10px;display: inline-block;"><span class="icon-minus-sign" onclick="removeCondbox(this)"></span></div>-->
+                </div>
+            <!--</div>-->
+            <!--<div id="roomconditionsclone2">-->
+
+            <!--</div>-->
+
+        </div>
+        <div style="margin-top: 20px;"><span>请匹配规则：</span></div>
+        <div style="width: 660px;margin-left: 15px;margin-top: 10px;">
+            <div>
+                <input type="checkbox" name="per_user">
+                <span>1代N,每个用户增加</span>
+                <input name="dir_user_robot" type="text" style="width:50px;">
+                <span>个机器人,进场间隔</span>
+                <input name="dir_user_robot_time" type="text" style="width:50px;">
+                <span>秒</span>
+            </div>
+            <div style="margin-top: 20px;">
+                <input type="checkbox" name="per_time">
+                <span>每</span>
+                <input name="dir_user_robot2_time" type="text" style="width:50px;">
+                <span>秒增加</span>
+                <input name="dir_user_robot2" type="text" style="width:50px;">
+                <span>个机器人</span>
+            </div>
+            <!--<div>-->
+                <!--<select id="select_id">-->
+                    <!--<option value="1">1代N</option>-->
+                    <!--<option value="2">直接增加</option>-->
+                <!--</select>-->
+            <!--</div>-->
+            <!--<div id="noDirect" style="display: block">-->
+               <!--<input name="dir_user_add" type="text">-->
+                <!--<span>个用户增加</span>-->
+                <!--<input name="dir_user_robot" type="text">-->
+                <!--<span>个机器人</span>-->
+            <!--</div>-->
+            <!--<div id="Direct" style="display: none">-->
+                <!--<span>每</span>-->
+                <!--<input name="dir_co_value" type="text">-->
+                <!--<span>分钟增加</span>-->
+                <!--<input name="dir_user_robot2" type="text">-->
+                <!--<span>个机器人</span>-->
+            <!--</div>-->
+
+        </div>
+    </form>
+</div>
+<div id="delroomDialog" style="display:none">
+    <div style="height: 115px;line-height: 115px;text-align: center;font-size: 16px;">确定删除这条规则？</div>
+</div>
+<div id="endaddDialog" style="display:none">
+    <form id="endaddDialogForm">
+        <div style="margin-top:20px;font-size: 16px;"><span>请匹配规则：</span></div>
+        <div style="margin-top: 20px">
+            <select id="endselect_id" style="width: 200px;">
+                <option value="unitPerUser">-正在直播-</option>
+                <option value="timeInterval">-直播结束-</option>
+            </select>
+        </div>
+        <div id="option_unitPerUser" class="endaddvalue" style="display: block;margin-top: 20px">
+            <span>每一个真实用户退出房间减少</span>
+            <input name="option_unitPerUser" type="text" style="width: 75px;">
+            <span>个机器人</span>
+        </div>
+        <div id="option_timeInterval" class="endaddvalue" style="display:none;margin-top: 20px">
+            <span>全部机器人</span>
+            <input name="option_timeInterval" type="text" style="width: 75px;">
+            <span>秒退出房间</span>
+        </div>
+    </form>
+
+</div>
+<div id="resetRobotFrom" style="display:none">
+    <form id="resetRobotFroms">
+    <textarea id="resetTextarea" spellcheck="false" width="400"></textarea>
+    </form>
+</div>
+<script type="text/javascript" src="{{static_url('web/js/jquery.range.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js/91ns.room.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/jquery.range.css')}}">
+<script type="text/javascript">
+
+  $(function(){
+
+    getRobotConfigList();
+    getSymbol();
+
+    getRobotOutConfigList();
+
+    selectchange();
+    endselectchange();
+  });
+
+
+  function selectchange(){
+        $('#select_id').change(function(){
+            var checkValue=$("#select_id").val()
+            if(checkValue==1){
+                $('#Direct').hide();
+                $('#noDirect').show();
+            }
+            else{
+                $('#noDirect').hide();
+                $('#Direct').show();
+            }
+        })
+    }
+
+  //  机器人删除规则
+  function delroomDialog(){
+
+      $('#delroomDialog').dialog({
+          autoOpen:true,
+          width:440,
+          height:250,
+          title:'删除确认',
+          resizable:false,
+          modal:true,
+          open:function(){
+              getExcAnchor();
+          },
+          buttons: {
+              "确定": function () {
+
+
+              },
+              "取消": function () {
+
+
+              }
+          }
+      });
+  }
+
+  
+  
+</script>

@@ -1,0 +1,1 @@
+UPDATE pre_car_configs set name='星际驱逐舰',configName='xjqzj' where id=56;

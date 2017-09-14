@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/attention'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+</head>
+<body style="position: absolute;">
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+	<div class='pos_rel video'>
+		<img src='/web/cssimg/mobile/screen/top_bg.jpg' width="100%"/>
+		<p class='title pos_ab'>
+			我的关注
+		</p>
+		<img id="leftMenu" src='/web/cssimg/mobile/btn/back1.png' width="8%" class='pos_ab back' />
+	</div>
+	{% include "template/banner.html" %}
+	<div id="attentionList" class='list' style='display: none'>
+		<ul>
+			<!--<li>-->
+				<!--<img src="/web/cssimg/mobile/viewer/head.jpg" width="17%" class="pos_rel fl head_show">-->
+				<!--<img src='/web/cssimg/mobile/btn/home.png' width="9%" class='pos_ab st_show'  />-->
+				<!--<img src='/web/cssimg/mobile/btn/icon3.png' width='5%' class='pos_ab vip' />-->
+				<!--<div class='fl name_shwo'>-->
+					<!--<p class="c_black">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src='/web/cssimg/mobile/btn/hg.png' class='fl ic first' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl ic' width="18%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/wo.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/qiandao.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/home.png' class='fl ic' width="13%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class="ic" width='23%' />-->
+				<!--</div>-->
+				<!--<img src="/web/cssimg/mobile/attention/xin.jpg" width="8%" class='fr icon_show'>-->
+				<!--<div class="clear_all"></div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<img src="/web/cssimg/mobile/viewer/head.jpg" width="17%" class="pos_rel fl head_show">-->
+				<!--<img src='/web/cssimg/mobile/btn/home.png' width="9%" class='pos_ab st_show'  />-->
+				<!--<img src='/web/cssimg/mobile/btn/icon3.png' width='5%' class='pos_ab vip' />-->
+				<!--<div class='fl name_shwo'>-->
+					<!--<p class="c_black">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src='/web/cssimg/mobile/btn/hg.png' class='fl ic first' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl ic' width="18%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/wo.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/qiandao.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/home.png' class='fl ic' width="13%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class="ic" width='23%' />-->
+				<!--</div>-->
+				<!--<img src="/web/cssimg/mobile/attention/xin.jpg" width="8%" class='fr icon_show'>-->
+				<!--<div class="clear_all"></div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<img src="/web/cssimg/mobile/viewer/head.jpg" width="17%" class="pos_rel fl head_show">-->
+				<!--<img src='/web/cssimg/mobile/btn/home.png' width="9%" class='pos_ab st_show'  />-->
+				<!--<img src='/web/cssimg/mobile/btn/icon3.png' width='5%' class='pos_ab vip' />-->
+				<!--<div class='fl name_shwo'>-->
+					<!--<p class="c_black">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src='/web/cssimg/mobile/btn/hg.png' class='fl ic first' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl ic' width="18%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/wo.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/qiandao.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/home.png' class='fl ic' width="13%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class="ic" width='23%' />-->
+				<!--</div>-->
+				<!--<img src="/web/cssimg/mobile/attention/xin.jpg" width="8%" class='fr icon_show'>-->
+				<!--<div class="clear_all"></div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<img src="/web/cssimg/mobile/viewer/head.jpg" width="17%" class="pos_rel fl head_show">-->
+				<!--<img src='/web/cssimg/mobile/btn/home.png' width="9%" class='pos_ab st_show'  />-->
+				<!--<img src='/web/cssimg/mobile/btn/icon3.png' width='5%' class='pos_ab vip' />-->
+				<!--<div class='fl name_shwo'>-->
+					<!--<p class="c_black">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src='/web/cssimg/mobile/btn/hg.png' class='fl ic first' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl ic' width="18%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/wo.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/qiandao.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/home.png' class='fl ic' width="13%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class="ic" width='23%' />-->
+				<!--</div>-->
+				<!--<img src="/web/cssimg/mobile/attention/xin.jpg" width="8%" class='fr icon_show'>-->
+				<!--<div class="clear_all"></div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<img src="/web/cssimg/mobile/viewer/head.jpg" width="17%" class="pos_rel fl head_show">-->
+				<!--<img src='/web/cssimg/mobile/btn/home.png' width="9%" class='pos_ab st_show'  />-->
+				<!--<img src='/web/cssimg/mobile/btn/icon3.png' width='5%' class='pos_ab vip' />-->
+				<!--<div class='fl name_shwo'>-->
+					<!--<p class="c_black">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src='/web/cssimg/mobile/btn/hg.png' class='fl ic first' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl ic' width="18%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/wo.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/qiandao.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/home.png' class='fl ic' width="13%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class="ic" width='23%' />-->
+				<!--</div>-->
+				<!--<img src="/web/cssimg/mobile/attention/xin.jpg" width="8%" class='fr icon_show'>-->
+				<!--<div class="clear_all"></div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<img src="/web/cssimg/mobile/viewer/head.jpg" width="17%" class="pos_rel fl head_show">-->
+				<!--<img src='/web/cssimg/mobile/btn/home.png' width="9%" class='pos_ab st_show'  />-->
+				<!--<img src='/web/cssimg/mobile/btn/icon3.png' width='5%' class='pos_ab vip' />-->
+				<!--<div class='fl name_shwo'>-->
+					<!--<p class="c_black">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src='/web/cssimg/mobile/btn/hg.png' class='fl ic first' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl ic' width="18%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/wo.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/qiandao.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/home.png' class='fl ic' width="13%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class="ic" width='23%' />-->
+				<!--</div>-->
+				<!--<img src="/web/cssimg/mobile/attention/xin.jpg" width="8%" class='fr icon_show'>-->
+				<!--<div class="clear_all"></div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<img src="/web/cssimg/mobile/viewer/head.jpg" width="17%" class="pos_rel fl head_show">-->
+				<!--<img src='/web/cssimg/mobile/btn/home.png' width="9%" class='pos_ab st_show'  />-->
+				<!--<img src='/web/cssimg/mobile/btn/icon3.png' width='5%' class='pos_ab vip' />-->
+				<!--<div class='fl name_shwo'>-->
+					<!--<p class="c_black">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src='/web/cssimg/mobile/btn/hg.png' class='fl ic first' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl ic' width="18%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/wo.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/qiandao.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/home.png' class='fl ic' width="13%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class="ic" width='23%' />-->
+				<!--</div>-->
+				<!--<img src="/web/cssimg/mobile/attention/xin.jpg" width="8%" class='fr icon_show'>-->
+				<!--<div class="clear_all"></div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<img src="/web/cssimg/mobile/viewer/head.jpg" width="17%" class="pos_rel fl head_show">-->
+				<!--<img src='/web/cssimg/mobile/btn/home.png' width="9%" class='pos_ab st_show'  />-->
+				<!--<img src='/web/cssimg/mobile/btn/icon3.png' width='5%' class='pos_ab vip' />-->
+				<!--<div class='fl name_shwo'>-->
+					<!--<p class="c_black">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src='/web/cssimg/mobile/btn/hg.png' class='fl ic first' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl ic' width="18%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/wo.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/qiandao.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/home.png' class='fl ic' width="13%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class="ic" width='23%' />-->
+				<!--</div>-->
+				<!--<img src="/web/cssimg/mobile/attention/xin.jpg" width="8%" class='fr icon_show'>-->
+				<!--<div class="clear_all"></div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<img src="/web/cssimg/mobile/viewer/head.jpg" width="17%" class="pos_rel fl head_show">-->
+				<!--<img src='/web/cssimg/mobile/btn/home.png' width="9%" class='pos_ab st_show'  />-->
+				<!--<img src='/web/cssimg/mobile/btn/icon3.png' width='5%' class='pos_ab vip' />-->
+				<!--<div class='fl name_shwo'>-->
+					<!--<p class="c_black">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src='/web/cssimg/mobile/btn/hg.png' class='fl ic first' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl ic' width="18%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/wo.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/qiandao.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/home.png' class='fl ic' width="13%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class="ic" width='23%' />-->
+				<!--</div>-->
+				<!--<img src="/web/cssimg/mobile/attention/xin.jpg" width="8%" class='fr icon_show'>-->
+				<!--<div class="clear_all"></div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<img src="/web/cssimg/mobile/viewer/head.jpg" width="17%" class="pos_rel fl head_show">-->
+				<!--<img src='/web/cssimg/mobile/btn/home.png' width="9%" class='pos_ab st_show'  />-->
+				<!--<img src='/web/cssimg/mobile/btn/icon3.png' width='5%' class='pos_ab vip' />-->
+				<!--<div class='fl name_shwo'>-->
+					<!--<p class="c_black">-->
+						<!--噗噗在唱歌-->
+					<!--</p>-->
+					<!--<img src='/web/cssimg/mobile/btn/hg.png' class='fl ic first' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/icon4.png' class='fl ic' width="18%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/wo.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/qiandao.png' class='fl ic' width="8%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/home.png' class='fl ic' width="13%" />-->
+					<!--<img src='/web/cssimg/mobile/btn/level.png' class="ic" width='23%' />-->
+				<!--</div>-->
+				<!--<img src="/web/cssimg/mobile/attention/xin.jpg" width="8%" class='fr icon_show'>-->
+				<!--<div class="clear_all"></div>-->
+			<!--</li>-->
+		</ul>
+	</div>
+	<div id="recommendz" class='list2' style='display: none'>
+		<img src='/web/cssimg/mobile/attention/no_att.jpg' width='100%' class='no_a'/>
+		<p class="c_pink title1" >
+			推荐关注
+		</p>
+		<ul>
+			<!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+            <!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+            <!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+            <!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+            <!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+            <!--<li>-->
+				<!--<div class='pos_rel img'>-->
+					<!--<img src='/web/cssimg/mobile/attention/hh.jpg' width="100%" />-->
+					<!--<img src='/web/cssimg/mobile/attention/mask.png' width="100%" class='pos_ab mak'/>-->
+					<!--<p class='pos_ab'>-->
+						<!--我是名字我是名字-->
+					<!--</p>-->
+				<!--</div>-->
+				<!--<div>-->
+					<!--<img src='/web/cssimg/mobile/attention/kxin.jpg' width="16%" class='fl xixn' />-->
+					<!--<p class='fl gz'>关注Ta</p>-->
+				<!--</div>-->
+			<!--</li>-->
+			<!--<li class="clear_all"></li>-->
+		</ul>
+	</div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/userattention'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

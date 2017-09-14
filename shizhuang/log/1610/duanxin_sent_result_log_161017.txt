@@ -1,0 +1,6 @@
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18144075313</desmobile><msgid>C6639116101711073900</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18144075313";s:4:"sign";s:32:"0633fa558bbe591f8b78ee254575e5e3";}, 2016-10-17 11:07:39
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13950486257</desmobile><msgid>D9329216101714434000</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13950486257";s:4:"sign";s:32:"618a30a202bb81fefe2447660515d29f";}, 2016-10-17 14:43:40
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13559135589</desmobile><msgid>D2482116101714562800</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13559135589";s:4:"sign";s:32:"037ed94a41b9013138713dfccb5bb799";}, 2016-10-17 14:56:28

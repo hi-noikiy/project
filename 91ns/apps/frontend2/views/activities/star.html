@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('index'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities.star'|ns_css)}}">
+    <link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+    <script type="text/javascript" defer async data-main="{{static_url('activities.star'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+
+    <div class="wrapBd" style="background-color: #300b45;">
+        <div class="bodyBg">
+            <div class="leftBg"></div>
+            <div class="cententBg">
+                <div class="myStar" style="{% if ns_userUid|default(0) == 0 %}display:none;{% endif %}">
+                    <div class="Sbtn sprite-activities-star mystar">我的抢星</div>
+                    <div id="Sdec" class="Sdec" nsdate="{{ countTime }}">
+                        您本周收到的抢星礼物数量：
+                        <span>{{ myWeekStar['getNum'] }}</span>
+                        个
+                        <br>
+                        您本周送出的抢星礼物数量：
+                        <span>{{ myWeekStar['sendNum'] }}</span>
+                        个
+                        <br>
+                        距离本期榜单结算截止还有
+                        <span id="Sday" class="times">0</span>
+                        天
+                        <span id="Shours" class="times">0</span>
+                        时
+                        <span id="Sminutes" class="times">0</span>
+                        分
+                    </div>
+                </div>
+                <div class="description">
+                    活动时间：2015年7月19日--2015年8月20日
+                    <br>
+                    活动周期：自然周，周一0点到周日24点
+                    <br>
+                    <span></span>（周一为自然周第一天）
+                </div>
+                <div class="giftPic sprite-activities-star pstarbtn">抢星礼物<i class="star-gift sprite-gift_76 {{ configName }}"></i></div>
+                <div id="decNav" class="decNav clearfix">
+                    <div class="sprite-activities-star this_week active">本周</div>
+                    <div class="sprite-activities-star last_week">上周</div>
+                    <div class="sprite-activities-star about">活动说明</div>
+                </div>
+                <div id="star-rank-this" class="Scontent active clearfix">
+                    <div class="sprite-activities-star anchorbg">
+                        <ul>
+                            {% if thisweekStarAnchor %}
+                            {% for i in 0..thisweekStarAnchor|length - 1 %}
+                            <li class="clearfix">
+                                {% if i == 0 %}
+                                <div class="star-index sprite-activities-star pfirst"></div>
+                                {% else %}
+                                <div class="star-index">{{i + 1}}</div>
+                                {% endif %}
+
+                                <img class="star-avatar" src="{{thisweekStarAnchor[i]['avatar']}}">
+                                <div class="msg clearfix">
+                                    <div class="star-nickName">{{ thisweekStarAnchor[i]['nickName'] }}</div>
+                                    <div class="star-number"><span>{{ thisweekStarAnchor[i]['num'] }}</span>个</div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="sprite-activities-star richerbg">
+                        <ul>
+                            {% if thisweekStarRicher %}
+                            {% for i in 0..thisweekStarRicher|length - 1 %}
+                            <li class="clearfix">
+                                {% if i == 0 %}
+                                <div class="star-index sprite-activities-star pfirst"></div>
+                                {% else %}
+                                <div class="star-index">{{i + 1}}</div>
+                                {% endif %}
+
+                                <img class="star-avatar" src="{{thisweekStarRicher[i]['avatar']}}">
+                                <div class="msg clearfix">
+                                    <div class="star-nickName">{{ thisweekStarRicher[i]['nickName'] }}</div>
+                                    <div class="star-number"><span>{{ thisweekStarRicher[i]['num'] }}</span>个</div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div id="star-rank-last" class="Scontent clearfix">
+                    <div class="sprite-activities-star anchorbg">
+                        <ul>
+                            {% if lastweekStarAnchor %}
+                            {% for i in 0..lastweekStarAnchor|length - 1 %}
+                            <li class="clearfix">
+                                {% if i == 0 %}
+                                <div class="star-index sprite-activities-star pfirst"></div>
+                                {% else %}
+                                <div class="star-index">{{i + 1}}</div>
+                                {% endif %}
+
+                                <img class="star-avatar" src="{{lastweekStarAnchor[i]['avatar']}}">
+                                <div class="msg clearfix">
+                                    <div class="star-nickName">{{ lastweekStarAnchor[i]['nickName'] }}</div>
+                                    <div class="star-number"><span>{{ lastweekStarAnchor[i]['num'] }}</span>个</div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="sprite-activities-star richerbg">
+                        <ul>
+                            {% if lastweekStarRicher %}
+                            {% for i in 0..lastweekStarRicher|length - 1 %}
+                            <li class="clearfix">
+                                {% if i == 0 %}
+                                <div class="star-index sprite-activities-star pfirst"></div>
+                                {% else %}
+                                <div class="star-index">{{i + 1}}</div>
+                                {% endif %}
+
+                                <img class="star-avatar" src="{{lastweekStarRicher[i]['avatar']}}">
+                                <div class="msg clearfix">
+                                    <div class="star-nickName">{{ lastweekStarRicher[i]['nickName'] }}</div>
+                                    <div class="star-number"><span>{{ lastweekStarRicher[i]['num'] }}</span>个</div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div id="star-about" class="Sabout sprite-activities-star fontbg">
+                    <div class="sprite-activities-star pjlsm"></div>
+                    <div class="sprite-activities-star pline"></div>
+                    <div class="text">抢星主播：奖励获得本周抢星收礼冠军的主播奖励<span>99900</span>聊币，多得多奖。</div>
+                    <div class="text">抢星富豪：奖励获得抢星送礼冠军的用户以下奖励。</div>
+                    <div class="pic clearfix">
+                        <div class="left">
+                            <div class="sprite-activities-star panimate"></div>
+                            <div class="text">专属座驾：独角兽*1（7天）</div>
+                        </div>
+                        <div class="right">
+                            <div class="sprite-activities-star pxmhz"></div>
+                            <div class="text">专属徽章：星梦徽章*1（7天）</div>
+                        </div>
+                    </div>
+                    <div class="sprite-activities-star pwfsm"></div>
+                    <div class="sprite-activities-star pline"></div>
+                    <div class="text-about">
+                        <ul>
+                            <li>
+                                <i class="sprite-activities-star pli"></i>
+                                用户根据官方每周指定的抢星礼物，赠送给自己心仪的主播，让主播和自己获得抢星奖项。
+                            </li>
+                            <li>
+                                <i class="sprite-activities-star pli"></i>
+                                用户可在每个主播房间屏幕右侧的【抢星】按钮处获得该主播目前抢星活动情况。
+                            </li>
+                            <li>
+                                <i class="sprite-activities-star pli"></i>
+                                用户可在活动页面右上角的【我的抢星】处获得自己当前抢星活动情况。
+                            </li>
+                            <li>
+                                <i class="sprite-activities-star pli"></i>
+                                获得奖品需要同时满足“单个奖项冠军”并收入/送出抢星礼物数量不低于20000个。
+                            </li>
+                            <li>
+                                <i class="sprite-activities-star pli"></i>
+                                排行榜数据可能会有延迟，以服务器统计为准。
+                            </li>
+                            <li>
+                                <i class="sprite-activities-star pli"></i>
+                                抢星冠军争夺在每周一重新轮回开始。上周冠军对应奖励会在新的一周内统一发放，如有疑问请咨询客服人员。
+                            </li>
+                            <li>
+                                <i class="sprite-activities-star pli"></i>
+                                本活动最终解释权归{{webType['name']}}官方所有。
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            {% include "template/footer.html" %}
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

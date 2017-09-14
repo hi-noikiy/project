@@ -1,0 +1,188 @@
+<extend name='Public/base'/>
+<block name='title'>限时抢购</block>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">限时抢购</div>
+    <div class="right"></div>
+  </div>
+</div>
+</block>
+<block name='body'>
+	<div data-page="buying" class="page" id="page-buying">
+    	<div class="main">
+
+            <!--超时提示-->
+            <div class="error-section">
+                <div class="error-tip">
+                    <h2>提示</h2>
+                    <p>支付超时，请返回重新抢票！</p>
+                    <a class="close-btn">我知道了</a>
+                </div>
+            </div>
+            <div class="shadow"></div>
+            <div class="voucher-item">
+                <div class="item-left">
+                    <h4>2/3D</h4>
+                    <p>兑换券</p>
+                </div>
+                <div class="item-right">
+                    <h4>2D/3D兑换券</h4>
+                    <ul>
+                        <li><span>¥<b>1</b></span>¥35</li>
+                        <li>有效期：2015/11/01—2015/11/31</li>
+                        <li>兑换说明：所有影片2D/3D场次</li>
+                        <li>备注：本券仅限微信购票使用</li>
+                    </ul>
+                    <p><span>抢购进行中：剩余<i>150</i>张</span><a>立即抢购</a></p>
+                </div>
+            </div>
+            <div class="voucher-item">
+                <div class="item-left">
+                    <h4>ZMAX</h4>
+                    <p>兑换券</p>
+                </div>
+                <div class="item-right">
+                    <h4>ZMAX兑换券</h4>
+                    <ul>
+                        <li><span>¥<b>9.9</b></span>¥35</li>
+                        <li>有效期：2015/11/01—2015/11/31</li>
+                        <li>兑换说明：所有影片2D/3D场次</li>
+                        <li>备注：本券仅限微信购票使用</li>
+                    </ul>
+                    <p><span>抢购进行中：剩余<i>150</i>张</span><a>立即抢购</a></p>
+                </div>
+            </div>
+            <div class="voucher-item">
+                <div class="item-left">
+                    <h4>ZMAX</h4>
+                    <p>兑换券</p>
+                </div>
+                <div class="item-right">
+                    <h4>ZMAX兑换券</h4>
+                    <ul>
+                        <li><span>¥<b>1</b></span>¥35</li>
+                        <li>有效期：2015/11/01—2015/11/31</li>
+                        <li>兑换说明：所有影片2D/3D场次</li>
+                        <li>备注：本券仅限微信购票使用</li>
+                    </ul>
+                    <p><span>下次开抢时间：<i>11-13（周五）</i></span><em>等待开抢</em></p>
+                </div>
+            </div>
+            <div class="voucher-item">
+                <div class="item-left">
+                    <h4>ZMAX</h4>
+                    <p>兑换券</p>
+                </div>
+                <div class="item-right">
+                    <h4>ZMAX兑换券</h4>
+                    <ul>
+                        <li><span>¥<b>1</b></span>¥35</li>
+                        <li>有效期：2015/11/01—2015/11/31</li>
+                        <li>兑换说明：所有影片2D/3D场次</li>
+                        <li>备注：本券仅限微信购票使用</li>
+                    </ul>
+                    <p><span>下次开抢时间：<i>11-13（周五）</i></span><em>等待开抢</em></p>
+                </div>
+            </div>
+            <div class="voucher-item">
+                <div class="item-left">
+                    <h4>ZMAX</h4>
+                    <p>兑换券</p>
+                </div>
+                <div class="item-right">
+                    <h4>ZMAX兑换券</h4>
+                    <ul>
+                        <li><span>¥<b>1</b></span>¥35</li>
+                        <li>有效期：2015/11/01—2015/11/31</li>
+                        <li>兑换说明：所有影片2D/3D场次</li>
+                        <li>备注：本券仅限微信购票使用</li>
+                    </ul>
+                    <p><span>下次开抢时间：<i>11-13（周五）</i></span><em>等待开抢</em></p>
+                </div>
+            </div>
+    	</div>
+		<div class="picker-modal picker-info" id="pay-section">
+        <div class="toolbar">
+            <div class="toolbar-inner">
+                <div class="left"></div>
+                <div class="text"></div>
+                <div class="right"><a href="#" class="close-picker"></a></div>
+            </div>
+        </div>
+        <div class="picker-modal-inner">
+            <div class="content-block">
+
+                <div class="list-block">
+                    <h4>农行账户支付</h4>
+                    <ul>
+                        <li>
+                            <label class="label-radio item-content">
+                                <!-- Checked by default -->
+                                <input type="radio" name="my-radio" value="Books" checked="checked">
+                                <div class="item-inner">
+                                    <div class="item-type"></div>
+                                    <p>推荐持有农行网上银行及K码用户使用</p>
+                                </div>
+                            </label>
+                        </li>
+                    </ul>
+                    <p>*一个会员账号仅限购买2张；</p>
+                    <p>* 数量有限，请在<span>15</span>分钟内完成支付，超时将自动取消订单。</p>
+                </div>
+                <div class="pay-block">
+                    <span class="text">购买数量：</span>
+                    <div class="Spinner">
+                        <a class="leftBtn"></a>
+                        <input type="number">
+                        <a class="rightBtn"></a>
+                    </div>
+                    <a href="{:U('pay')}">立即支付（¥<i class="cost">10</i>）</a>
+                </div>
+            </div>
+        </div>
+    </div>        
+
+    </div>
+    
+</block>
+<block name='script'>
+<script type="text/javascript">
+
+    $(function(){
+
+        var myApp = new Framework7();
+        var $$ = Dom7;
+        //弹出支付小窗口
+        $$('.item-right p a').on('click', function () {
+            $('.shadow').show();
+            var a = $(this).parents('.item-right').find('b').text();
+            $('.cost').text(a).attr('unitPrice',a);
+            myApp.pickerModal('.picker-info');
+        });
+
+        //加减按钮功能
+        $(".Spinner").Spinner({value:1, min:1, len:2, max:99});
+        //关掉支付的弹窗提示的遮罩层
+        $('.close-picker').on('click',function(){
+            $('.shadow').hide();
+            //清空之前的val
+            $('.Amount').val('1');
+        });
+
+        //点击按钮价格变化
+        $('.Spinner>a').on('click',function(){
+            var a = $('.cost').attr('unitPrice');
+            var b = $('.Amount').val();
+
+            allCost = parseFloat(a*b).toFixed(2)
+            $('.cost').text(allCost);
+        })
+        //关掉超时提示
+        $('.close-btn').on('click',function(){
+            $('.error-section').hide();
+        })
+    })
+</script>
+</block>

@@ -1,0 +1,47 @@
+<extend name='Public/base'/>
+<block name='navbar'>
+    <div class="navbar">
+      <div class="navbar-inner">
+         <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+        <div class="center sliding">我的评论</div>
+        <div class="right"></div>
+      </div>
+    </div>
+</block>   
+</head>
+<block name='body'>
+
+ <div data-page="mycomment" class="page" id="page-myComment">
+ <link rel="stylesheet" href="__CSS__/goods.css?{:time()}">
+	<div class="wrap">
+        <?php if(!empty($views)){ ?>
+<foreach name='views' item='vo'>
+        <div class="comment-item">
+            <article>
+                {$vo['content']}
+            </article>
+
+            <section>
+                <div class="item-con">
+                    <div class="img-box">
+                        <img src="{$vo['image']}">
+                    </div>
+                    <h4> {$vo['filmName']}</h4>
+                    <p> {$vo['simpleword']}</p>
+                    <p>{$vo['type']}</p>
+                </div>
+                <div class="item-block">
+                    <div class="datetime">{$vo['time']}</div>
+                    <div class="comment-area"><span>{$vo['clickNum']}</span><a>{$vo['lookNum']}</a></div>
+                </div>
+            </section>
+        </div>
+</foreach>
+ <?php }else{ ?>
+             <div class="none"></div>
+ <?php } ?>
+    </div>
+
+  </div>
+
+</block>

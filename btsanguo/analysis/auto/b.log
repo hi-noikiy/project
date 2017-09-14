@@ -1,0 +1,5 @@
+==========Begin===============
+       SELECT count(*) as sum_cre, p.prof, p.serverid, p.fenbao as fenbaoid
+       FROM player AS p
+       WHERE p.accountid IN()
+       GROUP BY p.serverid, p.fenbao

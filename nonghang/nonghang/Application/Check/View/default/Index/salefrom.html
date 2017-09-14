@@ -1,0 +1,26 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<form method="post" action="{:U()}" class="dataform" id="dataform">
+       <div class="checkTable">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <thead>
+                  <tr >
+                    <td width="40%">商品名称</td>
+                    <td width="30%">数量</td>
+                    <td width="30%">价格</td>
+                  </tr>
+                </thead>
+                 <tbody>
+                 <volist name='detail' id='vo'>
+                    <tr>
+                        <td>{$vo['goodsName']}</td>
+                        <td>{$vo['number']}</td>
+                        <td>￥{$vo['price']}</td>
+                    </tr>
+                    </volist>
+                    
+                </tbody>
+            </table>
+        </div>
+</form>
+</block>

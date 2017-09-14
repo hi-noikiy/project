@@ -1,0 +1,3 @@
+result={"id":1489972142,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"b8ac03e1901fd45a4a0db80699546f66","nickName":"九游玩家587427040394","creator":"JY"}} 2017-03-20 09:09:02
+result={"id":1489972159,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"b8ac03e1901fd45a4a0db80699546f66","nickName":"九游玩家587427040394","creator":"JY"}} 2017-03-20 09:09:19
+result={"id":1489972178,"state":{"code":1,"msg":"操作成功"},"data":{"accountId":"b8ac03e1901fd45a4a0db80699546f66","nickName":"九游玩家587427040394","creator":"JY"}} 2017-03-20 09:09:38

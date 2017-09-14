@@ -1,0 +1,118 @@
+<extend name='Public/base'/>
+<block name='title'>{$cinema['cinemaName']}</block>
+
+<block name='navbar'>
+
+<div class="navbar">
+  <div class="navbar-inner" style="background:#159eec;">
+    <div class="left"><a href="javascript:window.history.back()" class="external link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">注册</div>
+    <div class="right"></div>
+  </div>
+  </div>
+</block>
+
+<block name='body'>
+    <foreach name="config" item="vo" key="k" >
+    	<div style="display:none" id="{$k}">{$vo}</div>
+    </foreach>
+    <div style="display:none" id="thisUrl">{:U()}</div>
+    <div data-page="register" class="page" style="padding-top:44px; ">
+        <div class="loginBody">
+        <form action="{:U()}" method="post" id='loginform'>
+            <div class="loginInput">
+                <div><span><img src="__IMG__/login/icon4.png" width="100%" /></span><input  type="text" name="cardId" placeholder="请输入手机号"  /></div>
+           </div>
+           <div class="loginInput">
+                <div style="position:relative;"><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="password"  name="passWord" placeholder="请输入验证码"  /><a href="javascript:;" class="getBtn">获取</a></div>
+           </div>
+           <div class="loginInput">
+                <div><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="password"  name="passWord" placeholder="请输入新密码"  /></div>
+           </div>
+           <div class="loginInput">
+                <div><span><img src="__IMG__/login/icon3.png" width="100%" /></span><input type="password"  name="passWord" placeholder="请输入确认密码"  /></div>
+            </div>
+        	<div class="agrees"><input id="agree" type="checkbox"  checked="checked">我已阅读并同意<a href="{:U('policy')}" class="link">《影城服务协议》</a></div>
+            <div class="loginLink">
+                <a href="javascript:;" class="registerBtn" style="width:96%;">注册</a>
+            </div>
+        </form>
+        </div>
+    </div>
+</block>
+<block name='script'>
+<script>
+$(function(){
+  $('.loginBtn a').click(function(){
+    var cardId=$('input[name="cardId"]').val();
+    var pwd=$('input[name="passWord"]').val();
+    if(cardId.trim()==''){
+      alert('请输入会员卡号');
+      return false;
+    }else if(pwd.trim()==''){
+      alert('请输入会员卡密码');
+      return false;
+    }else{
+      userLogin(cardId, pwd);
+      // $('#myform').submit();
+    }
+  });
+});
+
+  
+function userLogin (cardId, pwd) {
+ // myApp.showIndicator();
+
+  $("#loginform").ajaxSubmit({  
+        type:"post",  //提交方式  
+        dataType:"json", //数据类型 
+         url:$('#thisUrl').html(), //请求url 
+        data:{'cardId':cardId, 'pwd':pwd}, 
+        success:function(data){ //提交成功的回调函数 
+          myApp.hideIndicator();
+            if(data.status == 0){
+                location.href= data.data.url;
+              }else{
+                myApp.alert(data.content);
+              }
+        } 
+    });
+}
+
+//登录方式切换
+ var tabsSwiper = new Swiper('.swiper-container',{
+    onlyExternal : true,
+    speed:500
+  })
+  $(".tabs a").on('touchstart mousedown',function(e){
+    e.preventDefault()
+    $(".tabs .active").removeClass('active')
+    $(this).addClass('active')
+    tabsSwiper.swipeTo( $(this).index() )
+  })
+  $(".tabs a").click(function(e){
+    e.preventDefault()
+  })
+  //门店选择
+  $('#select').click(function(e){
+    $('#select').find('ul').hide();
+    $(this).find('ul').show();
+    e.stopPropagation();
+  });
+  $('#select li').hover(function(e){
+    $(this).toggleClass('on');
+    e.stopPropagation();
+  });
+  $('#select li').click(function(e){
+    var val = $(this).text();
+    $(this).parents('#select').find('b').text(val);
+    $(this).parents('#select').find('input').val($(this).attr('data-value'));
+    $('#select ul').hide();
+    e.stopPropagation();
+  });
+  $(document).click(function(){
+    $('#select ul').hide();
+  });
+</script>  
+
+  </block>

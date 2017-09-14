@@ -1,0 +1,46 @@
+th{
+    background-color: #9FCDE7;
+}
+td.forumRow{
+    background-color:#ECECED;
+}
+.ui-table thead th{
+    background-color: #9FCDE7;
+    line-height: 24px;
+    font-weight: bold;
+    color:#000;
+}
+tr.total th{
+    background-color: #fcc70d;
+    color:#000;
+    font-weight: 700;
+}
+.form-list{
+    float: left;
+    max-height: 140px;
+    overflow-y: auto;
+    width: 100%;
+}
+.form-list li{
+    float: left;
+    margin: 2px 4px;
+    border: 1px solid #999;
+    padding: 2px 4px 2px 2px;
+}
+.form-list a{
+   display: inline-block;
+}
+.form-list label {
+    cursor: pointer;
+}
+.form-list a:hover,.form-list li:hover{
+    text-decoration: none;
+    background-color: #008000;
+    color:#fff;
+}
+.form-list.chkbox input{
+    vertical-align: middle;
+}
+.require{
+    color:red;
+}

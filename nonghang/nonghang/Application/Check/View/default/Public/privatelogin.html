@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>影城包场验证系统</title>
+<link href="__CSS__/style.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="__JS__/skin/layer.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__JS__/skin/layer.ext.css" type="text/css" media="screen" />
+<script type="text/javascript" src="__JS__/jquery.js"></script>
+<script type="text/javascript" src="__JS__/layer.js"></script>
+<script type="text/javascript" src="__JS__/jquery.form.js"></script>
+<script type="text/javascript" src="__JS__/jquery.placeholder.1.3.min.js"></script>
+</head>
+
+<body>
+	<div class="loginBody">
+        <div class="logoBody"><img src="__IMG__/zrlogo.png"  height="60"/><em><img src="__IMG__/line.jpg" /></em><span>影城包场验证系统</span></div>
+        <div class="loginBg"><img src="__IMG__/loginBg1.png" /></div>
+    	<div class="loginBox">
+        	<span>登录</span>
+            <form action="" method="post" id="loginform"/>
+        	<div class="loginText"><em><img src="__IMG__/user.png" /></em><input type="text" placeholder="请输入用户名" id="username" name="username" class="text1" /></div>
+            <div class="loginText" style="margin-bottom:8px;"><em><img src="__IMG__/pwd.png" /></em><input type="password" id="password" placeholder="请输入密码" name="password" class="text2"/></div>
+            </form>
+            <!--<div class="loginTip" style="display:none;">*帐号或密码有误，请重新输入</div>-->
+            <a  class="loginButton" href="javascript:login();">登录</a>
+     	</div>
+    </div>
+    <div class="footer">
+        <p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有 0591-83820802</p>
+    </div>
+    <script>
+     //  $(".loginButton").click(function(){
+//           $("#form1").submit();
+//       });
+	   
+	   
+	 var loadi = '';
+    var loadimsg = '';
+    function login () {
+        loadi = layer.load(1, {shade: [0.5,'#000']});
+        loadimsg = layer.msg('正在登录...',{time: 60000});
+
+        $("#loginform").ajaxSubmit({    
+                type:"post",    //提交方式  
+                dataType:"json", //数据类型 
+                url:"{:U()}", //请求url 
+                data:{'username':$('#username').val(), 'password':$('#password').val()}, 
+                success:function(data){ //提交成功的回调函数 
+                        if(data.status == 0){
+                            // layer.alert(data.content);
+                            layer.close(loadi);
+                            location.href = '{:U('Private/index')}'
+                        }else{
+                            layer.close(loadi);
+                            layer.close(loadimsg);
+                            layer.alert(data.content, {icon: 5});
+                        }
+                }   
+        });
+}
+
+//兼容默认注释
+$(function(){
+		// Initialize placeholder
+		$.Placeholder.init();
+		});
+	//判断浏览器是否支持 placeholder属性
+(function($) {    
+  var placeholderfriend = {  
+    focus: function(s) {  
+      s = $(s).hide().prev().show().focus();  
+      var idValue = s.attr("id");  
+      if (idValue) {  
+        s.attr("id", idValue.replace("placeholderfriend", ""));  
+      }  
+      var clsValue = s.attr("class");  
+      if (clsValue) {  
+        s.attr("class", clsValue.replace("placeholderfriend", ""));  
+      }  
+    }  
+  }  
+  
+  //判断是否支持placeholder  
+  function isPlaceholer() {  
+    var input = document.createElement('input');  
+    return "placeholder" in input;  
+  }  
+  //不支持的代码  
+  if (!isPlaceholer()) {  
+    $(function() {  
+  
+      var form = $(this);  
+  
+      //遍历所有文本框，添加placeholder模拟事件  
+      var elements = form.find("input[type='text'][placeholder]");  
+      elements.each(function() {  
+        var s = $(this);  
+        var pValue = s.attr("placeholder");  
+        var sValue = s.val();  
+        if (pValue) {  
+          if (sValue == '') {  
+            s.val(pValue);  
+          }  
+        }  
+      });  
+  
+      elements.focus(function() {  
+        var s = $(this);  
+        var pValue = s.attr("placeholder");  
+        var sValue = s.val();  
+        if (sValue && pValue) {  
+          if (sValue == pValue) {  
+            s.val('');  
+          }  
+        }  
+      });  
+  
+      elements.blur(function() {  
+        var s = $(this);  
+        var pValue = s.attr("placeholder");  
+        var sValue = s.val();  
+        if (!sValue) {  
+          s.val(pValue);  
+        }  
+      });  
+  
+      //遍历所有密码框，添加placeholder模拟事件  
+      var elementsPass = form.find("input[type='password'][placeholder]");  
+      elementsPass.each(function(i) {  
+        var s = $(this);  
+        var pValue = s.attr("placeholder");  
+        var sValue = s.val();  
+        if (pValue) {  
+          if (sValue == '') {  
+            //DOM不支持type的修改，需要复制密码框属性，生成新的DOM  
+            var html = this.outerHTML || "";  
+            html = html.replace(/\s*type=(['"])?password\1/gi, " class='pwdPlaceholder' type=text placeholderfriend")  
+              .replace(/\s*(?:value|on[a-z]+|name)(=(['"])?\S*\1)?/gi, " ")  
+              .replace(/\s*placeholderfriend/, " placeholderfriend value='" + pValue  
+              + "' " + "onfocus='placeholderfriendfocus(this);' " );  
+            var idValue = s.attr("id");  
+            if (idValue) {  
+              s.attr("id", idValue + "placeholderfriend");  
+            }  
+            var clsValue = s.attr("class");  
+            if (clsValue) {  
+              s.attr("class", clsValue + "placeholderfriend");  
+            }  
+            s.hide(); 
+            s.after(html);  
+          }  
+        }  
+      });  
+  
+      elementsPass.blur(function() {  
+        var s = $(this);  
+        var sValue = s.val();  
+        if (sValue == '') {  
+          var idValue = s.attr("id");  
+          if (idValue) {  
+            s.attr("id", idValue + "placeholderfriend");  
+          }  
+          var clsValue = s.attr("class");  
+          if (clsValue) {  
+            s.attr("class", clsValue + "placeholderfriend");  
+          }  
+          s.hide().next().show();  
+        }  
+      });  
+  
+    });  
+  }  
+  window.placeholderfriendfocus = placeholderfriend.focus;  
+})(jQuery);  
+
+   </script>
+</body>
+</html>
+   

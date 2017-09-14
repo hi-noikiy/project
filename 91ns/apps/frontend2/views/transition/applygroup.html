@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('transition'|ns_css)}}">
+    <script type="text/javascript" defer async data-main="{{static_url('transition.applygroup'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</head>
+<body style="padding: 0;margin: 0;overflow: visible;height: auto;background-color:#1a0c1c;">
+    <div class="container-join">
+        <div class="container-top">
+            <div class="container-top-img">
+            {% if webType['channelType']!=2 %}
+            <img src="{{static_url('web/cssimg/familyActivities/applygroup.png')}}">
+            {% else %}
+            <img src="{{static_url('web/cssimg/familyActivities/applygroupdz.png')}}">
+            {% endif %}
+            </div>
+            <div class="container-top-bottom">
+                <div class="container-bottom"></div>
+            </div>
+        </div>
+        <div class="container-content">
+            <div class="content-group">
+                <div class="title">
+                    <p><i class="yuan r-left pull-left"></i> <i class="yuan r-right pull-right"></i></p>
+                    <p class="title-point">(<span style="color: red;">*</span>选项都为必选项)</p>
+                    <p><i class="title-line"></i></p>
+                </div>
+                <div class="title1" style="text-align: center;">
+                    <img src="{{static_url('web/cssimg/familyActivities/gray.png')}}">
+                    <p style="margin: -40px 0 65px 0;font-size: 16px;color: #ffffff;line-height: 17px;">成为家族主播，条理更清晰，待遇更稳定。</p>
+                </div>
+                <div class="applycon">
+                    <div class="appForm">
+                        <form method="POST" name="form1" id="bigMac" enctype ="multipart/form-data">
+                            <input type="hidden" name="picurl" value="" id="poster_url">
+                            <input type="hidden" name="sex" value="0" id="sex">
+                            <dl>
+                                <dd class="clearfix">
+                                    <div class="ftit">请选择家族：</div>
+                                    <div class="finp">
+                                        <select id="addfamily" name="addfamily" style="width: 328px; height: 30px;*height: 23px; border: 1px solid #999999;">
+                                            {% set ns_only_one = true %}
+                                            {% for familyInfo in familyInfoList %}
+                                                {% if ns_only_one %}
+                                                {% set ns_only_one = false %}
+                                                <option value="{{ familyInfo['id'] }}" selected='selected' >{{ familyInfo['name'] }}</option>
+                                                {% else %}
+                                                <option value="{{ familyInfo['id'] }}" >{{ familyInfo['name'] }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                        <div class="warning" id="adfy"></div>
+                                    </div>
+                                </dd>
+                                <dd class="clearfix" >
+                                    <div class="ftit">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                    <div class="finp" style="text-align: center;margin-top: 52px;">
+                                        <input class="join-btn" type="button" name='submbtn' value='提 交' id='submbtn' style="margin-left: 208px;border: 0px;">
+                                    </div>
+                                </dd>
+                                <dd class="clearfix">
+                                    <div class="ftit">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </div>
+                                    <div class="finp" ></div>
+                                </dd>
+                            </dl>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding-top: 80px;background-color: #1a0c1c;"></div>
+    </div>
+    {% include "template/footer.html" %}
+</body>
+</html>

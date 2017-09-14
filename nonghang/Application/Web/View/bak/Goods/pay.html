@@ -1,0 +1,408 @@
+<extend name='Public/base'/>
+<block name='body'>
+    <div id="main" class="goods-pay">
+        <div class="container">
+                <div class="base-info">
+                    <h1>卖品信息  </h1>
+                    <p class="seat">                     
+                    <volist name='order.order_detail' id='v'>                   
+                    <span>{$v.goodsName}<i>{$v.number}</i>份</span>                    
+                    </volist>
+                    <span>兑换地：{$order.cinemaName} </span><span class="cost"><em id='allpriceshow'>应付金额：<i>￥</i><b>{$order.price}</b></em><em id='needpriceshow'>还需支付：<i>￥</i><b id='allprice'>{$order['price']}</b></em></span></p>
+                </div>
+			  <div id='integral'>
+                <h3>
+                    积分使用
+                </h3>
+                <div class="item-content i-1">
+                    <div class="chklist">
+                        <input type="checkbox" value="积分兑换" name="1" autocomplete="off">
+                        <label class="rdIntegral" onclick="useIntegral()">积分兑换</label> <p>剩余<b>{$user['integral']}</b>积分</p>
+                    </div>
+                </div>
+                </div>
+                <div id='voucher'>
+                <h3 class="quan">
+                    票券使用
+                </h3>
+                <div class="item-content ic-ticket">
+                    <div class="radiolist ticket-type">
+                    </div>
+                    <div class="item-inner" style="display: none" id='voucherList2'>
+                    </div>
+                    <div class="item-inner" style="display: none" id='voucherList1'>
+                    </div>
+                    <div class="item-inner" style="display: none" id='voucherList0'>
+                    </div>
+                </div>
+                </div>
+
+                <div id='accountInfo'>
+                <h3>使用余额支付</h3>
+                <div class="item-content pay">
+                    <div class="checkboxlist">
+                        <!--<input type="checkbox" value="account" name="11" >-->
+                        <!--<label class="alance"  onclick="useMoney()">-->
+                            <!--<p class="pay-name">账户余额支付</p>-->
+                            <!--<p class="pay-hint">您当前账户余额<i id='hasmoney'>{$user['userMoney']}</i>元<span>立即充值></span></p>-->
+                        <!--</label>-->
+                        <input type="checkbox" value="account" name="11"  autocomplete="off">
+                        <label class="alance" onclick="useMoney()">当前余额：<i id='hasmoney'>{$user['userMoney']}</i></label>
+                        <?php if($order['price']>$user['userMoney']){ ?><a class="rechargeBtn" href="{:U('user/recharge')}">充值</a>
+                        <p class="rcTip"></p><?php }?>
+                    </div>
+                </div>
+                </div>
+                <div id='otherpay' style="display: none">
+                <h3 class="pay-way">使用第三方支付</h3>
+                <div class="item-content pay">
+                    <div class="disabled"></div>
+                    <div class="radiolist" id='onlinePay'>
+                    	<foreach name='payInfo["online"]' item='vo'>
+                        <input type="radio" value="{$vo['type']}" name="3">
+                        <label class="radio {$vo['type']}" value="{$vo['type']}" >
+                            <p class="pay-name">{$vo['name']}</p>
+                            <p class="pay-hint">{$vo['instruction']}</p>
+                        </label>
+                        </foreach>
+                    </div>
+                </div>
+                </div>
+                <div class="submit-block">
+                    <span style="display: none">还需支付：￥<b>{$Think.cookie.all_price}</b></span>
+                    <a id='goodsPayButton' href="javascript:;">确认支付</a>
+                </div>
+        </div>
+
+    </div>
+
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+       
+        
+        
+       //使用券
+	function payUse(voucherNum,ty){
+		var url='{:U("public/useVoucher")}';
+		var type='goods';
+		var orderId='{$order["id"]}';
+		if(voucherNum==''){
+			 layer.msg('请输入票券编码');
+			 return false;
+		}
+		$.getJSON(url,{voucherNum:voucherNum,orderId:orderId,type:type,ty:ty},function(data){
+			if(data['status']=='0'){
+                reloadPayWay();
+			}else{
+				layer.msg(data['content']);
+			}
+		});
+	}
+	//取消券
+	function cancelUse(voucherNum){
+		var url='{:U("public/cancelVoucher")}';
+		var type='goods';
+		var orderId='{$order["id"]}';
+		$.getJSON(url,{voucherNum:voucherNum,orderId:orderId,type:type},function(data){
+			if(data['status']=='0'){
+				// location.reload();
+                reloadPayWay();
+			}else{
+				layer.msg(data['content']);
+			}
+		});
+	} 
+	//使用积分
+	function useIntegral(){
+		var type='goods';
+		var orderId='{$order["id"]}';
+		if($('.chklist label').hasClass('labelChecked')){
+			var url='{:U("public/cancelIntegral")}';
+		}else{
+			var url='{:U("public/useIntegral")}';
+		}
+		$.getJSON(url,{orderId:orderId,type:type},function(data){
+            if(data['status']=='0'){
+                reloadPayWay();
+			}else{
+				layer.msg(data['content']);
+			}
+		});
+	}
+	reloadPayWay () ;      
+     function reloadPayWay () {
+        var orderId='{$order["id"]}';
+
+        var orderprice='{$order.price}';
+
+        $.getJSON('{:U("public/getBuyPaywayJson")}',{'orderId':orderId,'type':'goods'},function(json){
+            if(json['status']=='0'){
+                $('.chklist').hcheckbox();
+                if (json['data']['integral'][0]['isShow']=='1') {
+                    $('#integral').css('display', '');
+                }else{
+                    $('#integral').css('display', 'none');
+                }
+                if(json['data']['integral'][0]['isUse']=='1'){
+                	$('.chklist label').addClass('labelChecked');
+                }else{
+                	$('.chklist label').removeClass('labelChecked');
+                }
+                $('.chklist b').html(json['data']['integral'][0]['integral']);
+                $('.submit-block b').html(json.data.orderInfo.price);                
+                $('#allprice').html(json.data.orderInfo.price);
+
+				if(orderprice==json.data.orderInfo.price){
+					$('#allpriceshow').show();
+					$('#needpriceshow').hide();
+				}else{
+					$('#needpriceshow').show();
+					$('#allpriceshow').hide();
+
+				}
+
+                if(json.data.orderInfo.price=='0'){
+                	$('.disabled').show();
+                }else{
+                	$('.disabled').hide();
+                }
+                if (json['data']['account'][0]['isShow']=='1') {
+                    $('.alance').attr('onclick', 'useMoney()').removeAttr('disabled');
+                }else{
+                    $('.alance').removeAttr('onclick').attr('disabled','disabled');
+                }
+                if(json['data']['account'][0]['isUse']=='1'){
+                	$('#accountInfo label').addClass('labelChecked');
+                	$('.alance').html('当前剩余：￥<i>'+json['data']['account'][0]['userMoney']+'</i></label>');
+                }else{
+                	$('#accountInfo label').removeClass('labelChecked');
+                	$('.alance').html('使用余额：￥<i>'+json['data']['account'][0]['userMoney']+'</i></label>');
+                }
+                if (json.data.voucher) {
+   
+                   // var	pf=parseFloat($('#allprice').val())-parseFloat(json.data.orderInfo.price);
+                    $('.ticket-type').html('');
+                    var t=0;
+                    $.each(json.data.voucher, function(k,v){
+      
+                    	var f=0;
+                        if (v.isShow == 1) {
+                        	t=1;
+
+                        	if(v.canusenum==0){
+                        		$('.ticket-type').append('<input type="radio" autocomplete="off" style="display:none"><label class="radio" onclick="labelshow('+v.voucherClass+')" id="check'+v.voucherClass+'">'+v.name+'</label>');
+                           	}else{
+                           		$('.ticket-type').append('<input type="radio" autocomplete="off" style="display:none"><label class="radio" onclick="labelshow('+v.voucherClass+')" id="check'+v.voucherClass+'">'+v.name+'（'+v.content+'）'+'</label>');
+                            };
+                        	var str='<p><input type="text" placeholder="输入票券编码" ><a href="javascript:;" onclick="var voucher=$(this).prev().val();payUse(voucher,'+v.voucherClass+');">使用</a></p><ul class="quan-list">';
+                        	if (v.list) {
+                        		$.each(v.list, function(i,l){
+                        			if(l.isUse=='1'){
+                        				f=1;
+                        			}
+                        			str+='<li><div class="left-block"><span class="price"><b>¥</b><i>'+l.voucherValue+'</i></span><span class="quan">'+l.voucherName+'</span></div>'+
+                                    '<div class="right-block"><p class="num">'+l.voucherNum+'</p><p class="time-limit">有效期至'+l.validDataStr+'</p>';
+                                    if (l.isUse==0) {
+                                        str += '<a href="javascript:payUse(\''+l.voucherNum+'\','+v.voucherClass+')" class="voucherUse">立即使用</a>';
+                                    }else{
+                                        str += '<a href="javascript:cancelUse(\''+l.voucherNum+'\','+v.voucherClass+')"  class="voucherUse">取消使用</a>';
+                                    }
+                                    str +='</div></li>';
+                        		});
+                        	}
+                        	str+='</ul>';
+                            $('#voucherList' + v.voucherClass).html(str);
+                            if(f=='1'){
+                            	$('#check' + v.voucherClass).addClass('radioChecked');
+                            	$('#voucherList' + v.voucherClass).show();
+                            }  
+                        }
+                    });
+                    if(t=='1'){
+                    	$('#voucher').show();
+                    }else{
+                    	$('#voucher').hide();
+                    }
+                   // $('#pf0').html(pf.toFixed(2));
+                    //$('#pf1').html(pf.toFixed(2));
+                    //$('#orderPrice').html(json.data.orderInfo.price);
+
+					var str = '';
+                    $('#onlinePay').html('');
+                    $.each(json['data']['online'], function(k,v){
+                        if (v.isShow == 0) {
+                            str = 'disabled';
+                        }else{
+                            str = '';
+                        }
+                       // alert(v.name);
+                      //  $('#onlinePay').append(' <li><label class="label-checkbox item-content"><div class="item-inner"><div class="payIcon"><img src="'+v.icon+'" height="50" /></div><div class="payInfo"><p>'+v.name+'</p><span>'+v.instruction+'</span></div></div><input type="radio" name="my-checkbox" value="'+v.type+'" '+str+'><div class="item-media"><i class="icon icon-form-checkbox"></i></div></label></li>');
+
+						var html='';
+						html+='<input type="radio" value="'+v.type+'" name="3">';
+						html+='<label class="radio '+v.type+'" value="'+v.type+'" >';
+						html+='<p class="pay-name">'+v.name+'</p>';
+						html+='<p class="pay-hint">'+v.instruction+'</p>';
+						html+='</label>';
+						$('#otherpay').show();
+
+						$('#onlinePay').append(html);
+						$('.radiolist').radio();
+                       
+                    });
+
+                };
+            }else{
+                layer.msg(json['content']);
+            }
+        });
+    }
+     function labelshow(i){
+     	if($('#voucherList'+i).css('display')=='none'){
+     		$('#check'+i).addClass('radioChecked');
+     		$('#check'+i).siblings('label').removeClass('radioChecked');
+             $('.ic-ticket .item-inner').hide();
+             $('#voucherList'+i).show();
+         }else{
+             $('.ic-ticket .item-inner').hide();
+             $('.ticket-type label').removeClass('radioChecked');
+         }
+     }
+ 	//使用余额
+ 	function useMoney(){
+ 		var type='goods';
+ 		var orderId='{$order["id"]}';
+        if($('#accountInfo .checkboxlist label').hasClass('labelChecked')){
+ 			var url='{:U("public/cancelAccount")}';
+ 		}else{
+ 			var url='{:U("public/useAccount")}';
+ 		}
+ 		
+ 		$.getJSON(url,{orderId:orderId,type:type},function(data){
+ 			if(data['status']=='0'){
+                 reloadPayWay();
+ 			}else{
+                 layer.msg(data['content']);
+ 			}
+ 		});
+ 	}
+    $('#goodsPayButton').click(function(){
+		
+    	var price=$('.submit-block b').html();
+    	var payType;
+    	if(price!='0'){
+        	//alert(price);
+    		payType=$('#otherpay .radioChecked').attr('value');
+    		if(payType==undefined){
+    			layer.msg('请选择支付方式');
+        		return false;
+    		}
+    	}else{
+    		payType='account';
+    	}
+
+    //	alert(payType);
+
+    //	return;
+        var orderCode="{$order['id']}";
+        var payurl="{:U('paymentStatus',array('orderid'=>$order['id']))}";
+        $.getJSON("{:U('ordersuccess')}",{orderid:orderCode,payType:payType},function(data){
+            if(data['status']=='0'){
+            	if(data.data.payType=='alipay'){
+					//loading层
+					var index = layer.load(2, {
+						shade: [0.1,'#000'] //0.1透明度的白色背景
+					});	
+            		  location.href=data.data.url;
+            	}else{
+            		 location.href=payurl;
+            	}
+              
+            }else{
+                layer.msg(data['content']);
+            }
+        });
+    });
+    $(function(){
+    	//单选框美化
+        $.fn.radio = function(options) {
+            var self = this;
+            return $('label', this).each(function() {
+            		$(this).addClass('radio');
+                	if ($(this).prev().is(":checked")) $(this).addClass('radioChecked');
+            }).click(function(event) {
+            	if($(this).attr('disabled')!='disabled'){
+            		 $(this).siblings().removeClass("radioChecked");
+                     if (!$(this).prev().is(':checked')) {
+                         $(this).addClass("radioChecked");
+                         $(this).prev()[0].checked = true;
+                     }
+                     event.stopPropagation();
+            	}else{
+            		layer.msg('请先取消其他已使用票券');
+            	}
+            }).prev().hide();
+        };
+
+        $('.radiolist').radio();
+
+      	//复选框美化
+        $.fn.hcheckbox=function(options){
+            $(':checkbox+label',this).each(function(){
+                $(this).addClass('checkbox');
+                if($(this).prev().is(':disabled')==false){
+                    if($(this).prev().is(':checked'))
+                        $(this).addClass('labelChecked');
+                }else{
+                    $(this).addClass('disabled');
+                }
+            }).click(function(event){
+            	if($(this).attr('disabled')!='disabled'){
+                    
+            		setTimeout(function(){
+                        if(!$(this).prev().is(':checked')){
+                            $(this).addClass('labelChecked');
+                            $(this).prev()[0].checked = true;
+                        }else{
+                            $(this).removeClass('labelChecked');
+                            $(this).prev()[0].checked = false;
+                        }
+                    },100);
+
+                    event.stopPropagation();
+            	}else{
+            		layer.msg('余额不足请充值或使用其他支付方式');
+            	}     
+             }
+            ).prev().hide();
+        };
+        $('.chklist').hcheckbox();
+        $('.checkboxlist').hcheckbox();
+
+        /*滚动跟随*/
+        var scrollN = $('.base-info').offset().top;
+
+        $(window).scroll(function () {
+            var scrollH = $(this).scrollTop();
+            if (scrollH > scrollN) {
+                $('.base-info').addClass('scroll');
+                $('#main .container').css('padding-top','120px');
+            } else {
+                $('.base-info').removeClass('scroll');
+                $('#main .container').css('padding-top','0px');
+            }
+        });
+
+    })
+        
+        
+        
+        
+    </script>
+
+</block>
+
+
+

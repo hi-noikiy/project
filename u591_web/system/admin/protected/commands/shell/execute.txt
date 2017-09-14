@@ -1,0 +1,8 @@
+#!/bin/bash		
+HOSTNAME="192.168.1.99"
+PORT="3306"
+USERNAME="root"
+PASSWORD="123456"	
+DBNAME="yiierp"
+update_sql="update ydh_notice set status=2 where status=1"
+mysql -h${HOSTNAME} -P${PORT} -u${USERNAME} -p${PASSWORD} ${DBNAME} -e "${update_sql}"

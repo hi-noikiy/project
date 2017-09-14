@@ -1,0 +1,123 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+            <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix">
+                              <div class="title">为什么无法开启直播</div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div class="" style=" margin:30px auto 0; min-height:520px;">
+                                      <div >
+                                          <h3 style="text-align: center;">一、下载直播软件并且安装后，进入自己的直播页面出现:“安装直播软件后才能开始直播”提示的解决办法</h3>
+                                          <!--<p style="text-align: center; ">-->
+                                              <!--<img style="margin-top:30px;" src="{eval echo IMG_PRE_URL}/Feelink/cssimg/help/Live1.png">-->
+                                          <!--</p>-->
+                                          <!--<p style="text-align: center;margin-top:10px;">图1 提示下载软件</p>-->
+                                      </div>
+
+                                      <div style="margin-top:30px;">
+                                          <p style="text-align: center;font-weight: bold">1）、Chrome内核的浏览器，如：谷歌浏览器、360极速浏览器、360浏览器（极速模式）</p>
+                                          <p style=" text-align: center;margin-top:30px;">采用Chrome的浏览器，他往往自带了Flash版本，但是这个版本也经常有兼容性问题，解决办法：</p>
+                                          <p class="_p_font" style=" text-align: center;margin-top:15px;">(1)下载公版的Flash(<a  href="http://get.adobe.com/cn/flashplayer/"> http://get.adobe.com/cn/flashplayer/</a>)</p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px; width:750px;" src="{{static_url('web/cssimg/help/Live2.png')}}">
+                                          </p>
+                                          <p style=" text-align: center;margin-top:30px;">(2)浏览器中输入:chrome://plugins,并禁用自带的Adobe Flash Player</p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px; width:750px;" src="{{static_url('web/cssimg/help/Live3.png')}}">
+                                          </p>
+                                          <p style=" text-align: center;margin-top:30px;">(3)重新启动浏览器</p>
+                                      </div>
+
+                                      <div style="margin-top:30px;">
+                                          <p style="text-align: center;font-weight:bold">2）、IE内核的浏览器，如：360浏览器（兼容模式）</p>
+                                          <p style="  padding: 30px 50px;">采用IE内核的或多或少都有些兼容性问题，比如IE8采用32位能找到，64位的有的能找到，有的不能找到，IE11等在WIN8下不管是32位还是64位均不能找到；最好还是采用非IE内核的浏览器</p>
+                                          <p style="text-align: center; ">
+                                              <img src="{{static_url('web/cssimg/help/Live4.png')}}">
+                                          </p>
+                                      </div>
+
+                                      <div style="margin-top:30px;">
+                                          <p style="text-align: center;margin-top:30px;font-weight: bold">3）、FireFox浏览器（火狐浏览器）</p>
+                                          <p style=" text-align: center;margin-top:30px;">采用FireFox的浏览器，没有自带Flash版本，都需要从官方下载，一般不会有兼容性问题</p>
+                                      </div>
+
+                                      <div >
+                                          <h3 style="text-align: center;margin-top:30px;">二、可以发布了，不过预览的画面是黑色的</h3>
+                                          <!--<p style="text-align: center; ">-->
+                                              <!--<img style="margin-top:30px;" src="{eval echo IMG_PRE_URL}/Feelink/cssimg/help/Live5.png">-->
+                                          <!--</p>-->
+                                          <!--<p style="text-align: center;margin-top:10px;">图2 预览画面全黑</p>-->
+                                      </div>
+
+                                      <div >
+                                          <p style="text-align: center;margin-top:30px;font-weight: bold">1 )、在浏览器里找到工具点击选择internet选项，然后把cookies文件删除完了，然后关闭所有网页重新登录</p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px;" src="{{static_url('web/cssimg/help/Live6.png')}}">
+                                          </p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px;width:750px;" src="{{static_url('web/cssimg/help/Live7.png')}}">
+                                          </p>
+                                      </div>
+
+                                      <div >
+                                          <p style="margin-top:30px;text-align: center;font-weight: bold">2 )、运行cmd，然后点确认.在出来的窗口里输入del *.sol /s然后按回车，删除后关闭所有网页，再重新打开网页</p>
+                                          <p style=" text-align: center;"></p>
+                                          <p style="text-align: center; ">
+                                              <img style="margin-top:30px;" src="{{static_url('web/cssimg/help/Live8.png')}}">
+                                          </p>
+                                      </div>
+
+                                  </div>
+
+                              </div>
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}
+

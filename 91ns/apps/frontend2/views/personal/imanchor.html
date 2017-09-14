@@ -1,0 +1,644 @@
+{% extends "template/personal_body.html" %}
+{% block title %}
+相关编辑
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('imanchor'|ns_css)}}">
+{% endblock %}
+{% block content %}
+<!--概况-->
+<div class="personal-div aboutedit div-hiden clearfix">
+	<div class="about-head clearfix">
+		 <div class="about-head-txt">主播资料</div>
+	</div>
+    <div class="memberauditTab clearfix">
+        <ul value="5">
+            <li name="anchorInfo" class="_auditTab _auditTab5 active">主播资料</li>
+        </ul>
+    </div>
+    <div class="hr"></div>
+    <div id="anchorInfo" class="about-content1">
+        <div class="edit-room-div clearfix about-con-div">
+            <div class="level clearfix">
+                <div class="left pull-left" style="border: 0px;">
+                    <div class="level clearfix anchorLevel">
+                        <div id="info-anchorLevel" class="radius" nsdata="level-radius" nstype="anchor" level-range="1" level-exp="0">
+                            <div class="bgs"></div>
+                            <div class="type">主播等级</div>
+                            <i class=""></i>
+                        </div>
+                        <div class="text">距<i id="info-anchorLevelNext" class=""></i>还需<span id="info-anchorLevelNextExp"></span>主播经验升级</div>
+                    </div>
+                </div>
+                <div class="right pull-left">
+                    <div class="level clearfix fansLevel">
+                        <div id="info-fansLevel" class="radius" nsdata="level-radius" nstype="fans" level-range="1" level-exp="0">
+                            <div class="bgs"></div>
+                            <div class="type">主粉等级</div>
+                            <i class=""></i>
+                        </div>
+                        <div class="text">距<i id="info-fansLevelNext" class=""></i>还需<span id="info-fansLevelNextExp"></span>粉丝升级</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if familyInfo %}
+        <div class="myfamily">我的家族<div class="hr"></div></div>
+        <div class="con-pic pull-left">
+            <img  src="{{ familyInfo['logo'] }}" width="100" height="100">
+        </div>
+        <div class="con-text pull-left" style="margin-top:28px;">
+            <!--第一行-->
+            <div class="con-title clearfix" style="height:auto;">
+                <div class="con-text-name pull-left" style="line-height:40px;padding-right:10px;">{{ familyInfo['name']}}</div>
+                <div class="sprite-pericon family1 pull-left" style="margin-top:7px;color:#fff;text-align:center;margin-left: 5px;">{{ familyInfo['shortName'] }}</div>
+            </div>
+            {% if familyCreator==0 %}
+            <div class="con-cf">
+                <div class="quitFamily" data="{{ familyInfo['name']}}">
+                    退出家族
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+<div class="personal-div myliveroom div-hiden clearfix">
+	<div class="about-head clearfix">
+		 <div class="about-head-txt">我的直播间</div>
+	</div>
+    <div class="memberauditTab clearfix">
+        <ul value="1">
+            <li name="myRoom" class="_auditTab _auditTab1 active">基础设置</li>
+            <li id="accessShow" name="access" class="_auditTab _auditTab1">访问权限</li>
+            <li id="programme" name="order" class="_auditTab _auditTab1">节目单</li>
+            <li id="LiveVideo" name="video" class="_auditTab _auditTab1">直播录像</li>
+            <li name="liveNotice" class="_auditTab _auditTab1">直播须知</li>
+        </ul>
+    </div>
+    <div class="hr"></div>
+	<div id="myRoom" class="about-content">
+        <!--编辑房间名-->
+		<div class="edit-room-div clearfix about-con-div">
+			<div class="edit-tit clearfix">
+                <span>房间名</span>
+                <a href="/{{ns_userUid}}" target="_blank" class="goRoom">去直播间</a>
+			</div>
+			<div class="room-up-div edit-up-div">
+			    <div class="room-name edit-up-txt pull-left"></div>
+			    <div class="edit-but pull-right sprite-anchor edit cu-a aa">编辑</div>
+			</div>
+	        <!----显示下拉显示的编辑房间信息---->
+			<div class="edit-down-div room-down-div">
+			  <div class="room-down-left pull-left">
+			      <div class="clearfix">
+			         <div class="room-down-txt pull-left">显示</div>
+				     <textarea class="edit-box pull-left" maxlength="15"></textarea>
+	              </div>
+				  <div class="room-remin clearfix">还能输入<div class="canwrite-num inline">15</div>个字</div>
+				  <!----按钮---->
+				  <div class="room-but clear-fix">
+				  	  <div class="room-but-save sprite-anchor save  cu-a pull-left">保 存</div>
+				  	  <div class="room-but-cancel sprite-anchor cancel cu-a pull-left">取 消</div>
+				  </div>
+			  </div>
+			  <div class="room-down-right pull-left">
+			  	   <div class="room-right-txt clearfix">示例</div>
+			  	   <img class="example-pic" src="{{static_url('web/cssimg2/personal/roomname.png')}}">
+			  </div>
+			  <div class="toup-but pull-right sprite-anchor edit cu-a">收 起</div>
+			</div>
+		</div>
+	    <!--编辑公告-->
+	    <div class="edit-notice-div clearfix about-con-div">
+			<div class="edit-tit">
+				公告
+			</div>
+			<div class="notice-up-div edit-up-div clear-fix">
+			    <div class="notice-txt edit-up-txt  pull-left"></div>
+			    <div class="edit-but pull-right sprite-anchor edit cu-a">编辑</div>
+			</div>
+	        <!----------公告编辑的下拉---------->
+			<div class="edit-down-div">
+				<div class="notice-left-div pull-left">
+	                 <div class="notice-box">
+	             	       <!--<textarea class="edit-notice-box pull-left" maxlength="60"></textarea>-->
+                         <form id="form1" runat="server">
+                             <div style="position: relative;">
+                                 <textarea class="edit-notice-box pull-left" maxlength="60" onkeyup="javascript:checkWord(this);" onmousedown="javascript:checkWord(this);"  name="content"></textarea>
+                                 <div style="position: absolute;bottom: -203px;right: 10px;">
+                                     还可以输入<span style="font-family: Georgia; font-size: 26px;" id="wordCheck">60</span>/60
+                                 </div>
+                             </div>
+
+                         </form>
+	                 </div>
+
+	                 <div class="notice-but clearfix pull-right">
+	            	     <div class="notice-but-save sprite-anchor save pull-left  cu-a">保 存</div>
+				  	     <div class="notice-but-cancel sprite-anchor cancel  pull-left cu-a">取 消</div>
+	                 </div>
+				</div>
+				<div class="notice-example pull-left">
+					<div class="notice-tit">
+						示例
+					</div>
+					<img src="{{static_url('web/cssimg2/personal/notic.png')}}" class="notice-exam-pic">
+				</div>
+				<div class="toup-but pull-right sprite-anchor edit cu-a">收 起</div>
+			</div>
+		</div>
+        <div class="edit-room-div clearfix about-con-div">
+            <div class="edit-tit clearfix">
+                <span class="texts">房间封面</span>
+                <div id="upBtnPoster" class="upPoster"><i class="sprite-pmanger up"></i><span>上传封面</span></div>
+            </div>
+            <div class="about-content-room">
+                <ul id="posterList" class="posterList clearfix"></ul>
+            </div>
+        </div>
+	</div>
+    <div id="access" class="about-content access div-hiden">
+       <div class="accessBox">
+           <div class="_accessBox">
+               <div class="_accessBox0ne">
+                   <ul class="_accessBox0ne-ul">
+                       <li class="spe"><input id="useRole" type="checkbox" {% if roomLimits['useRole']|default(false)==1 %}checked="checked" {% endif %}><span class="spanLabel">角色可访</span></li>
+                   </ul>
+               </div>
+               <div class="_accessBox0ne spe">
+                   <ul class="_accessBox0ne-ul">
+                       <li class="spe"> <input id="isAnchor" type="checkbox" {% if roomLimits['isAnchor']|default(false)==1 %}checked="checked" {% endif %}><span class="spanLabel">主播</span></li>
+                       <li> <input id="isFamily" type="checkbox" {% if roomLimits['isFamily']|default(false)==1 %}checked="checked" {% endif %}><span class="spanLabel">家族长</span></li>
+                       <li> <input id="isManage" type="checkbox" {% if roomLimits['isManage']|default(false)==1 %}checked="checked" {% endif %}><span class="spanLabel">管理</span></li>
+                       <li style="position: relative;">
+                           <input id="minRicherRank" type="checkbox" {% if roomLimits['minRicherRank']|default(false) %}checked="checked" {% endif %}>
+                           <span class="spanLabel pull-left">特定富豪等级</span>
+                           <span id="inputCheckBox" class="inputCheckBox pull-left">
+                               {% if roomLimits['minRicherRank']|default(false) %}
+                               &nbsp;<span id="selectedRicher"><i class="daYu"></i><i class="con-fh-icon sprite-fh_level fh{{roomLimits['minRicherRank']}}" data="{{roomLimits['minRicherRank']}}"></i></span>
+                               {% else %}
+                               &nbsp;<span id="selectedRicher"><i class="daYu"></i><i class="con-fh-icon sprite-fh_level fh1" data="1"></i></span>
+                               {% endif %}
+                               <i class="upOrDown pull-right"></i>
+                           </span>
+                           <div class="Triangle" style="display: none;">
+                               <div class="head-s pull-left"><div class="head-bottom-s pull-left"></div></div>
+                               <div class="inputCheckBox_check">
+                                   <ul>
+                                       {% for richerRanks in richerRanks %}
+                                       <li onclick="selectRicherOnclick(this,'#selectedRicher')"><i class="daYu"></i><i class="con-fh-icon sprite-fh_level fh{{ richerRanks['level'] }}" data="{{ richerRanks['level'] }}"></i></li>
+                                       {% endfor %}
+                                   </ul>
+                               </div>
+                           </div>
+                       </li>
+                   </ul>
+               </div>
+           </div>
+           <div class="_accessBox second">
+               <div class="_accessBox0ne">
+                   <ul class="_accessBox0ne-ul clearfix">
+                       <li class="spe"><input id="inputPwd" type="checkbox" {% if roomLimits['usePwd']|default(false)==1 %}checked="checked" {% endif %} onclick="pwdOnclick(this)"><span class="spanLabel">输入密码可访</span></li>
+                   </ul>
+               </div>
+               <div class="_hr">
+                   <div class="head-s pull-left">
+                       <div class="head-bottom-s pull-left"></div>
+                   </div>
+                   <div id="_inputTextBox" class="inputText" {% if roomLimits['usePwd']|default(false)==1 %} style="display: block;"{% else %}style="display: none;"{% endif %}>
+                   {% if roomLimits %}
+                       <span>房间密码：<input id="pwdVal" class="text" value="{{roomLimits['roomPwd']}}" type="text"><label id="point"><i class="point"></i>不超过十个字符</label></span>
+                   {% else %}
+                   <span>房间密码：<input id="pwdVal" class="text" value="" type="text"><label id="point"><i class="point"></i>不超过十个字符</label></span>
+                   {% endif %}
+                   </div>
+                   <div id="_inputTextNo" class="inputText" {% if roomLimits['usePwd']|default(false)==1 %} style="display: none;"{% else %}style="display: block;"{% endif %}>
+                    {% if roomLimits['roomPwd']|default(false) %}
+                        <span class="font pull-left">未启用密码</span>
+                        <!--<div class="setPwd pull-left">修改密码</div>-->
+                    {% else %}
+                        <span class="font pull-left">未设置密码</span>
+                        <!--<div class="setPwd pull-left">设置密码</div>-->
+                    {% endif %}
+
+                   </div>
+               </div>
+           </div>
+           <div class="third">
+               <div id="okButton" class="okButton">保存</div>
+           </div>
+       </div>
+    </div>
+    <div id="liveNotice" class="livenotes about-content div-hiden">
+        <div class="live-content-div clearfix">
+            <div class="live-con-line pull-left"></div>
+            <div class="live-con-txt pull-left ">为了让各位主播方便地享受到直播过程中遇到常见问题时的技术支持，
+                <div class="font-num inline">{{webType['name']}}</div>通过细致的考察，向大家推荐以下两个免费合作技术人员，并详细罗列了免费服务的场景情况，如遇到如下情况，请自行通过QQ联系技术人员咨询调试具体事宜
+            </div>
+            <div class="clearfix"></div>
+            <div class="live-qq-tit clearfix">免费调试人员:</div>
+            <div class="live-qq1-div">
+                <div class="qq-tit inline">QQ：<div class="qq1-num font-num inline">344293966</div></div>
+            </div>
+
+            <div class="live-qq2-div">
+                <div class="qq-tit inline">QQ：<div class="qq2-num font-num inline">439826207</div></div>
+            </div>
+
+
+            <div class="notes-list-div clearfix">
+                <div class="notes-list pull-left"><div class="inline font-num list-num">1.</div><div  class="inline list-txt">听得到音乐，麦克风没有声音</div></div>
+                <div class="notes-list pull-left"><div class="inline font-num list-num">2.</div><div  class="inline list-txt">自己听不到任何声音</div></div>
+                <div class="notes-list pull-left"><div class="inline font-num list-num">3.</div><div  class="inline list-txt">听不到背景音乐，但是有麦克风声音</div></div>
+                <div class="notes-list pull-left"><div class="inline font-num list-num">4.</div><div  class="inline list-txt">自己监听正常。对方听不到任何声音</div></div>
+                <div class="notes-list pull-left"><div class="inline font-num list-num">5.</div><div  class="inline list-txt">K歌延迟</div></div>
+                <div class="notes-list pull-left"><div class="inline font-num list-num">6.</div><div  class="inline list-txt">有回音</div></div>
+                <div class="notes-list pull-left"><div class="inline font-num list-num">7.</div><div  class="inline list-txt">有杂音</div></div>
+                <div class="notes-list pull-left"><div class="inline font-num list-num">8.</div><div  class="inline list-txt">没有混响效果</div></div>
+                <div class="notes-list pull-left"><div class="inline font-num list-num">9.</div><div  class="inline list-txt">破音、爆音</div></div>
+            </div>
+            <div class="live-remin2-txt">以上任何一或多个情况时，您可以自主联系以上两个技术人员</div>
+            <div class="live-attention-txt">注：以上项目与电脑硬件、声卡/麦克风硬件故障无关的，可免费调试；机架、驱动精调、设备购买维护等收费项目，主播请自行与技术人员提供的收费服务或设备质量与
+                <div class="inline font-num">{{webType['name']}}</div>平台无关，需用户自行承担风险</div>
+        </div>
+    </div>
+    <div id="video" class="livenotes about-content div-hiden">
+        <div id="videoBox">
+            <div class="live-content-div clearfix">
+                <div class="live-con-img pull-left"></div>
+                <div class="live-con-txt pull-left" style="width: 900px;margin-top: 13px;">
+                    <span class="pull-left">当你没有直播时，可以在直播间播放录像。在开启直播时可选择是否进行录制，最多可录制6个录像。</span>
+                    <div class="_setP clearfix">
+                        <div id="setOpen" class="setOpen pull-left" onclick="setRECStatus(1)">开启</div>
+                        <div id="setClose" class="setOpen pull-left" onclick="setRECStatus(0)">关闭</div>
+                        <input id='wrapHidden' type='hidden'>
+                    </div>
+                </div>
+            </div>
+            <div class="live-content-div">
+                <ul id="video-box" class="video-box">
+                    <!--<li>-->
+                    <!--<a>-->
+                    <!--<img src="/userupload/456anchorposterpath/1445420683.jpg">-->
+                    <!--<i class="index-roomlist-1 _play ico-play"></i>-->
+                    <!--<div class="i-bg"></div>-->
+                    <!--</a>-->
+                    <!--<div class="video-box-name clearfix">-->
+                    <!--<div class="pull-left">sadmlkdml</div>-->
+                    <!--<div class="Operation pull-right">-->
+                    <!--<span class="_use pull-left">使用</span>-->
+                    <!--<span class="pull-left">&nbsp;|&nbsp;</span>-->
+                    <!--<span class="_del pull-left">删除</span>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</li>-->
+
+                </ul>
+            </div>
+        </div>
+
+        <div id="noData" style="text-align: center;padding-top:78px;display: none;">
+            <img src="{{static_url('web/cssimg2/personal/imanchor/noData.png')}}">
+            <p style="margin-top: 12px;">你还没有录像，不能开启直播间录像播放。</p>
+            <p style="margin-top: 5px;">在开播的时候选择录像即可保存。</p>
+        </div>
+    </div>
+    <div id="order" class="livenotes about-content div-hiden">
+
+        <!--编辑歌曲-->
+        <div class="edit-music-div about-con-div">
+            <!--<div class="edit-tit">-->
+              <!--编辑歌曲-->
+            <!--</div>-->
+             <!--<div class="edit-up-div">-->
+                  <!--<div class="edit-up-txt somehead pull-left">当前没有编辑的歌曲哦</div>-->
+                <!--<div class="edit-but pull-right sprite-anchor edit cu-a">编辑</div>-->
+             <!--</div>-->
+            <!--//编辑歌曲下拉-->
+            <div class="music-down-div clearfix">
+                <div class="music-list-div pull-left">
+                        <div class="music-list-tit">
+                            <div class="list-tit-txt inline">节目单</div>（<div class="list-tit-num font-num inline">0</div>）
+                        </div>
+                        <div class="music-list-remin ">节目单内容可供观众参考，其仍可点其他节目</div>
+                        <div class="music-cutline"></div>
+                        <div id="boxListShow" class="hasScroll">
+                            <div class="no-wh g-scroll">
+                                <div class="scroll-bg" style="margin-left: 383px; height: 496px; margin-top: 3px; display: block;"></div>
+                                <div id="scrollBan" class="scroll-ban" style="margin-left: 383px; height: 247.504px; margin-top: -248px; display: block;"></div>
+                            </div>
+                            <div class="scroll-body music-list-box clearfix" style="margin-top: -501px;">
+
+                            </div>
+                        </div>
+                        <div class=" add-music-but sprite-anchor add cu-a">
+                            <div class=" add-music-txt pull-right">添 加</div>
+                        </div>
+                    <div class="_add-music-div">
+                        <div class="add-music-div div-hiden clearfix">
+                            <input type="text" class=" add-music-box pull-left" maxlength="20">
+
+                            <div id="add-music-select" class="add-music-select pull-left"><span>500</span>聊币<i></i></div>
+                            <div class="Triangle1" style="display: none;">
+                                <div class="inputCheckBox_check">
+                                    <ul>
+                                        {% if showPrice %}
+                                        {% for price in showPrice %}
+                                        <li onclick="selectRicherOnclick(this,'#add-music-select')"><span>{{price}}</span>聊币</li>
+                                        {% endfor %}
+                                        {% endif %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class=" add-ok-but cu-a pull-left">确认</div>
+                            <div class="add-cancel-but cu-a pull-left">取消</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="music-exam pull-left">
+                      <div class=" music-exam-tit">示例</div>
+                       <img class="music-exam-pic" src="{{static_url('web/cssimg2/personal/notic.png')}}">
+                </div>
+                <!--<div class="toup-but pull-right sprite-anchor edit cu-a">收 起</div>-->
+             </div>
+        </div>
+
+    </div>
+</div>
+
+<!--我的房管-->
+<div class="personal-div roommanage div-hiden clearfix">
+    <div class="about-head clearfix">
+        <div class="about-head-txt pull-left">我的房管</div>
+        <div class="head-search-div pull-right">
+            <input type="text" placeholder="请输入UID或昵称" class="search pull-left" style="ime-mode:Disabled">
+            <div id="roomSearch" class="serch-icon sprite-concern serch pull-left cu-a"></div>
+        </div>
+    </div>
+    <div class="memberauditTab roommanageTab clearfix"  style="margin-top: 24px;">
+        <ul value="2">
+            <li name="anchorInfo" class="_auditTab _auditTab2 active" data="1">全部</li>
+            <li name="myRoom" class="_auditTab _auditTab2" data="3">7天未登录</li>
+            <li name="liveNotice" class="_auditTab _auditTab2" data="2">30天未登录</li>
+            <input id="roomId" type="hidden" data>
+        </ul>
+    </div>
+    <div class="roommanagehr hr">&nbsp;<!--主播等级：皇冠以上的主播管理上限为：1000（包括皇冠1）主播等级：皇冠以下的主播管理上限为：<span style="color:#ee36ab">50</span>--></div>
+    <ul id="propsCT" class="contents">
+        <li class="overdue show">
+            <div class="selectDelete clearfix">
+                <i checkbtn="" class="sprite-props select pull-left"></i>
+                <span checkbtn="" class="selectAll pull-left">全选</span>
+                <div class="sprite-anchor edit cu-a pull-left">删除</div>
+                <div class="addroommanage pull-right">添加房管</div>
+                <div class="pull-right">我还可以拥有<span id="leftNum" style="color:#ee36ab"></span>个房管</div>
+            </div>
+            <ul id="RoomManageList" class="clearfix frame1">
+
+            </ul>
+            <div class="nomanage div-hiden">
+                <img src="{{static_url('web/cssimg2/personal/imanchor/nomanage.png')}}">
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!--我的守护-->
+<div class="personal-div myGuard div-hiden clearfix">
+    <div class="about-head clearfix">
+        <div class="about-head-txt">我的守护</div>
+    </div>
+    <ul id="guardList" class="clearfix">
+
+    </ul>
+    <div class="noguard div-hiden">
+        <img src="{{static_url('web/cssimg2/personal/imanchor/noguard.png')}}">
+    </div>
+</div>
+
+<!--直播数据-->
+<div class="personal-div livedata div-hiden clearfix">
+	<div class="livedata-head clearfix">
+		<div class="lidata-head-txt">直播数据</div>
+        <div class="memberauditTab roommanageTab clearfix">
+            <ul value="3">
+                <li name="anchorLiveData" class="_auditTab _auditTab3 active" data="1">播出时长</li>
+                <li name="fansCon" class="_auditTab _auditTab3" data="3">粉丝贡献榜</li>
+            </ul>
+        </div>
+    </div>
+    <div class="liveData-content" id="anchorLiveData">
+        <div class="lidata-search-div clearfix">
+            <div class="search-div ">
+                <div class="search-txt pull-left">时间段</div>
+                <!--<input readonly="true" layDate="true" id="livedatastartime" class="ser-box ser-box-begin pull-left" type="text" >-->
+                <input id="d4311" class="Wdate pull-left" type="text" onFocus="WdatePicker({minDate:'<?php echo date('Y-m-d',strtotime('-1 year')); ?>',maxDate:'#F{$dp.$D(\'d4312\')||\'%y-%M-%d\'}'})"/>
+                <div class="search-to pull-left">至</div>
+                <input id="d4312" class="Wdate pull-left" type="text" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'d4311\')||\'<?php echo date('Y-m-d',strtotime('-1 year')); ?>,\'}',maxDate:'%y-%M-%d'})"/>
+                <!--<input readonly="true" layDate="true" id="livedataendtime" class="ser-box search-box-over pull-left" type="text">-->
+                <div class="search-but cu-a sprite-anchor search pull-left">查询</div>
+                <div class=" search-remin pull-left">
+                    <div class="_inline inline pull-left">最近7天直播时长：</div>
+                    <div class="search-time-hour inline pull-left"></div>
+                    <div id="rankInfo" class="_rankInfo pull-left"></div>
+                </div>
+            </div>
+        </div>
+
+        <!----------直播数据表格---------->
+        <table class="lidata-table">
+            <tr class="lidata-tr-tit">
+                <td class="tit-play-time">开播时间</td>
+                <td class="tit-end-time">结束时间</td>
+                <td class="tit-end-time">播出时长</td>
+                <!--<td class="tit-counttime">直播状态</td>-->
+            </tr>
+            <tbody id="livedatatbody">
+            <!-- <tr class="lidata-tr-list">
+                <td class="list-play-time font-num"><div class="time-date inline">2015-05-05</div><div class="time-clock inline">13:30</div></td>
+                <td class="list-end-time font-num"><div class="time-data inline">2015-05-05</div><div class="time-clock inline">14:30</td>
+                <td class="list-counttime"><div class="time-hour font-num inline">1</div>小时<div class="time-min inline font-num">0</div>分钟</td>
+            </tr> -->
+            </tbody>
+        </table>
+    </div>
+    <div class="liveData-content div-hiden" id="fansCon">
+        <ul class="fansDataTab clearfix">
+            <li>&nbsp;<a class="_fansTab" data="1">月榜</a></li>
+
+            <li><a class="_fansTab active" data="0">总榜</a>&nbsp;|</li>
+        </ul>
+        <ul id="fansDataTop" class="liveData-content-fans clearfix">
+
+            <!--<li class="li1" style="margin-right: auto;">-->
+                <!--<div class="img">-->
+                    <!--<div><img src="/userupload/default/avatars/0.jpg"></div>-->
+                    <!--<i class="N0-sprite no1"></i>-->
+                <!--</div>-->
+                <!--<div class="name">huang0002</div>-->
+                <!--<div class="con-fh-icon sprite-fh_level fh8"></div>-->
+                <!--<div class="boot">-->
+                    <!--<span class="">贡献值：</span>-->
+                    <!--<span class="fontY">45453546</span>-->
+                <!--</div>-->
+            <!--</li>-->
+        </ul>
+        <table id="lidata-table" class="lidata-table table1">
+            <tr class="lidata-tr-tit">
+                <td class="tit-play-time td1">排名</td>
+                <td class="tit-end-time td2">超级粉丝</td>
+                <td class="tit-end-time td3">贡献财富(聊币)</td>
+                <!--<td class="tit-counttime">直播状态</td>-->
+            </tr>
+            <tbody id="lidata-tbody">
+             <!--<tr class="lidata-tr-list">-->
+                <!--<td class="list-play-time font-num">4</td>-->
+                <!--<td class="list-end-time font-num">-->
+                    <!--<img src="/userupload/default/avatars/8.jpg" width="50px" height="50px" style="border-radius: 50px;">-->
+                    <!--<span class="auditTable-name">昵称昵称昵称</span>-->
+                <!--</td>-->
+                <!--<td class="list-counttime"><div class="fontY">3432</div></td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--推广-->
+<div class="personal-div anchordetails div-hiden clearfix">
+    <div class="livedata-head clearfix">
+        <div class="lidata-head-txt">推广</div>
+        <div class="memberauditTab roommanageTab clearfix">
+            <ul value="4">
+                <li name="detailsData" class="_auditTab _auditTab4 active" data="1">绑定的账号</li>
+                <li name="payoffData" class="_auditTab _auditTab4" data="3">抽成记录</li>
+            </ul>
+        </div>
+        {% if recData['url'] %}
+        <a class="content-code pull-right" style="position: relative;">
+            <img class="content-code-box"  src="http://121.41.37.5:8088{{recData['img']}}">
+            <div class="head-s pull-left">
+                <!--<div class="head-bottom-s pull-left"></div>-->
+            </div>
+        </a>
+        <label class="pull-right" style="margin: -20px 35px 0px 0;font-size: 14px;">我的推广链接：{{recData['url']}}</label>
+        {% endif %}
+    </div>
+    <div class="detailsData-content" id="detailsData">
+
+        <!----------绑定的账号---------->
+        <table class="lidata-table" id="tableList">
+            <tr class="lidata-tr-tit">
+                <td class="tit-play-time">UID</td>
+                <td class="tit-end-time">昵称</td>
+                <td class="tit-end-time">注册时间</td>
+            </tr>
+            <tbody id="detailsData-tbody">
+
+            </tbody>
+        </table>
+    </div>
+    <div class="detailsData-content div-hiden" id="payoffData">
+
+        <div class="lidata-search-div border-spe clearfix">
+            <div class="search-div ">
+                <div class="search-txt pull-left">查询时间:</div>
+                <input type="text" class="Wdate pull-left" id="d4321" onfocus="WdatePicker({minDate:'2014-09-25',maxDate:'#F{$dp.$D(\'d4322\');}'})">
+                <div class="search-to pull-left">至</div>
+                <input type="text" class="Wdate pull-left" id="d4322" onfocus="WdatePicker({minDate:'#F{$dp.$D(\'d4321\')||\'2014-09-25,\';}',maxDate:'%y-%M-%d'})">
+                <div id="payoffDataSearch" class="search-but cu-a sprite-anchor search pull-left">查询</div>
+                <div class="head-search-div pull-right">
+                    <input type="text" placeholder="请输入UID或昵称" id="payOffSearch" class="search pull-left" style="ime-mode:Disabled">
+                    <div id="payoffDataSearch1" class="serch-icon sprite-concern serch pull-left cu-a"></div>
+                </div>
+            </div>
+        </div>
+        <table id="payoffData-table" class="lidata-table">
+            <tr class="lidata-tr-tit">
+                <td class="tit-play-time td1">时间</td>
+                <td class="tit-end-time td2">抽成对象</td>
+                <td class="tit-end-time td3">充值金额(元)</td>
+                <td class="tit-counttime">抽成比例</td>
+                <td class="tit-counttime">抽成金额(元)</td>
+            </tr>
+            <tbody id="payoffData-tbody">
+
+            </tbody>
+        </table>
+        <div class="nopayOff div-hiden">
+            <img src="{{static_url('web/cssimg2/personal/imanchor/nopayoff.png')}}">
+            <p>没有符合条件的记录</p>
+        </div>
+    </div>
+</div>
+
+<!--直播须知-->
+<div class="personal-div livenotes div-hiden clearfix">
+	<div class="live-head">
+		<div class="live-head-txt">直播须知</div>
+		<div class=" live-cut-line"></div>
+    </div>
+
+    <div class="live-content-div clearfix">
+	    <div class="live-con-line pull-left"></div>
+		<div class="live-con-txt pull-left ">为了让各位主播方便地享受到直播过程中遇到常见问题时的技术支持，
+			<div class="font-num inline">91</div>NS通过细致的考察，向大家推荐以下两个免费合作技术人员，并详细罗列了免费服务的场景情况，如遇到如下情况，请自行通过QQ联系技术人员咨询调试具体事宜
+	    </div>
+    	<div class="clearfix"></div>
+		<div class="live-qq-tit clearfix">免费调试人员</div>
+		<div class="live-qq1-div">
+	    	<div class="qq-tit inline">QQ：<div class="qq1-num font-num inline">344293966</div></div>
+	    </div>
+
+		<div class="live-qq2-div">
+		     <div class="qq-tit inline">QQ：<div class="qq2-num font-num inline">439826207</div></div>
+		</div>
+
+
+	<div class="notes-list-div clearfix">
+		<div class="notes-list pull-left"><div class="inline font-num list-num">1.</div><div  class="inline list-txt">听得到音乐，麦克风没有声音</div></div>
+		<div class="notes-list pull-left"><div class="inline font-num list-num">2.</div><div  class="inline list-txt">自己听不到任何声音</div></div>
+		<div class="notes-list pull-left"><div class="inline font-num list-num">3.</div><div  class="inline list-txt">听不到背景音乐，但是有麦克风声音</div></div>
+		<div class="notes-list pull-left"><div class="inline font-num list-num">4.</div><div  class="inline list-txt">自己监听正常。对方听不到任何声音</div></div>
+		<div class="notes-list pull-left"><div class="inline font-num list-num">5.</div><div  class="inline list-txt">K歌延迟</div></div>
+		<div class="notes-list pull-left"><div class="inline font-num list-num">6.</div><div  class="inline list-txt">有回音</div></div>
+		<div class="notes-list pull-left"><div class="inline font-num list-num">7.</div><div  class="inline list-txt">有杂音</div></div>
+		<div class="notes-list pull-left"><div class="inline font-num list-num">8.</div><div  class="inline list-txt">没有混响效果</div></div>
+		<div class="notes-list pull-left"><div class="inline font-num list-num">9.</div><div  class="inline list-txt">破音、爆音</div></div>
+	</div>
+	<div class="live-remin2-txt">以上任何一或多个情况时，您可以自主联系以上两个技术人员</div>
+	<div class="live-attention-txt">注：以上项目与电脑硬件、声卡/麦克风硬件故障无关的，可免费调试；机架、驱动精调、设备购买维护等收费项目，主播请自行与技术人员提供的收费服务或设备质量与
+	     <div class="inline font-num">91</div>NS平台无关，需用户自行承担风险</div>
+    </div>
+</div>
+<div class="flashs" style="display:none;">
+    <i class="bg"></i>
+    <div id="upPosterFlash">
+        <p>
+            您还未安装Adobe flashplayer，请先安装。
+        </p>
+        <script type="text/javascript">
+            var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://");
+            document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='"
+            + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" );
+        </script>
+    </div>
+</div>
+
+<div id="lDialog-bg" class="lDialog-bg"></div>
+<div id="videoPlayerBox" style="display: none;position: absolute;top: 50%;margin-top: -100px;left: 50%;margin-left: -190px;z-index: 100;">
+    <div id="videoplayer">
+
+    </div>
+</div>
+
+<script type="text/javascript">
+    var roomFileName = '{{roomFileName}}';
+</script>
+<script type="text/javascript" defer async data-main="{{static_url('personal.imanchor'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}

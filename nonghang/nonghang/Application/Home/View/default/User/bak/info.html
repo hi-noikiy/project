@@ -1,0 +1,124 @@
+<extend name='Public/base'/>
+<block name='title'>我的资料</block>
+<block name='body'>
+<div class="views">
+      <!-- View -->
+      <div class="view view-main">
+        <!-- Pages -->
+        <div class="pages">
+          <!-- Home page -->
+          <div class="page" data-page="index">
+            <div class="headerNav">
+                <div class="headerLeft"><a href="{:U('user')}" class="external"><img src="__IMG__/common/back.png" height="100%" /></a></div>
+                <div class="title"><span>我的资料</span></div>
+                <div class="headerRight"></div>
+            </div>
+            
+ 
+
+ 
+          <!-- 修改密码 page -->
+          <div class="page cached" data-page="password">
+            <div class="headerNav">
+                <div class="headerLeft"><a href="#index"><img src="__IMG__/common/back.png" height="100%" /></a></div>
+                <div class="title"><span>修改密码</span></div>
+                <div class="headerRight"></div>
+            </div>
+            <div class="content">
+                <div class="inputText">
+                    <input type="password" placeholder="请输入原始密码"  id='oldp' />
+                    <input type="password" placeholder="请输入新密码（6位纯数字）"  id='curp'/>
+                    <input type="password" placeholder="请确认新密码（6位纯数字）"  id='dp'/>
+                </div>
+                <div class="Button"><a id='pwdid'  href="" onclick="pwdajax()" class="btn">确认</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<script type="text/javascript" src="__JS__/framework7.min.js"></script>
+<script type="text/javascript">
+	var myApp = new Framework7();
+	var $$ = Dom7;
+	var mainView = myApp.addView('.view-main', {
+		domCache: true //enable inline pages
+	});
+// 编辑性别
+	$$('.sex').on('click', function () {
+		var buttons1 = [
+			{
+				text: '性别',
+				label: true
+			},
+			{
+				text: '男',
+				bold: true,
+				onClick: function() {
+			         $.get("{:U('sexajax',array('sex'=>'0'))}",function(msg){
+			        	 if(msg=='1'){
+			        		 $$('.sex .item-after').text('男');
+			        	 }
+			         });
+			    }
+			},
+			{
+				text: '女',
+				onClick: function() {
+					$.get("{:U('sexajax',array('sex'=>'1'))}",function(msg){ 
+						if(msg=='1'){
+							$$('.sex .item-after').text('女');
+			        	 }
+					});
+			    }
+			}
+		];
+		var buttons2 = [
+			{
+				text: '取消',
+				color: 'red'
+			}
+		];
+		var groups = [buttons1, buttons2];
+		myApp.actions(groups);
+	});
+	
+//生日
+	var calendarDefault = myApp.calendar({
+		input: '#birthday',
+		dateFormat:'2000-10-10'
+	}); 
+	var url="{:U('info')}";
+	function nameajax(){
+		var name=$('#name').val().trim();
+		if(name==''){
+			myApp.alert('昵称不能为空');
+		}else{
+			$.get("{:U('nameajax')}",{name:name},function(msg){
+					location.href=url;
+			});
+		}
+	}
+	function pwdajax(){
+		var oldp=$('#oldp').val().trim();
+		var curp=$('#curp').val().trim();
+		var dp=$('#dp').val().trim();
+		if(oldp==''){
+			myApp.alert('原始密码不能为空');
+		}else if(curp==''){
+			myApp.alert('请输入新密码');
+		}else if(dp!=curp){
+			myApp.alert('确认密码不一致');
+		}else{
+			$.get("{:U('pwdajax')}",{oldp:oldp,curp:curp},function(json){
+				var msg=JSON.parse(json);
+				if(msg['ResultCode']=='0'){
+					location.href=url;
+	        	 }else{
+	        		 myApp.alert(''+msg['Message']);
+	        	 }
+			});
+		}
+	}
+</script>
+</block>

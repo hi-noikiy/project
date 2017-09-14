@@ -1,0 +1,316 @@
+<div id="breadcrumb">
+<a href="/anchor" class="go-to-home tip-bottom font font18" data-original-title="Go to Home">
+<i class="icon-arrow-left"></i> 返回 &nbsp;
+</a> 
+<a href="#" class="font font18"> &nbsp;&nbsp;<span>主播 &gt</span></a>
+<a href="#" class="font font18"> <span>{{anchorInfo['status']}}&gt</span></a>
+<a href="#" class="current font font18"> <span>主播详情</span></a>
+</div>
+
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <div class="user-info">
+        <img alt="" src="{{anchorInfo['avatar']}}">
+
+        <p>
+            <span class="font font20 cr-dpe">{{anchorInfo['nickName']}}</span>
+        </p>
+        <p>
+            <span class="font font20 cr-dpe" id="_uid">{{anchorInfo['uid']}}</span>
+            <input id="in_uid" type="hidden" value="{{anchorInfo['uid']}}">
+        </p>
+        <p>
+            <span class="i-actor sprite-zb_level zb{{anchorInfo['level2']}}"></span><span class="font font20 cr-dpe">{{anchorInfo['name']}}</span>
+        </p>
+        <p>
+            <!-- <span class="font font20 cr-dpe">{{anchorInfo['status']}}</span> -->
+            <span class="font font20 cr-dpe">
+                {{anchorInfo['status']}}
+                {% if anchorInfo['status']=='已签约' and !familyId %}<!--  -->
+                <button class="btn" onclick="unbind({{anchorInfo['uid']}})">解约</button>
+                {% endif %}
+            </span>
+        </p>
+    </div>
+  <div class="progtrckr-box" style="top:260px;">
+    <div class="progtrckrline" ></div>
+    <ul class="progtrckr" style="width: 212px;">
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/anchorinfo?uid={{anchorInfo['uid']}}">个人资料</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/income?uid={{anchorInfo['uid']}}">收益</a></li>
+        <!-- <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/fans?uid={{anchorInfo['uid']}}">粉丝</a></li> -->
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/contribute?uid={{anchorInfo['uid']}}">贡献</a></li>
+        <li class="active"><i class="custom-icon custom-icon-point"></i><a href="/anchor/trend?uid={{anchorInfo['uid']}}">趋势分析</a></li>
+        <li><i class="custom-icon custom-icon-point"></i><a href="/anchor/worktable?uid={{anchorInfo['uid']}}">导出工作情况表</a></li>
+    </ul>
+  </div>
+</div>
+<!--end sidebar-menu-->
+
+
+<div id="content">
+
+<div class="container-fluid">
+
+	<div class="content-box" style="background: #FFF; text-align: left; margin-top:20px;  padding-bottom: 40px;">
+		<ul class="tab-nav clearfix">
+            <!--<li class="tabs-nav active"><a href="#box1">直播室在线人数</a></li>-->
+            <li class="tabs-nav active"><a href="#box2">播出时长</a></li>
+		</ul>
+		<div class="hr-d7"></div>
+        <div class="center-content">
+            <!--<div id="box1" class="box-pane active">-->
+                <!--<div class="row-fluid">-->
+                    <!--<div class="container-fluid">-->
+                        <!--<div class="nav-line">-->
+                            <!--<a class="boxinfo active" href="#tab-box1">按时</a>-->
+                            <!--<a class="boxinfo" href="#tab-box2">按日</a>-->
+                            <!--<a>按周</a>-->
+                            <!--<a>按月</a>-->
+                            <!--&lt;!&ndash;<input id="dete" type="text" value="4/23/99" id="rangeA" />&ndash;&gt;-->
+                            <!--<input id="sdate" placeholder="请输入日期" class="laydate-icon" >-->
+                            <!--<input id="edate" placeholder="请输入日期" class="laydate-icon" >-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div id="tab-box1e" class="tab-box">-->
+                    <!--<div class="row-fluid">-->
+                        <!--<div class="container-fluid">-->
+                            <!--<div style="background-color:#95a7ff; " class="clearfix">-->
+                                <!--<ul style="margin-left: 50px;font-size: 16px;">-->
+                                    <!--<li style="width:500px;height: 67px;list-style: none;float: left;">-->
+                                        <!--<div style="margin-left: 30px;">-->
+                                            <!--<div style="margin-top: 10px;">最多</div>-->
+                                            <!--<div style="margin-top: 10px;">3158</div>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li style="width:500px;height: 67px;border-left: 1px dashed #767676;border-right: 1px dashed #767676; list-style: none;float: left;">-->
+                                        <!--<div style="margin-left: 30px;">-->
+                                            <!--<div style="margin-top: 10px;">最少</div>-->
+                                            <!--<div style="margin-top: 10px;">0</div>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                    <!--<li style="width:500px;height: 67px; list-style: none;float: left;">-->
+                                        <!--<div style="margin-left: 30px;">-->
+                                            <!--<div style="margin-top: 10px;">平均</div>-->
+                                            <!--<div style="margin-top: 10px;">31587</div>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+
+
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="row-fluid" style="margin-top: 20px;">-->
+                        <!--<div class="container-fluid">-->
+                            <!--<div id="erender-chart" style="height: 500px">-->
+
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div id="tab-box2e" class="tab-box">-->
+                    <!--h-->
+                <!--</div>-->
+
+            <!--</div>-->
+            <div id="box2" class="box-pane" style="display:block">
+                <div class="row-fluid">
+                    <div class="container-fluid">
+                        <div class="nav-line">
+                            <a class="boxinfo active" onclick="TabNavline(this,'day','天')">按日</a>
+                            <a class="boxinfo" onclick="TabNavline(this,'week','周')">按周</a>
+                            <a class="boxinfo" onclick="TabNavline(this,'month','月')">按月</a>
+                            <!--<input id="dete" type="text" value="4/23/99" id="rangeA" />-->
+                            <form action="" method="post">
+                                <a class="date-calendar pull-right"><i class=" icon-calendar"></i>
+                                    <input id="mydate"  name="excelTime" placeholder="请输入日期"  value="" style="height: 34px;">
+                                </a>
+                                <input type="hidden" value="1" name="isexcel">
+                                <input type="hidden" value="day" name="type" id="exceltype">
+                                <!--<button type="submit" class="btn btn-purple pull-right">导出表格</button>-->
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div  class="tab-box">
+                    <div class="row-fluid">
+                        <div class="container-fluid">
+                            <div style="background-color:#95a7ff; " class="clearfix">
+                                <ul style="margin-left: 50px;font-size: 16px;">
+                                    <li style="width:33%;height: 67px;list-style: none;float: left;">
+                                        <div style="margin-left: 30px;">
+                                            <div style="margin-top: 10px;">最多</div>
+                                            <div id="maxval" style="margin-top: 10px;">0</div>
+                                        </div>
+                                    </li>
+                                    <li style="width:33%;height: 67px;border-left: 1px dashed #767676;border-right: 1px dashed #767676; list-style: none;float: left;">
+                                        <div style="margin-left: 30px;">
+                                            <div style="margin-top: 10px;">最少</div>
+                                            <div id="minval" style="margin-top: 10px;">0</div>
+                                        </div>
+                                    </li>
+                                    <li style="width:33%;height: 67px; list-style: none;float: left;">
+                                        <div style="margin-left: 30px;">
+                                            <div style="margin-top: 10px;">平均</div>
+                                            <div id="meanval" style="margin-top: 10px;">0</div>
+                                        </div>
+                                    </li>
+                                </ul>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid" style="margin-top: 20px;">
+                        <div class="container-fluid">
+                            <div id="render-chart" style="height: 500px">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+
+
+     
+</div>
+
+</div>
+
+<script src="{{static_url('web/js/flotr2.js')}}"></script>
+<script src="{{static_url('web/laydate/laydate.js')}}"></script>
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<script type="text/javascript" src="{{static_url('web/js/91ns.anchor1.js')}}"></script>
+<script src="{{static_url('web/js/jquery.ui.datepicker-zh-CN.js')}}"></script>
+
+<script type="text/javascript">
+
+$(function(){
+	$('body').addClass('anchorinfo');
+	  //$('#dete').datepicker({arrows:true});
+//    laydate.skin('default');
+//
+//    laydate({
+//       elem: '#sdate'
+//    });
+//    laydate({
+//        elem: '#edate'
+//    })
+    $('#mydate').daterangepicker({
+                presetRanges:[
+                    //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+                    //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+                    //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+                ],
+                presets:{
+                    dateRange:'自定义时间'
+                },
+                rangeStartTitle:'起始日期',
+                rangeEndTitle:'结束日期',
+                nextLinkText:'下月',
+                prevLinkText:'上月',
+                doneButtonText:'确定',
+                cancelButtonText:'取消',
+                earliestDate:'',
+                latestDate:Date.parse('today'),
+                constrainDates:true,
+                rangeSplitter:'-',
+                dateFormat:'yy-mm-dd',
+                closeOnSelect:false,
+                onOpen:function(){
+                    $('.ui-daterangepicker-dateRange').click().parent().hide();
+                    $('.ui-daterangepickercontain').css({left:($('#mydate').offset().left-50)+'px'});
+                    $('.ui-daterangepickercontain').css({top:($('#mydate').offset().top-50)+'px'});
+                },
+                onClose:function(){
+                    var typer=$('#mydate').attr('data');
+                    if(typer=='day'){
+                        TabNavline('',typer,'天');
+                        return false;
+                    }
+                    if(typer=='week'){
+                        TabNavline('',typer,'周');
+                        return false;
+                    }
+                    else{
+                        TabNavline('',typer,'月');
+                        return false;
+
+                    }
+                }
+            }
+    );
+
+    $('.tabs-nav').click(function(){
+        $('.tabs-nav.active').removeClass('active');
+        $(this).addClass('active');
+        var id=$(this).children('a').attr('href');
+       $('.box-pane').hide();
+        $(id).show();
+        return false;
+    });
+
+    $('.nav-line a').click(function(){
+        $('.nav-line a.active').removeClass('active');
+        $(this).addClass('active');
+        return false;
+    });
+    TabNavline('','day','天');
+});
+
+
+function TabNavline(a,typer,title){
+    $('#mydate').attr('data',typer);
+    $('#exceltype').attr('value',typer);
+    var b=$('#mydate').val();
+    var timeBegin= b.substring(0,10);
+    var timeEnd= b.substring(12,23);
+    var uid=$('#in_uid').val();
+    var data={};
+    data.type=typer;
+    data.uid=uid;
+    data.timeBegin=timeBegin;
+    data.timeEnd=timeEnd;
+    $.ajax({
+        type: "POST",
+        data: data,
+        url: '/ajax/anchorBroadcastTime',
+        dataType: 'json',
+        success: function (res) {
+            var data = res.data;
+            var datalist = res.data.list;
+
+            if(data.max>=60){
+                var hourmax=(Math.floor(data.max/3600)+"小时"+Math.floor((data.max%3600)/60)+"分钟");
+            }
+            else{
+                var hourmax='0';
+            }
+            if(data.min>=60){
+                var hourmin=(Math.floor(data.min/3600)+"小时"+Math.floor((data.min%3600)/60)+"分钟");
+            }
+            else{
+                var hourmin='0';
+            }
+            if(data.mean>=60){
+                var hourmean=(Math.floor(data.mean/3600)+"小时"+Math.floor((data.mean%3600)/60)+"分钟");
+            }
+            else{
+                var hourmean='0';
+            }
+
+            $('#maxval').html(hourmax);
+            $('#minval').html(hourmin);
+            $('#meanval').html(hourmean);
+            justDraw(datalist, {yTitle:'分钟',xTitle:title});
+        }
+    })
+
+}
+</script>
+

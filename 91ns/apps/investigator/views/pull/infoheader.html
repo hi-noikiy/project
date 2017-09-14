@@ -1,0 +1,166 @@
+<div id="enterPwd" style="display:none"> <!--class="ui-dialog"-->
+    <form id="enterPwdForm">
+        <div>密码：<input type="password" value='' id="pwd"></div>
+        <input id='hideuid' type="hidden">
+    </form>
+</div>
+<script type="text/javascript">
+    $('#enterPwd').on('keypress',function(e){
+        e = e || window.event;
+        if(13 == e.keyCode){
+            var uid = $("#hideuid").attr('data');
+            aa(uid);
+            e.returnValue = false
+            return false
+        }
+    });
+    var uid = '{{userInfo['uid']}}';
+    enterPwd(uid);
+    function enterPwd(uid){
+        var postData = {};
+        postData.type = 1;
+        $.ajax({
+            type:"POST",
+            data:postData,
+            url:'/ajax/checkHasAuth',
+            dataType:'json',
+            success:function(res){
+                if(res.code == 0){
+                    $("#content").removeClass('hidden');
+                }else{
+                    // var pwd = window.prompt("输入密码", "");
+                    // aa(uid,pwd);
+                    $('#enterPwd').dialog({
+                        autoOpen:true,
+                        width:320,
+                        height:180,
+                        title:'输入密码',
+                        resizable:false,
+                        modal:true,
+                        open:function(){
+                            $('#hideuid').attr('data',uid);
+                        },
+                        buttons: {
+                            "确定": function () {
+                                // $(".ui-dialog-titlebar-close").click();
+                                aa(uid);
+                            }
+                        }
+                    });
+                }
+                
+            }
+
+        });
+                    
+    }
+    function aa(uid,pwd){
+        var data={};
+        data.pwd = $('#pwd').val();
+        data.type = 1;
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/checkAnchorPwd',
+            dataType:'json',
+            success:function(res){
+                if(res.code == 0){
+                    location.reload();
+                }else{
+                    if(confirm(res.info) == false){
+                        $("#content").addClass('hidden');
+                    }else{
+                        $("#content").addClass('hidden');
+                    }
+                }
+                
+            }
+
+        });
+    }
+</script>
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <div class="user-info">
+        <img alt="" src="{{userInfo['avatar']}}">
+
+        <p>
+            <span class="font font20 cr-dpe">{{userInfo['nickName']}}</span>
+        </p>
+        <p>
+            <span class="font font20 cr-dpe">{{userInfo['uid']}}</span>
+            <input id="an_uid" type="hidden" value="{{userInfo['uid']}}" />
+        </p>
+    </div>
+    <div class="progtrckr-box">
+        <div class="progtrckrline" style="height: 70px;"></div>
+        <ul class="progtrckr">
+            {% if ns_type=='anchorinfo' or ns_type == 'anchorinfoNew' %}
+            <li class="{%if ns_type|default('false') == 'anchorinfo'%} active {% endif %}"><i class="custom-icon custom-icon-point"></i><a href="/pull/anchorinfo?uid={{userInfo['uid']}}">消费</a></li>
+            <li class="{%if ns_type|default('false') == 'anchorinfoNew'%} active {% endif %}"><i class="custom-icon custom-icon-point"></i><a href="/pull/anchorinfoNew?uid={{userInfo['uid']}}">消费总计</a></li>
+            {% else %}
+            <li class="{%if ns_type|default('false') == 'supportinfo'%} active {% endif %}"><i class="custom-icon custom-icon-point"></i><a href="/pull/supportinfo?uid={{userInfo['uid']}}">消费</a></li>
+            <li class="{%if ns_type|default('false') == 'supportinfoNew'%} active {% endif %}"><i class="custom-icon custom-icon-point"></i><a href="/pull/supportinfoNew?uid={{userInfo['uid']}}">消费总计</a></li>
+            {% endif %}
+            <!-- <li><i class="custom-icon custom-icon-point"></i><a  href="/pull/anchorchat?uid={{userInfo['uid']}}">聊天记录</a></li> -->
+
+        </ul>
+    </div>
+</div>
+<!--end sidebar-menu-->
+<div id="content" class="hidden">
+
+    <div class="container-fluid">
+<div class="row-fluid" style="margin-top: 60px;">
+        <div class="thum-box span3">
+            <div class="thum-top clearfix">
+                <div class="title">
+                    <p><span>富豪</span></p>
+                    <p><span>等级</span></p>
+                </div>
+            </div>
+
+            <div class="thum-content ">
+                <p class="font font20 cr-e5">
+                    <i class="sprite-fh_level fh{{userInfo['level']}}"></i>
+                    <span>{{userInfo['name']}}</span>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="thum-box span3">
+            <div style="margin: 0 auto; width: 280px;">
+                <div class="thum-top ggr clearfix">
+                    <div class="title ggr">
+                        <p style="margin-top: 10px"><span>账户余额</span></p>
+                        <p style="margin-top: -7px"><span>（聊币）</span></p>
+                    </div>
+                </div>
+
+                <div class="thum-content ">
+                    <p class="font font20 cr-e5 clearfix">
+                        <span class="font font36 cr-ly pull-left" style="margin-left:15px; ">{{userInfo['cash']}}</span>
+                        <span class="pull-right" style="margin-right: 10px;"><button class="btn btn-grey" onclick="myDilog({{userInfo['uid']}})" >发放</button></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="thum-box span3">
+            <div class="pull-right">
+                <div class="thum-top bl clearfix">
+                    <div class="title bl">
+                        <p style="margin-top: 10px"><span>总消费</span></p>
+                        <p style="margin-top: -7px"><span>（聊币）</span></p>
+                    </div>
+                </div>
+
+                <div class="thum-content " >
+                    <p class="font font20 cr-e5">
+                        <span class="font font36 cr-ly">{{userInfo['amount']}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>

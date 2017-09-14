@@ -1,0 +1,2 @@
+post=a:5:{s:4:"code";s:0:"";s:7:"game_id";s:1:"9";s:8:"password";s:13:"lucky20020114";s:4:"sign";s:32:"ef27f5683ec7f37d9f7429dc9204c62e";s:8:"username";s:11:"15307148311";}, 2017-06-22 01:19:18
+sql=insert into web_token (account_id, game_id, token, addtime) values ('1655027', '9', 'WW1cNlY4D2QIWVxtCGUMN1E9AicFJlYmWzRWIQNpVTICPF0zUmwJNlphCGMBOAIzAWVRZgRqCDgKMVZiV3UGYVlpXDRWOg90CGhccAheDGNRYAI8BWJWY1tkVmYDN1VhAmZdcFI0CX9aJAg5AXoCYQEwUW8EYwg_aCjlWa1djBjZZP1xiVmAPOQ==', '1498065558'), 2017-06-22 01:19:18

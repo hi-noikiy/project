@@ -1,0 +1,2 @@
+post=a:3:{s:3:"sid";s:46:"sst1gamee4329e5138fd4b9b928d406d6f411971131611";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, 2017-02-15 14:15:20
+post=a:3:{s:3:"sid";s:46:"sst1gamef92a95d0fbde4fd2a9e6f7df77e8e782140298";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, 2017-02-15 15:12:51

@@ -1,0 +1,11 @@
+post=a:5:{s:4:"code";s:6:"502153";s:7:"game_id";s:1:"9";s:8:"password";s:14:"joemj150625132";s:4:"sign";s:32:"b2a55c9111e6399c9aaafe37cbc56bb3";s:8:"username";s:11:"15984231398";}, 2017-05-21 00:17:25
+post=a:5:{s:4:"code";s:6:"502153";s:7:"game_id";s:1:"9";s:8:"password";s:11:"15062513299";s:4:"sign";s:32:"d702644ad3e04e518c227730578175b2";s:8:"username";s:11:"15984231398";}, 2017-05-21 00:17:35
+post=a:5:{s:4:"code";s:6:"614643";s:7:"game_id";s:1:"9";s:8:"password";s:9:"mxx970608";s:4:"sign";s:32:"8fe11919b3e126dc2507cf3e762f590a";s:8:"username";s:11:"18706127216";}, 2017-05-21 00:38:43
+post=a:5:{s:4:"code";s:6:"174314";s:7:"game_id";s:1:"9";s:8:"password";s:11:"15326173888";s:4:"sign";s:32:"ebdd8e234c8e0dd9ecf2ec7c7fa70869";s:8:"username";s:11:"15326173888";}, 2017-05-21 08:31:36
+post=a:5:{s:4:"code";s:6:"769287";s:7:"game_id";s:1:"9";s:8:"password";s:10:"1290205896";s:4:"sign";s:32:"a0469216ff0b70fdfb7801d5ad5713ec";s:8:"username";s:11:"15945151209";}, 2017-05-21 09:34:52
+post=a:5:{s:4:"code";s:6:"273510";s:7:"game_id";s:1:"9";s:8:"password";s:10:"2014211wei";s:4:"sign";s:32:"293851e520645ddaadb125eeb24c4f70";s:8:"username";s:11:"13145855636";}, 2017-05-21 12:39:24
+post=a:5:{s:4:"code";s:6:"324416";s:7:"game_id";s:1:"9";s:8:"password";s:7:"2698229";s:4:"sign";s:32:"4f3d1978caf8ac6721908582458a2b06";s:8:"username";s:11:"13086842021";}, 2017-05-21 14:44:05
+post=a:5:{s:4:"code";s:6:"154450";s:7:"game_id";s:1:"9";s:8:"password";s:14:"cyw18787151654";s:4:"sign";s:32:"611bdae885a2fe68f76457b08cd97867";s:8:"username";s:11:"18787151654";}, 2017-05-21 18:41:04
+post=a:5:{s:4:"code";s:6:"154450";s:7:"game_id";s:1:"9";s:8:"password";s:11:"18787151654";s:4:"sign";s:32:"37d9fbca54694956506d1a158c26f224";s:8:"username";s:11:"18787151654";}, 2017-05-21 18:41:29
+post=a:5:{s:4:"code";s:6:"127992";s:7:"game_id";s:1:"9";s:8:"password";s:15:"yanxiao1003-520";s:4:"sign";s:32:"39e5c0ff6b309381704b3db8110c9cd5";s:8:"username";s:11:"13895190580";}, 2017-05-21 21:15:39
+post=a:5:{s:4:"code";s:6:"127992";s:7:"game_id";s:1:"9";s:8:"password";s:9:"zhangqian";s:4:"sign";s:32:"16ad16beb3840a993cc41b7c00bfe3cc";s:8:"username";s:11:"13895190580";}, 2017-05-21 21:15:47

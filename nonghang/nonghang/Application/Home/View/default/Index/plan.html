@@ -1,0 +1,122 @@
+<extend name="Public/base"/>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="<if condition="$pflag neq ''">{:U('index/cinema')}<else/>{:U('index/index')}</if>" class="link"> <i class="icon icon-back"></i><!--<span>Back</span>--></a></div>
+    <div class="center sliding">{$cinema['cinemaName']}</div>
+    <div class="right"><a href="{:U('cinemalist',array('op'=>'plan'))}">更换影院</a></div>
+  </div>
+</div>
+  </block>
+
+
+<block name='body'>
+  <div data-page="plan" class="page">
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+
+      <div id="nowCinemaCode" style="display:none">{$cinema['cinemaCode']}</div>
+
+		<div class="dateBox">
+            <ul class="dateBody"  id="dateBody">
+              <volist name='time' id='vo'>
+                <li planDate="{$vo['time']}" <?php if($i=='1'){ ?>class="cur"<?php }?>>{$vo['instr']}{$vo['dtime']}</li>
+                </volist>
+            </ul>
+        </div>
+
+        <div class="planList">
+          <volist name='films' id='vo'>
+          <dl>
+              <dt>
+                    <a class="filmLink" href="{:U('details')}?filmNo={$vo.filmNo}" >
+                        <div class="filmImg">
+                            <img src="<?php if(!empty($vo['film']['image'])){ ?>__UPLOAD__/{$vo['film']['image']}<?php }else{ ?>imgUrl/movie/default.jpg<?php } ?>" height="100%"  />
+                        </div>
+                        <div class="filmInfo">
+                            <h2>{$vo['filmName']}</h2><span><?php if(!empty($vo['film'])){ ?>{$vo['film']['score']/10}<?php }else{ ?>0<?php } ?></span>
+                            <p>影片片长:{$vo['totalTime']}分钟</p>
+                        </div>
+                        <div class="clear"></div>
+                    </a>
+                </dt>
+                <volist name='vo["planInfo"]' id='plan'>
+                    <a class="planInfo" href="{:U('seat',array('featureAppNo'=>$plan['featureAppNo']))}">
+                      <div class="planDate"><span>{$plan['startTime']}</span><em>￥{$plan['memberPrice']}</em>{$plan['hallNo']}</div>
+                        <div class="planType"><span>{$plan['copyLanguage']}{$plan['copyType']}</span><em>￥{$plan['listingPrice']}</em></div>
+                    </a>
+                </volist>
+                <div class="clear"></div>
+            </dl>
+            </volist>
+        </div>
+
+
+    </div>
+  </div>
+  </block>
+
+<block name='script'>
+<script>
+var w = $("body").width();
+var i = $("#dateBody > li").length;
+var n = $("#dateBody > li").width();
+var planDate = '';
+
+var uploadUrl = $('#uploadUrl').html();
+
+var imgUrl = $('#imgUrl').html();
+$("#dateBody").width((parseInt(n*i)));
+$("#dateBody > li").width(w*0.33);
+$("#dateBody > li").click(function(){
+$(this).addClass("cur").siblings().removeClass("cur")}
+);
+$("#dateBody").find("li").each(function(){
+    $(this).click(function(){
+        planDate = $(this).attr("planDate");
+        getPlanlist(planDate);
+    });
+});
+
+function getPlanlist(planDate){
+var details = $('#details').html();
+myApp.showIndicator();
+    $.get($('#planajax').html(),{
+        cinemaCode:$('#nowCinemaCode').html(),
+        startTime:planDate,
+        random:Math.random(),
+        }, function(msg) {
+             myApp.hideIndicator();
+            var data=JSON.parse(msg);
+            $('.planList').html('');
+            if(data){
+                var indexSeat = $('#indexSeat').html();
+                $.each(data,function(k,value){
+                    var str="";
+                     str+='<dl><dt><a class="filmLink" href="' + details + '?filmNo=' + value['filmNo'] +'" ><div class="filmImg">'+
+                        '<img src="';
+                     if(value['film']['image']){
+                         str+= uploadUrl +value['film']['image'];
+                     } else{
+                         str+= imgUrl + '/movie/default.jpg';
+                     }
+                     str+='" height="100%"  /></div><div class="filmInfo"><h2>'+
+                        value['filmName']+'</h2><span>'+value['film']['score']/10+'</span><p>影片片长:'+value['totalTime']+'分钟</p>'+
+                    '</div><div class="clear"></div> </a></dt>';
+                     $.each(value.planInfo,function(key,v){
+                         
+                         str+='<a class="planInfo" href="'+indexSeat+'?featureAppNo='+v['featureAppNo']+'"><div class="planDate"><span>'
+                                 +v['startTime']+'</span><em>￥'+v['memberPrice']+'</em></div><div class="planType"><span>'
+                                 +v['copyLanguage']+v['copyType']+'</span><em>￥'+v['listingPrice']+'</em></div></a>';
+                    });
+                    str+='<div class="clear"></div></dl>';
+                    $('.planList').append(str);
+                });             
+            }
+    }) ;        
+}
+  </script>
+    </block>

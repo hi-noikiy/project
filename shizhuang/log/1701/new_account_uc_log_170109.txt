@@ -1,0 +1,13 @@
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1gamee9a7d8ed65a9409b9483f508d83ad6ed159142";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652171  2017-01-09 14:49:51
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1game4a2b5f2d34444ed7aadd076f82dfb7cb168767";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652172  2017-01-09 15:10:52
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1gameb2550e41d5be466786b425e3db6b851b171090";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652174  2017-01-09 15:53:14
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1mobi7cdebd5834be478ab01eafbc511994de115232";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652176  2017-01-09 16:05:49
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1mobid8614b0cdc024d198a6bcee2c90c05c2167589";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652177  2017-01-09 16:30:56
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1game53e24156b83f4099b07845ae5581542f121791";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652178  2017-01-09 16:43:55
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1game2238c19f58b34c84a05cfcf3a7c87d48180575";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652179  2017-01-09 16:45:22
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1mobi735adccff91448c8b2d64bf7be74879e198216";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652180  2017-01-09 16:47:15
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1mobi3c6e1f6c684e460d998e852989900425179690";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652181  2017-01-09 16:57:42
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1mobidb159a6ccf5241d2a793f1bb33e072ea159228";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652184  2017-01-09 17:32:17
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1mobia5e455df4cde4b81b7d2f13234ecd481123915";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652185  2017-01-09 18:15:37
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1gamed19ed595722441f59a446ead30c26b0b165761";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652186  2017-01-09 19:05:46
+ uc new account login, post=a:3:{s:3:"sid";s:46:"sst1mobi5aba4f67878c4b52a1f3a62f1eed5015141709";s:7:"channel";s:7:"android";s:7:"game_id";s:1:"8";},get=a:0:{}, return= 1 1652187  2017-01-09 21:41:10

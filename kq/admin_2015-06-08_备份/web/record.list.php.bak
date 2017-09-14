@@ -1,0 +1,72 @@
+<div class="search">
+  打卡查询
+<form action="index.php" method="get">
+	  	  时间:<input name="fromTime" type="text" size="10" id="date_s" value="<?=$_GET['fromTime']?>" readonly>
+		  到:<input name="toTime" id="date_e" type="text" size="10" value="<?=$_GET['toTime']?>" readonly>
+                  <?php
+                    $admin = new admin();
+                    $sear = $admin->getInfo($_SESSION['ADMIN_ID'],'seartag','pass');
+                  ?>
+            <? if($sear=='1'){?>
+                  姓名:<select name="card_id">
+                    <option value="">全部</option>
+                <?php
+                    $sql = "select card_id,real_name from _sys_admin";
+                    $res = $webdb->getList($sql);
+                    foreach($res as $val){
+                ?>
+                    <option value="<?=$val['card_id']?>" <?php echo $val['card_id']==$_GET['card_id']?'selected':'' ?>><?=$val['real_name']?></option>
+                    <?}?>
+                      </select>
+            <?}?>
+		  <input name="type" type="hidden" value="<?=$_GET['type']?>" size="20">
+		  <input name="do" type="hidden" value="list" size="20">
+		  <input name="cn" type="hidden" value="<?=$className?>" size="20">
+		  <input name="sear" type="hidden" value="sear"/>
+		  <input type="submit" value="搜索" class="sub2">
+                  <br>&nbsp;&nbsp;注：上班时间指：工作日期间，在公司上班的时间（按指纹统计,不包括加班时间）。缺失打卡记录的，须先通过申请异常单补充打卡记录。s后缀表异常单时间。
+</form>
+</div>
+  <table cellspacing="0" cellpadding="0" class="Admin_L">
+    <tr>
+      <th scope="col" class="T_title">日期</th>
+      <th scope="col" class="T_title">姓名</th>
+      <th scope="col" >门禁卡</th>
+      <th scope="col" >指纹卡</th>
+      <th scope="col" >上班时间</th>
+    </tr>
+    <?foreach($list as $val){?>
+    <tr class="Ls2">
+        <td class="N_title"><?=$val['recorddate']?></td>
+        <td class="N_title">
+        <?
+            $ad = new admin();
+            $ad->setWhere("card_id='".$val['card_id']."'");
+            $name = $ad->getArray('pass');
+
+            echo $name[0]['real_name']?$name[0]['real_name']:"迎宾卡";
+        ?>
+        </td>
+        <td>
+            <?
+            		$val['addtime'] = preg_replace('/\[\d{2}:\d{2}:\d{2}\s\[进门2\]\]\s/i','',$val['addtime']);
+                $val['addtime'] = preg_replace('/\s\[\d{2}:\d{2}:\d{2}\s\[进门2\]\]/i','',$val['addtime']);
+                $val['addtime'] = preg_replace('/\[\d{2}:\d{2}:\d{2}\s\[进门2\]\]/i','',$val['addtime']);
+                $ad = explode(' ',$val['addtime']);
+                //print_r($ad);
+                $i=0;
+                foreach($ad as $v)
+                {
+                    $i++;
+                    echo $v;
+                    if($i%4=='0')
+                    echo "<br>";
+                }
+            ?>
+        </td>
+        <td><?=$val['addtime_ex']?$val['addtime_ex']:"&nbsp;"?></td>
+        <td><?=floor($val['totaltime']/60)."小时".($val['totaltime']%60)."分钟"?></td>
+        <td><?=floor($val['totalall']/60)."小时".($val['totalall']%60)."分钟"?></td>
+    </tr>
+    <?}?>
+  </table>

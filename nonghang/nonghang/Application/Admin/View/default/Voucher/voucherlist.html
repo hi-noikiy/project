@@ -1,0 +1,224 @@
+<extend name='Public/base'/>
+<block name='title'>票券列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu"> 
+            <ul>
+               {$leftMenu}
+            </ul>
+            <div class="planBtn"><a class="button" href="javascript:addvoucher();" >生成票券</a></div>
+        </div>
+        <div class="rightContent">
+        	
+            <div class="tableList">
+            	<ul class="tabbtn" id="tabs">
+                <li <if condition="$status eq -1 "> id="current"</if>><a href="{:U('voucherlist', array('status'=>-1))}">票券列表</a></li>
+                    <li <if condition="$status eq 0 "> id="current"</if>><a href="{:U('voucherlist', array('status'=>0))}">销售票券</a></li>
+                    <li <if condition="$status eq 1 "> id="current"</if>><a href="{:U('voucherlist', array('status'=>1))}">已售票券</a></li>
+                    <li <if condition="$status eq 3 "> id="current"</if>><a href="{:U('voucherlist', array('status'=>3))}">已使用票券</a></li>
+                </ul><!--tabbtn end-->
+                <div class="tabcon" id="tablist">
+                    <div class="sublist" id="tab1">
+                    	<div class="queryBox">
+                            <form method="post" action="{:U()}" class="searchform" id="searchform">
+                            <input type="hidden" name="status" value="{$status}">
+                            <div class="inputSelect">
+                                <span>生成批次：</span>
+                                <select name="searchBatchNum" style="width:120px;">
+                                <option value="-1">全部</option>
+                                <foreach name="batchNumList" item="vo" key="k">
+                                    <option value="{$vo.batchNum}" <if condition="$searchBatchNum eq $vo['batchNum'] "> selected="selected"</if>>{$vo.batchNum}</option>
+                                </foreach>
+                                 </select>
+                            </div>
+
+                            <div class="inputSelect">
+                                <span>类型：</span>
+                                <select name="searchTypeId" style="width:120px;">
+                                <option value="-1">全部</option>
+                                <foreach name="voucherTypeList" item="vo" key="k">
+                                    <option value="{$vo.typeId}" <if condition="$searchTypeId eq $vo['typeId'] "> selected="selected"</if>>{$vo.typeName}</option>
+                                </foreach>
+                                 </select>
+                            </div>
+
+                            <div class="inputText" >
+                                <span>编号：</span>
+                                <input type="text" name="searchStartVoucherId" placeholder="请输入票券编号" value="{$searchStartVoucherId}" style="width:120px;"> - <input type="text" name="searchEndVoucherId"placeholder="请输入票券编号" value="{$searchEndVoucherId}" style="width:120px;"> 
+                             </div>
+                             <div class="inputSelect">
+                                <span>适用影院：</span>
+                                <select name="searchCinemaCode" style="width:90px">
+                                    <option value="-1">全部影院</option>
+                                    <foreach name="cinemaList" item="vo" key="k">
+                                    <option value="{$vo.cinemaCode}" <if condition="$searchCinemaCode eq $vo['cinemaCode'] "> selected="selected"</if>>{$vo.cinemaName}</option>
+                                </foreach>
+                                 </select>
+                            </div>
+
+                            <div class="inputText">
+                                <span>票券编码：</span>
+                                <input type="text" name="searchVoucherNumber" placeholder="请输入票券编号" value="{$searchVoucherNumber}" style="width:120px">
+                            </div>
+
+                            <a href="#" class="button" id="search">查询</a>
+                            <if condition="$status eq 0 ">
+                            <a href="javascript:sellSelect();" class="button">售出选中</a>
+
+                            <a href="javascript:sellAll();" class="button">售出全部</a>
+                            </if>
+
+                            </form>
+                        </div>
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <thead>
+                              <tr >
+                               <td width="5%"><input type="checkbox" onclick="select_other(this);" /></td>
+                                <td width="5%">票券ID</td>
+                                <td width="8%">票券编码</td>
+                                <td width="10%">归属影城</td>
+                                <td width="14%">票券名称</td>
+                                <td width="10%">适用影城</td>
+                                <if condition="$status eq 3 "><td width="10%">使用订单</td></if>
+                                <td width="10%">生效时间</td>
+                                <td width="10%">到期时间</td>
+                                <td width="10%">生成时间</td>
+                                <td width="8%">销售状态</td>
+                                <td width="8%">使用状态</td>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <foreach name="voucherList" item="vo" key="k">
+                                    <tr>
+                                    <td><input type="checkbox" name='vocherId[]' value="{$vo.voucherId}" /></td>
+                                    <td>{$vo.voucherId}</td>
+                                    <td>{$vo.voucherNumber}</td>
+                                    <td>{$vo.belongCinemaName}</td>
+                                    <td>{$voucherTypeList[$vo['typeId']]['typeName']}</td>
+                                    <td>{$vo.cinemaName}</td>
+                                    <if condition="$status eq 3 "><td>{$vo.useOrderId}</td></if>
+                                    <td>{$vo.startTime|date="Y-m-d",###}</td>
+                                    <td>{$vo.endTime|date="Y-m-d",###}</td>
+                                    <td>{$vo.addTime|date="Y-m-d",###}</td>
+                                    <td>
+                                        <if condition="$vo['status'] eq 0 ">
+                                        <span style="color:green">未出售</span>
+                                        <else />
+                                        <span style="color:red">已出售</span>
+                                        </if>
+
+                                        </td>
+                                    <td><if condition="$vo['status'] eq 0 ">
+                                    <span style="color:green">未生效</span>
+                                        </if>
+
+                                        <if condition="$vo['status'] eq 1 ">
+                                        已生效
+                                        </if>
+
+                                        <if condition="$vo['status'] eq 3 ">
+                                        <span style="color:red">已使用</span>
+                                        </if>
+                                    </td>
+                                    </tr>
+                                </foreach>
+
+                            </tbody>
+                        </table>
+                        <div class="orderTotal">
+                            <span>票券总张数：{$count}张</span>
+                            <a href="{:U('orderPort',$pageData)}">导出到EXCEL</a>
+                        </div>
+                        <div class="pagination"><div class="page">{$page}</div></div>
+                    </div>
+
+                    </div>
+
+                    </div>
+                </div>
+            </div>
+
+<script type="text/javascript">
+
+$('.queryBox #search').click(function(){
+    $('#searchform').submit();
+});
+
+
+//全选
+function select_other(){
+    $.each($("input[name='vocherId[]']"), function(i, n){
+        n.checked = !n.checked;
+    }); 
+}
+
+function sellSelect(){
+    var voucherList = {};
+    var isSellect = false;
+    $.each($("input[name='vocherId[]']"), function(i, n){
+       if (n.checked) {
+            isSellect = true;
+            voucherList[i] = n.value;
+       }
+    });
+    if (!isSellect) {
+        layer.alert('请选择要出售的票券！');
+        return ;
+    };
+    $.ajax({
+        url:'{:U("sellVoucher")}',// 跳转到 action    
+        data:{'voucherList':voucherList},    
+        type:'post',       
+        dataType:'json',    
+        success:function(data) {
+
+            showPage(data.data);
+        }  
+    });
+
+}
+
+function sellAll () {
+    var searchBatchNum = $("select[name='searchBatchNum']").val();
+    var searchStartVoucherId = $("input[name='searchStartVoucherId']").val();
+    var searchEndVoucherId = $("input[name='searchEndVoucherId']").val();
+    var searchCinemaCode = $("select[name='searchCinemaCode']").val();
+    var searchVoucherNumber = $("input[name='searchVoucherNumber']").val();
+
+    $.ajax({
+        url:'{:U("sellVoucher")}',// 跳转到 action    
+        data:{'searchBatchNum':searchBatchNum,'searchStartVoucherId':searchStartVoucherId,'searchEndVoucherId':searchEndVoucherId,'searchCinemaCode':searchCinemaCode,'searchVoucherNumber':searchVoucherNumber},    
+        type:'post',       
+        dataType:'json',    
+        success:function(data) {
+
+            showPage(data.data);
+        }  
+    });
+
+}
+
+function showPage (sessionName) {
+    
+    layer.open({
+     title :'出售票券',
+     type: 2,
+     area: ['500px', '630px'],
+     fix: false, //不固定
+     maxmin: true,
+     content: '{:U('sellVoucher')}?sessionName=' + sessionName
+    });
+}
+
+function addvoucher(){
+    layer.open({
+        title :'添加票券',
+        type: 2,
+        area: ['400px', '630px'],
+        fix: false, //不固定
+        maxmin: true,
+        content: '{:U('addVoucher')}'
+    });
+}
+</script> 
+</block>

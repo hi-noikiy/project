@@ -1,0 +1,92 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+            <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix" style="position:relative;">
+                              <div class="title">如何开启直播</div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c">
+                                  <div style="margin-top:30px;" >
+                                      <p style=" text-align: center"><span style="color: #cb5494; ">1.</span>登录后，点击首页右上角“我要直播”进入中转页面，如下图：</p>
+                                      <p style="text-align: center; ">
+                                          <img style=" margin-top:30px;width:600px;border: 1px solid #4C4C4C;"  src="{{static_url('web/cssimg/help/help1.png')}}">
+                                      </p>
+                                  </div>
+
+                                  <div  style="margin-top:30px;">
+
+                                      <p style=" text-align: center"><span style="color: #cb5494; ">2.</span>点击“开始直播”后进入自己的直播房间，如下图：</p>
+                                      <p style="text-align: center; ">
+                                          {% if webType['channelType']!=2 %}
+                                          <img style=" margin-top:30px;" src="{{static_url('web/cssimg/help/help2.png')}}">
+                                          {% else %}
+                                          <img style=" margin-top:30px;" src="{{static_url('web/cssimg/help/help17.jpg')}}">
+                                          {% endif %}
+                                      </p>
+                                  </div>
+                                  <div  style="margin-top:30px;">
+                                      <p style=" text-align: center"><span style="color: #cb5494; ">3.</span>如果没有安装官方的视频发布软件，需要点击下载软件（安装完后需要重新启动浏览器）</p> 
+                                  </div>
+                                  <div  style="margin-top:30px;">
+                                      <p style=" text-align: center"><span style="color: #cb5494; ">4.</span>安装完软件并且已经重启浏览器后，就可以开始直播了。</p>                                      
+                                  </div>
+
+                                  {% if ns_userUid|default(0) != 0 %}
+                                  <div class="header-right clearfix">
+                                    <div class="toPlay" onclick="userAction('toroom','{{ ns_userUid|default(0) }}');">
+                                      <i class="ico-main-4"></i>
+                                      <span>开启直播</span>
+                                    </div>
+                                  </div>
+                                  {% endif %}
+                              </div>
+
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}

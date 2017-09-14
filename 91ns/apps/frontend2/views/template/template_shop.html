@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "template/meta.html" %}
+	<title>91NS—美女视频</title>
+	{% include "template/link.html" %}
+	{% block head %}
+	{% endblock %}
+    <script type="text/javascript" defer async data-main="{{static_url('mall'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</head>
+<body>
+<div class="wrap">
+	{% include "template/header.html" %}
+    <div class="wrapNav"></div>
+	<div class="wrapNavTab">
+	    <div class="w_1200" style="position: relative;">
+
+            <div class="active-cur {%if ns_type|default('allshop') == 'allshop'%}active-cur1{%endif%}{%if ns_type|default('allshop') == 'vip'%}active-cur2{%endif%}{%if ns_type|default('allshop') == 'car'%}active-cur3{%endif%}{%if ns_type|default('allshop') == 'guard'%}active-cur4{%endif%}"></div>
+
+            <a href="/shop/allshop" class="mar {%if ns_type|default('allshop') == 'allshop'%}cur{%endif%}">全部</a>
+	        <a href="/shop/vip" class="{%if ns_type|default('allshop') == 'vip'%}cur{%endif%}">V卡</a>
+	        <a href="/shop/car" class="{%if ns_type|default('allshop') == 'car'%}cur{%endif%}">座驾</a>
+	        <a href="/shop/guard" class="{%if ns_type|default('allshop') == 'guard'%}cur{%endif%}">守护</a>
+	    </div>
+	</div>
+	<div class="wrapBd">
+		<div class="w_1200">
+	    {% block body %}
+		{% endblock %}
+		</div>
+	</div>
+	{% include "template/footer.html" %}
+</div>
+</body>
+</html>

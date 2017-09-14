@@ -1,0 +1,50 @@
+<extend name='Public/base'/>
+<block name='navbar'>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+			<div class="center sliding">图文详情</div>
+			<div class="right"></div>
+		</div>
+	</div>
+</block>
+<block name='body'>
+
+	<div class="pages">
+		<div data-page="info2" class="page" id="page-info2">
+			<link rel="stylesheet" href="__CSS__/goods.css?{:time()}">
+<style>
+.main {
+	width:100%;
+
+}
+.main p {
+    line-height: 25px;
+    font-size: 15px;
+    color: #333;
+    padding: 0 8px;
+    margin-top: 10px;
+}
+.main span{display:block;}
+.main img {
+    padding: 0 8px;
+	width:100%;
+	height:auto;
+}
+
+</style>
+			<div class="main" style="padding-top:0;">
+
+				{:htmlspecialchars_decode($detail)}
+
+			</div>
+		</div>
+
+	</div>
+
+
+</block>
+
+
+
+

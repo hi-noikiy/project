@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/screen'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+</head>
+<body>
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+    <div class='pos_rel'>
+        <img src='{{static_url("web/cssimg/mobile/screen/top_bg.jpg")}}' width="100%"/>
+        <p class='title pos_ab'>
+            直播大厅
+        </p>
+        <img id="leftMenu" src='{{static_url("web/cssimg/mobile/screen/back.png")}}' width="7%" class='pos_ab back' />
+        <img id="getRoomList" src='{{static_url("web/cssimg/mobile/screen/ref.png")}}' width="7%" class='pos_ab ref' />
+    </div>
+    <div class='pos_rel'>
+        {% include "template/banner.html" %}
+    </div>
+    <div style="display:none;">
+        <li id="roomListDataDom">
+            <img class='list_bg' src='{{static_url("web/cssimg/mobile/screen/zb.jpg")}}' width="96%" />
+            <img class='pos_ab mark' src='{{static_url("web/cssimg/mobile/screen/mask.png")}}' width="96%" />
+            <img class='pos_ab live' src='{{static_url("web/cssimg/mobile/screen/live.jpg")}}' width="18%" />
+            <div class='pos_ab people'>
+                <img class='fl' src='{{static_url("web/cssimg/mobile/screen/peson.png")}}' width="6%" />
+                <p class='fl rs'></p>
+            </div>
+            <p class='pos_ab name'></p>
+            <img class='pos_ab jz' src='{{static_url("web/cssimg/mobile/btn/home.png")}}' width="16%" />
+        </li>
+    </div>
+    <div id="my_view" class='list'>
+        <ul id="roomListData" class="clearfix">
+        </ul>
+        <div class='clear_all'></div>
+    </div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" data-main="{{static_url('mobile/m/index'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

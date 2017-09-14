@@ -1,0 +1,35 @@
+<extend name='Public/bookbase'/>
+<block name='title'>支付</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+              <a href="#" class="back link" onclick='window.location.href="index"' >
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">支付</div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+    <div class="pages">
+        <div data-page="" class="page">
+            <div class="main" id="page-paymentSuccess">
+
+                <div class="state-section success">
+                    <div class="bgBox">您已支付成功</div>
+                    <p>包厢验证码：<span>{$reserve['code']}</span></p>
+                    <p>观影地点 :<span> 南华店</span></p>
+                    <p>
+                        <a href="{:U('bookwhole/orderBc')}?id={$reserve['id']}">查看订单></a>
+                    </p>
+                </div>
+
+              <!--   <div class="state-section fail">
+                    <div class="bgBox">支付失败</div>
+                </div> -->
+
+            </div>
+        </div>
+    </div>
+</block>

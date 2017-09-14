@@ -1,0 +1,206 @@
+<extend name='Public/bookbase'/>
+<block name='title'>包场订单</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                <a href="{:U('user/user')}" class="external link" >
+                <!-- <a href="#" class="back link"> -->
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">包场订单</div>
+            <div class="right">
+            </div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+        <div data-page="orderBc" class="page">
+            <div class="main" id="page-orderBc">
+                <?php if($list):?>
+                <p class="root">了解退订规则></p>
+                <?php endif;?>
+                <volist name='list' id='v'>
+                <label class="order-section">
+                    <input class="check-order" name='orderbc_del'  uuid='{$v.id}' type="checkbox" disabled>
+                    <?php if($v['image']):?>
+                    <img src="http://zhongxing.zrfilm.com/Uploads/{$v.image}">
+                    <?php else:?>
+                    <img src="__IMG__/bookwhole/d1.png">
+                    <?php endif;?>                 
+                    <!--<h2>{$v.filmName} <i>¥{$v.prepay}({$v.total})</i></h2>-->
+                    <h2>{$v.filmName} <i>¥{$v.total}</i></h2>
+                    <p>影城：<span>南华店</span></p>
+                    <p>影厅：<span>{$v.topicName}</span></p>
+                    <p>日期：<span>{$v.time}</span></p>
+                    <p>时段：<span>{$v.cc}-{$v.ec}</span></p>
+                    <?php if(isset($v['packagelist'])):?>
+                    <h3>套餐饮品</h3>
+                    <volist name="v['packagelist']" id='vc'>
+                    <p><span>{$vc.name}：{$vc.num}份</span></p>
+                    </volist>
+                    <?php endif;?>
+                       <?php if(isset($v['servicelist'])):?>
+                        <h3>附加服务</h3>
+                        <volist name="v['servicelist']" id='vb'>
+                            <p><span>{$vb.name}</span></p>
+                        </volist>
+                         <?php endif;?>
+                        <?php if($v['detail']):?>
+                         <p>附加说明：{$v.detail}</p>
+                        <?php endif;?>
+                        <?php if($v['inv']):?>
+                         <p>{$v.inv}</p>
+                        <?php endif;?>
+                    <h3 class="line-h3"></h3>
+                    <p>订单编号：{$v.id}<i>{$v.paymentTimeflag}</i></p>
+                    <p>付款方式：{$v.paymentTypeName}¥{$v.prepay}</p>
+                  <!--   <p>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：支付成功/支付失败/退票退款</p>
+                    <p class="codePw">验证密码：<em>123456</em><b></b></p> -->
+                    <!--<p>付款方式：<span>{$v.paymentypeName}</span></p>-->
+                    <?php if($v['paymentState']==2):?>
+                   
+
+
+                    <?php if($v['state']==2):?>
+                    <p>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：已兑换</p>
+                    <?php elseif($v['state']==3):?>
+                    <p>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：退票退款</p>
+                     <?php elseif($v['state']==4):?>
+                    <p>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：退票退款</p>
+                    <?php elseif($v['state']==1):?>
+                    <p>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：支付成功</p>
+                    <?php endif;?>
+                     <p class="codePw">验证密码：<em>{$v.code}</em><b></b></p>
+                    <?php elseif($v['paymentState']==1):?>
+                    <p>状态：支付失败</p>
+                    <p class="codePw">验证密码：<em>未知</em><b></b></p>
+                    <?php elseif($v['paymentState']==3):?>
+                    <p>状态：支付失败</p>
+                    <p class="codePw">验证密码：<em>未知</em><b></b></p>
+                    <?php endif;?>
+                </label>
+                </volist>
+                <?php if(!$list):?>
+                <div  id="page-noneBc">
+                    <img src="__IMG__/bookwhole/none.png" />
+                </div>
+                <?php endif;?>
+
+                 <div style="display:none" id="orderbc_del_order_thisUrl">{:U('bookwhole/del_order')}</div>
+            </div>
+
+           <!--规则提示-->
+            <div class="picker-modal picker-info orderBc" id="pay-section">
+                <div class="toolbar">
+                    <div class="toolbar-inner">
+                        <div class="left"></div>
+                        <div class="text"></div>
+                        <div class="right"><a href="#" class="close-picker"></a></div>
+                    </div>
+                </div>
+                <div class="picker-modal-inner">
+                    <div class="content-block">
+                        <h4> 支付预定金 </h4>
+                        <p>
+                            可在观影前<span class="color-blue">5</span>天申请退订或调整，过时不返还预定金！
+                        </p>
+                        <h4>
+                            全额支付
+                        </h4>
+                        <p>
+                            可在观影前<span class="color-orange">3</span>天申请退订或调整，过时不返还支付金！
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+</block>
+
+<block name='script'>
+
+    <script type="text/javascript">
+    $$('.root').on('click', function () {
+        myApp.pickerModal('.picker-info');
+    });
+
+//    //订单删除
+//    $('#editBc,#delectBc').remove();
+//    $('#page-orderBc').parent().before('<div id="editBc">编辑</div>');
+//    $('#page-orderBc').parent().before('<div id="delectBc">删除</div>');
+
+    $('#editBc').on('click',function(){
+        $(this).hide();
+        $('#delectBc').show();
+        $('.check-order').removeAttr('disabled');
+        $('.check-order').parents('.order-section').find('h4 em').show();
+    });
+
+    $('#delectBc').on('click',function(){
+
+
+          var ids='';
+             $("input[name='orderbc_del']:checked").each(function(i,a){    
+                    var $this = $(this);
+                    var uuid=$this.attr("uuid");
+                    ids+= uuid+',';
+                     //如果元素已经存在，不再添加                                  
+             }); 
+           if(!ids) {
+            myApp.alert('请选择要删除的订单！','');
+            return;
+
+
+
+           }  
+
+
+         myApp.confirm('是否删除选中订单？','提醒', function () {
+
+
+        var orderbc_del_order_thisUrl = $('#orderbc_del_order_thisUrl').html();
+
+
+             $("input[name='orderbc_del']:checked").parents('.order-section').remove()
+
+       
+            $.ajax({
+                global:true,
+                type: "post",
+                url:orderbc_del_order_thisUrl,
+                data: 'ids='+ids,
+                success: function(msg){
+
+
+                }
+            })
+        })
+
+    });
+
+   //是否删除选中订单(2.0改版)
+   $('.codePw b').on('click',function(){
+        var  _this = $(this);
+       myApp.confirm('是否删除选中订单？','温馨提示',function(){
+    	   var uid=_this.parents('label').find("input[name='orderbc_del']").attr('uuid');
+    	   var orderbc_del_order_thisUrl = $('#orderbc_del_order_thisUrl').html();
+    	   $.ajax({
+               global:true,
+               type: "post",
+               url:orderbc_del_order_thisUrl,
+               data: 'ids='+uid,
+               success: function(msg){
+               }
+           })
+           _this.parents('label').remove();
+       })
+   })
+
+    </script>
+</block>
+
+
+

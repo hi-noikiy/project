@@ -1,0 +1,233 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<div id="content">
+    <div class="container-fluid" style="padding: 0;">
+        <div class="widget-box tab-tabs" >
+            <div class="widget-title">
+                <ul class="nav nav-tabs">
+                    {% include "common/tab.html" %}
+                </ul>
+            </div>
+            <div class="widget-content tab-content" style="overflow: hidden;">
+                <div class="row-fluid">
+                    <div id="newAdd" class="countBox container-fluid" style="padding: 0;">
+                        <div class="row-fluid" style="margin-top: 30px;color: #fff;min-width: 1000px;">
+                            <div class="nav-line-tab nav-line nav-tab5" data="5" style="background-color: #fff;">
+                                <a class="_nav active"  data="<?php echo date('Y-m-d',strtotime('today')); ?>" >今天</a>
+                                <a class="_nav" type="yesterDay"  data="<?php echo date('Y-m-d',strtotime('-1 day')); ?>" >昨天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-6 day')); ?>" >最近7天</a>
+                                <a class="_nav"  data="<?php echo date('Y-m-d',strtotime('-29 day')); ?>" >最近30天</a>
+                                <a  class="date-calendar"><i class=" icon-calendar"></i> <input id="Newdate" value="<?php echo date('Y-m-d',strtotime('today')); ?> - <?php echo date('Y-m-d',strtotime('today')); ?>" data="toDay"  placeholder="请输入日期"></a>
+                            </div>
+                            <div class="clearfix" style="min-width: 1000px;padding-top: 20px;">
+                                <table style="float: left;margin-left: 40px;" id="chartData">
+                                    <tr>
+                                        <th>客户端类型</th><th id="StatisticsName">次数</th>
+                                    </tr>
+                                    <tr style="color:#000">
+                                        <td>总数</td><td id="number_sum">0</td>
+                                    </tr>
+                                    <tr style="color:red">
+                                        <td>Ios</td><td id="number_ios">0</td>
+                                    </tr>
+                                    <tr style="color:blue">
+                                        <td>Android</td><td id="number_android">0</td>
+                                    </tr>
+                                </table>
+                                <div class="pull-left" style="width: 59%;">
+                                    <div class="nav-line-tab nav-line"  style="text-align: center;">
+                                        <a class="_nav">折线图</a>
+                                    </div>
+                                    <div class="nav-line-tab nav-line"  style="text-align: center;background-color: #fff;">
+                                        <div id="render-chart5" style="height: 500px;margin-top: 10px;width: 100%;color: #000;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<link rel="stylesheet" href="{{static_url('web/css/canvas.css')}}">
+<script type="text/javascript" src="{{static_url('web/js/flotr2.js')}}"></script>
+<script src="{{static_url('web/js/jquery.ui.datepicker-zh-CN.js')}}"></script>
+<!--[if IE]>
+<script src="{{static_url('web/js/excanvas.js')}}"></script>
+<![endif]-->
+
+<script type="text/javascript">
+    $(function(){
+        $('body').css('overflow-x','auto');
+        getRegPlatCount();
+        $('.nav-line-tab ._nav').click(selectNav);
+
+        $('#Newdate').daterangepicker({
+            presetRanges:[
+                //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+                //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+                //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+            ],
+            presets:{
+                dateRange: '自定义时间'
+            },
+            rangeStartTitle: '起始日期',
+            rangeEndTitle: '结束日期',
+            nextLinkText: '下月',
+            prevLinkText: '上月',
+            doneButtonText: '确定',
+            cancelButtonText: '取消',
+            earliestDate: '',
+            latestDate: Date.parse('today'),
+            constrainDates: true,
+            rangeSplitter: '-',
+            dateFormat: 'yy-mm-dd',
+            closeOnSelect: false,
+            onOpen: function () {
+                $('.ui-daterangepicker-dateRange').click().parent().hide();
+                $('.ui-daterangepickercontain').css({left:($('#Newdate').offset().left-325)+'px'});
+                $('.ui-daterangepickercontain').css({top:($('#Newdate').offset().top+25)+'px'});
+            },
+            onClose:function(){
+                var c = $('#Newdate').attr('data');
+                $('.nav-tab5 ._nav').removeClass('active');
+                getRegPlatCount();
+            }
+        })
+    });
+
+    function getRegPlatCount(){
+        var b = $('#Newdate').val();
+        var timeBegin = b.substring(0, 10);
+        var timeEnd = b.substring(12, 23);
+        if(timeEnd == ''){
+            timeEnd = timeBegin;
+        }
+
+        var title = '小时';
+        if(datetime_to_unix(timeEnd) - datetime_to_unix(timeBegin) >= 86400){
+            title = '天';
+        }
+        var data = {};
+        data.startDate = timeBegin;
+        data.endDate = timeEnd;
+
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: '/ajax/getAppCount',
+            dataType: 'json',
+            success: function (res) {
+                data = [];
+                data[0] = res.data.regList.listios;
+                data[1] = res.data.regList.listandroid;
+                $('#number_sum').html(parseInt(res.data.platList.sumios) + parseInt(res.data.platList.sumandroid));
+                $('#number_ios').html(parseInt(res.data.platList.sumios));
+                $('#number_android').html(res.data.platList.sumandroid);
+                justDraw(data, {colors: ['red', 'blue'], yTitle: '次数', xTitle: title, container: 'render-chart5'});
+            }
+        });
+    }
+    function selectNav(){
+        var a = $(this).parent().attr('data');
+        $('.nav-tab'+a+' ._nav').removeClass('active');
+        $(this).addClass('active');
+        if(a == 5){
+            var a = $(this).attr('data');
+            var type = $(this).attr('type');
+            var myDate = new Date();
+            var b = myDate.toLocaleDateString();
+
+            b = b.replace('/', '-').replace('/', '-').replace('/', '');//替换
+            b = b.replace('年', '-').replace('月', '-').replace('日', '');//替换
+            var c = a+' - '+b;
+            if(type == 'yesterDay'){
+                c = a+' - '+a;
+            }
+            $('#Newdate').val(c);
+            getRegPlatCount()
+        }
+        return false;
+    }
+    function drawChart(data, titles){
+        var option = {
+            colors: ['red', 'blue'],                            ////线条的颜色
+            ieBackgroundColor: '#ff0099',                          //选中时的背景颜色
+            title: '下载统计',
+            subtitle: '子标题',
+            shadowSize: 5,                                      //线条阴影
+            defaultType: 'lines',                               //图表类型,可选值:bars,bubbles,candles,gantt,lines,markers,pie,points,radar
+            fontColor: '#ff3ec5',
+            xaxis: {
+                ticks: titles.x,
+                showLabels:true,                             // 是否显示X轴刻度
+                labelsAngle:15,                              //x轴文字倾斜角度
+                title:'ios',                                 //x轴标题
+                titleAngle:0,                                //x轴标题倾斜角度
+                noTicks:12,                                   //当使用自动增长时,x轴刻度的个数
+                titleAlign:'center',                         //标题对齐方式
+                margin:true
+            },
+            yaxis: {
+                ticks: titles.y,
+                showLabels:true,                             // 是否显示X轴刻度
+                labelsAngle:15,                              //x轴文字倾斜角度
+                title:'ios',                                 //x轴标题
+                titleAngle:0,                                //x轴标题倾斜角度
+                noTicks:12,                                   //当使用自动增长时,x轴刻度的个数
+                titleAlign:'center',                         //标题对齐方式
+                margin:true
+            },
+            y2axis: {
+                ticks: titles.y2,
+                showLabels:true,                             // 是否显示X轴刻度
+                labelsAngle:15,                              //x轴文字倾斜角度
+                title:'ios',                                 //x轴标题
+                titleAngle:0,                                //x轴标题倾斜角度
+                noTicks:12,                                   //当使用自动增长时,x轴刻度的个数
+                titleAlign:'center',                         //标题对齐方式
+                margin:true
+            },
+            grid: {
+                color: '#545454',      // =>  表格外边框和标题以及所有刻度的颜色
+                backgroundColor: null, // =>  表格背景颜色
+                backgroundImage: null, // =>  表格背景图片
+                watermarkAlpha: 0.4,   // =>  水印透明度
+                tickColor: '#DDDDDD',  // =>  表格内部线条的颜色
+                labelMargin: 1,        // =>  margin in pixels
+                verticalLines: true,   // =>  表格内部是否显示垂直线条
+                minorVerticalLines: null, // =>  whether to show gridlines for minor ticks in vertical dir.
+                horizontalLines: true, // =>  表格内部是否显示水平线条
+                minorHorizontalLines: null, // =>  whether to show gridlines for minor ticks in horizontal dir.
+                outlineWidth: 1,       // =>  表格外边框的粗细
+                outline : 'nsew',      // =>  超出显示范围后的显示方式
+                circular: false        // =>  是否以环形的方式显示
+            },
+            mouse:{
+                track: true,          // =>  为true时,当鼠标移动到每个折点时,会显示折点的坐标
+                trackAll: true,       // =>  为true时,当鼠标在线条上移动时,显示所在点的坐标
+                position: 'se',        // =>  鼠标事件显示数据的位置 (default south-east)
+                relative: false,       // =>  当为true时,鼠标移动时,即使不在线条上,也会显示相应点的数据
+                trackFormatter: Flotr.defaultTrackFormatter, // =>  formats the values in the value box
+                margin: 5,             // =>  margin in pixels of the valuebox
+                lineColor: '#FF3F19',  // =>  鼠标移动到线条上时,点的颜色
+                trackDecimals: 0,      // =>  数值小数点后的位数
+                sensibility: 2,        // =>  值越小,鼠标事件越精确
+                trackY: true,          // =>  whether or not to track the mouse in the y axis
+                radius: 3,             // =>  radius of the track point
+                fillColor: null,       // =>  color to fill our select bar with only applies to bar and similar graphs (only bars for now)
+                fillOpacity: 0.4       // =>  o
+            }
+        }
+        Flotr.draw(document.getElementById('render-chart5'), data, option);
+    }
+</script>

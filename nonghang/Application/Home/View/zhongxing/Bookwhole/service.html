@@ -1,0 +1,137 @@
+<extend name='Public/bookbase'/>
+<block name='title'>购买附加服务及卖品</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left"><!--<a href="#" class="back link"> -->
+             <a href="{:U('Bookwhole/filmlist')}" class="back link" >
+             <i class="icon icon-back"></i><span></span></a></div>
+            <div class="center sliding">购买附加服务及卖品</div>
+            <div class="right">
+            </div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+    <div class="pages">
+        <div data-page="service" class="page">
+            <div class="wrap">
+            <div class="service-group">
+            	<volist name='list["service"]' id='v'>
+                <div class="service-item">
+                    <p><span>{$v.name}</span><span>¥<i>{$v.price}</span></i></p>
+                    <div class="Spinner">
+                        <a class="leftBtn"><i>-</i></a>
+                        <input type="tel"  class="Amount" sid='{$v.id}' value='{$v.num}'>
+                        <a class="rightBtn"><i>+</i></a>
+                    </div>
+                </div>
+                </volist>
+            </div>
+            <div class="textareaBox">
+                <textarea maxlength="30"  placeholder="输入其它需求，我们将尽可能为您提供，谢谢"  id='service_detail' >{$Think.cookie.detail}</textarea>
+            </div>
+            <div class="goods-group">
+            	<volist name='list["package"]' id='v'>
+            	<div class="goods-list">
+                    <div class="images-box">
+                        <img src="__IMG__/pic/snacksDemo.png ">
+                    </div>
+                    <h4>{$v.name}</h4>
+                    <div class="price">
+                        <div class="leftblcok"><i>￥<em>{$v.price}</em></i> <i>￥{$v.oriPrice}</i></div>
+
+                        <div class="Spinner">
+                            <a class="leftBtn"><i>-</i></a>
+                            <input type="tel" class="Amount" sid='{$v.id}' state='{$v.state}' value='{$v.num}' state='{$v.state}' disNum='{$v.disNum}' discount='{$v.discount}'>
+                            <a class="rightBtn"><i>+</i></a>
+                        </div>
+                    </div>
+                    <p class="combination"> {$v.detail}</p>
+                     <?php if($v['state']==1):?>
+                     <p class="prompt"> *购满{$v.disNum}份享{$v.discount}折优惠哦~ </p>
+                     <?php else:?>
+                     <p class="prompt"> *来的观影小甜点吧~</p>
+                     <?php endif;?>
+                </div>
+                </volist>
+            </div>
+            </div>
+            <div class="stepBlock">
+                <p>下一步：提交包场订单（<i>4</i>/4）</p>
+                <a id="step4" class="external" >下一步</a>
+                <div style="display:none" id="service_confirmorder_thisUrl">{:U('bookwhole/confirmorder')}</div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        //数量加减
+        $(".Spinner").Spinner({ min:0, len:2, max:99});
+        $('#step4').on('click',function(){
+            //取值
+            var costA = new Array(), //附加服务项
+                costB = new Array(),   //零食项
+                cost1 = 0, //附加服务总价
+                cost2 = 0,//零食总价/
+                costAll = 0; //总价
+            var package_price='';
+            var service_price='';
+            $('.service-item').each(function(i){
+                var a = $(this).find('p span').eq(0).text();
+                var b = $(this).find('p span:eq(1) i').text();
+                var c = $(this).find('.Amount').val();
+                var tt=$(this).find('.Amount');
+                console.log(a+'--'+b+'--'+c);
+                costA[i] = b*c;
+                if(costA[i]!=0) {
+                	service_price+='{"id":"'+tt.attr('sid')+'","name":"'+a+'","num":"'+c+'","price":"'+b+'","tolprice":"'+costA[i]+'"},';
+                 }
+            });
+            service_price = "[" + service_price.substring(0, service_price.length - 1) + "]";
+            $('.goods-list').each(function(i){
+                var a = $(this).find('h4').text();
+                var b = $(this).find('.leftblcok i:eq(0) em').text();
+                var c = $(this).find('.Amount').val();
+                var d = $(this).find('.combination').text();
+                var tt=$(this).find('.Amount');
+                console.log(a+'--'+b+'--'+c);
+                costB[i] = b*c;
+                if(costB[i]!=0) {
+					if(tt.attr('state')==1){
+						console.log('进行优惠价格判断');
+						console.log(c);
+						console.log(tt.attr('disNum'));						
+						if(Number(c)>=Number(tt.attr('disNum'))) {
+							b=b*tt.attr('discount')/10
+							costB[i]=costB[i]*tt.attr('discount')/10;
+							console.log('优惠价格'+costB[i]);
+						}
+					}
+					package_price+='{"id":"'+tt.attr('sid')+'","name":"'+a+'","num":"'+c+'","detail":"'+d+'","price":"'+b+'" ,"tolprice":"'+costB[i]+'"},';
+                 }
+            });
+            package_price = "[" + package_price.substring(0, package_price.length - 1) + "]";
+            $.cookie('service_price', service_price, { path: '/' });
+            $.cookie('package_price', package_price, { path: '/' });
+            for(var x in costA){
+                cost1 += costA[x];
+            }
+            for(var x in costB){
+                cost2 += costB[x];
+            }
+            costAll = cost1 + cost2;
+            console.log('总价'+ costAll);
+            $.cookie('detail', $('#service_detail').val(), { path: '/' });
+
+
+           var index_price= $.cookie('index_price');
+
+           var all_price=Number(index_price)+Number(costAll);
+           $.cookie('all_price', all_price, { path: '/' });
+           mainView.router.loadPage($('#service_confirmorder_thisUrl').html());
+         //  location.href='{:U("Bookwhole/confirmorder")}';
+        })
+    </script>
+</block>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('search'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('pagination2'|ns_css)}}" />
+</head>
+<body>
+<div class="wrap">
+	{% include "template/header.html" %}
+	<div class="wrapNav"></div>
+	<div class="msgBd">
+		<div class="seHeader">
+			<ul id="shSelect" class="seSelect clearfix">
+				<li class="active nick" indexid="2">昵称</li>
+				<li class="roomid" indexid="1">房号</li>
+			</ul>
+			<div class="seCt clearfix">
+				<input id="sepInput" type="text">
+				<div id="shBtn" class="seBtn">搜索</div>
+			</div>
+		</div>
+		<div class="hr"></div>
+		<div id="shCount" class="shHeader"></div>
+		<div class="js-data-demo-anchorItem" style="display:none;"><li class="m-item"><a href="#" target="_blank" class="i-user" title=""><img src="" class="i-avatar" alt="" title=""><span class="i-tags index-roomlist-1 _status"><i class="txt">直播</i></span><i class="index-roomlist-1 _play ico-play"></i><div class="i-bg"></div><div class="i-info2"><i class="index-roomlist-1 _number"></i><span class="number">0</span><span class="i-city"></span></div></a><div class="i-info"><div class="i-info1"><div class="i-name"><a href="#" target="_blank" title="" class="name"></a></div><span class="i-actor sprite-zb_level"></span><i class="sprite-family_level"></i></div></div></li></div>
+		<ul id="shList" class="clearfix anchorsRoomLists roomList"></ul>
+		<div id="emptyMsg" class="emptyMsg">
+			<div class="img"></div>
+			<span>未发现相关直播间，请尝试其他关键词</span>
+		</div>
+		<div class="pageStyle v2">
+			<div class="row-fluid">
+	        	<div id="msgPage" class="pagination alternate"></div>
+	    	</div>
+		</div>
+	</div>
+    <script type="text/javascript" defer async data-main="{{static_url('search'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+	{% include "template/footer.html" %}
+</div>
+</body>
+</html>

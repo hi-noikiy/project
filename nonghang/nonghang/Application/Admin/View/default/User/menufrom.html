@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="__CSS__/common.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__CSS__/style.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/layer.js"></script>
+<script type="text/javascript" src="__JS__/jquery.form.js"></script> 
+
+<script type="text/javascript" src="__JS__/Validform_v5.3.2.js"></script> 
+
+<link rel="stylesheet" href="__JS__/skin/layer.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__JS__/skin/layer.ext.css" type="text/css" media="screen" />
+
+<div class="binding">
+<form method="post" action="{:U('','id=' . $data['mid'])}" class="dataform" id="dataform">
+    <table width="300" style="width:300px;" border="0" cellpadding="0" cellspacing="0">
+    <thead><tr><th colspan="4">添加菜单</th></tr></thead>
+    <tbody>
+        <tr>
+            <td width="100" align="right">菜单名称：</td>
+            <td><input type="text" name="data[menuName]" size="25" class="text"  maxlength="60"  value="{$data.menuName}"  datatype="*"  nullmsg="请输入菜单名称！" placeholder="请输入菜单名称"></td>
+        </tr>
+        <tr>
+            <td width="100" align="right">上级菜单：</td>
+            <td>
+            <select name="data[pid]">
+                <option value="0">顶级菜单</option>
+                {$menuList}
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td width="100" align="right">功能节点：</td>
+            <td><input type="text" name="data[url]" size="25" class="text"  maxlength="60"  value="{$data.url}"  datatype="*"  nullmsg="请输入功能节点！" placeholder="请输入功能节点"/></td>
+        </tr>
+
+        
+        <tr>
+            <td width="100" align="right">图标/样式：</td>
+            <td><input type="text" name="data[ico]" size="25" class="text"  maxlength="60"  value="{$data.ico}"/></td>
+        </tr>
+
+        <tr>
+            <td width="100" align="right">同级序号：</td>
+            <td><input type="text" name="data[sortOrder]" size="25" class="text"  maxlength="60"  value="{$data.sortOrder}"/></td>
+        </tr>
+
+        <tr>
+            <td width="100" align="right">显示状态：</td>
+            <td><input name="data[isshow]" type="radio" value="1" checked="checked">显示<input name="data[isshow]" type="radio" value="0" <if condition="($data.isshow == 0) and ($data.isshow != '') ">checked="checked"</if>>隐藏</td>
+        </tr>
+    </tbody>
+    </table>
+    <div class="menuBtn">
+        <button type="submit" class="button btn-success">确定</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button type="button" class="button btn-success xubox_close" onclick="parent.close();">取消</button>
+        <input type="hidden" name="data[mid]" value="{$data.mid}" />
+    </div>
+</form>
+
+<script type="text/javascript">
+$(function(){
+    var form = $(".dataform").Validform({
+        tiptype:function(msg,o){
+            if(!o.obj.is("form")){
+                // showmsg(msg);
+                layer.msg(msg);
+            }
+        },
+        ajaxPost:true,
+        callback:function(data){
+            if(data.status == 0){
+                parent.closeIframe(data.content, 1); 
+            } else {
+                layer.msg(data.content);
+            }
+        }
+    });
+})
+</script>
+
+</div>

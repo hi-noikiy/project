@@ -1,0 +1,5 @@
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"05127292B871631AF9885693AAA2A0EF";s:4:"sign";s:32:"d531e59ea17a29d87f5b8a5781d3c05f";s:7:"game_id";s:1:"9";}, 2017-04-13 14:25:45
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"05127292B871631AF9885693AAA2A0EF";s:4:"sign";s:32:"d531e59ea17a29d87f5b8a5781d3c05f";s:7:"game_id";s:1:"9";}, 2017-04-13 15:10:18
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"05127292B871631AF9885693AAA2A0EF";s:4:"sign";s:32:"d531e59ea17a29d87f5b8a5781d3c05f";s:7:"game_id";s:1:"9";}, 2017-04-13 15:47:20
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"05127292B871631AF9885693AAA2A0EF";s:4:"sign";s:32:"d531e59ea17a29d87f5b8a5781d3c05f";s:7:"game_id";s:1:"9";}, 2017-04-13 15:49:32
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"05127292B871631AF9885693AAA2A0EF";s:4:"sign";s:32:"d531e59ea17a29d87f5b8a5781d3c05f";s:7:"game_id";s:1:"9";}, 2017-04-13 15:50:46

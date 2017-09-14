@@ -1,0 +1,46 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="<if condition="$pflag neq ''">{:U('index/cinema')}<else/>{:U('index/index')}</if>" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center title"><a class="titleLeft" href="{:U('film')}">正在热映</a><a class="titleRight cur" href="{:U('soon')}">即将上映</a></div>
+    <div class="right"></div>
+  </div>
+</div>
+
+
+<div class="pages">
+  <div data-page="soonList" class="page">
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+
+      <div class="content">
+        <div class="filmList">
+          <ul>
+            <volist name='films' id='vo'>
+              <li>
+                  <a href="{:U('details',array('filmid'=>$vo['id']))}">
+                        <div class="filmImg"><img src="__UPLOAD__/{$vo['image']}" width="67.5" height="90" />
+<em class="style<?php if($vo['version']=='3D'){ ?>3D<?php }else{ ?>2D<?php } ?>"></em></div>
+                        <div class="filmInfo">
+                            <h2>{$vo['filmName']}</h2>
+                            <p>{$vo['simpleword']}</p>
+                            <span>{$vo['publishDate']}上映</span>
+                            
+                        </div>
+                        <div class="filmScore">
+                            <sub>{$vo['f']}.</sub><sup>{$vo['s']}</sup>
+                        </div>
+                    </a>
+                </li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+        
+
+    </div>
+  </div>
+</div>

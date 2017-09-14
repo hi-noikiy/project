@@ -1,0 +1,81 @@
+<extend name='Public/shakebase1'/>
+<block name='title'></block>
+
+<block name='body'>
+    <div data-page="drawresult" class="page">
+        <div class="main">
+            <div class="title"></div>
+            <div class="statusInfo">
+                <ul>
+                    <li>恭喜你摇到了</li>
+                    <li>{$prize['name']}</li>
+                </ul>
+
+                <div class="phoneBox">
+                    <p>请输入手机号领取</p>
+                    <input type="tel" id='mobile'>
+                    <a href="javascript:;" onclick="submit()">确定</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="decorate"></div>
+    </div>
+</block>
+<block name='script'>
+    <script type="text/javascript">
+
+    var myApp = new Framework7({
+    pushState: true,
+    swipeBackPage: true,
+    modalTitle: '',
+    modalButtonOk: '确认',
+    modalButtonCancel: '取消',
+    cache: false,
+    cacheDuration: 1000*60*5,
+    cacheIgnore: [
+        'index/index.html',
+        'User/haspaying/status/3.html',
+        'User/haspaying/status/0.html',
+        'User/order.html',
+        'User/orderajax1.html?status=3',
+        'User/orderajax1.html?status=7',
+        'User/record.html',
+        'User/user/op/login.html',
+        'User/user.html',
+    ],
+    preloadPreviousPage: false,
+    cacheIgnoreGetParameters: false,
+    swipeout:false,
+    // Index/seat
+    onAjaxStart: function (xhr) {
+        myApp.showIndicator();
+    },
+    onAjaxComplete: function (xhr) {
+        myApp.hideIndicator();
+    },
+});
+
+		function submit(){
+			var url="{:U('evinfo')}";
+			var gourl="{:U('evinfo',array('id'=>$prize['id']))}";
+			var mobile=$('#mobile').val();
+			var logId="{$logId}";
+			$.getJSON(url,{logId:logId,mobile:mobile},function(json){
+
+
+				if(json['status']=='0'){
+                     myApp.confirm(json.content, 
+                    function () {
+                      location.href=gourl;
+                    },
+                    function () {
+                        location.href=gourl;
+                    }); 
+
+					
+				}
+			});
+		}
+    </script>
+</block>

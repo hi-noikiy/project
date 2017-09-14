@@ -1,0 +1,1 @@
+post=a:0:{},get=a:4:{s:7:"sdktype";s:3:"213";s:5:"token";s:46:"sst1game6a33505702ef41baa9c5027ccbb8b4c6190684";s:1:"p";s:32:"7a19c2238a4330508293adc3fbf08dcb";s:7:"game_id";s:1:"8";}, 2017-03-24 10:15:39

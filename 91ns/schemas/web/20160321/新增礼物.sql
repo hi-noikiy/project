@@ -1,0 +1,2 @@
+insert into pre_gift_configs(id,typeId,name,coin,cash,recvCoin,discount,freeCount,littleFlag,orderType,createTime,configName,description,littleSwf) 
+values(86,1,'整蛊',0,1000,500,0,0,1,7,1458489600,'zg','要么满足我一个愿望，要么就…',0),(87,1,'英雄救美',0,2000,1000,0,0,1,8,1458489600,'yxjm','英雄救美，帮助主播脱离被整蛊的厄运。',0); 

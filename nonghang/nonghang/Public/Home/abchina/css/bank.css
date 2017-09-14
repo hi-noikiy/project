@@ -1,0 +1,276 @@
+
+html {height: 100%;}
+em,i,b,h1, h2, h3, h4, h5, h6{
+    font: inherit;
+}
+body {font-family: "Microsoft YaHei",  "sans-serif"; line-height: 1; }
+.clearboth {clear: both;}
+.clearfix{
+    *zoom:1
+}
+
+.clearfix:before,.clearfix:after{
+    display:table;
+    content:"";
+    line-height:0
+}
+
+.clearfix:after{
+    clear:both
+}
+
+::-webkit-scrollbar/*Òþ²Ø¹ö¶¯Ìõ*/
+{
+    width: 0px;
+    height:0px;
+}
+
+input, textarea,select {outline: none;}
+
+#page-buying .main{
+    position: absolute;
+    background:#e5e5e5;
+    overflow:auto;
+    height:100%;
+    box-sizing: border-box;
+    padding-top: 46px;
+    width:100%;
+}
+
+#page-buying .voucher-item { overflow: hidden; padding:15px 15px 0 15px; background:#f7f6f6; margin-bottom:15px;}
+#page-buying .voucher-item .item-left {
+    width: 88px;
+    height: 42px;
+    float: left;
+    background: url(../images/bank/buyingIcons.png) no-repeat -20px 0px;
+    background-size: 108px;
+    margin-right:15px;
+}
+
+#page-buying .voucher-item .item-right {
+    width:-webkit-calc(100% - 103px);
+    float:left;
+}
+#page-buying ul { overflow:hidden;border-bottom:1px solid #e5e5e5; margin-bottom:12px; }
+#page-buying .item-left h4 { color:#fffefe; font-size:16px; font-weight: bold; margin:6px 0 2px; text-align:center;}
+#page-buying .item-left p { color:#fffefe; font-size:11px; text-align: center;}
+#page-buying .item-right h4 { font-size:15px; color:#2e2e2e; margin-bottom:12px;}
+#page-buying .item-right li { font-size:15px; color:#2e2e2e; margin-bottom:4px; line-height:20px; font-size:11px; color:#a4a4a4;}
+#page-buying .item-right li span { margin-right:15px; color:#fc9d40; font-size:15px;}
+#page-buying .item-right p { margin-bottom:15px; overflow:hidden; line-height:18px;}
+#page-buying .item-right p span i { color:#159eec;float:left; vertical-align:top;}
+#page-buying .item-right p span {color:#777; font-size:12px; float:left; line-height: 27px; vertical-align: top; display: block;}
+#page-buying .item-right p a {line-height:25px; text-align: center; float: right; border-radius:3px; width:60px; height:25px; border:1px solid #159eec; font-size: 12px; color:#159eec; float:right;}
+#page-buying .item-right p em { color:#a4a4a4; width:60px; text-align:center; float: right; font-size:14px; }
+#page-buying a.close-picker {
+    background: url(../images/bank/closeBtns.png) no-repeat 0 0;
+    width: 16px;
+    height: 16px;
+    margin: 10px 8px 0;
+    display: inline-block;
+    background-size: auto 12px;
+}
+#pay-section.picker-modal { height:auto;}
+#pay-section.picker-modal .toolbar { height:35px;}
+#pay-section .toolbar-inner,.picker-modal.modal-in,.picker-modal .picker-modal-inner {  background:#f7f6f6; margin-top:0;}
+#pay-section  .content-block { margin:0; padding:0;}
+#pay-section label.label-radio .item-type { width:16px; height:16px; position:absolute; right:0;    background: url(../images/bank/checkIcons.png) no-repeat right top;
+    background-size: 15px; }
+#pay-section label.label-radio input[type=radio] ~ .item-inner, label.label-radio input[type=radio]:checked ~ .item-inner {
+    background: none;
+}
+#pay-section  label.label-radio  p { color:#777; font-size:13px;}
+#pay-section  .list-block { padding:0 15px;}
+#pay-section  .list-block .item-content { padding-left:0;}
+#pay-section  .list-block li { background:#f7f6f6;}
+#pay-section  label.label-radio input[type=radio]:checked ~ .item-inner .item-type {
+    background-position: right bottom;
+}
+#pay-section  .list-block ul { margin-bottom:12px;}
+#pay-section  .list-block> h4 { font-size:15px; color:#2e2e2e;}
+#pay-section  .list-block > p { color:#a4a4a4; font-size:11px; margin-bottom:9px;}
+#pay-section  .list-block > p >span { color:#fc9d40;}
+#pay-section  .list-block ul:before { height:0;}
+#pay-section  .pay-block span.text { color:#777; font-size:14px;
+    line-height:50px; float:left; margin:0 7px 0 15px;  }
+#pay-section  .pay-block> a {
+    color: #fff;
+    font-size: 14px;
+    float: right;
+    width: 114px;
+    height: 37px;
+    padding-top: 13px;
+    background: #fc9d40;
+    text-align: center;
+
+}
+#pay-section .list-block {
+    padding: 0 15px;
+    margin: 0;
+}
+#pay-section .pay-block {
+    overflow: hidden;
+    border-top: 1px solid #d7d7d7;
+}
+#pay-section .Spinner {
+    display: inline-block;
+    overflow: hidden;
+    width:106px;
+    height:25px;
+    background: url(../images/bank/buyingIcons.png) no-repeat right -104px;
+    background-size: auto 130px;
+    margin-top: 11px;
+}
+
+#pay-section .Spinner .Amount {
+    width: 45px;
+    height: 18px;
+    padding: 4px 5px;
+    line-height: 15px;
+    border-width: 1px 0;
+    border-style: solid;
+    float: left;
+    text-align: center;
+    color: #313131;
+    outline: 0;
+    border:none;
+}
+
+#pay-section .Spinner a {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    float: left;
+    cursor: pointer;
+    outline: 0;
+}
+
+#pay-section .Spinner a i {
+    font-style: normal;
+    color: #fff;
+    display: block;
+    line-height: 25px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#pay-section .Spinner a:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+#pay-section .Spinner a:last-child {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+#page-buying .shadow {
+    background: #333;
+    opacity: 0.5;
+    z-index:6;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    display:none;
+}
+#page-buying .error-section {
+    background: url(../images/bank/shadowBg.png);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    left: 0;
+}
+#page-buying .error-tip {
+    width: 225px;
+    overflow: hidden;
+    background: #f7f6f6;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    margin-top: -68px;
+    left: 50%;
+    margin-left: -114px;
+    border-radius: 4px;
+
+}
+#page-buying .error-tip h2{ margin-top:16px; font-size:17px; color:#2e2e2e; text-align: center;}
+#page-buying .error-tip p { font-size:14px; color:#777; margin:20px 0 30px; text-align: center;}
+#page-buying .error-tip a { border-top:1px solid #e5e5e5; height:38px; line-height: 38px; font-size:14px; display: block; color:#159eec; text-align: center;}
+
+/*¹ºÈ¯¶©µ¥*/
+#page-bankOrder {
+    overflow: auto;
+}
+#page-bankOrder .main .voucher-item:nth-child(3) {
+    margin-top: 0px;
+}
+#page-bankOrder .main {
+    padding-top:40px;
+}
+.voucher-item .item-right h4 span {
+    color:#fc9d40;
+    margin-left:18px;
+}
+#page-bankOrder .voucher-item .item-right li:first-child {color:#777;}
+#page-bankOrder .voucher-item .item-right li {
+    color:#333;
+    font-size:14px;
+}
+
+
+#page-bankOrder .voucher-item { overflow: hidden; padding:15px 15px 0 15px; background:#f7f6f6; margin-bottom:15px;}
+#page-bankOrder .voucher-item .item-left {
+    width: 88px;
+    height: 42px;
+    float: left;
+    background: url(../images/bank/buyingIcons.png) no-repeat -20px 0px;
+    background-size: 108px;
+    margin-right:15px;
+}
+
+#page-bankOrder .voucher-item .item-right {
+    width:-webkit-calc(100% - 103px);
+    float:left;
+}
+#page-bankOrder ul { overflow:hidden;  margin-bottom: 6px; }
+#page-bankOrder .item-left h4 { color:#fffefe; font-size:16px; font-weight: bold; margin:6px 0 2px; text-align:center;}
+#page-bankOrder .item-left p { color:#fffefe; font-size:11px; text-align: center;}
+#page-bankOrder .item-right h4 { font-size:15px; color:#2e2e2e; margin-bottom:12px;}
+#page-bankOrder .item-right li { font-size:15px; color:#2e2e2e; margin-bottom:4px; line-height:20px; font-size:11px; color:#a4a4a4;}
+#page-bankOrder .item-right li span { margin-right:15px; color:#fc9d40; font-size:15px;}
+#page-bankOrder .item-right p { margin-bottom:15px; overflow:hidden; line-height:18px;}
+#page-bankOrder .voucher-item> p { padding-bottom:8px; margin-bottom:8px; border-bottom:1px solid #e5e5e5;}
+#page-bankOrder .voucher-item> p span {         color: #777;
+    font-size: 12px;
+    float: left;
+    margin-right: 8px;
+    width:auto;
+    float:none;}
+.couponsLink {
+	padding:0 10px;
+	height:40px;
+	line-height:40px;
+	}	
+.couponsLink span{
+	float:right;
+	color:#808080;
+	font-size:14px;
+	}
+.couponsLink h2{
+	font-size:16px;
+	color:#159eec;
+	}
+	
+.planList dl {
+    margin:0 0 15px 0;
+	}
+
+    #page-buying .item-right p span.timerDate{ display: inline-block; float: left; width: 35px }
+#page-buying .item-right p span.timerText{ display: inline-block; float: left; line-height: 25px; text-align: center;}
+#page-buying .item-right p span.timers{ display: inline-block; float: left;width: 120px }
+
+
+.tabs-animated-wrap { height:auto;}

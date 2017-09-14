@@ -1,0 +1,9 @@
+parseStr=game_id=9&username=74a52805ec89&account_id=6231728&expired=1477780024, 2016-10-30 06:27:05
+parseStr=game_id=9&username=F6A3F120-776B-43EC-8C9B-111042A0D3AB&account_id=6228964&expired=1477783344, 2016-10-30 07:22:25
+parseStr=game_id=9&username=F6A3F120-776B-43EC-8C9B-111042A0D3AB&account_id=6228964&expired=1477795355, 2016-10-30 10:42:36
+parseStr=game_id=9&username=15980259808&account_id=6231808&expired=1477811066, 2016-10-30 15:04:27
+parseStr=game_id=9&username=15980259808&account_id=6231808&expired=1477811247, 2016-10-30 15:07:28
+parseStr=game_id=9&username=F6A3F120-776B-43EC-8C9B-111042A0D3AB&account_id=6228964&expired=1477812554, 2016-10-30 15:29:17
+parseStr=game_id=9&username=test45&account_id=2106273&expired=1477828855, 2016-10-30 20:00:57
+parseStr=game_id=9&username=F6A3F120-776B-43EC-8C9B-111042A0D3AB&account_id=6228964&expired=1477829185, 2016-10-30 20:06:26
+parseStr=game_id=9&username=test45&account_id=2106273&expired=1477833514, 2016-10-30 21:18:36

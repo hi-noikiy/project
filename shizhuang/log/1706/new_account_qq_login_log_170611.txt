@@ -1,0 +1,1 @@
+post=a:0:{}, get=a:3:{s:6:"openid";s:32:"BFDEB35E1B8C2AFE6C6933D5BF04473A";s:4:"sign";s:32:"b45b94c9460d066a683bdc1e7d9cccdb";s:7:"game_id";s:1:"9";}, return=1 1657085, 2017-06-11 16:17:12

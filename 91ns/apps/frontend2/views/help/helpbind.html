@@ -1,0 +1,34 @@
+{% extends "template/help_body.html" %}
+{% block title %}
+帮助中心
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('help'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+<div class="personal-div getpresents clearfix">
+    <div class="get-head pull-re pull-re" style="display: block">
+        <div class="_help-head">绑定手机</div>
+        <div class="_help-contend">
+            <div class="div1">手机绑定91NS账户为您在91NS的互动提供便利，也对91NS账户起到保护作用。</div>
+            <div class="div1 black">如何绑定手机？</div>
+            <div class="div1">91NS账户绑定手机，不需要缴纳任何费用，进入个人中心-安全中心页面进行操作即可。</div>
+            <img style="margin-top:30px;" src="{{static_url('web/cssimg2/help/bind1.png')}}">
+            <div class="div1">第一步</div>
+            <div class="div1">输入手机号码，获取短信验证码</div>
+            <div class="div1">第二步</div>
+            <div class="div1">完成短信验证码的验证，即完成手机绑定。</div>
+            <div class="div1 black">如何取消绑定手机？</div>
+            <div class="div1">已绑定手机的用户，进入个人中心-安全中心页面，点击“解绑”按钮；在取消绑定页面，完成短信验证码的校验即可成功取消绑定。</div>
+            <div class="div1">备注：一个用户每天只能绑定解绑手机6次哦。</div>
+            <div class="div1 black">手机绑定不成功怎么办？</div>
+            <div class="div1">建议您在个人中心-安全中心页面尝试重新绑定手机。</div>
+            <div class="div1">如仍未成功，建议您联系91NS客服：4009990591，提供您的手机号、归属地、手机绑定时间及详细的问题描述，我们会尽快提交给相关技术人员处理。</div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock%}

@@ -1,0 +1,145 @@
+@charset "utf-8";
+/********************************css reset*****************************************************************/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td ,span, object, iframe{ padding: 0; margin: 0; }
+table{border-collapse: collapse; border-spacing: 0; }
+fieldset, img { border: 0; }
+ol, ul { list-style: none; }
+h1, h2, h3, h4, h5, h6 { font-weight: normal; font-size: 100%; }
+address,cite,code,em,th,i{font-weight:normal; font-style:normal;}
+q:before, q:after { content:""; }
+:link, :visited { text-decoration: none; }
+a { cursor: pointer; text-decoration: none; }
+a:hover { text-decoration: none; }
+.clear { clear:both }
+.clearfix{ zoom:1;}
+.clearfix:after{ content:""; height:0; visibility:hidden; display:block; clear:both; font-size:0;}
+.left{ float:left; }
+.right{ float:right;}
+.t_header{ color:#fff; }
+.t_header:before{background: #d8263c;}
+.title_dot{color: #c6c6c6 !important;}
+.nothing_tip{padding-top: 50px; text-align:center; font-size: larger; color: #000; line-height: 1.5}
+
+/********************************css reset end*****************************************************************/
+body{ font-family:"Microsoft Yahei"; font-size:14px; letter-spacing:1pt; word-break:break-all;}
+#content,#footer{ width: 100%;}
+.wrapper{width:1200px;position: relative;margin-left: auto;margin-right: auto}
+#menu{ height: 70px; }
+h2.t_header{ font-size: 14px; height: 35px; line-height: 35px; position: relative; background-color: #232323; padding-left: 10px;}
+h2.t_header:before{ content: ""; display: inline-block; *display:block; width:3px; height: 14px; vertical-align: middle; margin-right: 8px; }
+
+/********************************顶部logo*****************************************************************/
+#top{ background:#F3F3F3; padding-top:8px;min-width: 300px}
+#top a{ color:#737373; font-size:16px;}
+#top a:hover{color:#be222e !important}
+#top #logo{ width:1200px;position:relative;margin:0 auto;}
+#top #logo h1{position:relative}
+#top #logo a{ display: inline-block; padding: 4px 2px 5px;}
+#top #logo h1 span{cursor:pointer;font-weight:400;display: inline-block; overflow: hidden; width: 120px;}
+#top #logo h1 #line{position:absolute;top:8px;margin-left:12px}
+#top #logo h1 ul{z-index:10;display:none;border:1px solid #e1e0e0;width:570px;position:absolute;left:170px;background:#fff;padding:10px 0 10px 15px}
+#top #logo h1 #js_tj a{display:block}
+#top #logo h1 #js_tj img{width:40px;height:40px}
+#top #logo h1 ul li{height:40px;line-height:40px;overflow:hidden;padding-bottom:7px;margin-bottom:7px;border-bottom:1px dotted #d9d9d9;margin-right:15px;width:175px}
+#top #logo h1 ul li img{margin-right:10px}
+#top #logo h1 #game_tj{display:inline-block; position:absolute;top:5px;left:170px;background:url('../images/game_tj.png') no-repeat center 5px;width:141px;height:28px;z-index:11}
+#top #logo h1 #game_tj:hover,#top #logo h1 a.visited{width:141px;height:28px;border-left:1px solid #e1e0e0;border-right:1px solid #e1e0e0;border-top:1px solid #e1e0e0;background-color:#fff !important}
+#top .option{position:absolute; top:8px; right:0;bottom:0px;}
+#top .option a{padding:13px 15px;*padding:15px;display:inline-block}
+#top .option a#login:hover,#top .option a#login.visited{padding:6px 14px 10px 14px;*padding:6px 14px 10px 14px;border-left:1px solid #e1e0e0;border-right:1px solid #e1e0e0;border-top:1px solid #e1e0e0;background:#fff}
+#top #login_con{display:none;position:absolute;width:290px;height:300px;background:#fff;right:-20px; top:34px; border:1px solid #e1e0e0; z-index:10}
+#top #login_con input{color:#A9A9A9;outline:none}
+#top em{display:none;width:59px;height:1px;*height:2px;position:absolute;background:#fff;bottom:-1px;*bottom:1px;right:163px;z-index:11}
+#top #login_con form input.width{padding:8px;font-size:14px;width:211px;border-radius:4px;border:1px solid #ccc}
+#top #login_con ul{padding:20px 0;width:250px;margin:0 auto;}
+#top #login_con ul li{margin-bottom:10px}
+#top #login_con ul li#forget{padding:10px 0;overflow:hidden;border-bottom:1px dotted #C8C8C8;margin-bottom:15px}
+#top #login_con ul li#forget a{font-size:14px}
+#top #login_con ul li#forget a:hover{color:red;text-decoration:underline}
+#top #login_con ul li#forget a.register{color:#199d6a;text-decoration:underline}
+#top #login_con a{padding:0}
+#top a#login_btn{display:block;width:230px;height:45px}
+#top a#login_btn:hover{background-position:-230px bottom}
+#top li#dsflogin a{display:inline-block; height:23px;line-height:23px;font-size:14px}
+#top li#dsflogin a.qq{margin-right:6px; padding-left: 26px;}
+#top li#dsflogin a.sina{padding-left:30px}
+
+/********************************顶部菜单*****************************************************************/
+#menu{height: 71px; margin-left: auto; margin-right: auto;}
+#game_header{width: 1200px; position: relative; margin-left: auto; margin-right: auto;}
+#game_logo{ float: left; }
+#game_logo img{float: right; }
+#menu #game_menu{float:right; margin-top: 11px;}
+#menu a{ float:left; width: 150px; text-align: center;}
+#menu .title{ font-family: "微软雅黑", sans-serif, serif; font-size: 20px; height: 30px; line-height: 30px; color: #fff;}
+#menu .title:hover{ color: #d8263c; cursor: pointer;}
+#menu .sub_title{ font-family: "微软雅黑", sans-serif, serif; font-size: 12px; height: 16px; line-height: 16px;  color: #9d9d9d;}
+
+/********************************主页信息*****************************************************************/
+#centre{ margin-top: 400px;}
+
+/********************************左侧侧信息*****************************************************************/
+#side_bar{width: 235px; background:url('../images/base.png') repeat scroll 0% 0%; margin: 20px 15px 0 0;}
+#side_bar a img{vertical-align: middle;}
+#side_bar a.btn{ display: block; width: 100%; margin-bottom: 5px; overflow: hidden; padding-left: 30px; width: 205px; color: #fff; font-size:18px; line-height: 55px;}
+#side_bar a.btn_pay{ height: 80px; background: url(../images/charge_btn.png) no-repeat; }
+#side_bar a.btn_no_pay{ height: 80px; background: url(../images/charge_invalid_btn.png) no-repeat; }
+#side_bar a.btn_no_pay:hover{background: url(../images/charge_invalid_hover_btn.png) no-repeat;}
+#side_bar a.btn_pay:hover{ background: url(../images/charge_hover_btn.png) no-repeat;}
+#side_bar a.btn_iTunes{ background-color: #5780bd;}
+#side_bar a.btn_iTunes:hover{ background-color: #6390d3;}
+#side_bar a.btn_android{background-color: #359fa9;}
+#side_bar a.btn_android:hover{ background-color: #35afba;}
+#side_bar a.btn_gift{background-color: #c25655;}
+#side_bar a.btn_gift:hover{ background-color: #cf4543;}
+#pingjia{height:18px;background:url(../images/star_def.png) repeat-x left bottom;width:80px}
+#pingjia em{display:block;background:url(../images/star_enable.png) repeat-x left 2px;height:18px}
+
+#game_introduction{ padding-top: 5px;}
+#game_introduction div{padding: 20px 8px;}
+#game_introduction div img{float: left;}
+#game_introduction div ul{ width: 130px; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;}
+#game_introduction div .title{font-size: 16px; color: #fff; margin-bottom: 10px;}
+#game_introduction div .size{font-size: 14px; color: #898989; margin-bottom: 5px;}
+#game_introduction div .desc{float: left; font-size: 12px; color: #dddddd; width: 100%; max-height: 150px; line-height: 20px; overflow : hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; margin-top: 15px;}
+
+#game_rank{height: 385px;}
+#game_rank .rank_tag{width: 100%; height: 37px; background-color: #232323;}
+#game_rank .rank_tag li{width: 117px; float: left; font-size: 14px; color: #9a9a9a; text-align: center; line-height: 35px;}
+#game_rank .rank_tag li.on,#game_rank .rank_tag li:hover{color: #fff; border-bottom: 2px solid #d8263c;}
+#game_rank .container{padding: 3px 8px;}
+#game_rank .container .no{width: 54px; font-size: 10px; color: #fff;}
+#game_rank .container .user{width: 65px; font-size: 14px; color: #dddddd; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;}
+#game_rank .container .server{width: 100px; font-size: 14px; color: #dddddd; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;}
+#game_rank .container .level{ margin-left: 55px; margin-bottom: 5px; width: 160px; font-size: 12px; color: #616572; }
+#game_rank .container .title{margin-bottom: 2px;}
+#game_rank .container .title span{float: left; font-size: 12px; color: #616572;}
+#game_rank .container span{ float: left; padding: 3px 0px;}
+#game_rank span.no i{ width: 15px; height: 15px; display: block; background: url("../images/rank_no.png") no-repeat; text-indent: -999em;}
+#rank_more{ width: 100%; height: 35px; text-align: center;}
+#rank_more a{line-height: 35px; font-size: 10px; color: #525663;}
+#rank_more a:hover{color: #d8263c;}
+
+#help .container{padding: 20px;}
+#help p{color: #9a9a9a; font-size: 14px; margin-bottom: 12px;}
+#help p.qq{margin-bottom: 0px;}
+#help p span{color: #dddddd; font-size: 16px;}
+
+#media{ overflow: hidden; height: 110px;}
+#media ul, #media li{ height: 70px; line-height: 70px; text-align: center;}
+#media ul{ display: block;}
+#media a{ *display: block;  *font-size: 114px; *font-family:Arial; height: 100px; vertical-align:middle;}
+#media img{ vertical-align: middle;}
+
+#links .container{ height: 70px; overflow: hidden; margin-left: 5px; margin-bottom: 10px; overflow: hidden;}
+#links ul{ padding: 10px;}
+#links a{ display: block; padding: 3px 0; color:#dddddd; font-size: 14px; height: 18px; line-height: 2; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;}
+#links .container a:hover{ color: #d8263c;}
+
+#qa h2 a{float: right; font-size: 12px; color: #9a9a9a;}
+#qa h2 a:hover,#qa li a:hover{color: #d8263c;}
+#qa .container{padding: 15px 10px; margin-bottom: 10px; margin-left: 5px; height: 40px; overflow: hidden;}
+#qa .container li,#qa .container a{ width: 100px; color: #dddddd; line-height: 2; overflow: hidden; text-overflow: ellipsis; white-space:nowrap;}
+#qa .container li.first{float: left;}
+#qa .container li.last{float: right;}
+#qa .container li.last a{float: left;}

@@ -1,0 +1,320 @@
+@charset "utf-8";
+/*  --------------begin 通用样式 begin-------------- */
+body, ul, ol, li, p, h1, h2, h3, h4, h5, h6, form, fieldset, table, td, img, div, dl, dt, dd, input { margin: 0; padding: 0; }
+body { font-size: 12px;  font-family: '微软雅黑','宋体'; }
+img { border: none; }
+li { list-style: none; }
+input, select, textarea { outline: none; border: none; }
+textarea { resize: none; }
+::-webkit-scrollbar/*隐藏滚动条*/
+{
+	width: 0px;
+	height:0px;
+}
+/*特殊板块 浮动相关*/
+.fl{float: left;}
+.fr{float: right;}
+.clear{clear: both;}
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { *zoom:1;/*ie6,7*/}
+/*全局设定*/
+a{
+	color:#000;
+	}
+
+.tac{
+	text-align:center;
+	}
+.tal{
+	text-align:left;
+	}
+.tar{
+	text-align:right;
+	}
+.f14{
+	font-size:14px;
+	}
+.f16{
+	font-size:16px;
+	}
+.tline{
+	text-decoration:line-through;
+	}
+.c000{
+	color:#000;
+	}
+.cfc9d40{
+	color:#fc9d40;
+	}
+.line{
+	margin:10px 0;
+	border-bottom:1px dashed #bebebe;
+	}
+@font-face { font-family:db; src:url(font/db.ttf); }
+
+/*内容*/
+/*.content{
+	margin:50px 0;
+	}*/
+.navbar{
+	background:#159eec;
+	color:#fff;
+	}
+.navbar-inner a{
+	color:#fff;
+	padding-right:15px;
+	}
+.navbar-inner a .i.icon.icon-back{
+	background:url(../images/common/back.png) no-repeat 0 0;
+	}
+.navbar .navbar-inner a .i.icon.icon-backs{
+	background:url(../images/common/backs.png) no-repeat 0 0;
+	}
+.navbar-inner .title a{
+	padding:0 10px;
+	display:inline-block;
+	font-size:14px;
+	color:#fff;
+	background:#159eec;
+	height:30px;
+	vertical-align:middle;
+	line-height:30px;
+	}
+.navbar-inner .title a.titleLeft{
+	border-left:1px solid #fff;
+	border-top:1px solid #fff;
+	border-bottom:1px solid #fff;
+	-moz-border-radius:5px 0 0 5px;
+	-webkit-border-radius:5px 0 0 5px;
+	border-radius:5px 0 0 5px;
+	-khtml-border-radius:5px 0 0 5px;
+	}
+.navbar-inner .title a.titleRight{
+	border-right:1px solid #fff;
+	border-top:1px solid #fff;
+	border-bottom:1px solid #fff;
+	-moz-border-radius:0 5px 5px 0;
+	-webkit-border-radius:0 5px 5px 0;
+	border-radius:0 5px 5px 0;
+	-khtml-border-radius:0 5px 5px 0;
+	}
+.navbar-inner .title a.cur{
+	background:#fff;
+	color:#159eec;
+	}
+.photo-browser .navbar-fixed .navbar{
+	background:#159eec;
+	}
+/*页脚菜单*/
+/*
+
+.tabbar a i.icon{
+	width:30px;
+	}
+.toolbar a .icon1{
+	background:url(../images/common/icon1.png) no-repeat top center;
+	background-size:100%;
+	}
+.toolbar a.active .icon1{
+	background:url(../images/common/icon1_2.png) no-repeat top center;
+	background-size:100%;
+	}
+.toolbar a .icon2{
+	background:url(../images/common/icon2.png) no-repeat top center;
+	background-size:100%;
+	}
+.toolbar a.active .icon2{
+	background:url(../images/common/icon2_2.png) no-repeat top center;
+	background-size:100%;
+	}
+.toolbar a .icon3{
+	background:url(../images/common/icon3.png) no-repeat top center;
+	background-size:100%;
+	}
+.toolbar a.active .icon3{
+	background:url(../images/common/icon3_2.png) no-repeat top center;
+	background-size:100%;
+	}
+.toolbar a .icon4{
+	background:url(../images/common/icon4.png) no-repeat top center;
+	background-size:100%;
+	}
+.toolbar a.active .icon4{
+	background:url(../images/common/icon4_2.png) no-repeat top center;
+	background-size:100%;
+	}*/
+
+
+/*登录*/
+
+.loginBody{
+	padding:15px 30px;
+	}
+.loginLogo{
+	margin:30px auto;
+	text-align:center;
+	width:60%;
+	}
+.loginBody .content-block{
+	padding:0 40px;
+	margin:10px 0;
+	}
+.loginBody .button{
+	border: 1px solid #159eec;
+	color:#159eec;
+	}
+.loginBody .button.active{
+    background: #159eec;
+    color: #fff;
+	}
+.loginSelect{
+	border:1px solid #e5e5e5;
+	margin-top:20px;
+	background:#fff;
+	height:40px;
+	line-height:40px;
+	position:relative;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-khtml-border-radius:3px;
+	}
+.loginSelect span{
+	width:24px;
+	height:24px;
+	display:inline-block;
+	float:left;
+	padding:0 10px;
+	margin:8px 0;
+	line-height:20px;
+	border-right:1px solid #e5e5e5;
+	}
+.loginSelect input{
+	font-size:16px;
+	padding-left:10px;
+	}
+.loginSelect b{
+	font-size:14px;
+	padding-left:10px;
+	}
+.loginSelect em{
+	position:absolute;
+	right:5px;
+	top:0;
+	height:18px;
+	width:18px;
+	}
+.loginSelect ul {
+	width: 100%;
+	display: none;
+	position: absolute;
+	left: -1px;
+	top: 41px;
+	overflow: hidden;
+	background-color: #fff;
+	max-height: 200px;
+	overflow-y: auto;
+	border: 1px solid #999;
+	border-top: 0;
+	box-shadow: 0 3px 5px #999;
+	z-index: 9999;
+	}
+.loginSelect ul li{
+	border-bottom:1px solid #d9d9d9;
+	padding-left:40px;
+	font-size:16px;
+	}
+.loginInput{
+	margin-top:20px;
+	border:1px solid #e5e5e5;
+	background:#fff;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-khtml-border-radius:3px;
+	position:relative;
+	}
+.findPwd{
+	position:absolute;
+	right:3px;
+	top:0px;
+	color: #159eec;
+	}
+.loginInput div{
+	height:41px;
+	line-height:40px;
+	
+	}
+.loginInput div span{
+	width:24px;
+	height:24px;
+	display:inline-block;
+	float:left;
+	padding:0 10px;
+	margin:8px 0;
+	border-right:1px solid #e5e5e5;
+	}
+.loginInput div input{
+	vertical-align:top;
+	font-size:16px;
+	height:40px;
+	line-height:40px;
+	padding-left:10px;
+	}
+.loginLink a{	
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-khtml-border-radius:3px;
+	font-size:16px;
+	width:44.5%;
+	display:inline-block;
+	margin:20px 2%;
+	height:40px;
+	line-height:40px;	
+	}
+.loginBtn{
+	background:#159eec;
+	text-align:center;
+	color:#fff;
+	}
+.registerBtn{
+	border:1px solid #159eec;
+	background:#fff;
+	text-align:center;
+	color:#000;
+	}
+.getBtn{
+	color:#fff;
+	background:#50adff;
+	display:inline-block;
+	padding:0 15px;
+	height:30px;
+	line-height:30px;
+	position:absolute;
+	right:5px;
+	top:5px;
+	text-align:center;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-khtml-border-radius:3px;
+	}
+.agrees{
+	margin:20px 0;
+	color:#fff;
+	font-size:14px;
+	}
+.agrees input{
+	width:16px;
+	height:16px;
+	vertical-align:middle;
+	margin-right:3px;
+	}
+.agrees a{
+	font-size:14px;
+	color:#fff;
+	text-decoration:underline;
+	}
+

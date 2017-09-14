@@ -1,0 +1,27 @@
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>15959484369</desmobile><msgid>C5258417052709425600</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"15959484369";s:4:"sign";s:32:"1e283bbfedf97b519b6a0163c7c2c59a";}, 2017-05-27 09:42:56
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13123157838</desmobile><msgid>C9942017052712151500</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13123157838";s:4:"sign";s:32:"3db672c5a058c978318c9b40c0afe308";}, 2017-05-27 12:15:15
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>15986082438</desmobile><msgid>C5051817052714121900</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"15986082438";s:4:"sign";s:32:"bd6554bb9548f0fe8430fe0da2f0f04b";}, 2017-05-27 14:12:19
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13104146838</desmobile><msgid>C1447117052715555800</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13104146838";s:4:"sign";s:32:"edcf7b8f49f2165b4d93150e8c4f88ef";}, 2017-05-27 15:55:58
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18950181487</desmobile><msgid>C3436017052717310000</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18950181487";s:4:"sign";s:32:"4b69fc9a2337f90a96981bb2e73e9844";}, 2017-05-27 17:31:00
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18997173912</desmobile><msgid>E2777417052718084000</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18997173912";s:4:"sign";s:32:"e05310fdb44f3fad2d34dd03860657bc";}, 2017-05-27 18:08:40
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18014876283</desmobile><msgid>C2188317052719401700</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18014876283";s:4:"sign";s:32:"01bd3f476c9ee6a47413da1165bc3189";}, 2017-05-27 19:40:17
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>15867835762</desmobile><msgid>E0307317052720442400</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"15867835762";s:4:"sign";s:32:"b7b05420a9272b3ba8e9a9fe9c02be9f";}, 2017-05-27 20:44:25
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>15688874857</desmobile><msgid>E0770217052720530000</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"15688874857";s:4:"sign";s:32:"4420183235a7a4c342a30c2cdb405380";}, 2017-05-27 20:53:00
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13841236306</desmobile><msgid>C7237717052721024200</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13841236306";s:4:"sign";s:32:"51ef88f1e8b343b75b1849eba9540cc3";}, 2017-05-27 21:02:42
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13209651271</desmobile><msgid>D4390117052722230500</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13209651271";s:4:"sign";s:32:"1fa0ce7ca4e0570e8095cc11c237a30e";}, 2017-05-27 22:23:05
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13209651241</desmobile><msgid>E4694617052722120700</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13209651241";s:4:"sign";s:32:"a69d1701f1ce5430c1ccd64a0c496993";}, 2017-05-27 22:26:00
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>15108261035</desmobile><msgid>D5299417052722412600</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"15108261035";s:4:"sign";s:32:"176d407564b550b11c05ba2af245cbcd";}, 2017-05-27 22:41:27
+ result=<?xml version="1.0" encoding="gbk" ?><respons

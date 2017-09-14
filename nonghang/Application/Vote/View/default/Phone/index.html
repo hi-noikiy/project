@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="cn">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
+    <title>投票</title>
+    <link rel="stylesheet" href="__CSS__/phone.css">
+    <script type="text/javascript" src="__JS__/jquery.js"></script>
+</head>
+
+<body id="page-index">
+
+    <div class="main">
+        <div class="timeArea">
+            <img src="__IMG__/time.png">
+            <div class="text"><p id="getTime"></p></div>
+        </div>
+        <div class="item">
+           <p class="num"><img src="__IMG__/num/{:intval($id/10)}.png" style="height:30px"><img src="__IMG__/num/{:$id - intval($id/10) * 10}.png" style="height:30px"></p>
+           <p class="art">{$programConfig.type}&nbsp;&nbsp;&nbsp;{$programConfig.store}</p>
+           <p class="person">{$programConfig.name}</p>
+        </div>
+        <div class="zanArea">
+            <img src="__IMG__/{$diabled}.png" id="submitImg">
+            <div class="num" id="nowVote">{$nowVote}</div>
+        </div>
+        <div class="voteStatus"><if condition="$diabled eq 'zanBg2' ">您已投票<else />为TA投票</if></div>
+    </div>
+<script type="text/javascript">
+
+var flag = true;
+    $(function(){
+        var bodyH = $(window).height(),
+            wrapH = parseInt(bodyH);
+        $('.main').css({height:wrapH,'background-size':'100% '+ wrapH +'px'});
+        $('.zanArea').on('click',function(){
+            if(flag){
+
+                $(this).find('img').attr('src','__IMG__/zanBg2.png');
+                $('.voteStatus').text('你已投过票');
+                flag = false;
+
+                var arg = {
+                    'id': {$id}
+                };
+                $.post('{:U()}', arg, function(json){
+                    if (json.status == 0) {
+                        $('#nowVote').html(json.data);
+                        $('.voteStatus').html('您已投票');
+                    }else{
+                        alert(json.content);
+                    }
+                    
+                }, 'json');
+
+            }
+        })
+    });
+
+    $(window).load(function(){
+        var a = parseInt($('.zanArea img').width())/ 2,
+            b = parseInt($('.timeArea img').width())/2;
+        $('.zanArea').css({'margin-left':'-'+a+'px','width':a*2+'px' });
+        $('.timeArea').css({'margin-left':'-'+b+'px','width':b*2+'px' });
+    });
+	
+    var time = 30;
+    function daojis (time) {
+        // alert(time);
+        var minute = 0;
+        var m1 =  parseInt(time/10);
+        var m2 = time-m1*10;
+        var strTime = '<span><img src="__IMG__/number/0.png" /><img src="__IMG__/number/0.png" /><img src="__IMG__/number/mh.png" /><img src="__IMG__/number/' + m1 + '.png" /><img src="__IMG__/number/'+m2+'.png" />';
+
+        $('#getTime').html(strTime);
+        if (time == 0 ) {
+
+                $('.zanArea').find('img').attr('src','__IMG__/zanBg2.png');
+                flag = false;
+                $('#getTime').html('投票结束');
+            return ;
+        };
+        time--;
+        setTimeout("daojis("+time+")",1000);
+    }
+    daojis(time);
+
+</script>
+</body>
+</html>

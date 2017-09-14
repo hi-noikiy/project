@@ -1,0 +1,65 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="#" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">历史券包</div>
+    <div class="right"></div>
+  </div>
+</div>
+<div class="pages">
+  <div data-page="package" class="page">
+    <div class="page-content">
+
+        <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+        </foreach>
+        
+		<div class="content">
+            <div class="voucherList" style="margin-top:15px;">
+                <ul>
+                	<li>
+                    	<img src="__IMG__/user/voucher4.png" width="100%" />
+                        <div class="voucherBody">
+                            <div class="voucherPrice"><b>￥</b>10</div>
+                            <div class="voucherCode">dsKDSLFJDKJSF</div>
+                            <div class="voucherName">兑换券</div>
+                            
+                            <div class="voucherDate">有效期至2015-09-08</div>
+                        </div>
+                        <div class="voucherOut"><img src="__IMG__/user/out.png" height="100%" /></div>
+                    </li>
+                    <li>
+                    	<img src="__IMG__/user/voucher4.png" width="100%" />
+                        <div class="voucherBody">
+                            <div class="voucherPrice"><b>￥</b>10</div>
+                            <div class="voucherCode">dsKDSLFJDKJSF</div>
+                            <div class="voucherName">卖品券</div>
+                            
+                            <div class="voucherDate">有效期至2015-09-08</div>
+                        </div>
+                        <div class="voucherOut"><img src="__IMG__/user/out.png" height="100%" /></div>
+                    </li>
+                    <li>
+                    	<img src="__IMG__/user/voucher4.png" width="100%" />
+                        <div class="voucherBody">
+                            <div class="voucherPrice"><b>￥</b>10</div>
+                            <div class="voucherCode">dsKDSLFJDKJSF</div>
+                            <div class="voucherName">立减券</div>
+                            
+                            <div class="voucherDate">有效期至2015-09-08</div>
+                        </div>
+                        <div class="voucherOut"><img src="__IMG__/user/out.png" height="100%" /></div>
+                    </li>
+                </ul>
+            </div>
+    	</div>
+
+
+    </div>
+  </div>
+</div>
+<block name='script'>
+<script>
+
+</script>  
+</block>

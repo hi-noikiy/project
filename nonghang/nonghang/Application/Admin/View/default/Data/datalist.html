@@ -1,0 +1,91 @@
+<extend name='Public/base'/>
+<block name='body'>
+		<div class="content">
+				<div class="leftMenu">
+						<ul>
+								{$leftMenu}
+						</ul>
+				</div>
+				<div class="rightContent">
+					<div class="tableList">
+								<table width="100%" cellpadding="0" cellspacing="0" border="0">
+										 <thead>
+													<tr>
+														<td width="7%">序号</td>
+														<td width="7%">周期</td>
+														<td width="7%">分享标题</td>
+														<td width="7%">分享描述</td>
+														<td width="15%">上传图片数量</td>
+														<td width="3%">票房相册链接</td>
+														<td width="15%">操作</td>
+													</tr>
+											</thead>
+											<tbody>
+												<volist name='list' id='v'>
+													<tr>
+														<td>{$v.id}</td>
+														<td>{$v.times}</td>
+														<td>{$v.title}</td>
+														<td>{$v.detail}</td>
+														<td>{$v.count}张</td>
+														<td><?php echo $_SERVER ['HTTP_HOST']?>/data?times={$v.times}</td>
+														<td> <a class="editFilm" href="javascript:data_edit('{$v.times}','{$v.id}')">编辑</a>|<a href="javascript:del_datalist('{$v.times}','{$v.id}')">删除</a></td>														
+													</tr>
+
+												</volist>							 
+									 </tbody>
+								</table>
+								
+				<div class="pagination">
+                
+                <div class="page">
+                    {$page}
+                	
+                </div>
+                </div>
+						</div>
+						<div class="rightFooter">
+								<p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有	4008-12345678</p>
+						</div>
+				</div>
+				
+</div>
+<script type="text/javascript">
+	var loadi = '';
+	var loadimsg = ''; 
+
+	function submitSerach () {
+			$('#serach').submit();
+	}
+	function data_edit (times,id) {
+			  window.location.href="{:U(data_edit)}"+'?times='+times+'&id='+id;
+	}
+
+	function del_datalist(times,id){
+		layer.confirm('确认是否删除？',function(index){
+
+			$.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(data_delete)}',
+            data: '&times='+times+'&id='+id,
+            success: function(msg){
+                var res = eval("(" + msg + ")");
+                
+                if(res.statusCode == '1') { 
+
+
+                    parent.window.location.href="{:U(datalist)}";
+                        // var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
+                        // parent.layer.close(index);        
+                }else {
+                }
+            }
+        });
+
+
+
+		})
+	}
+</script> 
+</block>

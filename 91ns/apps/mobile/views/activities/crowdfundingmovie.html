@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/activities.crowdfundingmovie'|ns_css)}}"/>
+</head>
+<body>
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+    <div class="crowdfundingmovieDiv">
+	    <img src="{{static_url('web/cssimg/mobile/activities/crowdfundingmovie/H5_01.jpg')}}" width="100%">
+	    <div id="cr_movie">
+	    	<div class="message">
+	    		<div class="time">{= startTime|date 'yyyy.MM.dd hh:mm' =}~{= endTime|date 'yyyy.MM.dd hh:mm' =}</div>
+	    		<div class="btn next {= nowTimes === totalTimes ? 'forbid':'' =}" v-touch:tap="next()">下一期</div>
+	    		<div class="btn prev {= nowTimes == 1 ? 'forbid':'' =}" v-touch:tap="prev()">上一期</div>
+	    	</div>
+	    	<div class="list schedule schedule0">
+	    		<div class="btn prev {= showMoins?'show':'hide' =}" v-touch:tap="moins()">
+	    			<img src="{{static_url('web/cssimg/mobile/activities/crowdfundingmovie/left.png')}}">
+	    			<img src="{{static_url('web/cssimg/mobile/activities/crowdfundingmovie/left-hover.png')}}" class="hover">
+	    		</div>
+	    		<div class="btn next {= showPlus?'show':'hide' =}" v-touch:tap="plus()">
+	    			<img src="{{static_url('web/cssimg/mobile/activities/crowdfundingmovie/right.png')}}">
+	    			<img src="{{static_url('web/cssimg/mobile/activities/crowdfundingmovie/right-hover.png')}}" class="hover">
+	    		</div>
+	    		<ul id="ul" v-touch:pan="onPan" v-on:touchstart="onTapStart" v-on:touchend="onTapEnd" v-bind:style="style">
+	    			<li v-for="user in lists" class="{=(parseInt(user.sum) > finishNum?'complete ':'')+(active.uid === user.uid?'active':'')=}" v-touch:tap="activeUser(user)">
+	    				<img class="completeIcon" src="{{static_url('web/cssimg/mobile/activities/crowdfundingmovie/yiwancheng-app.png')}}">
+	    				<img class="avatar" v-bind:src="user.avatar">
+	    			</li>
+	    		</ul>
+	    	</div>
+	    	<div class="detail" v-if="active !== undefined">
+	    		<span class="name">{= active.nickName =}</span>
+	    		<span>收到</span>
+	    		<span class="getNumber">{= active.sum =}</span>
+	    		<span class="yellowFont">张</span>
+	    		<img src="{{static_url('web/cssimg/mobile/activities/crowdfundingmovie/dyp_03.png')}}">
+	    	</div>
+	    	<ul class="userList">
+	    		<li class="header">
+	    			<div class="ranking">排名</div>
+	    			<div class="nickName">昵称</div>
+	    			<div class="number">送出电影票</div>
+	    		</li>
+	    		<li v-for="i in 10">
+	    			<div class="ranking">{= i+1 =}</div>
+	    			<div class="nickName">{= active?(active.list[i]?active.list[i].nickName:''):'' =}</div>
+	    			<div class="number">{= active?(active.list[i]?active.list[i].sum:''):'' =}</div>
+	    		</li>
+	    	</ul>
+	    </div>
+	    <img src="{{static_url('web/cssimg/mobile/activities/crowdfundingmovie/H5_03.jpg')}}" width="100%">
+    </div>
+    {% include "template/footer.html" %}
+</div>
+<script type="text/javascript" src="{{static_url('mobile/tool/vue'|ns_js)}}"></script>
+<script type="text/javascript" src="{{static_url('mobile/tool/vue-resource'|ns_js)}}"></script>
+<script type="text/javascript" src="{{static_url('mobile/tool/hammer.min'|ns_js)}}"></script>
+<script type="text/javascript" src="{{static_url('mobile/tool/vue-touch'|ns_js)}}"></script>
+<script type="text/javascript" src="{{static_url('mobile/m/activities.crowdfundingmovie'|ns_js)}}"></script>
+</body>
+</html>

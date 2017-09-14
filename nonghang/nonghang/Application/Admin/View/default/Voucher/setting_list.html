@@ -1,0 +1,111 @@
+<extend name='Public/base'/>
+<block name='body'>
+	<div class="content">
+		<div class="leftMenu">
+			<ul>
+				{$leftMenu}
+			</ul>
+			<div class="planBtn"><a class="button" href="javascript:select_type();" >添加方案</a></div>
+		</div>
+		<div class="rightContent">
+			<div class="queryBox">
+				<form action="{:U()}" method="post" id='myform'>
+					<div class="inputText" > <span>按方案查询</span>
+						<input type="text" name="configName"	placeholder="请输入方案名称" value="{$configName}">
+					</div>
+					<a href="#" class="button" id="serach">查询</a>
+				</form>
+			</div>
+			<div class="tableList">
+				<table width="100%" cellpadding="0" cellspacing="0" border="0">
+					<thead>
+					
+					
+						<tr >
+							<td width="10%"><input type="checkbox" onclick="select_other(this);" /></td>
+							<td width="20%">方案Id</td>
+							<td width="30%">方案名称</td>
+							<td width="20%">操作</td>
+						</tr>
+						
+					</thead>
+					<tbody>
+					<foreach name="voucherSettingList" item="vo" key="k">
+						<tr>
+							<td><input type="checkbox" name='id' value="{$vo.id}"/></td>
+							<td>{$vo.id}</td>
+							<td>{$vo.configName} </td>
+							<td><a href="javascript:editSeting({$vo.id})">修改</a>|<a href="javascript:del({$vo.id});">删除</a></td>
+						</tr>
+						</foreach>
+					</tbody>
+				</table>
+				<div class="pagination">
+					<div class="page"> {$page} </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	function del(typeId){
+        layer.confirm('确认是否删除？',function(index){
+            loadi = layer.load(1, {shade: [0.5,'#000']});
+            loadimsg = layer.msg('正在删除...',{icon: 16, time:60000000});
+            $.ajax({
+                url:"{:U('delVoucherSetting')}",
+                data:{'id':typeId},
+                dataType:'json',
+                type:'post',
+                success:function(json){
+                    if(json.status=='0'){
+                        layer.alert(json.content);
+                        location.reload();
+                    }else{
+                        layer.close(loadi);
+                        layer.close(loadimsg);
+                        layer.msg(json.content);
+                    }
+                },
+                error:function(msg){
+                    layer.close(loadi);
+                    layer.close(loadimsg);
+                    layer.msg('网络错误，请稍候再试！');
+                }
+            });
+            
+    })
+}
+	$('.queryBox #serach').click(function(){
+	    $('#myform').submit();
+	});
+//反选
+function select_other(){
+	jQuery.each($("input[name='id']"), function(i, n){
+	n.checked = !n.checked;
+	}); 
+}
+
+function select_type () {
+
+	layer.open({
+		title :'添加兑换券方案',
+		type: 2,
+		area: ['850px', '510px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U('addSetting')}'
+	});
+}
+
+function editSeting (id) {
+	layer.open({
+		title :'修改兑换券方案',
+		type: 2,
+		area: ['850px', '510px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U('editSetting')}?id=' + id
+	});
+}
+</script> 
+</block>

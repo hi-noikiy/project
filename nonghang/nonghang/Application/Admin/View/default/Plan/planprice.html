@@ -1,0 +1,128 @@
+<link rel="stylesheet" href="__CSS__/common.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__CSS__/style.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="__JS__/jquery.min.js"></script>
+<script type="text/javascript" src="__JS__/layer.js"></script>
+<script type="text/javascript" src="__JS__/jquery.form.js"></script> 
+
+<link rel="stylesheet" href="__JS__/skin/layer.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__JS__/skin/layer.ext.css" type="text/css" media="screen" />
+
+
+<body style="background:#fff;">
+<div class="binding editPrice" style="width:100%">
+
+
+
+	<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
+		<thead>
+			<tr>
+				<th colspan="2">编辑会员价格</th>
+			</tr>
+		</thead>
+		<tr>
+			<td colspan="2"><ul class="tabbtn" id="tabs">
+
+			
+			<foreach name="cinemaGroup" item="vo" key="k" >
+                    <li id="tabTitle{$vo.id}"  id="current"><a href="javascript:" onclick="showTabContent({$vo.id})">{$vo.groupName}</a></li>
+                </foreach>
+                  
+                </ul></td>
+
+		</tr>
+		<form id="loginform">
+		<tbody>
+			<tr>
+				<td>会员类型</td>
+				<td>价格</td>
+			</tr>
+
+			<foreach name="cinemaGroup" item="value" key="key" >
+			<tbody id="tabContent{$value.id}" class="tabsContent" <if condition="$key neq 0 ">style="display:none"</if>>
+			<foreach name="memberGroupList[$value['id']]" item="vo" key="k" >
+			<tr >
+				<td >{$vo.groupName}</td>
+				<td><input name="price[{$value.id}][{$vo.groupId}]" type="text" id="uappPrice" value="{$priceConfig[$value['id']][$k]}">元</td>
+			</tr>
+		</foreach>
+		</tbody>
+		</foreach>
+		</tbody>
+	</form>
+	</table>
+	<div class="editBtn"><a href="javascript:setPriceLock();" id="bind" class="button <if condition="$planInfo['priceLock'] neq 0">isLock</if>"><if condition="$planInfo['priceLock'] eq 0">锁定<else />解锁</if></a><a href="javascript:updatePrice();" class="button">保存</a></div>
+</div>
+
+<script type="text/javascript">
+var loadi = '';
+var loadimsg = '';	
+
+
+function setPriceLock () {
+		loadi = layer.load(1, {shade: [0.5,'#000']});
+		layer.msg('正在<if condition="$planInfo['priceLock'] eq 0">锁定<else />解锁</if>价格...',{time: 3600});
+		$.ajax({		
+				url:'{:U("setPriceLock")}',// 跳转到 action		
+				data:{'featureAppNo':<?php echo $planInfo['featureAppNo'];?>,'priceLock':<?php echo $planInfo['priceLock'];?>},		
+				type:'post',			 
+				dataType:'json',		
+				success:function(data) {
+						if(data.status == 0){
+								layer.alert(data.content);
+								layer.close(loadi);
+								setTimeout(function(){location.reload()}, 1000);
+						}else{
+								layer.alert(data.content, {icon: 5});
+								layer.close(loadi);
+						}
+				},		
+				error : function() {
+						layer.close(loadi);
+						layer.alert('网络请求错误，请重试', {icon: 5});
+				}		
+		});
+		// alert('开始刷新排期！');
+}
+
+
+function updatePrice () {
+		loadi = layer.load(1, {shade: [0.5,'#000']});
+		loadimsg = layer.msg('正在更新排期价格...',{time: 60000});
+
+		$("#loginform").ajaxSubmit({	
+				type:"post",	//提交方式	
+				dataType:"json", //数据类型	
+				url:"{:U('planprice')}", //请求url 
+				data:{'featureAppNo':<?php echo $planInfo['featureAppNo'];?>}, 
+				success:function(data){ //提交成功的回调函数	
+						if(data.status == 0){
+								layer.alert(data.content);
+								layer.close(loadi);
+								setTimeout(function(){location.reload()}, 1000);
+							}else{
+								layer.close(loadi);
+								layer.close(loadimsg);
+								layer.alert(data.content, {icon: 5});
+							}
+				}	
+		});
+}
+
+function showTabContent (id) {
+	$('.tabsContent').css('display','none');
+	$('#tabs li').removeAttr('id');
+
+	if (id != 0) {
+		$('#tabContent' + id).css('display','');
+		$('#tabTitle' + id).attr('id','current');	
+	}else{
+		$('.tabsContent').eq(0).css('display','');
+		$('#tabs li').eq(0).attr('id','current');	
+	}
+
+}
+
+showTabContent(0);
+</script>
+</body>

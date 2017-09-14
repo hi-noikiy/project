@@ -1,0 +1,75 @@
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/index')}" class="link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center title"><a class="titleLeft cur" href="{:U('film')}">正在热映</a><a class="titleRight" href="{:U('soon')}">即将上映</a></div>
+    <div class="right"><a href="{:U('index/cinemalist',array('op'=>'film'))}" class="link open-links more-cinema">{$cinema['shortName']}</a></div>
+  </div>
+</div>
+
+
+<div class="pages">
+  <div data-page="filmList" class="page">
+    <div class="page-content">
+		
+        <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+        </foreach>
+		
+        <div class="content">
+        <div class="filmList">
+          <ul>
+              <volist name='films' id='vo'>
+              <li>
+                  <a href="javascript:details('{$vo['filmNo']}')" >
+                        <div class="filmImg"><img src="{$vo['image']}" width="67.5" height="90" />
+                        <em class="style<?php if($vo['copyType']=='3D'){ ?>3D<?php }else{ ?>2D<?php } ?>"></em></div>
+                        <div class="filmInfo">
+                            <h2>{$vo['filmName']}</h2>
+                            <p>{$vo['simpleword']}</p>
+                            <span>今天还有{$vo['cc']}家影院放映{$vo['cp']}场</span>
+                            
+                        </div>
+                        <div class="filmScore">
+                            <sub>{$vo['f']}.</sub><sup>{$vo['s']}</sup>
+                        </div>
+                    </a>
+                </li>
+                </volist>
+            </ul>
+        </div>
+        </div>
+	</div>
+  </div>
+</div>
+ <!-- Links popover -->
+  <div class="popover popover-links">
+    <div class="popover-angle"></div>
+    <div class="popover-inner">
+      <div class="list-block">
+        <ul>
+          <li><a href="#" class="list-button item-link">Link 1</a></li>
+          <li><a href="#" class="list-button item-link">Link 2</a></li>
+          <li><a href="#" class="list-button item-link">Link 3</a></li>
+          <li><a href="#" class="list-button item-link">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<block name='script'>
+<script type="text/javascript">
+    var w=$(document).width();
+		$('.index-swiper-container').height(w*0.33);
+		 var indexSwiper = myApp.swiper('.index-swiper-container'/*, {
+			pagination:'.pagination',
+			loop:true,
+			grabCursor: true,
+			paginationClickable: true
+		  }*/);
+
+	$$('.open-links').on('click', function () {
+		var clickedLink = this;
+		myApp.popover('.popover-links', clickedLink);
+	}); 
+	</script>
+  </block>

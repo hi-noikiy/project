@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS `pre_consume_to_anchor_log`;

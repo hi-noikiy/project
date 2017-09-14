@@ -1,0 +1,156 @@
+
+body{
+	background:#fff;
+	}
+/*登录方式切换*/
+.tabs {
+  width:100%;
+  background:#fff;
+  color:#dbdbdb;
+  border-bottom:1px solid #d9d9d9;
+}
+
+.tabs a {
+	color:#000;
+	display:inline-block;
+	width:49.3%;
+	text-align: center;
+	background: #fff;
+	height:36px;
+	line-height: 40px;
+	font-size: 16px;
+	border-bottom: 4px solid #fff;
+	}
+.tabs a.active {
+  color: #159eec;
+  border-bottom: 4px solid #159eec;
+}
+
+
+
+
+.loginBody{
+	padding:15px;
+	}
+.loginSelect{
+	border:1px solid #e5e5e5;
+	margin-top:20px;
+	background:#fff;
+	height:40px;
+	line-height:40px;
+	position:relative;
+	}
+.loginSelect span{
+	width:24px;
+	height:24px;
+	display:inline-block;
+	float:left;
+	padding:0 10px;
+	margin:8px 0;
+	line-height:20px;
+	border-right:1px solid #e5e5e5;
+	}
+.loginSelect input{
+	font-size:16px;
+	padding-left:10px;
+	}
+.loginSelect em{
+	position:absolute;
+	right:5px;
+	top:0;
+	height:18px;
+	width:18px;
+	}
+.loginSelect ul {
+	width: 100%;
+	display: none;
+	position: absolute;
+	left: -1px;
+	top: 41px;
+	overflow: hidden;
+	background-color: #fff;
+	max-height: 200px;
+	overflow-y: auto;
+	border: 1px solid #999;
+	border-top: 0;
+	box-shadow: 0 3px 5px #999;
+	z-index: 9999;
+	}
+.loginSelect ul li{
+	border-bottom:1px solid #d9d9d9;
+	padding-left:40px;
+	font-size:16px;
+	}
+.loginInput{
+	margin-top:20px;
+	border:1px solid #e5e5e5;
+	background:#fff;
+	}
+.loginInput div{
+	height:41px;
+	line-height:40px;
+	}
+.loginInput div span{
+	width:24px;
+	height:24px;
+	display:inline-block;
+	float:left;
+	padding:0 10px;
+	margin:8px 0;
+	border-right:1px solid #e5e5e5;
+	}
+.loginInput div input{
+	font-size:16px;
+	height:40px;
+	line-height:40px;
+	padding-left:10px;
+	}
+.loginInput div a{
+	position:absolute;
+	right:5px;
+	top:5px;
+	padding:0 15px;
+	height:30px;
+	font-size:14px;
+	line-height:30px;
+	text-align:center;
+	border:1px solid #ea8c31;
+	color:#ea8c31;
+	display:block;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	-khtml-border-radius:5px;
+	}
+.loginBtn{
+	background:#f85340;
+	width:100%;
+	display:block;
+	margin:20px auto;
+	text-align:center;
+	height:40px;
+	line-height:40px;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	-khtml-border-radius:3px;
+	}
+.loginBtn a{
+	text-align:center;
+	display:block;
+	font-size:16px;
+	color:#fff;
+	letter-spacing:2px;
+	}
+.loginLink{
+	text-align:center;
+	width:20%;
+	height:120px;
+	margin:0 auto;
+	}
+.loginLink a{
+	display:inline-block;	
+	}
+.registerBtn{
+	background:#38c44c;
+	} 

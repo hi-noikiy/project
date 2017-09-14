@@ -1,0 +1,75 @@
+<extend name='Public/base'/>
+<block name='title'>微信购票</block>
+<block name='css'>
+	<link rel="stylesheet" href="__CSS__/buying.css" type="text/css" media="screen" />
+</block>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="" class="back link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center title">{$buyingInfo.cinemaName}</div>
+    <div class="right"></div>
+  </div>
+</div>
+</block>
+<block name='body'>
+
+<div class="pages">
+  <div data-page="buyingfilmList" class="page">
+    <div class="page-content" id="content">
+		<div class="filmContent">
+        	<img src="__UPLOAD__/{$buyingInfo.seatView}" width="100%" />
+            <div class="bak">*支付成功后，系统将从前排至后排依序自动分配座位!</div>
+            <div class="filmInfo">
+                <h2>{$buyingInfo.filmName}</h2>
+                <p>{$buyingInfo.filmStartTime}({$buyingInfo.productName}) &nbsp;仅剩<span>{$buyingInfo.seatCount}</span>张</p>
+                <div class="filmPrice">
+                	<span>￥{$buyingInfo.newPrice}</span><i>￥{$buyingInfo.oldPrice}</i>
+            	</div>    
+            </div>  
+        </div>
+
+        <div class="filmBak">
+            <span>抢票手机号:</span>
+            <div class="inputBox">
+                <input class="phone" name="mobile" type="tel" id="tickPhone" placeholder="请输入接收抢票信息的手机号" value="">
+                <em></em>
+            </div>
+        </div>
+        <div class="filmBak" style="margin-bottom:50px;">
+            <span>活动规则:</span>
+            <p>1、请在15分钟内完成支付，否则系统将自动释放座位；</p>
+            <p>2、本活动不支持在线选座，由系统从前排到后排依序自动分配座位；</p>
+            <p>3、支付成功后，请至少在影片开映前30分钟凭短信验证码至三坊七巷丝绸之路国际电影节指定兑票点换取入场券，影片开映前30分钟未完成兑换将视为自动放弃，不得入场；</p>
+            <p>4、电影节期间请爱护环境，遵守秩序，观影期间请勿随意走动，中途离场，谢绝带入食品，观影期间请勿饮食；</p>
+            <p>5、活动咨询电话：400-0125-000</p>
+        </div>
+    </div>
+    <div id="test"></div>
+    <div class="toolbar">
+        <div class="toolbar-inner buyBtm">
+           <!--<a href="" class="remindBtn cur">取消提醒</a>
+         <a href="" class="remindBtn">提醒我</a>-->
+          <div class="cartVal"><span>购买数量：</span>
+              <a class="minus cur" href="javascript:;">-</a><input class="textVal" id="tickNum" readonly="true" type="text" value="1"><a class="plus cur" href="javascript:;">+</a>
+              <input class="textVal" id="tickPrice" type="hidden" value="{$buyingInfo.newPrice}">
+              <input id="tickMaximum" type="hidden" value="{$buyingInfo.tickNums}">
+              <input id="buyingId" type="hidden" value="{$buyingInfo.buyingId}">
+           </div>
+           <a href="#" id="buy" class="buylink">立即支付(￥<span id="tickTotal">{$buyingInfo.newPrice}</span>)</a>
+        </div>
+      </div>  
+  </div>
+ 
+</div>
+	
+  </block>
+  <block name='page'>
+ 
+</block>
+<block name='script'>
+<script type="text/javascript">
+mainView.router.loadPage('{:U()}');
+
+</script>
+  </block>

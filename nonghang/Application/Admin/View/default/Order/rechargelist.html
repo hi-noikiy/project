@@ -1,0 +1,103 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+		 	<div class="queryBox">
+                <form action="{:U('rechargeList')}" method="post" id='myform'>
+                    <div class="queryBody">
+                        <div class="inputText">
+                            <span>按订单编号查询</span>
+                            <input type="text" value="{$pageData['id']}" name="id" placeholder="请输入订单编号">
+                        </div>
+                        <div class="inputText">
+                            <span>按会员卡查询</span>
+                            <input type="text" value="{$pageData['cardId']}" name="cardId" placeholder="请输入会员卡号">
+                        </div>
+                        <div class="inputText">
+                            <span>按手机号查询</span>
+                            <input type="text" value="{$pageData['mobile']}" name="mobile" placeholder="请输入手机号">
+                        </div>
+                        <div class="inputText">
+                            <span>按日期查询</span>
+                            <input name="start" type="text"  value="{$pageData['start']}" class="date" placeholder="请输入开始日期"><span>至</span><input name="end" type="text" value="{$pageData['end']}" class="date" placeholder="请输入结束日期">
+                        </div>
+                        <div class="inputSelect">
+                            <span>按影院查询</span>
+                            <select name="cinemaCode" id="cinemaCode">
+                        <option value="">所有影院</option>
+                        <foreach name="cinemaList" item="vo" key="k" >
+                        <option value="{$vo.cinemaCode}"<if condition="$vo['cinemaCode'] == $pageData['cinemaCode']"> selected="selected"</if>>{$vo.cinemaName}</option>
+                        </foreach>
+
+                    </select>
+                        </div>
+                        <!-- <div class="inputSelect">
+                            <span>按支付方式查询</span>
+                            <select name="payType">
+                                <option value="0">所有支付方式</option>
+                                <option value="1">会员卡支付</option>
+                                <option value="2">微信/手机余额支付</option>
+                                <option value="3">支付宝/手机余额支付</option>      
+                                 <option value="4">手机余额支付</option>      
+                            </select>
+                        </div>  -->
+                        <div class="inputSelect">
+                            <span>按订单状态查询</span>
+                            <select class="select" id="selb" name="status">
+                                <option value="-1">所有订单</option>
+                                <option value="0" <?php if($pageData['status']=='0'){ ?>selected<?php } ?>>充值中或者已取消</option>
+                        		<option value="1" <?php if($pageData['status']=='1'){ ?>selected<?php } ?>>完成</option>
+                        		<option value="2" <?php if($pageData['status']=='2'){ ?>selected<?php } ?>>异常</option>
+                            </select>
+                        </div>
+                        <a href="#" class="button" onclick="$('#myform').submit()">查询</a>
+                        <div class="clear"></div>
+                    </div>
+                   </form>
+            </div>
+            <div class="tableList">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+             <thead>
+                  <tr>
+                    <td width="10%">订单编号</td>
+                    <td width="10%">会员卡号/手机号</td>
+                    <td width="5%">充值金额</td>
+                    <td width="10%">充值后余额</td>
+                    <td width="20%">充值时间</td>
+                    <td width="25%">所属影院</td>
+                    <td width="10%">订单状态</td>
+                  </tr>			
+              </thead>
+              <tbody>
+              <volist name='recharges' id='vo'>
+              	<tr>
+                    <td> {$vo['id']}</td>
+                    <td> {$vo['loginNum']} </td>
+                    <td> {$vo['money']}</td>
+                    <td> {$vo['lastMoney']}</td>
+                    <td> {$vo['createTime']|date='Y-m-d H:i:s',###}</td>
+                    <td> <?php echo $cinemaList[$vo['cinemaCode']]['cinemaName'];?></td>
+                    <td> {$vo['statustr']} </td>
+                 </tr>
+                 </volist>
+           </tbody>
+        </table>
+         <div class="orderTotal">
+        	<span>订单总数：{$show['count']} 张</span>
+            <span>订单总金额：{$show['allprice']}元</span>
+            <a href="{:U('rechargePort',$pageData)}">导出到EXCEL</a> 
+        </div>
+       {$page}
+    </div>
+		</div>
+	</div>
+<script type="text/javascript">
+ 
+</script> 
+</block>

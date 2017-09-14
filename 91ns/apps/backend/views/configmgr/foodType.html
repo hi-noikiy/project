@@ -1,0 +1,304 @@
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a> 
+        <a href="#" class="tip-bottom" data-original-title="">配置管理</a> 
+        <a href="#" class="current">酒水分类配置</a> 
+    </div>
+    
+   <!--  <h1>Tables</h1> -->
+  </div>
+  <div class="container-fluid">
+   <!--  <hr> -->
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+            <button id="btnAdd" class="btn btn-success pull-right">添&nbsp;加</button>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"> <i class="icon-th"></i> </span>
+            <h5>酒水分类列表</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table id="dataList" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>酒水类型名称</th>
+                  <th>标识Id(非0)</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="pagination" class="pagination alternate pull-right">
+
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="dialog-form" title="Create new user" style=" display: none;">
+  <p class="validateTips"></p>
+
+   <form id="submitform" action="#" method="get" class="form-horizontal">           
+      <div class="control-group">
+        <label class="control-label">酒水类型名称 :</label>
+        <div class="controls">
+          <input name="typeName" id="level" type="text" class="span11" placeholder="">
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label">标识Id(非0) :</label>
+        <div class="controls">
+          <input name="typeId" id="duration" type="text" class="span11" placeholder="">
+        </div>
+      </div>
+    </form>
+
+</div>
+
+<script type="text/javascript">
+  
+$(function(){
+    getDataList()
+});
+
+
+/**
+* 初始化为空
+*/
+function Initialization(){
+
+  var submitform=document.getElementById('submitform');
+    
+    submitform.typeName.value='';
+    submitform.typeId.value='';
+}
+
+//add vip data
+var btnadd=document.getElementById('btnAdd');
+utils.addEvent(btnadd,'click',addData); 
+
+function addData(){
+  $( "#dialog-form" ).dialog({
+        width: 600,
+        title:'添加酒水配置信息',
+        modal:true,
+        closeOnEscape:true,
+        resizable:false,
+        open:function(res){
+          Initialization();
+        },
+        buttons:{
+          "添加":function(){
+
+            var submitform=document.getElementById('submitform'),
+            data={};
+
+            data.action="add";
+            data.name=submitform.typeName.value;
+            data.typeId=submitform.typeId.value;
+
+            $.ajax({
+              type:"post",
+              url:"/configmgr/updateFoodType",
+              data:data,
+              dataType:'json',
+              success:function(res){
+                if(res.code==0){
+                  getDataList();
+                  $("#dialog-form" ).dialog("close");
+                }else{
+                  alert(res.info);
+                }
+              }
+            });
+
+          },
+          "取消":function(){
+            $(this).dialog("close");
+          }
+
+        }
+      });
+      
+}
+
+function getDataList(index){
+  var data={};
+  data.page=index||0;
+  data.numPerPage=pagesize;
+  $.ajax({
+    type:"post",
+    url:"/configmgr/getFoodType",
+    data:data,
+    dataType:'json',   
+    success:function(res){
+      
+      var data=res.data;
+      var table=document.getElementById("dataList");
+      var tbody= table.getElementsByTagName('tbody')[0];
+
+      dataTable.clearData(tbody);
+      
+      for(var i=0;i<data.list.length;i++){
+        addRow(tbody,'',data.list[i]);
+      }
+      
+      if(!index||index==0){
+        initPagination(data.count);
+      }
+
+    }
+  });
+}
+
+function initPagination(page) {
+  $("#pagination").pagination(page, {
+      callback: pageselectCallback,
+      items_per_page:pagesize, // 每页只显示一条记录
+      num_display_entries : 3,
+      num_edge_entries : 1, 
+      prev_text : "上一页",  
+      next_text : "下一页", 
+  });
+}
+
+function pageselectCallback(page_index, jq){
+    getDataList(page_index);
+    return false;
+}
+
+function addRow(table,index,data){
+  var row=table.insertRow();
+  var cell=row.insertCell(0);
+  var cell1=row.insertCell(1);
+  var cell2=row.insertCell(2);
+  
+  cell.innerHTML=data.name;
+  cell1.innerHTML=data.typeId;
+
+  var deit=document.createElement("a"),
+  del=document.createElement("a");
+  
+  deit.innerHTML='编辑';
+  deit.className="table-edit";
+  deit.data=data.id;
+  utils.addEvent(deit,'click',dataEdit);
+
+  del.innerHTML='删除';
+  del.data=data.id; 
+  utils.addEvent(del,'click',dataDelete); 
+
+  cell2.appendChild(deit);
+  cell2.appendChild(del);
+    
+  return row;
+}
+
+
+//vip data edit
+function dataEdit(){
+
+  var btn=this;  
+  
+ $( "#dialog-form" ).dialog({
+      width: 600,
+      title:'修改酒水配置信息',
+      modal:true,
+      closeOnEscape:true,
+      resizable:false,
+      open:function(){
+        var data={};
+        data.action='';
+
+        Initialization();
+
+        $.ajax({
+          type:"post",
+          data:data,
+          url:"/configmgr/updateFoodType/"+btn.data,
+          dataType:'json',
+          success:function(res){
+            var data= res.data;
+
+            var submitform=document.getElementById('submitform');
+            
+            submitform.typeName.value=data.name;
+            submitform.typeId.value=data.typeId;
+          }
+        });
+      },
+      buttons:{
+        "修改":function(){
+
+          var submitform=document.getElementById('submitform'),
+          data={};
+
+          data.action="update";
+          data.name=submitform.typeName.value;
+          data.typeId=submitform.typeId.value;
+
+          $.ajax({
+            type:"post",
+            url:"/configmgr/updateFoodType/"+btn.data,
+            data:data,
+            dataType:'json',
+            success:function(res){
+              if(res.code==0){
+                getDataList();
+                $("#dialog-form" ).dialog("close");
+              }else{
+                alert(res.info);
+              }
+            }
+          });
+          
+        },
+        "取消":function(){
+          $(this).dialog("close");
+        }
+
+      }
+ });
+
+}
+
+//vip data delete
+function dataDelete(){
+  if(confirm("确定要删除该数据吗？")){
+    var btn=this,
+    data={};
+    data.action="del";
+    
+    $.ajax({
+      type: "post",
+      data: data,
+      dataType: 'json',
+      url: '/configmgr/updateFoodType/'+btn.data,
+      success: function(res){
+
+        if(res.code==0){
+          getDataList();
+         //dataTable.delTableRow(btn);
+        }else{
+          alert(res.info);
+        }
+        
+      }
+    });
+  }
+}
+  
+</script>
+

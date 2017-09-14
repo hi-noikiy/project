@@ -1,0 +1,1 @@
+update pre_task set `status`=0,showStatus=0 where taskId=2001

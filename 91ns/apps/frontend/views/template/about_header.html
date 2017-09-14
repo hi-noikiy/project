@@ -1,0 +1,39 @@
+<div class="header">
+    <div class="header w1000m500">
+        <img class="logo" src="{{static_url('web/cssimg/about/logo.png')}}"/>
+        <div class="more"></div>
+    </div>
+</div>
+<div class="controller">
+    <ul class="controller w1000m500 clearfix">
+        <li class="{% if ns_active|default('index') == 'index' %}active{% endif %}">
+            <a href="/about">首页</a>
+            <i><i></i></i>
+        </li>
+        <li class="{% if ns_active|default('index') == 'about' %}active{% endif %}">
+            <a href="/about/about">关于我们</a>
+            <i><i></i></i>
+        </li>
+        <li class="{% if ns_active|default('index') == 'partner' %}active{% endif %}">
+            <a href="/about/partner">商务合作</a>
+            <i><i></i></i>
+        </li>
+        <li class="{% if ns_active|default('index') == 'job' %}active{% endif %}">
+            <a href="/about/job">高薪诚聘</a>
+            <i><i></i></i>
+        </li>
+        <li class="{% if ns_active|default('index') == 'protocol' %}active{% endif %}">
+            <a href="/about/protocol">使用协议</a>
+            <i><i></i></i>
+        </li>
+        <li class="{% if ns_active|default('index') == 'principle' %}active{% endif %}">
+            <a href="/about/principle">隐私原则</a>
+            <i><i></i></i>
+        </li>
+        <li class="{% if ns_active|default('index') == 'contact' %}active{% endif %}">
+            <a href="/about/contact">联系我们</a>
+            <i><i></i></i>
+        </li>
+    </ul>
+</div>
+<div class="border"></div>

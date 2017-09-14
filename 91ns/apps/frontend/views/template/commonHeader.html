@@ -1,0 +1,373 @@
+
+<div class="JS-ALERT-BACKGROUND"></div>
+<div class="ns-alert js-id-alert">
+    <div class="win">
+        <div class="header">
+            <!-- <i class="ico-main-12 alert-logo"></i> -->
+            <span class="_title">{{ webType['name'] }}</span><span class="_tip">提示您</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body"></div>
+        <div class="bottom"></div>
+    </div>
+</div>
+<div class="reg-avatar-upload" id="reg-avatar-upload">
+    <div class="reg-avatar-flash" id="reg-avatar-flash"></div>
+</div>
+<!--dialog-login-->
+<div id="theDayFirstLogin" style="height:0px;width:0px;overflow: visible;"></div>
+<div class="dialog-mask"></div>
+
+        {% if webType['channelType']!=2 %}
+<div class="dialog-login _register" id="loginbox">
+    <div class="dialog-content clearfix">
+        <div class="d-l-left">
+            <!--登录-->
+            <div id="login_user_box" class="login_user_box">
+                <div class="row _texts d_focus clearfix">
+                    <span class="_login_title">现在登录,</span>
+                    <span class="_login_title">您就可以与主播聊天互动了！</span>
+                </div>
+                <div id="pcLogin" class="_LoginBy _loginShowDiv">
+                    <div class="row d_focus clearfix d_point">
+                        <span>用户名/手机号</span>
+                    </div>
+                    <div class="row d_focus clearfix">
+                        <input class="login_username_input _regLogin _loginInput" type="text" name="lf_username" id="lf_username" autocomplete="off" size="12" fwin="login">
+                    </div>
+                    <div class="row d_focus clearfix d_point">
+                        <span>密码</span>
+                        <span class="_loginmsg status-tips lb-tips" style="float:right;"></span>
+                    </div>
+                    <div class="row d_focus clearfix">
+                        <input class="login_pwd_input _regLogin _loginInput" type="password" id="lf_password" name="lf_password" size="30" class="px p_fre" fwin="login">
+                    </div>
+                    <div class="row checkbox clearfix" style="margin-top: 16px;">
+                        <!--<i id="loginAutoSelect" class="auto-login-div autoLogin"></i>-->
+                        <!--<a class="auto-login-lable">自动登录</a>-->
+                        <a class="forgetpwd pull-right" href="/user/getPassword">忘记密码>></a>
+                    </div>
+                </div>
+                <div id="phoneLogin" class="_LoginBy _loginHideDiv">
+                    <div class="_LoginByTelphone">
+                        <div class="row d_focus clearfix d_point" style="margin-left: 15px;">
+                            <span>手机号码</span>
+                            <span id="rTelephone1" class="status-tips lb-tips" style="float:right;"></span>
+                        </div>
+                        <div class="row d_focus clearfix" style="margin-left: 15px;">
+                            <label defaultdisplay="default" class="_tel_number" defaultvalue="请输入手机号码">请输入手机号码</label>
+                            <input id="telPhone_Input" class="_regLogin _loginInput" type="text" name="lf_tel" autocomplete="off" size="12" fwin="login">
+                            <!--<span id="rTelephone1" class="status-tips lb-tips" style="float:right;margin-top: -62px;"></span>-->
+
+                        </div>
+                        <div class="row d_focus clearfix d_point" style="margin-left: 15px;">
+                            <!--<span>验证码</span>-->
+                            <span id="regSecurityCodeTip1" class="ns_tip_color" style="float: right;margin-right: 80px;"></span>
+                        </div>
+                        <div class="row d_focus clearfix" id="regSecurityCodeL" style="margin-left: 15px;"></div>
+                        <div class="_changeCode" style="margin-left: 205px;">
+                            看不到<a onclick="changeSecurityCodeL();">换一换</a>
+                        </div>
+                    </div>
+                    <div class="row d_focus clearfix d_point">
+                        <span>验证码</span>
+                        <span id="regTelephoneTip1" class="ns_tip_color" style="float: right;margin-right: 128px;"></span>
+                    </div>
+                    <div class="row d_focus clearfix">
+                        <label defaultdisplay="default" class="_tel_number" defaultvalue="请输入验证码">请输入验证码</label>
+                        <input id="regTelephone1" class="_regLogin _tel_number" type="text" autocomplete="off" size="12">
+                        <span class="telGetCode" onclick="telGetCodeLogin(this);">获取验证码<i class="_all_code" style="display:none;">(<i>60</i>)</i></span>
+                    </div>
+                </div>
+
+                <div id="divShowLogin" class="row btn" style="display: block;">
+                    <div class="login-btn">
+                        <div id="loginSubmit" class="_btn _loginSub" onclick="loginSubmit();" onselectstart="return false">登 录</div>
+                    </div>
+                </div>
+                <div id="divHideLogin" class="row btn" style="display: none;">
+                    <div class="login-btn">
+                        <div id="loginTelSubmit" class="_btn _loginSub" onclick="loginTelSubmit();" onselectstart="return false">登 录</div>
+                    </div>
+                </div>
+                <div class="row btn btn2">
+                    <div class="login-btn">
+                        <div id="loginType" class="_btn _loginSub" onclick="phoneLogin()" onselectstart="return false">手 机 验 证 登 录</div>
+                    </div>
+                </div>
+            </div>
+            <!--注册-->
+            <div id="reg_user_box" class="reg_user_box">
+                <div class="row d_focus clearfix _texts regType">
+                    <span id="registerByNol" class="active">用户名注册</span>
+                    <span id="registerByTel">手机号注册</span>
+                    <span class="noContent"></span>
+                </div>
+                <div class="row d_focus clearfix d_point _nol_reg">
+                    <span>用户名</span>
+                    <span id="regUserNameTip" class="ns_tip_color" style="float: right;"></span>
+                </div>
+                <div class="row d_focus clearfix _nol_reg">
+                    <label defaultdisplay="default" defaultvalue="4-12 字母，数字；区分大小写">4-12 字母，数字；区分大小写</label>
+                    <input id="regUserName" class="_regLogin" type="text" autocomplete="off" size="12">
+                </div>
+                <div class="row d_focus clearfix d_point _tel_reg">
+                    <span>手机号</span>
+                    <span id="regTelephoneTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix _tel_reg">
+                    <label defaultdisplay="default" class="_tel_number" defaultvalue="请输入11位数字">请输入11位数字</label>
+                    <input id="regTelephone" class="_regLogin _tel_number" type="text" autocomplete="off" size="12">
+                    <span class="telGetCode" onclick="telGetCode(this);">获取验证码<i class="_all_code" style="display:none;">(<i>60</i>)</i></span>
+                </div>
+                <div class="row d_focus clearfix d_point _tel_reg">
+                    <span>手机验证码</span>
+                    <span id="regSmsCodeTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix _tel_reg">
+                    <label defaultdisplay="default" defaultvalue=""></label>
+                    <input id="regSmsCode" class="_regLogin" type="text" autocomplete="off" size="12">
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>密码</span>
+                    <span id="regUserPasswordTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <label defaultdisplay="default" defaultvalue="6-18 字母，数字；区分大小写">6-18 字母，数字；区分大小写</label>
+                    <input id="regUserPassword" class="_regLogin" type="password" autocomplete="off" size="12" >
+                    <!--<span id="regUserPasswordTip" class="lb-tips _right"></span>oninput="regCheckPWD1()" onpropertychange="regCheckPWD1()"-->
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>确认密码</span>
+                    <span id="regUserCheckPasswordTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <label defaultdisplay="default" defaultvalue="6-18 字母，数字；区分大小写">6-18 字母，数字；区分大小写</label>
+                    <input id="regUserCheckPassword" class="_regLogin" type="password" autocomplete="off" size="12" >
+                    <!--<span id="regUserCheckPasswordTip" class="lb-tips _right"></span>oninput="regCheckPWD2()" onpropertychange="regCheckPWD2()"-->
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>昵称</span>
+                    <span id="regNickNameTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <label defaultdisplay="default" defaultvalue="2-10 个字、不可纯数字">2-10 个字、不可纯数字</label>
+                    <input id="regNickName" class="_regLogin" type="text" autocomplete="off" size="12">
+                    <!--<span id="regNickNameTip" class="lb-tips _right"></span>-->
+                </div>
+                <div class="row d_focus clearfix d_point _nol_reg">
+                    <span>验证码</span>
+                    <span id="regSecurityCodeTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix _nol_reg" id="regSecurityCode"></div>
+                <div class="_changeCode _nol_reg">
+                    看不到<a onclick="changeSecurityCode();">换一换</a>
+                </div>
+                <div class="row _agree d_focus clearfix" style="margin-top: 22px;">
+                    <i id="agreeAutoSelect" class="auto-login-div autoLogin"></i>
+                    <b>我已阅读并同意<a href="/agreement/reggreement" target="_blank">《91NS使用协议》</a></b>
+                </div>
+                <div class="row btn">
+                    <div class="login-btn">
+                        <div class="_btn" id="registerSubmit">同意并注册</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="height-line"></div>
+        <div class="d-l-right">
+            <div class="row row-close clearfix" style="margin-top:5px;">
+                <a href="javascript:;" title="关闭" class="close">
+                    <i class="ns_icon_close"></i>
+                </a>
+            </div>
+            <div class="right-row" id="loginOrRegisterTip">
+                <span class="_tip _login">没有账号？</span>
+                <span class="_btn _login" onclick="userRegister()">马上注册</span>
+                <span class="_tip _reg">已有账号？</span>
+                <span class="_btn _reg" onclick="userLogin()">马上登录</span>
+            </div>
+            <div class="right-row d-directly">
+                <span class="_tip">快捷登录方式：</span>
+            </div>
+            {% if ns_iscn|default('0') != '1' %}
+            <div class="d-qq hl-login-li login-qq">
+                <a class="clearfix" onclick="thirdLogin('qqdenglu');return false;">
+                    <div class="_login-left">
+                        <i class="reg-left-ico qq pull-left"></i>
+                    </div>
+                    <div class="_login-right">
+                        <span class="pull-left">QQ 登录</span>
+                    </div>
+                </a>
+            </div>
+            <div class="right-row d-sina hl-login-li login-xl">
+                <a class="clearfix" onclick="thirdLogin('sinaweibo');return false;">
+                    <div class="_login-left">
+                        <i class="reg-left-ico xl pull-left"></i>
+                    </div>
+                    <div class="_login-right">
+                        <span class="pull-left">新浪登录</span>
+                    </div>
+                </a>
+            </div>
+            <div class="right-row d-baidu hl-login-li login-dz">
+                <a class="clearfix" onclick="thirdLogin('douzi');return false;">
+                    <div class="_login-left">
+                        <i class="reg-left-ico du pull-left" style="margin: 7px 0 0 5px;"></i>
+                    </div>
+                    <div class="_login-right">
+                        <span class="pull-left">豆子登录</span>
+                    </div>
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <!--<div class="footer"></div>-->
+</div>
+        {% else %}
+<div class="dialog-login _register" id="douzilogin">
+    <div class="dialog-content clearfix">
+        <div class="d-l-left">
+            <!--登录-->
+            <div id="login_user_box" class="login_user_box">
+                <div class="row _texts d_focus clearfix">
+                    <span class="_login_title">现在登录,</span>
+                    <span class="_login_title" style="margin-top: 6px;">您就可以与主播聊天互动了！</span>
+                </div>
+                <div class="row d_focus clearfix d_point" style="margin-top: 14px;">
+                    <span>用户名</span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <input class="login_username_input _regLogin _loginInput" type="text" name="lf_username" id="lf_username" autocomplete="off" size="12" fwin="login">
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>密码</span>
+                    <span class="_loginmsg status-tips lb-tips" style="float:right;"></span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <input class="login_pwd_input _regLogin _loginInput" type="password" id="lf_password" name="lf_password" size="30" class="px p_fre" fwin="login">
+                </div>
+                <div class="row checkbox clearfix" style="margin-top: 16px;">
+                    <!--<i id="loginAutoSelect" class="auto-login-div autoLogin"></i>-->
+                    <!--<a class="auto-login-lable">自动登录</a>-->
+                    <a class="forgetpwd pull-right" href="/user/getPassword">忘记密码>></a>
+                </div>
+                <div class="row btn">
+                    <div class="login-btn">
+                        <div id="loginSubmit" class="_btn _loginSub" onclick="loginSubmit();" onselectstart="return false">登 录</div>
+                    </div>
+                </div>
+            </div>
+            <!--注册-->
+            <div id="reg_user_box" class="reg_user_box">
+                <div class="row d_focus clearfix _texts">
+                    注&nbsp;册
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>用户名</span>
+                    <span id="regUserNameTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <label defaultdisplay="default" defaultvalue="4-12 字母，数字；区分大小写">4-12 字母，数字；区分大小写</label>
+                    <input id="regUserName" class="_regLogin" type="text" autocomplete="off" size="12">
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>密码</span>
+                    <span id="regUserPasswordTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <label defaultdisplay="default" defaultvalue="6-18 字母，数字；区分大小写">6-18 字母，数字；区分大小写</label>
+                    <input id="regUserPassword" class="_regLogin" type="password" autocomplete="off" size="12" >
+                    <!--<span id="regUserPasswordTip" class="lb-tips _right"></span>oninput="regCheckPWD1()" onpropertychange="regCheckPWD1()"-->
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>确认密码</span>
+                    <span id="regUserCheckPasswordTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <label defaultdisplay="default" defaultvalue="6-18 字母，数字；区分大小写">6-18 字母，数字；区分大小写</label>
+                    <input id="regUserCheckPassword" class="_regLogin" type="password" autocomplete="off" size="12" >
+                    <!--<span id="regUserCheckPasswordTip" class="lb-tips _right"></span>oninput="regCheckPWD2()" onpropertychange="regCheckPWD2()"-->
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>昵称</span>
+                    <span id="regNickNameTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix">
+                    <label defaultdisplay="default" defaultvalue="2-10 个字、不可纯数字">2-10 个字、不可纯数字</label>
+                    <input id="regNickName" class="_regLogin" type="text" autocomplete="off" size="12">
+                    <!--<span id="regNickNameTip" class="lb-tips _right"></span>-->
+                </div>
+                <div class="row d_focus clearfix d_point">
+                    <span>验证码</span>
+                    <span id="regSecurityCodeTip" class="ns_tip_color" style="float: right"></span>
+                </div>
+                <div class="row d_focus clearfix" id="regSecurityCode" style="height: 50px;"></div>
+                <div class="_changeCode">
+                    看不到<a onclick="changeSecurityCode();">换一换</a>
+                </div>
+                <div class="row _agree d_focus clearfix" style="margin-top: 10px;">
+                    <i id="agreeAutoSelect" class="auto-login-div autoLogin"></i>
+                    <b>我已阅读并同意<a href="http://www.7pmi.com/regAgree.html" target="_blank">《棋牌迷用户服务协议》</a></b>
+                </div>
+                <div class="row btn">
+                    <div class="login-btn">
+                        <div class="_btn" id="registerSubmit">同意并注册</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="height-line"></div>
+        <div class="d-l-right">
+            <div class="row row-close clearfix" style="margin-top:5px;">
+                <a href="javascript:;" title="关闭" class="close">
+                    <i class="ns_icon_close"></i>
+                </a>
+            </div>
+            <div class="right-row" id="loginOrRegisterTip">
+                <span class="_tip _login">没有账号？</span>
+                <span class="_btn _login" onclick="userRegister()">马上注册</span>
+                <span class="_tip _reg">已有账号？</span>
+                <span class="_btn _reg" onclick="userLogin()">马上登录</span>
+                <span style="padding-top: 10px;color:#6a6a6a;font-size: 12px; ">支持棋牌迷游戏账号直接登录</span>
+            </div>
+            <div class="right-row d-directly">
+                <span class="_tip">快捷登录方式：</span>
+            </div>
+            <!--<div class="d-qq hl-login-li login-qq">-->
+                <!--<a class="clearfix" onclick="thirdLogin('qqdenglu');return false;">-->
+                    <!--<div class="_login-left">-->
+                        <!--<i class="reg-left-ico qq pull-left"></i>-->
+                    <!--</div>-->
+                    <!--<div class="_login-right">-->
+                        <!--<span class="pull-left">QQ 登录</span>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="right-row d-sina hl-login-li login-xl">-->
+                <!--<a class="clearfix" onclick="thirdLogin('sinaweibo');return false;">-->
+                    <!--<div class="_login-left">-->
+                        <!--<i class="reg-left-ico xl pull-left"></i>-->
+                    <!--</div>-->
+                    <!--<div class="_login-right">-->
+                        <!--<span class="pull-left">新浪登录</span>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</div>-->
+            <!--<div class="right-row d-baidu hl-login-li login-dz">-->
+                <!--<a class="clearfix" onclick="thirdLogin('douzi');return false;">-->
+                    <!--<div class="_login-left">-->
+                        <!--<i class="reg-left-ico du pull-left" style="margin: 7px 0 0 5px;"></i>-->
+                    <!--</div>-->
+                    <!--<div class="_login-right">-->
+                        <!--<span class="pull-left">豆子登录</span>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <!--<div class="footer"></div>-->
+</div>
+        {% endif %}

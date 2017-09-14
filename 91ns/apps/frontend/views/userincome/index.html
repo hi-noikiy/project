@@ -1,0 +1,507 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<!--js、css引入-->
+<script type="text/javascript" src="{{static_url('web/js2/jquery.pagination.js')}}"></script>
+<script type="text/javascript" src="{{static_url('web/js2/91ns.main2.js')}}"></script>
+<link rel="stylesheet" type="text/css" href="{{static_url('web/css2/pagination2.css')}}">
+{% endblock %}
+
+{% block title %}
+我的收益
+{% endblock %}
+
+{% block titleList %}
+<ul id="incomeSelect" class="nav">
+    <li class="active _survey" data="_survey"><a>概况</a></li>
+    <li class="_anchorIncome" data="_anchorIncome"><a>主播收益</a></li>
+    {% if familyHeader|default(false) %}<li class="_familyBossIncome" data="_familyBossIncome"><a>家族长收益</a></li>{% endif %}
+    <li class="_reward" data="_reward"><a>活动奖励</a></li>
+    <li class="_withdraw" data="_withdraw"><a>佣金提现</a></li>
+    <li class="_transactionDetails" data="_transactionDetails"><a>交易明细</a></li>
+    <li class="_liveData" data="_liveData"><a>直播数据</a></li>
+</ul>
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent" style="background-color: transparent;">
+    <ul id="sonTypeControll" class="son-select clearfix" style="display:none;">
+        <!-- 主播收益 -->
+        <li class="active _anchorIncome" nsdata="_anchorIncome" snsdata="_giftDetails">礼物明细</li>
+        <li class="_anchorIncome" nsdata="_anchorIncome" snsdata="_giftIncome">礼物收入</li>
+        <li class="_anchorIncome" nsdata="_anchorIncome" snsdata="_cashRunning">聊币流水</li>
+        <li class="_anchorIncome" nsdata="_anchorIncome" snsdata="_moneyRunning">佣金流水</li>
+
+        <!-- 家族长收益 -->
+        <li class="active _familyBossIncome" nsdata="_familyBossIncome" nsdate="8" snsdata="_f_giftIncome">家族礼物收入</li>
+        <li class="_familyBossIncome" nsdata="_familyBossIncome" nsdate="8" snsdata="_f_cashRunning">聊币流水</li>
+        <li class="_familyBossIncome" nsdata="_familyBossIncome" nsdate="5" snsdata="_f_moneyRunning">佣金流水</li>
+
+        <!-- 活动奖励 -->
+        <li class="active _reward" nsdata="_reward" snsdata="_rewardIncome">活动收入</li>
+        <li class="_reward" nsdata="_reward" snsdata="_rewardCashIncome">聊币流水</li>
+        <li class="_reward" nsdata="_reward"  snsdata="_rewardRunning">佣金流水</li>
+    </ul>
+    <div class="center-box-content">
+        <div class="center-box main-background-body" bottompadding="42" style="border-bottom: 0px;margin-top:64px;">
+            <!-- <div id="titleFocusItem" class="top-message _outFamily">
+                <span class="_outFamily _userStatus">账户状态：正常</span>
+                <span class="_outFamily _money">可结算收益：<a>{{ money }}</a> 聊币</span>
+                <span class="_outFamily _help">如果需要结算，可联系<a href="tencent://message/?v=3&uin={{GMQQ[1]}}&site=qq&menu=yes">人工客服</a></span>
+                <span class="_family _userStatus">小贴士：家族收益无法通过客服结算，由家族长统一结算。</span>
+                <span class="_history _userStatus">小贴士：本页面只显示结算非家族收益历史。</span>
+            </div> -->
+            <div class="center-content _v2 _survey">
+                <div id="tableList" class="widget-box _v2">
+                    <img id="incomeLoading" src="{{static_url('web/cssimg/91ns/load.gif')}}" class="incomeLoading">
+                    <div id="aheadFocusItem" class="incometab-head clearfix _v2 _v3" style="display:none;">
+                        <div class="spe _anchorIncome">
+                            <div class="id-familyTimeBg bg-time"></div>
+                            <span class="span1 pull-left">时间:</span>
+                            <span class="pull-left" style="margin-left:10px;">
+                                <input id="sdate1" class="laydate-icon d_giftDetails d_giftIncome d_cashRunning d_moneyRunning">
+                            </span>
+                            <div class="span3 pull-left sprite-userincome query" onclick="focusClick();">查&nbsp;看</div>
+                            <span class="pull-right tip displayNone_giftDetails">当月处于扶持期，分成等级：<span class="font">A(100%)</span>&nbsp;每月&nbsp;<span class="font">11</span>&nbsp;号显示上个月礼物收入聊币</span>
+                            <span class="pull-right tip spe displayNone_giftIncome">次日显示上一日礼物收入明细</span>
+                            <span class="pull-right tip spe displayNone_cashRunning">每个月12号将聊币余额自动结算成佣金</span>
+                            <span class="pull-right tip spe displayNone_moneyRunning">可点击“传送门”按钮提取现金，<a nshref="_withdraw" class="getMoney" href="#">传送门>></a></span>
+                        </div>
+                        <div class="spe _familyBossIncome">
+                            <div class="id-familyTimeBg bg-time"></div>
+                            <span class="span1 pull-left">时间:</span>
+                            <span class="pull-left" style="margin-left:10px;">
+                                <input id="sdate2" class="laydate-icon d_f_giftIncome d_f_cashRunning d_f_moneyRunning">
+                            </span>
+                            <div class="span3 pull-left sprite-userincome query" onclick="focusClick();">查&nbsp;看</div>
+                            <span class="pull-right tip spe displayNone_f_cashRunning">每个月12号将聊币余额自动结算成佣金</span>
+                            <span class="pull-right tip spe displayNone_f_moneyRunning">可点击“传送门”按钮提取现金，<a nshref="_withdraw" class="getMoney" href="#">传送门>></a></span>
+                        </div>
+                        <div class="spe _reward">
+                            <div class="id-familyTimeBg bg-time"></div>
+                            <span class="span1 pull-left">时间:</span>
+                            <span class="pull-left" style="margin-left:10px;">
+                                <input id="sdate5" class="laydate-icon d_rewardIncome d_rewardCashIncome d_rewardRunning">
+                            </span>
+                            <div class="span3 pull-left sprite-userincome query" onclick="focusClick();">查&nbsp;看</div>
+                            <span class="pull-right tip spe displayNone_rewardIncome">次日显示上一日活动收入</span>
+                            <span class="pull-right tip spe displayNone_rewardCashIncome">每个月12号将聊币余额自动结算成佣金</span>
+                            <span class="pull-right tip spe displayNone_rewardRunning">可点击“传送门”按钮提取现金，<a nshref="_withdraw" class="getMoney" href="#">传送门>></a></span>
+                        </div>
+                        <div class="spe _transactionDetails">
+                            <span class="span1 pull-left">时间段:</span>
+                            <span class="pull-left" style="margin-left:10px;">
+                                <input id="sdate3" class="laydate-icon d_transactionDetails">
+                            </span>
+                            <span class="span2 pull-left">至</span>
+                            <span class="pull-left">
+                                <input id="edate1" class="laydate-icon dd_transactionDetails" >
+                            </span>
+                            <div class="span3 pull-left sprite-userincome query" onclick="focusClick();">查&nbsp;看</div>
+                        </div>
+                        <div class="spe _liveData">
+                            <span class="span1 pull-left">时间段:</span>
+                            <span class="pull-left" style="margin-left:10px;">
+                                <input id="sdate4" class="laydate-icon d_liveData">
+                            </span>
+                            <span class="span2 pull-left">至</span>
+                            <span class="pull-left">
+                                <input id="edate2" class="laydate-icon dd_liveData" >
+                            </span>
+                            <div class="span3 pull-left sprite-userincome query" onclick="focusClick();">查&nbsp;看</div>
+                            <span id="_liveDataTime" class="pull-left" style="color:#FF6600;">4小时12分钟</span>
+                        </div>
+                    </div>
+                    <div id="_survey" class="_survey contain-m newContain-m _v2">
+                        <div class="lHeader">
+                            <div class="lLeft">
+                                <i></i>
+                                <div class="lTitle">佣金余额：<span nsdata="cashHas"></span>元</div>
+                                <div class="lContent">上月收入：<i nsdata="lastCashHas"></i>元<span>累计：<i nsdata="allCashHas"></i>元</span></div>
+                            </div>
+                            <div class="lRight lRight1">
+                                <i class="sprite-userincome drawL"></i>
+                                <span id="drawCashD">兑换聊币</span>
+                            </div>
+                            <div class="lRight lRight2">
+                                <i class="sprite-userincome drawD"></i>
+                                <span nshref="_withdraw">提现</span>
+                            </div>
+                        </div>
+                        <div class="lBanner">
+                            <div class="lTitle">资产动态<span nsdata="moneyMessage"></span></div>
+                            <div class="lTriangle"></div>
+                            <div class="lContent">
+                                <i class="lTop lTop1"></i>
+                                <i class="lTop lTop2"></i>
+                                <i class="lTop lTop3"></i>
+                                <div class="lGet">
+                                    <i class="sprite-userincome get"></i>
+                                    <span nsdata="userGetCash"></span>
+                                </div>
+                                <div class="lExchange">
+                                    <i class="sprite-userincome draw"></i>
+                                    <span nsdata="userGetMoney"></span>
+                                </div>
+                                <div class="lDraw">
+                                    <i class="sprite-userincome drawM"></i>
+                                    <span nsdata="userDrawMoney"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lDetails">
+                            <div class="lTitle">
+                                <span class="lContent">交易明细</span>
+                                <span id="lookAll" class="lBtn sprite-userincome look">查看所有</span>
+                            </div>
+                            <table class="_sur_details">
+                                <thead>
+                                    <tr>
+                                        <th style="width:114px;">科目</th>
+                                        <th style="width:240px;">交易号</th>
+                                        <th style="width:260px;">时间</th>
+                                        <th style="width:260px;">金额</th>
+                                        <th class="lEnd" style="width:126px;">状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="look5"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <table id="tempDivData">
+                        <tr id="_surveyTR_DOM" style="display:none;">
+                            <td colSpan="5" class="lDetails">
+                                <div class="lContent">
+                                    <div class="lOver">
+                                        <em class="lDetails1"></em>
+                                        <em class="lDetails2"></em>
+                                    </div>
+                                    <div class="lHeader clearfix">
+                                        <span>
+                                            <span>用户申请</span>
+                                            <span class="lTime"></span>
+                                        </span>
+                                        <span>
+                                            <span>预扣费（进行中...）</span>
+                                            <span class="lTime"></span>
+                                        </span>
+                                        <span>
+                                            <span>处理完成，打款成功</span>
+                                            <span class="lTime"></span>
+                                        </span>
+                                    </div>
+                                    <div class="lBanner">
+                                        <i class="lDot lDot1 sprite-userincome rar"></i>
+                                        <i class="lDot lDot2 sprite-userincome rar"></i>
+                                        <i class="lDot lDot3 sprite-userincome ra"></i>
+                                        <i class="lLine lLine1"></i>
+                                        <i class="lLine lLine2"></i>
+                                    </div>
+                                    <table class="lBody">
+                                        <thead>
+                                            <tr>
+                                                <td style="width:80px;">真实姓名</td>
+                                                <td style="width:200px;">开户银行</td>
+                                                <td style="width:200px;">银行卡号</td>
+                                                <td style="width:130px;">提现金额</td>
+                                                <td style="width:112px;">终止日期</td>
+                                                <td style="width:146px;">预计支付日期</td>
+                                                <td style="width:90px;">状态</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="_survey2TR_DOM" style="display:none;">
+                            <td colSpan="5" class="lDetails">
+                                <div class="lContent">
+                                    <div class="lOver">
+                                        <em class="lDetails1"></em>
+                                        <em class="lDetails2"></em>
+                                    </div>
+                                    <div class="lHeader clearfix">
+                                        <span>
+                                            <span>用户申请</span>
+                                            <span class="lTime"></span>
+                                        </span>
+                                        <span>
+                                            <span>预扣费（进行中...）</span>
+                                            <span class="lTime"></span>
+                                        </span>
+                                        <span>
+                                            <span>处理完成，打款成功</span>
+                                            <span class="lTime"></span>
+                                        </span>
+                                    </div>
+                                    <div class="lBanner">
+                                        <i class="lDot lDot1 sprite-userincome rar"></i>
+                                        <i class="lDot lDot2 sprite-userincome rar"></i>
+                                        <i class="lDot lDot3 sprite-userincome ra"></i>
+                                        <i class="lLine lLine1"></i>
+                                        <i class="lLine lLine2"></i>
+                                    </div>
+                                    <table class="lBody">
+                                        <thead>
+                                            <tr>
+                                                <td style="width:80px;">真实姓名</td>
+                                                <td style="width:200px;">开户银行</td>
+                                                <td style="width:200px;">银行卡号</td>
+                                                <td style="width:130px;">提现金额</td>
+                                                <td style="width:112px;">终止日期</td>
+                                                <td style="width:146px;">预计支付日期</td>
+                                                <td style="width:90px;">状态</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div id="_anchorIncome" style="display: none;" class="contain-m newContain-m _v2">
+                        <div id="tab_1" class="tabbox list">
+                            <table class="tablebox-income _v2">
+                                <thead>
+                                    <tr class="displayNone_giftDetails" style="display:table-row;*display:block;">
+                                        <th style="width:160px;">获取时间</th>
+                                        <th style="width:212px;">礼物种类</th>
+                                        <th style="width:182px;">礼物数量</th>
+                                        <th style="width:260px;">赠送者</th>
+                                        <th style="width:186px;">来源</th>
+                                    </tr>
+                                    <tr class="displayNone_giftIncome">
+                                        <th style="width:150px;">获取时间</th>
+                                        <th style="width:156px;">礼物价值(聊币)</th>
+                                        <th style="width:130px;">分成等级</th>
+                                        <th style="width:154px;">家族提成</th>
+                                        <th style="width:100px;">来源</th>
+                                        <th style="width:150px;">入账时间</th>
+                                        <th style="width:160px;">最终获得(聊币)</th>
+                                    </tr>
+                                    <tr class="displayNone_cashRunning">
+                                        <th style="width:332px;">时间</th>
+                                        <th style="width:332px;">金额(聊币)</th>
+                                        <th style="width:332px;">说明</th>
+                                    </tr>
+                                    <tr class="displayNone_moneyRunning">
+                                        <th style="width:332px;">时间</th>
+                                        <th style="width:332px;">金额(元)</th>
+                                        <th style="width:332px;">来源</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="no-notData" style="display: none;"><span></span>您本月没有收益！</div>
+                        </div>
+                    </div>
+                    <div id="_familyBossIncome" style="display: none;" class="contain-m newContain-m _v2">
+                        <div id="tab_6" class="tabbox list">
+                            <table class="tablebox-income _v2">
+                                <thead>
+                                <tr class="displayNone_f_giftIncome" style="display:table-row;*display:block;">
+                                        <th style="width:120px;">获取时间</th>
+                                        <th style="width:200px;">主播</th>
+                                        <th style="width:140px;">礼物(聊币)</th>
+                                        <th style="width:100px;">分成等级</th>
+                                        <th style="width:100px;">家族提成</th>
+                                        <th style="width:140px;">最终获得(聊币)</th>
+                                        <th style="width:120px;">入账时间</th>
+                                        <th style="width:80px;">来源</th>
+                                    </tr>
+                                    <tr class="displayNone_f_cashRunning">
+                                        <th style="width:332px;">时间</th>
+                                        <th style="width:332px;">金额(聊币)</th>
+                                        <th style="width:332px;">说明</th>
+                                    </tr>
+                                    <tr class="displayNone_f_moneyRunning">
+                                        <th style="width:332px;">时间</th>
+                                        <th style="width:332px;">金额(元)</th>
+                                        <th style="width:332px;">来源</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <div class="no-notData" style="display: none;"><span></span>您的本月没有收益！</div>
+                        </div>
+                    </div>
+                    <div id="_reward" style="display: none;" class="contain-m newContain-m _v2">
+                        <div id="tab_9" class="tabbox list">
+                            <table class="tablebox-income _v2">
+                                <thead>
+                                <tr class="displayNone_rewardIncome">
+                                    <th style="width:150px;">获取时间</th>
+                                    <th style="width:156px;">金额(聊币)</th>
+                                    <th style="width:100px;">来源</th>
+                                    <th style="width:160px;">说明</th>
+                                </tr>
+                                <tr class="displayNone_rewardCashIncome">
+                                    <th style="width:150px;">时间</th>
+                                    <th style="width:156px;">金额(聊币)</th>
+                                    <th style="width:160px;">说明</th>
+                                </tr>
+                                <tr class="displayNone_rewardRunning">
+                                    <th style="width:332px;">时间</th>
+                                    <th style="width:332px;">金额(元)</th>
+                                    <th style="width:332px;">来源</th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="no-notData" style="display: none;"><span></span>您本月没有收益！</div>
+                        </div>
+                    </div>
+                    <div id="_withdraw" style="display: none;" class="contain-m newContain-m _v2 drawdiv">
+                        <div class="title">佣金提现</div>
+                        <div class="hr"></div>
+                        <ul class="drawDeatils">
+                            <li class="clearfix realName">
+                                <div class="text">开户人真实姓名：</div>
+                                <div class="content"></div>
+                            </li>
+                            <li class="clearfix bank">
+                                <div class="text">开户银行：</div>
+                                <div class="content"></div>
+                            </li>
+                            <li class="clearfix bankNumber">
+                                <div class="text">银行卡号：</div>
+                                <div class="content"><div>
+                            </li>
+                            <li class="clearfix telCode">
+                                <div class="text">手机验证码：</div>
+                                <div class="content">
+                                    <input id="drawTelCode" type="text" />
+                                    <span class="drawGetCode">获取手机验证号码</span>
+                                </div>
+                            </li>
+                            <li class="clearfix telCodeTip">
+                                <div class="text"></div>
+                                <div class="content">绑定手机号码为：<span id="drawTelNumShow"></span></div>
+                            </li>
+                            <li class="clearfix bingPhone" style="display:none;">
+                                <div class="text"></div>
+                                <div class="content">您尚未绑定手机</br>马上&nbsp;<a href="/usersecurity?sonType=center" class="font2">绑定手机</a>，即可提现</div>
+                            </li>
+                            <li class="clearfix moneyCount">
+                                <div class="text">提现金额：</div>
+                                <div class="content">
+                                    <input id="drawMoneyCount" type="text" />
+                                </div>
+                            </li>
+                            <li class="clearfix tip">
+                                <div class="text"></div>
+                                <div class="content">
+                                    <span class="tip">可用余额：<span id="usefulMoney" class="font">0元</span>（佣金提现必须为<span class="font2">整数，且提现金额不得低于100元。</span></br><span class="font2">由于扣税及银行转账手续费等因素，请以实际到账金额为准</span><!-- <span class="font3">点击了解详情</span> -->）</span>
+                                </div>
+                            </li>
+                            <li class="clearfix btn">
+                                <div class="text"></div>
+                                <div class="content">
+                                    <div id="drawCashSubmit" class="sprite-userincome drawbtn btn">确&nbsp;定</div>
+                                </div>
+                            </li>
+                            <li class="clearfix tipData">
+                                <i class="sprite-userincome t"></i><span class="font">每月14-20</span>，可以申请提现</br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="font">08月20日23:59</span>，我们将锁定最近1个月内提交的提现申请进行处理。您的提现金额预期将于<span class="font">2-5个工作日</span>内到账
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="_liveData" style="display: none;" class="contain-m newContain-m _v2">
+                        <div id="tab_7" class="tabbox list">
+                            <table class="tablebox-income _v2">
+                                <thead>
+                                    <tr style="display:table-row;*display:block;">
+                                        <th style="width: 250px;">开播时间</th>
+                                        <th style="width: 250px;">结束时间</th>
+                                        <th style="width: 250px;">时长</th>
+                                        <th style="width: 250px;">直播状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="no-notData" style="display: none;"><span></span>您本月没有直播数据！</div>
+                        </div>
+                    </div>
+                    <div id="_transactionDetails" style="display: none;" class="contain-m newContain-m _v2">
+                        <div id="tab_8" class="tabbox list">
+                            <table class="_sur_details _trs">
+                                <thead>
+                                    <tr>
+                                        <th style="width:114px;">科目</th>
+                                        <th style="width:240px;">交易号</th>
+                                        <th style="width:260px;">时间</th>
+                                        <th style="width:260px;">金额</th>
+                                        <th class="lEnd" style="width:126px;">状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <img src="{{static_url('web/cssimg/91ns/group/inshade.png')}}">
+            </div>
+            {% include "template/pagination.html" %}
+        </div>
+    </div>
+</div>
+<div class="lDialog-bg" style="display:none;"></div>
+<div class="lDialog-content" style="display:none;">
+    <div class="lTitle">兑换聊币</div>
+    <div class="lClose sprite-userincome drawCloseIcon"></div>
+    <div class="lBody">
+        <div class="lTip">佣金兑换聊币，兑换比例：1元=<span class="lFont">100</span>聊币</div>
+        <div class="lCnt clearfix">
+            <div class="lLeft">手机验证码：</div>
+            <div class="lRight clearfix">
+                <input id="telCodeDrawCash" type="text"/>
+                <div id="drawCashDBtn" class="gettel">获取手机验证号码</div>
+            </div>
+        </div>
+        <div id="thisUserPhone" class="lText"></div>
+        <div class="lCnt clearfix">
+            <div class="lLeft">兑换金额：</div>
+            <div class="lRight clearfix">
+                <input id="telCodeDrawCashNum" type="text"/>
+            </div>
+        </div>
+        <div class="lText">可用余额：<span id="thisUserHas" class="lFont"></span>元（必须为<span class="lFont1">整数</span>）</div>
+        <div id="drawCashDSubmit" class="lBtn sprite-userincome drawok">确&nbsp;定</div>
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript" src="{{static_url('91ns.userincome'|ns_js)}}"></script>
+<script type="text/javascript" src="{{static_url('web/laydate/laydate.js')}}"></script>
+<script type="text/javascript">
+    (function($){
+        laydate.skin('default');
+        laydate.format('YYYY年MM月DD日');
+        laydate({elem: '#sdate1'});
+        laydate({elem: '#sdate2'});
+        laydate({elem: '#sdate3'});
+        laydate({elem: '#sdate4'});
+        laydate({elem: '#edate1'});
+        laydate({elem: '#edate2'});
+        laydate({elem: '#sdate5'});
+
+        var timeNow = ns_getTime(new Date().getTime()/1000);
+        $('#sdate1').val(timeNow);
+        $('#sdate2').val(timeNow);
+        $('#sdate3').val(timeNow);
+        $('#sdate4').val(timeNow);
+        $('#edate1').val(timeNow);
+        $('#edate2').val(timeNow);
+        $('#sdate5').val(timeNow);
+    })(jQuery);
+</script>
+{% endblock %}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "template/meta.html" %}
+	<title>91NS—美女视频</title>
+	{% include "template/header.html" %}
+    {% include "template/link_app.html" %}
+	<link rel="stylesheet" type="text/css" href="{{static_url('mobile/app.vie'|ns_css)}}"/>
+	<style type="text/css">
+	img{display: block;}
+.appMain{text-align: center;color: #FFF; position: absolute;width: 76%;left: 12%; margin-top: -50%;top:50%;-moz-user-select: none; -khtml-user-select: none; user-select: none;}
+.appMain .bgImg{margin: 0 auto;width: 100%;}
+
+.appMain .body{position: absolute;top: 0;left: 0;right: 0;bottom: 0;}
+
+.showTips{display: none; font-size: 0.8em; position: absolute;top: 77%;left: 12%;right: 12%; bottom: 3%;background-color: #D93A31;color: #FFF;padding: 10%;text-align: center;}
+
+.appMain .body .close{position: absolute;top: 3%;right: 3%;width: 3%;}
+.appMain .body .close img{width: 100%;}
+.appMain .body .close img.active{display: none;}
+.appMain .body .close:active img.active{display: block;}
+.appMain .body .close:active img{display: none;}
+
+.appMain .body .text{margin:10% 0 0;font-size: 0.86em;}
+.appMain .body .text span{color: #EDED5B;margin: 0 0.3rem;}
+
+.appMain .body .btn{width: 26%;margin: 6.6% auto 0;}
+.appMain .body .btn img{width: 100%;}
+.appMain .body .btn img.active{display: none;}
+.appMain .body .btn img.forbid{display: none;}
+.appMain .body .btn:active img{display: none;}
+.appMain .body .btn:active img.active{display: block;}
+.appMain .body .btn.forbid img{display: none;}
+.appMain .body .btn.forbid img.active{display: none;}
+.appMain .body .btn.forbid:active img.forbid{display: none;}
+.appMain .body .btn.forbid img.forbid{display: block;}
+
+.appMain .body .time{margin: 1% 0 0;font-size: .72em;}
+.appMain .body .time span{padding: 0 2% 0 0;}
+
+.appMain .body .text2{font-size: .72em;margin: 10% 0 0;line-height: 2em;}
+
+.appMain .body .showMore{font-size: .72em;position: absolute;bottom: 4%;width: 100%;}
+.appMain .body .showMore img{width: 5%;margin: 1% auto;}
+.appMain .body .showMore img.active{display: none;}
+.appMain .body .showMore:active{color: #FFEB67;}
+.appMain .body .showMore:active img{display: none;}
+.appMain .body .showMore:active img.active{display: block;}
+
+
+.moreOfThis{display: none;position: absolute;width: 92%;bottom: 4%; top: 48%; font-size: 0.72em;margin: 1% 4%;color: #FFF;box-shadow: 0px 0px 10px #802222;background-color: #CE3932;border-radius: 0.3em;}
+.moreOfThis span{color: #FFEB67;padding: 0 0.3em;}
+.moreOfThis .left{float: left;}
+.moreOfThis .right{float: right;}
+.moreOfThis .header{margin: 0 0.6em;padding: 0.3em 0; border-bottom: 1px solid #C2322D;height: 10%;}
+.moreOfThis ul{width: 100%;overflow: auto;position: absolute;top: 18%;bottom:5%;}
+.moreOfThis ul li{margin: 1% 4%;height: 18%;}
+
+
+</style>
+</head>
+<body onselectstart='return false'>
+	<div class="appBg"></div>
+	<div class="appMain redDiv">
+		<img class="bgImg" src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_bg{{imgSuffix}}.png"/>
+		<div class="body">
+			<div id="vieClose" class="close">
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_guanbi{{imgSuffix}}.png"/>
+				<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/qianghongbao_guanbi_p{{imgSuffix}}.png"/>
+			</div>
+			<div class="text">感谢<span>迅雷不及掩耳盗铃</span>送出红包</div>
+			<div class="btn">
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/qiang{{imgSuffix}}.png"/>
+				<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/qiang_p{{imgSuffix}}.png"/>
+				<img class="forbid" src="{{static_url('')}}web/cssimg/mobile/app/red/qiang_d{{imgSuffix}}.png"/>
+			</div>
+			<div class="time"><span>08:25</span>后红包过期</div>
+			<div id="text2" class="text2">小手一抖，红包到手！<br/>快来试试你的手气吧！</div>
+			<div id="showMore" class="showMore">
+				<span>看看大家手气</span>
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/shangjiantou{{imgSuffix}}.png"/>
+				<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/shangjiantou_p{{imgSuffix}}.png"/>
+			</div>
+			<div id="moreOfThis" class="moreOfThis">
+				<div class="header">
+					<div class="left">已领<span>3</span>个，<span>600</span>聊币</div>
+					<div class="right">共<span>99</span>个</div>
+				</div>
+				<ul>
+					<li class="clearfix">
+						<div class="left">1.啊啊啊啊啊啊啊啊</div>
+						<div class="right"><span>4000</span>聊币</div>
+					</li>
+					<li class="clearfix">
+						<div class="left">2.啊啊啊啊啊啊啊啊</div>
+						<div class="right"><span>4000</span>聊币</div>
+					</li>
+					<li class="clearfix">
+						<div class="left">3.啊啊啊啊啊啊啊啊</div>
+						<div class="right"><span>4000</span>聊币</div>
+					</li>
+					<li class="clearfix">
+						<div class="left">4.啊啊啊啊啊啊啊啊</div>
+						<div class="right"><span>4000</span>聊币</div>
+					</li>
+					<li class="clearfix">
+						<div class="left">5.啊啊啊啊啊啊啊啊</div>
+						<div class="right"><span>4000</span>聊币</div>
+					</li>
+					<li class="clearfix">
+						<div class="left">6.啊啊啊啊啊啊啊啊</div>
+						<div class="right"><span>4000</span>聊币</div>
+					</li>
+					<li class="clearfix">
+						<div class="left">7.啊啊啊啊啊啊啊啊</div>
+						<div class="right"><span>4000</span>聊币</div>
+					</li>
+					<li class="clearfix">
+						<div class="left">8.啊啊啊啊啊啊啊啊</div>
+						<div class="right"><span>4000</span>聊币</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="showTips">
+		这里就是提示语，对的就是提示语。
+	</div>
+	<script type="text/javascript" data-main="{{static_url('mobile/m/app.vie'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+	<script type="text/javascript">
+	document.body.style.fontSize = 16 * document.body.clientWidth/320 + 'px';
+requireInit();
+require(['jquery', 'utilsApp'], function($, utilsApp) {
+
+    $(window).ready(function() {
+        document.documentElement.style.webkitTouchCallout = 'none';
+        //$('body').css({'font-size': 16 * $(window).width() / 320 + 'px'});
+        return 0;
+    });
+
+    var $text2 = $('#text2');
+    var $showMore = $('#showMore');
+    var $moreOfThis = $('#moreOfThis');
+    var _window = $(window);
+
+    $showMore.on('touchend', showMoreVie);
+
+    function closeThis(){
+        utilsApp.noticeApp('red/close');
+    }
+
+    function showMoreVie(){
+        $text2.stop().animate({opacity:0}, 200);
+        $showMore.stop().animate({bottom:'44%'}, 200, function(){
+            $moreOfThis.show().css({opacity:0}).stop().animate({opacity:1}, 500);
+            $showMore.animate({opacity:0}, 200);
+        });
+    }
+
+    return 0;
+});</script>
+</body>
+</html>

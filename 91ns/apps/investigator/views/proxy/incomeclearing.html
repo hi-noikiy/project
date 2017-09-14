@@ -1,0 +1,138 @@
+{{ content() }}
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> 
+        <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a>         
+        <a href="#" class="current">家族收益结算</a> 
+    </div>
+    
+  </div>
+  <div class="container-fluid">
+   <!--  <hr> -->
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+           <form class="form-search">
+                       
+            家族名 ：<input id="uid" type="text" class="input-medium search-query" placeholder="" > 
+            <button id="usersearch" type="button" class="btn  btn-success">查&nbsp;询</button>
+          </form>
+        </div>
+        <div class="widget-box">
+          
+          <div class="widget-content nopadding">
+            <table id="dataList" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th style="width: 20px;"><input type="checkbox"></th>
+                  <th>创建时间</th>
+                  <th>家族名</th>
+                  <th>家族长</th>
+                  <th>申请表</th>
+                  <th>总收益(聊币)</th>
+                  <th>上次结算时间</th>
+                  <th>本次收益(聊币)</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                	<td><input type="checkbox"></td>
+                	<td>2015-3-10 10:12:43</td>
+                  <td>透明族</td>
+                	<td>透明</td>
+                  <td><a onclick="GroupDialog()">查看</a></td>
+                	<td>1</td>
+                	<td>2015-3-10 10:12:43</td>
+                  <td>1</td>                  
+                  <td><a onclick="ditedialog(100000)">结算</a></td>
+                </tr>
+
+                <tr>
+                  <td><input type="checkbox"></td>
+                  <td>2015-3-10 10:12:43</td>
+                  <td>透明族</td>
+                  <td>透明</td>
+                  <td><a onclick="GroupDialog()">查看</a></td>
+                  <td>1</td>
+                  <td>2015-3-10 10:12:43</td> 
+                  <td>1</td>                 
+                  <td><a onclick="ditedialog(100000)">结算</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="pagination" class="pagination alternate pull-right">
+              
+            </div>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="dialog-form" title="Create new user" style=" display: none;">
+  <form action="#" method="get" class="form-horizontal">
+    <div class="control-group">
+      <div style="text-align: center; margin:20px 0;">你是否要结算XXXX家族0000聊币</div>
+    </div>
+   
+  </form>
+</div>
+
+{% include "common/groupinfo.html" %}
+
+<script type="text/javascript">
+  function ditedialog(id){
+    $( "#dialog-form" ).dialog({
+        width: 400,
+        title:'结算',
+        modal:true,
+        closeOnEscape:true,
+        resizable:false,
+        open:function(){
+        /*
+          initialization();
+          $.ajax({
+            type:"post",
+            data:'',
+            url:url,
+            dataType:'json',
+            success:function(res){
+
+          });*/
+        },
+        buttons:{
+          "修改":function(){
+
+              /*$.ajax({
+                type:"post",
+                url:"/usermgr/userCountUpdate/"+id,
+                data:data,
+                dataType:'json',
+                success:function(res){
+                  alert(res.info);
+                  if(res.code==0){
+
+                    location.reload();
+
+                  }else{
+                    
+                  }
+                }
+              });*/
+          },
+          "取消":function(){
+            $(this).dialog('close');
+          }
+          
+
+        }
+   });
+  }
+</script>

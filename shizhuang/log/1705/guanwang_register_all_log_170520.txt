@@ -1,0 +1,10 @@
+post=a:5:{s:4:"code";s:6:"805135";s:7:"game_id";s:1:"9";s:8:"password";s:11:"18217zxcvkl";s:4:"sign";s:32:"0ba347e34028cf14145a5a67a9a15c41";s:8:"username";s:11:"18217890277";}, 2017-05-20 00:02:42
+post=a:5:{s:4:"code";s:6:"545278";s:7:"game_id";s:1:"9";s:8:"password";s:8:"hb103501";s:4:"sign";s:32:"4de4f1e4f7941fa6c00240b470fd5f98";s:8:"username";s:11:"13975197645";}, 2017-05-20 01:31:33
+post=a:5:{s:4:"code";s:6:"442776";s:7:"game_id";s:1:"9";s:8:"password";s:11:"13886462951";s:4:"sign";s:32:"c0aa58f2a7cb6c0039d364d725b103c4";s:8:"username";s:11:"15972985991";}, 2017-05-20 03:10:59
+post=a:5:{s:4:"code";s:6:"424540";s:7:"game_id";s:1:"9";s:8:"password";s:11:"wxt20031119";s:4:"sign";s:32:"b1dd5f19df3ad4e87be7a66cf117da02";s:8:"username";s:11:"15698583720";}, 2017-05-20 13:40:21
+post=a:5:{s:4:"code";s:6:"777461";s:7:"game_id";s:1:"9";s:8:"password";s:14:"clj13937025168";s:4:"sign";s:32:"ae7f6abea179e2b856ee8ef8ce946f0a";s:8:"username";s:11:"15537033148";}, 2017-05-20 15:58:57
+post=a:5:{s:4:"code";s:6:"777461";s:7:"game_id";s:1:"9";s:8:"password";s:10:"1234567890";s:4:"sign";s:32:"57e053a600e0e0f7ea3856c9da398e6e";s:8:"username";s:11:"15537033148";}, 2017-05-20 15:59:15
+post=a:5:{s:4:"code";s:6:"378318";s:7:"game_id";s:1:"9";s:8:"password";s:9:"sjd510952";s:4:"sign";s:32:"a1b5861c24d5b7891cd2dfbd21ba964b";s:8:"username";s:11:"15878304936";}, 2017-05-20 17:27:11
+post=a:5:{s:4:"code";s:6:"779992";s:7:"game_id";s:1:"9";s:8:"password";s:9:"xwy199921";s:4:"sign";s:32:"dc2ebb1ff1ee56c507bfae2c075b296f";s:8:"username";s:11:"18981262167";}, 2017-05-20 18:12:40
+post=a:5:{s:4:"code";s:6:"163961";s:7:"game_id";s:1:"9";s:8:"password";s:11:"csx11040806";s:4:"sign";s:32:"333351830f8af91ee277e71d3a463ed4";s:8:"username";s:11:"18224629799";}, 2017-05-20 19:25:22
+post=a:5:{s:4:"code";s:6:"744867";s:7:"game_id";s:1:"9";s:8:"password";s:9:"mm1231230";s:4:"sign";s:32:"701df1c5c4a160dae6919750b86f626b";s:8:"username";s:11:"18763376253";}, 2017-05-20 23:16:17

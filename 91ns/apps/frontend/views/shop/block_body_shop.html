@@ -1,0 +1,23 @@
+{% extends "template/mall_body.html" %}
+
+{% block begin %}
+<script type="text/javascript" src="{{static_url('tool'|ns_js)}}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="wrapNav">
+    <div class="w_1200">
+        <a href="/shop/vk" class="{%if ns_type|default('vk') == 'vk'%}cur{%endif%}">V卡</a>
+        <a href="/shop/car" class="{%if ns_type|default('vk') == 'car'%}cur{%endif%}">座驾</a>
+        <a href="/shop/guard" class="{%if ns_type|default('vk') == 'guard'%}cur{%endif%}">守护</a>
+    </div>
+</div>
+<div class="wrapBd">
+    <div class="w_1200">
+        {{content()}}
+    </div>
+</div>
+{% include "template/footer.html" %}
+<script type="text/javascript" src="{{static_url('mall'|ns_js)}}"></script>
+{% endblock %}
+

@@ -1,0 +1,130 @@
+<extend name='Public/bookbase'/>
+<block name='title'>填写发票信息</block>
+<block name='navbar'>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="left">
+                 <a href="{:U('Bookwhole/payoff')}" class="external link" >
+               <!--  <a href="#" class="back link"> -->
+                    <i class="icon icon-back"></i><span></span></a>
+            </div>
+            <div class="center sliding">填写发票信息</div>
+        </div>
+    </div>
+</block>
+<block name='body'>
+    <div class="pages">
+        <div data-page="invoice" class="page">
+            <div class="main" id="page-invoice">
+                <div class="decide-whether">
+                    <a>是否开具发票</a>
+                    <label class="label-radio" onclick="invoice_cancel()">
+                    <input type="radio" name="my-radio" value="Books" <?php if(!$_SESSION['invoice_type']):?>checked="checked"<?php endif;?>>
+                    <div class="item-inner">
+                        <div class="item-type"></div>
+                    </div>
+                    <span class="default">否</span>
+                    </label>
+                    <label class="label-radio" onclick="invoice_ok()">
+                    <input type="radio" name="my-radio" value="Books" <?php if($_SESSION['invoice_type']):?>checked="checked"<?php endif;?> >
+                    <div class="item-inner">
+                        <div class="item-type"></div>
+                    </div>
+                    <span class="default">是</span>
+                    </label>
+                    </a>
+                </div>
+                <ul class="invoice-type"  <?php if(!$_SESSION['invoice_type']):?>style="display: none;"<?php endif;?>   >
+                    <li <?php if($_SESSION['invoice_type']!=2):?>class="active"<?php endif;?>>纸质发票</li>
+                    <li <?php if($_SESSION['invoice_type']==2):?>class="active"<?php endif;?>>增值税发票</li>
+                </ul>
+                <div class="section s1"  <?php if($_SESSION['invoice_type']!=1):?>style="display: none;"<?php endif;?>>
+                    <div class="content">
+                        <div class="title"> 发票抬头</div>
+                        <div class="inputBox">
+                            <input type="text" placeholder="个人" id='invoice_name1'  value='{$Think.session.confirmOrder.invoice_name1}'>
+                        </div>
+                        <h4>发票内容</h4>
+                        <div class="item">
+                            <label class="label-radio">
+                            <input type="radio" name="invoice_content" value="明细"  <?php if($_SESSION['confirmOrder']['invoice_content']=='明细'):?> checked="checked" <?php endif;?>>
+                            <div class="item-inner">
+                                <div class="item-type"></div>
+                            </div>
+                            <span class="default">明细</span>
+                            </label>
+                        </div>
+                        <div class="item">
+                            <label class="label-radio">
+                            <input type="radio" name="invoice_content" value="耗材" <?php if($_SESSION['confirmOrder']['invoice_content']=='耗材'):?>checked="checked" <?php endif;?>>
+                            <div class="item-inner">
+                                <div class="item-type"></div>
+                            </div>
+                            <span class="default">耗材</span>
+                            </label>
+                        </div>
+                        <div class="item">
+                            <label class="label-radio">
+                            <input type="radio" name="invoice_content" value="办公用品" <?php if($_SESSION['confirmOrder']['invoice_content']=='办公用品'):?> checked="checked"  <?php endif;?>>
+                            <div class="item-inner">
+                                <div class="item-type"></div>
+                            </div>
+                            <span class="default">办公用品</span>
+                            </label>
+                        </div>
+                        <div class="item">
+                            <label class="label-radio">
+                            <input type="radio" name="invoice_content" value="电脑配件" <?php if($_SESSION['confirmOrder']['invoice_content']=='电脑配件'):?> checked="checked" <?php endif;?>>
+                            <div class="item-inner">
+                                <div class="item-type"></div>
+                            </div>
+                            <span class="default">电脑配件</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="conductor-info"><a href="{:U('bookwhole/consigneeInfo')}?invoice_type=1" onclick='invoice_for_session()'> 收票人信息 <span>{$name}</span></a></div>
+                    <p class="prompt"> * 请在观影当日至影城领取发票！ </p>
+                    <a class="determine" href="javascript:invoice_payoff(1)">确定</a>
+                </div>
+                <div class="section s2" <?php if($_SESSION['invoice_type']==2):?>style="display: block;"<?php endif;?>>
+                    <div class="content">
+                        <p>单位名称</p>
+                        <input type="text" placeholder="中瑞国际影城" id='invoice_name2' value='{$Think.session.confirmOrder.invoice_name2}'>
+                        <p>纳税人识别号</p>
+                        <input type="text" id='invoice_identificationNum' value='{$Think.session.confirmOrder.invoice_identificationNum}'>
+                        <p>注册地址</p>
+                        <input type="text" id='invoice_address' value='{$Think.session.confirmOrder.invoice_address}'>
+                        <p>注册电话</p>
+                        <input type="text" id='invoice_phone' value='{$Think.session.confirmOrder.invoice_phone}'>
+                        <p>开户银行</p>
+                        <input type="text" id='invoice_bank' value='{$Think.session.confirmOrder.invoice_bank}'>
+                        <p>银行账户</p>
+                        <input type="text" id='invoice_bankAccount' value='{$Think.session.confirmOrder.invoice_bankAccount}'>
+                    </div>
+                    <div class="conductor-info"><a href="{:U('bookwhole/consigneeInfo')}?invoice_type=2"  onclick='invoice_for_session()'> 收票人信息<span>{$name}</span></a></div>
+                    <p class="prompt"> * 请在观影当日至影城领取发票！ </p>
+                    <a class="determine" href="javascript:invoice_payoff(2)">确定</a>
+                     <div style="display:none" id="invoice_thisUrl">{:U('bookwhole/payoff')}</div>
+                     <div style="display:none" id="invoice_cancel_thisUrl">{:U('bookwhole/invoice_cancel')}</div>
+                    <div style="display:none" id="invoice_for_session_thisUrl">{:U('bookwhole/invoice_for_session')}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name='script'>
+
+<script type="text/javascript">
+
+    $('.invoice-type li').each(function (i) {
+
+        $(this).click(function () {
+            $('.invoice-type li').removeClass('active');
+            $(this).addClass('active');
+            $('.section').hide();
+            $('.section').eq(i).show();
+        })
+
+    })
+</script>
+</block>

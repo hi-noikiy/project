@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="robots" content="nofollow">
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/chat'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/list'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/my_menu'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/pack'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/screen'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/video_head'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/viewer'|ns_css)}}"/>
+    <style type="text/css">
+    .video{position: relative;}
+    .video video{background-color: #000;}
+    .video .videoContent{position: absolute;top: 0px;left: 0px;bottom: 0px;background-color: red;}
+    </style>
+    <script type="text/javascript">
+        var anchorUID = "{{anchorInfo['uid']}}";
+    </script>
+</head>
+<body style="overflow-x:hidden;">
+<div id="topDiv" class="wrap">
+    {% include "template/header.html" %}
+    <div id="playingStatusDiv" class='pos_rel videoControll' style="display:none;">
+        <div class="video clearfix" id="video-div">
+            <div class="videoContent"></div>
+            <video id="anchorVedio" width="100%" windowlessVideo="true" webkit-playsinline>
+                <source src="">
+            </video>
+        </div>
+        <img id="paly-bg" src='{{static_url("web/cssimg/mobile/btn/mask.png")}}' width="100%" class='pos_ab' style='bottom:0' />
+        <img id="leftMenu" src='{{static_url("web/cssimg/mobile/btn/back.png")}}' width='11%' class='back pos_ab' />
+        <!-- <img id="palyy" src='{{static_url("web/cssimg/mobile/btn/people.png")}}' width='11%' class='person pos_ab' /> -->
+        <img nsdata="focusAnchor" src='{{static_url("web/cssimg/mobile/btn/like.png")}}' width='11%' class='share right_img' style="display:none;" />
+        <img nsdata="shareToOther" src='{{static_url("web/cssimg/mobile/btn/share.png")}}' width='11%' class='like right_img' />
+        <div nsdata="anchorInfo" class='pos_ab head_bt'>
+            <p nsdata="anchorNickName" class='c_white name fl'></p>
+            <!-- <img src='{{static_url("web/cssimg/mobile/btn/leve2.png")}}' width='5%'  class='fl s_icon'/>
+            <img src='{{static_url("web/cssimg/mobile/btn/qiandao.png")}}' width="5%" class='fl s_icon' />
+            <img src='{{static_url("web/cssimg/mobile/btn/level.png")}}' width='15%' class='fl s_icon'/>
+            <img src='{{static_url("web/cssimg/mobile/btn/home.png")}}' width='8%' class='fl s_icon'/> -->
+        </div>
+    </div>
+    <div id="closeStatusDiv" class='pos_rel video videoControll' style='display: none'>
+        <img src='{{static_url("web/cssimg/mobile/chat/none_chat.jpg")}}' width="100%" class='pos_ab' />
+        <img id="leftMenu2" src='{{static_url("web/cssimg/mobile/btn/back.png")}}' width='11%' class='back pos_ab' />
+        <img id="anchorAvatar" class='people1 pos_ab' src='' width="15%" />
+        <!-- <img src='{{static_url("web/cssimg/mobile/btn/people.png")}}' width='11%' class='person pos_ab' /> -->
+        <img nsdata="focusAnchor" src='{{static_url("web/cssimg/mobile/btn/like.png")}}' width='11%' class='share right_img' style="display:none;" />
+        <img nsdata="shareToOther" src='{{static_url("web/cssimg/mobile/btn/share.png")}}' width='11%' class='like right_img' />
+        <div class='pos_ab mask con22'>
+            <p nsdata="anchorNickName" class='c_white name pos_rel'></p>
+            <div nsdata="anchorInfo" class='pos_rel'>
+                <p class='c_white name1 fl' >
+                    主播正在休息中哟~
+                </p>
+                <!-- <img src='{{static_url("web/cssimg/mobile/btn/leve2.png")}}' width='5%'  class='fl s_icon'/>
+                <img src='{{static_url("web/cssimg/mobile/btn/level.png")}}' width='15%' class='fl s_icon'/>
+                <img src='{{static_url("web/cssimg/mobile/btn/home.png")}}' width='8%' class='fl s_icon'/> -->
+            </div>
+        </div>
+        <p class='name pos_ab c_white tuijian'>直播推荐</p>
+        <a>
+            <img nsdata="guessRoom" class='pos_ab tjvideo1' src='' width="28%" />
+        </a>
+        <a>
+            <img nsdata="guessRoom" class='pos_ab tjvideo2' src='' width="28%" />
+        </a>
+        <a>
+            <img nsdata="guessRoom" class='pos_ab tjvideo3' src='' width="28%" />
+        </a>
+    </div>
+    <div id="menu" class='menu clearfix pt_10'>
+        <ul>
+            <li>
+                <p class='c_gray c_pink'>
+                    聊天
+                </p>
+                <img nsdata="menuOn chatMenu" src='{{static_url("web/cssimg/mobile/btn/menu_line.jpg")}}' class='pos_ab bar'/>
+            </li>
+            <li id="chat" class='menuNode menu_sl'>
+                <br/>
+            </li>
+            <li>
+                <p class='c_gray'>
+                    礼物
+                </p>
+                <img nsdata="menuOn giftMenu" src='{{static_url("web/cssimg/mobile/btn/menu_line.jpg")}}' style="display:none;" class='pos_ab bar'/>
+            </li>
+            <li id="gift" class='menuNode menu_sl menu_2' >
+                <br/>
+            </li>
+            <li>
+                <p class='c_gray'>
+                    观众(<span id="visitorNumber">0</span>)
+                </p>
+                <img nsdata="menuOn userMenu" src='{{static_url("web/cssimg/mobile/btn/menu_line.jpg")}}' style="display:none;" class='pos_ab bar'/>
+            </li>
+            <li id="user" class='menuNode menu_sl menu_3' >
+                <br/>
+            </li>
+            <li id="rank" class='menuNode end_li'>
+                <p class='c_gray'>
+                    榜单
+                </p>
+                <img nsdata="menuOn rankMenu" src='{{static_url("web/cssimg/mobile/btn/menu_line.jpg")}}' style="display:none;" class='pos_ab bar'/>
+            </li>
+        </ul>
+    </div>
+    <div id="menuContent">
+        <div id="chatList" class='clearfix pos_rel list3' >
+            <div id="chatTextContent">
+                <ul id="roomChatShow" class='mt_15'>
+                </ul>
+            </div>
+            <div id="faceContent" style="display:none;">
+                <ul id="faceImg">
+                    <li nsdata="face" class="clearfix">
+                        <ul></ul>
+                    </li>
+                    <li nsdata="guardface" class="clearfix" style="display:none;">
+                        <ul></ul>
+                    </li>
+                    <li nsdata="vipface" class="clearfix" style="display:none;">
+                        <ul></ul>
+                    </li>
+                    <li nsdata="richerface" class="clearfix" style="display:none;">
+                        <ul></ul>
+                    </li>
+                    <li nsdata="gameface" class="clearfix" style="display:none;">
+                        <ul></ul>
+                    </li>
+                </ul>
+                <ul id="faceControll">
+                    <li nsdata="face" class="on _left">普通</li>
+                    <li nsdata="richerface" style="display:none;">富豪</li>
+                    <li nsdata="vipface">VIP</li>
+                    <li nsdata="guardface">守护</li>
+                    <li nsdata="gameface" style="display:none;">游戏</li>
+                </ul>
+            </div>
+            <div id="chatInputItem" class='pos_fix biaoqing' >
+                <img id="faceShow" class="fl" src='{{static_url("web/cssimg/mobile/chat/bq.png")}}' width="9%" />
+                <!-- <input id="roomChatInput" type="text" class='fl c_dark' placeholder="请输入"/> -->
+                <div id="roomChatInput" onpropertychange="roomChatInputChange(this);" oninput="roomChatInputChange(this);" contentEditable="true" class='fl c_dark'><i class="placeholder">请输入</i></div>
+                <div id="roomChat" class='send fl'>发送</div>
+                <div class='clear_all'></div>
+            </div>
+        </div>
+        <div id="giftList" style="display:none;">
+            <div class='clearfix pos_rel gx'>
+                <div class="pt_10 top">
+                    <p class='fl title c_dark'>
+                        余额:
+                    </p>
+                    <i class='fl bill-icon bill-icon-cash' style="margin-top:-2px;"></i>
+                    <p id="cash" class='fl title1 c_dark'>
+                        0
+                    </p>
+                    <i class='fl bill-icon bill-icon-bean' style="margin-top:-2px;"></i>
+                    <p id="coin" class='fl title1 c_dark'>
+                        0
+                    </p>
+                    <a href="/charging">
+                        <p class='fr title2'>
+                            充值》
+                        </p>
+                    </a>
+                </div>
+                <div class='pt_20 top clear_all'>
+                    <div class='kind_title'>
+                        <p>
+                            热门
+                        </p>
+                    </div>
+                    <div class='line mt_5'></div>
+                    <ul id="typeID1" class='mt_5'>
+                    </ul>
+                </div>
+                <div class='pt_20 top clear_all'>
+                    <div class='kind_title'>
+                        <p>
+                            豪华
+                        </p>
+                    </div>
+                    <div class='line mt_5'></div>
+                    <ul id="typeID2" class='mt_5'>
+                    </ul>
+                </div>
+                <div class='pt_20 top clear_all'>
+                    <div class='kind_title'>
+                        <p>
+                            专属
+                        </p>
+                    </div>
+                    <div class='line mt_5'></div>
+                    <ul id="typeID8" class='mt_5'>
+                    </ul>
+                </div>
+                <div class='pt_20 top clear_all'>
+                    <div class='kind_title'>
+                        <p>
+                            特殊
+                        </p>
+                    </div>
+                    <div class='line mt_5'></div>
+                    <ul id="typeID7" class='mt_5'>
+                    </ul>
+                </div>
+                <div class='pt_20 top clear_all'>
+                    <div class='kind_title'>
+                        <p>
+                            免费
+                        </p>
+                    </div>
+                    <div class='line mt_5'></div>
+                    <div class='star mt_5'>
+                        <img id="sendOnlineGift" src='{{static_url("web/cssimg/mobile/pack/mf.jpg")}}' width="100%"/>
+                        <p id="onlineGiftLeftCount" class='num pos_ab c_white'>0</p>
+                        <p id="onlineGiftLeftTime" class='time pos_ab c_white'>0:00</p>
+                        <p class="c_black" style='width: 100%;text-align: center;font-size:1.2em;line-height: 1.8em'>魅力星</p>
+                        <p id="onlineGiftTip" class="c_gray" style='width: 100%;text-align: center;font-size:0.9em;line-height: 1.5em'>在线10分钟获取1个，上限10个</p>
+                    </div>
+                </div>
+                <div id="badgeDiv" class='pt_20 top clear_all' style="display:none;">
+                    <div class='kind_title'>
+                        <p>
+                            包裹
+                        </p>
+                    </div>
+                    <div class='line mt_5'></div>
+                    <ul id="bag" class='mt_5'>
+                    </ul>
+                </div>
+                <div class='clear_all pt_10'></div>
+            </div>
+            <div id="giftNumSelectBG" class='pos_fix mask_con' style="display:none;">
+            </div>
+            <div id="giftNumSelect" class='pos_fix content_choose' style="display:none;">
+                <div class='list_c pos_rel clear_all'>
+                    <p class='fl c_num'>1个</p>
+                    <img src='{{static_url("web/cssimg/mobile/pack/c_p.png")}}' width="7%" class="fr pos_rel cho" />
+                </div>
+                <div class='list_c pos_rel clear_all'>
+                    <p class='fl c_num'></p>
+                    <img src='{{static_url("web/cssimg/mobile/pack/c_nop.png")}}' width="7%" class="fr pos_rel cho" />
+                </div>
+                <div class='list_c pos_rel clear_all'>
+                    <p class='fl c_num'></p>
+                    <img src='{{static_url("web/cssimg/mobile/pack/c_nop.png")}}' width="7%" class="fr pos_rel cho" />
+                </div>
+                <div class='list_c pos_rel clear_all'>
+                    <p class='fl c_num'></p>
+                    <img src='{{static_url("web/cssimg/mobile/pack/c_nop.png")}}' width="7%" class="fr pos_rel cho" />
+                </div>
+                <div class='list_c pos_rel clear_all'>
+                    <p class='fl c_num'></p>
+                    <img src='{{static_url("web/cssimg/mobile/pack/c_nop.png")}}' width="7%" class="fr pos_rel cho" />
+                </div>
+                <div class='list_c pos_rel clear_all'>
+                    <p class='fl c_num'></p>
+                    <img src='{{static_url("web/cssimg/mobile/pack/c_nop.png")}}' width="7%" class="fr pos_rel cho" />
+                </div>
+                <div class='list_c pos_rel clear_all'>
+                    <p class='fl c_num'></p>
+                    <img src='{{static_url("web/cssimg/mobile/pack/c_nop.png")}}' width="7%" class="fr pos_rel cho" />
+                </div>
+                <div class='button pos_rel clear_all'>
+                    <div id="giftNumSelectCancel" class='fl btn cancle'>取消</div>
+                    <div id="giftNumSelectSend" class='fl btn sure'>赠送</div>
+                </div>
+                <div class="clear_all pt_15"></div>
+            </div>
+            <div id="BagNumSelect" class='pos_fix content_choose2' style="display:none;">
+                <div class="bagName">sadasd</div>
+                <div class="bagSelect">
+                    <span>送出数量</span>
+                    <input type="Number" id="bagNumSelect" value="1">
+                    <span class="bagTip">最大可送<i>0</i>个</span>
+                    <span>个</span>
+                </div>
+                <div class='button pos_rel clear_all'>
+                    <div id="bagNumSelectCancel" class='fl btn cancle'>取消</div>
+                    <div id="bagNumSelectSend" class='fl btn sure'>赠送</div>
+                </div>
+                <div class="clear_all pt_15"></div>
+            </div>
+        </div>
+        <div id="rankList" style="display:none;">
+            <div id="rankOfMore" class='clearfix mt_10 pos_rel mfl'>
+                <img src='{{static_url("web/cssimg/mobile/live/mft.jpg")}}' width="100%" />
+                <ul>
+                    <li>
+                        <p class='c_dark'>
+                            魅力:<span id="charmNumber"></span>
+                        </p>
+                    </li>
+
+                    <li class='ml_33' >
+                        <p class='c_dark'>
+                            粉丝数:<span id="fansNumber"></span>
+                        </p>
+                    </li>
+
+                    <li class='ml_67' >
+                        <p class='c_dark'>
+                            <span id="publicTime"></span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+                <div class="clear_all"></div>
+            <div id="dayRankList" class='mt_10 clearfix pos_rel gx'>
+                <div class='head'>
+                    <img src='{{static_url("web/cssimg/mobile/btn/icon.png")}}' width="7%" class='fl'/>
+                    <p class='c_dark fl'>本日贡献</p>
+                </div>
+                <div class='pos_rel clear_all'>
+                    <ul id="rankContent" class='three pos_ab'>
+                        <li class='ml_5'>
+                            <img src='' width='100%'/>
+                        </li>
+                        <li class='ml_6'>
+                            <img class='mt_10_p' src='' width='100%'/>
+                        </li>
+                        <li class='ml_4'>
+                            <img src='' width='100%'/>
+                        </li>
+                    </ul>
+                    <img src='{{static_url("web/cssimg/mobile/live/hug.png")}}' width="100%" class='pos_rel'/>
+                    <ul id="rankContentText" class='text_three pos_ab' >
+                        <li class='li_1'>
+                        </li>
+                        <li class='li_2'>
+                        </li>
+                        <li class='li_3'>
+                        </li>
+                    </ul>
+                </div>
+                <div class='pos_rel pt_20 zb'>
+                    <ul id="otherRankPeople">
+                        <!-- <li class='pos_rel clearfix' >
+                            <p class='fl tit' style=''>4</p>
+                            <img class='fl list_head' src='{{static_url("web/cssimg/mobile/live/small_head.jpg")}}' width="15%" />
+                            <p class='fl c_dark con' style=''>直男癌患者</p>
+                            <img src='{{static_url("web/cssimg/mobile/btn/coin.png")}}' width="6%" class='fl pos_ab list_coin' />
+                            <p class='fl c_dark pos_ab con1' >2333333</p>
+                            <div class=' pos_rel black_line'></div>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="userList" style="display:none;">
+            <div class='clearfix pos_rel list2'>
+                <ul>
+                </ul>
+            </div>
+            <div class='clear_pt'>
+                <p class='bottom-text'>
+                    游客<span id="touristNumber">0</span>人
+                </p>
+            </div>
+        </div>
+        <div id="shareToOther">
+            <div class="titles">
+                分享到
+            </div>
+            <ul class="bodys clearfix">
+                <li shareTo="weixin" style="display:none;">
+                    <img src="{{static_url('web/cssimg/mobile/screen/zhibojian_weixin@3x.png')}}">
+                    <span>微信</span>
+                </li>
+                <li shareTo="weixinpengyouquan" style="display:none;">
+                    <img src="{{static_url('web/cssimg/mobile/screen/zhibojian_pengyouquan@3x.png')}}">
+                    <span>微信朋友圈</span>
+                </li>
+                <li shareTo="tsina">
+                    <img src="{{static_url('web/cssimg/mobile/screen/zhibojian_weibo@3x.png')}}">
+                    <span>微博</span>
+                </li>
+                <li shareTo="cqq" style="display:none;">
+                    <img src="{{static_url('web/cssimg/mobile/screen/zhibojian_qq@3x.png')}}">
+                    <span>QQ</span>
+                </li>
+                <li shareTo="tqq">
+                    <img src="{{static_url('web/cssimg/mobile/screen/zhibojian_tengxun@3x.png')}}">
+                    <span>腾讯微博</span>
+                </li>
+                <li shareTo="qzone">
+                    <img src="{{static_url('web/cssimg/mobile/screen/zhibojian_kongjian@3x.png')}}">
+                    <span>QQ空间</span>
+                </li>
+            </ul>
+            <div class="footers">取消</div>
+        </div>
+        <div id="shareToOtherBg"></div>
+    </div>
+    <div id="downloadIMG" class='pos_fix banner' >
+        {% include "template/banner.html" %}
+        <img id="closeDownloadIMG" src='{{static_url("web/cssimg/mobile/chat/close_btn.png")}}' width="9%" class='pos_ab close_btn' />
+    </div>
+    {% include "template/footer.html" %}
+</div>
+    <script type="text/javascript" data-main="{{static_url('mobile/m/room'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+post=a:5:{s:4:"code";s:6:"545527";s:7:"game_id";s:1:"9";s:8:"password";s:9:"020307hyt";s:4:"sign";s:32:"33618f9a76e1f2a2da8a396d928d6942";s:8:"username";s:11:"13087369878";}, 2017-05-22 00:05:37
+post=a:5:{s:4:"code";s:6:"264742";s:7:"game_id";s:1:"9";s:8:"password";s:9:"Ayato0322";s:4:"sign";s:32:"bdaa5898a9b69a6a236941b981afb914";s:8:"username";s:11:"18203086499";}, 2017-05-22 10:48:02
+post=a:5:{s:4:"code";s:6:"285444";s:7:"game_id";s:1:"9";s:8:"password";s:7:"yzy0526";s:4:"sign";s:32:"22947eb3a0611135a918390e0e036f88";s:8:"username";s:11:"13623790618";}, 2017-05-22 12:54:20
+post=a:5:{s:4:"code";s:6:"249458";s:7:"game_id";s:1:"9";s:8:"password";s:6:"212121";s:4:"sign";s:32:"6ca689ed8fea1ab456b650286321ce2b";s:8:"username";s:11:"18046886770";}, 2017-05-22 14:28:29
+post=a:5:{s:4:"code";s:6:"307586";s:7:"game_id";s:1:"9";s:8:"password";s:9:"hudiemeng";s:4:"sign";s:32:"dcb234783a4f9f9c2a873a6eee2bf42f";s:8:"username";s:11:"18715030829";}, 2017-05-22 19:19:24
+post=a:5:{s:4:"code";s:6:"307586";s:7:"game_id";s:1:"9";s:8:"password";s:9:"hudiemeng";s:4:"sign";s:32:"dcb234783a4f9f9c2a873a6eee2bf42f";s:8:"username";s:11:"18715030829";}, 2017-05-22 19:19:40

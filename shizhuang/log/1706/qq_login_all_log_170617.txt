@@ -1,0 +1,15 @@
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"A7781115F76D676C6F3CEEA44D6A87B5";s:4:"sign";s:32:"e1b545c98ea09088a72542fdede62ff0";s:7:"game_id";s:1:"9";}, 2017-06-17 01:06:20
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"5848473DC433FCB4EC7944F98C2880E6";s:4:"sign";s:32:"5b049717063ff45a7b2344b92fd11640";s:7:"game_id";s:1:"9";}, 2017-06-17 10:29:31
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"D608E9D44735DF7F9CE841C89A7D4266";s:4:"sign";s:32:"b980967cd4d3998f8038eafd1cd772b4";s:7:"game_id";s:1:"9";}, 2017-06-17 10:44:36
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"D608E9D44735DF7F9CE841C89A7D4266";s:4:"sign";s:32:"b980967cd4d3998f8038eafd1cd772b4";s:7:"game_id";s:1:"9";}, 2017-06-17 10:57:21
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"0B3C0319DD9D0CE142BBAD6AF09CD64E";s:4:"sign";s:32:"b62bd741f4a2964229c0e0baba37fcd4";s:7:"game_id";s:1:"9";}, 2017-06-17 12:25:13
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"B9299E00EEA60F1FF5740FB2BA0917EA";s:4:"sign";s:32:"8ad6b833a257c94e660ff396fc6f9320";s:7:"game_id";s:1:"9";}, 2017-06-17 14:33:25
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"B9299E00EEA60F1FF5740FB2BA0917EA";s:4:"sign";s:32:"8ad6b833a257c94e660ff396fc6f9320";s:7:"game_id";s:1:"9";}, 2017-06-17 14:34:02
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"8E5FB8E664F4D93BB4383C9CFE4C15A4";s:4:"sign";s:32:"12808f14b11c84be0e009b5d52f4a291";s:7:"game_id";s:1:"9";}, 2017-06-17 15:10:54
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"8E5FB8E664F4D93BB4383C9CFE4C15A4";s:4:"sign";s:32:"12808f14b11c84be0e009b5d52f4a291";s:7:"game_id";s:1:"9";}, 2017-06-17 15:11:07
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"1594582698F88CD5F7E952D23FC57547";s:4:"sign";s:32:"18ea51c3f0621928afe9cc8bc1173029";s:7:"game_id";s:1:"9";}, 2017-06-17 15:11:13
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"8E5FB8E664F4D93BB4383C9CFE4C15A4";s:4:"sign";s:32:"12808f14b11c84be0e009b5d52f4a291";s:7:"game_id";s:1:"9";}, 2017-06-17 15:11:25
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"8E5FB8E664F4D93BB4383C9CFE4C15A4";s:4:"sign";s:32:"12808f14b11c84be0e009b5d52f4a291";s:7:"game_id";s:1:"9";}, 2017-06-17 15:11:41
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"8E5FB8E664F4D93BB4383C9CFE4C15A4";s:4:"sign";s:32:"12808f14b11c84be0e009b5d52f4a291";s:7:"game_id";s:1:"9";}, 2017-06-17 15:12:03
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"8E5FB8E664F4D93BB4383C9CFE4C15A4";s:4:"sign";s:32:"12808f14b11c84be0e009b5d52f4a291";s:7:"game_id";s:1:"9";}, 2017-06-17 15:13:43
+ post=a:0:{}, get=a:3:{s:6:"openid";s:32:"142B5FDBE70CB711F4C811728F419203";s:4:"sign";s:32:"b5ea4277278e552e965b2971954da3cd";s:7:"game_id";s:1:"9";}, 2017-06-17 18:21:14

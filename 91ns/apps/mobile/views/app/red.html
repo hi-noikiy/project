@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% include "template/meta.html" %}
+	<title>91NS—美女视频</title>
+	{% include "template/header.html" %}
+    {% include "template/link_app.html" %}
+	<link rel="stylesheet" type="text/css" href="{{static_url('mobile/app.red'|ns_css)}}"/>
+</head>
+<body onselectstart='return false'>
+	<div class="appBg"></div>
+	<div class="appMain redDiv onAppCenter">
+		<img class="bgImg" src="{{static_url('')}}web/cssimg/mobile/app/red/sanhongbao_bg{{imgSuffix}}.png"/>
+		<div id="redClose" class="close">
+			<img src="{{static_url('')}}web/cssimg/mobile/app/red/sanhongbao_guanbi{{imgSuffix}}.png"/>
+			<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/sanhongbao_guanbi_p{{imgSuffix}}.png"/>
+		</div>
+		<div id="redType" class="type">
+			<div class="active" redtype="feeling">
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/anniu{{imgSuffix}}.png"/>
+				<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/anniu_p{{imgSuffix}}.png"/>
+				<span>手气红包</span>
+			</div>
+			<div redtype="average">
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/anniu{{imgSuffix}}.png"/>
+				<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/anniu_p{{imgSuffix}}.png"/>
+				<span>平均红包</span>
+			</div>
+		</div>
+		<div class="body">
+			<ul>
+				<li>
+					<span>红包个数：</span>
+					<input placeholder="1~99个" id="inputRedNum" class="liRight" type="number" max="99"/>
+				</li>
+				<li id="typeFeeling">
+					<span>总金额：</span>
+					<div class="feelingSelect liRight">
+						<input id="feelingValue" class="value liRight" readonly jstrigger="toggle" value="1000聊币" />
+						<div class="feelingClose " jstrigger="toggle">
+							<img class="up" src="{{static_url('')}}web/cssimg/mobile/app/red/shanglajiantou{{imgSuffix}}.png" />
+							<img class="up active" src="{{static_url('')}}web/cssimg/mobile/app/red/shanglajiantou_p{{imgSuffix}}.png" />
+							<img class="down" src="{{static_url('')}}web/cssimg/mobile/app/red/xialajiantou{{imgSuffix}}.png" />
+							<img class="down active" src="{{static_url('')}}web/cssimg/mobile/app/red/xialajiantou_p{{imgSuffix}}.png" />
+						</div>
+						<ul></ul>
+					</div>
+				</li>
+				<li id="typeAverage" style="display:none;">
+					<span>单个金额：</span>
+					<input id="averageValue" placeholder='最少11聊币' class="liRight" type="number" max="9999" />
+				</li>
+				<li>
+					<span>抢红包限制：</span>
+					<input id="limitInput" class="liRight" type="text" readonly value="主播、守护、管理" />
+				</li>
+			</ul>
+			<div class="text">
+				<div id="redText" style="display:none;">红包总金额<span>1000</span>聊币</div>
+			</div>
+			<div id="redBtn" class="btn forbid">
+				<img src="{{static_url('')}}web/cssimg/mobile/app/red/sanhongbao{{imgSuffix}}.png"/>
+				<img class="active" src="{{static_url('')}}web/cssimg/mobile/app/red/sanhongbao_p{{imgSuffix}}.png"/>
+				<img class="forbid" src="{{static_url('')}}web/cssimg/mobile/app/red/sanhongbao_d{{imgSuffix}}.png"/>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" data-main="{{static_url('mobile/m/app.red'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

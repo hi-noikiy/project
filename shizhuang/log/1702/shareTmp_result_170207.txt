@@ -1,0 +1,13 @@
+result={"status":1,"msg":"fail"},2017-02-07 13:54:06
+result={"status":1,"msg":"fail"},2017-02-07 13:54:22
+result={"status":0,"msg":"success"},2017-02-07 13:55:36
+result={"status":0,"msg":"success"},2017-02-07 13:55:46
+result={"status":0,"msg":"success"},2017-02-07 14:38:09
+result={"status":0,"msg":"success"},2017-02-07 14:44:55
+result={"status":0,"msg":"success"},2017-02-07 14:44:57
+result={"status":0,"msg":"success"},2017-02-07 14:45:11
+result={"status":0,"msg":"success"},2017-02-07 14:45:22
+result={"status":0,"msg":"success"},2017-02-07 14:45:37
+result={"status":0,"msg":"success"},2017-02-07 14:45:43
+result={"status":0,"msg":"success"},2017-02-07 15:20:35
+result={"status":0,"msg":"success"},2017-02-07 15:20:37

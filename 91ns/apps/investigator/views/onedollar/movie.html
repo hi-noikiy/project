@@ -1,0 +1,126 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <!-- <a href="#" class="visible-phone"> <i class="icon icon-home"></i>
+    Dashboard
+</a>
+-->
+<ul style="display: block;">{% include "common/menu.html" %}</ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+<div class="container-fluid" style="padding: 0;">
+
+    <div class="widget-box tab-tabs" >
+        <div class="widget-title">
+            <ul class="nav nav-tabs">{% include "common/tab.html" %}</ul>
+        </div>
+        <div class="widget-content tab-content" style="overflow: hidden;">
+            <div class="btn " style="float: right;margin-right: 10%;" data-toggle="modal" data-target="#add">添加</div>
+            <div class="container">
+                <div class="modal hide" id="add" tabindex="-1" role="dialog">
+                    <div class="modal-header">
+                        <button class="close" type="button" data-dismiss="modal">×</button>
+                        <h3 id="myModalLabel">添加众筹活动</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">主播ID:</span>
+                            <input type="number" id="anchorID" class="form-control" placeholder="输入主播UID" aria-describedby="basic-addon1"/>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="allocateMovie" type="submit" class="btn btn-success">添加</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    </div>
+                </div>
+            </div>
+            <table id="tableList" class="table">
+                <thead>
+                    <tr>
+                        <th>主播ID</th>
+                        <th>昵称</th>
+                        <th>发放时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</div>
+<script>
+    $(function() {
+        $('body').css('overflow-x', 'auto');
+        $('#allocateMovie').on('click', allocateMovie);
+        getMovie();
+    });
+    function allocateMovie(){
+        var anchorID = $('#anchorID').val();
+        if(!anchorID || isNaN(anchorID)){
+            return;
+        }
+        $.post('/ajax/allocateMovie', {
+            uid: anchorID
+        }, function(res){
+            if(res.code != 0){
+                alert(res.info);
+            }else{
+                alert('添加成功');
+                $('#add').modal('hide');
+                getMovie();
+            }
+        }, 'json');
+    }
+    function getMovie(index){
+        var data = {};
+        data.page = index||1;;
+        data.pageSize = global.pageSize;
+        $.post('/ajax/getMovie', data, function(res){
+            var data = res.data;
+            var table = $('#tableList tbody');
+
+            table.empty();
+
+            var arr = [];
+            for(var i=0,len=data.list.length;i<len;i++){
+                arr.push(listRow(data.list[i]));
+            }
+            table.html(arr.join());
+
+            if(!index || index == 0){
+                utilsPagination("#pagination", data.count, global.pageSize, function(page_index, jq){
+                    page_index += 1;
+                    getMovie(page_index);
+                });
+            }
+            function listRow(data){
+                var html = '\
+                <tr id="movieID_'+data.id+'">\
+                    <td>' + data.uid + '</td>\
+                    <td>' + data.nickName + '</td>\
+                    <td>' + ns_getAllTime(data.createTime) + '</td>\
+                    <td> <span class="btn" onclick="deleteMovie('+data.id+')">删除</span> </td>\
+                </tr>';
+                return html;
+            }
+        }, 'json');
+    }
+    function deleteMovie(id){
+        var yes = confirm('是否删除该主播众筹活动？');
+        yes && $.post('/ajax/delMovie', {
+            id: id
+        }, function(res){
+            if(res.code != 0){
+                alert(res.info);
+            }else{
+                alert('删除成功');
+                $('#movieID_'+id).remove();
+            }
+        }, 'json');
+    }
+</script>

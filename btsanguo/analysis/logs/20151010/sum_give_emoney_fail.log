@@ -1,0 +1,4 @@
+
+2014-07-30 02:00:55|FAIL|Insert Into sum_market_pay|MSG=SQLSTATE[42S02]: Base table or view not found: 1146 Table 'u591.sum_give_emoney' doesn't exist
+2014-08-07 02:21:51|FAIL|Insert Into sum_market_pay|MSG=SQLSTATE[HY000]: General error: 2006 MySQL server has gone away
+2014-08-08 02:21:45|FAIL|Insert Into sum_market_pay|MSG=SQLSTATE[HY000]: General error: 2006 MySQL server has gone away

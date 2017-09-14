@@ -1,0 +1,133 @@
+
+<extend name="Public/base"/>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/index')}" class="link external"> <i class="icon icon-back"></i><!--<span>Back</span>--></a></div>
+    <div class="center sliding">{$cinema['cinemaName']}</div>
+    <div class="right"><a href="{:U('index/cinemalist',array('op'=>'plan'))}" class="link open-links more-cinema">{$cinema['shortName']}</a></div>
+  </div>
+</div>
+  </block>
+
+
+<block name='body'>
+<script type="text/javascript">window.location.href='/#!/{:U()}';</script>
+  <div data-page="plan" class="page">
+    <div class="page-content">
+
+      <foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+
+      <div id="nowCinemaCode" style="display:none">{$cinema['cinemaCode']}</div>
+		<div class="couponsLink" style="<if condition="empty($couponsList)">;display:none</if>">
+    <div id="scrollDiv" style="height:30px; overflow:hidden ">
+    <ul >
+
+
+    <foreach name="couponsList" item="vo">
+
+
+    <li>
+        	<a href="{:U('bank/buying')}"><span>立即抢购></span><h2>{$vo.couponName}只要{$vo.newPrice}元</h2></a>
+        </li>
+        </foreach>
+        </ul>
+        </div>
+        </div>
+		<div class="dateBox">
+            <ul class="dateBody"  id="dateBody">
+              <volist name='time' id='vo'>
+                <li planDate="{$vo['time']}" <?php if($i=='1'){ ?>class="cur"<?php }?>>{$vo['instr']}{$vo['dtime']}</li>
+                </volist>
+            </ul>
+        </div>
+
+        <div class="planList">
+     
+        </div>
+
+
+    </div>
+  </div>
+  </block>
+<!--<block name='toolbar'>
+    <div class="toolbar tabbar tabbar-labels">
+        <div class="toolbar-inner">
+            <a href="#tab1" class="tab-link active">
+                <i class="icon icon1"></i>
+                <span class="tabbar-label">电影</span>
+            </a>
+            <a href="{:U('plan',array('op'=>'plan'))}" class="tab-link">
+                <i class="icon icon2"></i>
+                <span class="tabbar-label">排期</span>
+            </a>
+            <a href="#tab3" class="tab-link">
+                <i class="icon icon3"></i>
+                <span class="tabbar-label">乐购</span>
+            </a>
+            <a href="#tab4" class="tab-link">
+                <i class="icon icon4"></i>
+                <span class="tabbar-label">我的</span>
+            </a>
+        </div>
+    </div>
+</block>-->
+<block name='script'>
+<script>
+var w = $("body").width();
+var i = $("#dateBody > li").length;
+var n = $("#dateBody > li").width();
+var planDate = '';
+
+var uploadUrl = $('#uploadUrl').html();
+
+var imgUrl = $('#imgUrl').html();
+$("#dateBody").width((parseInt(n*i)));
+$("#dateBody > li").width(w*0.33);
+$("#dateBody > li").click(function(){
+$(this).addClass("cur").siblings().removeClass("cur")}
+);
+$("#dateBody").find("li").each(function(){
+    $(this).click(function(){
+        planDate = $(this).attr("planDate");
+        getPlanlist(planDate);
+    });
+});
+
+function getPlanlist(planDate){
+var details = $('#details').html();
+myApp.showIndicator();
+    $.get($('#planajax').html(),{
+        cinemaCode:$('#nowCinemaCode').html(),
+        startTime:planDate,
+        random:Math.random(),
+        }, function(msg) {
+             myApp.hideIndicator();
+            var data=JSON.parse(msg);
+            $('.planList').html('');
+            if(data){
+                var indexSeat = $('#indexSeat').html();
+                $.each(data,function(k,value){
+                    var str="";
+                     str+='<dl><dt><a class="filmLink" href="javascript:details(\''+ value['filmNo'] +'\')" ><div class="filmImg">'+
+                        '<img src="';
+                     str+= value['film']['image'];
+                     str+='" height="100%"  /></div><div class="filmInfo"><h2>'+
+                        value['filmName']+'</h2><span>'+value['film']['score']/10+'</span><p>影片片长:'+value['totalTime']+'分钟</p>'+
+                    '</div><div class="clear"></div> </a></dt>';
+                     $.each(value.planInfo,function(key,v){
+                         
+                         str+='<a class="planInfo" href="'+indexSeat+'?featureAppNo='+v['featureAppNo']+'"><div class="planDate"><span>'
+                                 +v['startTime']+'</span><em>￥'+v['memberPrice']+'</em></div><div class="planType"><span>'
+                                 +v['copyLanguage']+v['copyType']+'</span><em>￥'+v['listingPrice']+'</em></div></a>';
+                    });
+                    str+='<div class="clear"></div></dl>';
+                    $('.planList').append(str);
+                });             
+            }
+    }) ;        
+}
+  </script>
+    </block>

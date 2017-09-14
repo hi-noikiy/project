@@ -1,0 +1,91 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>
+            
+        </div>
+		<div class="rightContent">
+        	<!--<div class="queryBox">
+                <div class="inputSelect">
+                    <span>按影片查询：</span>
+                    <select>
+                    	<option>所有影片</option>
+                        <option>中瑞国际影城</option>
+                        <option>中瑞大地影城</option>
+                        <option>中瑞国际影城</option>
+                    </select>
+                </div>
+                
+                <a href="#" class="button">查询</a>
+				
+            </div>-->
+            <div class="tableList">
+            	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+                     <thead>
+                          <tr >
+                            <td width="30%">影片名称</td>
+                            <td width="30%">影院名称</td>
+                            <td width="40%">保护价</td>
+                          </tr>
+                      </thead>
+                      <tbody  >
+                          <tr>
+                            <td>影片名称</td>
+                            <td>中瑞国际影城、<br />光景影城</td>
+                            <td><input type="text" value="30"  />元<br /><input type="text" value="30"  />元</td>
+                         </tr>
+                   </tbody>
+                </table>
+                <!--<table width="100%" cellpadding="0" cellspacing="0" border="0">
+                     <thead>
+                          <tr >
+                            <td width="5%">影片名称/影院</td>
+                            <td width="12%">中瑞国际影城（红星店）</td>
+                            <td width="6%">中瑞国际影城</td>
+                            <td width="18%">中瑞国际影城</td>
+                            <td width="10%">中瑞国际影城</td>
+                            <td width="7%">冠景国际影城</td>
+                          </tr>
+                      </thead>
+                      <tbody  >
+                          <tr>
+                            <td>影片名称</td>
+                            <td><input type="text" value="30"  />元</td>
+                            <td><input type="text" value="30"  />元</td>
+                            <td><input type="text" />元</td>
+                            <td><input type="text" />元</td>
+                            <td><input type="text" />元</td>
+                         </tr>
+                   </tbody>
+                </table>-->
+    		</div>
+        </div>
+    </div>
+<script type="text/javascript">
+	function del(id){
+	    layer.confirm('确认是否删除？',function(index){
+	    	$.ajax({
+	    		url:"<?php echo U('delete')?>",
+	    		data:{id:id},
+	    		dataType:'json',
+	    		type:'post',
+	    		success:function(json){
+	    			if(json.status=='0'){
+	    				location.reload();
+	    			}else{
+	    				layer.msg(json.text);
+	    			}
+	    		},
+	    		error:function(msg){
+	    			layer.msg('网络错误，请稍候再试！');
+	    		}
+	    	});
+	    	
+		})
+	}
+</script> 
+</block>

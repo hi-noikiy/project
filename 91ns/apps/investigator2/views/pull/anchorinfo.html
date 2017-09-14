@@ -1,0 +1,308 @@
+<div id="breadcrumb">
+    <a onclick="javascript:history.go(-1);" class="go-to-home tip-bottom font font18" style="cursor: pointer;">
+        <i class="icon-arrow-left"></i> 返回 &nbsp;
+    </a> 
+    <a onclick="javascript:history.go(-1);" class="font font18" style="cursor: pointer;"> &nbsp;&nbsp;<span>"托“账号 &gt</span></a>
+    <a href="/anchor/anchorinfo?uid={{info['uid']}}" class="current font font18"> <span>账号详情</span></a>
+    
+</div>
+
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <div class="user-info">
+        <img alt="" src="{{userInfo['avatar']}}">
+
+        <p>
+            <span class="font font20 cr-dpe">{{userInfo['nickName']}}</span>
+        </p>
+        <p>
+            <span class="font font20 cr-dpe">{{userInfo['uid']}}</span>
+            <input id="an_uid" type="hidden" value="{{userInfo['uid']}}" />
+        </p>
+    </div>
+    <div class="progtrckr-box">
+        <div class="progtrckrline" style="height: 70px;"></div>
+        <ul class="progtrckr">
+            <li class="active"><i class="custom-icon custom-icon-point"></i><a href="/pull/anchorinfo?uid={{userInfo['uid']}}">消费</a></li>
+            <li><i class="custom-icon custom-icon-point"></i><a  href="/pull/anchorchat?uid={{userInfo['uid']}}">聊天记录</a></li>
+
+        </ul>
+    </div>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+<div class="container-fluid">
+    <div class="row-fluid" style="margin-top: 60px;">
+        <div class="thum-box span3">
+            <div class="thum-top clearfix">
+                <div class="title">
+                    <p><span>富豪</span></p>
+                    <p><span>等级</span></p>
+                </div>
+            </div>
+
+            <div class="thum-content ">
+                <p class="font font20 cr-e5">
+                    <i class="sprite-fh_level fh{{userInfo['level']}}"></i>
+                    <span>{{userInfo['name']}}</span>
+                </p>
+            </div>
+
+        </div>
+
+        <div class="thum-box span3">
+            <div style="margin: 0 auto; width: 280px;">
+                <div class="thum-top ggr clearfix">
+                    <div class="title ggr">
+                        <p style="margin-top: 10px"><span>账户余额</span></p>
+                        <p style="margin-top: -7px"><span>（聊币）</span></p>
+                    </div>
+                </div>
+
+                <div class="thum-content ">
+                    <p class="font font20 cr-e5 clearfix">
+                        <span class="font font36 cr-ly pull-left" style="margin-left:15px; ">{{userInfo['cash']}}</span>
+                        <span class="pull-right" style="margin-right: 10px;"><button class="btn btn-grey" onclick="myDilog({{userInfo['uid']}})" >发放</button></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="thum-box span3">
+            <div class="pull-right">
+                <div class="thum-top bl clearfix">
+                    <div class="title bl">
+                        <p style="margin-top: 10px"><span>总消费</span></p>
+                        <p style="margin-top: -7px"><span>（聊币）</span></p>
+                    </div>
+                </div>
+
+                <div class="thum-content " >
+                    <p class="font font20 cr-e5">
+                        <span class="font font36 cr-ly">{{userInfo['amount']}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-box" style="background: #FFF; text-align: left; margin-top:20px;  padding-bottom: 40px;">
+        <ul class="tab-nav clearfix">
+            <li class="tabs-nav active"><a href="#box1">消费记录</a></li>
+            <a class="date-calendar pull-right"><i class=" icon-calendar"></i> <input id="mydate" style="height: 35px;" placeholder="请输入日期" value=""></a>
+        </ul>
+    <div class="hr-d7"></div>
+    <div id="box1" class="tab-box">
+
+
+    <div class="row-fluid" style="margin-top: 30px;">
+        <div class="container-fluid">
+            <div style="margin-top: -30px">
+                <table id="tableList" class="table with-check table-purple">
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>消费金额(聊币)</th>
+                        <th>购买物品</th>
+                        <th>数量</th>
+                        <th>消费对象</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <div class="row-fluid">
+                    <div class="total pull-left">
+                        <p class="font font18 cr-gy">
+                            <span>消费总额(聊币）：</span>
+                            <span id="count">{{userInfo['amount']}}</span>
+                        </p>
+                    </div>
+
+                    <div id="pagination" class="pagination alternate pull-right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+
+
+<div id="myDilog" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="addnumDialogForm">
+        <div style="margin-top: 20px;">请输入要发放的人民币金额：</div>
+        <input id="grantNum" style="margin-top: 20px;width: 300px;height: 30px;" type="text">
+        人民币
+    </form>
+</div>
+
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<script src="{{static_url('web/js/jquery.ui.datepicker-zh-CN.js')}}"></script>
+<script type="text/javascript">
+
+    $(function() {
+        $('body').addClass('anchorinfo');
+
+        $('#mydate').daterangepicker({
+                    presetRanges:[
+                        //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+                        //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+                        //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+                    ],
+                    presets:{
+                        dateRange:'自定义时间'
+                    },
+                    rangeStartTitle:'起始日期',
+                    rangeEndTitle:'结束日期',
+                    nextLinkText:'下月',
+                    prevLinkText:'上月',
+                    doneButtonText:'确定',
+                    cancelButtonText:'取消',
+                    earliestDate:'',
+                    latestDate:Date.parse('today'),
+                    constrainDates:true,
+                    rangeSplitter:'-',
+                    dateFormat:'yy-mm-dd',
+                    closeOnSelect:false,
+                    onOpen:function(){
+                        $('.ui-daterangepicker-dateRange').click().parent().hide();
+                        $('.ui-daterangepickercontain').css({left:($('#mydate').offset().left-325)+'px'});
+                    },
+                    onClose:function(){
+                        getDataList();
+                    }
+                }
+        );
+
+        getDataList();
+    });
+
+    function getDataList(index){
+        var data={};
+        data.uid=$('#an_uid').val();
+
+        if($('#mydate').val()!=''){
+            var tempdate=$('#mydate').val().substring(0,10);
+            data.startTime=datetime_to_unix(tempdate);
+        }else{
+            data.startTime= '';
+        }
+
+        if($('#mydate').val()!=''&&$('#mydate').val().length>13){
+            var tempdate=$('#mydate').val().substring(13,23);
+            data.endTime=datetime_to_unix(tempdate);
+        }else{
+            data.endTime='';
+        }
+
+        data.page=index||1;
+        data.pageSize=global.pageSize;
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/consumerInfo',
+            dataType:'json',
+            success:function(res){
+                var data=res.data;
+                var tableList=document.getElementById("tableList");
+                var tbody= tableList.getElementsByTagName('tbody')[0];
+                dataTable.clearData(tbody);
+
+               /* var count=document.getElementById('count');
+                count.innerHTML=data.count;*/
+
+                for(var i=0;i<data.list.length;i++){
+                    addRow(tbody,data.list[i]);
+                }
+                if(!index||index==0){
+                    utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                        page_index+=1;
+                        getDataList(page_index);
+                    });
+                }
+            }
+
+        });
+    }
+
+    function addRow(table,data){
+
+        var row=table.insertRow();
+        var cell=row.insertCell(0);
+        var cell1=row.insertCell(1);
+        var cell2=row.insertCell(2);
+        var cell3=row.insertCell(3);
+        var cell4=row.insertCell(4);
+
+
+        var div=document.createElement("div"),
+                img=document.createElement("img"),
+                span=document.createElement("span");
+
+        div.className="anchor-info";
+        img.src=global.contract+data.avatar;
+        span.innerHTML=data.uid;
+
+        div.appendChild(img);
+        div.appendChild(span);
+
+        cell.innerHTML=data.createTime;
+        cell1.innerHTML=data.amount;
+        cell2.innerHTML=data.type==1?'VIP':data.type==2?'座驾':data.type==3?'守护':data.type==4?'抢座':data.type==5?'送礼物':data.type==6?'银喇叭':data.type==7?'金喇叭':'';
+        cell3.innerHTML=data.count;
+
+        cell4.innerHTML=data.nickName+'('+data.anchorId+')';
+        return row;
+    }
+
+
+    //  添加号码
+    function myDilog(id){
+
+    $('#myDilog').dialog({
+        autoOpen:true,
+        width:400,
+        height:250,
+        title:'发放人民币',
+        resizable:false,
+        modal:true,
+        open:function(){
+
+        },
+        buttons: {
+            "确定": function () {
+                var data={};
+                data.uid=id;
+                data.num=$('#grantNum').val();
+                $.ajax({
+                    type:"POST",
+                    data:data,
+                    url:'/ajax/grant',
+                    dataType:'json',
+                    success:function(res){
+                        location.reload();
+                    }
+
+                });
+
+
+            }//,
+            /*"取消": function () {
+
+
+            }*/
+        }
+    });
+}
+</script>

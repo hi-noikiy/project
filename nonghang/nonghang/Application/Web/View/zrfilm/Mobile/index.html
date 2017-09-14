@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>中瑞移动购票</title>
+<link rel="stylesheet" href="__CSS__/jquery.fullPage.css">
+<link rel="stylesheet" href="__CSS__/mobile.css">
+<link href="__CSS__/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+<script src="__JS__/jquery.min.js"></script>
+<script src="__JS__/jquery-ui.js"></script>
+<script src="__JS__/jquery.fullPage.min.js"></script>
+<script type="text/javascript" src="__JS__/jq.Slide.js"></script>
+<script type="text/javascript" src="__JS__/jquery.slides.min.js"></script>
+
+<script>
+$(document).ready(function() {
+	$.fn.fullpage({
+		slidesColor: ['#000', '#fff', '#6196a1','#f9fdfe'],
+		anchors: ['page1', 'page2', 'page3','page4'],
+		scrollingSpeed:1000
+	});
+});
+
+
+//切换
+$(function(){
+	$("#appdown").Slide({
+		effect : "scroolX",
+    	speed : "normal",
+		timer : 10000
+	});	
+		
+
+	$("#mobile").Slide({
+		effect : "scroolX",
+    	speed : "normal",
+		timer : 3000
+	});	
+		
+});
+
+$(function(){
+      $("#slides").slidesjs({
+		 interval: 5000,
+		 play:{
+			 auto: true
+			 }
+      });
+    });
+	
+	function suiji(element){
+	var Num=""; 
+	for(var i=0;i<6;i++){ 
+		Num+=Math.floor(Math.random()*10); 
+	}
+	str= location.href;
+	pos=location.href.lastIndexOf('&ie777'); 
+    if(pos>1)
+		arr=str.split('&ie777');
+	else
+		arr=str.split("#page");
+		
+	location.replace(arr[0]+"&ie777="+Num+"#page2");
+
+	
+
+}
+
+</script>
+
+</head>
+
+<body>
+	<div class="app_top">
+            <div class="app_top_center">
+                <div class="app_top_logo">
+                    <img src="__IMG__/mobile/app_logo.png" width="290" height="47">
+                </div>
+                <div class="app_top_menu">
+                    <ul>
+                        <li><a href="{:U('Index/index')}">首页</a></li>
+                        <li><a href="{:U('Film/filmlist')}">电影</a></li>
+                        <li><a href="{:U('Plan/plan')}">排期</a></li>
+                        <!--<li><a href="{:U('bookwhole/index')}">包场</a></li>-->
+                        <li><a href="{:U('goods/index')}">卖品</a></li>
+                        <!--<li><a>影院</a></li>-->
+                        <li><a href="{:U('activity/activitylist')}">活动</a></li>
+                        <li><a href="{:U('mobile/index')}" class="cur">移动购票</a></li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+            </div>
+    </div>
+    <div class="section" style="position:relative;">
+    	<a class="btn" href="#page2" onclick="suiji(this); "></a>
+        <div id="slides">
+            <img src="__IMG__/mobile/01.gif" width="100%"  />
+            <img src="__IMG__/mobile/02.gif" width="100%" />
+            <img src="__IMG__/mobile/03.gif" width="100%" />
+        </div>
+    </div>
+    <div class="section">
+        <div id="appdown">
+            <div><img src="__IMG__/mobile/h1.png" /></div>
+            <ul class="JQ-slide-nav">
+                <li class="on"><a class="btn_left" href="#"></a></li>
+                <li><a class="btn_middle" href="#"></a></li>
+                <li><a class="btn_right" href="#"></a></li>
+            </ul>
+            <div class="JQ-content-box">
+                <ul class="JQ-slide-content">
+                    <li><a class="ios" href="https://itunes.apple.com/cn/app/zhong-rui-dian-ying/id905830459?mt=8" target="_blank"></a><img src="__IMG__/mobile/1.gif" /></li>
+                    <li><img src="__IMG__/mobile/2.gif" /><a class="android" href="http://www.zrfilm.com/download/com.zrfilm.apk" target="_blank"></a></li>
+                    <li><img src="__IMG__/mobile/3.gif" /><input type="text" class="wap" value="http://m.zrfilm.com" readonly="readonly" /></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+    	<div id="mobile">
+           	<ul class="JQ-slide-nav"><div><img src="__IMG__/mobile/h2.png" /></div>
+                <li class="on"><span></span><a href="#"><img src="__IMG__/mobile/111.png" /></a></li>
+                <li><span></span><a href="#"><img src="__IMG__/mobile/222.png" /></a></li>
+                <li><span></span><a href="#"><img src="__IMG__/mobile/333.png" /></a></li>
+                <li><span></span><a href="#"><img src="__IMG__/mobile/444.png" /></a></li>
+            </ul>
+            <div class="JQ-content-box">
+                <ul class="JQ-slide-content">
+                    <li><a href="#" target="_blank"><img src="__IMG__/mobile/11.png" /></a></li>
+                    <li><a href="#" target="_blank"><img src="__IMG__/mobile/22.png" /></a></li>
+                    <li><a href="#" target="_blank"><img src="__IMG__/mobile/33.png" /></a></li>
+                    <li><a href="#" target="_blank"><img src="__IMG__/mobile/44.png" /></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+    	<div class="footer">
+        	<div class="fuwu">
+            	<a class="r1" target="_blank" href="http://weibo.com/verycinemas"></a>
+                <a class="r2" ></a>
+                <a class="r3" href="{:U('index/feedback')}"></a>
+                <img src="__IMG__/mobile/fuwu.gif" />
+                <div id="weixin">
+                    <div class="tishi">中瑞影城提示<span class="close">x</span></div>
+                    <img src="__IMG__/mobile/weixin.gif" />
+                </div>
+            </div>
+            
+            <div class="foot">
+                <div class="link">
+                    <a href="{:U('Index/index')}">首页</a>/
+                        <a href="{:U('Film/filmlist')}">电影</a>/
+                        <a href="{:U('Plan/plan')}">排期</a>/
+                       <a href="{:U('goods/index')}">卖品</a>/
+						<a href="{:U('activity/activitylist')}">活动</a>/
+                        <a href="{:U('mobile/index')}" class="cur">移动购票</a>
+                </div>
+                <div class="info">
+                    <p>地址：福州市工业路美凯龙家居广场7层 闽ICP备11026044号-1</p> 
+                    <p>版权所有&copy;福州中瑞影城   咨询热线：4000-125-000</p>
+                    <p><a href="http://www.tbanana.com">最美影视网络科技有限公司提供技术支持</a></p>
+              </div>
+            </div>
+        </div>
+    </div>
+<script>
+$(".r2").click(function(){
+	$("#weixin").css('display','block');
+	})
+$(".close").click(function(){
+	$("#weixin").css('display','none');
+	})
+</script>   
+</body>
+</html>

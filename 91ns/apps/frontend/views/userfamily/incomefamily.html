@@ -1,0 +1,369 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<!--js、css引入-->
+{% endblock %}
+
+{% block title %}
+家族收益
+{% endblock %}
+
+{% block titleList %}
+<!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+<!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+<div class="center-box-parent">
+    <div class="center-box-content">
+        <div class="center-box">
+
+            <div class="center-top">
+                <div class="rope-left">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+
+                <div class="rope-right">
+                    <i class="gmc-icon gmc-icon-rope"></i>
+                </div>
+            </div>
+            <div class="center-content">
+                <div class="widget-box">
+                    <div class="contain-m">
+                        <ul class="tabs clearfix">
+                            <li class="tab active">
+                                <a href="#tab_1">本周</a>
+
+                            </li>
+                            <li class="tab">
+                                <a href="#tab_2">上周</a>
+
+                            </li>
+                            <li class="tab">
+                                <a href="#tab_3">本月</a>
+
+                            </li>
+                            <li class="tab">
+                                <a href="#tab_4">上月</a>
+
+                            </li>
+                            <li class="tab">
+                                <a href="#tab_5">总榜</a>
+
+                            </li>
+                            <li class="returngroup">
+                                <a href="mygroup.php" target="_blank"></a>
+                            </li>
+                        </ul>
+
+                        <div id="tab_1" class="tabbox list" >
+                            <div class="incometab-head">家族本周总收益：<span class="khi"><i  class="numi">{{ thisWeekConsume['sum'] }}</i> 聊币</span></div>
+                            <table class="tablebox-income">
+                                <thead>
+                                <tr>
+                                    <th style="width: 133px;">排名</th>
+                                    <th style="width: 136px;">家族资料</th>
+                                    <th style="width: 360px;">主播昵称</th>
+                                    <th style="width: 136px;">主播等级</th>
+                                    <th class="clearboder" style="width: 424px;">收益(结算前)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if thisWeekConsume['sum'] > 0 %}
+                                {% for i in 0..thisWeekConsume['record']|length - 1 %}
+                                <tr>
+                                    <td style="width: 134px;" class="rangking">{{ i + 1 }}</td>
+                                    <td style="width: 134px;"><div class="tabsearch" rel="{{ thisWeekConsume['record'][i]['anchorId'] }}" target="_blank">查询</div></td>
+                                    <td style="width: 360px;" class="_incometabINfo">
+                                        <div class="zbinfo clearfix" >
+                                            <span class="pull-left"><a href="/{{ thisWeekConsume['record'][i]['anchorId'] }}" target="_blank">
+                                                <img src="{{ thisWeekConsume['user'][thisWeekConsume['record'][i]['anchorId']]['avatar'] }}">
+                                            </a></span>
+                                            <span class="name pull-left"><a href="/{{ thisWeekConsume['record'][i]['anchorId'] }}" target="_blank">{{ thisWeekConsume['user'][thisWeekConsume['record'][i]['anchorId']]['nickName'] }}</a></span>
+                                            <span class="useruid pull-left"><a>（{{ thisWeekConsume['record'][i]['anchorId'] }}）</a></span>
+                                        </div>
+                                    </td>
+                                    <td style="width: 136px;"><i class="sprite-zb_level zb{{ thisWeekConsume['user'][thisWeekConsume['record'][i]['anchorId']]['anchorLevel'] }}"></i></td>
+                                    <td style="width: 408px;"><span class="kh"><i  class="_num">{{ thisWeekConsume['record'][i]['amount'] }}</i>  聊币</span></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+
+                            </table>
+
+                            {% if thisWeekConsume['sum'] == 0 %}
+                            <div class="no-notData"><span></span>本周没有收益！</div>
+                            {% endif %}
+
+                        </div>
+                        <!--/tab_1-->
+
+                        <div id="tab_2" class="tabbox list" style="display:none;">
+                            <div class="incometab-head">家族上周总收益：<span class="khi"><i  class="numi">{{ lastWeekConsume['sum'] }}</i> 聊币</span></div>
+                            <table class="tablebox-income">
+                                <thead>
+                                <tr>
+                                    <th style="width: 133px;">排名</th>
+                                    <th style="width: 136px;">家族资料</th>
+                                    <th style="width: 360px;">主播昵称</th>
+                                    <th style="width: 136px;">主播等级</th>
+                                    <th class="clearboder" style="width: 424px;">收益(结算前)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if lastWeekConsume['sum'] > 0 %}
+                                {% for i in 0..lastWeekConsume['record']|length - 1 %}
+                                <tr>
+                                    <td style="width: 134px;" class="rangking">{{ i + 1 }}</td>
+                                    <td style="width: 134px;"><div class="tabsearch" rel="{{ lastWeekConsume['record'][i]['anchorId'] }}" target="_blank">查询</div></td>
+                                    <td style="width: 360px;" class="_incometabINfo">
+                                        <div class="zbinfo clearfix" >
+                                            <span class="pull-left"><a href="/{{ lastWeekConsume['record'][i]['anchorId'] }}" target="_blank">
+                                                <img src="{{ lastWeekConsume['user'][lastWeekConsume['record'][i]['anchorId']]['avatar'] }}">
+                                            </a></span>
+                                            <span class="name pull-left"><a href="/{{ lastWeekConsume['record'][i]['anchorId'] }}" target="_blank">{{ lastWeekConsume['user'][lastWeekConsume['record'][i]['anchorId']]['nickName'] }}</a></span>
+                                            <span class="useruid pull-left"><a>（{{ lastWeekConsume['record'][i]['anchorId'] }}）</a></span>
+                                        </div>
+                                    </td>
+                                    <td style="width: 136px;"><i class="sprite-zb_level zb{{ lastWeekConsume['user'][lastWeekConsume['record'][i]['anchorId']]['anchorLevel'] }}"></i></td>
+                                    <td style="width: 408px;"><span class="kh"><i  class="_num">{{ lastWeekConsume['record'][i]['amount'] }}</i>  聊币</span></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+
+                            </table>
+
+                            {% if lastWeekConsume['sum'] == 0 %}
+                            <div class="no-notData"><span></span>上周没有收益！</div>
+                            {% endif %}
+
+                        </div>
+                        <!--/tab_1-->
+
+                        <div id="tab_3" class="tabbox list" style="display:none;">
+                            <div class="incometab-head">家族本月总收益：<span class="khi"><i  class="numi">{{ thisMonthConsume['sum'] }}</i> 聊币</span></div>
+                            <table class="tablebox-income">
+                                <thead>
+                                <tr>
+                                    <th style="width: 133px;">排名</th>
+                                    <th style="width: 136px;">家族资料</th>
+                                    <th style="width: 360px;">主播昵称</th>
+                                    <th style="width: 136px;">主播等级</th>
+                                    <th class="clearboder" style="width: 424px;">收益(结算前)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if thisMonthConsume['sum'] > 0 %}
+                                {% for i in 0..thisMonthConsume['record']|length - 1 %}
+                                <tr>
+                                    <td style="width: 134px;" class="rangking">{{ i + 1 }}</td>
+                                    <td style="width: 134px;"><div class="tabsearch" rel="{{ thisMonthConsume['record'][i]['anchorId'] }}" target="_blank">查询</div></td>
+                                    <td style="width: 360px;" class="_incometabINfo">
+                                        <div class="zbinfo clearfix" >
+                                            <span class="pull-left"><a href="/{{ thisMonthConsume['record'][i]['anchorId'] }}" target="_blank">
+                                                <img src="{{ thisMonthConsume['user'][thisMonthConsume['record'][i]['anchorId']]['avatar'] }}">
+                                            </a></span>
+                                            <span class="name pull-left"><a href="/{{ thisMonthConsume['record'][i]['anchorId'] }}" target="_blank">{{ thisMonthConsume['user'][thisMonthConsume['record'][i]['anchorId']]['nickName'] }}</a></span>
+                                            <span class="useruid pull-left"><a>（{{ thisMonthConsume['record'][i]['anchorId'] }}）</a></span>
+                                        </div>
+                                    </td>
+                                    <td style="width: 136px;"><i class="sprite-zb_level zb{{ thisMonthConsume['user'][thisMonthConsume['record'][i]['anchorId']]['anchorLevel'] }}"></i></td>
+                                    <td style="width: 408px;"><span class="kh"><i  class="_num">{{ thisMonthConsume['record'][i]['amount'] }}</i>  聊币</span></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+
+                            </table>
+
+                            {% if thisMonthConsume['sum'] == 0 %}
+                            <div class="no-notData"><span></span>本月没有收益！</div>
+                            {% endif %}
+
+                        </div>
+                        <!--/tab_3-->
+
+                        <div id="tab_4" class="tabbox list" style="display:none;">
+                            <div class="incometab-head">家族上月总收益：<span class="khi"><i  class="numi">{{ lastMonthConsume['sum'] }}</i> 聊币</span></div>
+                            <table class="tablebox-income">
+                                <thead>
+                                <tr>
+                                    <th style="width: 133px;">排名</th>
+                                    <th style="width: 136px;">家族资料</th>
+                                    <th style="width: 360px;">主播昵称</th>
+                                    <th style="width: 136px;">主播等级</th>
+                                    <th class="clearboder" style="width: 424px;">收益(结算前)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if lastMonthConsume['sum'] > 0 %}
+                                {% for i in 0..lastMonthConsume['record']|length - 1 %}
+                                <tr>
+                                    <td style="width: 134px;" class="rangking">{{ i + 1 }}</td>
+                                    <td style="width: 134px;"><div class="tabsearch" rel="{{ lastMonthConsume['record'][i]['anchorId'] }}" target="_blank">查询</div></td>
+                                    <td style="width: 360px;" class="_incometabINfo">
+                                        <div class="zbinfo clearfix" >
+                                            <span class="pull-left"><a href="/{{ lastMonthConsume['record'][i]['anchorId'] }}" target="_blank">
+                                                <img src="{{ lastMonthConsume['user'][lastMonthConsume['record'][i]['anchorId']]['avatar'] }}">
+                                            </a></span>
+                                            <span class="name pull-left"><a href="/{{ lastMonthConsume['record'][i]['anchorId'] }}" target="_blank">{{ lastMonthConsume['user'][lastMonthConsume['record'][i]['anchorId']]['nickName'] }}</a></span>
+                                            <span class="useruid pull-left"><a>（{{ lastMonthConsume['record'][i]['anchorId'] }}）</a></span>
+                                        </div>
+                                    </td>
+                                    <td style="width: 136px;"><i class="sprite-zb_level zb{{ lastMonthConsume['user'][lastMonthConsume['record'][i]['anchorId']]['anchorLevel'] }}"></i></td>
+                                    <td style="width: 408px;"><span class="kh"><i  class="_num">{{ lastMonthConsume['record'][i]['amount'] }}</i>  聊币</span></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+
+                            </table>
+
+                            {% if lastMonthConsume['sum'] == 0 %}
+                            <div class="no-notData"><span></span>上月没有收益！</div>
+                            {% endif %}
+
+                        </div>
+                        <!--/tab_4-->
+
+                        <div id="tab_5" class="tabbox list" style="display:none;">
+                            <div class="incometab-head">家族总收益：<span class="khi"><i  class="numi">{{ totalConsumes['sum'] }}</i> 聊币</span></div>
+                            <table class="tablebox-income">
+                                <thead>
+                                <tr>
+                                    <th style="width: 133px;">排名</th>
+                                    <th style="width: 136px;">家族资料</th>
+                                    <th style="width: 360px;">主播昵称</th>
+                                    <th style="width: 136px;">主播等级</th>
+                                    <th class="clearboder" style="width: 424px;">收益(结算前)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% if totalConsumes['sum'] > 0 %}
+                                {% for i in 0..totalConsumes['record']|length - 1 %}
+                                <tr>
+                                    <td style="width: 134px;" class="rangking">{{ i + 1 }}</td>
+                                    <td style="width: 134px;"><div class="tabsearch" rel="{{ totalConsumes['record'][i]['anchorId'] }}" target="_blank">查询</div></td>
+                                    <td style="width: 360px;" class="_incometabINfo">
+                                        <div class="zbinfo clearfix" >
+                                            <span class="pull-left"><a href="/{{ totalConsumes['record'][i]['anchorId'] }}" target="_blank">
+                                                <img src="{{ totalConsumes['user'][totalConsumes['record'][i]['anchorId']]['avatar'] }}">
+                                            </a></span>
+                                            <span class="name pull-left"><a href="/{{ totalConsumes['record'][i]['anchorId'] }}" target="_blank">{{ totalConsumes['user'][totalConsumes['record'][i]['anchorId']]['nickName'] }}</a></span>
+                                            <span class="useruid pull-left"><a>（{{ totalConsumes['record'][i]['anchorId'] }}）</a></span>
+                                        </div>
+                                    </td>
+                                    <td style="width: 136px;"><i class="sprite-zb_level zb{{ totalConsumes['user'][totalConsumes['record'][i]['anchorId']]['anchorLevel'] }}"></i></td>
+                                    <td style="width: 408px;"><span class="kh"><i  class="_num">{{ totalConsumes['record'][i]['amount'] }}</i>  聊币</span></td>
+                                </tr>
+                                {% endfor %}
+                                {% endif %}
+                                </tbody>
+
+                            </table>
+
+                            {% if totalConsumes['sum'] == 0 %}
+                            <div class="no-notData"><span></span>没有收益！</div>
+                            {% endif %}
+
+                        </div>
+                        <!--/tab_5-->
+
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="center-bottom">
+
+            </div>
+        </div>
+
+        <div class="center-footer-bg" >
+
+        </div>
+    </div>
+
+</div>
+
+<div class="ns-alert ns-dialog">
+    <div class="win" >
+        <div class="header">
+            <i class="ico-main-12 alert-logo"></i>
+            <span>主播家族资料</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body">
+            <div id="group-info">
+                <div class="row">
+                    <span>真实姓名：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>性别：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>生日：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>生活照：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>籍贯：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>身份证号：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>电话：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>地址：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>开户行：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>开户姓名：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>银行卡号：</span><span>sss</span>
+                </div>
+                <div class="row">
+                    <span>QQ：</span><span>sss</span>
+                </div>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div><!--/ns-dialog-->
+
+<div class="PicBox-dialog" style="display: none;">
+    <div class="close"><i class="close-icon-1"></i></div>
+    <img id="liveImg" onclick="showImageInScreen(this);" src="">
+</div>
+<div class="ns-alert ns-dialog">
+    <div class="win" >
+        <div class="header">
+            <span class="_title">{{ webType['name'] }}</span>
+            <span>主播家族资料</span>
+            <i class="ico-main-2 alert-exit js-exitAlert-control"></i>
+        </div>
+        <div class="body">
+            <div>
+                <div class="UI-d-content"></div>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block end %}
+<script type="text/javascript" src="{{static_url('91ns.incomefamily'|ns_js)}}"></script>
+{% endblock %}

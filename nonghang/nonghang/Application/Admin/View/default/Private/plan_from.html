@@ -1,0 +1,97 @@
+<extend name='Public/frombase'/>
+<block name='body'>
+<div class="formBody">
+    <div class="privateAddPlan">
+         <form action="{:U('plan_from')}" method="post" id='myforms'  onsubmit="return check();" target="myframe">
+        <div class="scrollDate scrollDateFrom">
+                <div class="dateBox">
+                    <ul class="datelist">
+                        <volist name='list' id='vo'>
+                        <li><a href="javascript:" id="{$vo.id}" >{$vo.name}<span>{$vo.state}</span></a></li>
+                        </volist>
+                    </ul>               
+                </div>
+                <div class="pageBtn">
+                    <span class="prev"></span>
+                    <span class="next"></span>
+                </div>
+
+            </div>
+        <div class="privatePlanlist" id="privatePlanlist">
+
+            <volist name='plantime' id='vo' >
+           
+            <div class="privateSubitem" id="li_{$key}"  style="position:relative;">  
+                <foreach name='vo'  item='vo1'  key='k'>
+                <div>
+                    <h3>{$vo1.cc}</h3><span>至</span><h3>{$vo1.ec}</h3>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<h3>售价：</h3><b>{$vo1.price}元</b>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<h3>原价：</h3><b>{$vo1.oriPrice}元</b>
+                </div>
+                </foreach> 
+                    
+                 <a href="javascript:" class="itemAdd"   id='{$key}_a'  onclick='add({$key})'></a>                                        
+            </div>  
+            </volist>
+        </div>
+        <div class="privateAddBtm">
+            <span>*请选择或输入时间，配置价格</span>
+            <input type='submit' class="button" name='ssss'  value='添加'/ >
+           <!--  <a href="" class="button" onclick="$('#myforms').submit()">添加</a> -->
+        </div>
+        </form> 
+    </div>
+</div>
+</block>
+<block name="script">
+<script type="text/javascript">
+	//滚动切换
+	jQuery(".scrollDateFrom").slide({
+		mainCell:".datelist",
+		effect:"left",
+		vis:5,
+		scroll:5,
+		delayTime:800,
+		trigger:"click",
+		pnLoop:"false",
+		autoPage:"true",
+		easing:"easeOutCirc"
+		});
+		
+	$(document).ready(function() {
+			$(".datelist li:first").addClass("current");
+			$("#privatePlanlist .privateSubitem:first").css("display","block"); 	
+			$('.datelist li a').click(function(e) {
+				$('.datelist li').removeClass("current"); 
+				$(this).parent().addClass("current");
+				$("#privatePlanlist .privateSubitem").css("display","none");
+				$('#'+'li_'+ $(this).attr('id')).css("display","block");
+			});
+		});
+		
+		
+		
+		
+	function add(obj){
+		$('#'+obj+'_a').before("<div><input type='datetime' onfocus='time(this)' onblur='check(this)'   value='' name='time["+obj+"][]'/><span onclick='clearDate(this)'  style='cursor:pointer; margin-left:-25px; width: 25px;'><img src='__IMG__/common/out.png' width='10' style='margin:0 auto' /></span><span>至</span><input type='datetime' onclick='time(this)'   name='endTime["+obj+"][]'  /><span onclick='clearDate(this)'  style='cursor:pointer; margin-left:-25px; width: 25px;'><img src='__IMG__/common/out.png' width='10' style='margin:0 auto' /></span><input type='text' placeholder='售价'  name='price["+obj+"][]' />元<input type='text' placeholder='原价' name='oriPrice["+obj+"][]' />元<a href='javascript:' onclick='del(this)'  class='itemDel'></a></div>");
+	}
+	function del(obj){
+		$(obj).parent().remove();
+	}
+	function time(obj){
+		$(obj).datetimepicker({
+		yearOffset:0,
+		lang:'ch',
+		datepicker:false,
+		timepicker:true,
+		format:'H:i',
+		formatDate:'H:i'
+		});
+	}
+	function check() {
+	//	alert('我还没有提交呀');
+		return true;
+	}
+	
+</script>
+</block>

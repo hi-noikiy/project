@@ -1,0 +1,170 @@
+<extend name='Public/base'/>
+<block name='jscss'>
+<link rel="stylesheet" type="text/css" href="__JS__/uploadify/uploadify.css">
+
+<script src="__JS__/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/ueditor.config.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/ueditor.all.min.js" type="text/javascript"></script>
+<script src="__STATIC__/ueditorFull1.2.2/lang/zh-cn/zh-cn.js" type="text/javascript"></script>
+
+<style>
+html{
+	background:#354052;
+	}
+</style>
+</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+            <div class="contentBox goods">	
+                <div class="queryItem"><p>商品基本信息</p></div>
+                <form id="submitForm" method="post" enctype="multipart/form-data" action="{:U()}" target="myframe">
+                                <input type="hidden" name="id" value="{$goods['id']}" />
+                                <input type="hidden" name="data[detail]" value="" />
+                                    <div class="inputSelect">
+                                        <span>请选择商户</span>
+                                        <select name='data[sellerNo]'>
+                                        <volist id='vo' name='sellers'>
+                								<option value="{$vo['id']}"  <?php if($vo['id']==$goods['sellerNo']){ ?>selected<?php }?>>{$vo['sellerName']}</option>
+              							</volist>
+                                         </select>
+                                    </div>
+                                    <br />
+                                    <div class="inputText" >
+                                        <span>团购名称</span><input type="text" name="data[goodsName]" value="{$goods['goodsName']}" datatype="*" nullmsg="请输入团购名称" placeholder="请输入团购名称" >
+                                    </div>
+                                    <div class="inputText" >
+                                        <span>团购简述</span><input type="text" name="data[introduce]" value="{$goods['introduce']}" datatype="*"  nullmsg="请输入团购简述" placeholder="请输入团购简述" >
+                                    </div>
+                                    <div class="inputText" >
+                                        <span>团购售价</span><input type="text"  name="data[price]" value="{$goods['price']}" datatype="*"  nullmsg="请输入团购售价" placeholder="请输入团购售价" >元
+                                    </div>
+                                    <div class="inputText" >
+            							<span>优先级</span>
+            							<input type="text" name="data[priority]"  placeholder="请输入优先级" value="{$goods['priority']}">
+       							 </div>
+                                    <br />
+                                    <div class="inputText" style="line-height:0;" >
+                                        <p>商品详情</p> 
+                                        <volist name='goods["details"]' id='vo'>
+                                        <br/>
+                                        <span class="inputItem">
+                                        <input type="text" name="name[]" value="{$vo[0]}" datatype="*"  nullmsg="请输入商品详细名称" placeholder="请输入商品详细名称" >
+                                        <input type="text"  value="{$vo[1]}" datatype="*"  nullmsg="请输入商品数量" placeholder="请输入商品数量" >
+                                        <input type="text"  value="{$vo[2]}" datatype="*"  nullmsg="请输入商品原价" placeholder="请输入商品原价" >元
+                                        </span>
+                                        <a href="javascript:;" onclick='del(this)'  style="color: #4ca3f3;">删除</a>
+                                        </volist>
+                                        <a href="javascript:addSeat();" id="add" class="button" style="padding:0 15px; margin:0 5px;">+</a>
+                                    </div>
+                                    <br />
+                                    <div class="inputText" >
+                                        <span>团购封面</span>
+                                        <if condition="$buyingInfo['preView']">
+                                            <div><img src="__UPLOAD__/{$buyingInfo['preView']}" width="135" height="180"></div>
+                                        </if>
+                                        <input type="file" datatype="*" name="goodsImg" nullmsg="请上传团购封面" />
+                                    </div>
+                                    <br />
+									<div class="inputText2" >
+                                        <p>团购介绍图文：</p>
+
+                                        <script type="text/plain" id="myEditor3" name="data[detailImg]" style="width:1000px;height:240px;">
+                                            {:htmlspecialchars_decode($goods['detailImg'])}
+                                        </script>
+
+                                    </div> 
+
+                                   <div class="inputText2" >
+                                        <p>商品购买简介：</p>
+
+                                        <script type="text/plain" id="myEditor2" name="data[tip]" style="width:1000px;height:240px;">
+                                            {:htmlspecialchars_decode($goods['tip'])}
+                                        </script>
+
+                                    </div> 
+
+                                    <div class="inputText2" >
+                                        <p>用户购买须知：</p>
+
+                                        <script type="text/plain" id="myEditor" name="data[explain]" style="width:1000px;height:240px;">
+                                            {:htmlspecialchars_decode($goods['explain'])}
+                                        </script>
+                                    </div> 
+                                    
+                                    <div class="clear"></div>
+                                    <a href="javascript:;" class="button"  id='button' style="margin:30px;">提交</a>
+                                    </form>
+            </div>
+		</div>
+    </div>
+<script type="text/javascript">
+
+var ue1 = UE.getEditor('myEditor');
+var ue2 = UE.getEditor('myEditor2');
+var ue3 = UE.getEditor('myEditor3');
+
+$('#button').click(function() {
+	var tt=/^[1-9][0-9]*$/;
+	var tt1=/^[0]|([1-9][0-9]*)$/;
+	var flag=true;
+	$('.inputText>input[type="text"]').each(function(){
+		var name=$(this).prev('span').html();
+		var value=$(this).val();
+		if(value==''){
+			layer.alert(name+'不能为空');
+			flag=false;
+			return false;
+		}else if($(this).attr('name')=='data[price]'||$(this).attr('name')=='data[priority]'){
+			if(!tt.test(value)){
+				layer.alert(name+'填写错误');
+				flag=false;
+				return false;
+			}
+		}
+	});
+	var mydata='';
+	$('input[name="name[]"]').each(function(){
+		if($(this).val()!=''){
+			if(tt.test($(this).next().val())){
+				if(tt.test($(this).next().next().val())){
+					mydata+=';'+$(this).val()+','+$(this).next().val()+','+$(this).next().next().val();
+				}
+			}
+		}
+	});
+	$('input[name="data[detail]"]').val(mydata.substr(1));
+	if(flag){
+		$('#submitForm').submit();
+	}
+});
+//添加团购详情
+$("#add").click( function () { 
+	$(this).before("<br /><span class='inputItem'><input type='text' name='name[]' value='' datatype='*'  nullmsg='请输入商品详细名称' placeholder='请输入商品详细名称' ><input type='text'  value='' datatype='*'  nullmsg='请输入商品数量' placeholder='请输入商品数量' ><input type='text'  value='' datatype='*'  nullmsg='请输入商品原价' placeholder='请输入商品原价' >元</span><a href='javascript:;' onclick='del(this)'  style='color: #4ca3f3;'>删除</a>");
+});
+
+
+function delpic(obj,pic){
+	$.get('{:U("delpic")}',{pic:pic},function(json){
+		$(obj).parent().remove();
+	});
+}
+
+function del(obj){
+	layer.confirm('确认是否删除？',function(index){
+		$(obj).prev().remove();
+		$(obj).remove();
+		layer.close(index);
+		});
+	}
+
+//编辑器
+
+
+</script> 
+</block>

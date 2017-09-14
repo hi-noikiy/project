@@ -1,0 +1,131 @@
+<extend name='Public/base'/>
+<block name='navbar'>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="left"><a href="{:U('index/plan')}" class="external link"> <i class="icon icon-back"></i><span></span></a></div>
+    <div class="center sliding">订单确认</div>
+    <div class="right"></div>
+  </div>
+</div>
+  </block>
+
+
+<block name='body'>
+<div data-page="userIndent" class="page">
+    <div class="page-content">
+
+
+    	<foreach name="config" item="vo" key="k" >
+        <div style="display:none" id="{$k}">{$vo}</div>
+      </foreach>
+      <div id="orderstatus" style="display:none">{$plan.orderstatus}</div>
+      <div id="gourl" style="display:none">{:U('user/pay')}</div>
+      <div id="cancelurl" style="display:none">{:U('user/cancelOrder',array('orderid'=>$plan['orderstatus']))}</div>
+      <div id="hsc" style="display:none">{$plan.hsc}</div>
+      <div id="featureAppNo" style="display:none">{$plan.featureAppNo}</div>
+      <div id="mydata" style="display:none">{$mydata}</div>
+
+      <div id="payUrl" style="display:none">{:U('user/pay')}</div>
+
+    <div class="content">
+        <div class="firmOrder">
+           <div class="firmOrderInfo" id="firmOrder">
+           		<img src="__IMG__/common/zrlogo.png" height="30" />
+                <div class="line"></div>
+                <div class="orderInfo">
+                	<h2>{$plan['filmName']}</h2><span class="style3D">{$plan['copyType']}</span>
+                    <p>{$plan['shortName']}{$plan['hallName']}</p>
+                   	<p>{$plan['m']}  {$plan['week']} {$plan['d']}</p>
+                    <p> {$plan['seatstr']}</p> 
+                </div>
+                <div class="line"></div>
+                <div class="firmBtm ">
+                    <span>应付总额：<b>￥{$plan['num']}</b> </span>
+                    <p>（{$user['memberGroupName']}：{$plan['memberPrice']}元/张&nbsp;含补差价{$feadprice}元）</p>	
+                </div>
+           </div>
+           <img src="__IMG__/movie/ticketbg.png" width="100%" />
+           <div class="ticketBtm">
+           		<div class="inputBox">
+                	<em></em>
+                	<input class="phone" name="mobile" type="tel" placeholder="请输入接收取票码的手机号" value="{$mobile}"  />
+                	
+                </div>
+           </div>
+           <div class="tips">交易信息提示：确认订单后，请在15分钟内完成支付，否则系统自动释放座位！</div>
+        </div>
+        
+        <div class="Button">
+        	<a class="confirm-ok-cancel " id="confirmBtn" href="javascript:;">确认订单</a>
+        </div>
+    </div>
+    </div>
+    </div>
+  </block>
+
+    <block name='script'>
+<script>
+$(function(){ 
+ var userSeatLock = $('#userSeatLock').html();
+    var orderstatus = $('#orderstatus').html();
+
+        if(orderstatus != '0'){
+        var gourl=$('#gourl').html();;
+        var cancelurl=$('#cancelurl').html();
+
+
+        myApp.confirm('您之前有一笔未支付订单，去支付？', 
+        function () {
+          window.location.href=gourl;
+        },
+        function () {
+            $.get(cancelurl,{},function(msg){});
+        }
+    ); 
+        }
+
+
+        var hsc=$('#hsc').html();;
+        $("#confirmBtn").bind("click",function(){
+            function isMobil(s) {   //验证手机号 
+                var patrn=/^1\d{10}$/; 
+                if (!patrn.exec(s)){
+                    return false 
+                }else{
+                    return true
+                }
+            }
+            if(hsc !='ok'){
+                alert("您最多可再买"+hsc+"张本场次影票!");
+                return false;
+            }
+            var mobile=$("input[name='mobile']").val();
+            if(mobile==""){
+                alert("手机号码不能为空！");
+                return false;
+            }
+            if(!isMobil(mobile)){
+                alert("请正确输入手机号码！");
+                return false;
+            }
+            var featureAppNo=$('#featureAppNo').html();
+            var datas=$('#mydata').html();
+            myApp.showIndicator();
+            $.getJSON(userSeatLock,{datas:datas,featureAppNo:featureAppNo,mobile:mobile},function(data){
+                myApp.hideIndicator();
+                //var data=JSON.parse(msg);
+               var url = $('#payUrl').html();
+
+                if(data['status']=='0'){
+                    location.href=url + "?orderid="+data['data']['orderCode'];      
+                }else{
+                    myApp.alert(data['content']);   
+                }
+            });
+        });
+        
+    });
+ //       $("#firmOrder").slideDown(1000);
+
+  </script>
+  </block>

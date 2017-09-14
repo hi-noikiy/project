@@ -1,0 +1,98 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+           <ul>
+                <li><a href="{:U('feedbacklist')}"  class="menu1 cur">反馈列表</a></li>
+            </ul>
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+        	<form action="{:U()}" method="post" id='myform'>
+               <!-- <div class="inputSelect">
+                    <span>按影院查询：</span>
+                    <select name="cinemaCode">
+                    	 <option value="0">所有影院</option>
+                         <foreach name="cinemaList" item="vo" key="k" >
+                        <option value="{$vo.cinemaCode}"<if condition="$vo['cinemaCode'] == $pageData['cinemaCode']"> selected="selected"</if>>{$vo.cinemaName}</option>
+                        </foreach>
+                    </select>
+                </div>
+                <div class="inputText" >
+                	<span>按会员id查询</span>
+                    <input type="text" name="uid" placeholder="请输入会员卡号" value="{$pageData['uid']}">
+                </div>
+                -->
+                 <div class="inputText" >
+                	<span>手机号</span>
+                    <input type="text" name="mobile" placeholder="请输入手机号" value="{$pageData['mobile']}">
+                </div>
+                
+                
+                
+                <!-- <div class="inputText" >
+                	<span>按日期区间查询</span>
+                    <input type="text" name="start" onclick="WdatePicker()" placeholder="请输入开始日期" value="{$pageData['start']}"><span>至</span>
+                    <input type="text" name="end" onclick="WdatePicker()" placeholder="请输入结束日期" value="{$pageData['end']}">
+                </div> -->
+                <a href="#" class="button" onclick="$('#myform').submit()">查询</a>
+                </form>
+	·		</div>
+       		<div class="tableList">
+            	<table width="100%" cellpadding="0" cellspacing="0" border="0">
+                 <thead>
+                      <tr>
+                        <td width="4%">序号</td>
+                        <td width="6%">手机号</td>                  
+                        <td width="50%" >反馈</td>
+                        <td width="13%">反馈时间</td>
+                        <td width="7%">操作</td>
+                      </tr>
+                  </thead>
+                  <tbody>
+                  <volist name='feedbacks' id='vo'>
+                    <tr>
+                        <td> {$i} </td>
+                        <td> {$vo['mobile']} </td>
+                        <td style="text-align:left"> <?php if($vo['content']){ ?>{$vo['content']}<?php }else{ ?><img src="{$vo['img']}" height="40px"/><?php } ?></td>
+                        <td>{$vo['time']|date='Y-m-d H:i:s',###}</td>
+                        <td><a href="javascript:del({$vo['id']});">删除</a></td>
+                    </tr>  
+                    </volist>
+                  </tbody>
+            </table>
+            </div>
+        </div>
+        
+</div>
+<script type="text/javascript">
+$(function(){
+	var urlstr="?uid={$pageData['uid']}&start={$pageData['start']}&end={$pageData['end']}&cinemaCode={$pageData['cinemaCode']}";
+	$('.page a').each(function(){
+		$(this).attr('href',$(this).attr('href')+urlstr);
+	});
+});
+	function look(uid){			
+		 layer.open({
+           type: 2,   //0-4的选择,
+            title: false,
+            border: [0],
+            closeBtn: [0],
+            shadeClose: true,
+			skin: 'layui-layer-rim', //加上边框
+            area: ['800px', '500px'],
+            content: '{:U("feedbackfrom")}?uid='+uid
+        });
+	}
+
+ function del(id){
+    layer.confirm('确认是否删除？',function(index){
+    	$.get("{:U('update')}",{id:id},function(json){
+    		location.reload();
+    	});
+	})
+}
+ 
+</script> 
+</block>

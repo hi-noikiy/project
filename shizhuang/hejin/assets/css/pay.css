@@ -1,0 +1,93 @@
+.controls label { display: inline-block;}
+a.radio-box:link, a.radio-box:visited {
+    background: #f5f5f5 none repeat scroll 0 0;
+    border: 1px solid #cfcfcf;
+    color: #555555;
+    height: 30px;
+    padding: 8px 20px 0;
+    text-decoration: none;
+    margin:10px 10px 10px 10px;
+    display: inline-block;
+    width: 150px;
+}
+a:link, a:visited {
+    color: #0b5ba5;
+    outline: 0 none;
+    text-decoration: none;
+}
+.select a.radio-box {
+    background: #f59393 none repeat scroll 0 0;
+}
+.radio-box {
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 9px;
+    outline: 0 none;
+    padding: 0 10px;
+    position: relative;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.selected .radio-box .icon-check {
+    display: block;
+}
+.radio-box .icon-check {
+    bottom: 0;
+    display: none;
+    position: absolute;
+    right: 0;
+}
+.icon-check {
+    background-position: -112px -72px;
+}
+
+.icon-check {
+    background: rgba(0, 0, 0, 0) url("../images/element.png") no-repeat scroll 0 0;
+    display: inline-block;
+    font-size: 0;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: middle;
+    width: 16px;
+}
+
+address, caption, cite, dfn, em, th, var, i {
+    font-style: normal;
+    font-weight: normal;
+}
+.mod-line { margin: 25px 0; overflow: hidden;  }
+
+.mobile-list .list-wrap {
+    border: 1px solid #FFF0F5;
+
+    margin:8px
+}
+
+#pay .c-btn a {
+    background-color: #df344a;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    font-family: "Microsoft Yahei";
+    font-size: 16px;
+    height: 44px;
+    line-height: 44px;
+    margin-bottom: 25px;
+    text-align: center;
+    width: 160px;
+}
+.c-btn input { margin: 30px 0 0 260px; }
+:link, *:visited {
+    text-decoration: none;
+}
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+#handbook { height: 490px;}
+#handbook .ptop { position:relative; left:80px;}
+#handbook .ptop h2 { border-bottom-width: 0px; border-top-width: 0px; margin-bottom: 20px;}
+#handbook .scroll_wrapper { margin-left: 80px; height: 474px;}
+.scroll_wrapper .gift-way, .mod-line .list-wrap { float:left; display:inline; margin-left: 10px;}
+
+

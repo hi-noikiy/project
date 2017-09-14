@@ -1,0 +1,11 @@
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"1e8b0647e5c635b33de880deffae99eb";s:8:"username";s:35:"1D3096C1D46E16E3D18FA5BF3E6492A5@qq";}, 2017-07-03 07:37:30
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"e554435ee362e30a7ca2b472c430d5a5";s:8:"username";s:19:"20170423152022@u591";}, 2017-07-03 11:01:52
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"e554435ee362e30a7ca2b472c430d5a5";s:8:"username";s:19:"20170423152022@u591";}, 2017-07-03 11:01:56
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"e554435ee362e30a7ca2b472c430d5a5";s:8:"username";s:19:"20170423152022@u591";}, 2017-07-03 11:02:25
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"e554435ee362e30a7ca2b472c430d5a5";s:8:"username";s:19:"20170423152022@u591";}, 2017-07-03 11:03:19
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"d7db4cee5b19790943d4aba50f5b0a47";s:8:"username";s:41:"BFBEB9C4-CD9D-485A-8A00-24F17EB3C194@u591";}, 2017-07-03 11:05:24
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"0a8cd0e356f321afe0da94c63ce30e66";s:8:"username";s:41:"9c1755bd-8216-3537-91a5-863bb9d7e9c0@u591";}, 2017-07-03 12:36:53
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"b191efec98e9c6e6f7294cf6c4277893";s:8:"username";s:15:"1499066113@u591";}, 2017-07-03 15:13:33
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"a8692535019540dc9d9df3d862323aeb";s:8:"username";s:15:"1499066186@u591";}, 2017-07-03 15:14:45
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"07d66589128c5eec5c001551dd407070";s:8:"username";s:15:"1499066537@u591";}, 2017-07-03 15:20:36
+post=a:3:{s:7:"game_id";s:1:"9";s:4:"sign";s:32:"d7aa175903b4606c0d5bbee1fe3b1290";s:8:"username";s:41:"316963fd-9d9a-35df-9574-df6ad423f011@u591";}, 2017-07-03 20:07:47

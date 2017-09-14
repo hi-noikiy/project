@@ -1,0 +1,26 @@
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>15039616040</desmobile><msgid>C9710717050801372500</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"15039616040";s:4:"sign";s:32:"42b56dbcf1b250de60efaa009bf9bd58";}, 2017-05-08 01:37:25
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>15039616040</desmobile><msgid>E4395017050801383400</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"15039616040";s:4:"sign";s:32:"42b56dbcf1b250de60efaa009bf9bd58";}, 2017-05-08 01:38:34
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18304395991</desmobile><msgid>C5903217050802241400</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18304395991";s:4:"sign";s:32:"cf41d0b33819eb589bcaa1b866f284a6";}, 2017-05-08 02:24:14
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>15503219019</desmobile><msgid>C6914917050808185800</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"15503219019";s:4:"sign";s:32:"1cceb39a45d33b94ee23f48141a5e9f6";}, 2017-05-08 08:19:10
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13700326447</desmobile><msgid>E5790417050815175000</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13700326447";s:4:"sign";s:32:"21135d44ea973bdaa535eed73c57a702";}, 2017-05-08 15:17:50
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13125338150</desmobile><msgid>E3824217050816100500</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13125338150";s:4:"sign";s:32:"d2f3ffe27c4a8542012de90baf5cce57";}, 2017-05-08 16:10:05
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13537966098</desmobile><msgid>C4221017050818150500</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13537966098";s:4:"sign";s:32:"600f6ec5790092ba5484c34cea42fb6b";}, 2017-05-08 18:15:05
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18913174726</desmobile><msgid>D1252017050818473600</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18913174726";s:4:"sign";s:32:"6a6f8fdabb1fbd9e48987ef340e2ff41";}, 2017-05-08 18:47:37
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13812045910</desmobile><msgid>E1111917050820455200</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13812045910";s:4:"sign";s:32:"7611cb72c4a53c62532a69aaa96628a3";}, 2017-05-08 20:45:52
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18945065697</desmobile><msgid>E5557517050821454500</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18945065697";s:4:"sign";s:32:"2f7f077f8ec800e2bc0d2ff6495516cb";}, 2017-05-08 21:45:45
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13548149674</desmobile><msgid>C6677217050822214700</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13548149674";s:4:"sign";s:32:"23d4d647ebd68b160dd1dce4b587222e";}, 2017-05-08 22:21:47
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>13776230697</desmobile><msgid>E8760317050822323900</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"13776230697";s:4:"sign";s:32:"66c25742932cec4d88bb939b7120b082";}, 2017-05-08 22:32:39
+ result=<?xml version="1.0" encoding="gbk" ?><response><code>03</code><message><desmobile>18265198981</desmobile><msgid>E9642717050822442500</msgid></message></response>
+, post=a:3:{s:7:"game_id";s:1:"9";s:5:"phone";s:11:"18265198981";s:4:"sign";s:32:"efc39941ca96dd4a040d299d7af81c59";}, 2017-05-08 22:44:25

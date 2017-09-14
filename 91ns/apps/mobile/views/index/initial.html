@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('mobile/initial'|ns_css)}}"/>
+</head>
+<body>
+{% include "template/header.html" %}
+<img src="{{static_url('web/cssimg/mobile/initial/xiazaiyemian_banner.png')}}" width="100%">
+<div class="body-contain clearfix1">
+    <div class="clearfix1" style="width: 100%;height: 100%;">
+        <div class="body-contain-L pull-left">
+            <div class="L-body">
+                <div class="box1 active">
+                    <img src="{{static_url('web/cssimg/mobile/initial/xiazaiyemian_xuanzhong.png')}}">
+                </div>
+                <div class="boxClick box2 active" data="1">
+                    <img class="box2-1" src="{{static_url('web/cssimg/mobile/initial/mianfeiguankan_p.png')}}" width="60%">
+                    <img class="box2-2" src="{{static_url('web/cssimg/mobile/initial/mianfeiguankan.png')}}" width="60%">
+                </div>
+                <p class="p1 active">即时相约</p>
+                <div class="box1">
+                    <img src="{{static_url('web/cssimg/mobile/initial/xiazaiyemian_xuanzhong.png')}}">
+                </div>
+                <div class="boxClick box3" data="2">
+                    <img class="box3-1" src="{{static_url('web/cssimg/mobile/initial/mianfei.png')}}" width="60%">
+                    <img class="box3-2" src="{{static_url('web/cssimg/mobile/initial/mianfei_p.png')}}" width="60%">
+                </div>
+                <p class="p2">免费观看</p>
+            </div>
+        </div>
+        <div class="body-contain-R pull-left">
+            <img class="contain-R-img img1" style="display: none;" src="{{static_url('web/cssimg/mobile/initial/xiazaiyemian_jishixiangyue.png')}}" width="90%">
+            <img class="contain-R-img img2" src="{{static_url('web/cssimg/mobile/initial/xiazaiyemian_mianfeiguankan.png')}}" width="90%">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="box-goApp">
+        <div nsdata="goApp" class="bgoApp pull-left">下载客户端</div>
+        <div class="bgoApp pull-left" style="margin-left: 10%;"><a href="/">跳过</a></div>
+    </div>
+</div>
+{% include "template/footer.html" %}
+<script type="text/javascript" data-main="{{static_url('mobile/m/initial'|ns_js)}}" src="{{static_url('mobile/tool/require'|ns_js)}}"></script>
+</body>
+</html>

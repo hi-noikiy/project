@@ -1,0 +1,250 @@
+
+一、在线人数--实时
+    1、当前各个服务器的在线人数
+    2、计算某一天的在线人数（最高在线，平均在线）
+
+二、玩家留存率
+    留存率=登陆用户数/新增用户数*100% （一般统计周期为天）
+
+    1、3、5、7 天留存率
+    需要根据服务器，渠道，客户端来计算留存率
+
+三、活跃度 （有登陆过的就算活跃）
+    计算某一天的 活跃人数、付费人数、ARPU值
+    需要根据服务器，渠道，客户端来计算活跃度 
+
+四、玩家流失（7天未登陆算流失）
+    计算某一天玩家流失情况
+    需要根据服务器，渠道，客户端来计算
+
+五、玩家等级
+    根据玩家注册时间来计算 等级分布情况
+    需要根据服务器，渠道来计算
+
+六、销售情况统计
+    统计玩家元宝消费情况
+    根据服务器、时间统计
+
+
+使用数据库结构
+
+/*
+mac登陆记录表，
+mac为客户端唯一标识
+*/
+CREATE TABLE `loginmac` (
+  `id` int(4) unsigned NOT NULL auto_increment,
+  `mac` varchar(32) NOT NULL default '0',             /*mac,客户端唯一标识*/
+  `accountid` int(32) unsigned NOT NULL default '0',  /*玩家账号id*/
+  `server` varchar(32) NOT NULL default '0',          /*服务器名 中文名*/
+  `gameid` int(4) unsigned NOT NULL default '0',      /*游戏id*/
+  `logintime` int(4) unsigned NOT NULL default '0',   /*登陆时间*/
+  `loginfirst` tinyint(2) unsigned zerofill NOT NULL default '00',/*这个字段目前无用*/
+  `fenbaoid` int(4) unsigned NOT NULL default '0',               /*渠道标识*/
+  `clienttype` varchar(32) NOT NULL default '',                  /*客户端类型*/
+  `ip` varchar(17) NOT NULL default '0',
+  `serverid` int(10) unsigned NOT NULL default '0',              /*服务器id*/
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `NewIndex` (`accountid`,`loginfirst`,`logintime`),
+  KEY `logintime` (`logintime`)
+) TYPE=MyISAM;
+
+
+/*
+mac账号新创建时间
+*/
+CREATE TABLE `newmac` (
+  `id` int(4) unsigned NOT NULL auto_increment,
+  `mac` varchar(32) binary NOT NULL default '0',/*mac,客户端唯一标识*/
+  `gameid` int(4) unsigned NOT NULL default '0',/*游戏id*/
+  `accountid` int(4) unsigned NOT NULL default '0', /*玩家账号id*/
+  `createtime` int(4) unsigned NOT NULL default '0',/*玩家账号创建时间*/
+  `fenbaoid` int(4) unsigned NOT NULL default '0',/*渠道标识*/
+  `clienttype` varchar(32) NOT NULL default '',/*客户端类型*/
+  `ip` varchar(17) NOT NULL default '0',
+  `serverid` int(10) unsigned NOT NULL default '0',/*服务器id*/
+  PRIMARY KEY  (`id`),
+  KEY `mac` (`mac`),
+  KEY `createtime` (`createtime`)
+) TYPE=MyISAM;
+
+
+/*
+mac账号新创建时间
+*/
+
+CREATE TABLE `online` (
+  `id` int(4) unsigned NOT NULL auto_increment,
+  `servername` varchar(32) binary NOT NULL default '0',/*服务器名 中文名*/
+  `online` int(4) unsigned NOT NULL default '0',       /*在线量*/  
+  `MaxOnline` int(4) unsigned NOT NULL default '0',    /*最大在线量*/ 
+  `WorldOnline` int(4) unsigned NOT NULL default '0',  /*世界在线量*/ 
+  `WorldMaxOnline` int(4) unsigned NOT NULL default '0',/*世界最大在线量*/ 
+  `daytime` int(4) unsigned NOT NULL default '0',       /*时间*/
+  `gameid` int(10) unsigned NOT NULL default '0',       /*游戏id*/
+  `serverid` int(10) unsigned NOT NULL default '0',     /*服务器id*/
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `daytime` (`servername`,`daytime`)
+) TYPE=MyISAM;
+
+
+/*
+ 玩家每天的角色数据
+*/
+
+CREATE TABLE `palyerday` (
+  `id` int(4) unsigned NOT NULL auto_increment,
+  `userid` int(4) unsigned NOT NULL default '0',   /*角色id*/
+  `accountid` int(4) unsigned NOT NULL default '0',/*账号id*/
+  `lev` smallint(3) unsigned NOT NULL default '0',/*等级*/
+  `money` int(4) unsigned NOT NULL default '0',   /*金钱*/
+  `MoneySave` int(4) unsigned NOT NULL default '0',
+  `emoney` int(4) unsigned NOT NULL default '0',   /*元宝*/
+  `serverid` int(4) unsigned NOT NULL default '0', /*服务器id*/
+  `gameid` int(4) unsigned NOT NULL default '0',   /*游戏id*/
+  `day` int(4) unsigned NOT NULL default '0',       /*时间*/
+  `fenbaoid` varchar(128) binary NOT NULL default '',/*渠道标识*/
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `userid` (`userid`,`day`)
+) TYPE=MyISAM;
+
+/*玩家在线数据*/
+CREATE TABLE `palyeronline` (
+  `id` int(4) unsigned NOT NULL auto_increment,
+  `userid` int(4) unsigned NOT NULL default '0',/*角色id*/
+  `accountid` int(4) unsigned NOT NULL default '0',/*账号id*/
+  `online` int(4) unsigned NOT NULL default '0',/*在线时间*/
+  `serverid` int(4) unsigned NOT NULL default '0',/*服务器id*/
+  `daytime` int(4) unsigned NOT NULL default '0',/*日期*/
+  `viplev`/*>0表示RMB玩家*/
+  `fenbaoid` /*渠道ID*/
+  PRIMARY KEY  (`id`)
+) TYPE=MyISAM;
+
+/*玩家角色信息表*/
+CREATE TABLE `player` (
+  `id` int(4) unsigned NOT NULL auto_increment,
+  `userid` int(4) unsigned NOT NULL default '0',/*角色id*/
+  `name` varchar(32) NOT NULL default '0',/*角色名*/
+  `accountid` int(4) unsigned NOT NULL default '0',/*账号id*/
+  `lev` smallint(3) unsigned NOT NULL default '0',/*等级*/
+  `prof` tinyint(1) unsigned NOT NULL default '0',/*职业*/
+  `gender` tinyint(1) unsigned NOT NULL default '0',/*性别*/
+  `serverid` int(4) unsigned NOT NULL default '0',/*服务器id*/
+  `gameid` int(4) unsigned NOT NULL default '0',/*游戏id*/
+  `fenbao` int(4) unsigned NOT NULL default '0',/*渠道标识*/
+  `clienttype` varchar(32) NOT NULL default '',/*客户端类型*/
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `userid` (`userid`,`serverid`),
+  KEY `accountid` (`accountid`)
+) TYPE=MyISAM;
+
+/*元宝消耗表*/
+CREATE TABLE `rmb` (
+  `id` int(4) unsigned NOT NULL auto_increment,
+  `userid` int(4) unsigned NOT NULL default '0',/*角色id*/
+  `type` int(4) unsigned NOT NULL default '0',/*类型*/
+  `emoney` int(4) unsigned NOT NULL default '0',/*元宝*/
+  `itemtype` int(4) unsigned NOT NULL default '0',/*消耗的产品id*/
+  `daytime` int(4) unsigned NOT NULL default '0',/*时间*/
+  `serverid` int(4) unsigned zerofill NOT NULL default '0000',/*服务器id*/
+  PRIMARY KEY  (`id`),
+  KEY `daytime` (`daytime`),
+  KEY `userid` (`userid`)
+) TYPE=MyISAM;
+
+
+/*玩家等级数据*/
+CREATE TABLE `u_player_levinfo` (
+  `id` int(11) NOT NULL auto_increment,
+  `server_id` int(11) unsigned NOT NULL default '0',/*服务器id*/
+  `player_id` int(11) unsigned NOT NULL default '0',/*角色id*/
+  `name` varchar(15) NOT NULL default '0',/*角色名*/
+  `level` int(11) unsigned NOT NULL default '0',/*等级*/
+  `time` int(11) unsigned NOT NULL default '0',/*时间*/
+  PRIMARY KEY  (`id`),
+  KEY `time` (`time`),
+  KEY `server_id` (`server_id`)
+) TYPE=MyISAM;
+
+/*新创建角色的表*/
+CREATE TABLE `u_yreg_newbie` (
+  `id` int(11) NOT NULL auto_increment,
+  `server_id` int(11) unsigned NOT NULL default '0',/*服务器id*/
+  `player_id` int(11) unsigned NOT NULL default '0',/*角色id*/
+  `name` varchar(15) NOT NULL default '',/*角色名*/
+  `time` int(4) unsigned NOT NULL default '0',/*时间戳*/
+  `account_id` int(11) unsigned NOT NULL default '0',/*账号id*/
+  PRIMARY KEY  (`id`),
+  KEY `time` (`time`),
+  KEY `server_id` (`server_id`)
+) TYPE=MyISAM;
+
+-- 当前任务u_player_quest表user_id等于自己的记录 quest_id 记录任务id
+-- 完成的任务
+-- select * from u_quest WHERE type=110 ORDER BY system_id ASC
+CREATE TABLE `over_quest` (
+  `id` int(4) unsigned NOT NULL auto_increment,
+  `userid` int(4) unsigned NOT NULL default '0',
+  `accountid` int(4) unsigned NOT NULL default '0',
+  `serverid` int(4) unsigned NOT NULL default '0',
+  `idSystem` int(4) unsigned NOT NULL default '0',/*任务分组ID*/
+  `idQuest` int(4) unsigned NOT NULL default '0',/*任务ID*/
+  `szQuest` varchar(16) NOT NULL default '',/*任务名称*/
+  `fenbao` int(4) unsigned NOT NULL default '0',
+  `time` int(4) unsigned NOT NULL default '0',/*角色创建时间*/
+  PRIMARY KEY  (`id`),
+  KEY `userid` (`userid`,`serverid`),
+  KEY `idQuest` (`idQuest`),
+  KEY `fenbao` (`fenbao`)
+) TYPE=MyISAM;
+
+
+//游戏服务器——u_playershare表
+account_id 账号id
+server_id 服务器编号
+emoney 当前元宝数
+unline_rechage 不在线尚未发放的元宝
+give_emoney 系统给的元宝
+rmb_emoney 充值获得的元宝
+//游戏服务器——u_playershare表
+
+player表
+prof-职业
+1 龙将
+2 剑舞
+3 箭神
+4 军师
+
+
+
+
+
+《真三国快打》后台需求
+#1.在线统计： 表格内的数据显示可以实现，统计曲线图暂时没有；
+#2.在线时长： 表格内的数据显示可以实现，统计曲线图暂时没有；
+3.充值明细： 217后台已有相关功能；
+4.充值排行：217后台可实现；
+5.等级分布：可实现；
+#6.留存统计： 217后台已有相关功能；
+#7.注册转化：可实现；
+#茂叔处理#8.机型统计： 已有相关功能；
+9.任务流失：任务表数据量太大，太耗服务器资源，无法实现；
+#10.元宝消耗：可实现；
+#11.消费行为：可实现；
+#12.商城消费：可实现；
+13.活动效果：无法分辨玩家针对什么活动进行充值，其他可实现；
+14.apple数据统计：IDFA、激活数、MAC、注册率、创建率， 这几个目前无法实现，如果要做需要两边技术人员评估一下。  其他可实现；
+15.渠道分析：和数据统计差不多；
+16.用户查询：除任务查询外， 其他可实现，游戏服务器压力会很大；
+17.帮派查询：基本可实现；
+18.背包日志、好友日志、技能日志。。。。：无法实现；
+19.禁封账号、解封账号： 目前封号是针对整个账号，无法具体到账号下某个服务器内的角色。 其他功能目前后台已有；
+20.帮派管理：查询内容和帮派查询差不多，基本可实现；
+21.系统公告：初步评估可实现；
+22.系统邮件：初步评估可实现；
+23.元宝道具发放：针对发送范围可改善目前功能， 多个玩家发送对游戏服务器消耗很大，数量不能太多，不支持；
+24.礼包生成：后续再做；
+25.权限分配：已有功能；
+26.修改密码：已有功能；
+27.操作日志：比较重要的操作进行记录；

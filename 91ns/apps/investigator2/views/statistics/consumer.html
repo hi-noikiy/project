@@ -1,0 +1,199 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+                {% include "common/tab.html" %}
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+            <div id="tab1" class="tab-pane active">
+             <!-- <div class="container-fluid">-->
+
+
+                  <div class="row-fluid" style="margin-top: 60px; min-width: 900px;  ">
+                      <div class="container-fluid">
+                      <div class="thum-box span4" style="width: 30%;float: left">
+                          <div class="thum-top clearfix">
+                              <div class="title">
+                                  <p><span style="font-size:16px;">昨日消费</span></p>
+                                  <p><span style="font-size:16px;">(聊币)</span></p>
+                              </div>
+                          </div>
+
+                          <div class="thum-content ">
+                              <p class="font font20 cr-e5">
+                                  <i class="sprite-zb_level zb1"></i>
+                                  <span style="font-size: 36px;color: #F78A28;">{{info['yesterDay']}}</span>
+                              </p>
+                          </div>
+
+                      </div>
+
+                      <div class="thum-box span4" style="width: 30%;float: left">
+                          <div style="margin: 0 auto; width: 280px;">
+                              <div class="thum-top ggr clearfix">
+                                  <div class="title ggr">
+                                      <p><span style="font-size:16px;">本周消费</span></p>
+                                      <p><span style="font-size:16px;">(聊币)</span></p>
+                                  </div>
+                              </div>
+
+                              <div class="thum-content ">
+                                  <p class="font font20 cr-e5">
+                                      <span style="font-size: 36px;color: #F78A28;">{{info['week']}}</span>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="thum-box span4" style="width: 30%;float: left">
+                          <div class="pull-right">
+                              <div class="thum-top bl clearfix">
+                                  <div class="title bl">
+                                      <p><span style="font-size:16px;">本月消费</span></p>
+                                      <p><span style="font-size:16px;">(聊币)</span></p>
+                                  </div>
+                              </div>
+
+                              <div class="thum-content ">
+                                  <p class="font font20 cr-e5">
+                                      <span style="font-size: 36px;color: #F78A28;">{{info['month']}}</span>
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
+                          </div>
+                  </div>
+
+                  <div class="row-fluid" style="margin-top: 30px;">
+                      <div class="container-fluid">
+                          <div class="nav-line">
+                              <a onclick="getData(this);" data-type="hour" data-unit="点">按时</a>
+                              <a onclick="getData(this);" data-type="day" data-unit="天" class="active">按日</a>
+                              <a onclick="getData(this);" data-type="week" data-unit="周">按周</a>
+                              <a onclick="getData(this);" data-type="month" data-unit="月">按月</a>
+                              <a class="date-calendar"><i class=" icon-calendar"></i> <input id="mydate"  placeholder="请输入日期"  value=""></a>
+                              <a class="gai-zhong-gai" style="display: inline-block;display:none; width: 94px;background-color: red;margin-left: -107px;">&nbsp;</a>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="row-fluid" style="margin-top: 20px;">
+                      <!--<div class="container-fluid">-->
+                          <div id="render-chart" style="height: 500px;width: 96%;">
+
+                          </div>
+                      <!--</div>-->
+
+                  </div>
+
+              <!--</div>-->
+            </div>
+
+            
+         </div>
+        </div>
+    
+    </div>
+
+</div>
+
+
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<script src="{{static_url('web/js/flotr2.js')}}"></script>
+<script type="text/javascript">
+function getData(a){
+    var type = $(a).attr('data-type');
+    var unit = $(a).attr('data-unit');
+    $('.container-fluid>.nav-line>a').removeClass('active');
+    $(a).addClass('active');
+    $('.gai-zhong-gai').hide();
+    if(type == 'hour'){
+        $('.gai-zhong-gai').css('display','inline-block');
+    }
+    TabNavline('',type,unit)
+}
+$('#mydate').daterangepicker({
+            presetRanges:[
+                //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+                //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+                //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+            ],
+            presets:{
+                dateRange:'自定义时间'
+            },
+            rangeStartTitle:'起始日期',
+            rangeEndTitle:'结束日期',
+            nextLinkText:'下月',
+            prevLinkText:'上月',
+            doneButtonText:'确定',
+            cancelButtonText:'取消',
+            earliestDate:'',
+            latestDate:0,
+            constrainDates:true,
+            rangeSplitter:'-',
+            dateFormat:'yy-mm-dd',
+            closeOnSelect:false,
+            onOpen:function(){
+                $('.ui-daterangepicker-dateRange').click().parent().hide();
+                $('.ui-daterangepickercontain').css({left:($('#mydate').offset().left-25)+'px'});
+                $('.ui-daterangepickercontain').css({top:($('#mydate').offset().top+30)+'px'});
+                var type=$('#mydate').attr('data');
+                $('.ui-daterangepickercontain .range-end.hasDatepicker').show();
+                if(type == 'hour'){
+                  $('.ui-daterangepickercontain .range-end.hasDatepicker').hide();
+                }
+            },
+            onClose:function(){
+                var typer=$('#mydate').attr('data');
+                if(typer=='day'){
+                    TabNavline('',typer,'天');
+                    return false;
+                }
+                if(typer=='week'){
+                    TabNavline('',typer,'周');
+                    return false;
+                }
+                else{
+                    TabNavline('',typer,'月');
+                    return false;
+
+                }
+            }
+        }
+);
+$(function(){
+  TabNavline('','day','天');
+});
+function TabNavline(a,typer,title){
+    $('#mydate').attr('data',typer);
+    var b=$('#mydate').val();
+    var timeBegin= b.substring(0,10);
+    var timeEnd= b.substring(12,23);
+    var data={};
+    data.type=typer;
+    data.startTime=timeBegin;
+    data.stopTime=timeEnd;
+    $.ajax({
+        type: "POST",
+        data: data,
+        url: '/ajax/consumptionTrendMap',
+        dataType: 'json',
+        success: function (res) {
+            justDraw(res.data,{xTitle:title});
+        }
+    })
+}
+
+</script>

@@ -1,0 +1,27 @@
+{% extends "template/help_body.html" %}
+{% block title %}
+
+{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+<script type="text/javascript" defer async data-main="{{static_url('help'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+{% endblock %}
+{% block content %}
+<div class="personal-div getpresents clearfix">
+
+    <div class="get-head pull-re pull-re">
+        <div class="_help-head">91ns管理规范</div>
+        <ul class="help-hover">
+            <li>
+                <a href="/help/helpregulations"><i class="helpwen"></i>91ns用户管理条例<span class="helitime pull-right">2015-08-03 12:12:12</span></a>
+            </li>
+            <li>
+                <a href="/help/helpregulations"><i class="helpwen"></i>91ns主播违规暂行管理办法<span class="helitime pull-right">2015-08-03 12:12:12</span></a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+
+{% endblock%}

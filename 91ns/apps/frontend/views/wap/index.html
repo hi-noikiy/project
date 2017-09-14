@@ -1,0 +1,46 @@
+{% extends "template/wap.html" %}
+
+
+{% block headerAdd %}
+<script type="text/javascript" src="{{static_url('wap.index'|ns_js)}}"></script>
+{% endblock %}
+
+{% block body %}
+<div id="header" class="header">
+    <img id="header-logo" class="header-logo" src="{{ webType['logoURL'] }}">
+    <img id="header-banner" class="header-banner" onload="_headerBannerOnload();" src="{{ static_url('web/cssimg/wap/header.png') }}">
+</div>
+<div id="main" class="main">
+    <ul class="clearfix">
+        {% for i in 0..(roomList|default([])|length - 1) %}
+        <li class="m-item{% if i % 2 == 1 %} _right{% endif %}">
+            <a href="/wap/room/{{ roomList[i]['uid'] }}" class="i-user" title="{{ roomList[i]['nickName'] }}">
+                <img src="{{ roomList[i]['poster'] }}" class="i-avatar" alt="{{ roomList[i]['nickName'] }}" title="{{ roomList[i]['nickName'] }}">
+                <span class="i-tags{% if roomList[i]['liveStatus'] == 1 %} active{% endif %}">
+                    <i class="txt">直播</i>
+                </span>
+            </a>
+            <div class="i-info">
+                <div class="i-info2">
+                    <div class="i-name">
+                        <a href="/wap/room/{{ roomList[i]['uid'] }}" title="{{ roomList[i]['title'] }}" class="name">{{ roomList[i]['title'] }}</a>
+                    </div>
+                    {% if roomList[i]['familyShortName']|default(false) %}
+                    <i class="sprite-family_level family1">{{ roomList[i]['familyShortName'] }}</i>
+                    {% else %}
+                    <i class="sprite-family_level"></i>
+                    {% endif %}
+                </div>
+                <div class="i-info1">
+                    <i class="index-roomlist-1 _number"></i>
+                    <span class="number">{{ roomList[i]['onlineNum'] }}</span>
+                    <span class="i-actor sprite-zb_level zb{{ roomList[i]['anchorLevel'] }}"></span>
+                    <span class="i-city">{{ roomList[i]['location'] }}</span>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+

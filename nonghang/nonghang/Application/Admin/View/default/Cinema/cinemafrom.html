@@ -1,0 +1,363 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+<!--顶部结束-->
+    <div class="content">
+        <div class="leftMenu">
+           <ul>
+                {$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+        	<div class="contentBox">
+                <form id="loginform">
+                <div class="cinema ">
+                    <div class="queryItem"><p>基本信息</p></div>
+                    <div class="inputText" id="city">
+                        <span>所属地区：</span>
+                        <select class="prov" name="data[prov]"></select> 
+                        <select class="city" name="data[city]" disabled="disabled"></select>
+                    </div>
+
+
+                    <div class="inputText">
+                        <span>影院编号：</span>
+                        <input name="data[cinemaCode]" id="cinemaCode" type="text" class="text" value="{$cinemaInfo.cinemaCode}" placeholder="请输入影院编号">
+                    </div>
+                    <div class="inputText">
+                        <span>LinkID：</span>
+                        <input name="data[link]" id="link" type="text" class="text" value="{$cinemaInfo.link}" placeholder="除火凤凰其它接口也不用填写">
+                    </div><br />
+                    <div class="inputText">
+                        <span>影院名称：</span>
+                        <input name="data[cinemaName]" id="cinemaName" type="text" class="text" value="{$cinemaInfo.cinemaName}" placeholder="请输入影院名称">
+                    </div>
+                    
+                    <div class="inputText">
+                        <span>短名称：</span>
+                        <input name="data[shortName]" id="shortName" type="text" class="text" value="{$cinemaInfo.shortName}" placeholder="请输入影院短名称">
+                    </div>
+                    <div class="inputText">
+                        <span>影院地址：</span>
+                        <input name="data[address]" type="text" class="text" id="address" value="{$cinemaInfo.address}" placeholder="请输入影院地址">
+                    </div>
+                    <div class="inputText">
+                        <span>联系电话：</span>
+                        <input name="data[phone]" id="phone" type="text" class="text" value="{$cinemaInfo.phone}" placeholder="请输入联系电话">
+                     </div>
+                    
+                     <div class="inputText">
+                        <span>经度：</span>
+                        <input name="data[longitude]" type="text" class="text" id="longitude" value="{$cinemaInfo.longitude}" placeholder="请输入影院地址位置经度">
+                    </div>
+                     <div class="inputText">
+                        <span>纬度：</span>
+                        <input name="data[latitude]" type="text" class="text" id="latitude" value="{$cinemaInfo.latitude}" placeholder="请输入影院地址位置纬度">
+                    </div>
+                    
+                     
+                     
+                     <br />
+                     <div class="inputText">
+                        <span>服务费：</span>
+                        <input name="data[serviceCharge]" type="text" class="text" id="latitude" value="{$cinemaInfo.serviceCharge}" placeholder="请输入影院服务费">
+                    </div>
+                	<div class="inputText">
+                        <span>服务有效期</span>
+                        <input name="data[serviceStart]" id="serviceStart" type="text" value="{$cinemaInfo.serviceStart|date='Y-m-d',###}" class="date" placeholder="请输入开始日期"><span>至</span><input  name="data[serviceEnd]" id="serviceEnd" type="text" value="{$cinemaInfo.serviceEnd|date='Y-m-d',###}" class="date" placeholder="请输入结束日期">
+                    </div> 
+                    
+
+
+                    <div class="inputText">
+                        <span>开业状态</span>
+                        <input name="data[status]" type="radio" value="0" id="status1" <if condition="$cinemaInfo['status'] == 0">checked="checked"</if>><label for="status1" style=" width:70px;">已开业</label>
+                        <input name="data[status]" type="radio" value="1" id="status2" <if condition="$cinemaInfo['status'] == 1">checked="checked"</if>><label for="status2" style="width:60px;">未开业</label>
+                    </div>  
+
+                        <div class="queryItem"><p>接口设置</p></div>
+                        
+                        <div class="inputText">
+                        <span>影院售票平台</span>
+                        <input name="data[interfaceConfig][interfaceType]" type="radio" value="mtx" onclick="setMtxTraceTypeNo(1)" id="radiomtx" <if condition="$cinemaInfo['interfaceType'] == 'mtx'">checked="checked"</if>><label for="radiomtx" style=" width:70px;">满天星</label>
+                        <input name="data[interfaceConfig][interfaceType]" type="radio" value="cx" onclick="setMtxTraceTypeNo(0)"  id="radiocx" <if condition="$cinemaInfo['interfaceType'] == 'cx'">checked="checked"</if>><label for="radiocx" style="width:60px;">辰星</label>
+
+                        <input name="data[interfaceConfig][interfaceType]" type="radio" value="hfh" onclick="setMtxTraceTypeNo(0)" id="radiohfh" <if condition="$cinemaInfo['interfaceType'] == 'hfh'">checked="checked"</if>><label for="radiohfh" style="width:60px;">火凤凰</label>
+
+
+                        
+                        </div>
+
+                        <div class="inputText">
+                        <span>售票平台账号：</span>
+                        <input name="data[interfaceConfig][appCode]"  type="text"  placeholder="" value="{$cinemaInfo['interfaceConfig']['appCode']}"> 
+                        </div>
+                        <div class="inputText">
+                        <span>售票平台密码：</span>
+                        <input name="data[interfaceConfig][appPwd]"  type="text"  placeholder="" value="{$cinemaInfo['interfaceConfig']['appPwd']}">
+                        </div>
+
+                        <div class="inputText mtxTraceTypeNo">
+                        <span>会员卡支付编码：</span>
+                        <input name="data[interfaceConfig][cardTraceTypeNo]"  type="text"  placeholder="非满天星可以不设置" value="{$cinemaInfo['interfaceConfig']['cardTraceTypeNo']}"> 
+                        </div>
+
+                        <div class="inputText mtxTraceTypeNo">
+                        <span>非会员支付编码：</span>
+                        <input name="data[interfaceConfig][traceTypeNo]"  type="text"  placeholder="非满天星可以不设置" value="{$cinemaInfo['interfaceConfig']['traceTypeNo']}"> 
+                        </div>
+
+                        <div class="queryItem"><p>支付设置</p></div>
+                        <div class="inputText">
+                        <span>会员卡支付：</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="account" id="pcPayWay1" <if condition="in_array('account', $cinemaInfo['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay1" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="account" id="weixinPayWay1" <if condition="in_array('account', $cinemaInfo['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay1" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="account" id="appPayWay1" <if condition="in_array('account', $cinemaInfo['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay1" style="width:60px;">APP</label>
+                        </div>
+
+                        <div class="inputText">
+                        <span style="width:90px">兑换券支付:</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="exchange" id="pcPayWay1exchange" <if condition="in_array('exchange', $cinemaInfo['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay1exchange" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="exchange" id="weixinPayWay1exchange" <if condition="in_array('exchange', $cinemaInfo['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay1exchange" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="exchange" id="appPayWay1exchange" <if condition="in_array('exchange', $cinemaInfo['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay1exchange" style="width:60px;">APP</label>
+                        </div>
+                        <div class="inputText">
+                        <span style="width:90px">立减券支付:</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="reduce" id="pcPayWay1reduce" <if condition="in_array('reduce', $cinemaInfo['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay1reduce" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="reduce" id="weixinPayWay1reduce" <if condition="in_array('reduce', $cinemaInfo['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay1reduce" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="reduce" id="appPayWay1reduce" <if condition="in_array('reduce', $cinemaInfo['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay1reduce" style="width:60px;">APP</label>
+                        </div>
+
+
+                        <div class="inputText">
+                        <span style="width:90px">卖品券支付:</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="sale" id="pcPayWay1sale" <if condition="in_array('sale', $cinemaInfo['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay1sale" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="sale" id="weixinPayWay1sale" <if condition="in_array('sale', $cinemaInfo['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay1sale" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="sale" id="appPayWay1sale" <if condition="in_array('sale', $cinemaInfo['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay1sale" style="width:60px;">APP</label>
+                        </div>
+
+
+                        <div class="inputText">
+                        <span style="width:90px">积分支付:</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="integral" id="pcPayWay1integral" <if condition="in_array('integral', $cinemaInfo['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay1integral" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="integral" id="weixinPayWay1integral" <if condition="in_array('integral', $cinemaInfo['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay1integral" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="integral" id="appPayWay1integral" <if condition="in_array('integral', $cinemaInfo['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay1integral" style="width:60px;">APP</label>
+                        </div>
+       
+                        <div class="queryItem"><p>支付宝设置<span onclick="showDiv(this, 'alipayDiv')" style="cursor: pointer; padding-left: 10px; display: inline-block; line-height: 28px;">+</span></p></div>
+                        <div style="display:none" id="alipayDiv">
+                        <div class="inputText">
+                        <span>partnerId：</span>
+                        <input name="data[payConfig][alipayConfig][partnerId]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['alipayConfig']['partnerId']}"> 
+                        </div>
+                        <div class="inputText">
+                        <span>sellerEmail：</span>
+                        <input name="data[payConfig][alipayConfig][sellerEmail]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['alipayConfig']['sellerEmail']}"> 
+                        </div>
+                        <div class="inputText">
+                        <span>key：</span>
+                        <input name="data[payConfig][alipayConfig][alipayKey]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['alipayConfig']['alipayKey']}"> 
+                        </div>
+                        <div class="inputSelect">
+                        <span>加密方式：</span>
+                        <select name="data[payConfig][alipayConfig][signType]" style="width:80px">
+                            <option <if condition="$cinemaInfo['payConfig']['alipayConfig']['signType'] eq '0001'">selected="selected"</if>>0001</option>
+                            <option <if condition="$cinemaInfo['payConfig']['alipayConfig']['signType'] eq 'MD5'">selected="selected"</if>>MD5</option>
+                        </select>
+                        </div>
+                        <div></div>
+                        <div class="inputText">
+                        <span style="display:block;">公钥：</span>
+                        <textarea name="data[payConfig][alipayConfig][publicKey]" id="backValue" style="width:400px; height:200px; font-size:10px; border:1px solid #e8ebf0">{$cinemaInfo['payConfig']['alipayConfig']['publicKey']}</textarea>
+                        </div>
+
+                        <div class="inputText">
+                        <span style="display:block;">私钥：</span>
+                        <textarea name="data[payConfig][alipayConfig][privateKey]" id="backValue" style="width:420px; height:200px;font-size:10px; border:1px solid #e8ebf0">{$cinemaInfo['payConfig']['alipayConfig']['privateKey']}</textarea>
+                        </div>
+
+                        
+                        <div></div>
+                        <div class="inputText">
+                        <span>生效渠道：</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="alipay" id="pcPayWay2" <if condition="in_array('alipay',$cinemaInfo['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay2" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="alipay" id="weixinPayWay2" <if condition="in_array('alipay',$cinemaInfo['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay2" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="alipay" id="appPayWay2" <if condition="in_array('alipay',$cinemaInfo['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay2" style="width:60px;">APP</label>
+                        </div>
+
+
+                    </div>
+
+                        <div class="queryItem"><p>微信APP支付设置<span onclick="showDiv(this, 'weixinpayDiv')" style="cursor: pointer; padding-left: 10px; display: inline-block; line-height: 28px;">+</span></p></div>
+
+                        <div style="display:none" id="weixinpayDiv">
+                        <div class="inputText"><span>APP支付  appid：</span>
+                        <input name="data[payConfig][weixinpayConfig][appid]" type="text" placeholder="" value="{$cinemaInfo['payConfig']['weixinpayConfig']['appid']}"></div>  
+                        <div class="inputText"><span>secret：</span>
+                        <input name="data[payConfig][weixinpayConfig][appsecret]" type="text"  placeholder="" value="{$cinemaInfo['payConfig']['weixinpayConfig']['appsecret']}"></div>
+                        <div class="inputText"><span>key：</span>
+                        <input name="data[payConfig][weixinpayConfig][key]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['weixinpayConfig']['key']}"></div>
+                        <div class="inputText"><span>mchid(商户号)：</span>
+                        <input name="data[payConfig][weixinpayConfig][mchid]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['weixinpayConfig']['mchid']}"></div>
+                        <br />
+                        <div class="inputText"><span>其它支付 appid：</span>
+                        <input name="data[payConfig][weixinpayConfigWap][appid]" type="text" placeholder="" value="{$cinemaInfo['payConfig']['weixinpayConfigWap']['appid']}"></div>  
+                        <div class="inputText"><span>secret：</span>
+                        <input name="data[payConfig][weixinpayConfigWap][appsecret]" type="text"  placeholder="" value="{$cinemaInfo['payConfig']['weixinpayConfigWap']['appsecret']}"></div>
+                        <div class="inputText"><span>key：</span>
+                        <input name="data[payConfig][weixinpayConfigWap][key]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['weixinpayConfigWap']['key']}"></div>
+                        <div class="inputText"><span>mchid(商户号)：</span>
+                        <input name="data[payConfig][weixinpayConfigWap][mchid]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['weixinpayConfigWap']['mchid']}"></div>                        
+
+                        <div class="inputText">
+                        <span>生效渠道：</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="weixinpay" id="pcPayWay3" <if condition="in_array('weixinpay',$cinemaInfo['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay3" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="weixinpay" id="weixinPayWay3" <if condition="in_array('weixinpay',$cinemaInfo['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay3" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="weixinpay" id="appPayWay3" <if condition="in_array('weixinpay',$cinemaInfo['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay3" style="width:60px;">APP</label>
+                        </div>
+                    </div>
+
+
+                    <div class="queryItem"><p>银联支付设置<span onclick="showDiv(this, 'unionpayDiv')" style="cursor: pointer; padding-left: 10px; display: inline-block; line-height: 28px;">+</span></p></div>
+                    <div style="display:none" id="unionpayDiv">
+                        <div class="inputText"><span>unionPayId：</span>
+                        <input name="data[payConfig][unionpayConfig][unionPayId]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['unionpayConfig']['unionPayId']}"></div>  
+                        <div class="inputText"><span>unionPayKey：</span>
+                        <input name="data[payConfig][unionpayConfig][unionPayKey]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['unionpayConfig']['unionPayKey']}"></div>
+                        
+                        <div class="inputText">
+                        <span>生效渠道：</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="unionpay" id="pcPayWay4" <if condition="in_array('unionpay',$cinemaInfo['payWay']['pcPayWay'])">checked="checked"</if>><label for="pcPayWay4" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="unionpay" id="weixinPayWay4" <if condition="in_array('unionpay',$cinemaInfo['payWay']['weixinPayWay'])">checked="checked"</if>><label for="weixinPayWay4" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="unionpay" id="appPayWay4" <if condition="in_array('unionpay',$cinemaInfo['payWay']['appPayWay'])">checked="checked"</if>><label for="appPayWay4" style="width:60px;">APP</label>
+                        </div>
+                    </div>
+
+                    <div class="queryItem"><p>农行支付设置<span onclick="showDiv(this, 'AbchinaDiv')" style="cursor: pointer; padding-left: 10px; display: inline-block; line-height: 28px;">+</span></p></div>
+
+                    <div style="display:none" id="AbchinaDiv">
+
+                    <div class="inputText">
+                        <span>商户编号：</span>
+                        <input name="data[payConfig][abchinaConfing][MerchantID]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['abchinaConfing']['MerchantID']}"> 
+                        </div>
+
+                    <div class="inputText">
+                        <span>支付证书路径：</span>
+                        <input name="data[payConfig][abchinaConfing][TrustPayCertFile]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['abchinaConfing']['TrustPayCertFile']}"> 
+                        </div>
+                    
+
+
+                        <div class="inputText">
+                        <span>商户证书(路径)：</span>
+                        <input name="data[payConfig][abchinaConfing][MerchantCertFile]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['abchinaConfing']['MerchantCertFile']}"> 
+                        </div>
+
+                        <div class="inputText">
+                        <span>私钥密码：</span>
+                        <input name="data[payConfig][abchinaConfing][MerchantCertPassword]"  type="text"  placeholder="" value="{$cinemaInfo['payConfig']['abchinaConfing']['MerchantCertPassword']}"> 
+                        </div>
+
+                        <div class="inputText">
+                        <span>生效渠道：</span>
+                            <input name="data[payWay][pcPayWay][]" type="checkbox" value="abchinapay" id="abchinapc" <if condition="in_array('abchinapay',$cinemaInfo['payWay']['pcPayWay'])">checked="checked"</if>><label for="abchinapc" style=" width:70px;">PC官网</label>
+                            <input name="data[payWay][weixinPayWay][]" type="checkbox" value="abchinapay" id="abchinawx" <if condition="in_array('abchinapay',$cinemaInfo['payWay']['weixinPayWay'])">checked="checked"</if>><label for="abchinawx" style="width:60px;">微信</label>
+                            <input name="data[payWay][appPayWay][]" type="checkbox" value="abchinapay" id="abchinaapp" <if condition="in_array('abchinapay',$cinemaInfo['payWay']['appPayWay'])">checked="checked"</if>><label for="abchinaapp" style="width:60px;">APP</label>
+                        </div>
+
+                    </div>
+                </div>
+            
+                <div class="clear"></div>
+                <div style="text-align:center; margin-top:30px;"><a href="javascript:ajaxsubmit();" class="button" >保存</a> <a href="{:U('cinemaList', array('cinemaGroupId'=>$cinemaGroupId))}" class="button" >返回列表</a></div>
+
+                </form>
+            </div>
+            <div class="rightFooter">
+                <p>Copyright © 2014-2015 福州最美影视网络科技有限公司 版权所有  4008-12345678</p>
+            </div>
+        </div>
+        
+</div>
+<script type="text/javascript">
+
+function showDiv(obj,divId){
+    
+    if ($('#'+divId).css('display') == 'none') {
+        $('#'+divId).css('display','block');
+        $(obj).html('-');
+    }else{
+        $('#'+divId).css('display','none');
+        $(obj).html('+');
+    }
+    resetsize();
+}
+
+
+$(function(){
+
+$('.date').datetimepicker({
+	yearOffset:0,
+	lang:'ch',
+	timepicker:true,
+	format:'Y-m-d H:i',
+	formatDate:'Y-m-d H:i',
+});
+	
+$("#city").citySelect({
+		url:"__JS__/city.min.js",
+    	prov:"{$cinemaInfo.prov}", 
+    	city:"{$cinemaInfo.city}"
+	});
+})
+
+var loadi = '';
+var loadimsg = '';  
+function ajaxsubmit() {
+    loadi = layer.load(1, {shade: [0.5,'#000']});
+    loadimsg = layer.msg('正在保存...',{icon: 16, time:60000000});
+     $("#loginform").ajaxSubmit({  
+        type:"post",  //提交方式  
+        dataType:"json", //数据类型  
+        url:"{:U()}", //请求url 
+        data:{'cinemaCode':<?php echo intval($cinemaInfo['cinemaCode']);?>}, 
+        success:function(data){ //提交成功的回调函数  
+            if(data.status == 0){
+
+                layer.confirm(data.content, {
+                    btn: ['返回列表','<?php if(intval($cinemaInfo['cinemaCode']) == 0){echo '继续添加';}else{echo '继续修改';}?>'], //按钮
+                    shade: false //不显示遮罩
+                }, function(){
+                    location.href = '{:U('cinemaList')}';
+                }, function(){
+                    <?php if(intval($cinemaInfo['cinemaCode']) == 0){
+                        echo 'location.href ="' . U('cinemaAdd', array('cinemaGroupId'=>$cinemaGroupId)) . '"';
+                    }else{
+                        echo 'layer.close(loadi);
+                layer.close(loadimsg);';
+                    }?>
+                    // location.href = '';
+                });
+              }else{
+                layer.close(loadi);
+                layer.close(loadimsg);
+                layer.alert(data.content, {icon: 5});
+              }
+        }  
+    });
+}
+
+function setMtxTraceTypeNo (int) {
+    if (int == 1) {
+        $(".mtxTraceTypeNo").css('display', '')
+    }else{
+        $(".mtxTraceTypeNo").css('display', 'none')
+    }
+}
+
+<if condition="$cinemaInfo['interfaceType'] == 'mtx'">setMtxTraceTypeNo(1);<else />setMtxTraceTypeNo(0);</if>
+
+
+</script> 
+</block>

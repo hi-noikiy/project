@@ -1,0 +1,98 @@
+<div class="wrapHd w_1200 clearfix">
+	<h1 class="logo">
+		<a href="/" title="91NS">
+            {% if webType['channelType']!=2 %}
+			<img alt="91NS" src="{{static_url('web/cssimg2/logo.png')}}">
+            {% else %}
+            <img alt="秀吧" src="{{static_url('web/cssimg/91ns/douzilogo.png')}}" style="width: 118px;">
+            {% endif %}
+        </a>
+	</h1>
+	<div class="nav">
+		<a href="/" class="{%if ns_active|default('nonePage') == 'index'%}cur{%endif%}">首页</a>
+		<a href="/rank" class="{%if ns_active|default('nonePage') == 'rank'%}cur{%endif%}">排行榜</a>
+		<a href="/family" class="{%if ns_active|default('nonePage') == 'family'%}cur{%endif%}">家族</a>
+		{% if ns_userUid > 0 %}
+		<a href="/charging" class="{%if ns_active|default('nonePage') == 'charging'%}cur{%endif%}">
+			充值
+			{% if ns_userType|default(0) == 3 %}
+			<img class="douzi-change" src="{{static_url('web/cssimg/91ns/exchange.gif')}}">
+			{% endif %}
+		</a>
+		{% else %}
+		<a onclick="userLogin();" class="{%if ns_active|default('nonePage') == 'charging'%}cur{%endif%}">充值</a>
+		{% endif %}
+
+		<a href="/shop" class="{%if ns_active|default('nonePage') == 'shop'%}cur{%endif%}">商城</a>
+		<a href="/download" class="{%if ns_active|default('nonePage') == 'download'%}cur{%endif%}">APP下载</a>
+	</div>
+	<div class="right">
+		{% if ns_active|default('none') == 'index' %}
+			{% if ns_userUid > 0 %}
+                {% if isSignAnchor|default(false) %}
+                        <a href="/{{ ns_userUid }}" target="_blank" class="sprite-index IWantPlay">我要直播</a>
+                {% else %}
+                        <a href="/transition" target="_blank" class="sprite-index IWantPlay">申请入驻</a>
+                {% endif %}
+			{% else %}
+				<a class="sprite-index IWantPlay" onclick="userLogin();">申请入驻</a>
+			{% endif %}
+		{% else %}
+			{% if ns_userUid > 0 %}
+                {% if isSignAnchor|default(false) %}
+                <a href="/{{ ns_userUid }}" target="_blank" class="sprite-index IWantPlay">我要直播</a>
+                {% else %}
+                <a href="/transition" target="_blank" class="sprite-index IWantPlay">申请入驻</a>
+                {% endif %}
+				<div class="uInfoBox">
+                    <a href="/personal"><img src="" nsdata="userAvatar"></a>
+					<div class="moreInfo">
+						<div class="info-base clearfix">
+							<img src="" nsdata="userAvatar">
+							<div class="right">
+								<div class="names">
+									<span class="nickName" nsdata="userNickName"></span>
+									<!-- <i></i> -->
+								</div>
+								<div class="userid">
+									(<span class="userUID" nsdata="userUID"></span>)
+									<a href="/charging">充值</a>
+								</div>
+							</div>
+						</div>
+						<div class="info-cash clearfix">
+							<i class="sprite-concern coin" title="聊币"></i>
+							<span nsdata="cash"></span>
+							<i class="sprite-concern integral" title="积分"></i>
+							<span nsdata="integral"></span>
+							<i class="sprite-concern beans" title="聊豆"></i>
+							<span nsdata="coin"></span>
+						</div>
+						<div class="info-control clearfix">
+							<a href="/personal" class="goCenter pull-left">进入个人中心</a>
+							{% if isSignAnchor|default(false) %}
+							<span style="margin-left:4px;color: #D9D9D9;">|</span>
+			                <a class="myspace" href="/home?uid={{ ns_userUid|default(0) }}">我的空间</a>
+			                {% endif %}
+							<a href="/user/loginout" class="exit pull-right">退出</a>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				<a class="sprite-index IWantPlay" onclick="userLogin();">申请入驻</a>
+				<i class="showWin register" id="reg_home">注册</i>
+				<i class="hr"></i>
+				<i class="showWin login" id="login_home">登录</i>
+			{% endif %}
+		{% endif %}
+		<div class="searchC">
+			<input id="seAnInput" type="text" value="昵称/房号" isSeAnInput="true">
+			<div class="rBtn" isSeAnInput="true"></div>
+			<div id="seAnRes" class="shRes">
+				<div class="shRoom"></div>
+				<div class="hr"></div>
+				<div class="shAbout"></div>
+			</div>
+		</div>
+	</div>
+</div>

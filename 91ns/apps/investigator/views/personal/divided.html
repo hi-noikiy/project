@@ -1,0 +1,158 @@
+<!--main-container-part-->
+<div id="content">
+<!--breadcrumbs-->
+  <div id="content-header">
+    <div id="breadcrumb"> 
+      <a href="#" class="tip-bottom" data-original-title="Go to Home"><i class="icon-home"></i> 首页</a> 
+      <a href="#" class="tip-bottom" data-original-title="">分成比例</a> 
+      
+    </div>
+  </div>
+<!--End-breadcrumbs-->
+<div class="container-fluid">
+
+  
+</div>
+
+<div class="container-fluid">
+  
+  <div class="row-fluid">
+      <div class="span12">
+        <div class="row-fluid">
+          <form class="form-search">
+            用户uid ：<input id="uid" type="text" class="input-medium search-query" placeholder="用户uid" > 
+            <button id="usersearch" type="button" class="btn  btn-success">查&nbsp;询</button>
+          </form>
+            
+            
+        </div>
+        <div class="widget-box">
+          
+          <div class="widget-content nopadding">
+            <table id="userteable" class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>uid</th>
+                  <th>家族</th>
+                  <th>昵称</th>
+                  <th>主播等级</th>
+                  <th>主播获得分成比例</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <td><a onclick="incomeDialog()">10000</a></td>
+                  <td>无</td>
+                  <td>tom</td>
+                  <td>2</td>
+                  <td>50%</td>
+                  <td>
+                    <a onclick="ditedialog(10000)">编辑</a>
+                  </td>                   
+                </tr>
+ 
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row-fluid">
+            <div id="pagination" class="pagination alternate pull-right">
+              <ul>
+                <li><a href="/usermgr/user">首页</a></li><!-- class="disabled" class="active"-->
+                <li > <a href="/usermgr/user/<?= $page->before ?>">上一页</a> </li>
+                <li><a href="/usermgr/user/<?= $page->next ?>">下一页</a></li>
+                
+                <li><a href="/usermgr/user/<?= $page->last ?>">尾页</a></li>
+              </ul>
+            </div>
+        </div>
+
+        </div>
+      </div>
+
+  
+</div><!-- /container-fluid -->
+
+</div>
+
+
+
+<div id="dialog-form" title="Create new user" style=" display: none;">
+  <form action="#" method="get" class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label">用户名(UID):</label>
+      <div class="controls">
+        <input type="text" placeholder="" class="span11" style="width:140px">
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label class="control-label">分成比例:</label>
+      <div class="controls">
+        <select style="width:60px;">
+        <option>0</option>  
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>50</option>
+      </select>
+      %
+      </div>
+    </div>
+  </form>
+</div>
+
+{% include "personal/income.html" %}
+
+
+
+<script type="text/javascript">
+  function ditedialog(id){
+    $( "#dialog-form" ).dialog({
+        width: 400,
+        title:'修改分成比例',
+        modal:true,
+        closeOnEscape:true,
+        resizable:false,
+        open:function(){
+        /*
+          initialization();
+          $.ajax({
+            type:"post",
+            data:'',
+            url:url,
+            dataType:'json',
+            success:function(res){
+
+          });*/
+        },
+        buttons:{
+          "修改":function(){
+
+              /*$.ajax({
+                type:"post",
+                url:"/usermgr/userCountUpdate/"+id,
+                data:data,
+                dataType:'json',
+                success:function(res){
+                  alert(res.info);
+                  if(res.code==0){
+
+                    location.reload();
+
+                  }else{
+                    
+                  }
+                }
+              });*/
+          }
+          
+
+        }
+   });
+  }
+</script>

@@ -1,0 +1,238 @@
+<extend name='Public/base'/>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>
+        </div>
+        <div class="rightContent">
+        	<div class="">
+                
+            </div>
+            
+            <div class="tableList">
+				<a href="javascript:addplan();" class="addButton">添加包场时段及价格</a>
+            	<ul class="tabbtn" id="tabs">
+
+                    <volist name='list' id='v'>
+                     <li><a href="{$v.id}">{$v.name}</a></li>
+                    </volist>
+                   <!--  
+                    <li><a href="tab2">10月28日</a></li>
+                    <li><a href="tab3">10月29日</a></li> -->
+                </ul><!--tabbtn end-->
+                <div class="tabcon" id="tablist">
+                    <foreach name='list' item='v' key='k' >
+                    <div class="sublist" id="{$v.id}">
+                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                            <thead>
+                              <tr>
+	                            <td width="20%">预订时段</td>
+	                            <td width="20%">时段原价</td>
+	                            <td width="20%">时段售价</td>
+	                            <td width="20%">操作</td>
+	                          </tr>
+                              </tr>
+                            </thead>
+                            <tbody id='{$v.id}_index'>
+                                 <volist name="v['list']" id='vs'>
+                                <tr>
+                                  
+                                    <td>{$vs.cc}-{$vs.ec}</td>
+ 									<td>￥{$vs.oriPrice}</td>
+                                	<td>￥{$vs.price}</td>
+                                	<?php if($vs['classesd']):?>
+                                	<td><a href="javascript:noeditplan({$vs.id});">修改</a>|<a href="javascript:nodel({$vs.id},{$v.id});">删除</a></td>
+									<?php else:?>
+									<td><a href="javascript:editplan({$vs.id});">修改</a>|<a href="javascript:del({$vs.id},{$v.id});">删除</a></td>
+									<?php endif;?>
+                                </tr>
+                                </volist>
+                            </tbody>
+                        </table>
+                        <div class="pagination"><div class="page">{$page}</div></div>
+                    </div>
+                   </foreach>             
+                </div>
+            </div>
+        </div>
+	</div>
+<script type="text/javascript">
+
+function selectAll(name){
+    var allStudent = document.getElementsByName("allStudent_"+name)[0];
+    var list = document.getElementsByName("plan_"+name);
+    if(allStudent.checked){
+    for(var i = 0; i < list.length; i++){
+    list[i].checked = true;
+    }
+    return true;
+    }else{
+    for(var i = 0; i < list.length; i++){
+    list[i].checked = false;
+    }
+    return false;
+    }
+    
+
+}
+//全选/取消全选
+$('.allSelect').toggle(function () {
+	$("input[name='id']").attr("checked", 'true');
+}, function () {
+	$("input[name='id']").removeAttr("checked");
+});
+	
+$(document).ready(function() {
+	$("#tablist div.sublist").hide(); // Initially hide all content
+	$("#tabs li:first").attr("id","current"); // Activate first tab
+	$("#tablist div:first").fadeIn(); // Show first tab content
+    
+    $('#tabs a').click(function(e) {
+        e.preventDefault();        
+        $("#tablist div.sublist").hide(); //Hide all content
+        $("#tabs li").attr("id",""); //Reset id's
+        $(this).parent().attr("id","current"); // Activate this
+        $('#' + $(this).attr('href')).fadeIn(); // Show content for current tab
+    });
+});
+
+function addplan(){
+	layer.open({
+		title :'添加包场时段及价格',
+		type: 2,
+		area: ['640px', '490px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: 'plan_from.html'
+	});
+}
+//function alladdprice(id){
+//
+//    var ids='';
+//     $("input[name='plan_"+id+"']:checked").each(function(i,a){    
+//            var $this = $(this);
+//            var uuid=$this.attr("uuid");
+//            ids+= uuid+',';
+//             //如果元素已经存在，不再添加                                  
+//     }); 
+//
+//    if(!ids) {
+//        alert('请选择场次');
+//        return;
+//    }
+//
+//    // alert(ids);
+//    loadi =layer.open({
+//        title :'配置价格',
+//        type: 2,
+//        area: ['800px', '580px'],
+//        fix: false, //不固定
+//        maxmin: true,
+//        content: 'addprice_from.html?id='+ids
+//    });
+//}
+//var loadi=''
+//function addprice(id){
+//	loadi=layer.open({
+//		title :'配置价格',
+//		type: 2,
+//		area: ['800px', '580px'],
+//		fix: false, //不固定
+//		maxmin: true,
+//		content: 'addprice_from.html?id='+id
+//	});
+//}
+function editplan(id){
+	loadi=layer.open({
+		title :'修改时段及价格',
+		type: 2,
+		area: ['300px', '350px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: 'editplan_from.html?id='+id
+	});
+}
+function noeditplan(id){
+	layer.confirm('这时段已被客户预订，不能被修改', {
+	title :'温馨提醒',
+    btn: ['确认'] //按钮
+	}, function(index){
+		layer.close(index);
+	})
+}
+//function priceinfo(id){
+//	layer.open({
+//		title :'价格详情',
+//		type: 2,
+//		area: ['500px', '520px'],
+//		fix: false, //不固定
+//		maxmin: true,
+//		content: 'price_from.html?id='+id
+//	});
+//}
+
+function nodel(id){
+	layer.confirm('这时段已被客户预订，不能被删除', {
+	title :'温馨提醒',
+    btn: ['确认'] //按钮
+	}, function(index){
+
+		layer.close(index);
+	})
+}
+function del(id,time){
+	layer.confirm('是否删除该场次', {
+	title :'温馨提醒',
+    btn: ['确认','取消'] //按钮
+	}, function(){
+		$.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(plan_delete)}',
+            data: '&id='+id,
+            success: function(msg){
+                var res = eval("(" + msg + ")");                
+                if(res.statusCode == '1') { 
+                	layer.msg('删除成功', {icon: 1});
+                	search_plan(time);   
+                }else {
+                	layer.msg(message, {icon: 1});  
+                }
+            }
+        });			
+	})
+}
+function search_plan(time){
+		$.ajax({
+            global:true,
+            type: "post",
+            url:'{:U(search_plan)}',
+            data: '&time='+time,
+            success: function(msg){
+			  var data = eval("(" + msg + ")");
+		      var html='';
+		           for(var o in data){            
+		              html+='<tr>';
+		              html+='    <td>'+data[o].cc+'-'+data[o].ec+'</td>';
+		              html+='    <td>￥'+data[o].oriPrice+'</td>';
+		              html+='    <td>￥'+data[o].price+'</td>';
+		              if(data[o].classesd) {
+		            	  html+='    <td><a href="javascript:noeditplan('+data[o].id+');">修改</a>|<a href="javascript:nodel('+data[o].id+','+time+');">删除</a></td>';
+
+			          }else{
+
+			        	  html+='    <td><a href="javascript:editplan('+data[o].id+');">修改</a>|<a href="javascript:del('+data[o].id+','+time+');">删除</a></td>';
+
+				       }
+		              
+	
+		              html+='</tr>';           
+		            }         
+		      $('#'+time+'_index').empty().append(html);
+            }
+        });	
+}
+</script> 
+</block>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('activities.love'|ns_css)}}">
+    <link rel="stylesheet" type="text/css" href="{{static_url('icon/style-icon'|ns_css)}}">
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+
+    <div class="wrapBd" style="background-color: #34156d;min-width: 1204px;">
+        <div class="charge clearfix" style="margin-bottom: 80px;">
+            <div class="head" style="width: 100%;min-width: 1204px;">
+                <div class="head-p" style="width: 100%;margin:0 auto;">
+                    <img class="head-img"  src="{{static_url('web/cssimg/charge/love.png')}}" width="100%">
+                </div>
+            </div>
+            <div class="backImg" style=" margin: 0 auto;">
+                <div class="content clearfix" style="position: relative;margin: -6px auto;">
+                    <div class="_content">
+                        <ul class="tab">
+                            <li name="descBox" class="desc active">七夕活动说明<i class="head-s"></i></li>
+                            <li name="invitationBox" class="invitation">受邀主播<i class="head-s"></i></li>
+                        </ul>
+                        <div class="lovebox descBox">
+                            <div class="desc-1" style="min-width: 1200px;">
+                                <p>金风玉露一相逢，便胜却人间无数；</p>
+                                <p></p>
+                                <p>两情若是久长时，也争朝朝暮暮。&nbsp;&nbsp;&nbsp;</p>
+                                <p></p>
+                            </div>
+                            <div class="desc-2 clearfix">
+
+                                <div class="hr pull-left"></div>
+                                <div class="desc-2-title pull-left">活动玩法</div>
+                                <div class="hr pull-right"></div>
+
+                                <div class="desc-2-content pull-left">
+                                    <p>想在七夕踏上鹊桥吗？想和你心仪的女神牵手HAPPY吗？那么动动小手，别让女神失望：</p>
+                                    <p style="text-indent:40px; margin-top: 18px;">1.活动时间：8月21日；</p>
+                                    <p style="text-indent:40px;">2.参加活动的主播收集的“莲花灯”数量需达到30000个以上；</p>
+                                    <p style="text-indent:40px;">3.在参与活动主播的房间内送出莲花灯的数量第一的玩家；</p>
+                                    <p style="text-indent:40px;">4.符合以上两个条件的主播和用户,将在8月20日收到公司的秘钥，知道活动的地址；</p>
+                                    <p style="text-indent:40px;">5.送出“莲花灯”的玩家将有机会获得七夕专属座驾--比翼鸟；</p>
+                                    <p style="text-indent:40px;">6.受邀的主播和玩家将获得专属的“七夕”徽章。</p>
+                                    <p style="text-indent:40px;">7.本活动的解释权归{{webType['name']}}平台官方所有。</p>
+                                    <!-- <div class="desc-2-content-img">
+                                        每个活动直播间收到的“莲花灯”礼物超过30000盏，榜首才能获得徽章和受邀资格
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="desc-2 clearfix">
+
+                                <div class="hr pull-left"></div>
+                                <div class="desc-2-title pull-left">活动奖励</div>
+                                <div class="hr pull-right"></div>
+
+                                <div class="desc-2-content pull-left">
+                                    <ul class="desc-2-content-jl">
+                                        <li style="margin-left: 24px;">
+                                            <img class="head-img"  src="{{static_url('web/cssimg/charge/zn.png')}}">
+                                            <span>徽章--七夕织女（30天）</span>
+                                        </li>
+                                        <li>
+                                            <img class="head-img"  src="{{static_url('web/cssimg/charge/nl.png')}}">
+                                            <span>徽章--七夕牛郎（30天）</span>
+                                        </li>
+                                        <li>
+                                            <img class="head-img"  src="{{static_url('web/cssimg/charge/lovebird1.png')}}">
+                                            <span>座驾--比翼鸟（30天）</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lovebox invitationBox div-hiden">
+                            <div class="invitationBox-anchor" id="anchorControler">
+                                <div class="loveList">
+                                    <ul class="clearfix" id="loveList">
+                                        {% set i = 0 %}
+                                        {% for anchor in rankList['data'] %}
+                                        <li jsdata="{{ i }}">
+                                            {% set i = 1 + i %}
+                                            <img src="{{anchor['avatar']}}">
+                                            <i class="sprite-love userAvatar"></i>
+                                            <a href="/{{anchor['uid']}}" target="_blank">{{ anchor['nickName'] }}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% if rankList['data']|length > 7 %}
+                                    <div class="control left forbid" jsdata="left">
+                                        <i class="bgs"></i>
+                                        <i class="sprite-love rLeft"></i>
+                                    </div>
+                                    <div class="control right" jsdata="right">
+                                        <i class="bgs"></i>
+                                        <i class="sprite-love rRight"></i>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="activities-love-img clearfix">
+                                <div class="img-content">
+                                    <!-- <span class="span1 spancolor" anchorName="active"></span> -->
+                                    <span class="span1">收到</span>
+                                    <span class="span2" anchorGet="active"></span>
+                                    <span class="span1">个</span>
+                                    <span><img class="head-img"  src="{{static_url('web/cssimg/charge/Lotus_Light.png')}}"></span>
+                                </div>
+                            </div>
+                            <div style="color: white;">
+                                <script type="text/javascript">
+                                    var rankData = {{rankList|json_encode}};
+                                </script>
+                            </div>
+                            <table class="sendggift">
+                                <thead>
+                                <tr>
+                                    <td>排名</td>
+                                    <td>昵称</td>
+                                    <td>送出莲花灯</td>
+                                </tr>
+                                </thead>
+                                <tbody id="rankListOfOne"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "template/footer.html" %}
+    <script type="text/javascript" defer async data-main="{{static_url('activities.love'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<extend name="Public/base"/>
+<block name='body'>
+    <div class="pay" style="position: relative">
+        <div class="waphead" style="position: relative;">
+            <h2>支付</h2>
+            <a class="back returnLive" href="javascript:;"></a>
+            <a href="{:U('Index/index')}" class="a_go_login"></a>
+        </div>
+        <div class="wapmain">
+            <div class="ordercheck">
+                <p class="tt">
+                    <span>订单详情</span>
+                    <span class="djs"></span>
+                </p>
+                <table cellpadding="0" cellspacing="0" border="0" class="tab_check_order">
+                    <tr>
+                        <td>影院</td>
+                        <td class="m">{$order['cinemaName']}</td>
+                    </tr>
+                    <tr>
+                        <td>时间</td>
+                        <td class="m">{$order['startTime']|date='Y-m-d H:i',###}</td>
+                    </tr>
+                    <tr>
+                        <td>影片</td>
+                        <td class="m">{$order['filmName']}</td>
+                    </tr>
+                     <tr>
+                        <td>影厅</td>
+                        <td class="m">{$order['screenType']}|{$order['screenName']}</td>
+                    </tr>
+                    <tr>
+                        <td>座位</td>
+                        <td class="m">{$order['seatIntroduce']}</td>
+                    </tr>
+                    <tr>
+                        <td>数量</td>
+                        <td class="m">{$order['seatCount']}张</td>
+                    </tr>
+                </table>
+            </div>
+            <p class="tt">
+                <span>选择支付方式</span>
+            </p>
+            <table cellspacing="0" cellpadding="0" border="0" id="vippayd_table"  class="tab_check_order">
+                    <tr>
+                    	<td>余额</td>
+                        <td class="m">{$user['mmoney']}元 </td>
+                    </tr>
+                    <tr>
+                    	<td>应付</td>
+                        <td class="m"><font style="color:#FF6100 !important;"><?php echo $order['seatCount']*$order['myPrice'];?>元</font></td>
+                    </tr>
+               </table>
+            <div class="paybyzfb">
+                <ul>
+                   <!-- <li class="weixin"><em></em><p>微信支付</p><i></i></li> --> 
+                    <li class="ali"><em></em><p>支付宝支付</p><i></i></li>
+                </ul>
+              </div>
+            <!--<div class="vippayd">
+               	<div class="paybyzfb">
+                    <ul>
+                        <li class="weixin"><p>微信支付</p><i></i></li>
+                        <li class="ali"><p>支付宝支付</p><i></i></li>
+                    </ul>
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <script type="text/javascript" src="__JS__/jweixin-1.0.0.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		var url="{:U('Index/plan')}?oid={$order['orderCode']}";
+		$('.returnLive').click(function(){
+			layer.confirm('',function(index){
+			    location.href=url;
+			}, '取消该订单并解锁座位？', function(index){
+				layer.close(index);
+			});
+		});
+	});
+	$(function(){
+		var time = 0;
+		var live_time = <?php echo $order['lockTime']-time();?>;//剩余时间
+		var minute=0,seconds=0;
+		function getTime(){
+			time = live_time--;
+			if(time >= 0){
+				minute = parseInt(time / 60);
+				seconds = time % 60;
+			}
+			var strTime = minute+':'+seconds;
+			$('.djs').html(strTime);
+			if(time<=0){
+				location.href="{:U('Index/plan')}";
+			}			
+			window.setTimeout(getTime , 1000);
+		}
+		getTime();
+	});
+	$('.paybyzfb').find("li").each(function(){
+		$(this).unbind("click").click(function(){
+			var amountTotal="<?php echo $order['seatCount']*$order['myPrice']-$user['mmoney'];?>";
+			var url="{:U('User/ordersuccess')}?orderid="+orderid;
+			var orderid="{$order['orderCode']}";
+			if($(this).hasClass('weixin')){
+				/*var configdata = {
+						appId: '{$data["appid"]}' ,
+						timestamp:  '{$data["timestamp"]}'  , 
+						nonceStr: '{$data["wxnonceStr"]}', 
+						signature: '{$data["wxSha1"]}' , 
+						debug:false,
+						jsApiList: [
+							'chooseWXPay',
+						]
+					};
+					wx.config(configdata);
+					wx.ready(function () {
+						$.post('{:U("wxmain")}',{fee:amountTotal,orderid:orderid},function(msg,status){	
+							var data=JSON.parse(msg);	
+							if(data['status']=='1'){
+								wx.chooseWXPay({
+								    timestamp:data['timeStamp'], 
+								    nonceStr: data['nonceStr'], 
+								    package: data['package'], 
+								    signType: data['signType'], 
+								    paySign: data['paySign'], 
+								    success: function (res) {
+								    	window.location.href=url;
+								    },
+								});
+							}else{
+								layer.alert(data.text);
+							}
+						});
+					});
+					wx.error(function (res) {
+						layer.alert( res.errMsg );
+					});*/
+				}else{
+					location.href='{:U("alipayfilm")}?title=购票&fee='+amountTotal+'&orderid='+orderid;
+				}
+			});
+		});
+	</script>
+</block>

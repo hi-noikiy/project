@@ -1,0 +1,106 @@
+<extend name='Public/base'/>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+            </ul>
+            <div class="planBtn"><a class="button" href="javascript:addgoods();" >卖品添加</a></div>
+        </div>
+        <div class="rightContent">
+        	<div class="queryBox">
+            	<form action="{:U()}" method="post" id='myform'>
+                	<div class="inputSelect">
+                        <span>请选择影城查询：</span>
+                        <select name='cinemaCode'>
+                         <option value="0">所有影城</option>
+                        <volist name='cinemaList' id='vo'>
+                           <option value="{$vo['cinemaCode']}" <?php if($data['cinemaCode']==$vo['cinemaCode']){ ?>selected<?php }?>>{$vo['cinemaName']}</option>
+                        </volist>
+                         </select>
+                    </div>
+                    <div class="inputText" >
+                        <span>按卖品名称查询</span>
+                        <input type="text" name="goodsName"  placeholder="请输入商品名称" value="{$data['goodsName']}">
+                    </div>
+                    
+                    <a href="javascript:$('#myform').submit()" class="button">查询</a>
+                </form>
+            </div>
+            <div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <thead>
+                      <tr >
+                      	<td width="5%">序号</td>
+                        <td width="25%">卖品名称</td>
+                        <td width="10%">售价（元/份）</td>
+                        <td width="10%">原价（元/份）</td>
+                        <td width="20%">归属门店</td>
+                        <td width="30%">操作</td>
+                      </tr>
+                    </thead>
+                     <tbody>
+                     <volist name='goods' id='vo'>
+                        <tr>
+                            <td>{$vo['id']}</td>
+                            <td>{$vo['goodsName']}</td>
+                            <td>￥{$vo['showPrice']}</td>
+                            <td>￥{$vo['price']}</td>
+                            <td>{$vo['cinemaName']}</td>
+                            <td><a href="javascript:editgoods({$vo['id']});">修改</a>|<a href="javascript:del({$vo['id']});">删除</a></td>
+                        </tr>
+                        </volist>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                
+                <div class="page">
+                    {$page}
+                	
+                </div>
+                
+            </div>
+            </div>
+        </div>
+	</div>
+<script type="text/javascript">
+function addgoods(){
+	layer.open({
+		title :'添加卖品',
+		type: 2,
+		area: ['500px', '580px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U("goods_form")}'
+	});
+}
+
+function closeIndex(){
+	var index=$('.layui-layer-shade').attr('times');
+	layer.close(index);
+}
+function editgoods(id){
+	layer.open({
+		title :'编辑卖品',
+		type: 2,
+		area: ['500px', '580px'],
+		fix: false, //不固定
+		maxmin: true,
+		content: '{:U("goods_form")}?id='+id
+	});
+}
+
+function del(id){
+		layer.confirm('确认是否删除？',function(index){
+			$.get("<?php echo U('delGoods')?>",{id:id},function(data){
+				if(data=='0'){
+					layer.msg('删除成功');
+					window.location.reload();
+				}else{
+					layer.msg('删除失败');
+				}
+			});
+		})
+	}
+</script> 
+</block>

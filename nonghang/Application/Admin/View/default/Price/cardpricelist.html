@@ -1,0 +1,103 @@
+<extend name='Public/base'/>
+<block name='title'>中瑞网售管理系统-商品列表</block>
+<block name='body'>
+    <div class="content">
+        <div class="leftMenu">
+            <ul>
+                {$leftMenu}
+                
+            </ul>  
+        </div>
+        <div class="rightContent">
+            <form id="serach" method="post" action="{:U()}">
+        	<div class="queryBox">
+                <div class="inputSelect"> 
+                    <span>按影院分组查询：</span>
+
+                    <select name="cinemaGroupId" id="cinemaGroupId" class="select" onchange="getCinemaList(this.value)">
+                        <option>请选择影院分组</option>
+                    <foreach name="cinemaGroupList" item="vo" key="k" >
+                        <option value="{$vo.id}"<if condition="$vo['id'] == $cinemaGroupId"> selected="selected"</if>>{$vo.groupName}</option>
+                    </foreach>
+                    </select>
+                </div>
+                <a href="javascript:submitSerach();" class="button">查询</a>
+            </div>
+        </form>
+            <div class="tableList">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                     <thead>
+                          <tr>
+                            <td width="5%">序号</td>
+                            <td width="10%">影院分组</td>
+                            <td width="20%">日期区间</td>
+                            <td width="20%">周期</td>
+                            <td width="15%">时间</td>
+                            <td width="15%">折扣/价格</td>
+                            <td width="10%">操作</td>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <foreach name="memberPriceConfigList" item="vo" key="k" >
+                        <tr>
+                            <td>{$vo.id}</td>
+                            <td><?php echo $cinemaGroupList[$vo['cinemaGroupId']]['groupName'];?></td>
+                            <td>{$vo.startDate|date='Y-m-d',###}至{$vo.endDate|date='Y-m-d',###}</td>
+                            <td>{$vo.weeks|memberWeeks}</td>
+                            <td>{$vo.startTime|date='H:i',###}至{$vo.endTime|date='H:i',###}</td>
+                            <td>{$vo.priceConfig|memberConfig=###,$cinemaGroupList,$vo['cinemaGroupId']}</td>
+                            <td> <a href="{:U('editCardPrice', array('id'=>$vo['id']))}">编辑</a>|<a href="javascript:del({$vo.id});">删除</a></td>
+                        </tr>
+                    </foreach>
+                      </tbody>
+                </table>
+                <div class="pagination"><div class="page">
+
+{$page}
+                </div></div> 
+            </div>
+        </div>
+     </div>
+<script type="text/javascript">
+var loadi = '';
+var loadimsg = '';
+
+function submitSerach () {
+    $('#serach').submit();
+}
+  function del(id){
+        layer.confirm('确认是否删除？',function(index){
+
+                loadi = layer.load(1, {shade: [0.5,'#000']});
+                loadimsg = layer.msg('正在删除中...',{icon: 16, time:60000000});
+
+                $.ajax({    
+                url:'{:U("ajaxDelMemberPrice")}',// 跳转到 action    
+                data:{'id':id},    
+                type:'post',       
+                dataType:'json',    
+                success:function(data) {
+                    layer.close(loadi);
+                    layer.close(loadimsg);
+                   
+                    if(data.status == 0){
+                       layer.msg(data.content, {time: 1000});
+
+                       location.reload();
+
+                    }else{
+                       layer.msg(data.content, {time: 1000});
+                    }
+
+                },    
+                error : function() {
+                    layer.close(loadi);
+                    layer.close(loadimsg);
+                    layer.msg('删除失败，请重试', {icon: 5});
+                }    
+            });
+        })
+    }
+    
+</script> 
+</block>

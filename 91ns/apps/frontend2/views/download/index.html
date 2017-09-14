@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('download'|ns_css)}}">
+    <script type="text/javascript" defer async data-main="{{static_url('download'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+    <script type="text/javascript">
+        function download(){
+            var data={};
+            data.input='secret-input';
+            window.open("{{static_url('publisher/91ns.exe')}}");
+            return false;
+        }
+    </script>
+</head>
+<body>
+    <div class="wrap">
+        {% include "template/header.html" %}
+        <div id="APP" class="tabs">
+            <div class="bannerShow">
+                <div id="downBanner" class="bcontent">
+                    <div class="bLeft">
+                        <div>
+                            <ul>
+                                <li>
+                                    <img src="{{static_url('web/cssimg/91ns/download/bxb.png')}}"></li>
+                                <li>
+                                    <img src="{{static_url('web/cssimg/91ns/download/wba.png')}}"></li>
+                                <li>
+                                    <img src="{{static_url('web/cssimg/91ns/download/yyt.png')}}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bContent"> <i class="bradius"></i> <i class="btext"></i>
+                    </div>
+                    <div class="bRight">
+                        <img src="{{static_url('web/cssimg/91ns/QRcode.png')}}">
+                        <div class="bios clearfix">
+                            <span>
+                                <i></i>
+                            </span>
+                            <div>
+                                <i></i>
+                                <span nsdownload="down" nsdata="{{ downloads['pcios'] }}">立即下载</span>
+                            </div>
+                        </div>
+                        <div class="bandroid clearfix">
+                            <span>
+                                <i></i>
+                            </span>
+                            <div>
+                                <i></i>
+                                <span nsdownload="down" nsdata="{{ downloads['android'] }}">立即下载</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="iconShow">
+                        <div class="iLeft">
+                            <span class="iTitle">聊天送礼</span>
+                            <span class="iText">火速跟女神熟络</span>
+                        </div>
+                        <div class="iContent">
+                            <span class="iTitle">开播通知</span>
+                            <span class="iText">让你不再错过</span>
+                        </div>
+                        <div class="iRight">
+                            <span class="iTitle">精彩纷呈</span>
+                            <span class="iText">好节目目不暇接</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include "template/footer.html" %}
+    </div>
+</body>
+</html>

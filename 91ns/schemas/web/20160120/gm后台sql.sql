@@ -1,0 +1,1 @@
+insert into inv_module(id,parentId,moduleName,moduleAction,moduleSort,moduleType,createTime)values(65,0,'发放管理','grant',11,0,1452846315),(66,65,'发放座驾','sendCar',1,1,1452846315),(67,65,'发放徽章','sendBadge',2,1,1452846315),(68,65,'军团管理','group',3,1,1452846315);

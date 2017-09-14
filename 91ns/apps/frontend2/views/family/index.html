@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "template/meta.html" %}
+    <title>91NS—美女视频</title>
+    {% include "template/link.html" %}
+    <link rel="stylesheet" type="text/css" href="{{static_url('family'|ns_css)}}"/>
+    <link rel="stylesheet" type="text/css" href="{{static_url('pagination2'|ns_css)}}" />
+</head>
+<body>
+<div class="wrap">
+    {% include "template/header.html" %}
+    <div class="banners" style="position: relative;">
+        <img src="{{static_url('web/cssimg2/family/banner.png')}}">
+        <div class="opacityBox">
+            {% if ns_userUid > 0 %}
+                {% if applyBtn==1%}
+                <div class="opacityBox3"><a href="/family/create">申请创建家族</a></div>
+                {%else%}
+                <div class="opacityBox1"></div>
+                <div class="opacityBox2">申请创建家族</div>
+                {%endif%}
+            {% else %}
+            <div class="opacityBox3"><a onclick="userLogin()">申请创建家族</a></div>
+            {% endif %}
+            <div class="opacityBox-P"><i></i>&nbsp;须是签约主播</div>
+        </div>
+    </div>
+    <div class="cts">
+        {% if familyInfo|default(false) %}
+        <div class="myFamilys">
+            <h2 class="titles">我的家族</h2>
+            <div class="msgs">
+                <div class="left clearfix">
+                    <a href="/family/family?familyid={{ familyInfo['id'] }}"><img src="{{ familyInfo['logo'] }}"></a>
+                    <div class="info">
+                        <div class="base clearfix">
+                            <span class="name">{{ familyInfo['name'] }}</span>
+                            <i class="icon sprite-family_level family1">{{ familyInfo['shortName'] }}</i>
+                        </div>
+                        <div class="number clearfix">
+                            <i></i>
+                            <span>{{ familyInfo['count'] }}</span>
+                        </div>
+                    </div>
+                </div>
+                <ul class="right anchorsRoomLists clearfix">
+                    {% for i in 0..1 %}
+                    {% if familyMembers[i]|default(false)%}
+                    <li class="m-item">
+                        <a href="/{{familyMembers[i]['uid']}}" target="_blank" class="i-user" title="">
+                            <img src="{{familyMembers[i]['poster']}}" class="i-avatar" alt="" title="">
+                            <span class="i-tags index-roomlist-1 _status {% if familyMembers[i]['liveStatus'] == 1 or familyMembers[i]['liveStatus'] == 3 %}active{% elseif familyMembers[i]['liveStatus'] == 0 and familyMembers[i]['isOpenVideo'] == 1 %}recording{% endif %}"><i class="txt">直播</i></span>
+                            <i class="index-roomlist-1 _play ico-play"></i>
+                            <div class="i-bg"></div>
+                            <div class="i-info2">
+                                <i class="index-roomlist-1 _number"></i>
+                                <span class="number">{{familyMembers[i]['onlineNum']}}</span>
+                                <span class="i-city">{{familyMembers[i]['location']}}</span>
+                            </div>
+                        </a>
+                        <div class="i-info">
+                            <div class="i-info1">
+                                <div class="i-name">
+                                    <a href="/{{familyMembers[i]['uid']}}" target="_blank" title="{{familyMembers[i]['nickName']}}" class="name">{{familyMembers[i]['nickName']}}</a>
+                                </div>
+                                <span class="i-actor sprite-zb_level zb{{familyMembers[i]['anchorLevel']}}"></span>
+                                <i class="sprite-family_level family1">{{familyMembers[i]['familyShortName']}}</i>
+                            </div>
+                        </div>
+                    </li>
+                    {%endif%}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        <div class="hotFamilys pageStyle">
+            <div class="controllers clearfix">
+                <h2 class="titles">热门家族</h2>
+                <div class="selects clearfix">
+                    <span class="_selectList select active" data="0">主播人数</span>
+                    <span class="lines"></span>
+                    <span class="_selectList select" data="1">历史总收入</span>
+                </div>
+            </div>
+            <ul id="hotFamilysList" class="list clearfix">
+                <!--<li>-->
+                    <!--<a class="avatar">-->
+                        <!--<img width="100%" src="{{static_url('web/cssimg2/family/1.png')}}">-->
+                    <!--</a>-->
+                    <!--<div class="number">-->
+                        <!--<div class="bg"></div>-->
+                        <!--<span>100</span>-->
+                        <!--<i></i>-->
+                    <!--</div>-->
+                    <!--<div class="info clearfix">-->
+                        <!--<span class="name">这里是名字</span>-->
+                        <!--<i class="icon sprite-family_level family1">哈哈</i>-->
+                    <!--</div>-->
+                <!--</li>               -->
+            </ul>
+            {% include "template/pagination.html" %}
+        </div>
+    </div>
+</div>
+    {% include "template/footer.html" %}
+    <script type="text/javascript" defer async data-main="{{static_url('family'|ns_js)}}" src="{{static_url('tool/require'|ns_js)}}"></script>
+</body>
+</html>

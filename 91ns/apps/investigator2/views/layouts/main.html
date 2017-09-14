@@ -1,0 +1,170 @@
+<!--Header-part-->
+<div id="header">
+    <div class="logo">
+        <h1><a href="index.html">91ns</a></h1>
+    </div>
+    
+</div>
+<!--close-Header-part--> 
+
+<div class="hr" ></div>
+
+<!--navs part-->
+
+<div id="user-nav" class="navbar navbar-inverse clearfix">
+  <ul class="nav" style="width: auto; margin: 0px;">
+    <li>
+        <a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle">
+            <span class="text" style="width: 250px;display: inline-block;">客服后台管理系统</span>
+        </a>
+    </li>
+  </ul>
+
+</div>
+
+<!--end navs part-->
+
+<!-- user info navs -->
+<div id="user-info">
+  <ul class="nav" style="width: auto; margin: 0px;">
+        
+    <li class="dropdown">
+        <a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle">
+        <img alt="" src="{{static_url('web/img/91ns/u88.png')}}">
+        <!-- <i class="icon icon-envelope"></i>  -->
+        <span class="text">{{username}}</span>
+        <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+        <li><a class="sAdd" title="" href="#" onclick="mofpsw()">修改密码</a></li>
+        <!--<li class="divider"></li>-->
+        <!--<li><a class="sInbox" title="" href="#" >修改头像</a></li>-->
+        <li class="divider"></li>
+        <li><a class="sOutbox" title="" href="/login/loginout">退出</a></li>
+
+      </ul>
+    </li>
+    
+  </ul>
+</div>
+<div id="mofpsw" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="pDialogForm2">
+        <div class="control-group">
+            <div class="controls">
+                <div class="main_input_box" style="text-align: center;">
+                    <div><input type="password" style="width: 60%;height: 30px;margin-top: 20px;" id="oldpwd"  placeholder="旧密码" /></div>
+                    <div><input type="password" style="width: 60%;height: 30px;margin-top: 20px;" id="newpwd1" placeholder="新密码" /></div>
+                    <div><input type="password" style="width: 60%;height: 30px;margin-top: 20px;" id="newpwd2" placeholder="确认密码" /></div>
+                    <label style="margin-top: 5px;" class="mssage open"><span class="help-inline" style="color: red"></span></label>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+<!-- end user info navs -->
+  {{ content() }}
+<script src="{{static_url('web/js/md5.js')}}"></script>
+<script type="text/javascript">
+
+    $(function(){
+
+//        hash = hex_md5("123456");
+//        alert('a');
+        $('#oldpwd').on('blur',function(){
+            var a=$('#oldpwd').val();
+            hash = hex_md5(a);
+            var data = {};
+            data.password = hash;
+            data.type = 1;
+
+            $.ajax({
+                type: "POST",
+                data: data,
+                url: '/ajax/password',
+                dataType: 'json',
+                success: function (res) {
+                    if(res.data==false){
+                        $('.mssage .help-inline').html('旧密码错误！');
+                        $('#oldpwd').attr('data',0);
+                        return false;
+                    }
+                    else{
+                        $('.mssage .help-inline').html('');
+                        $('#oldpwd').attr('data',1);
+                    }
+
+                }
+            })
+
+        })
+    });
+
+
+    function mofpsw() {
+
+        $('#mofpsw').dialog({
+            autoOpen: true,
+            width: 450,
+            height: 380,
+            title: '修改密码',
+            resizable: false,
+            modal: true,
+            open: function () {
+            },
+            buttons: {
+                "确定": function () {
+                    var b=$('#oldpwd').attr('data');
+                    var oldpwd = $('#oldpwd').val();
+                    var newpwd1 = $('#newpwd1').val();
+                    var newpwd2 = $('#newpwd2').val();
+                    if(b==1){
+                        if(newpwd1==newpwd2&&newpwd1!=''){
+                            hash = hex_md5(newpwd1);
+                            var data = {};
+                            data.password = hash;
+                            data.type = 2;
+
+                            $.ajax({
+                                type: "POST",
+                                data: data,
+                                url: '/ajax/password',
+                                dataType: 'json',
+                                success: function (res) {
+                                    if(res.data==false){
+                                        alert('修改失败');
+                                    }
+                                    else{
+                                        $('.mssage .help-inline').html('');
+                                        alert('修改成功');
+                                        location.href='/login/loginout';
+
+                                    }
+                                }
+                            })
+                        }
+                        else if(newpwd1==''||newpwd2==''){
+                            $('.mssage .help-inline').html('密码不能为空！');
+                        }
+                        else{
+                            $('.mssage .help-inline').html('密码输入不一致！');
+                        }
+                    }
+                    else{
+                        $('.mssage .help-inline').html('请正确输入旧密码！');
+                    }
+
+
+
+                }//,
+                /*"取消": function () {
+
+
+                 }*/
+            }
+        });
+    }
+
+</script>
+
+

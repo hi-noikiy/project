@@ -1,0 +1,234 @@
+<extend name='Public/nbase'/>
+
+<block name='body'>
+
+<div id="main" class="recharge">
+
+     <div class="odContent">
+        <div class="container">
+            <div class="vouchers-type">
+                <span class="active">可用票券</span>
+                <span>历史票券</span>
+            </div>
+            <div class="vouchersContent">
+                <div class="vt-con">
+                    <div class="sub-type">
+                        <a class="bind">票券绑定 +</a>
+                        <a class="sub-vc active" voucherClass='1'>抵值券</a>
+                   		<a class="sub-vc" voucherClass='0'>兑换券</a>
+                   		<a class="sub-vc" voucherClass='2'>卖品券</a>
+                    </div>
+                </div>
+                <div id='voucherlist'>
+                </div>
+            </div>
+            <div class="vouchersContent" style="display: none;">
+            </div>
+        </div>
+    </div>
+</div>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+	function edithis(obj){
+    	$(obj).parents('.vouchersContent').find('.quan-list li >a').show();
+        $('.delect').show();
+        $(obj).hide();
+    }
+	function delecthis(obj){
+		var _this = $(obj);
+		if( _this.parents('.vouchersContent').find('.quan-list li a.checked').length==0){
+			layer.msg('请选择要删除的历史票券');
+			return false;
+		}
+        layer.open({
+            type: 1,
+            shift:5,
+            title: false,
+            skin: 'warn',
+            closeBtn:0,
+            border: 1,
+            shadeClose: true,
+            area: ['404px', '200px'],
+            btn:['确认','取消'],
+            content: '<p>确认要删除该票券？</p>',
+            yes: function(index){
+                _this.parents('.vouchersContent').find('.quan-list li a.checked').each(function(){
+                	var this_=$(this);
+                	var vid=$(this).attr('vid');
+                	$.getJSON("{:U('hidevoucher')}",{vid:vid},function(data){});
+                });
+                gethis();
+                _this.parents('.vouchersContent').find('.quan-list li >a').removeClass('checked').hide();
+                $('.delect').hide();
+                $('.edit').show();
+                layer.close(index); //一般设定yes回调，必须进行手工关闭
+            },
+            cancel:function(){
+                _this.parents('.vouchersContent').find('.quan-list li >a').removeClass('checked').hide();
+                $('.delect').hide();
+                $('.edit').show();
+            }
+        });
+	}
+	function gethis(){
+		$('.vouchersContent').eq(1).html('');
+    	$.getJSON("{:U('packagerecord')}",function(data){
+    		var str='';
+    		if(data.status=='0'){
+    			str='<div class="operate"><a class="edit" onclick="edithis(this)">编辑</a><a class="delect" onclick="delecthis(this)">删除</a></div><ul class="quan-list quan-overdue">';
+    			$.each(data.data,function(k,vo){
+    				str+='<li><div class="left-block"><span class="price"><b>¥</b><i>'+vo['voucherValue']+'</i></span><span class="quan">'+vo['voucherName']+'</span></div>'+
+    				'<div class="right-block"><p class="num">'+vo['voucherNum']+'</p><a class="overdue">'+vo['remarks']+'</a></div><a vid="'+vo['cardId']+'"></a></li>';
+    			});
+    			str+='</ul>';
+    		}else{
+    			str='<div class="hvNone"></div>';
+    		}
+    		$('.vouchersContent').eq(1).html(str);
+    	});
+	}
+	//解绑操作
+    function delbind(obj){
+    	var _this = $(obj);
+		if(  _this.parents('.vcBlock').find('.quan-list li a.checked').length==0){
+			layer.msg('请选择要解绑的票券');
+			return false;
+		}
+        layer.open({
+            type: 1,
+            shift:5,
+            title: false,
+
+            skin: 'warn',
+            closeBtn:0,
+            border: 1,
+            area: ['404px', '200px'],
+            btn:['确认','取消'],
+            content: '<p>确认要解除绑定该票券？</p>',
+            yes: function(index){
+                _this.parents('.vcBlock').find('.quan-list li a.checked').each(function(){
+                	var this_=$(this);
+                	var vid=$(this).attr('vid');
+                	$.getJSON("{:U('delvoucher')}",{vid:vid},function(data){});
+                });
+                showvoucher($('.sub-type .active').attr('voucherClass'));
+                _this.parents('.vcBlock').find('.quan-list li >a').removeClass('checked').hide();
+                _this.parents('.vcBlock').find('.unbind span.cz-unbind').show();
+                _this.parents('.vcBlock').find('.unbind span:eq(1)').hide();
+                layer.close(index); //一般设定yes回调，必须进行手工关闭
+            },
+            cancel:function(){
+                _this.parents('.vcBlock').find('.quan-list li >a').removeClass('checked').hide();
+               _this.parents('.vcBlock').find('.unbind span.cz-unbind').show();
+                _this.parents('.vcBlock').find('.unbind span:eq(1)').hide();
+            }
+        });
+    }
+//  票券类型切换
+    showvoucher(1);
+    function showvoucher(voucherClass){
+    	$.getJSON("{:U()}",{voucherClass:voucherClass},function(data){
+    		var str='';
+    		if(data.status=='0'){
+    			var mydata=data.data;
+    			str='<div class="vcBlock"><p><a>您有<b>'+mydata.memberVoucherList.length+'</b>张'+mydata['vname']+'</a><em class="unbind"><span class="cz-unbind">票券解绑</span><span style="display: none;"><i class="confirm" onclick="delbind(this)">确认解绑</i><i class="cancel">取消</i></span></em><div class="clear"></div></p><ul class="quan-list quan-dz">';
+    			$.each(mydata.memberVoucherList,function(i,v){
+    				str+='<li><div class="left-block"><span class="price"><b>¥</b><i>'+v['voucherValue']+'</i></span><span class="quan">'+v['voucherName']+'</span></div>'+
+                    '<div class="right-block"><p class="num">'+v['voucherNum']+'</p><a>有效期至'+v['validDate']+'</a></div><a vid="'+v['cardId']+'"></a></li>';
+    			});
+    			str+='</ul></div>';
+    		}else{
+    			str='<div class="voucherNone"></div>';
+    		}
+    		$('#voucherlist').html(str);
+    	});
+    }
+    $(function(){
+//可用 历史 票券切换
+        $('.vouchers-type span').each(function(i){
+            $(this).click(function(){
+                $(this).siblings().removeClass('active');
+                $(this).addClass('active');
+                if(i=='1'){
+                	gethis();
+                }
+            	//历史票券删除
+                $('.vouchersContent').hide();
+                $('.vouchersContent').eq(i).show();
+            })
+        });
+        
+
+        $('.sub-vc').each(function(i){
+            $(this).click(function(){
+            	if(!$(this).hasClass('active')){
+            		var voucherClass=$(this).attr('voucherClass');
+            		$(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+                    showvoucher(voucherClass);
+            	}
+            })
+        });
+
+      
+      //绑定操作
+        $('.bind').on('click',function(){
+            layer.open({
+                type: 1,
+                shift:5,
+                skin: 'quanBind',
+                title:'票券绑定',
+                area: ['490px', '204px'],
+               
+                content: '<input class="inputCode" type="text" placeholder="请输入票券编码">',
+                btn: ['保存','关闭'],
+                yes: function(index){
+                	var voucherNum=$('.inputCode').val();
+            		if(voucherNum==''){
+            			layer.msg('请输入券码');
+            		}else{
+            			 var  url = "{:U('addvoucher')}";
+            			$.getJSON(url,{voucherNum:voucherNum},function(data){
+            				 layer.msg(data['content']);   
+                            if(data['status']=='0'){
+                            	showvoucher($('.sub-type .active').attr('voucherClass'));
+                            }
+                        });
+            		}
+                    layer.close(index); //一般设定yes回调，必须进行手工关闭
+                }
+            });
+            $('input').filter("[placeholder]").miPlaceholder();
+        });
+
+
+
+        $('body').on('click','.quan-list li >a',function(){
+            if($(this).filter('.checked').length){
+                $(this).removeClass('checked');
+            }else{
+                $(this).addClass('checked');
+            }
+        });
+
+        $('body').on('click','.unbind span.cz-unbind',function(){
+            $(this).parents('.vcBlock').find('.unbind span.cz-unbind').hide();
+            $(this).parents('.vcBlock').find('.unbind span:eq(1)').show();
+            $(this).parents('.vcBlock').find('.quan-list li >a').removeClass('checked').show();
+        });
+
+        $('body').on('click','.cancel',function(){
+            $(this).parents('.vcBlock').find('.quan-list li >a').removeClass('checked').hide();
+            $(this).parents('.vcBlock').find('.unbind span.cz-unbind').show();
+            $(this).parents('.vcBlock').find('.unbind span:eq(1)').hide();
+        });
+
+    })
+    </script>
+
+</block>
+
+
+

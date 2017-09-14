@@ -1,0 +1,429 @@
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix"><!-- <a href="#" class="visible-phone"><i class="icon icon-home"></i> Dashboard</a> -->
+  <ul style="display: block;">
+  {% include "common/menu.html" %}
+  </ul>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+  
+    <div class="container-fluid" style="padding: 0;">
+      <div class="widget-box tab-tabs" >
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+                {% include "common/tab.html" %}
+            </ul>
+          </div>
+
+
+              <div class="tab-box" style="margin: 30px 25px 10px 25px;">
+                  <div>
+                      <span class="pull-left" style="margin-top: 6px;margin-right:10px;font-size: 16px;">将工资表导出EXCEL</span>
+                      <form action="/ajax/waitSettleByExcel" method="post" class="pull-left">
+                          <button type="submit" class="btn btn-purple" style="margin-bottom: 10px;">导出表格</button>
+                      </form>
+                  </div>
+
+
+                  <table id="tableList"  class="table with-check table-purple">
+                      <thead>
+                      <tr>
+                          <th>申请人</th>
+                          <th>申请时间</th>
+                          <th>结算对象</th>
+                          <th>结算总金额（人民币）</th>
+                          <th>状态</th>
+                          <th></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+
+                      </tbody>
+                  </table>
+
+                  {% include "common/pagination.html" %}
+              </div>
+         </div>
+        </div>
+    
+    </div>
+<div id="clearingDialog" style="display: none;">
+    <div id="basicInfo">
+
+    </div>
+
+    <div class="row-fluid" style="height: 150px;line-height: 55px;position: relative;">
+        <form id="clearingFrom" action="" enctype="multipart/form-data" method="post" onsubmit="return exceldataSubmit()">
+            <span class="clearleft">上传转账凭证：</span>
+            <div style="height: 30px;"></div>
+            <input name="file_upload"  type="file" id="localfile" size="28" onchange="preImg(this.id,'imgPre');"  style="position: absolute;width: 120px;height: 120px; right: 409px;top:-13px;overflow: hidden; opacity:0;filter: alpha(opacity=0);cursor: pointer"/>
+            <input id="stid" name="id"  type="hidden" value="" />
+            <input  name="remark" id="remark"  type="hidden" value="" />
+            <input  name="upload"  type="hidden" value="1" />
+
+            <div id="kk" style="width:120px;height: 120px;border:  1px solid #ddd;margin: -45px 0 0 170px;">
+                <div id="preview_wrapper">
+                    <div id="preview_fake">
+                        <img style="width: 120px;height: 120px;" id="imgPre" src=""/>
+                    </div>
+                </div>
+                <br/>
+                <img id="preview_size_fake" />
+            </div>
+
+            <span style="float: left;margin:20px 0 0 70px;">备注：</span>
+            <textarea id="reason" rows="3" style="width: 73%;margin-top: 20px;float: left"></textarea>
+
+            <div class="row-fluid" style="text-align: center;margin-bottom: 20px;margin-top: 40px;">
+                <button id="btn_applysellte" type="submit" class="btn btn-purple" style="margin-right: 20px">结算</button>
+            </div>
+        </form>
+    </div>
+
+</div>
+<div id="Payroll" style="display: none;">
+    <div>
+       <span class="pull-left" style="margin-top: 6px;margin-right:10px;font-size: 16px;">将工资表导出EXCEL</span>
+        <form action="/ajax/salaryByExcel" method="post" class="pull-left">
+            <input id="familyId" type="hidden" value="" name="familyId">
+            <button type="submit" class="btn btn-purple" style="margin-bottom: 10px;">导出表格</button>
+        </form>
+    </div>
+
+    <div class="row-fluid">
+        <table id="tableList3"  class="table with-check table-purple">
+            <thead>
+            <tr>
+                <th>uid</th>
+                <th>昵称</th>
+                <th>真实姓名</th>
+                <th>身份证</th>
+                <th>电话</th>
+                <th>结算方式</th>
+                <th>底薪（元）</th>
+                <th>分成（元）</th>
+                <th>总额（元）</th>
+                <th>工作时长（小时）</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        <div class="row-fluid">
+            <div class="total pull-left">
+                <p class="font font18 cr-gy">
+                    <span>记录总数：</span>
+                    <span id="count1">0</span>
+                </p>
+            </div>
+
+            <div id="pagination3" class="pagination alternate pull-right"></div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+
+$(function(){
+    getDataList();
+    $('#reason').blur(function(){
+        var a=$('#reason').val();
+        $('#remark').val(a);
+    })
+});
+
+function exceldataSubmit(){
+    var imgPre=$('#imgPre').attr('src');
+    if(imgPre=='')
+    {
+        alert('请上传凭证！');
+        return false;
+    }
+    else{
+        return true;
+    }
+}
+
+function getDataList(index){
+    var data={};
+    data.page=index||1;
+    data.pageSize=global.pageSize;
+    $.ajax({
+        type:"POST",
+        data:data,
+        url:'/ajax/getSettleList',
+        dataType:'json',
+        success:function(res){
+            var data=res.data;
+            var tableList=document.getElementById("tableList");
+            var tbody= tableList.getElementsByTagName('tbody')[0];
+            dataTable.clearData(tbody);
+
+            var count=document.getElementById('count');
+            count.innerHTML=data.count;
+
+            for(var i=0;i<data.list.length;i++){
+                addRow(tbody,data.list[i]);
+            }
+            if(!index||index==0){
+                utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                    page_index+=1;
+                    getDataList(page_index);
+                });
+            }
+        }
+
+    });
+}
+
+function addRow(table,data){
+
+    var row=table.insertRow();
+    var cell=row.insertCell(0);
+    var cell1=row.insertCell(1);
+    var cell2=row.insertCell(2);
+    var cell3=row.insertCell(3);
+    var cell4=row.insertCell(4);
+    var cell5=row.insertCell(5);
+
+
+    cell.innerHTML=data.applyUser;
+    cell1.innerHTML=data.createTime;
+    cell2.innerHTML='<div class="anchor-info"><img src="'+data.logo+'">&nbsp;<span>'+data.name+'</span></div>';
+    cell3.innerHTML=data.rmb;
+    cell4.innerHTML=data.status;
+    if(data.isAccount==1) {
+
+            var div=document.createElement("div"),
+                div1=document.createElement("div"),
+                div2=document.createElement("div");
+        div.style.cssText='margin:0 auto;width:150px;'
+        div1.innerHTML='<span  class="a-edit font font18 cr-pe cursor-pointer" onclick="clearingDialog('+data.id+','+data.type+')" >&nbsp;结算</span>';
+        div2.style.cssText='float:left'
+        div2.innerHTML='<span class="a-edit font font18 cr-pe cursor-pointer" onclick="Payroll('+data.uid+')">&nbsp;主播工资表&nbsp;|</span>';
+
+
+        if(data.type==2){
+            div.appendChild(div2);
+        }
+        div.appendChild(div1);
+        cell5.appendChild(div);
+    }
+    return row;
+}
+
+function clearingDialog(id,typeid){
+    $('#clearingDialog').dialog({
+        autoOpen:true,
+        width:725,
+        height:730,
+        title:'结算',
+        resizable:false,
+        modal:true,
+        open:function(){
+            $('#stid').val(id);
+            var data={};
+            data.id=id;
+
+            if(typeid==1){
+                $.ajax({
+                    type:"POST",
+                    data:data,
+                    url:'/ajax/anchorSettleInfo',
+                    dataType:'json',
+                    success:function(res){
+                        var data=res.data;
+                        $("#basicInfo").html('');
+                        $("#basicInfo").append(html(data,typeid));
+
+                    }
+
+                });
+            }
+            else{
+                $.ajax({
+                    type:"POST",
+                    data:data,
+                    url:'/ajax/familySettleInfo',
+                    dataType:'json',
+                    success:function(res){
+                        var data=res.data;
+                        $("#basicInfo").html('');
+                        $("#basicInfo").append(html(data,typeid));
+
+                    }
+
+                });
+            }
+
+        },
+        buttons: {
+            /*"确定": function () {
+
+             }*///,
+            /*"取消": function () {
+
+
+             }*/
+        }
+    });
+}
+
+function html(data,typeid){
+    var html='';
+    html+='<div class="row-fluid" style="height: 55px;border-bottom: 1px dashed #ddd;line-height: 55px;">';
+    html+='<span class="clearleft">申请人：'+data.applyUser+'</span><span class="clearright">申请时间：'+data.createTime+'</span></div>';
+    html+='<div class="row-fluid" style="border-bottom: 1px dashed #ddd;line-height: 55px;">';
+    if(typeid==1){
+        html+='<div><span class="clearleft">uid：'+data.uid+'</span><span class="clearright">昵称：'+data.nickName+'</span></div><br>';
+        html+='<div><span class="clearleft">真实姓名：'+data.realName+'</span><span class="clearright">身份证：'+data.idCard+'</span></div><br>';
+        html+='<div><span class="clearleft">电话：'+data.telephone+'</span><span class="clearright">结算方式：';
+        if(data.settleType==1){
+            html+='按播出收益</span></div><br>';
+        }
+        if(data.settleType==2){
+            html+='按播出时长</span></div><br>';
+        }
+        if(data.settleType==3){
+            html+='收益+时长</span></div><br>';
+        }
+        if(!data.settleType || data.settleType==0){
+            html+='无</span></div><br>';
+        }
+        html+='<div><span class="clearleft">底薪：'+data.basicSalary+'</span><span class="clearright">分成：'+data.rmb+'元</span></div><br>';
+        html+='<div><span class="clearleft">开户行：'+data.bank+'</span><span class="clearright">卡号：'+data.cardNumber+'</span></div> </div>';
+    }
+    else{
+        html+='<div><span class="clearleft">家族：'+data.name+'</span><span class="clearright">家族长：'+data.nickName+'</span></div><br>';
+        html+='<div><span class="clearleft">电话：'+data.telephone+'</span><span class="clearright">身份证：'+data.idCard+'</span></div><br>';
+        html+='<div><span class="clearleft">底薪：'+data.basicSalary+'元</span><span class="clearright">分成：'+data.rmb+'元</span></div><br>';
+        html+='<div><span class="clearleft">开户行：'+data.bank+'</span><span class="clearright">卡号：'+data.cardNumber+'</span></div> </div>';
+    }
+
+    html+=' <div class="row-fluid" style="height: 55px;line-height: 55px;"><span class="clearleft">结算总额：'+data.total+'元</span> </div>';
+    return html;
+}
+
+function Payroll(uid,index){
+    $('#Payroll').dialog({
+        autoOpen:true,
+        width:1180,
+        title:'主播工资表',
+        resizable:false,
+        modal:true,
+        open:function(){
+//            $('#stid').val(id);
+            $('#familyId').val(uid);
+            var data={};
+            data.familyId=uid;
+            data.page=index||1;
+            data.pageSize=global.pageSize;
+            $.ajax({
+                type:"POST",
+                data:data,
+                url:'/ajax/anchorSalaryList',
+                dataType:'json',
+                success:function(res){
+                    var data=res.data;
+                    var tableList=document.getElementById("tableList3");
+                    var tbody= tableList.getElementsByTagName('tbody')[0];
+                    dataTable.clearData(tbody);
+
+                    var count=document.getElementById('count1');
+                    count.innerHTML=data.count;
+
+                    for(var i=0;i<data.list.length;i++){
+                        addRowPayroll(tbody,data.list[i]);
+                    }
+                    if(!index||index==0){
+                        utilsPagination("#pagination3",data.count,global.pageSize,function(page_index,jq){
+                            page_index+=1;
+                            Payroll(uid,page_index);
+                        });
+                    }
+
+
+                }
+
+            });
+        },
+        buttons: {
+            /*"确定": function () {
+
+             }*///,
+            /*"取消": function () {
+
+
+             }*/
+        }
+    });
+}
+
+function addRowPayroll(table,data){
+
+    var row=table.insertRow();
+    var cell=row.insertCell(0);
+    var cell1=row.insertCell(1);
+    var cell2=row.insertCell(2);
+    var cell3=row.insertCell(3);
+    var cell4=row.insertCell(4);
+    var cell5=row.insertCell(5);
+    var cell6=row.insertCell(6);
+    var cell7=row.insertCell(7);
+    var cell8=row.insertCell(8);
+    var cell9=row.insertCell(9);
+
+    cell.innerHTML='<div class="anchor-info"><img src="'+data.logo+'">&nbsp;<span>'+data.uid+'</span></div>';
+    cell1.innerHTML=data.nickName;
+    cell2.innerHTML=data.realName;
+    cell3.innerHTML=data.idCard;
+    cell4.innerHTML=data.telephone;
+    if(data.settleType==1){
+        cell5.innerHTML='按播出收益';
+    }
+    if(data.settleType==2){
+        cell5.innerHTML='按播出时长';
+    }
+    if(data.settleType==3){
+        cell5.innerHTML='收益+时长';
+    }
+    cell6.innerHTML=data.basicSalary;
+    cell7.innerHTML=data.rmb;
+    cell8.innerHTML=data.total;
+    if(data.duration>=60){
+        var hourmax=(Math.floor(data.duration/3600)+"小时"+Math.floor((data.duration%3600)/60)+"分钟");
+        cell9.innerHTML=hourmax;
+    }
+    else{
+        cell9.innerHTML='0小时1分钟';
+    }
+    return row;
+}
+
+/**
+ * 从 file 域获取 本地图片 url
+ */
+function getFileUrl(sourceId) {
+    var url;
+    if (navigator.userAgent.indexOf("MSIE")>=1) { // IE
+        url = document.getElementById(sourceId).value;
+    } else if(navigator.userAgent.indexOf("Firefox")>0) { // Firefox
+        url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+    } else if(navigator.userAgent.indexOf("Chrome")>0) { // Chrome
+        url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+    }
+    return url;
+}
+/**
+ * 将本地图片 显示到浏览器上
+ */
+function preImg(sourceId, targetId) {
+    var url = getFileUrl(sourceId);
+    var imgPre = document.getElementById(targetId);
+    imgPre.src = url;
+}
+
+</script>

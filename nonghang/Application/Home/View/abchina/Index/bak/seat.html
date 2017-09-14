@@ -1,0 +1,124 @@
+<extend name='Public/base'/>
+<block name='title'>选座购票</block>
+<block name='jscss'>
+ <link rel="stylesheet" href="__CSS__/framework7.min.css">
+ </block>
+<block name='body'>
+<div class="views"  onload="loaded()"  >
+  <div class="view view-main">
+    <div class="headerNav">
+      <div class="headerLeft"><a href="javascript:window.history.back(-1);" class="external"><img src="__IMG__/common/back.png" height="100%" /></a></div>
+      <div class="title"><span>选择座位</span></div>
+      <div class="headerRight"></div>
+    </div>
+    <div class="pages navbar-through toolbar-through">
+      <div data-page="index" class="page">
+        <div class="page-content" style="background:#5c5c5c;">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Picker -->
+    <div class="picker-modal picker-tip" style="height:150px;display: none">
+        <h4>场次提醒</h4>
+        <p>{$plan['cinemaName']}：{$plan['week']}{$plan['startTime']|date='n-j H:i',###}</p>
+        <a href="#" class="close-picker closeTip">我知道了</a>
+    </div>
+<!-- Picker -->
+  <div class="picker-modal pickerInfo planScroll">
+        <h4>更换场次</h4>
+        <a href="#" class="closePicker"></a>
+    	<div class="showPlan">
+    	<volist name='otherplans' id='vo'>
+            <ul onclick="window.location.href='{:U('seat',array('featureAppNo'=>$vo['featureAppNo']))}'">
+                <li class="tal">
+                    <div class="ledTime">{$vo['start']}</div>
+                    <p>{$vo['end']}结束</p>
+                </li>
+                <li class="tac">
+                    <div  class="planStyle">{$vo['copyLanguage']}/{$vo['copyType']}</div>
+                    <p>{$vo['hallName']}</p>
+                </li>
+                <li class="tar">
+                    <div class="planPirce">￥{$vo['memberPrice']}</div>
+                    <p >￥{$vo['listingPrice']}</p>
+                </li>
+            </ul>
+            </volist>
+        </div>
+  </div>
+<script type="text/javascript">
+$(function(){
+	
+	$(".seatBtn").click(function(){
+		<?php if($tflag=='1'){ ?>
+		myApp.alert("您的会员卡不适用该影院");
+		return false;
+		<?php } ?>
+		if($('.selectSeat span.cur').length<=0){
+			myApp.alert("请先选择座位");
+			return false;
+		}else{				
+			var datas=[];
+			var featureAppNo={$plan['featureAppNo']};
+			$('.selectSeat span.cur').each(function(){
+				datas.push($(this).attr('sid')+'.'+$(this).text());
+			});
+			var myurl="{:U('User/indent', array('featureAppNo'=>$plan['featureAppNo']))}?datas="+datas.toString().replace(/#/g,'|');
+			window.location.href=myurl;
+		}			
+	});
+	// 价格计算
+	function countTatol() {
+		var seatPrice = $('.selectSeat span.cur').length * {$plan['memberPrice']};
+		$(".seatBtn").html('确认￥'+seatPrice);
+	}
+
+
+
+	
+	
+})
+	var myScroll;
+	window.onload=function loaded () {
+		myScroll = new IScroll('#seat', {
+			zoom: true,
+			scrollX: true,
+			scrollY: true,
+			mouseWheel: true,
+			wheelAction: 'zoom',
+		});
+	}
+	
+	document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+	
+	var myApp = new Framework7({
+		modalButtonOk:'确认'
+		}
+	);
+ 
+		var $$ = Dom7;
+		 
+		myApp.pickerModal('.picker-tip');
+		 
+		$$('.open-info').on('click', function () {
+		  myApp.pickerModal('.pickerInfo')
+		});
+		$$('.closePicker').on('click', function () {
+		  myApp.closeModal('.pickerInfo')
+		}); 
+        
+	// Initialize View          
+	var mainView = myApp.addView('.view-main')          
+			
+	// Load page from about.html file to main View:
+	mainView.router.loadPage();
+	
+	
+	
+	</script>
+    
+</block>

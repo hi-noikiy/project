@@ -1,0 +1,235 @@
+<extend name='Public/base'/>
+
+<block name='body'>
+<style>
+body{
+    background: #794f9f url(__IMG__/common/body_bg.gif) no-repeat;
+	}
+</style>
+<!--@ 焦点图 S-->
+<div id="lofslidecontent45" class="lof-slidecontent">
+
+    <div class="lof-main-outer">
+        <ul class="lof-main-wapper">
+        <volist name='list' id='v'>
+            <li style="background-image:url({$v.img})"><a href="{$v.url}"></a> </li>
+        </volist>
+        </ul>
+    </div>
+
+    <div class="lof-navigator-wapper">
+        <div onclick="return false" class="lof-next"></div>
+        <div class="lof-navigator-outer">
+            <ul class="lof-navigator">
+            	<volist name='list' id='v'>
+                <li><img src="{$v.img}"/></li>
+                </volist>
+            </ul>
+        </div>
+        <div onclick="return false" class="lof-previous"></div>
+    </div>
+
+</div>
+<!--@ 焦点图 E-->
+<div id="main">
+    <div class="container">
+        <div class="film-section">
+            <h2><a class="active">正在热映</a><a>即将上映</a></h2>
+            <div class="slide-box">
+                <div class="bd">
+                    <ul id="filmUl">
+                    	<volist name='films' id='v'>
+                    	
+                        <li>
+                            <a href="{:U('Film/filminfo')}?filmNo={$v.filmNo}">
+                                <img src="{$v.image}" />
+                                <span class="filmType-{$v.copyType}">{$v.copyType}</span>
+                                <div class="film-baseInfo">
+                                    <span class="film-name">{$v.filmName}</span>
+                                    <span class="film-score"><b>{$v.f}.</b><i>{$v.s}</i></span>
+                                </div>
+                                <div class="shadeMovie"></div>
+                            </a>
+                        </li>
+                       
+                        </volist>
+                      
+                    </ul>
+                    <div class="moreBtn">
+                        <a href="javascript:" class="filmmore"></a>
+                        <a href="javascript:" class="up"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-box">
+                  <div class="bd">
+                    <ul>
+                        <volist name='films2' id='v'>
+                        <?php if($key<8):?>
+                        <li>
+                            <a href="{:U('Film/filminfo')}?id={$v.id}">
+                                <img src="{$v.image}" />
+                                <span class="filmType-3D">{$v.version}</span>
+                                <div class="film-baseInfo">
+                                    <span class="film-name">{$v.filmName}</span>
+                                    <span class="film-score"><b>{$v.f}.</b><i>{$v.s}</i></span>
+                                </div>
+                                <div class="shadeMovie"></div>
+                            </a>
+                        </li>
+                        <?php endif;?>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="other-section">
+            <div class="entrence">
+                <ul>
+                    <li class="text-cn">快速购票</li>
+                    <li class="text-en">FAST TICKET</li>
+                </ul>
+                <a href="#">GO</a>
+            </div>
+            <div class="relate">
+                <ul>
+                    <li class="wechart"><a href="javascript:;" onclick="recharge();">在线充值</a></li>
+                    <li class="weibo"><a href="{:U('mobile/index')}">移动购票</a></li>
+                    <li class="member"><span>会员专区</span></li>
+                    <li class="code-query"><a href="{:U(feedback)}"  >用户反馈</a></li>
+                </ul>
+            </div>
+            <div class="purchase-process">
+                <a class="step1">1</a>
+                <a class="step2">2</a>
+                <a class="step3">3</a>
+            </div>
+        </div>
+        <div class="film-section fs-2">
+            
+            <div class="slide-box">
+            	<h2><a class="active">热门活动</a></h2>
+                <!--<div class="hd">
+                    <a href="{:U('activity/activitylist')}" class="more">更多></a>
+                    <div class="hr"></div>
+                </div>-->
+                <div class="bd">
+                    <ul>
+                     <volist name='list1' id='v'>
+                        <li><a href="{$v.url}"><img src="{$v.img}" /><div class="shadeMovie"></div></a></li>
+                     </volist>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="qrcode-section">
+            <h4>扫一扫，更精彩</h4>
+            <img src="__IMG__/qrcode.png">
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+</block>
+<block name='script'>
+    <script type="text/javascript">
+	$(".filmmore").click(function(){
+		$("#filmUl").addClass('filmUl');
+		$(this).css('display','none');
+		$('.up').css('display','block');
+		})
+	$(".up").click(function(){
+		$("#filmUl").removeClass('filmUl');
+		$(this).css('display','none');
+		$('.filmmore').css('display','block');
+		})
+	
+	
+    function recharge(){
+    	var uid="{$user['id']}";
+    	if(uid==''){
+    		login("{:U('user/recharge')}");
+    		return false;
+    	}else{
+    		location.href="{:U('user/recharge')}";
+    	}
+    	
+    }
+        $(document).ready(function () {
+    //焦点图
+            $('.lof-main-wapper li').width($(window).width());
+
+            var buttons = {
+                previous: $('#lofslidecontent45 .lof-next'),
+                next: $('#lofslidecontent45 .lof-previous')
+            };
+
+            $obj = $('#lofslidecontent45').lofJSidernews({
+                interval: 4000,
+                direction: 'opacitys',
+                easing: 'easeOutQuad',
+                duration: 800,
+                auto: true,
+                maxItemDisplay: 4,
+                navPosition: 'horizontal', // horizontal , vertical 可设置水平和垂直样式
+                navigatorHeight: 110,
+                navigatorWidth: 280,
+                mainWidth: $(window).width(),
+                buttons: buttons
+            });
+    //tab切换
+            $('.slide-box:eq(1),.slide-box:eq(3)').hide();
+            $('.film-section').each(function(){
+                var _this = $(this);
+                $(this).find('h2 a').each(function(i){
+                    $(this).click(function(){
+                        $(this).siblings().removeClass('active');
+                        $(this).addClass('active');
+                        _this.find('.slide-box').hide();
+                        _this.find('.slide-box').eq(i).show();
+                    })
+                })
+            });
+    //快速购票Quick purchase
+            $('.entrence').click(function(){
+                //iframe层
+                layer.open({
+                    type: 2,
+                    title: '',
+                    shadeClose: false,
+                    shade: 0.8,
+                    area: ['1014px', '780px'],
+                    content: "{:U('plan/quickpurchase')}"//iframe的url
+                });
+            });
+        });
+
+        function pduserlogin() {
+            $.ajax({
+            	  type:'POST',
+                  url:'{:U(pduserlogin)}',
+                  data:'',
+                  success:function(mag) {
+                      if(mag.status==0){
+                        //  alert(mag.content);
+                    	 window.location.href="{:U(feedback)}";
+                      }else{
+                    	  //iframe层
+                          layer.open({
+                              type: 2,
+                              skin: 'service-theme',
+                              title:'  ',
+                              shadeClose: true,
+                              shade: 0.8,
+                              area: ['480px', '532px'],
+                              content: "{:U('User/login')}"//iframe的url
+                          });
+                       }
+                  }
+             })
+         }
+
+    </script>
+</block>
+</body>
+</html>

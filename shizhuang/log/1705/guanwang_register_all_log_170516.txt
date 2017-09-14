@@ -1,0 +1,11 @@
+post=a:5:{s:4:"code";s:6:"876918";s:7:"game_id";s:1:"9";s:8:"password";s:7:"4dcef2g";s:4:"sign";s:32:"0b63f078d0d01d123d4a71f99afb909f";s:8:"username";s:11:"18318349833";}, 2017-05-16 02:02:00
+post=a:5:{s:4:"code";s:6:"723092";s:7:"game_id";s:1:"9";s:8:"password";s:9:"qq123456@";s:4:"sign";s:32:"9f49fbbb3867491e3b2a6325a36c99b8";s:8:"username";s:11:"15627500218";}, 2017-05-16 05:48:04
+post=a:5:{s:4:"code";s:6:"723092";s:7:"game_id";s:1:"9";s:8:"password";s:8:"qq123456";s:4:"sign";s:32:"4ab802a0e70211cdcb6c3ed3d5586b5a";s:8:"username";s:11:"15627500218";}, 2017-05-16 05:48:09
+post=a:5:{s:4:"code";s:6:"462954";s:7:"game_id";s:1:"9";s:8:"password";s:15:"wqh199509120818";s:4:"sign";s:32:"ffbdab5a43cce8b9ec20625d2379e8cd";s:8:"username";s:11:"17770032307";}, 2017-05-16 09:02:27
+post=a:5:{s:4:"code";s:6:"462954";s:7:"game_id";s:1:"9";s:8:"password";s:12:"199509120818";s:4:"sign";s:32:"398d7c8009f7b843ed25eec3a8fb4718";s:8:"username";s:11:"17770032307";}, 2017-05-16 09:02:37
+post=a:5:{s:4:"code";s:6:"968501";s:7:"game_id";s:1:"9";s:8:"password";s:12:"aangyuda0705";s:4:"sign";s:32:"66af19112ecf085005c521496e7c0165";s:8:"username";s:11:"18877141832";}, 2017-05-16 10:24:00
+post=a:5:{s:4:"code";s:6:"899923";s:7:"game_id";s:1:"9";s:8:"password";s:13:"XN17879505253";s:4:"sign";s:32:"2d180226f71ef6ac8635a2b3777229ee";s:8:"username";s:11:"17879505253";}, 2017-05-16 12:23:39
+post=a:5:{s:4:"code";s:6:"212776";s:7:"game_id";s:1:"9";s:8:"password";s:8:"xu123456";s:4:"sign";s:32:"50b488935fcff56f75827f17cce09d17";s:8:"username";s:11:"13817296793";}, 2017-05-16 17:35:08
+post=a:5:{s:4:"code";s:6:"226738";s:7:"game_id";s:1:"9";s:8:"password";s:6:"108303";s:4:"sign";s:32:"66a84ae889671af1e770cf0c67a50b8b";s:8:"username";s:11:"13101414375";}, 2017-05-16 18:33:07
+post=a:5:{s:4:"code";s:6:"409099";s:7:"game_id";s:1:"9";s:8:"password";s:8:"55025269";s:4:"sign";s:32:"010f6b1090ee71d2a631b85191fe57ff";s:8:"username";s:11:"15590641079";}, 2017-05-16 19:09:24
+post=a:5:{s:4:"code";s:6:"156060";s:7:"game_id";s:1:"9";s:8:"password";s:9:"Asl981122";s:4:"sign";s:32:"41590b5f8a4167685c4c362c900ef5f0";s:8:"username";s:11:"15690200230";}, 2017-05-16 22:07:42

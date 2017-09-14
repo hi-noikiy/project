@@ -1,0 +1,54 @@
+{% extends "template/wap.html" %}
+
+
+{% block headerAdd %}
+<script type="text/javascript" src="{{static_url('wap.room'|ns_js)}}"></script>
+{% endblock %}
+
+{% block body %}
+<div id="download" class="download">
+	<span>APP客户端，随时随地与主播互动</span>
+	<a href="/wap/static"><i></i>立即下载</a>
+	<div class="_bg"></div>
+</div>
+<div id="main" class="main room">
+	<div class="focusAnchor">
+		<div class="video" id="video-div">
+			<video width="100%" height="100%" controls="controls" autoplay="autoplay" windowlessVideo="1">
+				<source src="{{ publicUrl }}">
+			</video>
+		</div>
+        <div class="i-info">
+        	<span class="name">{{ userInfo['nickName'] }}</span>
+        	<span class="sprite-zf_level float-right zf{{ userInfo['fansLevel'] }}"></span>
+        	<span class="i-actor sprite-zb_level zb{{ userInfo['anchorLevel'] }}"></span>
+        	<span class="number">{{ number }}</span>
+        	<i class="ico-main-10"></i>
+        </div>
+    </div>
+    <div class="title">
+    	<span>推荐</span>
+    	<i class="_top"></i>
+    	<i class="_bottom"></i>
+    </div>
+    <ul class="clearfix">
+        {% for i in 0..(roomList|default([])|length - 1) %}
+        <li class="m-item{% if i % 2 == 1 %} _right{% endif %}">
+            <a href="/wap/room/{{ roomList[i]['uid'] }}" class="i-user" title="{{ roomList[i]['nickName'] }}">
+                <img src="{{ roomList[i]['poster'] }}" class="i-avatar" alt="{{ roomList[i]['nickName'] }}" title="{{ roomList[i]['nickName'] }}">
+                <span class="i-tags{% if roomList[i]['liveStatus'] == 1 %} active{% endif %}">
+                    <i class="txt">直播</i>
+                </span>
+            </a>
+            <div class="i-info">
+                <a href="/wap/room/{{ roomList[i]['uid'] }}" class="name">{{ roomList[i]['nickName'] }}</a>
+                <span class="number">{{ roomList[i]['onlineNum'] }}</span>
+                <i class="ico-main-01"></i>
+                <div class="_bg"></div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+

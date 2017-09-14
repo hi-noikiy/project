@@ -1,0 +1,61 @@
+<extend name='Public/base'/>
+<block name='title'>第二届丝绸之路国际电影节抢票通道</block>
+<block name='css'>
+	<link rel="stylesheet" href="__CSS__/buying.css" type="text/css" media="screen" />
+</block>
+<block name='navbar'>
+  <div class="navbar">
+    <div class="navbar-inner">
+    	<div class="left"><a href="http://wap.zrfilm.com" class="external"> <i class="icon icon-back"></i><!--<span>Back</span>--></a></div>
+      <div class="center sliding">丝绸之路国际电影节抢票通道</div>
+      <!-- <div class="right"><a href="" data-popover=".popover-links" class="link open-popover">更换影院</a></div> -->
+    </div>
+  </div>
+
+</block>
+<block name='body'>
+
+<div data-page="buyIndex" class="page" style="padding-top:44px; overflow:scroll;">
+	<div style="padding:0;margin:0; margin-bottom: -3px;"><a href="{:U('cinema')}" class="link"><img src="__IMG__/buying/ad.jpg" width="100%"></a></div>
+
+    	<div class="buy-swiper-container swiper-buy">
+            <div class="swiper-wrapper">
+              <foreach name="buyingListDate" item="vo" key="k" >
+                <div class="swiper-slide"><span>{$vo['newFilmStartTime']|}</span></div>
+              </foreach>
+              <div class="swiper-slide"></div>
+              <div class="swiper-slide"></div>
+              <div class="swiper-slide"></div>
+              <div class="swiper-slide"></div>
+
+            </div>
+          </div>
+        <div class="buyList">
+        <ul>
+            
+        </ul>
+        </div>
+    </div>
+     
+
+</block> 
+
+
+<block name='script'>
+ <!-- Links popover -->
+
+<script type="text/javascript">
+  var mySwiper3 = myApp.swiper('.swiper-buy', {
+    slideToClickedSlide:true,
+    initialSlide :0,
+    slidesPerView : 5,
+    slidesPerGroup:1,
+    centeredSlides : false,
+    onSlideChangeEnd: function(swiper){
+      var html = $('.swiper-wrapper div span').eq(swiper.activeIndex).html();
+      getPlanInfo(html);
+    }
+  });
+getPlanInfo( $('.swiper-wrapper div span').eq(0).html());
+</script>
+</block>

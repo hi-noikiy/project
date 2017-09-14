@@ -1,0 +1,201 @@
+<extend name='Public/base'/>
+<block name='body'>
+
+<!-- 主体内容 -->
+
+    <div id="main">
+        <!--1.输入手机号及验证码-->
+        <div class="container backpw-step1" <?php if(session('finduid')){ ?>style="display: none"<?php }?>>
+            <p class="title">找回密码</p>
+            <div>
+                <ul class="breadcrumb">
+                    <li class="flow1 active">1.输入手机号及验证码</li>
+                    <li class="flow2">2.重设密码</li>
+                    <li class="flow3">3.完成</li>
+                </ul>
+                <ul class="inputBox">
+                    <li><input type="text" placeholder="请输入手机号" name='mobile'/></li>
+                    <li class="code"><input type="text" name="verify" placeholder="请输入验证码"/><a href="javascript:changeClick()"><img src="{:U('public/verity',array('type'=>'find'))}"  style=" height:40px; " id="captchaChange"/> </a></li>
+                    <li class="code2"><input type="text" placeholder="请输入动态码" name="randomCode"/><a href="javascript:get_mobile_code()" id='zphone' >获取</a></li>
+                    <button class="next-step" type="submit">下一步</button>
+                    <div id="tipBlock"></div>
+                </ul>
+            </div>
+        </div>
+        <!--2.重设密码-->
+        <div class="container backpw-step2"  <?php if(!session('finduid')){ ?>style="display: none"<?php }?>>
+            <p class="title">找回密码</p>
+            <div>
+                <ul class="breadcrumb">
+                    <li class="flow1">1.输入手机号及验证码</li>
+                    <li class="flow2 active">2.重设密码</li>
+                    <li class="flow3">3.完成</li>
+                </ul>
+                <ul class="inputBox">
+                    <div id="tipBlock2"></div>
+                    <li><input type="password" name='passWord' placeholder="设置新密码"/></li>
+                    <li><input type="password" name='passWord2' placeholder="确认新密码"/></li>
+                    <button class="next-step" type="submit">下一步</button>
+                </ul>
+            </div>
+        </div>
+        <!--3.完成-->
+        <div class="container backpw-step3" style="display: none">
+
+            <p class="title">找回密码</p>
+            <div>
+                <ul class="breadcrumb">
+                    <li class="flow1">1.输入手机号及验证码</li>
+                    <li class="flow2">2.重设密码</li>
+                    <li class="flow3 active">3.完成</li>
+                </ul>
+                <div class="backpw-success">
+                    密码重置成功，<a href="javascript:login('{:U("index/index")}')">立即登录></a>
+                </div>
+                <div class="backpw-fail" style="display: none">
+                    密码重置失败，<a href="javascript:window.location.reload()">返回></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!--/ 主体内容-->
+
+</block>
+<block name='script'>
+    <script type="text/javascript">
+
+    function validTip(id,text,top){
+        $(id).text(text);
+        $(id).css('top',top);
+    }
+
+    function get_mobile_code(){
+    	if(document.getElementById('zphone').disabled){ 
+    		return; 
+    	} 
+    	var mobile=$('#zphone').parent().parent().find('input[name=mobile]').val();
+    	var verify=$('#zphone').parent().parent().find('input[name=verify]').val();
+        $.getJSON("{:U('public/getValidateCode')}", {userMobile:mobile,verify:verify,codeType:'find'}, function(data) {
+           // layer.msg(data['content']);
+            switch(data.data){
+                case 1:
+                    validTip('#tipBlock','*'+data['content'],'48px');
+                    break;
+                case 2:
+                    validTip('#tipBlock','*'+data['content'],'115px');
+                    break;
+                case 3:
+                    validTip('#tipBlock','*'+data['content'],'185px');
+                    break;
+            }
+            if(data['status']=='0'){
+            	RemainTime();
+            }else{
+            	changeClick();
+            }
+        });
+    }
+
+    $('input').focus(function(){
+        $('#tipBlock,#tipBlock2').text('');
+    });
+    var Account,iTime=59;
+    function RemainTime(){
+    	document.getElementById('zphone').disabled = true;
+    	var iSecond,sSecond="",sTime="";
+    	if (iTime >= 0){
+    		$('#zphone').addClass("disabled");
+    		iSecond = parseInt(iTime%60);
+    		iMinute = parseInt(iTime/60);
+    		if (iSecond >= 0){
+    			if(iMinute>0){
+    				sSecond = iMinute + "分" + iSecond + "秒";
+    			}else{
+    				sSecond = iSecond + "秒";
+    			}
+    		}
+    		sTime=sSecond;
+    		if(iTime==0){
+    			clearTimeout(Account);
+    			sTime='获取手机验证码';
+    			iTime = 59;
+    			$('#zphone').removeClass("disabled");
+    			document.getElementById('zphone').disabled = false;
+    		}else{
+    			Account = setTimeout("RemainTime()",1000);
+    			iTime=iTime-1;
+    		}
+    	}else{
+    		sTime='没有倒计时';
+    	}
+    	$('#zphone').html ( sTime);
+    }	
+        $('button.next-step').click(function(){
+            var i = $(this).index('button.next-step')+1;
+            var datas={};
+            if(i=='1'){
+            	var mobile=$(this).parent().find('input[name=mobile]').val();
+            	var randomCode=$(this).parent().find('input[name=randomCode]').val();
+            	var patrn=/^1\d{10}$/;
+            	if(mobile.trim()==''){
+                    validTip('#tipBlock','*请输入手机号','48px');
+    				return false;
+    			}else if(!patrn.exec(mobile.trim())){
+                    validTip('#tipBlock','*请输入正确的手机号','48px');
+    				return false;
+            	}else if(randomCode.trim()==''){
+                    validTip('#tipBlock','*请输入短信动态码','185px');
+    				return false;
+            	}
+            	datas={userMobile:mobile,validateCode:randomCode,page:1};
+            }else if(i=='2'){
+            	var passWord=$(this).parent().find('input[name=passWord]');
+        		var passWord2=$(this).parent().find('input[name=passWord2]');
+        		if(passWord.val().trim()==''){
+                    validTip('#tipBlock2','*请输入新密码','48px');
+        			return false;
+        		}
+        		if(passWord.val().length<6){
+                    validTip('#tipBlock2','*密码格式有误（限6-20个字符、数字或组合）','48px');
+        			return false;
+        		}
+        		if(passWord2.val().trim()==''){
+                    validTip('#tipBlock2','*请输入确认密码','118px');
+        			return false;
+        		}
+        		if(passWord.val()!=passWord2.val()){
+                    validTip('#tipBlock2','*您2次输入的密码不一致','118px');
+        			return false;
+        		}
+        		datas={userPasswd:passWord.val(),page:'2'};
+            }
+            $.getJSON("{:U()}", datas, function(data) {
+                if(data['status']=='0'){
+                	$('#main .container').hide();
+                    $('#main .container').eq(i).show();
+                }else{
+                   // layer.msg(data['content']);
+                    switch(data.data){
+                        case 1:
+                            validTip('#tipBlock','*'+data['content'],'48px');
+                            break;
+                        case 2:
+                            validTip('#tipBlock','*'+data['content'],'155px');
+                            break;
+                        case 3:
+                            validTip('#tipBlock','*'+data['content'],'185px');
+                            break;
+                    }
+                }
+            });
+        })
+ function changeClick(){  
+		var captcha_img = $('#captchaChange');
+		var verifyimg = captcha_img.attr("src");  
+		captcha_img.attr("src", verifyimg+'?random='+Math.random());  
+	}  
+    </script>
+</block>
+

@@ -1,0 +1,339 @@
+﻿<extend name='Public/base'/>
+
+<block name='body'>
+
+    <div id="main">
+        <div class="container">
+           <!--  <form method="post" action="pay.html"> -->
+                <div class="plandata">
+                    <div class="cinema-select">
+                        <div id="dropdown">
+                            <p></p>
+                            <ul>
+                            <volist name='cinema_list' id='v'>
+                            
+                            
+                            
+                                <li><a  rel="{$v.cinemaCode}" >{$v.cinemaName}</a><p>{$v.address}</p></li>
+                                
+                            </volist>    
+                              
+                                <div class="triangle-character tc-border">◆</div>
+                                <div class="triangle-character tc-background">◆</div>
+                            </ul>
+                            <input id="result" type="hidden">
+                            <div class="cinema-address">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearboth"></div>
+
+                <div class="item">
+                    <div id='goods_index'>
+						<volist name='list' id='v'>
+                        <label>
+                            <div class="package">
+                                <div class="img-box">
+                                    <img src="{$v.goodsImg}">
+                                </div>
+                                <h4>{$v.goodsName}</h4>
+                                <p><span>￥<i class="price">{$v.price}</i></span><a>{$v.showPrice}</a></p>
+                                <p class="psca">{$v.detail}</p>
+                                <p class="address">兑换地：{$v.cinemaName}</p>
+
+                            </div>
+                            <div class="Spinner">
+                                <a class="leftBtn"><i>-</i></a>
+                                <input type="text"   goodsid='{$v.id}' goodsName='{$v.goodsName}' price='{$v.price}' showPrice='{$v.showPrice}'  detail='{$v.detail}'  >
+                                <a class="rightBtn"><i>+</i></a>
+                            </div>
+                        </label>
+                        </volist>
+
+
+                    </div>
+                </div>
+
+                <div class="submit-block">
+                    <span>应付金额：<i>￥<em id='goods_index_tall'>0</em></i></span>
+                    <button type="submit" id='setCinemaOrder' class="disabled" disabled>提交订单</button>
+                    <input id='goods_id_mobile' placeholder="请输入手机号" value='{$user['mobile']}'>
+                </div>
+            <!--  </form>-->
+        </div>
+    </div>
+
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        $(function() {
+
+//影城下拉选择显示
+
+            //默认显示第一个
+            $("#dropdown > p").append($("#dropdown ul li:eq(0) a").clone().text());
+            $(".cinema-address > p").append($("#dropdown ul li:eq(0)").find('p').clone().text());
+
+            $("#dropdown > p").click(function (e) {
+                e.stopPropagation();
+                var ul = $("#dropdown ul");
+                if (ul.css("display") == "none") {
+                    ul.slideDown("fast");
+                } else {
+                    ul.slideUp("fast");
+                }
+            });
+
+            $('.cinema-address > p').eq(0).show();
+            $("#dropdown ul li").each(function (i) {
+                $(this).click(function () {
+
+                	if($(this).find('a').attr('rel') != $("#dropdown > p").attr('cinemaCode')){
+	                    var txt = $(this).find('a').text();
+	                    $("#dropdown > p").html(txt);
+	                    $(".cinema-address > p").empty().append($("#dropdown ul li").eq(i).find('p').clone().text());
+
+                	}
+                    $("#dropdown ul").hide();
+                    var txt = $(this).find('a').text();
+                    $.cookie('address', txt, { path: '/' });
+
+                    goods_index($(this).find('a').attr('rel'));
+
+                })
+            });
+
+            $(document).click(function(){
+                $("#dropdown ul").hide();
+            });
+            
+             //加减
+            $(".Spinner").Spinner({value:0, min:0, len:2, max:99});
+
+            //按钮背景色判断操作
+            validateFn();
+
+            $('body').on('click','.Spinner>a',function(){
+                validateFn();
+            });
+//            $('body').on('keyup','#goods_id_mobile',function(){
+//                validateFn();
+//            });
+
+            function validateFn(){
+                var allNum = 0;
+                var patrn=/^1\d{10}$/;
+                var validate = false;
+           /*     if (!patrn.exec($('#goods_id_mobile').val())){
+                    console.log('手机号格式不正确');
+                    $('#setCinemaOrder').addClass('disabled').attr("disabled", true);
+                    return false;
+                }else{
+                    validate = true;
+                }*/
+                $('.Amount').each(function(){
+                    var num = $(this).val() - 0;
+                    allNum += num;
+                });
+
+             //   alert(allNum);
+                if(allNum > 0){
+                    $('#setCinemaOrder').removeClass('disabled').attr("disabled", false);
+                }else{
+                    $('#setCinemaOrder').addClass('disabled').attr("disabled", true);
+                }
+            };
+
+
+            $('.item label').click(function(){
+            	var all_price = '0';        	  
+           	  	$('.item label').each(function(i){
+                     var num = $(this).find('input').val();
+                     var goodsid = $(this).find('input').attr('goodsid');
+                     var goodsName = $(this).find('input').attr('goodsName');
+                     var detail = $(this).find('input').attr('detail');
+                     var price = $(this).find('input').attr('price');           
+                    // console.log(package_price);
+	   				if(num!=0){
+	   					var tolprice=price*num;
+	   					 all_price=Number(all_price)+Number(tolprice);
+	   				}
+               	});
+           		$('#goods_index_tall').html(all_price);
+            })
+        });
+        
+         $('#setCinemaOrder').on('click',function(){
+        	  var mobile=$('#goods_id_mobile').val();
+        	  var all_price = '0';
+        	  var package_price='';
+        	  var oderdata='';
+        	  $('.item label').each(function(i){
+                  var num = $(this).find('input').val();
+                  var goodsid = $(this).find('input').attr('goodsid');
+                  var goodsName = $(this).find('input').attr('goodsName');
+                  var detail = $(this).find('input').attr('detail');
+                  var price = $(this).find('input').attr('price');           
+                 // console.log(package_price);
+				if(num!=0){
+					var tolprice=price*num;				
+					 package_price+='{"id":"'+goodsid+'","goodsName":"'+goodsName+'","num":"'+num+'","detail":"'+detail+'","price":"'+price+'" ,"tolprice":"'+tolprice+'"},';		
+					 //console.log(package_price);
+					 all_price=Number(all_price)+Number(tolprice);
+					 oderdata+=','+goodsid+':'+num;
+				}     
+              });
+        	package_price = "[" + package_price.substring(0, package_price.length - 1) + "]";
+        	console.log(package_price);
+			if(all_price==0){
+				layer.alert('请选择要购买的套餐');
+				return;
+			
+			}
+        	if(!mobile){
+        		 $('#goods_id_mobile').addClass('tip');
+                layer.msg('请输入手机号码');
+            	  return;
+            }
+
+
+        	 var patrn=/^1\d{10}$/;
+            
+	          	if (!patrn.exec($('#goods_id_mobile').val())){
+                    layer.msg('请输入正确的手机号码');
+	            	  return;
+	        	}    	
+        	  console.log(all_price);	  
+        	  $.cookie('package_price', package_price, { path: '/' });
+        	  $.cookie('all_price', all_price, { path: '/' });
+        	  $.cookie('oderdata', oderdata.substr(1), { path: '/' });
+        	  $.cookie('mobile', mobile, { path: '/' });
+              $.cookie('address',  $("#dropdown > p").html(), { path: '/' });
+        	  var uid="{$user['id']}";
+	          if(uid==''){
+	        	  layer.open({
+                      type: 2,
+                      skin: 'service-theme',
+                      title:'  ',
+                      shadeClose: true,
+                      shade: 0.8,
+                      area: ['480px', '532px'],
+                      content: "{:U('User/login')}?url={:U(loginsetCinemaOrder)}"//iframe的url
+                  });
+				return;
+	          }else{
+
+	        	  $.ajax({
+	            	  type:'POST',
+	                  url:'{:U("Goods/setCinemaOrder")}',
+	                  data:'data='+oderdata.substr(1)+'&mobile='+mobile,
+	                  success:function(mag) {
+	                      if(mag.status==0){
+	                    	//  layer.alert(mag.content);
+	                    	 window.location.href="{:U(pay)}?orderid="+mag.data;
+	                      }else{
+	                    	  	if(mag.content){
+	                    		  layer.alert(mag.content);
+	                        	}else {
+	                        		layer.alert(mag);
+	                           	}
+	                       		//alert(mag);
+	                       }
+	                  }
+	             })
+
+
+
+		      }
+        	 
+
+        	  return;
+        	  $.ajax({
+            	  type:'POST',
+                  url:'{:U("index/pduserlogin")}',
+                  data:'',
+                  success:function(mag) {
+                      if(mag.status==0){
+                        //  alert(mag.content);
+                    	  window.location.href="{:U(pay)}?orderid="+mag.data;
+                      }else{
+                    	  //iframe层
+                          layer.open({
+                              type: 2,
+                              skin: 'service-theme',
+                              title:'  ',
+                              shadeClose: true,
+                              shade: 0.8,
+                              area: ['480px', '532px'],
+                              content: "{:U('User/login')}?url={:U(pay)}"//iframe的url
+                          });
+                       }                         
+                  }
+             })
+          } )
+          
+         function  goods_index(cinemaCode) {
+        	 
+        	$.getJSON("{:U('goods_index')}",{
+    	        cinemaCode:cinemaCode
+    	        }, function(data) {
+    	        	var html='';
+    	        	if(data){
+    	        		$.each(data,function(k,v){
+    	        			html+='<label>';
+    	        			html+='<div class="package">';
+    	        			html+='    <div class="img-box">';
+    	        			html+='     <img src="'+v.goodsImg+'">';
+    	        			html+='</div>';
+    	        			html+=' <h4>'+v.goodsName+'</h4>';
+    	        			html+=' <p><span>￥<i class="price">'+v.price+'</i></span><a>'+v.showPrice+'</a></p>';
+    	        			html+=' <p class="psca">'+v.detail+'</p>';
+    	        			html+=' <p class="address">兑换地：'+v.cinemaName+'</p>';
+    	        			html+='</div>';
+    	        			html+='<div class="Spinner">';
+    	        			html+=' <a class="leftBtn"><i>-</i></a>';
+    	        			html+=' <input type="text"   goodsid="'+v.id+'" goodsName="'+v.goodsName+'" price="'+v.price+'" showPrice="'+v.showPrice+'"  detail="'+v.detail+'"  >';
+    	        			html+=' <a class="rightBtn"><i>+</i></a>';
+    	        			html+='</div>';
+    	        			html+='</label>';
+	            		});              
+    	        	}
+	        		 //加减    	
+    	        	$('#goods_index').empty().append(html);
+    	        	$(".Spinner").Spinner({value:0, min:0, len:2, max:99});
+    	        	$('#goods_index_tall').html(0);
+    	        	 $('#setCinemaOrder').addClass('disabled').attr("disabled", true);
+
+
+
+    	        	
+    	        	 $('.item label').click(function(){
+    	             	var all_price = '0';        	  
+    	            	  	$('.item label').each(function(i){
+    	                      var num = $(this).find('input').val();
+    	                      var goodsid = $(this).find('input').attr('goodsid');
+    	                      var goodsName = $(this).find('input').attr('goodsName');
+    	                      var detail = $(this).find('input').attr('detail');
+    	                      var price = $(this).find('input').attr('price');           
+    	                     // console.log(package_price);
+    	 	   				if(num!=0){
+    	 	   					var tolprice=price*num;
+    	 	   					 all_price=Number(all_price)+Number(tolprice);
+    	 	   				}
+    	                	});
+    	            		$('#goods_index_tall').html(all_price);
+    	             })
+    	        }
+        	) ;
+        //	validateFn();
+         }
+    </script>
+
+
+</block>
+
+
+

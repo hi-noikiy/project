@@ -1,0 +1,5 @@
+post=a:6:{s:10:"account_id";s:7:"1656863";s:4:"code";s:6:"520596";s:7:"game_id";s:1:"9";s:8:"password";s:7:"0000000";s:4:"sign";s:32:"bf4efd26c3b46e182d6cf1333efc9e7a";s:8:"username";s:11:"18896554348";}, 2017-06-01 00:50:57
+post=a:6:{s:10:"account_id";s:7:"1656863";s:4:"code";s:6:"520296";s:7:"game_id";s:1:"9";s:8:"password";s:7:"0000000";s:4:"sign";s:32:"9f1b7db3c63e004c892bf8000d0029f9";s:8:"username";s:11:"18896554348";}, 2017-06-01 00:51:08
+post=a:6:{s:10:"account_id";s:7:"1656865";s:4:"code";s:6:"162575";s:7:"game_id";s:1:"9";s:8:"password";s:11:"liweiye0809";s:4:"sign";s:32:"880826161eb0a8213f1a017c9811a9ad";s:8:"username";s:11:"18263062376";}, 2017-06-01 01:46:47
+post=a:6:{s:10:"account_id";s:7:"1656621";s:4:"code";s:6:"757582";s:7:"game_id";s:1:"9";s:8:"password";s:10:"jhy5205208";s:4:"sign";s:32:"c9b802eb516b37d78b4d477413470a05";s:8:"username";s:11:"18285443760";}, 2017-06-01 08:47:45
+post=a:6:{s:10:"account_id";s:7:"1656876";s:4:"code";s:6:"874023";s:7:"game_id";s:1:"9";s:8:"password";s:9:"777444www";s:4:"sign";s:32:"1ea99b7e7f7c9a039bde4d15fbc27081";s:8:"username";s:11:"15380925893";}, 2017-06-01 10:51:48

@@ -1,0 +1,1 @@
+mysql connect error,Host '121.204.113.250' is not allowed to connect to this MySQL server, 118.178.125.167:3356,gameuser,rio8t89o,690.60fk,shenhe170206, 2017-08-14 16:06:51

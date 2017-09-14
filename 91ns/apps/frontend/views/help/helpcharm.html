@@ -1,0 +1,80 @@
+{% extends "template/block_body.html" %}
+
+{% block begin %}
+<link rel="stylesheet" type="text/css" href="{{static_url('help'|ns_css)}}">
+{% endblock %}
+
+{% block title %}
+帮助中心
+{% endblock %}
+
+{% block titleList %}
+    <!--本页的其他选项、例如V卡、座驾、守护等。-->
+{% endblock %}
+
+{% block titleContent %}
+    <!--例如首页的我要开播等等-->
+{% endblock %}
+
+{% block content %}
+            <div class="center-box-parent">
+                <div class="center-box-content">
+            <div class="center-box main-background-body" bottompadding="42">
+
+                <div class="center-top">
+                    <div class="rope-left">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+
+                    <div class="rope-right">
+                        <i class="gmc-icon gmc-icon-rope"></i>
+                    </div>
+                </div>
+                <div class="center-content">
+                    <div class="widget-box">
+                      <div class="help-box">
+                          <div class="content HAL-content clearfix" style="position:relative;">
+                              <div class="title">什么是魅力星？如何获取？</div><a class="Helpreturn" href="help.php"></a>
+
+                              <div class="HAL-content-c" style="text-align: left;margin-left: 160px;">
+                                  <div style="margin-top:30px;" >
+                                      <p><span style="color: #cb5494; ">1.</span>什么是魅力星？</p>
+                                      <p style="margin-top: 10px; ">魅力星是登录用户送给{{webType['name']}}平台主播的道具，以传达喜爱之情的表现。</p>
+                                  </div>
+                                  <div style="margin-top:30px;" >
+                                      <p style="  "><span style="color: #cb5494; ">2.</span>魅力星获得or用处？</p>
+                                      <p style="margin-top: 10px;  ">您在{{webType['name']}}平台内任意主播的直播间里连续在线时长达到10分钟，即可获得1点魅力星，</p>
+                                      <p style="margin-top: 10px;  ">普通用户每天最多可储存10点魅力星，记得当天获得的魅力星尽快送给播客哦，以示表达对Ta的支持。</p>
+                                      <!--<p style=" margin-top: 10px; "></p>-->
+                                      <p style=" margin-top: 10px; ">主播可根据收到的魅力星数量进入魅力排行榜。每送出100个魅力，用户富豪经验相应增长（相当于消费1000聊币）。</p>
+                                      <!--<p style=" margin-top: 10px; "></p>-->
+                                  </div>
+                                  <div style="margin-top:30px;" >
+                                      <p style="  "><span style="color: #cb5494; ">3.</span>如何获得更多魅力星？</p>
+                                      <p class="c_p_font" ><!--成为VIP1，每日可存储的魅力星上限升至30点！--><a style="margin-left: 450px;" href="/shop">＞＞前去购买</a></p>
+                                      <p>成为普通VIP，在线5分钟即可获取1点魅力星，每日存储上限升至30点！</p>
+                                      <p style="  margin-top: 10px;">成为至尊VIP，在线5分钟即可获取1点魅力星，每日存储上限升至50点！</p>
+                                  </div>
+
+
+
+                              </div>
+
+                          </div>
+
+                      </div>
+                    </div>
+                </div>
+                <div class="center-bottom">
+
+                </div>
+            </div>
+
+            <div class="center-footer-bg" >
+
+            </div>
+            {% include "template/background.html" %}
+{% endblock %}
+
+{% block end %}
+{% endblock %}

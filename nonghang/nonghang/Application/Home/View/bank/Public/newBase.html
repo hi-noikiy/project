@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>微信购票</title>
+    <!-- Path to Framework7 Library CSS-->
+    <link rel="stylesheet" href="__CSS__/framework7.ios.min.css">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="__CSS__/my-app.css?{:time()}">
+    <script type="text/javascript" src="__JS__/iscroll-zoom.js"></script>
+    <script type="text/javascript" src="__JS__/jweixin-1.0.0.js"></script>
+    <block name='css'></block>
+  </head>
+  <body>
+    <div class="views">
+      <div class="panel panel-left panel-cover">
+        <div class="view view-left navbar-through">
+
+        </div>
+      </div>
+      <div class="view view-main navbar-through">
+        <block name='navbar'></block>
+        <div class="pages" >
+              <block name='body'></block>
+        </div>
+      </div>
+    </div>
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="__JS__/framework7.min.js"></script>
+    <script type="text/javascript" src="__JS__/jquery.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="__JS__/my-app.js?{:time()}"></script>
+    <script type="text/javascript" src="__JS__/jquery.form.js"></script>
+  </body>
+</html>
+<script type="text/javascript">
+  myApp.onPageInit('buyIndex', function (page) {
+  var mySwiper3 = myApp.swiper('.swiper-buy', {
+    slideToClickedSlide:true,
+    initialSlide :1,
+    spaceBetween: 0,
+    slidesPerView: 5,
+    centeredSlides : true
+  });
+
+  $$('.alert-text').on('click', function () {
+    
+  myApp.alert('提醒设置成功！将于开抢前10分钟提醒您。');
+  });
+  });
+
+  myApp.onPageInit('buyingfilmList', function (page) {
+$$('.remindBtn').on('click', function () {
+    myApp.alert('提醒设置成功！将于开抢前10分钟提醒您。');
+    myApp.alert('取消提醒。');
+  });
+  
+  
+  $(".minus").click(function(){
+       var nowNum = parseInt($('#tickNum').val());
+    if(nowNum > 1){
+      $('#tickNum').val(parseInt($('#tickNum').val()) - 1);
+    }else{
+       myApp.alert('不能再少啦');
+    }
+  });
+
+  $(".plus").click(function(){
+    var nowNum = parseInt($('#tickNum').val());
+    if(nowNum < 4){
+      $('#tickNum').val(parseInt($('#tickNum').val()) + 1);
+    }else{
+       myApp.alert('最多只能抢购4张');
+    }
+  });
+
+
+  $$('#buy').on('click', function () {
+      myApp.pickerModal('.pickerInfo');
+      myApp.pickerModal('.modal-overlay ');
+    });
+    $$('.closePay').on('click', function () {
+      myApp.closeModal('.pickerInfo')
+      $('.modal-overlay').removeClass('modal-in');
+      $('.modal-overlay').addClass('modal-overlay-visible');
+      $('.modal-overlay').css('display','none');
+    }); 
+  
+  $$("#phone").focus(function(){
+    $('.toolbar').css('display','none');
+  });
+  $("#phone").blur(function(){
+    $('.toolbar').css('display','block');
+  });
+
+  });
+</script>
+<block name='script'></block>

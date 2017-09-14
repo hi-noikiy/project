@@ -1,0 +1,515 @@
+<div id="breadcrumb">
+    <a onclick="javascript:history.go(-1);" class="go-to-home tip-bottom font font18" style="cursor: pointer;">
+        <i class="icon-arrow-left"></i> 返回 &nbsp;
+    </a> 
+    <a onclick="javascript:history.go(-1);" class="font font18" style="cursor: pointer;"> &nbsp;&nbsp;<span>新用户推广 &gt</span></a>
+    <a href="/anchor/anchorinfo?uid={{info['uid']}}" class="current font font18"> <span>详情</span></a>
+    
+</div>
+
+<!--sidebar-menu-->
+<div id="sidebar" class="clearfix">
+    <div class="user-info">
+        <img alt="" src="{{userInfo['avatar']}}">
+
+        <p>
+            <span class="font font20 cr-dpe">{{userInfo['nickName']}}</span>
+        </p>
+        <p>
+            <span class="font font20 cr-dpe">{{userInfo['uid']}}</span>
+            <input id="an_uid" type="hidden" value="{{userInfo['uid']}}" />
+        </p>
+        <div>
+            <div style="display: inline-block;margin-top: 8px;vertical-align: top;">备注：</div>
+            <div style="margin-top: 7px;line-height: 15px;display: inline-block;max-width: 100px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;" title="{{recInfo['remark']}}">{{recInfo['remark']}}</div>
+            <i class="p-icon-edit editNickName" style="vertical-align: top;" onclick="myDilog2()"></i>
+        </div>
+        <!--<p>-->
+            <!--<span style="margin-top: 10px;margin-left: 20px;float: left;display: inline-block;">备注：</span>-->
+            <!--<span style="float: left;margin-top: 10px;"></span>-->
+            <!--<span style="float: left;"><i class="p-icon-edit editNickName"></i></span>-->
+        <!--</p>-->
+    </div>
+
+    <div class="progtrckr-box" style="top: 230px;">
+        <div class="progtrckrline" style="height: 130px;"></div>
+        <ul class="progtrckr">
+            <li><i class="custom-icon custom-icon-point"></i><a href="/pull/details?uid={{userInfo['uid']}}&id={{userInfo['id']}}">推广的用户</a></li>
+            <li class="active"><i class="custom-icon custom-icon-point"></i><a href="/pull/payoff?uid={{userInfo['uid']}}&id={{userInfo['id']}}">抽成记录</a></li>
+            <li><i class="custom-icon custom-icon-point"></i><a href="/pull/analysis?uid={{userInfo['uid']}}&id={{userInfo['id']}}">分析</a></li>
+            <!-- <li><i class="custom-icon custom-icon-point"></i><a  href="/pull/anchorchat?uid={{userInfo['uid']}}">聊天记录</a></li> -->
+
+        </ul>
+    </div>
+</div>
+<!--end sidebar-menu-->
+
+<div id="content">
+
+<div class="container-fluid">
+    <div class="row-fluid" style="margin-top: 60px;">
+        <!--<div class="thum-box pull-left" style="width: 270px;display: inline-block;">-->
+            <!--<div class="thum-top clearfix" style="width: 270px;">-->
+                <!--<div class="title">-->
+                    <!--<p style="margin-top: 15px"><span>专属链接</span></p>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="thum-content " style="width: 270px;">-->
+                <!--<p class="font font20 cr-e5">-->
+                    <!--<span style="width: 270px;display: inline-block;word-break: break-all;">{{recInfo['url']}}</span>-->
+                <!--</p>-->
+            <!--</div>-->
+
+        <!--</div>-->
+
+        <div class="thum-box pull-left" style="width: 270px;display: inline-block;">
+            <div style="margin: 0 auto; width: 280px;">
+                <div class="thum-top ggr clearfix">
+                    <div class="title ggr">
+                        <p style="margin-top: 15px"><span>抽成比例</span></p>
+                    </div>
+                </div>
+
+                <div class="thum-content ">
+                    <p class="font font20 cr-e5 clearfix">
+                        <span class="font font36 cr-ly pull-left" style="margin-left:15px; ">{{recInfo['proportion']}}%</span>
+                        <span class="pull-right" style="margin-right: 10px;"><button class="btn" onclick="myDilog1()" >修改</button></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="thum-box pull-left" style="margin-left: 4%;width: 270px;display: inline-block;">
+            <div class="pull-right">
+                <div class="thum-top bl clearfix">
+                    <div class="title bl">
+                        <p  style="margin-top: 15px"><span>抽成期限</span></p>
+                    </div>
+                </div>
+
+                <div class="thum-content " >
+                    <p class="font font20 cr-e5 clearfix">
+                        <span class="font font36 cr-ly pull-left" style="margin-left:15px; ">{{recInfo['validity']}}天</span>
+                        <span class="pull-right" style="margin-right: 10px;"><button class="btn" onclick="myDilog()" >修改</button></span>
+                        <span class="font font18 cr-ly pull-left" style="margin-left:15px; ">到期时间：{{recInfo['dueTime']}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <span style="width: 270px;display: inline-block;margin-left: 4%;margin-top: -50px;"><img src="{{recInfo['img']}}"></span>
+
+    </div>
+    <div class="content-box font18" style="background-color: #fff;margin-top:10px;padding-left: 40px;padding: 20px 40px;">
+        <button type="button" onclick="delrecommendDialog()"  class="btn btn-purple pull-right" style="margin-top: 20px;">删除</button>
+        <div><span>旧版链接：</span><span>{{recInfo['url']}}</span></div>
+        <div style="margin-top: 20px;"><span>长链接：</span><span>{{recInfo['longUrl']}}</span></div>
+        <div style="margin-top: 20px;"><span>短链接：</span><span>{{recInfo['tinyUrl']}}</span></div>
+    </div>
+    <div class="content-box" style="background: #FFF; text-align: left; margin-top:20px;  padding-bottom: 40px;">
+        <ul class="tab-nav clearfix">
+            <li class="tabs-nav active"><a href="#">抽成记录</a></li>
+            <form id="fiamlyform" class="form-search">
+                      <span class="find-search pull-right">
+                      <i class="icon-search icon-on-right bigger-110"></i>
+                      <input name="name" type="text" placeholder="用户名（uid）或昵称" >
+                      <button id="btn_search" type="button" class="btn btn-purple">搜索</button>
+                      </span>
+            </form>
+            <a class="date-calendar pull-right" style="margin-right: 20px;"><i class=" icon-calendar"></i> <input id="mydate" style="height: 35px;" placeholder="请输入日期" value=""></a>
+        </ul>
+    <div class="hr-d7"></div>
+    <div id="box1" class="tab-box">
+
+
+    <div class="row-fluid" style="margin-top: 30px;">
+        <div class="container-fluid">
+            <div style="margin-top: -30px">
+                <table id="tableList" class="table with-check table-purple">
+                    <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>抽成对象</th>
+                        <th>充值金额</th>
+                        <th>抽成比例</th>
+                        <th>抽成金额</th>
+                        <!-- <th></th> -->
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <div class="row-fluid">
+                    <div class="total pull-left">
+                         <p class="font font18 cr-gy pull-left">
+                            <span>充值金额总计：</span>
+                            <span id="sum">0</span>
+                        </p>
+                        <p class="font font18 cr-gy pull-left" style="margin-left: 20px;">
+                            <span>抽成金额总计：</span>
+                            <span id="total">0</span>
+                        </p>
+                    </div>
+                </div>
+                {% include "common/pagination.html" %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+<div id="delrecommendDialog" style="display:none">
+    <div style="height: 115px;line-height: 115px;text-align: center;font-size: 16px;">确定删除这个推广链接？</div>
+</div>
+
+<div id="myDilog2" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="addnumDialogForm2">
+        <div style="margin-top: 20px;">请输入输入新的备注：</div>
+        <input id="grantNum2" style="margin-top: 20px;width: 300px;height: 30px;" type="text">
+    </form>
+</div>
+
+<div id="myDilog1" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="addnumDialogForm1">
+        <div style="margin-top: 20px;">请输入输入新的抽成比例：</div>
+        <input id="grantNum1" onkeydown="onlyNum()" style="margin-top: 20px;width: 300px;height: 30px;" type="text">
+        %
+    </form>
+</div>
+
+<div id="myDilog" style="display:none;font-size: 16px;color: #9ea3a0;">
+    <form id="addnumDialogForm">
+        <div style="margin-top: 20px;">请输入输入新的期限：</div>
+        <input id="grantNum" onkeydown="onlyNum()" style="margin-top: 20px;width: 300px;height: 30px;" type="text">
+        天
+    </form>
+</div>
+
+<link rel="stylesheet" href="{{static_url('web/css/icon/style-icon.css')}}">
+<link rel="stylesheet" href="{{static_url('web/css/ui.daterangepicker.css')}}">
+<script src="{{static_url('web/js/daterangepicker.jQuery.js')}}"></script>
+<script src="{{static_url('web/js/jquery.ui.datepicker-zh-CN.js')}}"></script>
+<script type="text/javascript">
+
+    $(function() {
+        $('body').addClass('anchorinfo');
+
+        $('#mydate').daterangepicker({
+                    presetRanges:[
+                        //{text:'最近一周', dateStart:'yesterday-7days', dateEnd:'yesterday' },
+                        //{text:'最近一月', dateStart:'yesterday-1month', dateEnd:'yesterday' },
+                        //{text:'最近一年', dateStart:'yesterday-1year', dateEnd:'yesterday' }
+                    ],
+                    presets:{
+                        dateRange:'自定义时间'
+                    },
+                    rangeStartTitle:'起始日期',
+                    rangeEndTitle:'结束日期',
+                    nextLinkText:'下月',
+                    prevLinkText:'上月',
+                    doneButtonText:'确定',
+                    cancelButtonText:'取消',
+                    earliestDate:'',
+                    latestDate:Date.parse('today'),
+                    constrainDates:true,
+                    rangeSplitter:'-',
+                    dateFormat:'yy-mm-dd',
+                    closeOnSelect:false,
+                    onOpen:function(){
+                        $('.ui-daterangepicker-dateRange').click().parent().hide();
+                        $('.ui-daterangepickercontain').css({left:($('#mydate').offset().left-325)+'px'});
+                    },
+                    onClose:function(){
+                        getDataList();
+                    }
+                }
+        );
+
+        getDataList();
+        $('#grantNum1').on('blur',checkproportion);
+    });
+
+    function checkproportion(){
+        var a=$('#grantNum1').val();
+        if(a>100||a<1){
+            $('#proportion').attr('data',1);
+            alert('限1-100的数字');
+        }
+        else{
+            $('#proportion').attr('data',0);
+        }
+    }
+
+    var btn_search=global.doc('fiamlyform');
+    utils.addEvent(btn_search,'click',function(){
+        getDataList();
+    });
+    function getDataList(index){
+        var form=global.doc('fiamlyform');
+        var data={};
+        data.uid=$('#an_uid').val();
+
+        if($('#mydate').val() != ''){
+            var tempdate = $('#mydate').val().substring(0,10);
+            data.startTime = tempdate;//datetime_to_unix(tempdate);
+        }else{
+            data.startTime = '';
+        }
+
+        if($('#mydate').val() != '' && $('#mydate').val().length>13){
+            var tempdate = $('#mydate').val().substring(13,23);
+            data.endTime = tempdate;//datetime_to_unix(tempdate);
+        }else{
+            data.endTime = '';
+        }
+        if(data.endTime == ''){
+            data.endTime = data.startTime;
+        }
+
+        data.search = form.name.value;
+        data.page=index||1;
+        data.pageSize=global.pageSize;
+        $.ajax({
+            type:"POST",
+            data:data,
+            url:'/ajax/getBonusList',
+            dataType:'json',
+            success:function(res){
+                var data=res.data;
+                var tableList=document.getElementById("tableList");
+                var tbody= tableList.getElementsByTagName('tbody')[0];
+                dataTable.clearData(tbody);
+
+                var sum=document.getElementById('sum');
+                sum.innerHTML=data.allCash;
+
+                var total=document.getElementById('total');
+                total.innerHTML=data.allMoney;
+
+                var count=document.getElementById('count');
+                count.innerHTML=data.count;
+
+                for(var i=0;i<data.data.length;i++){
+                    addRow(tbody,data.data[i]);
+                }
+                if(!index||index==0){
+                    utilsPagination("#pagination",data.count,global.pageSize,function(page_index,jq){
+                        page_index+=1;
+                        getDataList(page_index);
+                    });
+                }
+            }
+
+        });
+    }
+
+    function addRow(table,data){
+
+        var row=table.insertRow();
+        var cell=row.insertCell(0);
+        var cell1=row.insertCell(1);
+        var cell2=row.insertCell(2);
+        var cell3=row.insertCell(3);
+        var cell4=row.insertCell(4);
+
+
+        /*var div=document.createElement("div"),
+                img=document.createElement("img"),
+                span=document.createElement("span");
+
+        div.className="anchor-info";
+        img.src=global.contract+data.avatar;
+        span.innerHTML=data.uid;
+
+        div.appendChild(img);
+        div.appendChild(span);*/
+
+        cell.innerHTML=ns_getTime(data.createTime);
+
+        var div=document.createElement("div"),
+                span2=document.createElement("span"),
+                span1=document.createElement("span");
+
+
+        div.className="anchor-info";
+        span2.innerHTML=data.nickName;
+        span1.innerHTML='('+data.uid+')';
+
+        div.appendChild(span2);
+        div.appendChild(span1);
+
+
+        cell1.appendChild(div);
+
+        cell2.innerHTML=data.total;
+        cell3.innerHTML=data.proportion+'%';
+        cell4.innerHTML=data.money;
+
+
+        return row;
+    }
+
+
+    //  修改期限1-比例2-期限3-备注
+    function myDilog(id){
+
+        $('#myDilog').dialog({
+            autoOpen:true,
+            width:400,
+            height:250,
+            title:'修改抽成期限',
+            resizable:false,
+            modal:true,
+            open:function(){
+
+            },
+            buttons: {
+                "确定": function () {
+                    var data={};
+                    data.type=2;
+                    data.uid=$('#an_uid').val();
+                    data.editInfo=$('#grantNum').val();
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/editRecInfo',
+                        dataType:'json',
+                        success:function(res){
+                            location.reload();
+                        }
+
+                    });
+
+
+                }//,
+                /*"取消": function () {
+
+
+                 }*/
+            }
+        });
+    }
+
+    //  修改比例
+    function myDilog1(id){
+
+        $('#myDilog1').dialog({
+            autoOpen:true,
+            width:400,
+            height:250,
+            title:'修改抽成比例',
+            resizable:false,
+            modal:true,
+            open:function(){
+
+            },
+            buttons: {
+                "确定": function () {
+                    var data={};
+                    data.type=1;
+                    data.uid=$('#an_uid').val();
+                    data.editInfo=$('#grantNum1').val();
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/editRecInfo',
+                        dataType:'json',
+                        success:function(res){
+                            location.reload();
+                        }
+
+                    });
+
+
+                }//,
+                /*"取消": function () {
+
+
+                 }*/
+            }
+        });
+    }
+
+    //  修改备注
+    function myDilog2(id){
+
+        $('#myDilog2').dialog({
+            autoOpen:true,
+            width:400,
+            height:250,
+            title:'修改备注',
+            resizable:false,
+            modal:true,
+            open:function(){
+
+            },
+            buttons: {
+                "确定": function () {
+                    var data={};
+                    data.type=3;
+                    data.uid=$('#an_uid').val();
+                    data.editInfo=$('#grantNum2').val();
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/editRecInfo',
+                        dataType:'json',
+                        success:function(res){
+                            location.reload();
+                        }
+
+                    });
+
+
+                }//,
+                /*"取消": function () {
+
+
+                 }*/
+            }
+        });
+    }
+
+
+    //  新用户推荐删除
+    function delrecommendDialog(id){
+
+        $('#delrecommendDialog').dialog({
+            autoOpen:true,
+            width:440,
+            height:250,
+            title:'删除',
+            resizable:false,
+            modal:true,
+            open:function(){
+            },
+            buttons: {
+                "确定": function () {
+                    var data={};
+                    data.id=getUrlParam('id');
+                    $.ajax({
+                        type:"POST",
+                        data:data,
+                        url:'/ajax/delRec',
+                        dataType:'json',
+                        success:function(res){
+                            if(res.code!=0){
+                                alert(res.info);
+                            }
+                            location.href='/pull/reclist';
+                        }
+
+                    });
+
+                }
+            }
+        });
+    }
+</script>
