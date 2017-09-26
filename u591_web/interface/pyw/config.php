@@ -8,6 +8,7 @@ $key_arr = array(
 		8=>array(
 				'ios'=>array('appSecret'=>'8d1539e6f15aef8d'),
 				'ios1'=>array('appSecret'=>'281031629f50d13b'),
+				'ios3'=>array('appSecret'=>'b49e3a7b7d2b0160'),
 		)
 );
 ?>

@@ -36,12 +36,8 @@ if(empty($tokenArr[0]) || empty($tokenArr[1])){
 }
 $openid = $tokenArr[0];
 $accesstoken = $tokenArr[1];
-if($channel == 'qq'){
-	$appid = $key_arr[$gameId][$channel]['appId'];
-	$appkey = $key_arr[$gameId][$channel]['appKey'];
-} elseif ($channel == 'weixin') {
-	$appid = $key_arr[$gameId][$channel]['appId'];
-}
+$appid = $key_arr[$gameId][$channel]['appId'];
+$appkey = $key_arr[$gameId][$channel]['appKey'];
 
 // 调试环境: ysdktest.qq.com
 // 正式环境: ysdk.qq.com

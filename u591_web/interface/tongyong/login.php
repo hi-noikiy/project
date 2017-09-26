@@ -528,6 +528,14 @@ switch ($sdkType){
 				$rs = https_post($url, $data);
 				echo $rs;
 				break;
+	case 239: //vivo
+			$url = $webHost."/interface/vivo/login.php";
+			$data['user_token'] = $p;
+			$data['uid'] = $token;
+			$data['game_id'] = $gameId;
+			$rs = https_post($url, $data);
+			echo $rs;
+			break;
     case 700:
         $url = $webHost.'/interface/guanwang/login.php';
         $data['p'] = $p;

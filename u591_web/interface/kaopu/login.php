@@ -18,15 +18,13 @@
 include_once 'config.php';
 $post = serialize($_POST);
 $get = serialize($_GET);
-
 //$str ='a:3:{s:3:"sid";s:100:"android_99000807964894_1_kaopu_0E0757FF95EFC58D5598190A78E0A920_2f15ed0f332e7ef040057feb1d827b04_1.0";s:5:"token";s:32:"27CF0744806EAC6CFD6D78550DD7C44A";s:7:"game_id";s:1:"8";}';
 //$str = unserialize($str);
 //$_REQUEST = $str;
-write_log(ROOT_PATH."log","kaopu_login_all_","post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
+write_log(ROOT_PATH."log","kaopu_login_all_","post=$post, get=$get, host={$host}".date("Y-m-d H:i:s")."\r\n");
 $sid = trim($_REQUEST['sid']);
 $game_id = trim($_REQUEST['game_id']);
 $token = $_REQUEST['token']; //用户通信token
-
 if(!$sid || !$game_id || !$token){
     write_log(ROOT_PATH."log","kaopu_login_error_"," parameters error , post=$post, get=$get,  ".date("Y-m-d H:i:s")."\r\n");
     exit("2 0");
@@ -40,14 +38,18 @@ $channelkey = $exSid[3];
 $openid = $exSid[4];  //用户id
 $sign = $exSid[5];
 $version = $exSid[6];
+if(preg_match("/[^\.]+\.kpzs\.com$/", $token)){//传的是url
+	$url = $token;
+}else{
+	$tag = $arr_key[$game_id]['APPKEY'];
+	$tagid = $arr_key[$game_id]['SECRETKEY'];
+	$appid = $arr_key[$game_id]['APPID'];
+	
+	$sign = md5($appid.$channelkey.$imei.$r.$tag.$tagid.$version.$four_r[$r]);
+	
+	$url = "http://sdk.geturl.kpzs.com/api/UserAuthUrl?tag=$tag&tagid=$tagid&appid=$appid&version=$version&imei=$imei&channelkey=$channelkey&r=$r&sign=$sign";
+}
 
-$tag = $arr_key[$game_id]['APPKEY'];
-$tagid = $arr_key[$game_id]['SECRETKEY'];
-$appid = $arr_key[$game_id]['APPID'];
-
-$sign = md5($appid.$channelkey.$imei.$r.$tag.$tagid.$version.$four_r[$r]);
-
-$url = "http://sdk.geturl.kpzs.com/api/UserAuthUrl?tag=$tag&tagid=$tagid&appid=$appid&version=$version&imei=$imei&channelkey=$channelkey&r=$r&sign=$sign";
 
 $data = array();
 $url_result = https_post($url, $data);

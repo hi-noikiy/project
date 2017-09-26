@@ -285,6 +285,15 @@ $appleIdVal = array(
 		'brtyesgvv_3000'               =>'3000',
 		'yhrebbgf_6000'               =>'6000',
 		'ngdsf'               =>'360',
+		
+		'cegnc_60'                 =>'60',
+		'vdbhrtvbe_300'                =>'300',
+		'brdhntdb_600'                =>'600',
+		'btdhtb_900'                =>'900',
+		'bhtrnsz_1500'               =>'1500',
+		'bdbrtsgvv_3000'               =>'3000',
+		'yhnrhrgf_6000'               =>'6000',
+		'nrtrn_25'               =>'360',
 
 
     'scgpokevs_80'      => array('0.99','80', 'USD'), //美元 元宝

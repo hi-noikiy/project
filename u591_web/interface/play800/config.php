@@ -484,5 +484,15 @@ $key_arr = array(
     				'site'      =>'kdyg_ios109',
     				'key'       =>'4abd537e5c0989d0bc32d01bb16cb981',
     		),
+    		'ios112'=>array(
+    				'gid'       =>'9100771550121581',
+    				'site'      =>'kdyg_ios111',
+    				'key'       =>'c5757f7e1da4df4226e34d400b0752a3',
+    		),
+    		'ios113'=>array(
+    				'gid'       =>'9100771550241581',
+    				'site'      =>'kdyg_ios112',
+    				'key'       =>'44b9948a75d7f6ddaf5b7187f2375297',
+    		),
     ),
 );

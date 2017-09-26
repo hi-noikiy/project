@@ -141,7 +141,7 @@ class Api
 			$cookie["session_id"] = "openid";
 			$cookie["session_type"] = "kp_actoken";
 		}
-		else if( $accout_type == "wx" )
+		else if( $accout_type == "weixin" )
 		{
 			$cookie["session_id"] = "hy_gameid";
 			$cookie["session_type"] = "wc_actoken";

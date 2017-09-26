@@ -21,12 +21,14 @@ $gameId = intval($_REQUEST['game_id']);
 $orderId = $_POST['order_id'];
 $serverId = $_POST['server_id'];
 global $key_arr;
-if($channel == 'qq'){
+/*if($channel == 'qq'){
 	$appid = $key_arr[$gameId][$channel]['appId'];
 	$appkey = $key_arr[$gameId][$channel]['appKey'];
 } elseif ($channel == 'weixin') {
 	$appid = $key_arr[$gameId][$channel]['appId'];
-}
+}*/
+$appid = $key_arr[$gameId][$channel]['appId'];
+$appkey = $key_arr[$gameId][$channel]['appKey'];
 // 应用支付基本信息,需要替换为应用自己的信息，必须和客户端保持一致
 // 需要登录腾讯开放平台管理中心 http://op.open.qq.com/，选择已创建的应用进入，然后进入支付结算，完成支付的接入配置
 $pay_appid = $key_arr[$gameId]['pay']['appId'];
@@ -35,7 +37,7 @@ $pay_appkey = $key_arr[$gameId]['pay']['appKey'];
 // 调试环境: ysdktest.qq.com
 // 正式环境: ysdk.qq.com
 // 调试环境仅供调试时调用，调试完成发布至现网环境时请务必修改为正式环境域名
-$server_name = 'ysdktest.qq.com';
+$server_name = 'ysdk.qq.com';
 
 // 用户的OpenID，从客户端YSDK登录返回的LoginRet获取
 $openid = $_POST['openid'];
@@ -76,8 +78,9 @@ $result = @mysqli_fetch_array($query);
 if($result['rpCode']==1 || $result['rpCode']==10){
 	exit("success");
 }
-$accout_type='qq';
+$accout_type=$channel;
 $ret = get_balance_m($sdk, $params,$accout_type);
+write_log(ROOT_PATH."log","ysdk_callback_result_log_",json_encode($ret).",  post=$post, ".date("Y-m-d H:i:s")."\r\n");
 if($ret['ret'] == 0){
 	$amt = intval($_POST['amt']);
 	if($amt == 0)

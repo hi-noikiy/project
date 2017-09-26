@@ -1,12 +1,12 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
 
-$filename = dirname(__FILE__)."/payPublicKey1.pem";
+$filename = dirname(__FILE__)."/payPublicKey.pem";
 	
 	@chmod($filename, 0777);
 	@unlink($filename);
 
-$devPubKey = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOAZ4rFUbVmfeoLvy7Fv6rQfo8Mqg7mEZnF5v0jq8MNOQ1YFqISUFoMQM6Z+zbJYJUFWBGv8Qd0R/js24wrExOECAwEAAQ==";
+$devPubKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjxIdCZv3NALmKmP0F7+OysvvijphsxRD++BhS7Sl97YhWRemVjpMSBaA/w6DDGCZrpIQdolyDU3JUqlkLfyoZE/V9qzroJtbcbwinOWvOWD/EcOKsKt8i2AWXDzwkktpHxTJPe8P4wtfYX4chD+3wh9I3NePsQZnilnrgBxVmNBU2xpvU+vFmMOev93AR6zzn/YJegzopgzYz/+35qGZ/3XD0bUqy93iHLYsX0UEuUa+Q2+WKa1INmDwrVl9l6Su35dDekBgyjM8P+8GXDOKRdvsiFbT+IMPDWIod7zSiMM9qkXmhD340k6zr0rOkb2cEWvcZUgL6M24eSSSMfecVwIDAQAB";
 $begin_public_key = "-----BEGIN PUBLIC KEY-----\r\n";
 $end_public_key = "-----END PUBLIC KEY-----\r\n";
 

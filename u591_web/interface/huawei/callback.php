@@ -55,37 +55,39 @@ $content = "";
 $i = 0;
 foreach($valueMap as $key=>$value)
 {
-	if($key != "sign" )
+	if($key != "sign" && $key != "signType")
 	{
 		$content .= ($i == 0 ? '' : '&').$key.'='.$value;
 	}
 	$i++;
 }
-$filename = dirname(__FILE__)."/payPublicKey1.pem";
+/*$filename = dirname(__FILE__)."/payPublicKey1.pem";
 
 if(!file_exists($filename))
 {
 	write_log(ROOT_PATH."log","huawei_callback_error_","file is not exit, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 	exit($fail);
 }
-$pubKey = @file_get_contents($filename);
+$pubKey = @file_get_contents($filename);*/
+$extendsInfo = $valueMap["requestId"];
+$extendsInfoArr = explode('_', $extendsInfo);
+$gameId = $extendsInfoArr[0];
+$serverId = $extendsInfoArr[1];
+$accountId = $extendsInfoArr[2];
+$type = $extendsInfoArr[3];
+$pubKey = $key_arr[$gameId][$type]['appKey'];
 $openssl_public_key = @openssl_get_publickey($pubKey);
 write_log(ROOT_PATH."log","huawei_callback_result_","content={$content},sign={$sign},openssl_public_key={$pubKey},post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
-$ok = @openssl_verify($content,base64_decode($sign), $openssl_public_key);
+$ok = @openssl_verify($content,base64_decode($sign), $openssl_public_key,OPENSSL_ALGO_SHA256);
 @openssl_free_key($openssl_public_key);
 
 $result = "";
 
 if($ok)
 {
-	$extendsInfo = $valueMap["extReserved"];
-	$extendsInfoArr = explode('_', $extendsInfo);
-	$gameId = $extendsInfoArr[0];
-	$serverId = $extendsInfoArr[1];
-	$accountId = $extendsInfoArr[2];
-	$type = $extendsInfoArr[3];
+	write_log(ROOT_PATH."log","huawei_callback_result_","isok,post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 	$conn = SetConn(88);
-	$orderId = $valueMap["extReserved"];
+	$orderId = $extendsInfo;
 	$sql = "select rpCode from web_pay_log where OrderID = '$orderId' limit 1;";
 	$query = mysqli_query($conn, $sql);
 	$result = @mysqli_fetch_array($query);
