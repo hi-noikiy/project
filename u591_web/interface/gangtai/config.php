@@ -25,3 +25,13 @@ $key_arr = array(
     )
 );
 
+function mydb(){
+	return ConnServer("203.66.13.158","gameusertj","df,yyo67.yyo,ddjh","pokegametw");
+}
+function subTable($accountId, $table, $sum){
+	$suffix = $accountId%$sum;
+	$s = sprintf('%03d', $suffix);
+	return $table.$s;
+}
+
+
