@@ -68,7 +68,7 @@ if(isset($token_data['sub'])){
         exit("0 $insert_id");
     }
     //判断是否越南或者新马帐号登录
-    if(substr($type,0,6) == 'yuenan' || $type == 'xinma'){
+    if(substr($type,0,6) == 'yuenan' || $type == 'xinma' || substr($type,0,6) == 'nanmei'){
         $sql = "select account_id from account_ggp where ggp_account='$channel_account' limit 1;";
         if(false == $query = mysqli_query($conn, $sql)){
             write_log(ROOT_PATH."log","google_login_error_","sql error,sql=$sql,". mysqli_error($conn)." ".date("Y-m-d H:i:s")."\r\n");

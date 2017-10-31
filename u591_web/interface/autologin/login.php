@@ -63,7 +63,7 @@ if($info['id']){
 	$sql = "select game_id, channel, account_id from web_login_auto where token='$token' limit 1";
 	$conn = SetConn(88);
 	if(false == $query = mysqli_query($conn,$sql)){
-		write_log(ROOT_PATH."log","uc_login_error_","sql=$sql, mysql error, ".mysqli_error($conn)." ".date("Y-m-d H:i:s")."\r\n");
+		write_log(ROOT_PATH."log","autologin_error_","sql=$sql, mysql error, ".mysqli_error($conn)." ".date("Y-m-d H:i:s")."\r\n");
 		exit('3 0');
 	}
 	$result = @mysqli_fetch_assoc($query);
@@ -73,11 +73,12 @@ if($info['id']){
 		//web没有记录
 		$addtime = time();
 		$expiredTime = $addtime+7200;
-		$addSql = "insert info web_login_auto (game_id, channel, account_id, token, expired_time, addtime)";
+		$addSql = "insert into web_login_auto (game_id, channel, account_id, token, expired_time, addtime)";
 		$addSql .=" values('$game_id', '$channel', '$accountId', '$token', '$expiredTime', '$addtime')";
 		if(mysqli_query($conn,$addSql)){
 			exit("0 $accountId");
 		}
+		write_log(ROOT_PATH."log","autologin_error_"," sql=$sql, mysql error, ".mysqli_error($conn)." ".date("Y-m-d H:i:s")."\r\n");
 	}
 } else {
 	exit('4 0');

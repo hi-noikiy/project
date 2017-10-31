@@ -45,7 +45,8 @@ class CommonController extends Controller{
          * 由于u_player合服并未合表
          * 所以表还是原来的表
          */
-        $sid = togetherServer($serverId);
+        //$sid = togetherServer($serverId);
+        $sid = $serverId;
         $conn = SetConn($sid);
         $table = subTable($serverId, 'u_player', 1000);
         $sql = "select id,name,account_id from $table where $where limit 1";
@@ -92,7 +93,8 @@ class CommonController extends Controller{
 44=>'创世徽章能量',
 45=>'狩猎积分',
 46=>'充值积分',
-47=>'魔晶'
+47=>'魔晶',
+            		48=>'洛托姆能量石',
             );
         }
     }

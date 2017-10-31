@@ -494,5 +494,30 @@ $key_arr = array(
     				'site'      =>'kdyg_ios112',
     				'key'       =>'44b9948a75d7f6ddaf5b7187f2375297',
     		),
+    		'ios114'=>array(
+    				'gid'       =>'9100771552511581',
+    				'site'      =>'kdyg_ios113',
+    				'key'       =>'dd7a1a9ec6c111ea81ae5bdd1d0f85ff',
+    		),
+    		'ios115'=>array(
+    				'gid'       =>'9100771554101581',
+    				'site'      =>'kdyg_ios114',
+    				'key'       =>'0d4255eef9635848019c68f852c71a99',
+    		),
+    		'ios116'=>array(
+    				'gid'       =>'9100771556751581',
+    				'site'      =>'kdyg_ios115',
+    				'key'       =>'adee23d872902fba6523056bf44c4ec5',
+    		),
+    		'ios117'=>array(
+    				'gid'       =>'9100771556761581',
+    				'site'      =>'kdyg_ios116',
+    				'key'       =>'de9f348f2a10346a46e5e365a1dc260d',
+    		),
+    		'ios118'=>array(
+    				'gid'       =>'9100771557121581',
+    				'site'      =>'kdyg_ios117',
+    				'key'       =>'086fb4a08fe7b373cbb14281a073ecb4',
+    		),
     ),
 );

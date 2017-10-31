@@ -26,7 +26,7 @@ $key_arr = array(
 );
 
 function mydb(){
-	return ConnServer("203.66.13.158","gameusertj","df,yyo67.yyo,ddjh","pokegametw");
+	return ConnServer("203.66.13.158:3356","gameusertj","df,yyo67.yyo,ddjh","pokegametw");
 }
 function subTable($accountId, $table, $sum){
 	$suffix = $accountId%$sum;

@@ -34,7 +34,7 @@ if($conn == false){
 }
 $sql = "select ggp_account from account_ggp where account_id='{$array['account_id']}'";
 if(false == $query = mysqli_query($conn,$sql)){
-    write_log(ROOT_PATH."log","bind_ggd_check_error_","mysql query error. ".date("Y-m-d H:i:s")."\r\n");
+    write_log(ROOT_PATH."log","bind_ggd_check_error_",$sql."mysql query error. ".date("Y-m-d H:i:s")."\r\n");
     exit(json_encode(array('status'=>1, 'msg'=>'mysql query error.')));
 
 }
@@ -49,6 +49,8 @@ if(!empty($result)){
             $returnArr['google'] = 'google';
         } elseif (stripos($v['ggp_account'],'@fb')){
             $returnArr['fb'] = 'fb';
+        }elseif (stripos($v['ggp_account'],'@vk')){
+        	$returnArr['vk'] = 'vk';
         }
     }
 }

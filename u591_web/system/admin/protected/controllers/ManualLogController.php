@@ -21,7 +21,8 @@ class ManualLogController extends CommonController{
         $condition[] = "status='$status'";
         $condition['param'] = array(
             'dwInfo'=>$this->getFenbao(),'status'=>$status,'statusArr'=>$statusArr,'typeArr'=>$typeArr,
-            'gameInfo'=>$this->getGame(), 'gameServer'=>$this->getServer(),'emp'=>$this->getEmp());
+            'gameInfo'=>$this->getGame(), 'gameServer'=>$this->getServer()//,'emp'=>$this->getEmp()
+            );
 
     }
 
@@ -65,10 +66,16 @@ class ManualLogController extends CommonController{
             $this->display('获取流程等级出错.', 0);
         $msg = '';
         if($maxLevel == $this->mangerInfo['level']){
+        	$serverId = $rs->server_id;
+        	$sid = togetherServer($serverId);
+        	$table = subTable($sid, 'u_card', 1000);
+        	$conn = SetConn($sid);
+        	if($conn == false)
+        		$this->display('链接游服数据库失败.', 0);
             //流程已经到最后一步了，执行sql
             $accountId = $rs->account_id;
             $accountName = $rs->account_name;
-            $serverId = $rs->server_id;
+            
             $emoney = $rs->emoney;
             $orderId = $rs->order_id;
             $gameId = $rs->game_id;
@@ -87,6 +94,8 @@ class ManualLogController extends CommonController{
                         $emoney = $rs->emoney*2;
                     elseif($rs->payCode == 'USD') //美元
                         $emoney = round($rs->emoney)*60;
+                    elseif($rs->payCode == 'VND') //越南盾
+                    	$emoney = round($rs->emoney/250);
                 }
                 $this->writeCard($orderId,$accountId, $serverId, $emoney);
                 $manualLogModel->updateByPk($id, array('status'=>2));
@@ -103,6 +112,57 @@ class ManualLogController extends CommonController{
         $this->display($msg, 1);
     }
 
+    //一健审核
+    public function actionOneKeyPass(){
+    	$erpLogModel = new ErpLog;
+    	$manualLogModel = ManualLog::model();
+    	$erpLevel = new ErpLevel;
+    	$info = $manualLogModel->getInfo();
+    	if(!$info)
+    		$this->display('没有要审核的记录.', 0);
+    	$maxLevel = $erpLevel->getMaxLevel();
+    	if($maxLevel != $this->mangerInfo['level'])
+    		$this->display('你没有该权限.', 0);
+    	$msg = '';
+    	foreach ($info as $rs){
+    		$serverId = $rs->server_id;
+    		$sid = togetherServer($serverId);
+    		$conn = SetConn($sid);
+    		if($conn == false)
+    			$this->display('链接游服数据库失败.', 0);
+    		$id = $rs->id;
+    		$accountId = $rs->account_id;
+            $accountName = $rs->account_name;
+            $emoney = $rs->emoney;
+            $orderId = $rs->order_id;
+            $gameId = $rs->game_id;
+            $payCode = $rs->payCode;
+            $addTime = date('Y-m-d H:i:s');
+            $dwFenBaoID = $rs->dwFenBaoID;
+
+            $sql = "insert into web_pay_log (CPID,PayCode,PayID,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,rpTime,game_id, rpCode)";
+            $sql .=" VALUES ('9', '$payCode', '$accountId', '$accountName', '$serverId', '$emoney', '$orderId','$dwFenBaoID','$addTime', '$addTime', '$gameId', '1')";
+            $connection = Yii::app()->db;
+            $command = $connection->createCommand($sql);
+            if($command->execute()){
+            	if(in_array($rs->payCode, array('USD', 'TWD','VND'))){
+            		if($rs->payCode == 'TWD') //台湾币
+            			$emoney = $rs->emoney*2;
+            		elseif($rs->payCode == 'USD') //美元
+            			$emoney = round($rs->emoney)*60;
+            		elseif($rs->payCode == 'VND') //越南盾
+                    	$emoney = round($rs->emoney/250);
+            	}
+            	$this->writeCard($orderId,$accountId, $serverId, $emoney);
+            	$manualLogModel->updateByPk($id, array('status'=>2));
+            	$erpLogModel->saveData($this->getId(), '流程结束', $rs->id);
+            
+            	$msg .= "流程结束,审核通过.";
+            } else
+            	$msg .='web insert order error.';
+    	}
+    	$this->display('一键审核通过.',1);
+    }
     public function actionAdd(){
         $playerList = $accountInfo = array();
         $type = isset($_POST['type']) ? intval($_POST['type']) : 0;
@@ -164,7 +224,8 @@ class ManualLogController extends CommonController{
                  * 由于u_player合服并未合表
                  * 所以表还是原来的表
                  */
-                $sid = togetherServer($serverId);
+                //$sid = togetherServer($serverId);
+                $sid = $serverId;
                 $conn = SetConn($sid);
                 $table = subTable($serverId, 'u_player', 1000);
                 $sql = "select id,name,serverid from $table where serverid='$serverId' and account_id='$accountId'";
@@ -271,6 +332,11 @@ class ManualLogController extends CommonController{
             $sql_insert="insert into $table(data, account_id, ref_id, time_stamp, used, type, server_id)";
             $sql_insert=$sql_insert." values('$payMoney', $accountId, '$orderId',$time_stamp, 0, '$type', '$serverId')";
             $msg = @mysqli_query($conn,$sql_insert) ? $orderId : false;
+            if($msg){
+            	write_log(ROOT_PATH.'log', 'add_order_success_', "sql=$sql_insert".date('Y-m-d H:i:s')."\r\n");
+            }else{
+            	write_log(ROOT_PATH.'log', 'add_order_fail_', mysqli_error($conn).",sql=$sql_insert".date('Y-m-d H:i:s')."\r\n");
+            }
         }
         @mysqli_close($conn);
         return $msg;

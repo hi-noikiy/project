@@ -37,7 +37,7 @@ $order_info = $_POST['order_info'];
 $data = "access_key=".$access_key."&amount=".$amount."&command=".$command."&order_id=".$order_id."&order_info=".$order_info."&return_url=".$return_url;
 $signature = hash_hmac("sha256", $data, $secret);
 $data.= "&signature=".$signature;
-$url = 'http://api.1pay.vn/bank-charging/service';
+$url = 'http://api.1pay.vn/bank-charging/service/v2';
 $json_bankCharging = execPostRequest($url, $data);
 //Ex: {"pay_url":"http://api.1pay.vn/bank-charging/sml/nd/order?token=LuNIFOeClp9d8SI7XWNG7O%2BvM8GsLAO%2BAHWJVsaF0%3D", "status":"init", "trans_ref":"16aa72d82f1940144b533e788a6bcb6"}
 write_log(ROOT_PATH."log","1pay_bank_result_","result=$json_bankCharging. post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");

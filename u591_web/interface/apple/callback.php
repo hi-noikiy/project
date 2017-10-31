@@ -22,7 +22,7 @@ $extArr = explode('_', $ext);
 $game_id = $extArr[0];
 $server_id = $extArr[1];
 $account_id = $extArr[2];
-//$type = $extArr[3];
+$type = $extArr[3];
 $sandbox = $extArr[4];
 
 if($sandbox == 'sandbox')
@@ -74,7 +74,16 @@ foreach ($orderInfo as $v){
     $quantity = $v['quantity'];
     $productId = $v['product_id'];
     $orderId = $v['transaction_id'];
-    $money = $appleIdVal[$productId];
+
+    if(is_array($appleIdVal[$productId])){
+        $money = $appleIdVal[$productId][0];
+        $yuanbao = $appleIdVal[$productId][1];
+        $currency = $appleIdVal[$productId][2];
+    } else {
+        $money = $appleIdVal[$productId];
+        $yuanbao = $money * 10;
+        $currency = 'CNY';
+    }
     $sql = " select count(id) count from web_pay_log where OrderID='$orderId' limit 1;";
     $query = @mysqli_query($conn, $sql);
     $result_count = @mysqli_fetch_assoc($query);
@@ -86,9 +95,10 @@ foreach ($orderInfo as $v){
     if($status==0 && $quantity>0 && $money){
         $Add_Time = date("Y-m-d H:i:s");
         $rpCode = 1;
-        $insert_sql = " insert into web_pay_log(CPID,ServerID,PayMoney,PayName,dwFenBaoID,Add_Time,rpCode,PayID,OrderID,game_id) values('19','$server_id','$money','$PayName','$dwFenBaoID','$Add_Time','$rpCode','$account_id','$orderId','$game_id') ";
+        $insert_sql = " insert into web_pay_log(CPID,PayCode,ServerID,PayMoney,PayName,dwFenBaoID,Add_Time,rpCode,PayID,OrderID,game_id) values('19','$currency','$server_id','$money','$PayName','$dwFenBaoID','$Add_Time','$rpCode','$account_id','$orderId','$game_id') ";
         if(mysqli_query($conn, $insert_sql)){
-            WriteCard_money(1,$server_id, $money,$account_id, $orderId);//写入游戏库
+            $gameMoney = $yuanbao;//转化为RMB
+            WriteCard_money(1,$server_id, $gameMoney,$account_id, $orderId,8,0,$type);//写入游戏库
             //统计数据
             sendTongjiData($game_id,$account_id,$server_id,$dwFenBaoID,0,$money,$orderId,1,$tjAppId);
             $returnMsg = 'success';

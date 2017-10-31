@@ -536,6 +536,22 @@ switch ($sdkType){
 			$rs = https_post($url, $data);
 			echo $rs;
 			break;
+	case 240: //49you
+				$url = $webHost."/interface/49you/login.php";
+				$data['user_token'] = $p;
+				$data['uid'] = $token;
+				$data['game_id'] = $gameId;
+				$rs = https_post($url, $data);
+				echo $rs;
+				break;
+	case 241: //vk
+					$url = $webHost."/interface/vk/login.php";
+					$data['user_token'] = $p;
+					$data['uid'] = $token;
+					$data['game_id'] = $gameId;
+					$rs = https_post($url, $data);
+					echo $rs;
+					break;
     case 700:
         $url = $webHost.'/interface/guanwang/login.php';
         $data['p'] = $p;
@@ -545,8 +561,8 @@ switch ($sdkType){
         break;
      case 701:
         	$url = $webHost.'/interface/autologin/login.php';
-        	$data['token'] = $p;
-        	$data['channel'] = $token;
+        	$data['token'] = $token;
+        	$data['channel'] = $p;
         	$data['game_id'] = $gameId;
         	$rs = https_post($url, $data);
         	echo $rs;

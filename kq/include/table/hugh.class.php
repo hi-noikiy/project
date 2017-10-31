@@ -173,7 +173,7 @@ class hugh extends getList {
 						$threeGear=strtotime($preWorkDay.' 23:30:00');
 						$menjinTime=strtotime($preWorkDay.' '.$lastMenjin);
 						$zhiwenTime=strtotime($preWorkDay.' '.$lastZhiwen);		
-						if($menjinTime> $threeGear || $zhiwenTime>$threeGear){
+						if($menjinTime>= $threeGear || $zhiwenTime>=$threeGear){
 							//可以调休早上
 							$morningTime=strtotime($array ['toTime'].' 12:00:00');
 							if($entime>=$morningTime || $sttime>=$morningTime){

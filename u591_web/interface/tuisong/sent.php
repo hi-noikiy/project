@@ -1,20 +1,23 @@
 <?php
 error_reporting(0);
-$reg_id = "466f5ad24d3959fe69c0313ea0b84ebd280b5513c1f62e597927f274122bd1cd";
-$message = '推送测试';
-$type = 'iosnm';
-$reg_id = $_GET['reg_id'];
-$message = $_GET['message'];
-$type = $_GET['type'];
-send_notify($type,$reg_id,$message);
+include_once 'config.php';
+$post = serialize($_POST);
+write_log(ROOT_PATH."log","tuisong_info_","post=$post, ".date("Y-m-d H:i:s")."\r\n");
+$reg_id = $_POST['regid'];
+$message = $_POST['message'];
+$type = $_POST['type'];
+$apikey = $key_arr[8][$type]['apiKey'];
+if(send_notify($type,$reg_id,$message,$apikey)){
+	write_log(ROOT_PATH."log","tuisong_success_","post=$post ".date("Y-m-d H:i:s")."\r\n");
+}else{
+	write_log(ROOT_PATH."log","tuisong_error_","post=$post ".date("Y-m-d H:i:s")."\r\n");
+}
 
-function send_notify($type,$reg_id,$message){
-	include_once 'config.php';
-	$apikey = $key_arr[8][$type]['apiKey'];
-	if(substr($type,0,6) == 'android'){
-		send_gcm_notify($reg_id,$message,$apikey);
+function send_notify($type,$reg_id,$message,$apikey){
+	if(substr($type,0,7) == 'android'){
+		return send_gcm_notify($reg_id,$message,$apikey);
 	}else{
-		send_apn_notify($reg_id,$message,$apikey);
+		return send_apn_notify($reg_id,$message,$apikey);
 	}
 }
 

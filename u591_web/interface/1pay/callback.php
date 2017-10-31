@@ -33,7 +33,7 @@ if($response_code == "00") {
     $data = "access_key=".$access_key."&command=".$command."&trans_ref=".$trans_ref;
     $signature = hash_hmac("sha256", $data, $secret);
     $data.= "&signature=" . $signature;
-    $url = 'http://api.1pay.vn/bank-charging/service';
+    $url = 'http://api.1pay.vn/bank-charging/service/v2';
     $json_bankCharging = execPostRequest($url, $data);
 
     $decode_bankCharging=json_decode($json_bankCharging,true);  // decode json

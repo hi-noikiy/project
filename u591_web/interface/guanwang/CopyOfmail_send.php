@@ -73,10 +73,10 @@ $message = "亲爱的$email<br />
 福州海牛游戏软件开发有限公司版权所有";
 
 $sendMail = SendMail($email, $title, $message);
-write_log(ROOT_PATH."log","mail_sent_info_log_","post=$post, $sendMail, ".date("Y-m-d H:i:s")."\r\n");
 if($sendMail)
 	exit(json_encode(array('status'=>0, 'msg'=>'success')));
 else{
+	write_log(ROOT_PATH."log","mail_sent_error_log_","post=$post, $sendMail, ".date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'fail')));
 }
 function SendMail($address,$title,$message){

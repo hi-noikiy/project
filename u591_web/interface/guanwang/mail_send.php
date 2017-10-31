@@ -46,8 +46,12 @@ if($mySign != $sign)
 
 $conn = SetConn('88');
 $sql = "select * from web_message where game_id='$gameId' and username='$email' limit 1";
-if(false == $query = mysqli_query($conn,$sql))
+if(false == $query = mysqli_query($conn,$sql)){
+	write_log(ROOT_PATH."log","mail_sent_error_log_","sql error.sql=$sql, ".mysqli_error($conn)." , ".date('Y-m-d H:i:s')."\r\n");
+	//write_log(ROOT_PATH.'log','bindall_login_error_',"sql error.sql=$insert_sql, ".mysqli_error($conn)." , ".date('Y-m-d H:i:s')."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'web server sql error.')));
+}
+
 
 $rs = @mysqli_fetch_assoc($query);
 $nowTime = time();
@@ -57,8 +61,11 @@ if(!empty($rs['addtime'])){
 }
 $code = rand(1000,9999);
 $iSql= "insert into web_message(game_id, username, code, addtime) values('$gameId', '$email', '$code', '$nowTime')";
-if(false == mysqli_query($conn,$iSql))
+if(false == mysqli_query($conn,$iSql)){
+	write_log(ROOT_PATH."log","mail_sent_error_log_","sql error.sql=$iSql, ".mysqli_error($conn)." , ".date('Y-m-d H:i:s')."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'web server sql error.')));
+}
+	
 
 
 $title = '海牛网络登陆信';
@@ -77,6 +84,7 @@ write_log(ROOT_PATH."log","mail_sent_info_log_","post=$post, $sendMail, ".date("
 if($sendMail)
 	exit(json_encode(array('status'=>0, 'msg'=>'success')));
 else{
+	write_log(ROOT_PATH."log","mail_sent_error_log_","post=$post, $sendMail, ".date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'fail')));
 }
 function SendMail($address,$title,$message){

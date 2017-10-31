@@ -50,14 +50,14 @@ class PayLogController extends Controller{
 		
 		if(isset($_POST['clientType']) && !empty($_POST['clientType']))
 			$condition[]="clienttype = '{$_POST['clientType']}'";
-		$config = Config::model()->getInfo();
+/* 		$config = Config::model()->getInfo();
 		if(in_array($config['openbt'], array('0','1'))){
 			if($config['openbt'] == 0){
 				$condition[]="isbt = 0";
 			}else{
 				$condition[]="isbt in(0,1,6)";
 			}
-		}	
+		}	 */
 		if(isset($_POST['sMoney']) && !empty($_POST['sMoney'])  &&  isset($_POST['eMoney']) && !empty($_POST['eMoney'])){
 			$sMoeny = intval($_POST['sMoney']);
 			$eMoney = intval($_POST['eMoney']);
@@ -111,6 +111,8 @@ class PayLogController extends Controller{
                     $payMoney = $v->PayMoney*2;
                 elseif($v->PayCode == 'USD') //美元
                     $payMoney = round($v->PayMoney)*60;
+                elseif($rs->payCode == 'VND') //越南盾
+                	$payMoney = round($rs->PayMoney/250);
                 else //RMB
                     $payMoney = $v->PayMoney;
                 $rsCard = $this->writeCard($orderId, $accountId, $serverId, $payMoney);
@@ -218,14 +220,14 @@ class PayLogController extends Controller{
 		//如果账号游戏id不为0 查询该游戏ID的订单
 		if(!empty($gameId))
 			$condition[] =  "game_id = '$gameId'";
-		$config = Config::model()->getInfo();
+/* 		$config = Config::model()->getInfo();
 		if(in_array($config['openbt'], array('0','1'))){
 			if($config['openbt'] == 0){
 				$condition[]="isbt = 0";
 			}else{
 				$condition[]="isbt in(0,1,6)";
 			}
-		}	
+		}	 */
 		if(isset($_POST['serverid']) && !empty($_POST['serverid']))
 			$condition[]="ServerID = '{$_POST['serverid']}'";
         if(isset($_POST['payCode']) && !empty($_POST['payCode']))
@@ -359,14 +361,14 @@ class PayLogController extends Controller{
 			$condition[] =  "game_id = '$gameId'";
         if(!empty($channelId))
             $condition[] =  "CPID = '$channelId'";
-        $config = Config::model()->getInfo();
+/*         $config = Config::model()->getInfo();
 		if(in_array($config['openbt'], array('0','1'))){
 			if($config['openbt'] == 0){
 				$condition[]="isbt = 0";
 			}else{
 				$condition[]="isbt in(0,1,6)";
 			}
-		}	
+		}	 */
 		if(isset($_POST['serverid']) && !empty($_POST['serverid']))
 			$condition[]="ServerID = '{$_POST['serverid']}'";
         if(isset($_POST['payCode']) && !empty($_POST['payCode']))
@@ -376,7 +378,7 @@ class PayLogController extends Controller{
 		$criteria = new CDbCriteria;
 		$condition=implode($condition,' and ');
 		$criteria->condition =$condition;
-		$criteria->select = "PayID, sum(PayMoney) as payTotal, ServerID,PayCode";
+		$criteria->select = "PayID, sum(if(PayCode='USD',PayMoney*22725,PayMoney)) as payTotal, ServerID,'VND' as PayCode";
 		$criteria->group = 'PayID, ServerID';
 		$criteria->order = 'payTotal desc';
 		
@@ -459,14 +461,14 @@ class PayLogController extends Controller{
         if(isset($_POST['payCode']) && !empty($_POST['payCode']))
             $condition[]="PayCode = '{$_POST['payCode']}'";
 
-        $config = Config::model()->getInfo();
+/*         $config = Config::model()->getInfo();
 	if(in_array($config['openbt'], array('0','1'))){
 			if($config['openbt'] == 0){
 				$condition[]="isbt = 0";
 			}else{
 				$condition[]="isbt in(0,1,6)";
 			}
-		}	
+		}	 */
 		$model = PayLog::model();
 		$criteria = new CDbCriteria;
 		$condition=implode($condition,' and ');
@@ -614,14 +616,14 @@ class PayLogController extends Controller{
         //如果账号游戏id不为0 查询该游戏ID的订单
         if(!empty($gameId))
             $condition[] =  "game_id = '$gameId'";
-        $config = Config::model()->getInfo();
+/*         $config = Config::model()->getInfo();
     if(in_array($config['openbt'], array('0','1'))){
 			if($config['openbt'] == 0){
 				$condition[]="isbt = 0";
 			}else{
 				$condition[]="isbt in(0,1,6)";
 			}
-		}	
+		}	 */
         $model = PayLog::model();
         $criteria = new CDbCriteria;
         $condition = implode($condition,' and ');
@@ -667,14 +669,14 @@ class PayLogController extends Controller{
         //如果账号游戏id不为0 查询该游戏ID的订单
         if(!empty($gameId))
             $condition[] =  "game_id = '$gameId'";
-        $config = Config::model()->getInfo();
+/*         $config = Config::model()->getInfo();
     if(in_array($config['openbt'], array('0','1'))){
 			if($config['openbt'] == 0){
 				$condition[]="isbt = 0";
 			}else{
 				$condition[]="isbt in(0,1,6)";
 			}
-		}	
+		}	 */
         if(isset($_POST['serverid']) && !empty($_POST['serverid']))
             $condition[]="ServerID = '{$_POST['serverid']}'";
         if(!empty($this->mangerInfo['channel_id']))

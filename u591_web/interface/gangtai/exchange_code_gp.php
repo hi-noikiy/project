@@ -9,14 +9,11 @@
 * @author: wangtao
 * @version:
 */
-$table = 'web_code_exchange';
-$tableLog = 'web_code_exchange_log';
 include 'config.php';
 set_time_limit(10);
 $post = serialize($_POST);
 $get = serialize($_GET);
-$ip = getIP_front();
-write_log(ROOT_PATH."log","exchange_code_gangtai_"," post=$post, get=$get, ip=$ip, ".date("Y-m-d H:i:s")."\r\n");
+write_log(ROOT_PATH."log","exchange_code_gangtai_"," post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
 $returnarr =array();
 $sign = $_REQUEST["sign"];
 global $key_arr;
@@ -36,6 +33,7 @@ $codeid = trim($_REQUEST['giftNo']);
 $serverid = $_REQUEST['serverInfo'];
 $accountId = $_REQUEST['roleInfo'];
 $message = $_REQUEST['message'];
+$useTime = $_REQUEST['useTime'];
 if(!$message){
 	$message = '活动奖励';
 }
@@ -61,7 +59,7 @@ if($playerid == ''){
 }
 $myconn = SetConn(88);
 $tableLog = 'web_user_code';
-$sql = "select * from $tableLog where player_id ='$playerid' and server_id='$serverid' and code_id='$codeid' limit 1";
+$sql = "select * from $tableLog where player_id ='$playerid' and server_id='$serverid' and code_id='$codeid' and useTime='$useTime' limit 1";
 if(false == $result_type = mysqli_query($myconn,$sql)){
 	write_log(ROOT_PATH."log","exchange_code_gangtai_error_",mysqli_error($myconn).",$sql, ".date("Y-m-d H:i:s")."\r\n");
 	$returnarr['status'] = '1';
@@ -86,8 +84,8 @@ if(false == mysqli_query($conn, $sql)){
 	$returnarr['message'] = 'database insertsql by game error';
 	exit(json_encode($returnarr));
 }
-$sql = "insert into $tableLog(player_id, server_id, code_id, ctime)";
-$sql .= " values('$playerid', '$serverid', '$codeid' ,".time().") ";
+$sql = "insert into $tableLog(player_id, server_id, code_id, useTime,ctime)";
+$sql .= " values('$playerid', '$serverid', '$codeid', '$useTime' ,".time().") ";
 if(false == mysqli_query($myconn, $sql)){
 	write_log(ROOT_PATH."log","exchange_code_insert_error_","sql=$sql, ".mysqli_error($myconn).date("Y-m-d H:i:s")."\r\n");
 	$returnarr['status'] = '1';
@@ -99,11 +97,6 @@ $returnarr['status'] = '0';
 $returnarr['message'] = 'ok';
 exit(json_encode($returnarr));
 
-function subTable($accountId, $table, $sum){
-	$suffix = $accountId%$sum;
-	$s = sprintf('%03d', $suffix);
-	return $table.$s;
-}
 function checkPlayer($serverId, $accountId){
 	$conn = SetConn($serverId);
 	if($conn == false) return false;

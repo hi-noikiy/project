@@ -34,7 +34,7 @@ $currenty = isset($extArr[2]) ? $extArr[2] : '';
 if(!$currenty){
 	$currenty = 'yuenan';
 }
-if(!in_array($type, array('google','fb'))){
+if(!in_array($type, array('google'))){
 	write_log(ROOT_PATH.'log','bindall_login_error_',"bind type not in google and fb,$type ".date('Y-m-d H:i:s')."\r\n");
 	exit("4 0");
 }
@@ -63,18 +63,6 @@ if($type == 'google'){
         exit("4 0");
     }
     $channel_account = $token_data['sub'].'@google';
-}elseif ($type='fb'){
-    $url = "https://graph.facebook.com/me/?access_token=$token";
-    $data = array();
-    $result = https_post($url,$data);
-    $resultArr = json_decode($result,true);
-    write_log(ROOT_PATH.'log','bindall_fb_login_check_',"result=$result,url=$url,".date('Y-m-d H:i:s')."\r\n");
-
-    if(!isset($resultArr['id'])){
-        write_log(ROOT_PATH.'log','bindall_fb_login_error__',"result=$result,url=$url,".date('Y-m-d H:i:s')."\r\n");
-        exit("4 0");
-    }
-    $channel_account = $resultArr['id'].'@fb';
 }
 global $accountServer;
 $accountConn = $accountServer[$gameId];
@@ -104,22 +92,22 @@ if(isset($result['account_id'])){
         exit("2 0");
     }
     $channelAccountArr = explode("@", $result['channel_account']);
-    if(isset($channelAccountArr[1]) && $channelAccountArr[1] == $type){
-        write_log(ROOT_PATH.'log','bindall_login_error_',"account id is not mac. post=$post,get=$get,".date('Y-m-d H:i:s')."\r\n");
+    if(isset($channelAccountArr[1]) && $channelAccountArr[1] != 'fb'){
+        write_log(ROOT_PATH.'log','bindall_login_error_',"account id is not fb. post=$post,get=$get,".date('Y-m-d H:i:s')."\r\n");
         exit("1000 $accountId");
     }
-    //判断google fb是否已经注册帐号
+    //判断google是否已经注册帐号
     $sql = "select id,channel_account from account where channel_account='$channel_account' limit 1";
     $query = @mysqli_query($conn, $sql);
     $result = @mysqli_fetch_assoc($query);
     if(isset($result['id'])){
-        write_log(ROOT_PATH.'log','bindall_login_error_',"google or fb alread registerd. post=$post,get=$get,".date('Y-m-d H:i:s')."\r\n");
+        write_log(ROOT_PATH.'log','bindall_login_error_',"google alread registerd. post=$post,get=$get,".date('Y-m-d H:i:s')."\r\n");
         exit("1000 $accountId");
     }
     $bindall_time = time();
     $insert_sql = "insert into account_ggp (ggp_account,account_id,bindall_time) VALUES ('$channel_account','$accountId','$bindall_time')";
     if(!mysqli_query($conn, $insert_sql)){
-        write_log(ROOT_PATH.'log','bindall_login_error_',"sql error.sql=$update_sql, ".mysqli_error($conn)." , ".date('Y-m-d H:i:s')."\r\n");
+        write_log(ROOT_PATH.'log','bindall_login_error_',"sql error.sql=$insert_sql, ".mysqli_error($conn)." , ".date('Y-m-d H:i:s')."\r\n");
         exit("3 0");
     }
     write_log(ROOT_PATH.'log','bindall_login_return_',"return=0 $accountId. post=$post,get=$get, ".date('Y-m-d H:i:s')."\r\n");

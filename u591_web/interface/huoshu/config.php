@@ -26,11 +26,13 @@ $key_arr = array(
 				'ios18'=>array('appId'=>'43','appSecret'=>'289c9ff8a35fe977e953829c7ee9a14f'),
 				'ios19'=>array('appId'=>'44','appSecret'=>'ce8060a6d6310e441d674394ab9f8ef7'),
 				'ios20'=>array('appId'=>'48','appSecret'=>'91bf67c15054d7ff35948b385936417e'),
-				'ios21'=>array('appId'=>'49','appSecret'=>'14c2aa79a2988f259ac73b24cf569bf3'),
-				'ios22'=>array('appId'=>'50','appSecret'=>'b8e1f51b34f7dc42527bd8fb09a37f10'),
-				'ios23'=>array('appId'=>'45','appSecret'=>'eb4c22da7de782b324531b73531c7805'),
-				'ios24'=>array('appId'=>'46','appSecret'=>'69ff20ede1915c83f1af1bb6aed0bf8c'),
-				'ios25'=>array('appId'=>'47','appSecret'=>'5ca4bbd5343dc8f389e52268d94ccf33'),
+				'ios21'=>array('appId'=>'64','appSecret'=>'b561a4e3c7370567982ee504260929f2'),
+				'ios22'=>array('appId'=>'65','appSecret'=>'64d750614de42187b300f0563e44a488'),
+				'ios23'=>array('appId'=>'66','appSecret'=>'be8f22cf164a349c90b376f5c03163c6'),
+				/*'ios24'=>array('appId'=>'46','appSecret'=>'69ff20ede1915c83f1af1bb6aed0bf8c'),
+				'ios25'=>array('appId'=>'47','appSecret'=>'5ca4bbd5343dc8f389e52268d94ccf33'),*/
+				'ios24'=>array('appId'=>'60','appSecret'=>'3d42acaaa9fbc14a3e5bebbb7661e978'),
+				'ios25'=>array('appId'=>'59','appSecret'=>'fa4d435ea41f7c186ed0b49cd589d310'),
 				'android'=>array('appId'=>'60011','appSecret'=>'93f35bd538761f5fbe2329dafe20c6e3'),
 		),
 );

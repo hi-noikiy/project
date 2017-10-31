@@ -156,7 +156,8 @@ class OperatorsController extends Controller{
 	//获取角色信息
 	private function getGamePlayerField($accountId, $serverId, $field='*' ){
 	    //获取合服[区服]
-	    $sid = togetherServer($serverId);
+	    //$sid = togetherServer($serverId);
+	    $sid = $serverId;
 		$conn = SetConn($sid);
         if($conn == false)
             return false;
@@ -191,12 +192,14 @@ class OperatorsController extends Controller{
             $sid = togetherServer($serverid);
             $table = subTable($sid, $this->gmtoolTable, 1000);
             $conn = SetConn($sid);
+            
             if($conn == false)
                 $this->error('connect game database fail.');
 			if(!in_array($type, array(6, 66))){
+				$myconn = SetConn($serverid);
 			    $playerTable = subTable($serverid, 'u_player', '1000');
 				$sql = "select * from $playerTable where name='$playerName' and serverid='$serverid' limit 1";
-				if(false == $query = mysqli_query($conn,$sql))
+				if(false == $query = mysqli_query($myconn,$sql))
 					$this->error('table u_player query error!');
 				$playerInfo = @mysqli_fetch_assoc($query);
 				if(!$playerInfo)
@@ -291,9 +294,10 @@ class OperatorsController extends Controller{
 				$info[$i]['serverid'] = $rows['serverid'];
 				$info[$i]['award_type1'] = $rows['award_type1'];
 				if($type == 2){
+					$myconn = SetConn($serverId);
 				    $playerTable = subTable($serverId, 'u_player', '1000');
 					$sql = "select name from $playerTable where id='{$rows['param']}' limit 1";
-					$query = @mysqli_query($conn,$sql);
+					$query = @mysqli_query($myconn,$sql);
 					$result = @mysqli_fetch_array($query);
 					$info[$i]['param'] = $rows['param'].'('.$result['name'].')';
 				} else {
@@ -343,7 +347,8 @@ class OperatorsController extends Controller{
 	        }else {
 	        	$where = " account_id='$name' and serverid='$serverId'";
 	        }
-	        $sid = togetherServer($serverId);
+	        //$sid = togetherServer($serverId);
+	        $sid = $serverId;
 	        $conn = SetConn($sid);
             $table = subTable($serverId, 'u_player', '1000');
 	        $sql = "select account_id,serverid,name,id from $table where $where limit 1";
@@ -404,7 +409,8 @@ class OperatorsController extends Controller{
 			if(!$name)
 				$this->display('请输入查询的角色！', 0);
             $where = ($type ==0) ? " name='$name' and serverid='$serverId'" : " id = '$name'";
-            $sid = togetherServer($serverId);
+            //$sid = togetherServer($serverId);
+            $sid = $serverId;
             $conn = SetConn($sid);
             if($conn == false)
                 $this->display('game database connect fail.', 0);
@@ -444,7 +450,8 @@ class OperatorsController extends Controller{
 	}
     //获取角色信息
     private function getPlayerField($where, $serverId, $field){
-        $sid = togetherServer($serverId);
+        //$sid = togetherServer($serverId);
+        $sid = $serverId;
         $conn = SetConn($sid);
         if($conn == false)
             return false;
@@ -623,9 +630,10 @@ class OperatorsController extends Controller{
                 $info[$i]['serverid'] = $rows['serverid'];
                 $info[$i]['award_type1'] = $rows['award_type1'];
                 if($type == 2){
+                	$myconn = SetConn($serverId);
                     $playerTable = subTable($serverId, 'u_player', '1000');
                     $sql = "select name from $playerTable where id='{$rows['param']}' limit 1";
-                    $query = @mysqli_query($conn,$sql);
+                    $query = @mysqli_query($myconn,$sql);
                     $result = @mysqli_fetch_array($query);
                     $info[$i]['param'] = $rows['param'].'('.$result['name'].')';
                 } else {
@@ -733,7 +741,8 @@ class OperatorsController extends Controller{
 	}
 	private function checkPlayer($player, $type, $serverId){
 		$where = ($type ==0) ? " name='$player' and serverid='$serverId'" : " id = '$player'";
-		$sid = togetherServer($serverId);
+		//$sid = togetherServer($serverId);
+		$sid = $serverId;
         $conn = SetConn($sid);
         if($conn == false)
             return false;
@@ -878,5 +887,28 @@ class OperatorsController extends Controller{
             }
         }
         $this->renderPartial('accountChange', array('accountInfo'=>$accountInfo, 'game' =>$game, 'gameId'=>$gameId, 'oldAccount'=>$oldAccount, 'newAccount'=>$newAccount ));
+    }
+    public function actionGetip(){
+    	$datas= array();
+    	$count = 0;
+    	if(isset($_POST['pagination'])){
+    		$pagination=$_POST['pagination'];
+    		$offset=($_POST['pagination']-1)*20;
+    	}else {
+    		$pagination=1;
+    		$offset=0;
+    	}
+    	if(isset($_POST["serverid"])){
+    		$conn = SetConn($_POST["serverid"]);
+    		$sql = "select * from g_serverid2ip order by id desc";
+    		$result = mysqli_query($conn, $sql);
+    
+    		while($data = mysqli_fetch_array($result,MYSQL_ASSOC)){
+    			$datas[] = $data;
+    		}
+    		mysqli_free_result($result);
+    		mysqli_close($conn);
+    	}
+    	$this->renderPartial('getip', array('info'=>$datas,'pages'=>100,'count'=>$count,'pagination'=>$pagination));
     }
 }

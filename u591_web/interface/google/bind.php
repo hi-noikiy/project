@@ -59,7 +59,7 @@ if($type == 'google'){
         exit("4 0");
     }
     $channel_account = $token_data['sub'].'@google';
-}elseif ($type='fb'){
+}elseif ($type=='fb'){
     $url = "https://graph.facebook.com/me/?access_token=$token";
     $data = array();
     $result = https_post($url,$data);

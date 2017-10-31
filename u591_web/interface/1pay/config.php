@@ -15,6 +15,10 @@ $key_arr = array(
             'access_key' =>'uzc5r6mjo1myb3skppam',
             'secret'=>'4axe31lz16g22u5fhpg3gi8eurcb4rie'
         ),
+    		'ios'=>array(
+    				'access_key' =>'uzc5r6mjo1myb3skppam',
+    				'secret'=>'4axe31lz16g22u5fhpg3gi8eurcb4rie'
+    		),
     ),
 );
 

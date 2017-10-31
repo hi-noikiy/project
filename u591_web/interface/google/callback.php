@@ -41,7 +41,8 @@ if (!$publicKey) {
 $verifyOK = verify_market_in_app($google_wallet_data, $sinature, $publicKey);
 if ($verifyOK) {
     $productId = $walletData['productId'];
-    $orderId   = $walletData['developerPayload'];
+    //$orderId   = $walletData['developerPayload'];
+    $orderId   = $walletData['orderId'];
     if (!array_key_exists($productId, $google_id_value)) {
         write_log(ROOT_PATH."log","google_callback_error_","101 产品ID不存在,productId=$productId, ".date('Y-m-d H:i:s')."\r\n");
         exit('101');
