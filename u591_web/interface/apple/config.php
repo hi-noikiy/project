@@ -21,6 +21,13 @@ $appleIdVal = array(
     'com.u776.poke.ios.product6'    =>'6',
     'com.u776.poke.ios.product18'   =>'18',
 
+		'rgrv_6'              =>'6',
+		'fgnfy_25'             =>'25',
+		'xbhtrn_30'             =>'30',
+		'fxdbhnhf_128'            =>'128',
+		'jhgfj_328'            =>'328',
+		'xdfgb_648'            =>'648',
+		
 		'xdscw_6'              =>'6',
 		'gteg_25'             =>'25',
 		'ujebgh_30'             =>'30',
@@ -303,5 +310,12 @@ $appleIdVal = array(
     'scgpokevs_1703'    => array('19.99', '1700', 'USD'),
     'scgpokevs_4259'    => array('49.99', '4260', 'USD'),
     'scgpokevs_8519'    => array('99.99', '8520', 'USD'),
+		
+		'cfrewfc_75'      => array('75','80', 'RUB'), //
+		'pndfb_379'      => array('379','390', 'RUB'), //
+		'hrwgr_1490'     => array('1490', '1690', 'RUB'),
+		'sdgtry_3790'     => array('3790', '4290', 'RUB'),
+		'ythtgdf_7490'    => array('7490', '8500', 'RUB'),
+		'dgbety_299'    => array('299', '200', 'RUB'),
 
 );

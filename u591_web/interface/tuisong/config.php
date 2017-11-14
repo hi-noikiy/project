@@ -8,11 +8,12 @@ include_once ROOT_PATH."inc/function.php";
 $key_arr = array(
     	8=>array(
     			'androidnm'=>array('apiKey'=>'AAAAqUl2rcU:APA91bHSqLSSPAeqXOVer1v3-HEAz9EDioUmj-rm-yvgu2Z9bXz9lTkQLUh0rDupSFRgx3QxIgyl5aD68EYQxaEm6Jdp6xr6SDXMlnv5ATX4_9RxLmEGzPS0CWUkVmurXUaZePHvg4X-'),
+    			'androidnm1'=>array('apiKey'=>'AAAAtqAuesw:APA91bGi6PUxywfi9YmZ1hSL7lsuOpMlB8DWg-xWiAX60qJqToA_gMrjwCp6lOXmsDD3rnIuozOVlw74E40j5hjmCyIAmEr4EfruZUyuk8ro1Ap11yhqFY1X3smGiMqsqysBK6-Qxvd4'),
     			'iosnm'=>array('apiKey'=>'pem/nm.pem'),
     			'androidyn'=>array('apiKey'=>'AAAAx4vLUwo:APA91bHq96XRfa975aUC_pLpXEqQE85CV7fd65vWS_9ry1DTN7YZ_Wi5RGypZryCk0xlKobpc9a6Rvw6A9wXP0WLQNu5diNNzeKzorDvWAoncfaKlJFsFX38O3S77iFwCSL5Is5fyeq0'),
     			'iosyn'=>array('apiKey'=>'pem/yn.pem'),
     			'androidels'=>array('apiKey'=>'AAAAseXPhnk:APA91bGlI9q_tOyaSJlXEZHRQUpEGFVbV-ZkZ2cLKOeFZ3-HguGXoET_eMeMJmUsAdceF_FAZaIKwK8iT6kTkXPdt1X1mmyE61mEpVPXT6hUO4Ti6rmIQlMbjj5Y-QuGX6G1vCMYP8Bu'),
-    			'iosels'=>array('apiKey'=>'pem/yn.pem'),
+    			'iosels'=>array('apiKey'=>'pem/els.pem'),
     	),
 );
 

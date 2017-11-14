@@ -44,6 +44,7 @@ $md5Str = http_build_query($array);
 
 $mySign = md5($md5Str.$appKey);
 if($mySign != $sign){
+	write_log(ROOT_PATH."log","storage_error_"," sign error, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'sign error.')));
 }
 /*
@@ -59,12 +60,16 @@ if(false == $query = mysqli_query($conn,$sql)){
 }
 $info = @mysqli_fetch_assoc($query);
 if(!isset($info['id'])){
+	write_log(ROOT_PATH."log","storage_error_"," 账号ID不存在, ".date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'账号ID不存在.')));
 }
 $sql = "select game_id, channel, account_id from web_login_auto where token='$token' limit 1";
 $conn = SetConn(88);
-if(false == $query = mysqli_query($conn,$sql))
+if(false == $query = mysqli_query($conn,$sql)){
+	write_log(ROOT_PATH."log","storage_error_"," sql=$sql, 'sql error., ".mysqli_error($conn)." ".date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'sql error.')));
+}
+	
 $result = @mysqli_fetch_assoc($query);
 if($result){
 		exit(json_encode(array('status'=>0, 'msg'=>'success')));
@@ -74,8 +79,11 @@ if($result){
 	$expiredTime = $addtime+7200;
 	$addSql = "insert into web_login_auto (game_id, channel, account_id, token, expired_time, addtime,mac)";
 	$addSql .=" values('$game_id', '$channel', '$accountId', '$token', '$expiredTime', '$addtime','$mac')";
-	if(false == mysqli_query($conn,$addSql))
+	if(false == mysqli_query($conn,$addSql)){
+		write_log(ROOT_PATH."log","storage_error_"," sql=$sql, insert sql error, ".mysqli_error($conn)." ".date("Y-m-d H:i:s")."\r\n");
 		exit(json_encode(array('status'=>1, 'msg'=>'insert sql error.'.mysqli_error($conn))));
+	}
+		
 	exit(json_encode(array('status'=>0, 'msg'=>'success')));
 }
 ?>

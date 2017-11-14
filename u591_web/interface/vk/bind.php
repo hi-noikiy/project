@@ -89,7 +89,7 @@ if(isset($result['account_id'])){
         exit("1000 $accountId");
     }
     $bindall_time = time();
-    $insert_sql = "insert into account_ggp (ggp_account,account_id,bindall_time) VALUES ('$channel_account','$accountId','$bindall_time')";
+    $insert_sql = "insert into account_ggp (ggp_account,account_id,bind_time) VALUES ('$channel_account','$accountId','$bindall_time')";
     if(!mysqli_query($conn, $insert_sql)){
         write_log(ROOT_PATH.'log','vk_bind_error_',"sql error.sql=$insert_sql, ".mysqli_error($conn)." , ".date('Y-m-d H:i:s')."\r\n");
         exit("3 0");

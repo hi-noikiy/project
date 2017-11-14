@@ -33,7 +33,7 @@ global $accountServer;
 $accountConn = $accountServer[$gameId];
 $conn = SetConn($accountConn);
 if($conn == false){
-    write_log(ROOT_PATH.'log','google_login_error_',"account mysql connect error. ".date('Y-m-d H:i:s')."\r\n");
+    write_log(ROOT_PATH.'log','fb_login_error_',"account mysql connect error. ".date('Y-m-d H:i:s')."\r\n");
     exit('3 0');
 }
 $fbId = $result_arr['id'];
@@ -51,7 +51,7 @@ if(isset($result['id'])){
     exit("0 $insert_id");
 }
 //判断是否ggp帐号登录
-if(substr($type,0,6) == 'yuenan' || substr($type,0,6) == 'nanmei'){
+//if(substr($type,0,6) == 'yuenan' || substr($type,0,6) == 'nanmei'){
     $sql = "select account_id from account_ggp where ggp_account='$channel_account' limit 1;";
     if(false == $query = mysqli_query($conn, $sql)){
         write_log(ROOT_PATH."log","fb_login_error_","sql error,sql=$sql,". mysqli_error($conn)." ".date("Y-m-d H:i:s")."\r\n");
@@ -63,7 +63,7 @@ if(substr($type,0,6) == 'yuenan' || substr($type,0,6) == 'nanmei'){
         write_log(ROOT_PATH."log","fb_login_ggp_log_","return=0 $accountId, ".date("Y-m-d H:i:s")."\r\n");
         exit("0 $accountId");
     }
-}
+//}
 $insert_id = '';
 $password = random_common();
 $reg_time = date("ymdHi");

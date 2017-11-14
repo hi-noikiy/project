@@ -132,6 +132,10 @@
                             <input type="hidden" name="financequerysearch" id="financequerysearch" value="<?=isset($_POST['financequerysearch'])  ? $_POST['financequerysearch'] : 0?>" />
                             <input type="text" placeholder="机型" name="clientType" value="<?=isset($_POST['clientType'])  ? $_POST['clientType'] : '';?>" class="input-medium">
                           	<input type="text" placeholder="经销商分包ID" name="dwFenBaoID" value="<?=isset($_POST['dwFenBaoID'])  ? $_POST['dwFenBaoID'] : '';?>" class="input-small">    
+                          	<select name="testServer" class="input-medium">
+                                <option value='0' >全部</option>
+                                <option value='1'  <?=(isset($_POST['testServer']) && $_POST['testServer'] == '1') ? 'selected' : ''?>>测试</option>
+                            </select>
                         </td>
                     </tr>
                 </tbody>

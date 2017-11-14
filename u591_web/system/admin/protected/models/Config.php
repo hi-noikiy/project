@@ -19,6 +19,7 @@ class Config extends CActiveRecord{
             array('USD','required','message'=>'美元'),
         	array('VND','required','message'=>'越南盾'),
         	array('openbt','required','message'=>'开启额外数据'),
+        	array('RUB','required','message'=>'卢布'),
             //array('','safe')
         );
     }
@@ -27,10 +28,11 @@ class Config extends CActiveRecord{
             'TWD'      			=>'台湾币汇率',
             'USD'      			=>'美元汇率',
         	'VND'      			=>'越南盾汇率',
+        		'RUB'      			=>'卢布汇率',
         );
     }
 
-    public function getInfo($id = 1, $field='TWD,USD,VND,openbt'){
+    public function getInfo($id = 1, $field='TWD,USD,VND,openbt,RUB'){
         $where = ($id != 1) ? "id='1'" : "id='1'";
         $sql = "select $field from {{config}} where $where";
         $rs = $this->findBySql($sql);

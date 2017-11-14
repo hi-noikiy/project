@@ -92,7 +92,7 @@ if(isset($result['account_id'])){
         exit("2 0");
     }
     $channelAccountArr = explode("@", $result['channel_account']);
-    if(isset($channelAccountArr[1]) && $channelAccountArr[1] != 'fb'){
+    if(isset($channelAccountArr[1]) &&  !in_array($channelAccountArr[1], array('fb','u591'))){
         write_log(ROOT_PATH.'log','bindall_login_error_',"account id is not fb. post=$post,get=$get,".date('Y-m-d H:i:s')."\r\n");
         exit("1000 $accountId");
     }
@@ -102,10 +102,10 @@ if(isset($result['account_id'])){
     $result = @mysqli_fetch_assoc($query);
     if(isset($result['id'])){
         write_log(ROOT_PATH.'log','bindall_login_error_',"google alread registerd. post=$post,get=$get,".date('Y-m-d H:i:s')."\r\n");
-        exit("1000 $accountId");
+        exit("1000 {$result['id']}");
     }
     $bindall_time = time();
-    $insert_sql = "insert into account_ggp (ggp_account,account_id,bindall_time) VALUES ('$channel_account','$accountId','$bindall_time')";
+    $insert_sql = "insert into account_ggp (ggp_account,account_id,bind_time) VALUES ('$channel_account','$accountId','$bindall_time')";
     if(!mysqli_query($conn, $insert_sql)){
         write_log(ROOT_PATH.'log','bindall_login_error_',"sql error.sql=$insert_sql, ".mysqli_error($conn)." , ".date('Y-m-d H:i:s')."\r\n");
         exit("3 0");

@@ -96,6 +96,11 @@ class ManualLogController extends CommonController{
                         $emoney = round($rs->emoney)*60;
                     elseif($rs->payCode == 'VND') //越南盾
                     	$emoney = round($rs->emoney/250);
+                    elseif($rs->payCode == 'RUB'){
+                    	$parr = [75=>80, 379=>390, 1490=>1690, 3790=>4290, 7490=>8500, 299=>200];
+                    	$emoney = $parr[$rs->emoney];
+                    }
+                    	
                 }
                 $this->writeCard($orderId,$accountId, $serverId, $emoney);
                 $manualLogModel->updateByPk($id, array('status'=>2));
@@ -145,13 +150,17 @@ class ManualLogController extends CommonController{
             $connection = Yii::app()->db;
             $command = $connection->createCommand($sql);
             if($command->execute()){
-            	if(in_array($rs->payCode, array('USD', 'TWD','VND'))){
+            	if(in_array($rs->payCode, array('USD', 'TWD','VND','RUB'))){
             		if($rs->payCode == 'TWD') //台湾币
             			$emoney = $rs->emoney*2;
             		elseif($rs->payCode == 'USD') //美元
             			$emoney = round($rs->emoney)*60;
             		elseif($rs->payCode == 'VND') //越南盾
                     	$emoney = round($rs->emoney/250);
+            		elseif($rs->payCode == 'RUB'){
+                    	$parr = [75=>80, 379=>390, 1490=>1690, 3790=>4290, 7490=>8500, 299=>200];
+                    	$emoney = $parr[$rs->emoney];
+                    }
             	}
             	$this->writeCard($orderId,$accountId, $serverId, $emoney);
             	$manualLogModel->updateByPk($id, array('status'=>2));

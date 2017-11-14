@@ -111,10 +111,17 @@ class PayLogController extends Controller{
                     $payMoney = $v->PayMoney*2;
                 elseif($v->PayCode == 'USD') //美元
                     $payMoney = round($v->PayMoney)*60;
-                elseif($rs->payCode == 'VND') //越南盾
-                	$payMoney = round($rs->PayMoney/250);
-                else //RMB
+                elseif($v->payCode == 'VND') //越南盾
+                	$payMoney = round($v->PayMoney/250);
+                elseif($v->PayCode == 'RUB'){
+                	$parr = [75=>80, 379=>390, 1490=>1690, 3790=>4290, 7490=>8500, 299=>200];
+                	$payMoney = $parr[$v->PayMoney];
+                }
+                elseif($v->PayCode == 'CNY') 
                     $payMoney = $v->PayMoney;
+                if(!$payMoney){
+                	break;
+                }
                 $rsCard = $this->writeCard($orderId, $accountId, $serverId, $payMoney);
                 if($rsCard === null){
                     $payLog->updateByPk($id, array('IsUC'=>'0'));
@@ -162,13 +169,17 @@ class PayLogController extends Controller{
             $serverId = $rs->ServerID;
             $accountId = $rs->PayID;
             if($rs->PayCode == 'TWD') //台湾币
-                $payMoney = $rs->PayMoney*2;
+            	$payMoney = $rs->PayMoney*2;
             elseif($rs->PayCode == 'USD') //美元
-                $payMoney = round($rs->PayMoney)*60;
+            $payMoney = round($rs->PayMoney)*60;
             elseif($rs->PayCode == 'VND') //越南盾
-            	$payMoney = round($rs->PayMoney/250);
-            else //RMB
-                $payMoney = $rs->PayMoney;
+            $payMoney = round($rs->PayMoney/250);
+            elseif($rs->PayCode == 'RUB'){
+            	$parr = [75=>80, 379=>390, 1490=>1690, 3790=>4290, 7490=>8500, 299=>200];
+            	$payMoney = $parr[$rs->PayMoney];
+            }
+            elseif($rs->PayCode == 'CNY')
+            	$payMoney = $rs->PayMoney;
             $payId = $rs->id;
             $rsCard = $this->writeCard($orderId, $accountId, $serverId, $payMoney);
             if($rsCard === null){
@@ -183,10 +194,11 @@ class PayLogController extends Controller{
     }
     //批量补单
     private function writeCard($orderId, $accountId, $serverId, $payMoney, $type = 8){
-        $conn = SetConn($serverId);
+    	$sid = togetherServer($serverId);
+        $conn = SetConn($sid);
         if($conn == false)
             return false;
-        $table = subTable($serverId, 'u_card', 1000);
+        $table = subTable($sid, 'u_card', 1000);
         $sql="select count(id) as count from $table where ref_id='$orderId' limit 1";
         $query = @mysqli_query($conn,$sql);
         $count = @mysqli_fetch_assoc($query);
@@ -220,6 +232,7 @@ class PayLogController extends Controller{
 		//如果账号游戏id不为0 查询该游戏ID的订单
 		if(!empty($gameId))
 			$condition[] =  "game_id = '$gameId'";
+		
 /* 		$config = Config::model()->getInfo();
 		if(in_array($config['openbt'], array('0','1'))){
 			if($config['openbt'] == 0){
@@ -239,6 +252,9 @@ class PayLogController extends Controller{
 		if(isset($_POST['dwFenBaoID']) && !empty($_POST['dwFenBaoID']))
 			$condition[]="dwFenBaoID = '{$_POST['dwFenBaoID']}'";
 
+		if(isset($_POST['testServer']) && !empty($_POST['testServer']))
+			$condition[]="9 = SUBSTR(ServerID,-3,1)";
+		
         $model = PayLog::model();
 		$criteria = new CDbCriteria;
 		$condition=implode($condition,' and ');

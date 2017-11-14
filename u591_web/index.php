@@ -27,19 +27,19 @@
       <ul>
           <li><a target="_blank" href="http://121.43.39.108:83/admin.php/public/login.html">国服web后台</a></li>
           <li><a target="_blank" href="http://pokexmmfweb.u591776.com/admin.php/public/login.html">新马web后台</a></li>
-          <li><a target="_blank" href="http://pokespgweb.u591776.com/admin.php/public/login.html">新马英文后台</a></li>
-          <!--<li><a target="_blank" href="http://pokexmalkweb.u591776.com/admin.php/public/login.html">新马爱洛克web后台</a></li>-->
           <li><a target="_blank" href="http://poketwweb.u591776.com/admin.php/public/login.html">港台web后台</a></li>
-
           <li><a target="_blank" href="http://pokeynweb.u591776.com/admin.php/public/login.html">越南web后台</a></li>
+          <li><a target="_blank" href="http://pokeruweb.u776hainiu.com/admin.php/public/login.html">俄罗斯web后台</a></li>
+          <li><a target="_blank" href="http://pokenmweb.u776hainiu.com/admin.php/public/login.html">南美web后台</a></li>
       </ul>
 
     <ul>
         <li><a target="_blank" href="http://poketj.u591776.com:8080/index.php/Auth/login">国服统计后台</a></li>
         <li><a target="_blank" href="http://pokexmmftj.u591776.com:8080/index.php/Auth/login">新马统计后台</a></li>
-        <li><a target="_blank" href="http://pokespgtj.u591776.com:8080/index.php/Auth/login">新马英文统计后台</a></li>
         <li><a target="_blank" href="http://poketwtj.u591776.com:8080/index.php/Auth/login">港台统计后台</a></li>
         <li><a target="_blank" href="http://47.88.188.12:8080/index.php/Auth/login">越南统计后台</a></li>
+        <li><a target="_blank" href="http://pokerutj.u776hainiu.com:8080/index.php/Auth/login">俄罗斯统计后台</a></li>
+        <li><a target="_blank" href="http://pokenmtj.u776hainiu.com:8080/index.php/Auth/login">南美统计后台</a></li>
     </ul>
 </div>
 </body>
