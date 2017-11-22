@@ -46,8 +46,12 @@ if($mySign != $sign)
 
 $conn = SetConn('88');
 $sql = "select * from web_message where game_id='$gameId' and username='$email' limit 1";
-if(false == $query = mysqli_query($conn,$sql))
+if(false == $query = mysqli_query($conn,$sql)){
+	write_log(ROOT_PATH."log","mail_sent_error_log_","sql error.sql=$sql, ".mysqli_error($conn)." , ".date('Y-m-d H:i:s')."\r\n");
+	//write_log(ROOT_PATH.'log','bindall_login_error_',"sql error.sql=$insert_sql, ".mysqli_error($conn)." , ".date('Y-m-d H:i:s')."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'web server sql error.')));
+}
+
 
 $rs = @mysqli_fetch_assoc($query);
 $nowTime = time();
@@ -57,22 +61,26 @@ if(!empty($rs['addtime'])){
 }
 $code = rand(1000,9999);
 $iSql= "insert into web_message(game_id, username, code, addtime) values('$gameId', '$email', '$code', '$nowTime')";
-if(false == mysqli_query($conn,$iSql))
+if(false == mysqli_query($conn,$iSql)){
+	write_log(ROOT_PATH."log","mail_sent_error_log_","sql error.sql=$iSql, ".mysqli_error($conn)." , ".date('Y-m-d H:i:s')."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'web server sql error.')));
+}
+	
 
 
-$title = '海牛网络登陆信';
-$message = "亲爱的$email<br />
-您的邮箱登陆码是：$code<br />
-此登陆码在15分钟内有效! <br /><br />
+$title = 'Thư đăng nhập Seacowgame';
+$message = "$email thân mến,
+Mã đăng nhập của bạn là ：$code
+Mã sẽ có hiệu lực trong vòng 15 phút! 
 
-温馨提示：<br />
-* 本邮件为系统自动发送，不受理客户在线直接回复。<br />
-* 您可以使用客户服务电话0591-87678008联系我们。再次感谢您使用海牛提供的服务！<br /><br />
+Gợi ý：
+* Đây là thư tự động của hệ thống, vui lòng không trả lời thư.
+* Nếu có thắc mắc, vui lòng gọi điện 0591-87678008 để liên lạc với chúng tôi. Cảm ơn bạn đã sử dụng dịch vụ của Seacowgam!
 
-福州海牛游戏软件开发有限公司版权所有";
+Bản quyền thuộc sở hữu của Công ty TNHH Phần Mềm Seacowgame";
 
 $sendMail = SendMail($email, $title, $message);
+write_log(ROOT_PATH."log","mail_sent_info_log_","post=$post, $sendMail, ".date("Y-m-d H:i:s")."\r\n");
 if($sendMail)
 	exit(json_encode(array('status'=>0, 'msg'=>'success')));
 else{
@@ -93,7 +101,7 @@ function SendMail($address,$title,$message){
 	// 设置邮件头的From字段。
 	$mail->From='pokemon_vs@163.com';
 	// 设置发件人名字
-	$mail->FromName='海牛网络';
+	$mail->FromName='Seacowgame';
 	// 设置邮件标题
 	$mail->Subject=$title;
 	// 设置SMTP服务器。
@@ -102,7 +110,7 @@ function SendMail($address,$title,$message){
 	$mail->SMTPAuth=true;
 	// 设置用户名和密码。
 	$mail->Username='pokemon_vs@163.com';
-	$mail->Password='tyf,6g76r,f7.d46';
+	$mail->Password='hainiu965';
 	// 发送邮件。
 	return($mail->Send());
 }

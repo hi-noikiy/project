@@ -502,7 +502,7 @@ function WriteCard_money($tabType,$ServerID,$money,$PayID,$OrderID,$type=8){
 	  }
 
     }
-    @yunying_money($OrderID);
+    //@yunying_money($OrderID);
 }
 function yunying_money($order_id){
     SetConn(88);
