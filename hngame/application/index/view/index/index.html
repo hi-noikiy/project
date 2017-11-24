@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Important Owl stylesheet -->
+    {load href="__static__/index/dist/assets/owl.carousel.css" /}
+    <!-- Default Theme -->
+    {load href="__static__/index/dist/assets/owl.theme.default.css" /}
+    {load href="__static__/index/css/style.css" /}
+    <title>海牛游戏</title>
+</head>
+<body>
+{include file="header" /}
+<div class="screenbox">
+    <div id="screen">
+        <div class="owl-carousel owl-theme owl-loaded owl-drag">
+            {volist name="gameList" id="vo"}
+            {if condition=" $vo.recommend == 2 "}
+            {if condition=" $vo.show_way == 1 "}
+            <div>
+                <img class="banner" src="{$vo.image_url}"/>
+            {else/}
+            <div style="height: auto;">
+                <video name="video" src="{$vo.video_url}" autoplay loop></video>
+            {/if}    
+                <dl class="btnBox">
+                    <dt><a href="{$vo.apple_url}"><img src="__static__/index/img/ios.png"></a></dt>
+                    <dt><a href="{$vo.android_url}"><img src="__static__/index/img/android.png"></a></dt>
+                </dl>
+                <p class="textBox cn" style="display: none;">
+                    <span class="title">{$vo.name}</span>
+                    <br>
+                    <span>{$vo.description}</span>
+                </p>
+                <p class="textBox en" style="display: none;">
+                    <span class="title">{$vo.name_en}</span>
+                    <br>
+                    <span>{$vo.description_en}</span>
+                </p>
+            </div>
+            {/if}
+            {/volist}
+        </div>
+    </div>
+</div>
+<div class="space"></div>
+{volist name="gameList" id="vo"}
+{if condition=" $vo.recommend == 1 "}
+<div class="imgBox">
+    <img class="showImg" src="{$vo.image_url}">
+    <dl class="imgBtnBox">
+        <dt><a href="{$vo.apple_url}"><img src="__static__/index/img/ios.png"></a></dt>
+        <dt><a href="{$vo.android_url}"><img src="__static__/index/img/android.png"></a></dt>
+    </dl>
+    <p class="imgTextBox cn" style="display: none;">
+        <span class="title">{$vo.name}</span>
+        <br>
+        <span>{$vo.description}</span>
+    </p>
+    <p class="imgTextBox en" style="display: none;">
+        <span class="title">{$vo.name_en}</span>
+        <br>
+        <span>{$vo.description_en}</span>
+    </p>
+</div>
+{/if}
+{/volist}
+{include file="footer" /}
+{load href="__static__/index/js/jquery.js" /}
+{load href="__static__/index/dist/owl.carousel.js" /}
+{load href="__static__/index/js/language.js" /}
+<script>
+    var owl = $('.owl-carousel');
+    $(document).ready(function(){
+        owl.owlCarousel({
+            items:1,
+            loop:true,
+            autoplay:false,
+            autoplayTimeout:2000,
+            autoplayHoverPause:false
+        });
+        $('video').trigger('play');
+    });
+</script>
+</body>
+</html>

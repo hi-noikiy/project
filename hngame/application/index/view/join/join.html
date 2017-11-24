@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {load href="__static__/index/css/style.css" /}
+    {load href="__static__/index/css/about_us.css" /}
+    {load href="__static__/index/css/game.css" /}
+    <title>海牛游戏</title>
+</head>
+<body>
+{include file="header" /}
+<div class="photo_show">
+    <div class="pic">
+        <img src="__static__/index/img/join.png" alt="game">
+    </div>
+</div>
+<div class="content cn" style="display: none;">
+    <div class="con_body">
+        {volist name="jobList" id="vo"}
+        <div class="news_border">
+            <div class="news_block join_block clearfix">
+                <div class="join_tit">
+                    {$vo.name}
+                </div>
+                <div class="join_detail">
+                    {$vo.description}
+                </div>
+                <a class="apply_btn" href="javascript:applyJob({$vo.id})">申请该职位</a>
+            </div>
+        </div>
+        {/volist}
+        <div class="border_bottom"></div>
+        <div class="prev">
+            <span>第{$nowPage}页</span>
+            {if condition=" $hasPrevPage == 1 "}
+            <a href="javascript:turnPage({$prevPage});"> 上一页 </a>
+            {/if}
+            {if condition=" $hasNextPage == 1 "}
+            <a href="javascript:turnPage({$nextPage});"> 下一页 </a>
+            {/if}
+             全部: <span> {$pageNum} </span> 页,记录: <span> {$count} </span>,
+             跳转到:
+            <select name="pageSelect">
+                {for start="1" end="$pageNum" comparison="elt"}
+                <option {if condition=" $i==$nowPage "}selected="selected"{/if}>{$i}</option>
+                {/for}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="content en" style="display: none;">
+    <div class="con_body">
+        {volist name="jobList" id="vo"}
+        <div class="news_border">
+            <div class="news_block join_block clearfix">
+                <div class="join_tit">
+                    {$vo.name_en}
+                </div>
+                <div class="join_detail">
+                    {$vo.description_en}
+                </div>
+                <a class="apply_btn" href="javascript:applyJobEn({$vo.id})">Apply for this job</a>
+            </div>
+        </div>
+        {/volist}
+        <div class="border_bottom"></div>
+        <div class="prev">
+            <span>Page {$nowPage}</span>
+            {if condition=" $hasPrevPage == 1 "}
+            <a href="javascript:turnPage({$prevPage});"> Previous </a>
+            {/if}
+            {if condition=" $hasNextPage == 1 "}
+            <a href="javascript:turnPage({$nextPage});"> Next </a>
+            {/if}
+             Total: <span> {$pageNum} </span> page,Record: <span> {$count} </span>,
+             GOTO:
+            <select name="pageSelect">
+                {for start="1" end="$pageNum" comparison="elt"}
+                <option {if condition=" $i==$nowPage "}selected="selected"{/if}>{$i}</option>
+                {/for}
+            </select>
+        </div>
+    </div>
+</div>
+<div id="jobInfo" class="cover chn">
+    <a class="close" href="javascript:void(0)"><img src="__static__/index/img/close.png"></a>
+    <table>
+        <tr><td><div>工作地点：</div></td><td name="address"></td></tr>
+        <tr><td><div>需求人数：</div></td><td name="needs"></td></tr>
+        <tr><td><div>联系人：</div></td><td name="contacts"></td></tr>
+        <tr><td><div>联系电话：</div></td><td name="phone"></td></tr>
+        <tr><td><div>Email：</div></td><td name="email"></td></tr>
+    </table>
+</div>
+<div id="jobInfoEn" class="cover eng">
+    <a class="close" href="javascript:void(0)"><img src="__static__/index/img/close.png"></a>
+    <table>
+        <tr><td>Address：</td><td name="address"></td></tr>
+        <tr><td>Needs：</td><td name="needs"></td></tr>
+        <tr><td>Contacts：</td><td name="contacts"></td></tr>
+        <tr><td>Phone：</td><td name="phone"></td></tr>
+        <tr><td>Email：</td><td name="email"></td></tr>
+    </table>
+</div>
+{include file="footer" /}
+{load href="__static__/index/js/jquery.js" /}
+{load href="__static__/index/js/language.js" /}
+<script>
+$(".close").click(function(){
+    $(this).parent().hide();
+});
+
+function applyJob(id){
+    setJobInfo(id,'jobInfo');
+}
+
+function applyJobEn(id){
+    setJobInfo(id,'jobInfoEn');
+}
+
+function setJobInfo(id,divId){
+    $.ajax({
+        type : "get",
+        url : "jobInfo?id="+id,
+        dataType:'json',
+        success : function(value) {
+            var address='',need='',contacts='',phone='',email='';
+            if(divId=='jobInfoEn'){
+                address=value.address_en;
+                contacts=value.contacts_en;
+            }else{
+                address=value.address;
+                contacts=value.contacts;
+            }
+            need=value.need;
+            phone=value.phone;
+            email=value.email;
+            $("#"+divId+" [name='address']").text(address);
+            $("#"+divId+" [name='needs']").text(need);
+            $("#"+divId+" [name='contacts']").text(contacts);
+            $("#"+divId+" [name='phone']").text(phone);
+            $("#"+divId+" [name='email']").text(email);
+            $("#"+divId).show();
+        }
+    });
+}
+
+var num=5;
+function turnPage(page){
+    location.href="news?page="+page+"&num="+num;
+}
+
+$("select[name='pageSelect']").change(function(){
+    var page=$(this).val();
+    if(page!="{$nowPage}"){
+        turnPage(page);
+    }
+});
+</script>
+</body>
+</html>

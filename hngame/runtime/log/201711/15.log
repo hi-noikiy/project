@@ -1,0 +1,3287 @@
+---------------------------------------------------------------
+[ 2017-11-15T10:04:09+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.048731s][吞吐率：20.52req/s] [内存消耗：3,743.29kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001654s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001384s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000702s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001170s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000895s ]
+---------------------------------------------------------------
+[ 2017-11-15T10:04:13+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.042262s][吞吐率：23.66req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=navmsu02d63ae3j2lnm3ub6lb5',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001652s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001377s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000825s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001241s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001054s ]
+---------------------------------------------------------------
+[ 2017-11-15T10:06:03+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/10/num/5
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/10/num/5 [运行时间：0.051284s][吞吐率：19.50req/s] [内存消耗：3,721.11kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=navmsu02d63ae3j2lnm3ub6lb5',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '10',
+  'num' => '5',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001983s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001526s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000840s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001703s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 10,5 [ RunTime:0.001257s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:09:06+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.045623s][吞吐率：21.92req/s] [内存消耗：3,743.13kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001478s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001671s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000885s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001407s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001256s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:09:14+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/26
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/26 [运行时间：0.038077s][吞吐率：26.26req/s] [内存消耗：3,617.45kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=26',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '26',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001216s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001323s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 26 LIMIT 1 [ RunTime:0.000800s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:09:49+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.048579s][吞吐率：20.59req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001610s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001665s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000714s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001405s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001049s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:09:50+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.038257s][吞吐率：26.14req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001309s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001392s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000842s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001197s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000901s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:09:52+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/1
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/1 [运行时间：0.033627s][吞吐率：29.74req/s] [内存消耗：3,617.40kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=1',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001084s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001347s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000914s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:10:23+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.043363s][吞吐率：23.06req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001260s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001891s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000806s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001158s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000845s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:10:25+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.040258s][吞吐率：24.84req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001247s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001494s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000781s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001127s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000917s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:10:33+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.043217s][吞吐率：23.14req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001334s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001450s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000816s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001135s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000901s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:10:39+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.046028s][吞吐率：21.73req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001504s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001730s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.001005s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001582s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001339s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:10:44+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.046708s][吞吐率：21.41req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001855s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001499s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000788s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001193s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000855s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:10:46+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.049778s][吞吐率：20.09req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001433s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001896s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000892s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001543s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001038s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:10:47+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/1
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/1 [运行时间：0.045880s][吞吐率：21.80req/s] [内存消耗：3,617.40kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=1',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001301s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001850s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000981s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:11:09+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.050669s][吞吐率：19.74req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001290s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001709s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000969s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.002286s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000942s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:11:14+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.042089s][吞吐率：23.76req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001392s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001392s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000712s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001161s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000922s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:11:19+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.046944s][吞吐率：21.30req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001235s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001539s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000767s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001695s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000731s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:11:22+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/1
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/1 [运行时间：0.043587s][吞吐率：22.94req/s] [内存消耗：3,617.40kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=1',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001451s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001711s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000770s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:12:06+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.050313s][吞吐率：19.88req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001403s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001737s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000894s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001144s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000962s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:12:14+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.050888s][吞吐率：19.65req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001570s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001807s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000748s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001426s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001002s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:12:16+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/26
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/26 [运行时间：0.038982s][吞吐率：25.65req/s] [内存消耗：3,617.45kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=26',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '26',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002035s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001602s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 26 LIMIT 1 [ RunTime:0.001015s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:13:01+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.051773s][吞吐率：19.32req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001512s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001475s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000836s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001551s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001230s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:13:04+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.046606s][吞吐率：21.46req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001581s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001656s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000716s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001315s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001031s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:13:39+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/1
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/1 [运行时间：0.038414s][吞吐率：26.03req/s] [内存消耗：3,617.40kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=1',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001154s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001469s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000907s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:13:43+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.048680s][吞吐率：20.54req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001453s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001923s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000727s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001133s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000792s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:13:46+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.047809s][吞吐率：20.92req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001688s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001428s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000711s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001100s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001118s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:13:47+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.042750s][吞吐率：23.39req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001374s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001860s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000783s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001444s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000880s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:13:48+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/1
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/1 [运行时间：0.042382s][吞吐率：23.59req/s] [内存消耗：3,617.40kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=1',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001300s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001452s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000779s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:13:52+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.040586s][吞吐率：24.64req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001320s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001390s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000582s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.000978s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000627s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:13:53+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.048425s][吞吐率：20.65req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001203s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001630s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000916s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001434s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000984s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:14:00+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/20
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/20 [运行时间：0.042050s][吞吐率：23.78req/s] [内存消耗：3,610.25kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=20',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '20',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001858s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001501s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 20 LIMIT 1 [ RunTime:0.000834s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:14:05+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.055399s][吞吐率：18.05req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001436s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001368s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000706s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001374s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001457s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:14:19+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.044631s][吞吐率：22.41req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002832s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001344s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000720s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001064s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000764s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:14:22+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/1
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/1 [运行时间：0.040893s][吞吐率：24.45req/s] [内存消耗：3,617.40kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=1',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001285s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001692s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000860s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:14:26+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.042129s][吞吐率：23.74req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001299s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001512s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000680s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001400s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000732s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:14:33+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.047964s][吞吐率：20.85req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001428s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001349s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000683s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001333s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001690s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:16:59+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.039966s][吞吐率：25.02req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001590s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001438s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000658s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001156s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000992s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:17:01+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/26
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/26 [运行时间：0.039717s][吞吐率：25.18req/s] [内存消耗：3,617.45kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=26',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '26',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001798s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001281s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 26 LIMIT 1 [ RunTime:0.000796s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:17:07+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.045837s][吞吐率：21.82req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001377s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001314s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000617s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001135s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000944s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:17:08+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.056787s][吞吐率：17.61req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001416s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001905s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000719s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001676s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000948s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:17:11+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/1
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/1 [运行时间：0.040186s][吞吐率：24.88req/s] [内存消耗：3,617.40kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=1',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001332s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001562s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000671s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:17:23+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.056451s][吞吐率：17.71req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=48di24phlnfa8r8iv80gqm1780',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001663s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001339s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000639s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.002072s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001048s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:17:47+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/detail/id/27
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/27 [运行时间：0.051361s][吞吐率：19.47req/s] [内存消耗：3,611.89kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=27',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=navmsu02d63ae3j2lnm3ub6lb5',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '27',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002884s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001673s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000928s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:29:02+08:00 ] 10.9.46.224 183.57.53.197 GET /hngame/public/index.php/admin
+[ info ] fhweb.u776.com:88/hngame/public/index.php/admin [运行时间：0.036305s][吞吐率：27.54req/s] [内存消耗：3,770.57kb] [文件加载：61]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'deflate, gzip',
+  'accept' => '*/*',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_4 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13G35 QQ/6.5.3.410 V1_IPH_SQ_6.5.3_1_APP_A Pixel/750 Core/UIWebView NetType/2G Mem/117',
+  'connection' => 'Close',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /data/home/hngame/public/../application/admin/lang/zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-11-15T11:29:02+08:00 ] 10.9.46.224 183.57.53.197 GET /hngame/public/index.php/admin/login/index
+[ info ] fhweb.u776.com:88/hngame/public/index.php/admin/login/index [运行时间：0.047493s][吞吐率：21.06req/s] [内存消耗：3,632.37kb] [文件加载：57]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'deflate, gzip',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/index.php/admin',
+  'accept' => '*/*',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_4 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13G35 QQ/6.5.3.410 V1_IPH_SQ_6.5.3_1_APP_A Pixel/750 Core/UIWebView NetType/2G Mem/117',
+  'connection' => 'Close',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /data/home/hngame/public/../application/admin/lang/zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Login->index[ /data/home/hngame/application/admin/controller/Login.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /data/home/hngame/public/../application/admin/view/login/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-11-15T11:29:02+08:00 ] 10.9.46.224 183.57.53.196 GET /hngame/public/
+[ info ] fhweb.u776.com:88/hngame/public/ [运行时间：0.054790s][吞吐率：18.25req/s] [内存消耗：3,748.64kb] [文件加载：59]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'deflate, gzip',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public',
+  'accept' => '*/*',
+  'accept-language' => 'zh-cn',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3_4 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13G35 QQ/6.5.3.410 V1_IPH_SQ_6.5.3_1_APP_A Pixel/750 Core/UIWebView NetType/2G Mem/117',
+  'connection' => 'Close',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ /data/home/hngame/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /data/home/hngame/public/../application/index/view/index/index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001348s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.001491s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `status` = 1 [ RunTime:0.001280s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.002017s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.001125s ]
+---------------------------------------------------------------
+[ 2017-11-15T11:29:11+08:00 ] 10.9.46.224 120.204.17.46 GET /hngame/public/index.php/admin
+[ info ] fhweb.u776.com:88/hngame/public/index.php/admin [运行时间：0.035766s][吞吐率：27.96req/s] [内存消耗：3,770.52kb] [文件加载：61]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.104 Safari/537.36 Core/1.53.2141.400 QQBrowser/9.5.10219.400',
+  'accept' => '*/*',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept-language' => 'zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4',
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /data/home/hngame/public/../application/admin/lang/zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-11-15T11:29:11+08:00 ] 10.9.46.224 120.204.17.46 GET /hngame/public/index.php/admin/login/index
+[ info ] fhweb.u776.com:88/hngame/public/index.php/admin/login/index [运行时间：0.038607s][吞吐率：25.90req/s] [内存消耗：3,632.91kb] [文件加载：57]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.104 Safari/537.36 Core/1.53.2141.400 QQBrowser/9.5.10219.400',
+  'accept' => '*/*',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/index.php/admin',
+  'cookie' => 'PHPSESSID=uf1g2msdtr6nhf8ng4ocrtnob1',
+  'accept-language' => 'zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4',
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /data/home/hngame/public/../application/admin/lang/zh-cn.php
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Login->index[ /data/home/hngame/application/admin/controller/Login.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ VIEW ] /data/home/hngame/public/../application/admin/view/login/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2017-11-15T11:39:09+08:00 ] 10.9.46.224 120.204.17.69 GET /hngame/public/
+[ info ] fhweb.u776.com:88/hngame/public/ [运行时间：0.041132s][吞吐率：24.31req/s] [内存消耗：3,748.64kb] [文件加载：59]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept' => '*/*',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public',
+  'accept-language' => 'zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4',
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ /data/home/hngame/application/index/controller/Index.php ]
+[ info ] [ VIEW ] /data/home/hngame/public/../application/index/view/index/index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001207s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.001205s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `status` = 1 [ RunTime:0.000647s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.001183s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.000651s ]
+---------------------------------------------------------------
+[ 2017-11-15T17:01:09+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.047996s][吞吐率：20.84req/s] [内存消耗：3,743.13kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001276s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001341s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000804s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001687s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001052s ]
+---------------------------------------------------------------
+[ 2017-11-15T17:01:17+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.045916s][吞吐率：21.78req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=5364vm8m09cfu5i4s5js3912e6',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001330s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001445s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000732s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001549s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000798s ]
+---------------------------------------------------------------
+[ 2017-11-15T17:01:20+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/1
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/1 [运行时间：0.040805s][吞吐率：24.51req/s] [内存消耗：3,617.40kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=5364vm8m09cfu5i4s5js3912e6',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=1',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001327s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001390s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000734s ]
+---------------------------------------------------------------
+[ 2017-11-15T17:01:25+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.045776s][吞吐率：21.85req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=5364vm8m09cfu5i4s5js3912e6',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001300s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001415s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000700s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001188s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000622s ]
+---------------------------------------------------------------
+[ 2017-11-15T17:01:28+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.050057s][吞吐率：19.98req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=5364vm8m09cfu5i4s5js3912e6',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001777s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001534s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000766s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001546s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000976s ]
+---------------------------------------------------------------
+[ 2017-11-15T17:01:30+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/24
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/24 [运行时间：0.043279s][吞吐率：23.11req/s] [内存消耗：3,612.13kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=5364vm8m09cfu5i4s5js3912e6',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=24',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '24',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001632s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001677s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000987s ]
+---------------------------------------------------------------
+[ 2017-11-15T17:01:45+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.052785s][吞吐率：18.94req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=5364vm8m09cfu5i4s5js3912e6',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001342s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001666s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000746s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001338s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000940s ]
+---------------------------------------------------------------
+[ 2017-11-15T17:01:47+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dt/count/0/num/10 [运行时间：0.048367s][吞吐率：20.68req/s] [内存消耗：3,720.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=5364vm8m09cfu5i4s5js3912e6',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/fashion_list.html?code=dt',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dt',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001283s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001982s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dt' LIMIT 1 [ RunTime:0.000769s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001331s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 6  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000850s ]
+---------------------------------------------------------------
+[ 2017-11-15T17:01:49+08:00 ] 10.9.46.224 121.204.112.201 GET /hngame/public/index.php/yfe/index/detail/id/1
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/1 [运行时间：0.042241s][吞吐率：23.67req/s] [内存消耗：3,617.40kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=5364vm8m09cfu5i4s5js3912e6',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Mobile/14E304',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=1',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001227s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001799s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.000855s ]
+---------------------------------------------------------------
+[ 2017-11-15T17:59:59+08:00 ] 10.9.46.224 125.77.51.57 GET /hngame/public/index.php/yfe/index/detail/id/26
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/26 [运行时间：0.047683s][吞吐率：20.97req/s] [内存消耗：3,617.25kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 UBrowser/6.2.3831.3 Safari/537.36',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=26',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8,en;q=0.6',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '26',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001356s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001614s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 26 LIMIT 1 [ RunTime:0.000832s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:01:34+08:00 ] 10.9.46.224 125.77.51.57 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.058086s][吞吐率：17.22req/s] [内存消耗：3,743.59kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 UBrowser/6.2.3831.3 Safari/537.36',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8,en;q=0.6',
+  'cookie' => 'PHPSESSID=n7rmnilp6pp95e3ackojvbitb5',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001519s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001493s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.001091s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.004020s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001171s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:01:42+08:00 ] 10.9.46.224 61.154.164.33 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.044751s][吞吐率：22.35req/s] [内存消耗：3,743.16kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Mobile/15A432 MicroMessenger/6.5.18 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001429s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001431s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000700s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001081s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000935s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:01:49+08:00 ] 10.9.46.224 61.154.164.33 GET /hngame/public/index.php/yfe/index/detail/id/27
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/27 [运行时间：0.054656s][吞吐率：18.30req/s] [内存消耗：3,612.06kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=dpk8l1q1khk640jvln9q02bak2',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Mobile/15A432 MicroMessenger/6.5.18 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=27',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '27',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003558s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001588s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000720s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:02:16+08:00 ] 10.9.46.224 61.154.164.33 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.042367s][吞吐率：23.60req/s] [内存消耗：3,743.28kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=dpk8l1q1khk640jvln9q02bak2',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Mobile/15A432 MicroMessenger/6.5.18 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001294s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001555s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000707s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001222s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001410s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:02:19+08:00 ] 10.9.46.224 61.154.164.33 GET /hngame/public/index.php/yfe/index/detail/id/27
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/27 [运行时间：0.041102s][吞吐率：24.33req/s] [内存消耗：3,612.06kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=dpk8l1q1khk640jvln9q02bak2',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Mobile/15A432 MicroMessenger/6.5.18 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=27',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '27',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001462s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001519s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000758s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:02:24+08:00 ] 10.9.46.224 61.154.164.33 GET /hngame/public/index.php/yfe/index/detail/id/26
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/26 [运行时间：0.039304s][吞吐率：25.44req/s] [内存消耗：3,617.27kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=dpk8l1q1khk640jvln9q02bak2',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Mobile/15A432 MicroMessenger/6.5.18 NetType/WIFI Language/zh_CN',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=26',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '26',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001305s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001287s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 26 LIMIT 1 [ RunTime:0.000712s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:02:43+08:00 ] 10.9.46.224 61.154.164.33 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.049742s][吞吐率：20.10req/s] [内存消耗：3,743.20kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A432 Safari/604.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001423s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001346s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000743s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001101s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001537s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:02:55+08:00 ] 10.9.46.224 61.154.164.33 GET /hngame/public/index.php/yfe/index/detail/id/24
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/24 [运行时间：0.040709s][吞吐率：24.56req/s] [内存消耗：3,611.91kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=4u0djb0ni6ihoi6qf8n3fnrqv4',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A432 Safari/604.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=24',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '24',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001567s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001618s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 24 LIMIT 1 [ RunTime:0.000790s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:03:42+08:00 ] 10.9.46.224 125.77.51.57 GET /hngame/public/index.php/yfe/index/detail/id/27
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/27 [运行时间：0.041088s][吞吐率：24.34req/s] [内存消耗：3,611.91kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 UBrowser/6.2.3831.3 Safari/537.36',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=27',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8,en;q=0.6',
+  'cookie' => 'PHPSESSID=n7rmnilp6pp95e3ackojvbitb5',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '27',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001479s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001406s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000725s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:04:20+08:00 ] 10.9.46.224 125.77.51.57 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.046728s][吞吐率：21.40req/s] [内存消耗：3,743.59kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 UBrowser/6.2.3831.3 Safari/537.36',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8,en;q=0.6',
+  'cookie' => 'PHPSESSID=n7rmnilp6pp95e3ackojvbitb5',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001532s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001373s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000982s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001375s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001135s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:04:27+08:00 ] 10.9.46.224 101.226.33.219 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.050109s][吞吐率：19.96req/s] [内存消耗：3,734.41kb] [文件加载：57]
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Linux; U; Android 4.4.4; zh-cn; MX4 Pro Build/KTU84P) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'en,*',
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001362s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.002558s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000871s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001270s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000999s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:04:30+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.046029s][吞吐率：21.73req/s] [内存消耗：3,743.30kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001421s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001374s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000639s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001029s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000949s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:04:33+08:00 ] 10.9.46.224 125.77.51.57 GET /hngame/public/index.php/yfe/index/detail/id/27
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/27 [运行时间：0.035448s][吞吐率：28.21req/s] [内存消耗：3,611.91kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 UBrowser/6.2.3831.3 Safari/537.36',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=27',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8,en;q=0.6',
+  'cookie' => 'PHPSESSID=n7rmnilp6pp95e3ackojvbitb5',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '27',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001430s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001350s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000814s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:04:35+08:00 ] 10.9.46.224 125.77.51.57 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.045924s][吞吐率：21.78req/s] [内存消耗：3,743.59kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 UBrowser/6.2.3831.3 Safari/537.36',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8,en;q=0.6',
+  'cookie' => 'PHPSESSID=n7rmnilp6pp95e3ackojvbitb5',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001522s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001486s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000816s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001225s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000908s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:04:36+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.040347s][吞吐率：24.78req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001173s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001519s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000811s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001600s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001077s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:04:38+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/10/num/5
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/10/num/5 [运行时间：0.050305s][吞吐率：19.88req/s] [内存消耗：3,721.11kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '10',
+  'num' => '5',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001352s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.002274s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000770s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001320s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 10,5 [ RunTime:0.000965s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:04:41+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/15/num/5
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/15/num/5 [运行时间：0.044531s][吞吐率：22.46req/s] [内存消耗：3,718.62kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '15',
+  'num' => '5',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001495s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001828s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000801s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001236s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 15,5 [ RunTime:0.001193s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:04:58+08:00 ] 10.9.46.224 61.154.164.33 GET /hngame/public/index.php/yfe/index/detail/id/17
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/17 [运行时间：0.043316s][吞吐率：23.09req/s] [内存消耗：3,610.01kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=4u0djb0ni6ihoi6qf8n3fnrqv4',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A432 Safari/604.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=17',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '17',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001207s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001938s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 17 LIMIT 1 [ RunTime:0.000893s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:05:06+08:00 ] 10.9.46.224 61.154.164.33 GET /hngame/public/index.php/yfe/index/detail/id/27
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/detail/id/27 [运行时间：0.038790s][吞吐率：25.78req/s] [内存消耗：3,612.11kb] [文件加载：56]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'detail',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'accept-encoding' => 'gzip, deflate',
+  'cookie' => 'PHPSESSID=4u0djb0ni6ihoi6qf8n3fnrqv4',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A432 Safari/604.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/content.html?id=27',
+  'accept-language' => 'zh-cn',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'id' => '27',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->detail[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001246s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.003486s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `id` = 27 LIMIT 1 [ RunTime:0.000812s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:15:31+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.043692s][吞吐率：22.89req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001436s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001348s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000667s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001507s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001171s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:15:34+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/10/num/5
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/10/num/5 [运行时间：0.048299s][吞吐率：20.70req/s] [内存消耗：3,721.11kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '10',
+  'num' => '5',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001445s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001726s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000744s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001777s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 10,5 [ RunTime:0.000865s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:15:36+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.045248s][吞吐率：22.10req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001406s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001522s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000747s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001072s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000993s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:36:46+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/10/num/5
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/10/num/5 [运行时间：0.045435s][吞吐率：22.01req/s] [内存消耗：3,721.11kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '10',
+  'num' => '5',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001636s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001651s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000723s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001301s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 10,5 [ RunTime:0.000807s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:36:50+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/15/num/5
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/15/num/5 [运行时间：0.047831s][吞吐率：20.91req/s] [内存消耗：3,718.62kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '15',
+  'num' => '5',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001322s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001317s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000737s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001501s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 15,5 [ RunTime:0.000825s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:36:54+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/0/num/10 [运行时间：0.044239s][吞吐率：22.60req/s] [内存消耗：3,743.46kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '0',
+  'num' => '10',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001283s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001604s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000745s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001075s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.001625s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:42:06+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/10/num/5
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/10/num/5 [运行时间：0.048947s][吞吐率：20.43req/s] [内存消耗：3,721.11kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '10',
+  'num' => '5',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001529s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001596s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000700s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001408s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 10,5 [ RunTime:0.000707s ]
+---------------------------------------------------------------
+[ 2017-11-15T18:42:11+08:00 ] 10.9.46.224 125.77.46.233 GET /hngame/public/index.php/yfe/index/archiveList/code/dc/count/15/num/5
+[ info ] fhweb.u776.com:88/hngame/public/index.php/yfe/index/archiveList/code/dc/count/15/num/5 [运行时间：0.053302s][吞吐率：18.76req/s] [内存消耗：3,718.62kb] [文件加载：58]
+[ info ] [ LANG ] /data/home/hngame/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'yfe',
+    1 => 'index',
+    2 => 'archiveList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'fhweb.u776.com:88',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+  'referer' => 'http://fhweb.u776.com:88/hngame/public/static/web/yfe/daily_list.html?code=dc',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=gnhaj2s46f351at5o8tapefhf7',
+  'content-type' => '',
+  'content-length' => '',
+)
+[ info ] [ PARAM ] array (
+  'code' => 'dc',
+  'count' => '15',
+  'num' => '5',
+)
+[ info ] [ RUN ] app\yfe\controller\Index->archiveList[ /data/home/hngame/application/yfe/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001421s ] mysql:dbname=guanwang;host=106.75.27.180;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_arctype` [ RunTime:0.001479s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_arctype` WHERE  `code` = 'dc' LIMIT 1 [ RunTime:0.000796s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_archive` [ RunTime:0.001388s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_archive` WHERE  `typeid` = 5  AND `status` = 1 ORDER BY create_time desc LIMIT 15,5 [ RunTime:0.000791s ]
