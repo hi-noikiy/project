@@ -4,7 +4,9 @@ include_once ROOT_PATH.'inc/config.php';
 include_once ROOT_PATH."inc/function.php";
 
 $key_arr = array(
-		7=>array("appId"=>"2882303761517461540","appSecret"=>"4/8fA3TlASV0lbYEC5B3hA=="),
+		8=>array(
+				'android'=>array("appId"=>"2882303761517653681","appSecret"=>"3IY3nr/agKD/lTqfHFI4aA=="),
+		),
 );
 
 

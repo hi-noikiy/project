@@ -67,6 +67,15 @@ switch ($sdkType){
         $rs = https_post($url, $data);
         echo $rs;
         break;
+        
+	case 129: //应用宝
+        	$url = $webHost.'/interface/ysdk/login.php';
+        	$data['access_token'] =$token;
+        	$data['type'] = $p;
+        	$data['game_id'] = $gameId;
+        	$rs = https_post($url, $data);
+        	echo $rs;
+        	break;
 	case 132: //爱普
 		$url = $webHost.'/interface/union/login.php';
 		$data['token'] = $p;
@@ -560,6 +569,31 @@ switch ($sdkType){
 		$rs = https_post($url, $data);
 		echo $rs;
 		break;					
+		
+	case 243: //小米
+			$url = $webHost."/interface/xiaomi/login.php";
+			$data['user_token'] = $p;
+			$data['uid'] = $token;
+			$data['game_id'] = $gameId;
+			$rs = https_post($url, $data);
+			echo $rs;
+			break;
+	case 244: //360
+				$url = $webHost."/interface/360/login.php";
+				$data['user_token'] = $p;
+				$data['uid'] = $token;
+				$data['game_id'] = $gameId;
+				$rs = https_post($url, $data);
+				echo $rs;
+				break;
+	case 245: //魅族
+					$url = $webHost."/interface/meizu/login.php";
+					$data['user_token'] = $p;
+					$data['uid'] = $token;
+					$data['game_id'] = $gameId;
+					$rs = https_post($url, $data);
+					echo $rs;
+					break;
     case 700:
         $url = $webHost.'/interface/guanwang/login.php';
         $data['p'] = $p;

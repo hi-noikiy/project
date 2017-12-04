@@ -11,6 +11,7 @@ $key_arr = array(
     			'androidnm1'=>array('apiKey'=>'AAAAtqAuesw:APA91bGi6PUxywfi9YmZ1hSL7lsuOpMlB8DWg-xWiAX60qJqToA_gMrjwCp6lOXmsDD3rnIuozOVlw74E40j5hjmCyIAmEr4EfruZUyuk8ro1Ap11yhqFY1X3smGiMqsqysBK6-Qxvd4'),
     			'iosnm'=>array('apiKey'=>'pem/nm.pem'),
     			'androidyn'=>array('apiKey'=>'AAAAx4vLUwo:APA91bHq96XRfa975aUC_pLpXEqQE85CV7fd65vWS_9ry1DTN7YZ_Wi5RGypZryCk0xlKobpc9a6Rvw6A9wXP0WLQNu5diNNzeKzorDvWAoncfaKlJFsFX38O3S77iFwCSL5Is5fyeq0'),
+    			'androidyn5'=>array('apiKey'=>'AAAAgVJygr0:APA91bH_t8KLrzqCe9A1Pguek-ESXf8Z8NR9V6EuACoc4VGixcaxyg8uyeJZn80gvDGHhwwwRHHSTISTqAXypy4NTrSjE479q8Decp5KpyMktjScWv6Nr20pmLDGhv9joL8PU3yjHG83'),
     			'iosyn'=>array('apiKey'=>'pem/yn.pem'),
     			'androidels'=>array('apiKey'=>'AAAAseXPhnk:APA91bGlI9q_tOyaSJlXEZHRQUpEGFVbV-ZkZ2cLKOeFZ3-HguGXoET_eMeMJmUsAdceF_FAZaIKwK8iT6kTkXPdt1X1mmyE61mEpVPXT6hUO4Ti6rmIQlMbjj5Y-QuGX6G1vCMYP8Bu'),
     			'iosels'=>array('apiKey'=>'pem/els.pem'),
@@ -39,6 +40,9 @@ function send_gcm_notify($reg_id,$message,$apikey) {
 	curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
 	$result = curl_exec($ch);
 	if ($result === FALSE) {
+		return 0;
+	}
+	if(!strpos($result,'multicast_id')){
 		return 0;
 	}
 	curl_close($ch);

@@ -23,6 +23,17 @@ RdvsiFbT+IMPDWIod7zSiMM9qkXmhD340k6zr0rOkb2cEWvcZUgL6M24eSSSMfec
 VwIDAQAB
 -----END PUBLIC KEY-----',
     	),	
+    		'android2'=>array(
+    				'appKey'    =>'-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkez3voODnrTgSswdvVzS
+0FmMaFXaB0i+8nblq7vQn4eFbG6rhuqdEwaSOjSfbUrJIOz61b5lhKP8EXrbSEAz
+JeDkSVdTyTIL3hNX1gaYdig2Rj3jLoRcIqqTEuwNgjWB0tK8iIwr6TZQTDv/usyn
+otnvqv5x1QnJhh4nWjxNQvAWNjxU2cz5K7z+AjbBXCKK4HAv30J99PborWNLARGL
+pBdP1wjYSQdPlBCuOeSDdBiF8G9tG+DgohMdsFaTb0IU+KnuywTI+esZ4Knt/dz2
+5ScTRx+Ic/lX4f0Xg3kuoa+lVe9Bsw8+BhaWcoJs58HmArrQVM5wYWL++dgl1wAE
+1wIDAQAB
+-----END PUBLIC KEY-----',
+    		),
     ),
 );
 ?>

@@ -33,12 +33,9 @@ if (empty($GLOBALS["HTTP_RAW_POST_DATA"])) {
 	$game_id = $exInfoArr[0];
 	$server_id = $exInfoArr[1];
 	$account_id = $exInfoArr[2];
-	
-	if(isset($exInfoArr[3]) && $exInfoArr[3] == 'ios'){
-		$msg = SDKServices::verifyNotify($ttsign, $urldata, 'ios');
-	} else {
-		$msg = SDKServices::verifyNotify($ttsign, $urldata);
-	}
+	$type = $exInfoArr[3];
+	global $key_arr;
+	$msg = SDKServices::verifyNotify($ttsign, $urldata,$key_arr[$type]['chargekey']);
 	write_log(ROOT_PATH."log","TTyuyin_callback_all_"," post=$post,get=$get, result=$msg, ".date("Y-m-d H:i:s")."\r\n");
 	$msgArr = json_decode($msg, true);
 	if(isset($msgArr['head']['result']) && $msgArr['head']['result'] == 0){

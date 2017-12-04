@@ -16,5 +16,9 @@ $key_arr = array(
             'appId'     =>'2446ec3ead7ded8c4e6b802cada9ae4b',
             'appKey'    =>'ee7bdb5332e157b3873aae18275bb105',
         ),
+    	'ios1'=>array(
+    				'appId'     =>'b0ef54107d5c87116eccf4484f644616',
+    				'appKey'    =>'b69550f8312286b37a1eb7182c2ddc08',
+    		),
     ),
 );

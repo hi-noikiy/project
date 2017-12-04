@@ -1,8 +1,8 @@
 <?php
-
+include_once '../config.php';
 class ConfigUtil {
 
-    public static function get_val_by_key($key) {
+    public static function get_val_by_key($type,$key) {
         $settings = new Settings_INI ();
         $settings->load('config/config.ini');
         return $settings->get("TTSDK." . $key);

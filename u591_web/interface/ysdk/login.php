@@ -22,6 +22,9 @@ $channel = trim($_REQUEST['channel']);
 $token = trim($_REQUEST['token']);
 $gameId = intval($_REQUEST['game_id']);
 
+$chn = explode('_', $channel);
+$channel = $chn[0];
+$type = isset($chn[1])?$chn[1]:'android';
 //$channel = 'qq';
 //$token = 'D2676F95BB1EE4310E4E26C1FA5EF602,E2405A0464018C2BB1065F3DA29693F5';
 //$gameId = 8;
@@ -36,13 +39,13 @@ if(empty($tokenArr[0]) || empty($tokenArr[1])){
 }
 $openid = $tokenArr[0];
 $accesstoken = $tokenArr[1];
-$appid = $key_arr[$gameId][$channel]['appId'];
-$appkey = $key_arr[$gameId][$channel]['appKey'];
+$appid = $key_arr[$gameId][$type][$channel]['appId'];
+$appkey = $key_arr[$gameId][$type][$channel]['appKey'];
 
 // 调试环境: ysdktest.qq.com
 // 正式环境: ysdk.qq.com
 // 调试环境仅供调试时调用，调试完成发布至现网环境时请务必修改为正式环境域名
-$server_name = 'ysdktest.qq.com';
+$server_name = 'ysdk.qq.com';
 $ts=time();
 // 用户的IP，可选，默认为空
 $userip = '';

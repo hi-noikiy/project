@@ -1,9 +1,9 @@
 <?php
 error_reporting(0);
 include_once 'config.php';
-/*$_POST['regid'] = '529be970176849367eb2d7a3e40d8354bf1b576eed7ea1da2f528c1ad02a832c';
+/*$_POST['regid'] = 'dbImLCdO6No:APA91bE8NXGWuVHNHX5PvBb42OVPo96t7NIG1Fwklc_sSGeoOdsZWs-mFZQNrwPQP7bxmODzVL8SVXo7-TNjMv93ZN11mQ4df6RFY1pwjIjiGc1nIK0zDbMHwAmVE4i6M7KS7hVAylsZ';
 $_POST['message'] = '今天登录可以免费领取大礼包一份！';
-$_POST['type'] = 'iosels';*/
+$_POST['type'] = 'androidsels';*/
 $post = serialize($_POST);
 write_log(ROOT_PATH."log","tuisong_info_","post=$post, ".date("Y-m-d H:i:s")."\r\n");
 $reg_id = $_POST['regid'];
@@ -24,5 +24,3 @@ function send_notify($type,$reg_id,$message,$apikey){
 		return send_apn_notify($reg_id,$message,$apikey);
 	}
 }
-
-

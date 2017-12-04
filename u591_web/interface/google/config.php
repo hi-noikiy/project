@@ -43,14 +43,24 @@ $key_arr = array(
     				'appSecret' =>'b3GpliXx0pXdK0tSitTVZQkT',
     				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6cm42U8Y6uhTT9HM+tHeYAJQKVVc2AJ8hVy/atr+SvK4D/YFffMV5Stc9WBC61hGI/hWUfnVaC7lHtUwFtqJe/jEsdNfLud1YmU5/wN5UUGSmoMuLTFQ4UvZdrbYpJKlLEKqM+Oc6V441B2iOEP+EtbQiE4f1jXABzB87j+Genxawmy/hgKNWnqL1CHCl5cVYzbhmB3xW6+Kbi3xuFgHVC1xpI7oOv7l0Vd9pbsOhGOY244zPfAv3OzjG9pQwFhfISDZ1d19LJjMBZJ7Frd22BW7No76vSS6WkIMEQ1JPSe4gz0NA7cGkIwzXGqqgH9f1KuNcXCVMrM5OTopBxIebwIDAQAB',
     		),
+    		'androidyn5'=>array(
+    				'appId'     =>'555434017469-b5t619gpulojhdiufbv67h5h9rllhu7t.apps.googleusercontent.com',
+    				'appSecret' =>'qAG0QR0PrRuleC0PxkaFH_MQ',
+    				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu+j9xM7LGh/+w/hv2sBTnIH9ranZBr/dQzCtJVeuBJfDW0DpWvn4GpcckFMCZXv00LieaUztATwrECJCOJ2TTdzu/LBTWBQQMOJP5BpZkpI/A5z1XlvzZ+Rx7cYoFj4Z1xiQjwVFdVtleTfUUbw832naJkQHbB8vgCt2BWPxjYNLqozypZzkt5o+WGWyKPQNxsf1hvEK3v2uhezVDuq2b1AH5x5hpXW6bcpT12mH44O4Orqk2FIpoJepw1I3nYSREAyuqC1uSHYNkS7Z3O0r5bAK1Znf4jEcT+9nGrzTchhoLw7OIDApntn96BjQKHNBK85vxYOVJvnbKH422tdWkQIDAQAB',
+    		),
         'xinma'=>array(
             'appId'     =>'409589426094-encph12ih4c21is76aiek88nkvi7t9dp.apps.googleusercontent.com',
             'appSecret' =>'ijt-WyyWhm8-2yqJT1tlGsj6',
             'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6WpcSYMnMkbmf1kZd6vm+Du4tJUirbUf+09//jXJoZEVxkTvkfETgKOZNef/ZUCpN7+ORkRdIV+UjQP75TmEHnj49qmoGCW7KVrnXmsDHFBotJvPVR9F1lee7/ymiGiV5ke5R/CpQplZ/lA7/HGsZKoBZCX95YZhDtmT8Es/FaStzgxpRgQmArMpOQ4N1zNOyEck+ZdP8RxN6MrC9P9tpgz1yjDNjed3uWyaq72YnCoeV0tGIt4VIAvgP1lSPUekZirYvEZhPScv7SRKeXxlBLgE/+9Na2iNWcaVTljHn6kP4dNSXNm8KCt6bx3FjbfL81fb/yz2JOxHL1BKlORv+QIDAQAB',
         ),
-    		'nanmei'=>array(
+    		/*'nanmei'=>array(
     				'appId'     =>'893867583164-t9tv9am66h1kg0ghkbajnnfns44sfks9.apps.googleusercontent.com',
     				'appSecret' =>'dECCAP4NUy6l_3DpSP5MIqpO',
+    				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6WpcSYMnMkbmf1kZd6vm+Du4tJUirbUf+09//jXJoZEVxkTvkfETgKOZNef/ZUCpN7+ORkRdIV+UjQP75TmEHnj49qmoGCW7KVrnXmsDHFBotJvPVR9F1lee7/ymiGiV5ke5R/CpQplZ/lA7/HGsZKoBZCX95YZhDtmT8Es/FaStzgxpRgQmArMpOQ4N1zNOyEck+ZdP8RxN6MrC9P9tpgz1yjDNjed3uWyaq72YnCoeV0tGIt4VIAvgP1lSPUekZirYvEZhPScv7SRKeXxlBLgE/+9Na2iNWcaVTljHn6kP4dNSXNm8KCt6bx3FjbfL81fb/yz2JOxHL1BKlORv+QIDAQAB',
+    		),*/
+    		'nanmei'=>array(
+    				'appId'     =>'419657765810-fv7rggurs713oap1mo9rapvj2t7r2q5k.apps.googleusercontent.com',
+    				'appSecret' =>'auJ4p1JNuPSXyWXm2PrdCajJ',
     				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6WpcSYMnMkbmf1kZd6vm+Du4tJUirbUf+09//jXJoZEVxkTvkfETgKOZNef/ZUCpN7+ORkRdIV+UjQP75TmEHnj49qmoGCW7KVrnXmsDHFBotJvPVR9F1lee7/ymiGiV5ke5R/CpQplZ/lA7/HGsZKoBZCX95YZhDtmT8Es/FaStzgxpRgQmArMpOQ4N1zNOyEck+ZdP8RxN6MrC9P9tpgz1yjDNjed3uWyaq72YnCoeV0tGIt4VIAvgP1lSPUekZirYvEZhPScv7SRKeXxlBLgE/+9Na2iNWcaVTljHn6kP4dNSXNm8KCt6bx3FjbfL81fb/yz2JOxHL1BKlORv+QIDAQAB',
     		),
     		'nanmeiandroid'=>array(
@@ -62,6 +72,11 @@ $key_arr = array(
     				'appId'     =>'784371448524-695gh11kaomegj6vb2m6jeljkc8n3b6i.apps.googleusercontent.com',
     				'appSecret' =>'k84Rg1YMflRd8O3xFTUGL96O',
     				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvbEMpLNRQlAFt8ujfCZQl17ROHx1OuKzwO7nWUFInhUzxYe+OlApwOr9kBGr49ZrBaNRnpVhC7L87ckjkCnwRqTo+T71uL/AXpK1ohbFSCnGS0Vz/PzkgNy//1ZPElxkShU7HwGe03BADiBwizQv/eLxbtOZFi0G86wlcKOvUhonY6mjCThc2XbMZxmWWeX/8q47oPtkzoB/W+1pZW+jokJR8CiiTC2WP8IerUJ1FdRsIEsYr0n3/aLCeIE+YWgi10G5CwIXVSAy6azlRwO4hE8GMPn6stnHzNANNV0QWe3IFFMugYWi6gtfUMk3kHdkk6odVd/Pd7cNkfTRBlWM0QIDAQAB',
+    		),
+    		'androidnm2'=>array(
+    				'appId'     =>'360630468458-fq83lpoqm8vkjlrgh37t35md1aikqico.apps.googleusercontent.com',
+    				'appSecret' =>'clHjMH7BRP-LsjrO1cWIWzh6',
+    				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAipGwimgIANO5kPY0VMclAyzsmCQPtIyeKkL5+9+cmapgnrjr5UDbePKWyWw3/RML6oTEO7TTKbMKJC0hPRmWU6UAmKZtTd5LMHAJSJbKucSN22NTzJrsx5a9INY3nVNYLE2lZo+ZzwByCsOsvVYIb0rX+8xsl7BQ70sfg2Rb2MIP/GaMjLj/ZF7nQ8yPa5zu+Ch1kw89By+OtT7pSLUHAcUidNgEP34Gx3BJSzv9HQv3wGahL4EsVn4zVX2EI2CRtVfeBGLDNI0uK4OUx/dfR3Y3HDjtzxMlYU57Mh65pbUp1jwuTBCEpY7Ckqa0JVD5rkpvDPsrsXSn003IB0oIHwIDAQAB',
     		),
     		'iosels'=>array(
     				'appId'     =>'464598782374-hbm1d41oog290gtbaje56eb6r85rl8pr.apps.googleusercontent.com',
@@ -117,5 +132,21 @@ $google_id_value = array(
 		'sgvfs_3000'   => array('49.99', 3000, 'USD'),
 		'rther_6000'   => array('99.99', 6000, 'USD'),
 		'wbvg'   => array('5.99', 360, 'USD'),
+		'nmchongzhi_60'     => array('0.99', 60	, 'USD'),
+		'nmchongzhi_300'    => array('4.99', 300,'USD'),
+		'nmchongzhi_600'    => array('9.99', 600,'USD'),
+		'nmchongzhi_900'    => array('14.99', 900, 'USD'),
+		'nmchongzhi_1500'   => array('24.99', 1500, 'USD'),
+		'nmchongzhi_3000'   => array('49.99', 3000, 'USD'),
+		'nmchongzhi_6000'   => array('99.99', 6000, 'USD'),
+		'nmchongzhi_card'   => array('5.99', 360, 'USD'),
+		'yuenanpay_6'     => array('0.99', 90	, 'USD'),
+		'yuenanpay_12'    => array('1.99', 180,'USD'),
+		'yuenanpay_18'    => array('3.99', 360,'USD'),
+		'yuenanpay_30'    => array('4.99', 450, 'USD'),
+		'yuenanpay_68'   => array('9.99', 910, 'USD'),
+		'yuenanpay_138'   => array('19.99', 1820, 'USD'),
+		'yuenanpay_348'   => array('49.99', 4540, 'USD'),
+		'yuenanpay_698'   => array('99.99', 9090, 'USD'),
 
 );

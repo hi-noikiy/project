@@ -9,8 +9,8 @@ include 'config.php';
 $post = file_get_contents('php://input');
 write_log(ROOT_PATH."log","huawei_callback_info_","post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 
-$success = "{\"result\":1}";
-$fail = "{\"result\":0}";
+$success = "{\"result\":0}";
+$fail = "{\"result\":1}";
 if (null === $post || "" === $post)
 {
 	write_log(ROOT_PATH."log","huawei_callback_error_","param is null, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");

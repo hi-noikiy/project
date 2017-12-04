@@ -26,7 +26,7 @@ if(empty($gameId) || empty($serverId) || empty($accountId) || empty($type)){
 global $key_arr;
 $access_key = $key_arr[$gameId][$type]['access_key']; //require your access key from 1pay
 $secret = $key_arr[$gameId][$type]['secret']; //require your secret key from 1pay
-$return_url = "http://gunweb.u591.com:83/interface/1pay/callback.php";
+$return_url = "http://pokeynweb.u591776.com/interface/1pay/callback.php";
 $command = 'request_transaction';
 $amount = $_POST['amount'];   // >10000
 
@@ -42,5 +42,16 @@ $json_bankCharging = execPostRequest($url, $data);
 //Ex: {"pay_url":"http://api.1pay.vn/bank-charging/sml/nd/order?token=LuNIFOeClp9d8SI7XWNG7O%2BvM8GsLAO%2BAHWJVsaF0%3D", "status":"init", "trans_ref":"16aa72d82f1940144b533e788a6bcb6"}
 write_log(ROOT_PATH."log","1pay_bank_result_","result=$json_bankCharging. post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 $decode_bankCharging=json_decode($json_bankCharging,true);  // decode json
+if($decode_bankCharging['trans_ref']){
+	$conn = SetConn(88);
+	if($conn == false){
+		write_log(ROOT_PATH."log","1pay_bank_error_","web mysql connect error, ".date("Y-m-d H:i:s")."\r\n");
+		return false;
+	}
+	$Add_Time=date('Y-m-d H:i:s');
+	$sql = "insert into web_bank_order(trans_ref,account_id,Add_Time) values('{$decode_bankCharging['trans_ref']}',$accountId,'$Add_Time');";
+	@mysqli_query($conn, $sql);
+	write_log(ROOT_PATH."log","1pay_bank_order_","sql=$sql, ".mysqli_error($conn)." ".date("Y-m-d H:i:s")."\r\n");
+}
 $pay_url = $decode_bankCharging["pay_url"];
 exit(json_encode(array('code'=>'200','data'=>array('paymentUrl'=>$pay_url))));

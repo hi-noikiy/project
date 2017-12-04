@@ -6,7 +6,7 @@ $filename = dirname(__FILE__)."/payPublicKey.pem";
 	@chmod($filename, 0777);
 	@unlink($filename);
 
-$devPubKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjxIdCZv3NALmKmP0F7+OysvvijphsxRD++BhS7Sl97YhWRemVjpMSBaA/w6DDGCZrpIQdolyDU3JUqlkLfyoZE/V9qzroJtbcbwinOWvOWD/EcOKsKt8i2AWXDzwkktpHxTJPe8P4wtfYX4chD+3wh9I3NePsQZnilnrgBxVmNBU2xpvU+vFmMOev93AR6zzn/YJegzopgzYz/+35qGZ/3XD0bUqy93iHLYsX0UEuUa+Q2+WKa1INmDwrVl9l6Su35dDekBgyjM8P+8GXDOKRdvsiFbT+IMPDWIod7zSiMM9qkXmhD340k6zr0rOkb2cEWvcZUgL6M24eSSSMfecVwIDAQAB";
+$devPubKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkez3voODnrTgSswdvVzS0FmMaFXaB0i+8nblq7vQn4eFbG6rhuqdEwaSOjSfbUrJIOz61b5lhKP8EXrbSEAzJeDkSVdTyTIL3hNX1gaYdig2Rj3jLoRcIqqTEuwNgjWB0tK8iIwr6TZQTDv/usynotnvqv5x1QnJhh4nWjxNQvAWNjxU2cz5K7z+AjbBXCKK4HAv30J99PborWNLARGLpBdP1wjYSQdPlBCuOeSDdBiF8G9tG+DgohMdsFaTb0IU+KnuywTI+esZ4Knt/dz25ScTRx+Ic/lX4f0Xg3kuoa+lVe9Bsw8+BhaWcoJs58HmArrQVM5wYWL++dgl1wAE1wIDAQAB";
 $begin_public_key = "-----BEGIN PUBLIC KEY-----\r\n";
 $end_public_key = "-----END PUBLIC KEY-----\r\n";
 

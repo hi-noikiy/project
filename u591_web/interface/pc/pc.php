@@ -34,7 +34,7 @@
 
             window.clientSDK.init({
                 el:'#main',
-                gameId:'kdyg',
+                gameId:'land',
                 defaultMainPage: 'login',
                 defaultArticle: {'news':5},
                 defaultSection: {'mini_slider':5},

@@ -34,7 +34,7 @@ if($sign != $mysign) {
     exit('FAILURE');
 }
 $conn = SetConn(88);
-$orderId = $extendsInfo;
+$orderId = $data['orderId'];
 $sql = "select rpCode from web_pay_log where OrderID = '$orderId' limit 1;";
 $query = mysqli_query($conn, $sql);
 $result = @mysqli_fetch_array($query);

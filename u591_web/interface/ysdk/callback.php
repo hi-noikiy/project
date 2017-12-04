@@ -20,6 +20,9 @@ $channel = trim($_REQUEST['channel']);
 $gameId = intval($_REQUEST['game_id']);
 $orderId = $_POST['order_id'];
 $serverId = $_POST['server_id'];
+$chn = explode('_', $channel);
+$channel = $chn[0];
+$type = isset($chn[1])?$chn[1]:'android';
 global $key_arr;
 /*if($channel == 'qq'){
 	$appid = $key_arr[$gameId][$channel]['appId'];
@@ -27,8 +30,8 @@ global $key_arr;
 } elseif ($channel == 'weixin') {
 	$appid = $key_arr[$gameId][$channel]['appId'];
 }*/
-$appid = $key_arr[$gameId][$channel]['appId'];
-$appkey = $key_arr[$gameId][$channel]['appKey'];
+$appid = $key_arr[$gameId][$type][$channel]['appId'];
+$appkey = $key_arr[$gameId][$type][$channel]['appKey'];
 // 应用支付基本信息,需要替换为应用自己的信息，必须和客户端保持一致
 // 需要登录腾讯开放平台管理中心 http://op.open.qq.com/，选择已创建的应用进入，然后进入支付结算，完成支付的接入配置
 $pay_appid = $key_arr[$gameId]['pay']['appId'];

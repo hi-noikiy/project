@@ -19,8 +19,9 @@ $extendsInfoArr = explode('_', $extraInfo);
 $gameId = $extendsInfoArr[0];
 $serverId = $extendsInfoArr[1];
 $accountId = $extendsInfoArr[2];
+$type = $extendsInfoArr[3];
 global $key_arr;
-$secret = $key_arr[$gameId]['appSecret'];
+$secret = $key_arr[$gameId][$type]['appSecret'];
 $signstr = "{$orderId}{$uid}{$myserverId}{$amount}{$extraInfo}{$secret}";
 $mysign = strtolower(md5($signstr));
 

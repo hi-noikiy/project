@@ -19,11 +19,12 @@ $errcode = $_REQUEST['errcode'];
 $errMsg = $_REQUEST['errMsg'];
 
 $cpOrderId_arr = explode('_', $cpOrderId);
-$game_id = $cpOrderId_arr[0];
-$server_id = $cpOrderId_arr[1];
-$account_id = intval($cpOrderId_arr[2]);
+$gameId = $cpOrderId_arr[0];
+$serverId = $cpOrderId_arr[1];
+$accountId = intval($cpOrderId_arr[2]);
+$type = intval($cpOrderId_arr[3]);
 global $key_arr;
-$appSecret = $key_arr[$game_id]['appSecret'];
+$appSecret = $key_arr[$gameId][$type]['appSecret'];
 $text = $appId.$cpOrderId.$uid;
 $text = "appId=$appId&cpOrderId=$cpOrderId&uid=$uid";
 $signature_check = get_signature($text, $appSecret);
@@ -44,74 +45,53 @@ $productName_check = $result_arr['productName'];
 $productCount_check = $result_arr['productCount'];
 $payTime_check = $result_arr['payTime'];
 $signature_check = $result_arr['signature'];
+if($orderStatus_check !='TRADE_SUCCESS'){
+	write_log(ROOT_PATH."log","xiaomi_callback_error_","status=$orderStatus_check, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
+	exit('{"errcode":1506}');
+}
+if($appId_check&&$cpOrderId_check&&$cpUserInfo_check){
 
-if($appId_check&&$cpOrderId_check&&$cpOrderId_check&&$cpUserInfo_check){
-    $order_id = $cpOrderId_check;
+    $orderId = $cpOrderId;
+    $conn = SetConn(88);
+    $sql = "select rpCode from web_pay_log where OrderID = '$orderId' limit 1;";
+    $query = mysqli_query($conn, $sql);
+    $result = @mysqli_fetch_array($query);
+    if($result['rpCode']==1 || $result['rpCode']==10){
+    	write_log(ROOT_PATH."log","xiaomi_callback_error_",$orderId."is pay success,  ".date("Y-m-d H:i:s")."\r\n");
+    	exit('{"errcode":200}');
+    }
     $PayMoney = $payFee_check/100;
     //获取账号信息
     global $accountServer;
-    $accountConn = $accountServer[$game_id];
-    $conn = SetConn($accountConn);
-    $sql_account = "select NAME,dwFenBaoID,clienttype from account where id = '$account_id' limit 1;";
-    $query_account = @mysqli_query($conn,$sql_account);
+	$accountConn = $accountServer[$gameId];
+	$conn = SetConn($accountConn);
+    $sql_account = "select  NAME,dwFenBaoID,clienttype  from account where id = '$accountId'";
+    $query_account = mysqli_query($conn, $sql_account);
     $result_account = @mysqli_fetch_assoc($query_account);
-
     if(!$result_account['NAME']){
-        $str= "4 账号不存在 ".date("Y-m-d H:i:s")."\r\n";
-        write_log(ROOT_PATH."log","xiaomi_callback_error_",$str);
-        exit('{"errcode":1506}');//账号不存在
+        write_log(ROOT_PATH."log","xiaomi_callback_error_", "account is not exist.  ".date("Y-m-d H:i:s")."\r\n");
+        exit('{"errcode":1506}');
     }else{
         $PayName = $result_account['NAME'];
         $dwFenBaoID = $result_account['dwFenBaoID'];
         $clienttype = $result_account['clienttype'];
     }
     $conn = SetConn(88);
-    //判断订单id情况
-    $sql = " select count(id) count from web_pay_log where OrderID = '$order_id' limit 1;";
-    $query = @mysqli_query($conn,$sql);
-    $result_count = @mysqli_fetch_assoc($query);
-    if($result_count['count']){
-        $str= "5 订单已存在 ".date("Y-m-d H:i:s")."\r\n";
-        write_log(ROOT_PATH."log","xiaomi_callback_error_",$str);
-        exit('{"errcode":1506}');//订单已存在
-    }
     $Add_Time=date('Y-m-d H:i:s');
-    $sql="insert into web_pay_log (CPID,PayID,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype)";
-    $sql=$sql." VALUES (25,$account_id,'$PayName','$server_id','$PayMoney','$order_id','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype')";
+    $sql="insert into web_pay_log (CPID,PayID,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype, rpCode)";
+    $sql=$sql." VALUES (25, $accountId,'$PayName','$serverId','$payMoney','$orderId','$dwFenBaoID','$Add_Time','1','$gameId','$clienttype', '1')";
     if (mysqli_query($conn,$sql) == False){
-        $str="6 ".$sql."  ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n";
-        write_log(ROOT_PATH."log","xiaomi_callback_error_",$str);
-        exit;
+        write_log(ROOT_PATH."log","xiaomi_callback_error_","sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
+        exit('{"errcode":1525}');
     }
-    $isPay = 0;
-    if($orderStatus_check=='TRADE_SUCCESS'){
-        xiaomiPayLog($order_id,1,$PayMoney);//更新充值记录
-        WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
-    }else{
-        $isPay = 1;
-        xiaomiPayLog($order_id,2,$PayMoney);//更新充值记录
-    }
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
     //统计数据
     global $tongjiServer;
-    $tjAppId = $tongjiServer[$game_id];
-    sendTongjiData($game_id,$account_id,$server_id,$dwFenBaoID,0,$PayMoney,$order_id,1,$tjAppId,$isPay);
+    $tjAppId = $tongjiServer[$gameId];
+    sendTongjiData($gameId,$accountId,$serverId,$dwFenBaoID,0,$payMoney,$orderId,1,$tjAppId);
     exit('{"errcode":200}');
 }else{
     write_log(ROOT_PATH."log","xiaomi_check_result_log_"," cpOrderId=$cpOrderId, url=$url,result=$result,check error! ".date("Y-m-d H:i:s")."\r\n");
     exit('{"errcode":1525}');
-}
-
-function xiaomiPayLog($OrderID,$rpCode,$PayMoney){
-    $conn = SetConn(88);
-    $rpTime=date('Y-m-d H:i:s');
-    $sql="update web_pay_log set PayMoney='$PayMoney',rpCode='$rpCode', rpTime='$rpTime' ";
-    $sql=$sql." where OrderID='$OrderID'";
-    //echo $sql;
-    if (mysqli_query($conn,$sql) == False){
-        //写入失败日志
-        $str="6 ".$sql."  ".date("Y-m-d H:i:s")."\r\n";
-        write_log(ROOT_PATH."log","xiaomi_callback_error_",$str);
-        exit('{"errcode":1525}');
-    }
 }
 ?>

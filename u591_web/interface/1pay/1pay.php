@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="renderer" content="webkit">
-    <meta name="viewport" content="target-densitydpi=device-dpi,width=1000,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title class="I18N">headerTitle</title>
     <link rel="stylesheet" href="./src/css/base.css">
     <link rel="stylesheet" href="./src/css/jqpagination.css">
@@ -36,10 +36,8 @@
                     <li class="I18N" onclick="javascript:void(0);" style="display: none;">public.sms</li>
                 </ul>
             </div>
-        </div>
 
-        <div class="content-right">
-            <div class="box-card  page">
+<div class="box-card  page">
                 <input type="hidden" name="extern" value="<?=isset($_REQUEST['extern']) ? $_REQUEST['extern'] : ''; ?>">
                 <div class="title-line">
                     <div><img src="./src/img/icon-bank.png"></div>
@@ -48,12 +46,14 @@
 
                 <div class="box-select">
                     <div class="zoneId">
+                        <h4 class="I18N">public.serverName</h3>
                         <button class="sel-zoneId">
                             <span class="target"><?=isset($_REQUEST['server_name']) ? $_REQUEST['server_name'] : ''; ?></span>
                         </button>
                     </div>
 
                     <div class="playId">
+                        <h4 class="I18N">public.playerName</h3>
                         <button class="sel-playId">
                             <span class="target"><?=isset($_REQUEST['player_name']) ? $_REQUEST['player_name'] : ''; ?></span>
                         </button>
@@ -100,8 +100,8 @@
                     <div><hr/></div>
                 </div>
                 <div class="box-card-charge">
-                    <input type="text" placeholder="Mã thẻ" class="card-number">
-                    <input type="text" placeholder="Mật khẩu" class="card-password">
+                    <input type="text" placeholder="Seri thẻ" class="card-number">
+                    <input type="text" placeholder="Mã thẻ" class="card-password">
                 </div>
 
                 <button class="btn-card-charge I18N">public.charge</button>
@@ -115,14 +115,16 @@
 
                 <div class="box-select">
                     <div class="zoneId">
+                    <h4 class="I18N">public.serverName</h3>
                         <button class="sel-zoneId">
                             <span class="target"><?=isset($_REQUEST['server_name']) ? $_REQUEST['server_name'] : ''; ?></span>
                         </button>
                     </div>
 
                     <div class="playId">
+                    <h4 class="I18N">public.playerName</h3>
                         <button class="sel-playId">
-                            <span class="target"><?=isset($_REQUEST['server_name']) ? $_REQUEST['server_name'] : ''; ?></span>
+                            <span class="target"><?=isset($_REQUEST['player_name']) ? $_REQUEST['player_name'] : ''; ?></span>
                         </button>
                     </div>
                 </div>
@@ -259,6 +261,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -327,5 +330,46 @@
 <script src="./src/js/kdyg3ds.js"></script>
 <script src="./src/js/index.js"></script>
 <script src="./src/js/require.js"></script>
+<script type="text/javascript">
+//网络银行
+function chargeForwardWeb(){
+    var data = getDataOnline();
+    //var tempwindow=window.open();
+    $.ajax({
+        type: "POST",
+        url: config.url + "/bank.php",
+        dataType: 'json',
+        async:false,
+        data: data,
+        beforeSend: function(){
+            $(".win-wrap").show();
+            $(".win-alert").show();
+            $(".win.active").removeClass("active");
+            $(".box-loading").addClass("active");
+        },
+        success: function(result){
+            console.log(JSON.stringify(result));
+            if(result.code == 200){
+                $(".win-wrap").show();
+                $(".win-alert").show();
+                $(".win.active").removeClass("active");
+                $(".alert-rechanging").addClass("active");
+                //tempwindow.location=result.data.paymentUrl;
+                location.href=result.data.paymentUrl;
+            }else{
+                $(".win-wrap").show();
+                $(".win-alert").show();
+                $(".win.active").removeClass("active");
+                $(".alert-result .success p").text(i18N.get("status."+result.code));
+                $(".alert-result").addClass("active");
+                //tempwindow.close();
+            }
+        },
+        error: function(err){
+            console.log(JSON.stringify(err));
+        }
+    })
+}
+</script>
 </body>
 </html>

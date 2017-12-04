@@ -284,23 +284,23 @@ $appleIdVal = array(
 		'bljlq_sx5_328'               =>'328',
 		'bljlq_sx5_645'               =>'648',
 		
-		'cevwvc_60'                 =>'60',
-		'vfwcvvbe_300'                =>'300',
-		'brgbdb_600'                =>'600',
-		'btyhngb_900'                =>'900',
-		'hdfvsz_1500'               =>'1500',
-		'brtyesgvv_3000'               =>'3000',
-		'yhrebbgf_6000'               =>'6000',
-		'ngdsf'               =>'360',
+		'cevwvc_60'                 =>'6',
+		'vfwcvvbe_300'                =>'30',
+		'brgbdb_600'                =>'60',
+		'btyhngb_900'                =>'90',
+		'hdfvsz_1500'               =>'150',
+		'brtyesgvv_3000'               =>'300',
+		'yhrebbgf_6000'               =>'600',
+		'ngdsf'               =>'36',
 		
-		'cegnc_60'                 =>'60',
-		'vdbhrtvbe_300'                =>'300',
-		'brdhntdb_600'                =>'600',
-		'btdhtb_900'                =>'900',
-		'bhtrnsz_1500'               =>'1500',
-		'bdbrtsgvv_3000'               =>'3000',
-		'yhnrhrgf_6000'               =>'6000',
-		'nrtrn_25'               =>'360',
+		'cegnc_60'                 =>'6',
+		'vdbhrtvbe_300'                =>'30',
+		'brdhntdb_600'                =>'60',
+		'btdhtb_900'                =>'90',
+		'bhtrnsz_1500'               =>'150',
+		'bdbrtsgvv_3000'               =>'300',
+		'yhnrhrgf_6000'               =>'600',
+		'nrtrn_25'               =>'36',
 
 
     'scgpokevs_80'      => array('0.99','80', 'USD'), //美元 元宝
@@ -317,5 +317,15 @@ $appleIdVal = array(
 		'sdgtry_3790'     => array('3790', '4290', 'RUB'),
 		'ythtgdf_7490'    => array('7490', '8500', 'RUB'),
 		'dgbety_299'    => array('299', '200', 'RUB'),
+		
+
+		'dscqe_6'     => array('0.99', 90	, 'USD'),
+		'cfsdfef_12'    => array('1.99', 180,'USD'),
+		'hfjafewfvf_24'    => array('3.99', 360,'USD'),
+		'trhrthvg_30'    => array('4.99', 450, 'USD'),
+		'xcthrtm_68'   => array('9.99', 910, 'USD'),
+		'xdergeh_128'   => array('19.99', 1820, 'USD'),
+		'zswre3wz_328'   => array('49.99', 4540, 'USD'),
+		'dxt4td_648'   => array('99.99', 9090, 'USD'),
 
 );

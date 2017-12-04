@@ -25,20 +25,12 @@ if(!$token || !$game_id || !$appUid){
 	exit("2 0");
 }
 $appUidArr = explode('_', $appUid);
-
-if(isset($appUidArr[1]) && $appUidArr[1] == 'ios'){
-	$userInfo = new UserInfo();
-	$userInfo->sid = $_REQUEST["sid"];
-	$userInfo->userId = $appUidArr[0];
-	//登录验证
-	$msg = SDKServices::verifySession($userInfo, 'ios');
-} else {
-	$userInfo = new UserInfo();
-	$userInfo->sid = $_REQUEST["sid"];
-	$userInfo->userId = $_REQUEST["uid"];
-	//登录验证
-	$msg = SDKServices::verifySession($userInfo);
-}
+global $key_arr;
+$type = isset($appUidArr[1])?$appUidArr[1]:'android';
+$userInfo = new UserInfo();
+$userInfo->sid = $_REQUEST["sid"];
+$userInfo->userId = $appUidArr[0];
+$msg = SDKServices::verifySession($userInfo, $key_arr[$type]);
 
 $msgArr = json_decode($msg, true);
 write_log(ROOT_PATH."log","TTyuyin_login_url_","result=$msg, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");

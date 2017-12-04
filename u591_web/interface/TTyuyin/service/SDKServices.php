@@ -1,22 +1,14 @@
 <?php
-require_once dirname(dirname(__FILE__)) . '/util/ConfigUtil.php';
 require_once dirname(dirname(__FILE__)) . '/util/HttpUtils.php';
 require_once dirname(dirname(__FILE__)) . '/util/Logger.php';
 require_once dirname(dirname(__FILE__)) . '/model/UserInfo.php';
 require_once dirname(dirname(__FILE__)) . '/model/PayCallback.php';
 class SDKServices {
 
-    public static function verifySession(UserInfo $userinfo, $channel = 'android') {
-       
-       if($channel == 'android'){
-       		$url = ConfigUtil::get_val_by_key("baseUrl");
-        	$gameId = ConfigUtil::get_val_by_key("gameId");
-        	$apikey = ConfigUtil::get_val_by_key("apikey");
-       } else {
-       		$url = ConfigUtil::get_val_by_key("baseUrlIos");
-       		$gameId = ConfigUtil::get_val_by_key("gameIdIos");
-       		$apikey = ConfigUtil::get_val_by_key("apikeyIos");
-       }
+    public static function verifySession(UserInfo $userinfo, $config=array()) {
+    	$url = $config['baseUrl'];
+    	$gameId = $config['gameId'];
+    	$apikey = $config['apikey'];
         $urldata = json_encode(array("gameId" => $gameId, "uid" => $userinfo->userId));
         //-------签名--------------
         $sign = base64_encode(md5($urldata . $apikey, true));
@@ -35,11 +27,7 @@ class SDKServices {
         }
     }
 
-    public static function verifyNotify($ttsign, $urldata, $channel = 'android') {
-    	if($channel == 'android')
-        	$chargekey = ConfigUtil::get_val_by_key("chargekey");
-    	else
-    		$chargekey = ConfigUtil::get_val_by_key("chargekeyIos");
+    public static function verifyNotify($ttsign, $urldata, $chargekey) {
         //-------签名--------------
         $sign = base64_encode(md5($urldata . $chargekey, true));
 

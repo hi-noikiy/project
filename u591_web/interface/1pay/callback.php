@@ -26,7 +26,6 @@ $isgoods = isset($orderIdArr[4]) ? $orderIdArr[4] : 0;
 
 $access_key = $key_arr[$gameId][$type]['access_key']; //require your access key from 1pay
 $secret = $key_arr[$gameId][$type]['secret']; //require your secret key from 1pay
-$return_url = "http://gunweb.u591.com:83/interface/1pay/callback.php";
 
 if($response_code == "00") {
     $command = "close_transaction";
