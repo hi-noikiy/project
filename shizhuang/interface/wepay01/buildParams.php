@@ -46,7 +46,7 @@ $obj->setAppId($appId);
 $obj->setMCHID($MCHID);
 $obj->setReportLevel($reportLevel);
 //定义支付参数
-$outTradeNo = $gameId.'_'.$serverId.'_'.$accountId.'_'.date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
+$outTradeNo = $gameId.'_'.$serverId.'_'.$accountId.'_'.time().substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 2);
 
 $obj->setBody($body);
 $obj->setAttach($fenbaoId);

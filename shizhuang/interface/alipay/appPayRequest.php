@@ -23,7 +23,7 @@ class appPayRequest{
 	//api版本
 	public $apiVersion = "1.0";
 	//签名类型
-	public $signType = "RSA";
+	public $signType = "RSA2";
 	//public $timestamp;
 	//public $out_trade_no; //订单号
 	//public $notifyUrl;
@@ -79,7 +79,7 @@ class appPayRequest{
 	}
 	
 	
-	public function rsaSign($params, $signType = "RSA") {
+	public function rsaSign($params, $signType = "RSA2") {
 		return $this->sign($this->getSignContent($params), $signType);
 	}
 	
@@ -208,7 +208,7 @@ class appPayRequest{
 	}
 	
 
-	public function verify($data, $sign, $rsaPublicKeyFilePath, $signType = 'RSA') {
+	public function verify($data, $sign, $rsaPublicKeyFilePath, $signType = 'RSA2') {
 		if(!$this->checkEmpty($this->rsaPublicKey)){
 			$pubKey= $this->rsaPublicKey;
 			$res = "-----BEGIN PUBLIC KEY-----\n" .

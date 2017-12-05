@@ -20,5 +20,9 @@ $key_arr = array(
     				'appId'     =>'b0ef54107d5c87116eccf4484f644616',
     				'appKey'    =>'b69550f8312286b37a1eb7182c2ddc08',
     		),
+    	'android'=>array(
+    				'appId'     =>'199850feaa50ed6c66c88aadc2eb9e05',
+    				'appKey'    =>'31f619b17e992282f13150a0b6c66029',
+    		),
     ),
 );

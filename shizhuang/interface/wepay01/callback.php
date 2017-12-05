@@ -55,8 +55,8 @@ class PayNotifyCallBack extends WxPayNotify {
                 return false;
             }
             $Add_Time=date('Y-m-d H:i:s');
-            $sql="insert into web_pay_log (CPID,PayID,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,rpCode)";
-            $sql=$sql." VALUES (129,$account_id,'$PayName','$server_id','$money','$out_trade_no','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype',1)";
+            $sql="insert into web_pay_log (CPID,PayID,PayName,PlayerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,rpCode)";
+            $sql=$sql." VALUES (129,$account_id,'$PayName','$player_id','$money','$out_trade_no','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype',1)";
             if (mysqli_query($conn,$sql) == False){
                 write_log(ROOT_PATH."log","wepay_callback_error_","sql=$sql,mysql error:".mysqli_error($conn).", ".date("Y-m-d H:i:s")."\r\n");
                 return false;

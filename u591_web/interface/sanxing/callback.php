@@ -11,13 +11,20 @@ $get = serialize($_GET);
 write_log(ROOT_PATH."log","sanxing_callback_info_","post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 $sign = $_REQUEST["sign"];
 $sign = base64_decode(urldecode($sign));
-$pubkey = "-----BEGIN PUBLIC KEY-----
+$extendsInfo = $_REQUEST['out_trade_no']; //提取拓展信息
+$extendsInfoArr = explode('_', $extendsInfo);
+$gameId = $extendsInfoArr[0];
+$serverId = $extendsInfoArr[1];
+$accountId = $extendsInfoArr[2];
+$type = $extendsInfoArr[3];
+$pubkey = $karr[$type];
+/*$pubkey = "-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCKjScHuWqaEApYhdJ7
 B3zmzHNxMf4286olqspqkg+aicVGiZAmd2L5XMQT/
 m6LSYr132eLqA4Y768whu9YC8RnGxbwtQA7/
 Y4LCMfgGIP74FEqpBMIccsyj7P8bobKqpD+krF5KZSm/
 2tGIy2kJNGbduGcJoaVzmJw2/S608AK9QIDAQAB
------END PUBLIC KEY-----";
+-----END PUBLIC KEY-----";*/
 $info = "";
 $pub = openssl_pkey_get_public($pubkey);
 $ret = openssl_public_decrypt($sign, $info, $pub);
@@ -25,11 +32,6 @@ if(!$ret) {
 	write_log(ROOT_PATH."log","sanxing_callback_error_","sign验证失败,post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 	die("fail");
 }
-$extendsInfo = $_REQUEST['out_trade_no']; //提取拓展信息
-$extendsInfoArr = explode('_', $extendsInfo);
-$gameId = $extendsInfoArr[0];
-$serverId = $extendsInfoArr[1];
-$accountId = $extendsInfoArr[2];
 $data = $_REQUEST;
 unset($data['sign']);
 ksort($data);

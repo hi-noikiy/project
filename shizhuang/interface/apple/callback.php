@@ -95,7 +95,7 @@ foreach ($orderInfo as $v){
     if($status==0 && $quantity>0 && $money){
         $Add_Time = date("Y-m-d H:i:s");
         $rpCode = 1;
-        $insert_sql = " insert into web_pay_log(CPID,PayCode,ServerID,PayMoney,PayName,dwFenBaoID,Add_Time,rpCode,PayID,OrderID,game_id) values('19','$currency','$server_id','$money','$PayName','$dwFenBaoID','$Add_Time','$rpCode','$account_id','$orderId','$game_id') ";
+        $insert_sql = " insert into web_pay_log(CPID,PayCode,PlayerID,PayMoney,PayName,dwFenBaoID,Add_Time,rpCode,PayID,OrderID,game_id) values('19','$currency','$player_id','$money','$PayName','$dwFenBaoID','$Add_Time','$rpCode','$account_id','$orderId','$game_id') ";
         if(mysqli_query($conn, $insert_sql)){
             $gameMoney = $yuanbao;//转化为RMB
             WriteCard_money(1,$server_id, $gameMoney,$account_id, $orderId,8,0,$type);//写入游戏库

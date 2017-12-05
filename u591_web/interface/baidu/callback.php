@@ -23,7 +23,7 @@ global $key_arr;
 $AppId = $key_arr[8]['android']['appid'];
 $Secretkey = $key_arr[8]['android']['appsecret'];
 
-$Res = notify_process($AppId,$Secretkey);
+$Res = notify_process($key_arr[8]);
 
 print_r($Res);
 write_log(ROOT_PATH."log","baidu_callback_info_","{$Res}".date("Y-m-d H:i:s")."\r\n");
@@ -34,15 +34,13 @@ exit();
  * @param string $Secretkey 应用Secretkey
  * @return json 结果信息
 */
-function notify_process($AppId,$Secretkey){
+function notify_process($config = array()){
 	header("Content-type: text/html; charset=utf-8");
 	$Result = array();//存放结果数组
 	$OrderSerial='';
 	$CooperatorOrderSerial='';
 	$Sign='';
 	$Content='';
-	$Result["AppID"] =  $AppId;
-	$Result["Content"] =  "";
 
 	//2.读取POST流方式获取请求参数
 	$inputParams = file_get_contents('php://input');
@@ -70,6 +68,16 @@ function notify_process($AppId,$Secretkey){
 			}
 		}
 	}
+	$extendsInfo = $CooperatorOrderSerial; //提取拓展信息
+	$extendsInfoArr = explode('_', $extendsInfo);
+	$gameId = $extendsInfoArr[0];
+	$serverId = $extendsInfoArr[1];
+	$accountId = $extendsInfoArr[2];
+	$type = $extendsInfoArr[3];
+	$AppId = $config[$type]['appid'];
+	$Secretkey = $config[$type]['appsecret'];
+	$Result["AppID"] =  $AppId;
+	$Result["Content"] =  "";
 	//参数检测
 	if(empty($OrderSerial)||empty($CooperatorOrderSerial)||empty($Sign)
 			||empty($Content)){
@@ -81,6 +89,7 @@ function notify_process($AppId,$Secretkey){
 		return urldecode($Res);
 	}
 
+	$Result["AppID"] =  $AppId;
 	//检测请求数据签名是否合法
 	if($Sign != md5($AppId.$OrderSerial.$CooperatorOrderSerial.$Content.$Secretkey)){
 		$Result["ResultCode"] =  91;
@@ -106,12 +115,6 @@ function notify_process($AppId,$Secretkey){
 		write_log(ROOT_PATH."log","baidu_callback_error_","订单状态失败, $Content, ".date("Y-m-d H:i:s")."\r\n");
 		return urldecode($Res);
 	}
-	$extendsInfo = $ExtInfo; //提取拓展信息
-	$extendsInfoArr = explode('_', $extendsInfo);
-	$gameId = $extendsInfoArr[0];
-	$serverId = $extendsInfoArr[1];
-	$accountId = $extendsInfoArr[2];
-	$type = $extendsInfoArr[3];
 	$conn = SetConn(88);
 	$orderId = $CooperatorOrderSerial;
 	$sql = "select rpCode from web_pay_log where OrderID = '$orderId' limit 1;";

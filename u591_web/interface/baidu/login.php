@@ -19,8 +19,10 @@ if(!$accessToken || !$appUid || !$gameId){
 }
 require_once 'Sdk.php';
 global $key_arr;
-$appid = $key_arr[$gameId]['android']['appid'];
-$appkey = $key_arr[$gameId]['android']['appsecret'];
+$auids = explode('_', $appUid);
+$type = isset($auids[1])?$auids[1]:'android';
+$appid = $key_arr[$gameId][$type]['appid'];
+$appkey = $key_arr[$gameId][$type]['appsecret'];
 $sdk = new Sdk($appid,$appkey);
 $Res = $sdk->login_state_result($accessToken);
 write_log(ROOT_PATH."log","baidu_login_result_",json_encode($Res).",post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
