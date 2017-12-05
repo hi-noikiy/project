@@ -34,10 +34,13 @@
 	            <td><?=isset($gameInfo[$v->game_id]) ? $gameInfo[$v->game_id] : $v->game_id; ?></td>
 				<td style="width:350px;display:inline-block; word-wrap: break-word; overflow:hidden; text-overflow:ellipsis;"><?=isset($gameServer[$v->game_id][$v->server_id]) ? $gameServer[$v->game_id][$v->server_id] : $v->server_id; ?></td>
 				<td>
-					<?=$goodsType[$v->type1].' '; ?><?=$v->param1 ? getAddGoodName($v->param1).' ': '';?><?=$v->amount1.';';?>
-					<?=$v->amount2 ? $goodsType[$v->type2].' ' : ''; ?><?=$v->param2 ? getAddGoodName($v->param2).' ': '';?><?=$v->amount2 ? $v->amount2.';' :'' ;?>
-					<?=$v->amount3 ? $goodsType[$v->type3].' ' : ''; ?><?=$v->param3 ? getAddGoodName($v->param3).' ': '';?><?=$v->amount3 ? $v->amount3.';' :'' ;?>
-					<?=$v->amount4 ? $goodsType[$v->type4].' ' : ''; ?><?=$v->param4 ? getAddGoodName($v->param4).' ': '';?><?=$v->amount4 ? $v->amount4.';' :'' ;?>
+					<?=$goodsType[$v->type1].':'; ?><?=!$v->type1 ? getAddGoodName($v->param1).' ': $v->param1;?>
+					<?=$v->param2 ? $goodsType[$v->type2].':' .(!$v->type2 ? getAddGoodName($v->param2):$v->param2): ''; ?>
+					<?=$v->param3 ? $goodsType[$v->type3].':' .(!$v->type3 ? getAddGoodName($v->param3):$v->param3): ''; ?>
+					<?=$v->param4 ? $goodsType[$v->type4].':' .(!$v->type4 ? getAddGoodName($v->param4):$v->param4): ''; ?>
+					<?=$v->param5 ? $goodsType[$v->type5].':' .(!$v->type5 ? getAddGoodName($v->param5):$v->param5): ''; ?>
+					<?=$v->param6 ? $goodsType[$v->type6].':' .(!$v->type6 ? getAddGoodName($v->param6):$v->param6): ''; ?>
+					<?=$v->param7 ? $goodsType[$v->type7].':' .(!$v->type7 ? getAddGoodName($v->param7):$v->param7): ''; ?>
 				</td>
 
 				<td><?=$v->addtime ? date('Y-m-d H:i:s', $v->addtime) : '--';?></td>

@@ -72,38 +72,13 @@
 </div>
 <script>
     $(function(){
-        var player_name = "<?=$player_name;?>";
-        var server_id = "<?=$server_id;?>";
-    	/*function u(){
-    		n&&(n.indexOf("point")>=0||!t?$("#paysubmit").val("使用"+i+"支付"):$("#paysubmit").val("使用"+i+"支付"+(e/1)+"元"))
-    	}*/
     	function s(){
     		$("#packageList li").click(function(){
     		var n=this.id;t!=n&&(t=n,e=$(this).attr("money"),$("#packageList .selected").attr("class","select"),$(this).attr("class","selected")
-    	    		//,u()
     	    		)
     		})
     	}
-    	/*function f(){
-    		$("#packageList li").click(function(){
-    			$("#packageList").html("<li><dl><dt>正在获取..<\/dt><\/dl><\/li>"),setTimeout(o,100)
-    		})
-    	}
-    	 function o(){
-    	    	currentAjax=$.ajax({
-    	    		type:"POST",
-    	    		contentType:"application/json",
-    	    		url:"getpackage",
-    	    		data:$.toJSON({_token:"1VqDr3QpILpka9nC5j13XZR518ewgDYFycEKvzF0"}),
-    	    		dataType:"json",
-    	    		success:function(n){
-    	        		r||(n.errcode==0?n.content?(r=!0,$("#packageList").html(n.content),s()):($("#packageList").html("<li><dl><dt>暂未定义充值套餐，请点击重试<\/dt><\/dl><\/li>"),f()):($("#serverList").html("<li><dl><dt>获取套餐列表失败，点此重试<\/dt><\/dl><\/li>"),f()))
-    	        	},
-    	        	error:function(){
-    	        		r||($("#serverList").html("<li><dl><dt>获取套餐列表失败，点此重试<\/dt><\/dl><\/li>"),f())
-    	        	}
-    	    	})
-    	    }*/
+    	
     	 var n=$("#payWayList .selected").attr("id"),i=$("#payWayList .selected").attr("payway"),t=null,e=null,r=!1;
     	    $(".rechargePopClose").click(function(){
     	    	$(".rechargePop").hide()
@@ -116,30 +91,12 @@
     	    	}
     	    	else return layer.alert("请先选择充值方式"),!1;
     	    	return location.href="info?t="+t,!0
-     	    	/*$.post('pay/checkPlayer',{server_id:server_id,player_name:player_name},function(json){
-					var data = JSON.parse(json);
-					if(data['status'] != 0){
-						return alert(data['msg']),!1;
-					}
-					
-         	    });*/
     	    }),
-    	    //u(),
     	    $("#payWayList li").click(function(){
     	    	var t=this.id;
     	    	if(t=="alipay"&&$.isWeiXin())
     	    		return $(".rechargePop").show(),!1;
     	    	n!=t&&(n=t,i=$(this).attr("payway"),$("#payWayList .selected").attr("class","select"),$(this).attr("class","selected"),n=="molpointpay"?($("#cashpay").hide(),$("#pointpay").show()):($("#cashpay").show(),$("#pointpay").hide())
-    	    	    	//,u()
-    	   				/*,currentAjax=$.ajax({
-        	    			type:"POST",
-        	    			contentType:"application/json",
-        	    			url:"setpayway",
-        	    			data:$.toJSON({payway:n,_token:"1VqDr3QpILpka9nC5j13XZR518ewgDYFycEKvzF0"}),
-        	    			dataType:"json",
-        	    			success:function(){},
-        	    			error:function(){}
-        	    		})*/
         	    	)
     	    }),
     	    s()

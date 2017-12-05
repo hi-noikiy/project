@@ -17,7 +17,7 @@ function SetConn($ServerInfo){
 	  		return ConnServer('123.59.144.183', 'gameuser', 'rio8t89o,690.60fk', 'fhgame1', '3316');
 	  		break;
 		default:
-			return ConnServer('123.59.144.183', 'gameuser', 'rio8t89o,690.60fk', 'fhgame2', '3356');
+			return ConnServer('123.59.144.183', 'gameuser', 'rio8t89o,690.60fk', 'fhgame1124', '3356');
 	  		break;
 	}
 }

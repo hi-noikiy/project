@@ -246,10 +246,10 @@ function RecursionRecordTime($newArr, $date, $time_09, $time_12, $time_13, $time
 	RecursionRecordTime($newArr, $date, $time_09, $time_12, $time_13, $time_18, $total);
 }
 //分表
-function subTable($serverId, $table, $sum){
-    if($serverId == 0)
-        return $table;
-	$suffix = $serverId%$sum;
+function subTable($account_id, $table, $sum){
+	if($account_id == 0)
+		return $table;
+	$suffix = bcmod($account_id,$sum)+1;
 	$s = sprintf('%03d', $suffix);
 	return $table.$s;
 }

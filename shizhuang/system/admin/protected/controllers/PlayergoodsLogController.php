@@ -60,7 +60,7 @@ class PlayergoodsLogController extends CommonController{
             $playerNameArr = explode(';', $rs->name);
             //由于合服
             $sid = togetherServer($serverId);
-            $table = subTable($sid, $this->gmtoolTable, 1000);
+            $table = $this->gmtoolTable;
             $conn = SetConn($sid);
             if($conn == false)
                 $this->display('链接游服数据库失败.', 0);
@@ -103,7 +103,7 @@ class PlayergoodsLogController extends CommonController{
             $playerNameArr = explode(';', $v->name);
             //合服
             $sid = togetherServer($serverId);
-            $table = subTable($sid, $this->gmtoolTable, 1000);
+            $table = $this->gmtoolTable;
             $conn = SetConn($sid);
 
             if($conn == false)

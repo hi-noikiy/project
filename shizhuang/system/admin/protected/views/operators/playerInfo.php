@@ -12,7 +12,7 @@
          		'accept-charset'=>'utf-8',	
 			));?>   
             <table class="table table-hover">
-            	<tr>
+            	<!-- <tr>
                     <th style="width:130px;line-height:30px;text-align:right">游戏</th>
                     <td>
                     	<select name="gameid" id="gameId" class="input-medium" required="required">
@@ -37,7 +37,7 @@
                                 ?>
                             </select>
                     </td>
-                </tr>
+                </tr> -->
                 <tr class="controller">
                     <th style="width:130px;line-height:30px;text-align:right">搜索类型</th>
                     <td>

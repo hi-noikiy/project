@@ -24,32 +24,31 @@ class CommonController extends Controller{
         return true;
     }
 
+    function  giQSAccountHash( $string )
+    {
+    	$length = strlen($string);
+    	$result = 0;
+    	for($i=0;$i<$length;$i++){
+    		$result = $result*397+ ord($string[$i]);
+    	}
+    	return $result;
+    }
 
+    protected function selectByName($name){
+    	$nameacc = $this->giQSAccountHash( $name );
+    	$table = subTable($nameacc, 'u_playername', 200);
+    	$sql = "select user_id as id,name,account_id from $table where name='$name' limit 1";
+    	$conn = SetConn(99);
+    	$query = @mysqli_query($conn,$sql);
+    	$rows = @mysqli_fetch_assoc($query);
+    	$rs = array();
+    	if($rows)
+    		$rs = $rows;
+    	@mysqli_close($conn);
+    	return $rs;
+    }
     protected function checkPlayer($player, $type, $serverId){
-        $rs = false;
-        switch ($type) {
-        	case 0 :
-        		$where = " name='$player'";break;
-        	case 1 :
-        		$where = " id='$player'";break;
-        	case 2 :
-        		$where = " account_id='$player'";break;
-        }
-        //$where = ($type ==0) ? " name='$player'" : " id = '$player'";
-        /**
-         * 由于u_player合服并未合表
-         * 所以表还是原来的表
-         */
-        $sid = togetherServer($serverId);
-        $conn = SetConn($sid);
-        $table = subTable($serverId, 'u_player', 1000);
-        $sql = "select id,name,account_id from $table where $where limit 1";
-        $query = @mysqli_query($conn,$sql);
-        $rows = @mysqli_fetch_assoc($query);
-        if($rows)
-            $rs = $rows;
-        @mysqli_close($conn);
-        return $rs;
+        return $this->selectByName($player);
     }
 
     protected function getGoodsType($gameId = 8){

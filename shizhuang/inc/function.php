@@ -28,7 +28,7 @@ function write_log($dirName, $logName, $str) {
 }
 // 充值成功写入游戏库
 // 参数说明：充值方式,服务区ID,充值类型,帐号ID,定单号
-function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8, $i=0) {
+function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8, $i=0 ,$t=1) {
 	$i++;
 	$conn = SetConn ($ServerID);
 	if($conn == false){
@@ -36,7 +36,7 @@ function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8,
         write_log (ROOT_PATH."log", "card_err_", "serverId=$ServerID, game mysql connect error. ".date ("Y-m-d H:i:s")."\r\n");
         return ;
 	}
-	$table = betaSubTable($ServerID, 'u_card', 1000);
+	$table = 'u_card';
 	$time_stamp = date ('ymdHi');
 	// 判断定单号是否重复
 	$sql = "select count(*) as count from $table where ref_id='$OrderID' limit 1;";
@@ -176,10 +176,10 @@ function Sign($data){
 	return $mySign;
 }
 //分表
-function betaSubTable($serverId, $table, $sum){
-	if($serverId == 0)
+function betaSubTable($account_id, $table, $sum){
+	if($account_id == 0)
 		return $table;
-    $suffix = $serverId%$sum;
+    $suffix = ($account_id%$sum)+1;
     $s = sprintf('%03d', $suffix);
     return $table.$s;
 }

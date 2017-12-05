@@ -6,28 +6,27 @@
  * Time: 上午11:53
  */
 include_once 'config.php';
-$playerName = $_REQUEST['player_name']; //传的是userid
+$player_id = $_REQUEST['player_id']; //传的是userid
 $gameId = $_REQUEST['game_id'];
-$serverId = $_REQUEST['server_id'];
+$account_id = $_REQUEST['account_id'];
 $sign = $_REQUEST['sign'];
 $post = serialize($_POST);
 $get = serialize($_GET);
 write_log(ROOT_PATH."log","wap_checkPlayer_log_","post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
 
-if(!$playerName)
-    exit(json_encode(array('status'=>1,'msg'=>'角色ID.')));
+if(!$player_id || !$account_id || !$gameId)
+    exit(json_encode(array('status'=>1,'msg'=>'信息不完整')));
 $appKey = $key_arr['appKey'];
-$array['player_name'] = $playerName;
-$array['server_id'] = $serverId;
+$array['player_id'] = $player_id;
+$array['account_id'] = $account_id;
 $array['game_id'] = $gameId;
 $mySign = httpBuidQuery($array, $appKey);
 if($mySign != $sign)
     exit(json_encode(array('status'=>1, 'msg'=>'验证失败.')));
-
-$conn = SetConn($serverId);
-
-$table = betaSubTable($serverId, 'u_player', '1000');
-$sql = "select id,account_id,name from $table where serverid='$serverId' and id='$playerName' limit 1";
+$conn = SetConn('99');
+$table = 'u_player';
+$table = betaSubTable($account_id, $table, 200);
+$sql = "select id,account_id,name from $table where id='$player_id' and account_id='$account_id' limit 1";
 $query = @mysqli_query($conn,$sql);
 $playerList = @mysqli_fetch_array($query);
 if(isset($playerList['id']))

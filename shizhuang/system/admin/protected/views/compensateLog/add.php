@@ -55,40 +55,15 @@
 						<?=CHtml::activeTextField($model, 'level_max', array('class'=>'input-medium','value'=>'','placeholder'=>'结束等级'));?>
       				</td>
       			</tr>
-
+				<?php for($i=1;$i<=7;$i++){ ?>
 				<tr>
-					<th style="width:130px;line-height:30px;text-align:right">物品1</th>
+					<th style="width:130px;line-height:30px;text-align:right">道具<?=$i?></th>
 					<td>
-						<?=CHtml::activeDropDownList($model, 'type1', $goodsType, array('class'=>'input-medium', 'required'=>'required')); ?>
-						<?=CHtml::activeTextField($model, 'param1',array('value'=>'','placeholder'=>'物品ID', 'class'=>'input-medium itemtypeId'));?>
-						<?=CHtml::activeTextField($model, 'amount1', array('value'=>'','placeholder'=>'物品数量', 'class'=>'input-medium')); ?>
-
+						<?=CHtml::activeDropDownList($model, "type{$i}", $goodsType, $i==1?array('class'=>'input-medium', 'required'=>'required'):array('class'=>'input-medium')); ?>
+						<?=CHtml::activeTextField($model, "param{$i}",array('value'=>'','placeholder'=>'物品ID或者数据或者等级', 'class'=>'input-medium itemtypeId'));?>
 					</td>
 				</tr>
-				<tr>
-					<th style="width:130px;line-height:30px;text-align:right">物品2</th>
-					<td>
-						<?=CHtml::activeDropDownList($model, 'type2', $goodsType, array('class'=>'input-medium')); ?>
-						<?=CHtml::activeTextField($model, 'param2',array('value'=>'','placeholder'=>'物品ID', 'class'=>'input-medium itemtypeId'));?>
-						<?=CHtml::activeTextField($model, 'amount2', array('value'=>'','placeholder'=>'物品数量', 'class'=>'input-medium')); ?>
-					</td>
-				</tr>
-				<tr>
-					<th style="width:130px;line-height:30px;text-align:right">物品3</th>
-					<td>
-						<?=CHtml::activeDropDownList($model, 'type3', $goodsType, array('class'=>'input-medium')); ?>
-						<?=CHtml::activeTextField($model, 'param3',array('value'=>'','placeholder'=>'物品ID', 'class'=>'input-medium itemtypeId'));?>
-						<?=CHtml::activeTextField($model, 'amount3', array('value'=>'','placeholder'=>'物品数量', 'class'=>'input-medium')); ?>
-					</td>
-				</tr>
-				<tr>
-					<th style="width:130px;line-height:30px;text-align:right">物品4</th>
-					<td>
-						<?=CHtml::activeDropDownList($model, 'type4', $goodsType, array('class'=>'input-medium')); ?>
-						<?=CHtml::activeTextField($model, 'param4',array('value'=>'','placeholder'=>'物品ID', 'class'=>'input-medium itemtypeId'));?>
-						<?=CHtml::activeTextField($model, 'amount4', array('value'=>'','placeholder'=>'物品数量', 'class'=>'input-medium')); ?>
-					</td>
-				</tr>
+				<?php } ?>
       			<tr>
       				<th style="width:130px;line-height:30px;text-align:right">领取物品提示消息</th>
       				<td>
@@ -151,8 +126,9 @@
 					success: function($data){
 						if($data.status == 1){
 							$this.val("").focus();
+							alert('道具不存在');
 						}
-						alert($data.msg);
+						
 
 					},
 				});

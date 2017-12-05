@@ -48,7 +48,7 @@ class OperatorsController extends Controller{
 	
 	private function gameAccountLimit($accountId, $serverId){
 		$conn = SetConn($serverId);//根据SvrID连接服务器
-        $table = subTable($serverId, 'u_accountlimit', 1000);
+        $table = subTable($accountId, 'u_accountlimit', 200);
 		$sql = "select count(*) as count from $table where account_id='$accountId'";
 		$query = @mysqli_query($conn,$sql);
 		$RowCount = @mysqli_fetch_assoc($query);
@@ -100,7 +100,7 @@ class OperatorsController extends Controller{
 	//获取角色信息
 	private function getGamePlayerField($accountId, $serverId, $field='*' ){
 		$conn = SetConn($serverId);
-		$playerTable = subTable($serverId, 'u_player', 1000);
+		$playerTable = subTable($accountId, 'u_player', 200);
 		$sql = "select $field from $playerTable where account_id='$accountId' and serverid='$serverId'  limit 1";
 		$query = @mysqli_query($conn,$sql);
 		if($query == false)
@@ -184,13 +184,9 @@ class OperatorsController extends Controller{
 				$this->error('命令类型不能为空！');
 			$conn = SetConn($serverid);
 			
-			$table = subTable($serverid, $this->gmtoolTable, 1000);
+			$table = $this->gmtoolTable;
 			if(!in_array($type, array(6, 66))){
-			    $playerTable = subTable($serverid, 'u_player', '1000');
-				$sql = "select * from $playerTable where name='$playerName' and serverid='$serverid'";
-				if(false == $query = mysqli_query($conn,$sql))
-					$this->error('sql error!');
-				$playerInfo = @mysqli_fetch_assoc($query);
+				$playerInfo = $this->selectByName($playerName);
 				if(!$playerInfo)
 					$this->error('角色不存在！');
 				$playerId = $playerInfo['id'];
@@ -266,17 +262,14 @@ class OperatorsController extends Controller{
 			$offset=0;
 		}
 		if($serverId >= 0 && !empty($type)){
-			if($serverId == 0) 
-				$conn = SetConn('8001');
-			else 	
-				$conn = SetConn($serverId);
+			$conn = SetConn($serverId);
 			$where = '1=1';
 			if($type == 2){
 				if($serverId)
 					$where .=' and serverid='.$serverId;
 			} else
 				$where .= ($serverId == 0) ? ' and status=0' : ' and status=0 and serverid='.$serverId;
-			$table = subTable($serverId, $this->gmtoolTable, 1000);
+			$table = $this->gmtoolTable;
 			$where .= $type ? " and type='$type'" : '';
 			$sqlCount = "select * from $table where $where";		
 			$queryCount = @mysqli_query($conn,$sqlCount);
@@ -290,10 +283,7 @@ class OperatorsController extends Controller{
 				$info[$i]['serverid'] = $rows['serverid'];
 				$info[$i]['award_type1'] = $rows['award_type1'];
 				if($type == 2){
-				    $playerTable = subTable($serverId, 'u_player', '1000');
-					$sql = "select name from $playerTable where id='{$rows['param']}' limit 1";
-					$query = @mysqli_query($conn,$sql);
-					$result = @mysqli_fetch_array($query);
+					$result = $this->selectByName($playerName);
 					$info[$i]['param'] = $rows['param'].'('.$result['name'].')';
 				} else {
 					$info[$i]['param'] = $rows['param'];
@@ -314,7 +304,7 @@ class OperatorsController extends Controller{
 	public function actionCancelServiceCommand($id, $serverId, $gameId){
 		$url = $this->createUrl('operators/bulletinLog/gameid/'.$gameId.'/serverid/'.$serverId.'/type/6');
         $conn = SetConn($serverId);
-        $table = subTable($serverId, $this->gmtoolTable, 1000);
+        $table = $this->gmtoolTable;
         $sql = "select type from $table where id='$id' limit 1";
         $query = @mysqli_query($conn,$sql);
         $info = @mysqli_fetch_assoc($query);
@@ -333,9 +323,12 @@ class OperatorsController extends Controller{
         $gameId = isset($_POST['gameid']) ? intval($_POST['gameid']) : $this->mangerInfo['game_id'];
 		if(!empty($_POST)){
 			$type = intval($_POST['type']);
-			$serverId = intval($_POST['serverid']);
+			/*$serverId = intval($_POST['serverid']);
+			$gameId = $_POST['gameid'];*/
+			$serverId = 0;
+			$gameId = 9;
 			$name = trim($_POST['name']);
-			$gameId = $_POST['gameid'];
+			
 			
 			/*if(!$serverId)
 				$this->display('请选择区服...', 0);*/
@@ -364,16 +357,14 @@ class OperatorsController extends Controller{
 	        }else {
 	        	$where = " account_id='$name' and serverid='$serverId'";
 	        }
-	        $conn = SetConn($serverId);
-            $table = subTable($serverId, 'u_player', '1000');
-	        $sql = "select account_id,serverid,name,id from $table where $where limit 1";
-            $querey = @mysqli_query($conn,$sql);
-	        $rs_player = @mysqli_fetch_assoc($querey);
-	        $info['server_id'] = $rs_player['serverid'];
+	       $rs_player = $this->selectByName($name);
+	       if(!$rs_player){
+	       		$this->display('角色不存在！', 0);
+	       }
+	        $info['server_id'] = 0;
 	        $info['name'] = $rs_player['name'];
 	        $info['user_id'] = $rs_player['id'];
 	        $accountId = intval($rs_player['account_id']);
-	        @mysqli_close($conn);
 	        if(!isset($info['id'])){
 		     	global $accountServer;
 		        $accountConn = $accountServer[$gameId];
@@ -434,7 +425,7 @@ class OperatorsController extends Controller{
 	}
 	//角色信息
 	public function actionPlayerInfo(){
-		$typeList = array('角色名', '角色ID', /*'账号名', '账号ID'*/);
+		$typeList = array('角色名'/*, '角色ID', '账号名', '账号ID'*/);
 		$type = 0;
 		$info = array();
 		$game = Game::model()->getGame($this->mangerInfo['game_id'], '游戏');
@@ -442,7 +433,8 @@ class OperatorsController extends Controller{
 		$gameServer = GameServer::model()->getInfo();
 		if(!empty($_POST)){
 			$type = intval($_POST['type']);
-			$serverId = intval($_POST['serverid']);
+			//$serverId = intval($_POST['serverid']);
+			$serverId = 0;
 			$name = trim($_POST['name']);
 			/*if(!$serverId)
 				$this->display('请选择区服...', 0);*/
@@ -466,20 +458,14 @@ class OperatorsController extends Controller{
 				$accountId = intval($result['id']);
 				
 			} else if($type == 0 || $type == 1) {
-				$where = ($type ==0) ? " name='$name'" : " id = '$name'";
-				$conn = SetConn($serverId);
-                $table = subTable($serverId, 'u_player', '1000');
-				$sql = "select account_id from $table where $where limit 1";
-				$query = @mysqli_query($conn,$sql);
-				$result = @mysqli_fetch_array($query);
-				@mysqli_close($conn);
+				$result = $this->selectByName($name);
 				if(!$result)
 					$this->display('角色不存在！', 0);
 				$accountId = intval($result['account_id']);
 			}
 			//获得角色表
 			$conn = SetConn($serverId);
-			$playerTable = subTable($serverId, 'u_player', 1000);
+			$playerTable = subTable($accountId, 'u_player', 200);
 			$sql1 = "select id,name,account_id,serverid, level,money,emoney,vip_lev,vip_exp from $playerTable where account_id='$accountId'  limit 1";
 			$query1 = @mysqli_query($conn,$sql1);
 			$rs1 = @mysqli_fetch_assoc($query1);
@@ -506,7 +492,7 @@ class OperatorsController extends Controller{
 		$conn = SetConn($serverId);
 		if($conn == false )
 			return false;
-		$table = subTable($serverId, $this->gmtoolTable, 1000);
+		$table = $this->gmtoolTable;
 		$sql = "insert into $table(index_id,type, serverid, param, message, award_type1) values('$index_id','$type', '$serverId', '$banTime', '$message', '$bulletinEndtime')";
         if(false == mysqli_query($conn,$sql))
 			return false;
@@ -555,7 +541,7 @@ class OperatorsController extends Controller{
                 $conn = SetConn($v);
                 if($conn == false)
                     continue;
-                $table = subTable($v, $this->gmtoolTable, 1000);
+                $table = $this->gmtoolTable;
                 $sql = "update $table set status=1 where type=6 and index_id='$indexId'";
                 if(false == mysqli_query($conn,$sql)){
                     echo "<script>alert('$v 公告禁用失败.')</script>";
@@ -585,7 +571,7 @@ class OperatorsController extends Controller{
         if($serverId >= 0 && !empty($type)){
             $conn = SetConn($serverId);
             $where = 'status=0 and serverid='.$serverId;
-            $table = subTable($serverId, $this->gmtoolTable, 1000);
+            $table = $this->gmtoolTable;
             $where .= $type ? " and type='$type'" : '';
             $sqlCount = "select * from $table where $where";
             $queryCount = @mysqli_query($conn,$sqlCount);
@@ -599,15 +585,7 @@ class OperatorsController extends Controller{
                 $info[$i]['type'] = $rows['type'];
                 $info[$i]['serverid'] = $rows['serverid'];
                 $info[$i]['award_type1'] = $rows['award_type1'];
-                if($type == 2){
-                    $playerTable = subTable($serverId, 'u_player', '1000');
-                    $sql = "select name from $playerTable where id='{$rows['param']}' limit 1";
-                    $query = @mysqli_query($conn,$sql);
-                    $result = @mysqli_fetch_array($query);
-                    $info[$i]['param'] = $rows['param'].'('.$result['name'].')';
-                } else {
-                    $info[$i]['param'] = $rows['param'];
-                }
+                $info[$i]['param'] = $rows['param'];
                 $info[$i]['message'] = $rows['message'];
                 $info[$i]['status'] = $rows['status'];
                 $i++;
@@ -686,7 +664,7 @@ class OperatorsController extends Controller{
 			if($reason == '')
 				$this->display('请填写封号/解号原因', 0);
 			
-			$info = $this->checkPlayer($name, $type, $serverId);
+			$info = $this->selectByName($name);
 			if($info == false)
 				$this->display('角色或角色ID有误！', 0);
 			
@@ -715,19 +693,6 @@ class OperatorsController extends Controller{
 				$this->display('操作成功！', 1);
 			}
 		$this->renderPartial('playerLimit', array('title' => '角色封解', 'game' => $game, 'gameServer' => $gameServer, 'info' => $info));
-	}
-	private function checkPlayer($player, $type, $serverId){
-		$rs = false;
-		$where = ($type ==0) ? " name='$player' and serverid='$serverId'" : " id = '$player'";
-		$conn = SetConn($serverId);
-        $table = subTable($serverId, 'u_player', '1000');
-		$sql = "select id,name,account_id from $table where $where limit 1";
-		$query = @mysqli_query($conn,$sql);
-		$rows = @mysqli_fetch_assoc($query);
-		if($rows)
-			$rs = $rows;
-		@mysqli_close($conn);
-		return $rs;
 	}
 	
 	private function updatePlayer($accountId, $serverId, $delFlag=1){
@@ -851,5 +816,39 @@ class OperatorsController extends Controller{
         }
 
         $this->renderPartial('accountChange', array('accountInfo'=>$accountInfo, 'game' =>$game, 'gameId'=>$gameId, 'oldAccount'=>$oldAccount, 'newAccount'=>$newAccount ));
+    }
+    private function  giQSAccountHash( $string )
+    {
+    	$length = strlen($string);
+    	$result = 0;
+    	for($i=0;$i<$length;$i++){
+    		
+//     		echo $result.'*397+'.ord($string[$i]).'=';
+    		$result = bcadd(bcmul($result,397), ord($string[$i]));
+//     		$result = sprintf('%u',$result*397)+ sprintf('%u',ord($string[$i]));
+//     		$result = $result*397+ ord($string[$i]);
+//     		$result = sprintf('%u',(bindec(substr(decbin($result),-64))));
+//     		echo $result.PHP_EOL;
+    	}
+    	
+    	return $result;
+    }
+    
+    protected function selectByName($name){
+    	$nameacc = $this->giQSAccountHash( $name );
+    	$table = subTable($nameacc, 'u_playername', 200);
+    	$sql = "select user_id as id,name,account_id from $table where name='$name' limit 1";
+//     	echo $sql;die;
+    	$conn = SetConn(99);
+    	$query = @mysqli_query($conn,$sql);
+    	$rows = @mysqli_fetch_assoc($query);
+    	$rs = array();
+    	if($rows)
+    		$rs = $rows;
+    	@mysqli_close($conn);
+    	return $rs;
+    }
+    protected function checkPlayer($player, $type, $serverId){
+    	return $this->selectByName($player);
     }
 }

@@ -26,10 +26,10 @@ class CompensateLog extends CActiveRecord{
             //array('level_mix','required','message'=>'角色开始等级必须.'),
             //array('level_max','required','message'=>'角色开始等级必须.'),
             array('message','required','message'=>'提示信息必须.'),
-            array('type1','required','message'=>'物品1类型必须.'),
-            array('amount1','required','message'=>'物品1数量必须.'),
+            array('type1','required','message'=>'道具1类型必须.'),
+            array('param1','required','message'=>'道具1参数必须.'),
 
-            array('param1,type2,param2,amount2,type3,param3,amount3,type4,param4,amount4,role_begin_time,role_end_time,level_min,level_max,addtime,operator,verify_level,remark,status','safe')
+            array('type2,type3,type4,type5,type6,type7,param2,param3,param4,param5,param6,param7,role_begin_time,role_end_time,level_min,level_max,addtime,operator,verify_level,remark,status','safe')
         );
     }
 

@@ -28,9 +28,9 @@ class PayController extends Controller{
     }
     public function actionIndex(){
 
-    	if(!isset($_GET['player_id']))
+    	if(!isset($_GET['player_id']) || !isset($_GET['acc_id']))
     		exit('参数错误');
-    	$result = $this->checkPlayer($_GET['player_id']);
+    	$result = $this->checkPlayer($_GET['player_id'],$_GET['acc_id']);
     	$result = json_decode($result,true);
     	if($result['status'] == 1){
     		exit($result['msg']);
@@ -87,14 +87,14 @@ class PayController extends Controller{
 
 
 
-    public function checkPlayer($player_id){
-    	if(!isset($player_id))
+    public function checkPlayer($player_id,$account_id){
+    	if(!isset($player_id) || !isset($account_id))
     		exit(array('status'=>1,'msg'=>'参数错误'));
         $url = "http://fhweb.u776.com:86/interface/website/checkUser.php";
         $array = array();
         $array['game_id'] = $this->gameId;
-        $array['server_id'] = 0;
-        $array['player_name'] = $player_id;
+        $array['account_id'] = $account_id;
+        $array['player_id'] = $player_id;
         $mySign = $this->httpBuidQuery($array, $this->appKey);
         $array['sign'] = $mySign;
         $result = $this->https_post($url, $array);

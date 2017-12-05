@@ -80,8 +80,7 @@ class ManualLogController extends CommonController{
                     elseif($rs->payCode == 'USD') //美元
                         $emoney = round($rs->emoney)*60;
                 }
-                $palyerInfo = $this->checkPlayer($accountId, 2 , $serverId);
-                $this->writeCard($orderId,$palyerInfo['id'], $serverId, $emoney);
+                $this->writeCard($orderId,$accountId, $serverId, $emoney);
                 $manualLogModel->updateByPk($id, array('status'=>2));
                 $erpLogModel->saveData($this->getId(), '流程结束', $rs->id);
 
@@ -153,7 +152,7 @@ class ManualLogController extends CommonController{
 
             } else {
                 $conn = SetConn($serverId);
-                $table = subTable($serverId, 'u_player', 1000);
+                $table = subTable($accountId, 'u_player', 200);
                 $sql = "select id,name,serverid from $table where serverid='$serverId' and account_id='$accountId'";
                 $query = @mysqli_query($conn,$sql);
                 $playerList = @mysqli_fetch_array($query);
@@ -188,7 +187,7 @@ class ManualLogController extends CommonController{
             $this->display('账号不存在！', 0);
 
         $conn = SetConn($serverId);
-        $table = subTable($serverId, 'u_player', 1000);
+        $table = subTable($accountInfo['id'], 'u_player', 200);
         $sql = "select id,name,serverid from $table where serverid='$serverId' and account_id='{$accountInfo['id']}'";
         $query = @mysqli_query($conn,$sql);
         $playerList = @mysqli_fetch_array($query);
@@ -240,7 +239,7 @@ class ManualLogController extends CommonController{
 
     private function writeCard($orderId, $accountId, $serverId, $payMoney, $type = 8){
         $conn = SetConn($serverId);
-        $table = subTable($serverId, 'u_card', 1000);
+        $table = u_card;
         $sql="select count(id) as count from $table where ref_id='$orderId' limit 1";
         $query = @mysqli_query($conn,$sql);
         $count = @mysqli_fetch_assoc($query);
