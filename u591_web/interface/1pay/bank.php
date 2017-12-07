@@ -49,7 +49,7 @@ if($decode_bankCharging['trans_ref']){
 		return false;
 	}
 	$Add_Time=date('Y-m-d H:i:s');
-	$sql = "insert into web_bank_order(trans_ref,account_id,Add_Time) values('{$decode_bankCharging['trans_ref']}',$accountId,'$Add_Time');";
+	$sql = "insert into web_bank_order(trans_ref,account_id,Add_Time,order_id,type,amount) values('{$decode_bankCharging['trans_ref']}',$accountId,'$Add_Time','$outTradeNo','$type','$amount');";
 	@mysqli_query($conn, $sql);
 	write_log(ROOT_PATH."log","1pay_bank_order_","sql=$sql, ".mysqli_error($conn)." ".date("Y-m-d H:i:s")."\r\n");
 }

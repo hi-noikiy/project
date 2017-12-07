@@ -34,15 +34,13 @@ class GameServer extends CActiveRecord{
 	
 	public function attributeLabels(){
 		return array(
-			    'game_id'       =>'游戏ID',
-			    'server_id'     =>'区服ID',
-			    'server_name'   =>'区服名称',
-			    'link'          =>'IP',
-			    'port'          =>'端口',
-			    'username'      =>'账号',
-			    'password'      =>'密码',
-                'together'      =>'合服到',
-
+				'game_id'      					=>'游戏ID',
+				'server_id'      				=>'区服ID',
+				'server_name'      			=>'区服名称',
+				'link'								=>'IP',
+				'port'								=>'端口',
+				'username'					=>'账号',
+				'password'						=>'密码',
 		);
 	}
 	
@@ -100,7 +98,7 @@ class GameServer extends CActiveRecord{
     }
 
 	public function getServer($gameId){
-        $sql = "select left(server_id, if(LENGTH(server_id)>4,2,1)) as serverid from {{game_server}} where game_id=$gameId group by serverid";
+        $sql = "select LEFT (server_id, 1) as serverid from {{game_server}} where game_id=$gameId group by serverid";
         $rs = $this->findAllBySql($sql);
         $arr = array();
         $arr[0] = '区服';

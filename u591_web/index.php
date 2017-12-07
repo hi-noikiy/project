@@ -31,6 +31,7 @@
           <li><a target="_blank" href="http://pokeynweb.u591776.com/admin.php/public/login.html">越南web后台</a></li>
           <li><a target="_blank" href="http://pokeruweb.u776hainiu.com/admin.php/public/login.html">俄罗斯web后台</a></li>
           <li><a target="_blank" href="http://pokenmweb.u776hainiu.com/admin.php/public/login.html">南美web后台</a></li>
+          <li><a target="_blank" href="http://fhweb.u776.com:86/admin.php/public/login.html">衣范儿web后台</a></li>
       </ul>
 
     <ul>
@@ -40,6 +41,7 @@
         <li><a target="_blank" href="http://47.88.188.12:8080/index.php/Auth/login">越南统计后台</a></li>
         <li><a target="_blank" href="http://pokerutj.u776hainiu.com:8080/index.php/Auth/login">俄罗斯统计后台</a></li>
         <li><a target="_blank" href="http://pokenmtj.u776hainiu.com:8080/index.php/Auth/login">南美统计后台</a></li>
+        <li><a target="_blank" href="http://pokenmweb.u776hainiu.com/admin.php/public/login.html">衣范儿统计后台</a></li>
     </ul>
 </div>
 </body>

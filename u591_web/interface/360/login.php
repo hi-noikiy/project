@@ -2,12 +2,11 @@
 include_once 'config.php';
 $post = serialize($_POST);
 $get = serialize($_GET);
-$request = serialize($_REQUEST);
 
-$str = "post=$post,get=$get,request=$request,";
+$str = "post=$post,get=$get";
 write_log(ROOT_PATH."log","360_login_log_",$str." ".date("Y-m-d H:i:s")."\r\n");
 
-$access_token = $_REQUEST['access_token'];
+$access_token = $_REQUEST['user_token'];
 $gameId = $_REQUEST['game_id'];
 
 if(!$access_token||!$gameId){

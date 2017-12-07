@@ -11,8 +11,5 @@ m6LSYr132eLqA4Y768whu9YC8RnGxbwtQA7/
 Y4LCMfgGIP74FEqpBMIccsyj7P8bobKqpD+krF5KZSm/
 2tGIy2kJNGbduGcJoaVzmJw2/S608AK9QIDAQAB
 -----END PUBLIC KEY-----",	
-		'android1'=> "-----BEGIN PUBLIC KEY-----\n".
-		wordwrap('MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCCf+eMJvvCqAMpEw4os2hP5bvtrFEELPpsh1dbTvvRxFiQUisnyvHjUzfOK0vtndZ/5OOyURQbJKwmChY51EhRdtU29mlCxzCC5UMN5EmxCkMz7umtJrvIb0KnGUovv+01hUMPJmXjtFxyIjMN7QWoZ2KVJAGKKEAcWUp6LefdHQIDAQAB', 64, "\n", true) .
-		"\n-----END PUBLIC KEY-----",
 );
 ?>

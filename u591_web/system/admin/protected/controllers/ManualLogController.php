@@ -82,14 +82,17 @@ class ManualLogController extends CommonController{
             $payCode = $rs->payCode;
             $addTime = date('Y-m-d H:i:s');
             $dwFenBaoID = $rs->dwFenBaoID;
-
+            if(!in_array($rs->payCode, array('USD', 'TWD','VND','RUB','CNY'))){
+            	$this->display('金额单位错误', 1);
+            	die;
+            }
             $sql = "insert into web_pay_log (CPID,PayCode,PayID,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,rpTime,game_id, rpCode)";
             $sql .=" VALUES ('9', '$payCode', '$accountId', '$accountName', '$serverId', '$emoney', '$orderId','$dwFenBaoID','$addTime', '$addTime', '$gameId', '1')";
 
             $connection = Yii::app()->db;
             $command = $connection->createCommand($sql);
             if($command->execute()){
-                if(in_array($rs->payCode, array('USD', 'TWD'))){
+                if(in_array($rs->payCode, array('USD', 'TWD','VND','RUB'))){
                     if($rs->payCode == 'TWD') //台湾币
                         $emoney = $rs->emoney*2;
                     elseif($rs->payCode == 'USD') //美元
@@ -144,7 +147,10 @@ class ManualLogController extends CommonController{
             $payCode = $rs->payCode;
             $addTime = date('Y-m-d H:i:s');
             $dwFenBaoID = $rs->dwFenBaoID;
-
+            if(!in_array($rs->payCode, array('USD', 'TWD','VND','RUB','CNY'))){
+            	$this->display('金额单位错误', 1);
+            	die;
+            }
             $sql = "insert into web_pay_log (CPID,PayCode,PayID,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,rpTime,game_id, rpCode)";
             $sql .=" VALUES ('9', '$payCode', '$accountId', '$accountName', '$serverId', '$emoney', '$orderId','$dwFenBaoID','$addTime', '$addTime', '$gameId', '1')";
             $connection = Yii::app()->db;

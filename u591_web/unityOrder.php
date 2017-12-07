@@ -7,16 +7,17 @@
  * @param:
  * @return:
  */
-include("./inc/config.php");
-include("./inc/function.php");
-$clientIp = getIP_front();
+include("inc/config.php");
+include("inc/function.php");
+/*$clientIp = getIP_front();
 write_log("log","unityOrder_info_","ip=$clientIp, ".date("Y-m-d H:i:s")."\r\n");
 if($clientIp != '121.43.39.108'){
     exit(json_encode(array('status'=>1,'msg'=>'fail')));
-}
+}*/
 set_time_limit(1000);
 $conn = SetConn(88);
 $nowDate = date('Y-m-d', time());
+$nowDate = '2017-12-01';
 $startDate = $_REQUEST['startDate'] ? $_REQUEST['startDate'] : $nowDate;
 $endDate = $_REQUEST['endDate'] ? $_REQUEST['endDate'] : $nowDate;
 

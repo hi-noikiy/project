@@ -1,6 +1,7 @@
 <?php
 define('ROOT_PATH', str_replace('interface/xiaomi/config.php', '', str_replace('\\', '/', __FILE__)));
 include_once ROOT_PATH.'inc/config.php';
+include_once ROOT_PATH.'inc/config_account.php';
 include_once ROOT_PATH."inc/function.php";
 
 $key_arr = array(
@@ -11,7 +12,7 @@ $key_arr = array(
 
 
 function get_signature($verifyData,$key){
-    $sign = hash_hmac("sha1",$verifyData,$key,true);
+    $sign = hash_hmac("sha1",$verifyData,$key,false);
     $bytes=getBytes($sign);
     return decto_bin($bytes);
    // echo decto_bin($bytes).'<br />';

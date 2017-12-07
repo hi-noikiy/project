@@ -1,4 +1,5 @@
 <?php
+
 include_once 'config.php';
 $post = serialize($_POST);
 $get = serialize($_GET);
@@ -29,7 +30,7 @@ $result_arr = json_decode($result,true);
 if($result_arr['errcode']=='200'){
 		$memId = $uid;
         //CP操作,请求成功,用户有效
-        global $accountServer;
+       global $accountServer;
         $accountConn = $accountServer[$game_id];
         $conn = SetConn($accountConn);
         if($conn == false){

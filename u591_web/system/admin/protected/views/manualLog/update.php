@@ -96,6 +96,7 @@
 							<option value="CNY" <?=$model->payCode =='CNY' ? 'selected' : ''?>>人民币</option>
 							<option value="USD" <?=$model->payCode =='USD' ? 'selected' : ''?>>美元</option>
 							<option value="TWD" <?=$model->payCode =='TWD' ? 'selected' : ''?>>台币</option>
+							<option value="VND" <?=$model->payCode =='VND' ? 'selected' : ''?>>越南盾</option>
 						</select>
                     	<input type="text" placeholder="金额" name="emoney" value="<?=isset($model->emoney)  ? $model->emoney : '';?>" class="input-medium" required=required>
                     </td>

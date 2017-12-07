@@ -22,9 +22,10 @@ if(strpos($response, 'SUCCESS') === 0) {
 			$response['mc_currency'] == $key_arr[$gameId][$type]['currency_code'] && $response['mc_gross']>0){ // 支付成功返回成功信息给玩家交由IPN执行回调
 		echo 'pay success';
 	}
-	$result = json_encode($response);
-	write_log(ROOT_PATH."log","paypal_payment_log_","result=$result,post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
+	
 }else{
 	echo 'pay fail';
 }
+$result = json_encode($response);
+write_log(ROOT_PATH."log","paypal_payment_log_","result=$result,post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 

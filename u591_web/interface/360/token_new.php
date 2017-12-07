@@ -28,7 +28,7 @@ $name = $result_user_arr['name'];
 if($id_360){
    exit("0 $id_360 $avatar $name");
 }else{
-    write_log(ROOT_PATH."log","360_login_error_log_"," user验证异常 ,get=$get, ".date("Y-m-d H:i:s")."\r\n");
+    write_log(ROOT_PATH."log","360_token_error_log_"," user验证异常 ,get=$get, ".date("Y-m-d H:i:s")."\r\n");
     exit("4 0");
 }
 

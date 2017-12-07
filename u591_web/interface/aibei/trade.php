@@ -8,8 +8,13 @@ $get = serialize($_GET);
 global $orderUrl, $appkey, $platpkey , $transid,$appid;
 write_log(ROOT_PATH."log","aibei_trade_info_","post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 //下单接口
-$orderReq['appid'] = "$appid";
+
 $data = json_decode($_POST['transdata'],true);
+$config = explode('_', $data['cpprivateinfo']);
+$appid = $karr[$config[3]]['appid'];
+$platpkey = $karr[$config[3]]['platpkey'];
+$appkey = $karr[$config[3]]['appkey'];
+$orderReq['appid'] = "$appid";
 $orderReq['waresid'] = $data['waresid'];
 $orderReq['cporderid'] = $data['cporderid'];//确保该参数每次 都不一样。否则下单会出问题。
 $orderReq['price'] = intval($data['price']);   //单位：元

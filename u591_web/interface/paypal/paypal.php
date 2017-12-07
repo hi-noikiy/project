@@ -3,7 +3,7 @@ include_once 'config.php';
 function get_code($config) { 
 	$deal_url = '<br /><form style="text-align:center;" id="form1" name="form1" action="'.$config['action'].'" method="post" class="paypal">' .
 			 "<input type='hidden' name='cmd' value='_xclick'>" . //告诉paypal该表单是立即购买
-			"<input type='hidden' name='item_name' value='{$config['item_name']}'>" . //商品名称 item_number 
+			"<input type='hidden' name='item_name' value='{$config['item_name']}T¨¤i钻石'>" . //商品名称 item_number 
 			"<input type='hidden' name='business' value='{$config['business']}'>" .//卖家帐号 也就是收钱的帐号 
 			"<input type='hidden' name='amount' value='{$config['amount']}'>" .// 订单金额 
 			"<input type='hidden' name='currency_code' value='{$config['currency_code']}'>" .// 货币 

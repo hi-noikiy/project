@@ -100,6 +100,7 @@
 							<option value="CNY">人民币</option>
 							<option value="USD">美元</option>
 							<option value="TWD">台币</option>
+							<option value="VND">越南盾</option>
 						</select>
                     	<input type="text" placeholder="金额" name="emoney" value="<?=isset($_POST['emoney'])  ? $_POST['emoney'] : '';?>" class="input-medium" required=required>&nbsp;
 						<font color="red">国服选择RMB、台服港台根据货币类型选择美元或台币。</font>

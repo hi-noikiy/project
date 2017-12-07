@@ -124,6 +124,7 @@ class Controller extends CController{
 
 		//txt导出
 		if(isset($_POST['textLoad'])){
+			ini_set('memory_limit', '1024M');
 			$info=$model->findAll($criteria);
             $newInfo = array();
             foreach ($info as $v){

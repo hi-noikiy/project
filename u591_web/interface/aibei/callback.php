@@ -16,12 +16,6 @@ $transdata=$string['transdata'];
 if(stripos("%22",$transdata)){ //判断接收到的数据是否做过 Urldecode处理，如果没有处理则对数据进行Urldecode处理
 	$string= array_map ('urldecode',$string);
 }
-$respData = 'transdata='.$string['transdata'].'&sign='.$string['sign'].'&signtype='.$string['signtype'];//把数据组装成验签函数要求的参数格式
-if(!parseResp($respData, $platpkey, $respJson)) {
-	//验签失败
-	write_log(ROOT_PATH."log","aibei_callback_error_","sign error, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
-	exit('fail');
-}
 $transdata=$string['transdata'];
 $data=json_decode($transdata,true);
 if($data['result'] != 0){
@@ -34,6 +28,13 @@ $gameId = $extendsInfoArr[0];
 $serverId = $extendsInfoArr[1];
 $accountId = $extendsInfoArr[2];
 $type = $extendsInfoArr[3];
+$platpkey = $karr[$type]['platpkey'];
+$respData = 'transdata='.$string['transdata'].'&sign='.$string['sign'].'&signtype='.$string['signtype'];//把数据组装成验签函数要求的参数格式
+if(!parseResp($respData, $platpkey, $respJson)) {
+	//验签失败
+	write_log(ROOT_PATH."log","aibei_callback_error_","sign error, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
+	exit('fail');
+}
 
 $conn = SetConn(88);
 $orderId = $data['cporderid'];

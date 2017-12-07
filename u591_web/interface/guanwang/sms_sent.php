@@ -66,7 +66,7 @@ $iSql= "insert into web_message(game_id, username, code, addtime) values('$game_
 if(false == mysqli_query($conn,$iSql))
 	exit(json_encode(array('status'=>1, 'msg'=>'web server sql error.')));
 
-$content = "【海牛网络】".$code.",退定回复0000";
+$content = "【海牛网络】".$code.",退定回复TD";
 $content = iconv("UTF-8","GBK",$content);
 $content = urlencode($content);
 $url = "http://221.179.172.68:8000/QxtSms/QxtFirewall?OperID=$OperID&OperPass=$OperPass&SendTime=&ValidTime=&AppendID=&DesMobile=$phone&Content=$content&ContentType=8";
