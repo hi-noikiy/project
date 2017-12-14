@@ -11,7 +11,7 @@ $key_arr = array(
 				'chargekey'       =>'3340aa079dc47e3fd01b86715f289a38',
 		),
 		'android1'=>array(
-				'baseUrl'       =>'http://sdk.52tt.com/sdk.server/rest/user/loginstatus.view',
+				'baseUrl'       =>'http://123.59.74.32/server/rest/user/loginstatus.view',
 				'gameId'       =>'201702324',
 				'apikey'       =>'56de8fa0f6709a16828a2a5ec898f606',
 				'chargekey'       =>'fe7fbdeb5ddbcc3ef41232ec8d04ee5f',

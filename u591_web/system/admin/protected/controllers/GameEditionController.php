@@ -109,4 +109,105 @@ class GameEditionController extends Controller{
         }
         $this->renderPartial('add', array('title' =>'游戏版图', 'game' => $game, 'siteArr' => $this->siteArr,));
     }
+    
+    
+    public function actionActindex(){
+    	$info = array();
+    	$count = 0;
+    	if(isset($_POST['pagination'])){
+    		$pagination=$_POST['pagination'];
+    		$offset=($_POST['pagination']-1)*20;
+    	}else {
+    		$pagination=1;
+    		$offset=0;
+    	}
+    	$conn = SetConn(88);
+    	$where = '1=1';
+    	$status = isset($_POST['status'])?$_POST['status']:0;
+    	$curdate = date('Y-m-d H:i:s');
+    	if($status == '1'){
+    		$where .= " and starttime<'$curdate' and endtime >'$curdate' and isShowActivity=0";
+    	}elseif($status == '2'){
+    		$where .= " and (starttime>'$curdate' or endtime <'$curdate' or isShowActivity=1)";
+    	}
+    	$sqlCount = "select * from web_act where $where";
+    	$queryCount = @mysqli_query($conn,$sqlCount);
+    	$count = @mysqli_num_rows($queryCount);
+    	$sql = "select * from web_act where $where order by id desc limit 20 offset $offset";
+    	$query = @mysqli_query($conn,$sql);
+    	$i = 0;
+    	while (@$rows = mysqli_fetch_assoc($query)){
+    		$info[$i]['id'] = $rows['id'];
+    		$info[$i]['serverid'] = $rows['serverid'];
+    		$info[$i]['showtime'] = $rows['starttime'].'~'.$rows['endtime'];
+    		$info[$i]['imgurl'] = $rows['textureResPath'];
+    		$info[$i]['isShowActivity'] = $rows['isShowActivity'];
+    		$i++;
+    	}
+    	$this->renderPartial('actindex', array(
+    			'info'=>$info,'pages'=>20,'count'=>$count,'pagination'=>$pagination,
+    			'title'=>'运营活动','status'=>$status
+    	));
+    }
+    
+    public function actionActadd(){
+    	$game = Game::model()->getGame($this->mangerInfo['game_id'], '游戏');
+    	if(!empty($_POST)){
+    		$serverId = implode(',', $_POST['serverId']);
+    		$act = new Act;
+    		$act->gameid = $_POST['gameid'];
+    		$act->serverid = $serverId;
+    		$act->starttime = $_POST['starttime'];
+    		$act->endtime = $_POST['endtime'];
+    		$act->textureResPath = $_POST['textureResPath'];
+    		$act->showday = $_POST['showday'];
+    		$act->noshowday = $_POST['noshowday'];
+    		$act->isShowDetail = $_POST['isShowDetail'];
+    		$act->eudemonId = $_POST['eudemonId'];
+    		$act->eudDetailPos = $_POST['eudDetailPos'];
+    		$act->isShowGotoBtn = $_POST['isShowGotoBtn'];
+    		$act->gotoBtnPos = $_POST['gotoBtnPos'];
+    		$act->jumpModule = $_POST['jumpModule'];
+    		$act->jumpParam = $_POST['jumpParam'];
+    		if($act->save()) {
+    			$this->display('添加成功.', 1, $this->createUrl('gameEdition/actindex'));
+    		}else{
+    			$this->display(CHtml::errorSummary($act), 0);
+    		}
+    	}
+    	$startTime = isset($_POST['startTime']) ? $_POST['startTime'] : date('Y-m-d').' 00:00:00';
+    	$endTime = isset($_POST['endTime']) ? $_POST['endTime'] : date('Y-m-d').' 23:59:59';
+    	$this->renderPartial('actadd', array('title' =>'运营活动', 'game' => $game,'startTime'=>$startTime,'endTime'=>$endTime));
+    }
+    public function actionActupdate($id){
+    	$model = Act::model();
+    	$act = $model->findByPk($id);
+    	if(!empty($_POST)){
+    		$act->starttime = $_POST['starttime'];
+    		$act->endtime = $_POST['endtime'];
+    		$act->textureResPath = $_POST['textureResPath'];
+    		$act->showday = $_POST['showday'];
+    		$act->noshowday = $_POST['noshowday'];
+    		$act->isShowDetail = $_POST['isShowDetail'];
+    		$act->eudemonId = $_POST['eudemonId'];
+    		$act->eudDetailPos = $_POST['eudDetailPos'];
+    		$act->isShowGotoBtn = $_POST['isShowGotoBtn'];
+    		$act->gotoBtnPos = $_POST['gotoBtnPos'];
+    		$act->jumpModule = $_POST['jumpModule'];
+    		$act->jumpParam = $_POST['jumpParam'];
+    		if($act->save()) {
+    			$this->display('修改成功.', 1, $this->createUrl('gameEdition/actindex'));
+    		}else{
+    			$this->display(CHtml::errorSummary($act), 0);
+    		}
+    	}
+    	$this->renderPartial('actupdate', array('title' =>'运营活动', 'info' => $act));
+    }
+    public function actionActedit(){
+    	$id = $_GET['id'];
+    	$isShowActivity = $_GET['status'];
+    	$rs = Act::model()->findByPk($id);
+    	$rs->isShowActivity=$isShowActivity;
+    	$rs->save();
+    }
 }

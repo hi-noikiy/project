@@ -43,7 +43,7 @@ while ($row = mysqli_fetch_array($query,MYSQL_ASSOC)){
 	$accountId = isset($orderIdArr[2]) ? $orderIdArr[2] : 0;
 	$type = isset($orderIdArr[3]) ? $orderIdArr[3] : 0;
 	$isgoods = isset($orderIdArr[4]) ? $orderIdArr[4] : 0;
-	if($response_code == "close") {
+	if(in_array($response_code, array("close",'finish')) ) {
 		$command = "close_transaction";
 		$data = "access_key=".$access_key."&command=".$command."&trans_ref=".$trans_ref;
 		$signature = hash_hmac("sha256", $data, $secret);

@@ -58,5 +58,13 @@ if($resultstr == 'VERIFIED'){
 		$tjAppId = $tongjiServer[$gameId];
 		sendTongjiData($gameId,$accountId,$serverId,$dwFenBaoID,0,$payMoney,$orderId,1,$tjAppId);
 		exit("success");
+	}else{
+		exit("fail");
 	}
 }
+$conn = SetConn(88);
+$Add_Time=date('Y-m-d H:i:s');
+$sql = "insert into web_paypal_order (orderid,Add_time,status,orderinfo,amount,email)";
+$sql=$sql." VALUES ('{$response['txn_id']}','{$Add_Time}', '{$resultstr}','{$response['invoice']}','{$response['mc_gross']}','{$response['payer_email']}')";
+@mysqli_query($conn,$sql);
+write_log(ROOT_PATH."log","paypal_callback_into_", "$sql.  ".date("Y-m-d H:i:s")."\r\n");

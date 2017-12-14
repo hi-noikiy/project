@@ -31,7 +31,7 @@ $channel = $pArr[0];
 $userId = $pArr[1];
 $version = $pArr[2];
 
-$url = 'http://119.29.50.47:4005/verifyToken';
+$url = 'http://lysid.hjwan.com:4005/verifyToken';
 //$url = 'http://123.207.92.126:5003/verifyToken'; test url
 $appId = $key_arr[$game_id]['appid'];
 $appkey = $key_arr[$game_id]['appkey'];

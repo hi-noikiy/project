@@ -21,7 +21,7 @@ class ManualLogController extends CommonController{
         $condition[] = "status='$status'";
         $condition['param'] = array(
             'dwInfo'=>$this->getFenbao(),'status'=>$status,'statusArr'=>$statusArr,'typeArr'=>$typeArr,
-            'gameInfo'=>$this->getGame(), 'gameServer'=>$this->getServer()//,'emp'=>$this->getEmp()
+            'gameInfo'=>$this->getGame(), 'gameServer'=>$this->getServer(),'emp'=>$this->getEmp()
             );
 
     }

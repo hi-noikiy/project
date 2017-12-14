@@ -23,7 +23,7 @@ class PlayergoodsLogController extends CommonController{
 
         $condition['param'] = array(
             'dwInfo'=>$this->getFenbao(),'goodsType'=>$this->getGoodsType(),'status'=>$status,
-            'statusArr'=>$statusArr,'typeArr'=>$typeArr,'gameInfo'=>$this->getGame(),'gameServer'=>$this->getServer()//,'emp'=>$this->getEmp()
+            'statusArr'=>$statusArr,'typeArr'=>$typeArr,'gameInfo'=>$this->getGame(),'gameServer'=>$this->getServer(),'emp'=>$this->getEmp()
         );
 
     }

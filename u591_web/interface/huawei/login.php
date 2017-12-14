@@ -37,7 +37,7 @@ if(!file_exists($filename))
 }
 $pubKey = @file_get_contents($filename);
 $openssl_public_key = @openssl_get_publickey($pubKey);
-write_log(ROOT_PATH."log","huawei_login_log_","content={$content},sign={$sign},openssl_public_key={$pubKey},post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
+write_log(ROOT_PATH."log","huawei_login_log_","content={$content},sign={$sign},openssl_public_key={$openssl_public_key},post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 $ok = @openssl_verify($content, base64_decode($sign), $openssl_public_key, OPENSSL_ALGO_SHA256);
 @openssl_free_key($openssl_public_key);
 if($ok)

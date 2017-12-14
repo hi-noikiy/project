@@ -48,6 +48,11 @@ $key_arr = array(
     				'appSecret' =>'qAG0QR0PrRuleC0PxkaFH_MQ',
     				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu+j9xM7LGh/+w/hv2sBTnIH9ranZBr/dQzCtJVeuBJfDW0DpWvn4GpcckFMCZXv00LieaUztATwrECJCOJ2TTdzu/LBTWBQQMOJP5BpZkpI/A5z1XlvzZ+Rx7cYoFj4Z1xiQjwVFdVtleTfUUbw832naJkQHbB8vgCt2BWPxjYNLqozypZzkt5o+WGWyKPQNxsf1hvEK3v2uhezVDuq2b1AH5x5hpXW6bcpT12mH44O4Orqk2FIpoJepw1I3nYSREAyuqC1uSHYNkS7Z3O0r5bAK1Znf4jEcT+9nGrzTchhoLw7OIDApntn96BjQKHNBK85vxYOVJvnbKH422tdWkQIDAQAB',
     		),
+    		'androidyn6'=>array(
+    				'appId'     =>'444156906236-eoeelgqcnsmri8p3tqk7he10ac15fl8a.apps.googleusercontent.com',
+    				'appSecret' =>'Mh9LE_aP7rLP5SCszXkSrGPU',
+    				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAygijkhFdMHjFVeQAtE6uauEGDqeXOtnlxx+U/Zrs1v7TCAQ+x7LrLc0hRtz/R1pv7SBKwySTKtvkYNt2RykJYcB4tkczZN1NWFctLIppXcn2Cia0X63F8Y/yuHqODlhYIUq+gTacfOYMzMBzVeWxXeG9yBbbKFcSTbU1X3hOywbVhfpHG+QeLX5dtOx5qW4eb2OGGjZOW8x/oTnSc8EHgzBZQ7wINJuja2vVNTZPVW3JoDya0g7TlpwuG/dlYpVEkWq0CIsWN04W+PwMZC7OEDSPPjT97S0TZ0ui4yp9WTs7rHeOFpAe+nMBL1jXr7Ix3R4WgZm4rcKiRSI2lxKLKwIDAQAB',
+    		),
         'xinma'=>array(
             'appId'     =>'409589426094-encph12ih4c21is76aiek88nkvi7t9dp.apps.googleusercontent.com',
             'appSecret' =>'ijt-WyyWhm8-2yqJT1tlGsj6',
@@ -59,8 +64,8 @@ $key_arr = array(
     				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6WpcSYMnMkbmf1kZd6vm+Du4tJUirbUf+09//jXJoZEVxkTvkfETgKOZNef/ZUCpN7+ORkRdIV+UjQP75TmEHnj49qmoGCW7KVrnXmsDHFBotJvPVR9F1lee7/ymiGiV5ke5R/CpQplZ/lA7/HGsZKoBZCX95YZhDtmT8Es/FaStzgxpRgQmArMpOQ4N1zNOyEck+ZdP8RxN6MrC9P9tpgz1yjDNjed3uWyaq72YnCoeV0tGIt4VIAvgP1lSPUekZirYvEZhPScv7SRKeXxlBLgE/+9Na2iNWcaVTljHn6kP4dNSXNm8KCt6bx3FjbfL81fb/yz2JOxHL1BKlORv+QIDAQAB',
     		),*/
     		'nanmei'=>array(
-    				'appId'     =>'419657765810-fv7rggurs713oap1mo9rapvj2t7r2q5k.apps.googleusercontent.com',
-    				'appSecret' =>'auJ4p1JNuPSXyWXm2PrdCajJ',
+    				'appId'     =>'331845228942-isrhok8d7vpcrpunub8smn30dnkbjii8.apps.googleusercontent.com',
+    				'appSecret' =>'2TQomQh8rMH0AG0PU47Thc7t',
     				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6WpcSYMnMkbmf1kZd6vm+Du4tJUirbUf+09//jXJoZEVxkTvkfETgKOZNef/ZUCpN7+ORkRdIV+UjQP75TmEHnj49qmoGCW7KVrnXmsDHFBotJvPVR9F1lee7/ymiGiV5ke5R/CpQplZ/lA7/HGsZKoBZCX95YZhDtmT8Es/FaStzgxpRgQmArMpOQ4N1zNOyEck+ZdP8RxN6MrC9P9tpgz1yjDNjed3uWyaq72YnCoeV0tGIt4VIAvgP1lSPUekZirYvEZhPScv7SRKeXxlBLgE/+9Na2iNWcaVTljHn6kP4dNSXNm8KCt6bx3FjbfL81fb/yz2JOxHL1BKlORv+QIDAQAB',
     		),
     		'nanmeiandroid'=>array(
@@ -77,6 +82,11 @@ $key_arr = array(
     				'appId'     =>'360630468458-fq83lpoqm8vkjlrgh37t35md1aikqico.apps.googleusercontent.com',
     				'appSecret' =>'clHjMH7BRP-LsjrO1cWIWzh6',
     				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAipGwimgIANO5kPY0VMclAyzsmCQPtIyeKkL5+9+cmapgnrjr5UDbePKWyWw3/RML6oTEO7TTKbMKJC0hPRmWU6UAmKZtTd5LMHAJSJbKucSN22NTzJrsx5a9INY3nVNYLE2lZo+ZzwByCsOsvVYIb0rX+8xsl7BQ70sfg2Rb2MIP/GaMjLj/ZF7nQ8yPa5zu+Ch1kw89By+OtT7pSLUHAcUidNgEP34Gx3BJSzv9HQv3wGahL4EsVn4zVX2EI2CRtVfeBGLDNI0uK4OUx/dfR3Y3HDjtzxMlYU57Mh65pbUp1jwuTBCEpY7Ckqa0JVD5rkpvDPsrsXSn003IB0oIHwIDAQAB',
+    		),
+    		'androidnm3'=>array(
+    				'appId'     =>'744095051267-p4vo0l5o1msk8n544c4tqia0idh29fls.apps.googleusercontent.com',
+    				'appSecret' =>'Eb4FXxIHjqH3V3Eifhp1aLL4',
+    				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA5udRUD7MjZr/ij0HGdqjQ7mKKDBg1JVYuQZOxkkBnYe9ebIkfVyxjT5Bl0Zh2Xh0YDpANi9I3D5vjyEkeWK38eRmGo7Hll0bmVEsYBKemAvR6W/yqOrpTCJln4F1ThcUoxssODo71JY+9J+z7Vax93eqmuTmJVODyWlWYvAfEZjjG+dR/0rShf+5If25API+Lg4Ekojpn86nstnxt74X4F8RxZqd3a4mOAWNKdfsiyG2HWN2hbqtLlPUk/ykK8uGB4r0mKchVNRLjjDMEPRdSEPIcUPtZjDoZA1nIbz1ttCnX7IuWn59ajknTAdXZb+VXDl3FPazv+B3OpW+qtgd5wIDAQAB',
     		),
     		'iosels'=>array(
     				'appId'     =>'464598782374-hbm1d41oog290gtbaje56eb6r85rl8pr.apps.googleusercontent.com',
@@ -148,5 +158,21 @@ $google_id_value = array(
 		'yuenanpay_138'   => array('19.99', 1820, 'USD'),
 		'yuenanpay_348'   => array('49.99', 4540, 'USD'),
 		'yuenanpay_698'   => array('99.99', 9090, 'USD'),
+		'vszhandou_6'     => array('0.99', 90	, 'USD'),
+		'vszhandou_12'    => array('1.99', 180,'USD'),
+		'vszhandou_18'    => array('3.99', 360,'USD'),
+		'vszhandou_30'    => array('4.99', 450, 'USD'),
+		'vszhandou_68'   => array('9.99', 910, 'USD'),
+		'vszhandou_138'   => array('19.99', 1820, 'USD'),
+		'vszhandou_348'   => array('49.99', 4540, 'USD'),
+		'vszhandou_698'   => array('99.99', 9090, 'USD'),
 
+		'skypay_60'     => array('0.99', 60	, 'USD'),
+		'skypay_300'    => array('4.99', 300,'USD'),
+		'skypay_600'    => array('9.99', 600,'USD'),
+		'skypay_900'    => array('14.99', 900, 'USD'),
+		'skypay_1500'   => array('24.99', 1500, 'USD'),
+		'skypay_3000'   => array('49.99', 3000, 'USD'),
+		'skypay_6000'   => array('99.99', 6000, 'USD'),
+		'skypay_card'   => array('5.99', 360, 'USD'),
 );

@@ -12,18 +12,22 @@ $key_arr = array(
     			'iosnm'=>array('apiKey'=>'pem/nm.pem'),
     			'androidyn'=>array('apiKey'=>'AAAAx4vLUwo:APA91bHq96XRfa975aUC_pLpXEqQE85CV7fd65vWS_9ry1DTN7YZ_Wi5RGypZryCk0xlKobpc9a6Rvw6A9wXP0WLQNu5diNNzeKzorDvWAoncfaKlJFsFX38O3S77iFwCSL5Is5fyeq0'),
     			'androidyn5'=>array('apiKey'=>'AAAAgVJygr0:APA91bH_t8KLrzqCe9A1Pguek-ESXf8Z8NR9V6EuACoc4VGixcaxyg8uyeJZn80gvDGHhwwwRHHSTISTqAXypy4NTrSjE479q8Decp5KpyMktjScWv6Nr20pmLDGhv9joL8PU3yjHG83'),
+    			'androidyn6'=>array('apiKey'=>'AAAAZ2nQivw:APA91bGZ1Ui-DliT8VNkJD4yWA7g9705Itlfa-MlHkVtxWyeeBaklWKxuW40YzRciKzC43DT9xmjpbDJ-CR02geraRmdo9JkDDyczPFaIHLOqLcsfpbc5ebTps_qFcvQ3s78_fQx3xkr'),
+    			'androidnm2'=>array('apiKey'=>'AAAAU_dAP2o:APA91bFaqmZkLGPJFX-pJrn_0mCC31l2eWsKC5VMVP2WKthmaAajxSOKdDGl-kiqYir4ZAk77LWekRUPn144DvbYBGrNGmPl1sbgZSsloI80YNVsixM01aMvwTVfGJbeerqpiaEYRbVl'),
+    			'androidnm3'=>array('apiKey'=>'AAAArT-FbgM:APA91bF93Qg1ffPqU31qemC1TWgPZP9EUVKgTkYlZeTnIyu966tBZIbKestcpSZJLhJJyES9hdJo_wmX2wkIW1d4quJ1CIXrMUAb5_BJPwl7ZQRSbAHOe2IxN4DVot7zcps6lIjIvQyr'),
+    			 
     			'iosyn'=>array('apiKey'=>'pem/yn.pem'),
     			'androidels'=>array('apiKey'=>'AAAAseXPhnk:APA91bGlI9q_tOyaSJlXEZHRQUpEGFVbV-ZkZ2cLKOeFZ3-HguGXoET_eMeMJmUsAdceF_FAZaIKwK8iT6kTkXPdt1X1mmyE61mEpVPXT6hUO4Ti6rmIQlMbjj5Y-QuGX6G1vCMYP8Bu'),
     			'iosels'=>array('apiKey'=>'pem/els.pem'),
     	),
 );
 
-function send_gcm_notify($reg_id,$message,$apikey) {
+function send_gcm_notify($reg_id,$message,$apikey,$title) {
 	$fields = array(
 			'to'=>		$reg_id,
 			'notification'=>array(
 					"body" =>"$message",
-					"title" => "口袋妖怪",
+					"title" => $title,
 					"icon" =>"myicon"
 			)
 	);

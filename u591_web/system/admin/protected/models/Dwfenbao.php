@@ -22,7 +22,7 @@ class Dwfenbao extends CActiveRecord{
 				array('fenbao_id', 'required','message'=>'分包ID必须.'),
                 array('fenbao_id', 'unique','message'=>'分包ID已被占用！'),
 				array('name','required','message'=>'名称必须.'),
-				array('income,income_split,tariff,channel_cost,deal_date,remark','safe')
+				array('income,income_split,tariff,channel_cost,deal_date,remark,isnewgame','safe')
 		);
 	}
 	public function attributeLabels(){

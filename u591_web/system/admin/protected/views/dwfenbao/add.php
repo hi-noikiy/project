@@ -72,6 +72,10 @@
                     </td>
                 </tr>
                 <?php } ?>
+                <tr class="controller">
+                    <th style="width:130px;line-height:30px;text-align:right">是否属于口袋进化</th>
+                    <td><?=CHtml::activeDropDownList($model, 'isnewgame', array('否','是'))?></td>
+                </tr>
                 <tr>
                     <th style="width:130px;line-height:30px;text-align:right">
                     	<span class="loading"><img src="<?=ASSETS_URL; ?>img/loading.gif"></span>

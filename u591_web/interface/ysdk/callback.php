@@ -79,7 +79,7 @@ $sql = "select rpCode from web_pay_log where OrderID = '$orderId' limit 1;";
 $query = @mysqli_query($conn, $sql);
 $result = @mysqli_fetch_array($query);
 if($result['rpCode']==1 || $result['rpCode']==10){
-	exit("success");
+	exit('success');
 }
 $accout_type=$channel;
 $ret = get_balance_m($sdk, $params,$accout_type);
@@ -122,7 +122,7 @@ if($ret['ret'] == 0){
             global $tongjiServer;
 			$tjAppId = $tongjiServer[$gameId];
             sendTongjiData($gameId,$accountId,$serverId,$dwFenBaoID,0,$payMoney,$orderId,1,$tjAppId);
-			exit("success");
+			exit('success');
 		} else
 			exit('fail');
 	}

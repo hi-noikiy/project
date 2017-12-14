@@ -42,6 +42,18 @@ class PayLogController extends Controller{
 		if(isset($_POST['rpCode']) && !empty($_POST['rpCode']))
 			$condition[]="rpCode = '{$_POST['rpCode']}'";
 		
+		if(isset($_POST['gamefenbao']) && !empty($_POST['gamefenbao'])){
+			if($_POST['gamefenbao'] == 1){
+				$isnewgame  = 1;
+			}else{
+				$isnewgame  = 0;
+			}
+			$sql = "SELECT GROUP_CONCAT(fenbao_id) as fenbaoids FROM `web_dwFenbao` where isnewgame=$isnewgame;";
+			$command = Yii::app()->db->createCommand($sql);
+			$result = $command->queryAll();
+			$condition[]=" dwFenBaoID in({$result[0]['fenbaoids']})";
+		}
+		
 		if(isset($_POST['IsUC']) && !empty($_POST['IsUC']))
 			$condition[]="IsUC = '{$_POST['IsUC']}'";
 		
@@ -50,14 +62,7 @@ class PayLogController extends Controller{
 		
 		if(isset($_POST['clientType']) && !empty($_POST['clientType']))
 			$condition[]="clienttype = '{$_POST['clientType']}'";
-/* 		$config = Config::model()->getInfo();
-		if(in_array($config['openbt'], array('0','1'))){
-			if($config['openbt'] == 0){
-				$condition[]="isbt = 0";
-			}else{
-				$condition[]="isbt in(0,1,6)";
-			}
-		}	 */
+
 		if(isset($_POST['sMoney']) && !empty($_POST['sMoney'])  &&  isset($_POST['eMoney']) && !empty($_POST['eMoney'])){
 			$sMoeny = intval($_POST['sMoney']);
 			$eMoney = intval($_POST['eMoney']);
@@ -111,7 +116,7 @@ class PayLogController extends Controller{
                     $payMoney = $v->PayMoney*2;
                 elseif($v->PayCode == 'USD') //美元
                     $payMoney = round($v->PayMoney)*60;
-                elseif($v->payCode == 'VND') //越南盾
+                elseif($v->PayCode == 'VND') //越南盾
                 	$payMoney = round($v->PayMoney/250);
                 elseif($v->PayCode == 'RUB'){
                 	$parr = [75=>80, 379=>390, 1490=>1690, 3790=>4290, 7490=>8500, 299=>200];
@@ -233,14 +238,17 @@ class PayLogController extends Controller{
 		if(!empty($gameId))
 			$condition[] =  "game_id = '$gameId'";
 		
-/* 		$config = Config::model()->getInfo();
-		if(in_array($config['openbt'], array('0','1'))){
-			if($config['openbt'] == 0){
-				$condition[]="isbt = 0";
+		if(isset($_POST['gamefenbao']) && !empty($_POST['gamefenbao'])){
+			if($_POST['gamefenbao'] == 1){
+				$isnewgame  = 1;
 			}else{
-				$condition[]="isbt in(0,1,6)";
+				$isnewgame  = 0;
 			}
-		}	 */
+			$sql = "SELECT GROUP_CONCAT(fenbao_id) as fenbaoids FROM `web_dwFenbao` where isnewgame=$isnewgame;";
+			$command = Yii::app()->db->createCommand($sql);
+			$result = $command->queryAll();
+			$condition[]=" dwFenBaoID in({$result[0]['fenbaoids']})";
+		}
 		if(isset($_POST['serverid']) && !empty($_POST['serverid']))
 			$condition[]="ServerID = '{$_POST['serverid']}'";
         if(isset($_POST['payCode']) && !empty($_POST['payCode']))

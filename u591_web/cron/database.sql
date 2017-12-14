@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
-Source Server Version : 50553
-Source Host           : localhost:3306
-Source Database       : u591_hj
+Source Server         : 俄罗斯web
+Source Server Version : 50636
+Source Host           : 127.0.0.1:3306
+Source Database       : u591
 
 Target Server Type    : MYSQL
-Target Server Version : 50553
+Target Server Version : 50636
 File Encoding         : 65001
 
-Date: 2017-07-05 11:18:10
+Date: 2017-12-08 16:39:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -180,9 +180,9 @@ INSERT INTO `web_access` VALUES ('1', '311', '3', '198', null);
 INSERT INTO `web_access` VALUES ('1', '312', '3', '218', null);
 INSERT INTO `web_access` VALUES ('11', '453', '3', '414', null);
 INSERT INTO `web_access` VALUES ('11', '491', '3', '409', null);
+INSERT INTO `web_access` VALUES ('11', '485', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '479', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '473', '2', '1', null);
-INSERT INTO `web_access` VALUES ('11', '468', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '107', '3', '106', null);
 INSERT INTO `web_access` VALUES ('11', '108', '3', '106', null);
 INSERT INTO `web_access` VALUES ('11', '109', '3', '106', null);
@@ -815,9 +815,9 @@ INSERT INTO `web_access` VALUES ('14', '417', '3', '414', null);
 INSERT INTO `web_access` VALUES ('14', '416', '3', '414', null);
 INSERT INTO `web_access` VALUES ('14', '415', '3', '414', null);
 INSERT INTO `web_access` VALUES ('14', '164', '2', '1', null);
+INSERT INTO `web_access` VALUES ('11', '468', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '461', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '457', '2', '1', null);
-INSERT INTO `web_access` VALUES ('11', '448', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '452', '3', '414', null);
 INSERT INTO `web_access` VALUES ('11', '451', '3', '414', null);
 INSERT INTO `web_access` VALUES ('11', '431', '3', '414', null);
@@ -851,7 +851,7 @@ INSERT INTO `web_access` VALUES ('18', '495', '2', '1', null);
 INSERT INTO `web_access` VALUES ('18', '457', '2', '1', null);
 INSERT INTO `web_access` VALUES ('18', '165', '3', '164', null);
 INSERT INTO `web_access` VALUES ('18', '395', '3', '166', null);
-INSERT INTO `web_access` VALUES ('18', '455', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '494', '3', '414', null);
 INSERT INTO `web_access` VALUES ('18', '402', '3', '401', null);
 INSERT INTO `web_access` VALUES ('19', '445', '3', '409', null);
 INSERT INTO `web_access` VALUES ('18', '513', '3', '409', null);
@@ -861,12 +861,12 @@ INSERT INTO `web_access` VALUES ('18', '427', '3', '426', null);
 INSERT INTO `web_access` VALUES ('18', '428', '3', '426', null);
 INSERT INTO `web_access` VALUES ('18', '429', '3', '426', null);
 INSERT INTO `web_access` VALUES ('18', '430', '3', '426', null);
-INSERT INTO `web_access` VALUES ('18', '454', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '493', '3', '414', null);
 INSERT INTO `web_access` VALUES ('18', '466', '3', '409', null);
-INSERT INTO `web_access` VALUES ('18', '453', '3', '414', null);
-INSERT INTO `web_access` VALUES ('18', '452', '3', '414', null);
-INSERT INTO `web_access` VALUES ('18', '451', '3', '414', null);
 INSERT INTO `web_access` VALUES ('18', '492', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '456', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '455', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '454', '3', '414', null);
 INSERT INTO `web_access` VALUES ('19', '409', '2', '1', null);
 INSERT INTO `web_access` VALUES ('19', '401', '2', '1', null);
 INSERT INTO `web_access` VALUES ('19', '412', '3', '409', null);
@@ -877,14 +877,14 @@ INSERT INTO `web_access` VALUES ('18', '447', '3', '409', null);
 INSERT INTO `web_access` VALUES ('19', '416', '3', '414', null);
 INSERT INTO `web_access` VALUES ('19', '414', '2', '1', null);
 INSERT INTO `web_access` VALUES ('19', '403', '3', '401', null);
-INSERT INTO `web_access` VALUES ('18', '431', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '453', '3', '414', null);
 INSERT INTO `web_access` VALUES ('18', '448', '2', '1', null);
 INSERT INTO `web_access` VALUES ('18', '449', '3', '448', null);
-INSERT INTO `web_access` VALUES ('18', '493', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '452', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '451', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '431', '3', '414', null);
 INSERT INTO `web_access` VALUES ('18', '423', '3', '414', null);
-INSERT INTO `web_access` VALUES ('18', '494', '3', '414', null);
 INSERT INTO `web_access` VALUES ('18', '420', '3', '414', null);
-INSERT INTO `web_access` VALUES ('18', '419', '3', '414', null);
 INSERT INTO `web_access` VALUES ('20', '1', '1', '0', null);
 INSERT INTO `web_access` VALUES ('18', '507', '3', '505', null);
 INSERT INTO `web_access` VALUES ('18', '506', '3', '505', null);
@@ -895,11 +895,12 @@ INSERT INTO `web_access` VALUES ('20', '455', '3', '414', null);
 INSERT INTO `web_access` VALUES ('20', '454', '3', '414', null);
 INSERT INTO `web_access` VALUES ('20', '414', '2', '1', null);
 INSERT INTO `web_access` VALUES ('20', '395', '3', '166', null);
-INSERT INTO `web_access` VALUES ('18', '417', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '419', '3', '414', null);
 INSERT INTO `web_access` VALUES ('18', '414', '2', '1', null);
 INSERT INTO `web_access` VALUES ('18', '458', '3', '457', null);
 INSERT INTO `web_access` VALUES ('18', '459', '3', '457', null);
 INSERT INTO `web_access` VALUES ('18', '460', '3', '457', null);
+INSERT INTO `web_access` VALUES ('11', '448', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '440', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '432', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '426', '2', '1', null);
@@ -907,7 +908,6 @@ INSERT INTO `web_access` VALUES ('11', '414', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '409', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '404', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '396', '2', '1', null);
-INSERT INTO `web_access` VALUES ('11', '401', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '397', '3', '396', null);
 INSERT INTO `web_access` VALUES ('11', '398', '3', '396', null);
 INSERT INTO `web_access` VALUES ('11', '399', '3', '396', null);
@@ -943,7 +943,7 @@ INSERT INTO `web_access` VALUES ('11', '449', '3', '448', null);
 INSERT INTO `web_access` VALUES ('11', '458', '3', '457', null);
 INSERT INTO `web_access` VALUES ('11', '459', '3', '457', null);
 INSERT INTO `web_access` VALUES ('11', '460', '3', '457', null);
-INSERT INTO `web_access` VALUES ('11', '166', '2', '1', null);
+INSERT INTO `web_access` VALUES ('11', '401', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '462', '3', '461', null);
 INSERT INTO `web_access` VALUES ('11', '463', '3', '461', null);
 INSERT INTO `web_access` VALUES ('11', '464', '3', '461', null);
@@ -968,10 +968,10 @@ INSERT INTO `web_access` VALUES ('21', '482', '3', '479', null);
 INSERT INTO `web_access` VALUES ('21', '486', '3', '485', null);
 INSERT INTO `web_access` VALUES ('21', '487', '3', '485', null);
 INSERT INTO `web_access` VALUES ('21', '488', '3', '485', null);
+INSERT INTO `web_access` VALUES ('11', '166', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '164', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '111', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '106', '2', '1', null);
-INSERT INTO `web_access` VALUES ('11', '485', '2', '1', null);
 INSERT INTO `web_access` VALUES ('11', '469', '3', '468', null);
 INSERT INTO `web_access` VALUES ('11', '470', '3', '468', null);
 INSERT INTO `web_access` VALUES ('11', '471', '3', '468', null);
@@ -1087,11 +1087,11 @@ INSERT INTO `web_access` VALUES ('23', '475', '3', '473', null);
 INSERT INTO `web_access` VALUES ('23', '476', '3', '473', null);
 INSERT INTO `web_access` VALUES ('23', '477', '3', '473', null);
 INSERT INTO `web_access` VALUES ('23', '478', '3', '473', null);
-INSERT INTO `web_access` VALUES ('18', '415', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '417', '3', '414', null);
 INSERT INTO `web_access` VALUES ('18', '496', '3', '495', null);
 INSERT INTO `web_access` VALUES ('18', '497', '3', '495', null);
 INSERT INTO `web_access` VALUES ('18', '498', '3', '495', null);
-INSERT INTO `web_access` VALUES ('18', '456', '3', '414', null);
+INSERT INTO `web_access` VALUES ('18', '415', '3', '414', null);
 INSERT INTO `web_access` VALUES ('22', '499', '3', '401', null);
 INSERT INTO `web_access` VALUES ('22', '415', '3', '414', null);
 INSERT INTO `web_access` VALUES ('22', '456', '3', '414', null);
@@ -1147,6 +1147,10 @@ INSERT INTO `web_access` VALUES ('22', '506', '3', '505', null);
 INSERT INTO `web_access` VALUES ('22', '507', '3', '505', null);
 INSERT INTO `web_access` VALUES ('22', '508', '3', '505', null);
 INSERT INTO `web_access` VALUES ('22', '509', '3', '505', null);
+INSERT INTO `web_access` VALUES ('11', '523', '2', '1', null);
+INSERT INTO `web_access` VALUES ('11', '524', '3', '523', null);
+INSERT INTO `web_access` VALUES ('11', '525', '3', '523', null);
+INSERT INTO `web_access` VALUES ('18', '526', '3', '414', null);
 
 -- ----------------------------
 -- Table structure for web_access_table
@@ -1239,132 +1243,11 @@ CREATE TABLE `web_channel` (
   `name` varchar(50) NOT NULL,
   `status` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of web_channel
 -- ----------------------------
-INSERT INTO `web_channel` VALUES ('1', '48', 'lenovo充值', '1');
-INSERT INTO `web_channel` VALUES ('2', '9', '手工充值', '1');
-INSERT INTO `web_channel` VALUES ('3', '22', 'pp助手充值', '1');
-INSERT INTO `web_channel` VALUES ('4', '12', '91充值', '0');
-INSERT INTO `web_channel` VALUES ('5', '21', '当乐充值', '1');
-INSERT INTO `web_channel` VALUES ('6', '15', 'uc充值', '1');
-INSERT INTO `web_channel` VALUES ('7', '16', '5gwan充值', '0');
-INSERT INTO `web_channel` VALUES ('8', '34', '华为充值', '0');
-INSERT INTO `web_channel` VALUES ('9', '43', '360充值', '1');
-INSERT INTO `web_channel` VALUES ('10', '25', '小米充值', '1');
-INSERT INTO `web_channel` VALUES ('11', '27', '机锋网充值', '1');
-INSERT INTO `web_channel` VALUES ('12', '28', '安智充值', '0');
-INSERT INTO `web_channel` VALUES ('13', '35', 'oppo充值', '1');
-INSERT INTO `web_channel` VALUES ('14', '24', '移动MM充值', '0');
-INSERT INTO `web_channel` VALUES ('15', '61', '17173充值', '0');
-INSERT INTO `web_channel` VALUES ('16', '62', '37wan充值', '0');
-INSERT INTO `web_channel` VALUES ('17', '63', '8849充值', '0');
-INSERT INTO `web_channel` VALUES ('18', '64', 'pptv充值', '0');
-INSERT INTO `web_channel` VALUES ('19', '33', '点金充值', '0');
-INSERT INTO `web_channel` VALUES ('20', '65', '万普充值', '0');
-INSERT INTO `web_channel` VALUES ('21', '66', '禅游充值', '0');
-INSERT INTO `web_channel` VALUES ('22', '67', '百度充值', '0');
-INSERT INTO `web_channel` VALUES ('23', '50', '有信充值', '0');
-INSERT INTO `web_channel` VALUES ('24', '30', '应用汇充值', '0');
-INSERT INTO `web_channel` VALUES ('25', '68', 'itools充值', '1');
-INSERT INTO `web_channel` VALUES ('26', '70', 'vivo充值', '0');
-INSERT INTO `web_channel` VALUES ('27', '71', '3g门户充值', '0');
-INSERT INTO `web_channel` VALUES ('28', '72', '博雅科诺充值', '0');
-INSERT INTO `web_channel` VALUES ('29', '73', '悠悠村充值', '0');
-INSERT INTO `web_channel` VALUES ('30', '74', '酷动充值', '0');
-INSERT INTO `web_channel` VALUES ('31', '49', '丫丫网充值', '0');
-INSERT INTO `web_channel` VALUES ('32', '75', '虫虫', '1');
-INSERT INTO `web_channel` VALUES ('33', '76', '37wanIOS充值', '0');
-INSERT INTO `web_channel` VALUES ('34', '77', '搜狗充值', '0');
-INSERT INTO `web_channel` VALUES ('35', '78', '迅雷充值', '0');
-INSERT INTO `web_channel` VALUES ('36', '79', '快玩充值', '0');
-INSERT INTO `web_channel` VALUES ('37', '80', '快用充值', '1');
-INSERT INTO `web_channel` VALUES ('38', '81', '新丫丫网充值', '0');
-INSERT INTO `web_channel` VALUES ('39', '82', '云游充值', '0');
-INSERT INTO `web_channel` VALUES ('40', '19', 'apple充值', '1');
-INSERT INTO `web_channel` VALUES ('41', '83', 'apple充值-加强版', '0');
-INSERT INTO `web_channel` VALUES ('42', '84', '木蚂蚁充值', '0');
-INSERT INTO `web_channel` VALUES ('43', '85', '阿波罗充值', '0');
-INSERT INTO `web_channel` VALUES ('44', '86', '浩动IOS充值', '0');
-INSERT INTO `web_channel` VALUES ('45', '87', '浩动android充值', '0');
-INSERT INTO `web_channel` VALUES ('46', '89', '有信2充值', '0');
-INSERT INTO `web_channel` VALUES ('47', '90', '手盟充值', '0');
-INSERT INTO `web_channel` VALUES ('48', '46', 'pps充值', '0');
-INSERT INTO `web_channel` VALUES ('49', '91', '爱思充值', '1');
-INSERT INTO `web_channel` VALUES ('50', '92', '游龙充值', '0');
-INSERT INTO `web_channel` VALUES ('51', '93', '起点充值', '0');
-INSERT INTO `web_channel` VALUES ('52', '94', '蜗牛充值', '0');
-INSERT INTO `web_channel` VALUES ('53', '95', '人人充值', '0');
-INSERT INTO `web_channel` VALUES ('54', '96', '平安充值', '0');
-INSERT INTO `web_channel` VALUES ('55', '97', 'XY苹果助手', '1');
-INSERT INTO `web_channel` VALUES ('56', '98', '海马充值', '1');
-INSERT INTO `web_channel` VALUES ('57', '99', '冒泡充值', '0');
-INSERT INTO `web_channel` VALUES ('58', '100', 'wo商城', '0');
-INSERT INTO `web_channel` VALUES ('59', '101', '绿岸充值', '0');
-INSERT INTO `web_channel` VALUES ('60', '102', 'momo充值', '0');
-INSERT INTO `web_channel` VALUES ('61', '103', '豌豆荚', '1');
-INSERT INTO `web_channel` VALUES ('62', '104', 'YY充值', '0');
-INSERT INTO `web_channel` VALUES ('63', '105', '海马android充值', '0');
-INSERT INTO `web_channel` VALUES ('64', '106', '金立充值', '0');
-INSERT INTO `web_channel` VALUES ('65', '107', '游酷充值', '0');
-INSERT INTO `web_channel` VALUES ('66', '108', '同步充值', '1');
-INSERT INTO `web_channel` VALUES ('67', '109', '柴米充值', '0');
-INSERT INTO `web_channel` VALUES ('68', '110', '37wan-ios2', '0');
-INSERT INTO `web_channel` VALUES ('69', '111', '百度91充值', '1');
-INSERT INTO `web_channel` VALUES ('70', '112', '靠谱充值', '1');
-INSERT INTO `web_channel` VALUES ('71', '113', '海港', '1');
-INSERT INTO `web_channel` VALUES ('72', '114', 'ysdk', '1');
-INSERT INTO `web_channel` VALUES ('73', '115', '果盘', '1');
-INSERT INTO `web_channel` VALUES ('74', '116', '阿斯卡德', '1');
-INSERT INTO `web_channel` VALUES ('75', '117', '兔兔', '1');
-INSERT INTO `web_channel` VALUES ('76', '118', 'xiao7', '1');
-INSERT INTO `web_channel` VALUES ('77', '119', '4399', '1');
-INSERT INTO `web_channel` VALUES ('78', '120', '爱普', '1');
-INSERT INTO `web_channel` VALUES ('79', '121', 'TT语音', '1');
-INSERT INTO `web_channel` VALUES ('80', '122', '07073', '1');
-INSERT INTO `web_channel` VALUES ('81', '123', '拇指玩', '1');
-INSERT INTO `web_channel` VALUES ('82', '124', '乐游', '1');
-INSERT INTO `web_channel` VALUES ('83', '125', '同游游', '1');
-INSERT INTO `web_channel` VALUES ('84', '126', '汉风', '1');
-INSERT INTO `web_channel` VALUES ('85', '127', '乐8', '1');
-INSERT INTO `web_channel` VALUES ('86', '128', '支付宝-app', '1');
-INSERT INTO `web_channel` VALUES ('87', '129', '微信支付-app', '1');
-INSERT INTO `web_channel` VALUES ('88', '130', '夜神', '1');
-INSERT INTO `web_channel` VALUES ('89', '131', '熊猫玩', '1');
-INSERT INTO `web_channel` VALUES ('90', '132', '猎宝', '1');
-INSERT INTO `web_channel` VALUES ('91', '133', '爱应用', '1');
-INSERT INTO `web_channel` VALUES ('92', '134', 'play800-ios', '1');
-INSERT INTO `web_channel` VALUES ('93', '135', '奥创', '1');
-INSERT INTO `web_channel` VALUES ('94', '136', '点游', '1');
-INSERT INTO `web_channel` VALUES ('95', '137', '港台', '1');
-INSERT INTO `web_channel` VALUES ('96', '138', '快发', '1');
-INSERT INTO `web_channel` VALUES ('97', '139', '魔方', '1');
-INSERT INTO `web_channel` VALUES ('98', '140', '顺玩', '1');
-INSERT INTO `web_channel` VALUES ('99', '141', '爱洛克', '0');
-INSERT INTO `web_channel` VALUES ('100', '142', '牛牛', '1');
-INSERT INTO `web_channel` VALUES ('101', '143', '星趣', '1');
-INSERT INTO `web_channel` VALUES ('102', '144', 'google', '0');
-INSERT INTO `web_channel` VALUES ('103', '145', '爱乐', '1');
-INSERT INTO `web_channel` VALUES ('104', '146', '爱贝云', '1');
-INSERT INTO `web_channel` VALUES ('105', '147', '1pay', '1');
-INSERT INTO `web_channel` VALUES ('106', '148', '16yo', '1');
-INSERT INTO `web_channel` VALUES ('107', '149', '龙虾', '1');
-INSERT INTO `web_channel` VALUES ('108', '150', '盛天', '1');
-INSERT INTO `web_channel` VALUES ('109', '151', '星宇', '1');
-INSERT INTO `web_channel` VALUES ('110', '152', '逗游', '1');
-INSERT INTO `web_channel` VALUES ('112', '153', 'play800-线下', '1');
-INSERT INTO `web_channel` VALUES ('113', '154', '黑桃', '1');
-INSERT INTO `web_channel` VALUES ('114', '155', '铠甲', '1');
-INSERT INTO `web_channel` VALUES ('116', '156', '游戏fan', '1');
-INSERT INTO `web_channel` VALUES ('117', '157', '火树', '1');
-INSERT INTO `web_channel` VALUES ('118', '158', '三星数码', '1');
-INSERT INTO `web_channel` VALUES ('119', '159', '创游', '1');
-INSERT INTO `web_channel` VALUES ('120', '160', '深海', '1');
-INSERT INTO `web_channel` VALUES ('121', '161', '乐视', '1');
-INSERT INTO `web_channel` VALUES ('122', '162', 'QQ5(魅游)', '1');
-INSERT INTO `web_channel` VALUES ('123', '163', '支付宝wap', '1');
 
 -- ----------------------------
 -- Table structure for web_code_exchange
@@ -1463,19 +1346,22 @@ CREATE TABLE `web_config` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `TWD` decimal(6,4) DEFAULT NULL,
   `USD` decimal(6,4) DEFAULT NULL,
+  `VND` decimal(6,4) DEFAULT NULL,
+  `openbt` int(11) DEFAULT '0',
+  `RUB` decimal(6,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of web_config
 -- ----------------------------
-INSERT INTO `web_config` VALUES ('1', '4.4289', '6.9195');
+INSERT INTO `web_config` VALUES ('1', '4.4289', '6.9195', '0.0003', '0', null);
 
 -- ----------------------------
--- Table structure for web_dwfenbao
+-- Table structure for web_dwFenbao
 -- ----------------------------
-DROP TABLE IF EXISTS `web_dwfenbao`;
-CREATE TABLE `web_dwfenbao` (
+DROP TABLE IF EXISTS `web_dwFenbao`;
+CREATE TABLE `web_dwFenbao` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `fenbao_id` int(4) unsigned NOT NULL DEFAULT '0',
@@ -1487,27 +1373,20 @@ CREATE TABLE `web_dwfenbao` (
   `deal_date` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `fenbao` (`fenbao_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=184 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of web_dwfenbao
+-- Records of web_dwFenbao
 -- ----------------------------
-
--- ----------------------------
--- Table structure for web_dwfenbao_copy
--- ----------------------------
-DROP TABLE IF EXISTS `web_dwfenbao_copy`;
-CREATE TABLE `web_dwfenbao_copy` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  `fenbao_id` int(4) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `fenbao` (`fenbao_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of web_dwfenbao_copy
--- ----------------------------
+INSERT INTO `web_dwFenbao` VALUES ('71', '魔方IOS', '910001', '0', null, '0', '0', null, null);
+INSERT INTO `web_dwFenbao` VALUES ('72', '魔方安卓', '655001', '0', null, '0', '0', null, null);
+INSERT INTO `web_dwFenbao` VALUES ('77', 'ios企业包', '910002', '0', null, '0', '0', null, null);
+INSERT INTO `web_dwFenbao` VALUES ('78', '官方充值', '999999', '0', null, '0', '0', null, null);
+INSERT INTO `web_dwFenbao` VALUES ('79', '越南ios1', '911001', '0', null, '0', '0', null, null);
+INSERT INTO `web_dwFenbao` VALUES ('80', '越南安卓1', '669001', '0', null, '0', '0', null, null);
+INSERT INTO `web_dwFenbao` VALUES ('81', '越南安卓2', '669004', '0', null, '0', '0', null, null);
+INSERT INTO `web_dwFenbao` VALUES ('82', '越南安卓3', '669005', '0', null, '0', '0', null, null);
+INSERT INTO `web_dwFenbao` VALUES ('83', '越南安卓4', '669006', '0', null, '0', '0', null, null);
 
 -- ----------------------------
 -- Table structure for web_emp_account
@@ -1515,17 +1394,16 @@ CREATE TABLE `web_dwfenbao_copy` (
 DROP TABLE IF EXISTS `web_emp_account`;
 CREATE TABLE `web_emp_account` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `accountid` int(11) NOT NULL,
-  `serverid` int(11) NOT NULL,
-  `operator` varchar(50) NOT NULL COMMENT '操作人',
+  `accountid` bigint(11) NOT NULL,
   `name` varchar(50) NOT NULL COMMENT '角色名',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uk` (`accountid`,`serverid`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  UNIQUE KEY `uk` (`accountid`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of web_emp_account
 -- ----------------------------
+INSERT INTO `web_emp_account` VALUES ('1', '1', '的');
 
 -- ----------------------------
 -- Table structure for web_erp_level
@@ -1536,11 +1414,13 @@ CREATE TABLE `web_erp_level` (
   `title` varchar(50) NOT NULL,
   `level` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of web_erp_level
 -- ----------------------------
+INSERT INTO `web_erp_level` VALUES ('1', '一级', '0');
+INSERT INTO `web_erp_level` VALUES ('2', '二级', '1');
 
 -- ----------------------------
 -- Table structure for web_erp_log
@@ -1588,532 +1468,18 @@ CREATE TABLE `web_game_server` (
   `game_id` int(10) unsigned NOT NULL,
   `server_id` int(10) unsigned NOT NULL,
   `server_name` varchar(50) NOT NULL,
-  `link` varchar(30) NOT NULL,
-  `port` smallint(30) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `combined_service` varchar(50) NOT NULL,
+  `link` varchar(30) DEFAULT NULL,
+  `port` smallint(30) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(50) DEFAULT NULL,
+  `combined_service` varchar(50) DEFAULT NULL,
   `status` char(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=531 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of web_game_server
 -- ----------------------------
-INSERT INTO `web_game_server` VALUES ('46', '8', '3011', '应用宝11-霸王花', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('6', '8', '8001', '1皮卡丘', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('7', '8', '8002', '2妙蛙种子', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('47', '8', '8019', '19派拉斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('10', '8', '8003', '3小火龙', '', '0', '', '', '', '1');
-INSERT INTO `web_game_server` VALUES ('11', '8', '8004', '4杰尼龟', '', '0', '', '', '', '1');
-INSERT INTO `web_game_server` VALUES ('12', '8', '8005', '5绿毛虫', '', '0', '', '', '', '1');
-INSERT INTO `web_game_server` VALUES ('13', '8', '8006', '6独角虫', '', '0', '', '', '', '1');
-INSERT INTO `web_game_server` VALUES ('14', '8', '8007', '7比比鸟', '', '0', '', '', '', '1');
-INSERT INTO `web_game_server` VALUES ('15', '8', '8008', '8小拉达', '', '0', '', '', '', '1');
-INSERT INTO `web_game_server` VALUES ('16', '8', '8009', '9大嘴雀', '', '0', '', '', '', '1');
-INSERT INTO `web_game_server` VALUES ('17', '8', '8010', '10阿柏蛇', '', '0', '', '', '', '1');
-INSERT INTO `web_game_server` VALUES ('18', '8', '3001', '应用宝1-妙蛙花', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('19', '8', '3002', '应用宝2-喷火龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('20', '8', '3003', '应用宝3-水箭龟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('21', '8', '6001', '硬核1-妙蛙草', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('22', '8', '6002', '硬核2-火恐龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('23', '8', '6003', '硬核3-卡咪龟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('24', '8', '6004', '硬核4-铁甲蛹', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('29', '8', '8013', '13尼多朗', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('27', '8', '8011', '11穿山鼠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('28', '8', '8012', '12尼多兰', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('30', '8', '8014', '14皮皮', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('31', '8', '6005', '硬核5-波波', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('32', '8', '6006', '硬核6-烈雀', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('33', '8', '3004', '应用宝4-巴大胡', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('34', '8', '3005', '应用宝5-大针蜂', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('35', '8', '3006', '应用宝6-拉达', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('36', '8', '3007', '应用宝7-阿柏怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('37', '8', '3008', '应用宝8-雷丘', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('38', '8', '3009', '应用宝9-穿山王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('39', '8', '3010', '应用宝10-尼多后', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('40', '8', '8015', '15六尾', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('41', '8', '8016', '16胖丁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('42', '8', '8017', '17超音蝠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('43', '8', '8018', '18走路草', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('44', '8', '6007', '硬核7-双弹瓦斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('45', '8', '6008', '硬核8-尼多娜', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('48', '8', '8020', '20毛球', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('49', '8', '8021', '21地鼠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('50', '8', '6009', '硬核9-皮可西', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('51', '8', '6010', '硬核10-九尾', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('52', '8', '3012', '应用宝12-胖可丁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('53', '8', '8022', '22喵喵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('54', '8', '8023', '23可达鸭', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('55', '8', '8024', '24猴怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('56', '8', '8025', '25卡蒂狗', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('57', '8', '6011', '硬核11-尼多王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('58', '8', '6012', '硬核12-勇基拉', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('59', '8', '3013', '应用宝13大嘴蝠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('60', '8', '3014', '应用宝14臭臭花', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('61', '8', '8026', '26蚊香蝌蚪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('62', '8', '6013', '硬核13-玛瑙水母', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('63', '8', '3015', '应用宝15派拉斯特', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('64', '8', '8027', '27凯西', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('65', '8', '3016', '应用宝16猫老大', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('66', '8', '3017', '应用宝17哥达鸭', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('67', '8', '6014', '硬核14小火马', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('68', '8', '6015', '硬核15臭臭泥', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('69', '8', '8028', '28腕力', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('70', '8', '8029', '29火暴猴', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('71', '8', '3018', '应用宝18蚊香泳士', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('72', '8', '6016', '硬核16鬼斯通', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('73', '8', '8030', '30风速狗', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('74', '8', '8031', '31墨海马', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('75', '8', '8032', '32角金鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('76', '8', '6017', '硬核17椰蛋树', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('77', '8', '6018', '硬核18顽皮弹', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('78', '8', '3019', '应用宝19口呆花', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('79', '8', '3020', '应用宝20毒刺水母', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('80', '8', '3021', '应用宝21菊草叶', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('81', '8', '8033', '33飞天螳螂', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('82', '8', '8034', '34肯泰罗', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('83', '8', '8035', '35伊布', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('84', '8', '8036', '36暴鲤龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('85', '8', '8037', '37菊石兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('86', '8', '8038', '38化石盔', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('87', '8', '8039', '39化石翼龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('88', '8', '8040', '40卡比兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('89', '8', '6019', '硬核19大舌贝', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('90', '8', '6020', '硬核20喇叭芽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('91', '8', '3022', '应用宝22火球鼠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('92', '8', '3023', '应用宝23小锯鳄', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('93', '8', '6021', '硬核21小拳石', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('94', '8', '3024', '应用宝24尾立', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('95', '8', '3025', '应用宝25猫头夜鹰', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('96', '8', '3026', '应用宝26圆丝蛛', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('97', '8', '6022', '硬核22月桂叶', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('98', '8', '6023', '硬核23火岩鼠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('99', '8', '3027', '应用宝27灯笼鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('100', '8', '3028', '应用宝28皮宝宝', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('101', '8', '8041', '41迷你龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('102', '8', '8042', '42快龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('103', '8', '8043', '43超梦', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('104', '8', '6024', '硬核24蓝鳄', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('105', '8', '3029', '应用宝29波克基古', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('106', '8', '8044', '44大竺葵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('107', '8', '6025', '硬核25大尾立', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('108', '8', '3030', '应用宝30咩利羊', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('109', '8', '8045', '45火暴兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('110', '8', '3031', '应用宝31美丽花', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('111', '8', '6026', '硬核26芭瓢虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('112', '8', '8046', '46大力鳄', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('113', '8', '3032', '应用宝32树才怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('114', '8', '6027', '硬核27阿利多斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('115', '8', '8047', '47咕咕', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('116', '8', '6028', '硬核28电灯怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('117', '8', '3033', '应用宝33毽子花', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('118', '8', '8048', '48安瓢虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('119', '8', '8049', '49叉字蝠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('120', '8', '8050', '50皮丘', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('121', '8', '6029', '硬核29宝宝丁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('122', '8', '3034', '应用宝34向日种子', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('123', '8', '8051', '51波克比', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('124', '8', '6030', '硬核30天然雀', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('125', '8', '3035', '应用宝35乌波', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('126', '8', '8052', '52天然鸟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('127', '8', '6031', '硬核31茸茸羊', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('128', '8', '3036', '应用宝36太阳伊布', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('129', '8', '8053', '53玛力露丽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('130', '8', '5001', 'P01皮卡丘', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('131', '8', '8054', '54电龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('132', '8', '6033', '硬核33蚊香蛙皇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('133', '8', '6032', '硬核32玛力露', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('134', '8', '3037', '应用宝37黑暗鸦', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('135', '8', '8055', '55毽子草', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('136', '8', '8056', '56长尾怪手', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('137', '8', '8057', '57蜻蜻蜓', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('138', '8', '6034', '硬核34沼王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('153', '8', '6035', '硬核35向日花怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('141', '8', '3038', '应用宝38未知图腾', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('142', '8', '3039', '应用宝39榛果球', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('143', '8', '3040', '应用宝40天蝎', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('144', '8', '5002', 'P02小火龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('145', '8', '5003', 'P03杰尼龟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('146', '8', '5004', 'P04妙蛙种子', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('147', '8', '5005', 'P05可达鸭', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('148', '8', '5006', 'P06绿毛虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('149', '8', '5007', 'P07小拉达', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('150', '8', '5008', 'P08阿柏蛇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('151', '8', '5009', 'P09走路草', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('152', '8', '5010', 'P10喇叭芽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('154', '8', '8058', '58月亮伊布', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('155', '8', '6036', '硬核36呆呆王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('156', '8', '8059', '59梦妖', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('157', '8', '6037', '硬核37毽子棉', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('158', '8', '8060', '60麒麟奇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('159', '8', '8061', '61土龙弟弟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('160', '8', '8062', '62布鲁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('161', '8', '8063', '63巨钳螳螂', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('162', '8', '8064', '64狃拉', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('163', '8', '8065', '65熔岩虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('164', '8', '8066', '66长毛猪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('165', '8', '6038', '硬核38果然翁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('166', '8', '6039', '硬核39佛烈托斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('167', '8', '6040', '硬核40大钢蛇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('168', '8', '6041', '硬核41千针鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('169', '8', '6042', '硬核42赫拉克罗斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('170', '8', '6043', '硬核43圈圈熊', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('171', '8', '6044', '硬核44小山猪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('172', '8', '3041', '应用宝41布鲁皇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('173', '8', '3042', '应用宝42壶壶', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('174', '8', '3043', '应用宝43熊宝宝', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('175', '8', '3044', '应用宝44熔岩蜗牛', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('176', '8', '5011', 'P11小拳石', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('177', '8', '5012', 'P12呆呆兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('178', '8', '5013', 'P13小海狮', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('179', '8', '3045', '应用宝45太阳珊瑚', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('180', '8', '8067', '67章鱼桶', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('181', '8', '8068', '68盔甲鸟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('182', '8', '8069', '69刺龙王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('183', '8', '8070', '70惊角鹿', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('184', '8', '5014', 'P14大舌贝', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('185', '8', '5015', 'P15雷电球', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('186', '8', '5016', 'P16瓦斯弹', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('187', '8', '5017', 'P17吉利蛋', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('188', '8', '5018', 'P18角金鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('189', '8', '5019', 'P19海星星', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('190', '8', '5020', 'P20百变怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('191', '8', '5021', 'P21喵喵怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('192', '8', '5022', 'P22水伊布', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('193', '8', '5023', 'P23急冻鸟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('194', '8', '5024', 'P24化石盔', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('195', '8', '5025', 'P25火球鼠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('196', '8', '6045', '硬核45铁炮鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('197', '8', '15001', 'P安1喷火龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('198', '8', '6046', '硬核46巨翅飞鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('199', '8', '6047', '硬核47黑鲁加', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('200', '8', '3046', '应用宝46信使鸟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('201', '8', '5026', 'P26菊草叶', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('202', '8', '5027', 'P27小锯鳄', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('203', '8', '5028', 'P28宝宝丁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('204', '8', '5029', 'P29咩利羊', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('205', '8', '5030', 'P30超梦梦', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('206', '8', '15002', 'P安2水箭龟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('277', '8', '5077', 'P77毽子草', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('278', '8', '5078', 'P78玛力露', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('210', '8', '3047', '应用宝47戴鲁比', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('211', '8', '6048', '硬核48顿甲', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('212', '8', '8071', '71战舞郎', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('213', '8', '6049', '硬核49无畏小子', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('214', '8', '3048', '应用宝48小小象', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('215', '8', '5031', 'P31妙蛙草', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('216', '8', '5032', 'P32火恐龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('217', '8', '5033', 'P33卡咪龟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('218', '8', '5034', 'P34铁甲蛹', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('219', '8', '5035', 'P35独角虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('220', '8', '5036', 'P36比比鸟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('221', '8', '5037', 'P37穿山鼠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('222', '8', '5038', 'P38尼多兰', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('223', '8', '5039', 'P39超音蝠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('224', '8', '5040', 'P40臭臭花', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('225', '8', '5041', 'P41派拉斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('226', '8', '8072', '72鸭嘴宝宝', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('227', '8', '8073', '73雷公', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('228', '8', '6050', '硬核50电击怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('229', '8', '6051', '硬核51幸福蛋', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('230', '8', '3049', '应用宝49图图犬', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('231', '8', '5042', 'P42大葱鸭', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('232', '8', '5043', 'P43小磁怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('233', '8', '5044', 'P44椰蛋树', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('234', '8', '5045', 'P45天然雀', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('235', '8', '5046', 'P46火稚鸡', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('236', '8', '5047', 'P47灯笼鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('237', '8', '5048', 'P48芭瓢虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('238', '8', '5049', 'P49火岩鼠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('239', '8', '5050', 'P50大力鳄', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('240', '8', '5051', 'P51茸茸羊', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('241', '8', '8074', '74幼基拉斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('242', '8', '6052', '硬核52水君', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('243', '8', '3050', '应用宝50迷唇娃', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('244', '8', '6053', '硬核53班基拉斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('245', '8', '8075', '75洛奇亚', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('246', '8', '5052', 'P52美丽花', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('247', '8', '5053', 'P53圈圈熊', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('248', '8', '5054', 'P54熔岩虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('249', '8', '5055', 'P55小山猪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('250', '8', '5056', 'P56千针鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('251', '8', '5057', 'P57榛果球', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('252', '8', '5058', 'P58惊角鹿', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('253', '8', '5059', 'P59图图犬', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('254', '8', '5060', 'P60迷唇娃', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('255', '8', '5061', 'P61卷卷耳', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('256', '8', '5062', 'P62长耳兔', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('257', '8', '5063', 'P63萤光鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('258', '8', '5064', 'P64斗笠菇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('259', '8', '5065', 'P65沙奈朵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('260', '8', '5066', 'P66蛇纹熊', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('261', '8', '5067', 'P67优雅猫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('262', '8', '5068', 'P68傲骨燕', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('263', '8', '5069', 'P69玛沙那', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('264', '8', '5070', 'P70刺尾虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('265', '8', '5071', 'P71毒粉蝶', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('266', '8', '5072', 'P72噗噗猪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('267', '8', '5073', 'P73落雷兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('268', '8', '5074', 'P74毒蔷薇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('269', '8', '5075', 'P75甜甜萤', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('270', '8', '5076', 'P76勾魂眼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('271', '8', '8076', '76蜥蜴王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('272', '8', '6054', '硬核54时拉比', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('273', '8', '3051', '应用宝51大奶罐', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('274', '8', '8077', '77火焰鸡', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('275', '8', '6055', '硬核55森林蜥蜴', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('276', '8', '3052', '应用宝52炎帝', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('279', '8', '5079', 'P79黑暗鸦', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('280', '8', '5080', 'P80铁炮鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('281', '8', '5081', 'P81幸福蛋', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('282', '8', '5082', 'P82力壮鸡', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('283', '8', '5083', 'P83水跃鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('284', '8', '5084', 'P84橡实果', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('285', '8', '5085', 'P85果然翁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('286', '8', '5086', 'P86过动猿', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('287', '8', '5087', 'P87风铃铃', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('288', '8', '5088', 'P88雪童子', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('289', '8', '5089', 'P89珍珠贝', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('290', '8', '5090', 'P90樱花鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('291', '8', '5091', 'P91海魔狮', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('292', '8', '5092', 'P92美纳斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('293', '8', '5093', 'P93鲶鱼王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('294', '8', '3053', '应用宝53沙基拉斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('295', '8', '6056', '硬核56力壮鸡', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('296', '8', '6057', '硬核57沼跃鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('297', '8', '8078', '78巨沼怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('298', '8', '8079', '79蛇纹熊', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('299', '8', '5094', 'P94电萤虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('300', '8', '5095', 'P95蘑蘑菇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('301', '8', '5096', 'P96热带龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('302', '8', '5097', 'P97铁哑铃', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('303', '8', '5098', 'P98固拉多', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('304', '8', '5099', 'P99跳跳猪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('305', '8', '5100', 'P100基拉祈', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('306', '8', '5101', 'P101朝北鼻', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('307', '8', '8080', '80甲壳茧', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('308', '8', '8081', '81毒粉蛾', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('309', '8', '6058', '硬核58大狼犬', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('310', '8', '6059', '硬核59刺尾虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('311', '8', '3054', '应用宝54凤王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('312', '8', '3055', '应用宝55木守宫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('313', '8', '8082', '82乐天河童', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('314', '8', '8083', '83狡猾天狗', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('315', '8', '8084', '84长翅鸥', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('316', '8', '6060', '硬核60盾甲茧', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('317', '8', '6061', '硬核61莲帽小童', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('318', '8', '3056', '应用宝56火稚鸡', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('319', '8', '5102', 'P102笨笨鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('320', '8', '5103', 'P103呆火驼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('321', '8', '8085', '85奇鲁莉安', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('322', '8', '8086', '86雨翅蛾', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('323', '8', '6062', '硬核62长鼻叶', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('324', '8', '6063', '硬核63大王燕', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('325', '8', '3057', '应用宝57水跃鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('326', '8', '3058', '应用宝58土狼犬', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('327', '8', '5104', 'P104向尾喵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('328', '8', '5105', 'P105盾甲茧', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('329', '8', '5106', 'P106土狼犬', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('330', '8', '5107', 'P107沼跃鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('331', '8', '5108', 'P108火焰鸡', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('332', '8', '5109', 'P109战舞郎', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('333', '8', '5110', 'P110电击怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('334', '8', '5111', 'P111树才怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('335', '8', '8087', '87懒人獭', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('336', '8', '8088', '88土居忍士', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('337', '8', '8089', '89咕妞妞', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('338', '8', '8090', '90幕下力士', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('339', '8', '8091', '91朝北鼻', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('340', '8', '8092', '92勾魂眼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('341', '8', '6064', '硬核64拉鲁拉丝', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('342', '8', '6065', '硬核65溜溜糖球', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('343', '8', '6066', '硬核66斗笠菇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('344', '8', '6067', '硬核67请假王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('345', '8', '6068', '硬核68脱壳忍者', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('346', '8', '5112', 'P112大尾立', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('347', '8', '5113', 'P113蔓藤怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('348', '8', '5114', 'P114飞腿郎', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('349', '8', '5115', 'P115摩鲁蛾', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('350', '8', '5116', 'P116尼多后', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('351', '8', '5117', 'P117勇基拉', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('352', '8', '5118', 'P118催眠貘', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('353', '8', '5119', 'P119快拳郎', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('354', '8', '5120', 'P120墨海马', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('355', '8', '3059', '应用宝59直冲熊', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('356', '8', '3060', '应用宝60狩猎凤蝶', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('357', '8', '3061', '应用宝61莲叶童子', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('358', '8', '3062', '应用宝62橡实果', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('359', '8', '8093', '93可多拉', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('360', '8', '8094', '94落雷兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('361', '8', '6069', '硬核69爆音怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('362', '8', '6070', '硬核70露力丽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('363', '8', '3063', '应用宝63傲骨燕', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('364', '8', '3064', '应用宝64大嘴鸥', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('365', '8', '5121', 'P121呆壳兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('366', '8', '5122', 'P122烈焰马', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('367', '8', '5123', 'P123三地鼠', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('368', '8', '5124', 'P124尼多娜', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('369', '8', '5125', 'P125巨钳蟹', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('370', '8', '5126', 'P126金鱼王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('371', '8', '5127', 'P127凯罗斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('372', '8', '5128', 'P128暴鲤龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('373', '8', '5129', 'P129海刺龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('374', '8', '5130', 'P130雷伊布', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('375', '8', '5131', 'P131多边兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('376', '8', '5132', 'P132迷你龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('377', '8', '5133', 'P133卡比兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('378', '8', '5134', 'P134萌芽鹿', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('379', '8', '8095', '95负电拍拍', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('380', '8', '8096', '96毒蔷薇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('381', '8', '8097', '97利牙鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('382', '8', '8098', '98吼鲸王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('383', '8', '6071', '硬核71优雅猫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('384', '8', '6072', '硬核72可可多拉', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('385', '8', '6073', '硬核73恰雷姆', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('386', '8', '6074', '硬核74正电拍拍', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('387', '8', '3065', '应用宝65沙奈朵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('388', '8', '3066', '应用宝66蘑蘑菇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('389', '8', '5135', 'P135盖盖虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('390', '8', '5136', 'P136石丸子', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('391', '8', '5137', 'P137豆豆鸽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('392', '8', '5138', 'P138轻飘飘', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('393', '8', '8099', '99煤炭龟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('394', '8', '8100', '100晃晃斑', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('395', '8', '8101', '101青绵鸟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('396', '8', '6075', '硬核75甜甜萤', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('397', '8', '6076', '硬核76吞食兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('398', '8', '6077', '硬核77吼吼鲸', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('399', '8', '3067', '应用宝67过动猿', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('400', '8', '3068', '应用宝68铁面忍者', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('401', '8', '5139', 'P139波波鸽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('402', '8', '5140', 'P140花椰猿', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('403', '8', '5141', 'P141木棉球', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('404', '8', '5142', 'P142猫鼬斩', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('405', '8', '5143', 'P143天秤偶', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('406', '8', '5144', 'P144木守宫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('407', '8', '5145', 'P145懒人翁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('408', '8', '5146', 'P146爱心鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('409', '8', '5147', 'P147喷火驼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('410', '8', '5148', 'P148宝贝龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('411', '8', '5149', 'P149甲壳龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('412', '8', '5150', 'P150甲壳蛹', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('413', '8', '5151', 'P151冰鬼护', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('414', '8', '5152', 'P152盖欧卡', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('415', '8', '5153', 'P153晃晃斑', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('416', '8', '5154', 'P154海豹球', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('417', '8', '5155', 'P155金属怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('418', '8', '5156', 'P156大颚蚁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('419', '8', '5157', 'P157变隐龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('420', '8', '8102', '102饭匙蛇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('421', '8', '8103', '103泥泥鳅', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('422', '8', '8104', '104铁螯龙虾', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('423', '8', '6078', '硬核78喷火驼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('424', '8', '6079', '硬核79噗噗猪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('425', '8', '6080', '硬核80沙漠蜻蜓', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('426', '8', '3069', '应用宝69吼爆弹', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('427', '8', '3070', '应用宝70铁掌力士', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('428', '8', '8105', '105触手百合', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('429', '8', '8106', '106太古盔甲', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('430', '8', '8107', '107飘浮泡泡', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('431', '8', '6081', '硬核81猫鼬斩', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('432', '8', '6082', '硬核82太阳岩', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('433', '8', '6083', '硬核83龙虾小兵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('434', '8', '5158', 'P158咕妞妞', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('435', '8', '5159', 'P159吞食兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('436', '8', '5160', 'P160吼爆弹', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('437', '8', '5161', 'P161爆音怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('438', '8', '5162', 'P162夜骷颅', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('439', '8', '5163', 'P163吼吼鲸', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('440', '8', '3071', '应用宝71向尾喵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('441', '8', '3072', '应用宝72大嘴娃', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('442', '8', '5164', 'P164夜巨人', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('443', '8', '5165', 'P165草苗龟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('444', '8', '5166', 'P166姆克儿', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('445', '8', '5167', 'P167东施喵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('446', '8', '5168', 'P168由克希', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('447', '8', '5169', 'P169霏欧纳', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('448', '8', '5170', 'P170战槌龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('449', '8', '5171', 'P171霓虹鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('450', '8', '5172', 'P172玛纳霏', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('451', '8', '8108', '108诅咒娃娃', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('452', '8', '8109', '109彷徨夜灵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('453', '8', '8110', '110风铃铃', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('454', '8', '8111', '111小果然', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('455', '8', '8112', '112冰鬼护', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('456', '8', '6084', '硬核84念力土偶', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('457', '8', '6085', '硬核85太古羽虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('458', '8', '6086', '硬核86美纳斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('495', '8', '13001', '创1皮卡丘', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('496', '8', '13002', '创2妙蛙种子', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('461', '8', '3073', '应用宝73玛沙那', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('462', '8', '3074', '应用宝74雷电兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('463', '8', '8113', '113海魔狮', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('464', '8', '8114', '114猎斑鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('465', '8', '8115', '115古空棘鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('466', '8', '8116', '116宝贝龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('467', '8', '6087', '硬核87怨影娃娃', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('468', '8', '6088', '硬核88夜巡灵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('469', '8', '6089', '硬核89热带龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('470', '8', '6090', '硬核90阿勃梭鲁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('471', '8', '6091', '硬核91雪童子', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('472', '8', '6092', '硬核92海豹球', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('473', '8', '5173', 'P173姆克鹰', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('474', '8', '5174', 'P174叶伊布', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('475', '8', '5175', 'P175海牛兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('476', '8', '5176', 'P176结草儿', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('477', '8', '5177', 'P177天蝎王', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('478', '8', '5178', 'P178盆才怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('479', '8', '5179', 'P179钳尾蝎', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('480', '8', '5180', 'P180好运蛋', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('481', '8', '5181', 'P181龙王蝎', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('482', '8', '5182', 'P182烈焰猴', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('483', '8', '5183', 'P183圆法师', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('484', '8', '5184', 'P184绅士蛾', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('485', '8', '5185', 'P185随风球', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('486', '8', '5186', 'P186魔尼尼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('487', '8', '5185', 'P185随风球', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('488', '8', '5186', 'P186魔尼尼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('489', '8', '5187', 'P187勒克猫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('490', '8', '5188', 'P188梦妖魔', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('491', '8', '5189', 'P189不良蛙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('492', '8', '5190', 'P190含羞苞', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('493', '8', '3075', '应用宝75电萤虫', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('494', '8', '3076', '应用宝76溶食兽', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('497', '8', '13003', '创3妙蛙草', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('498', '8', '13004', '创4妙蛙花', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('499', '8', '13005', '创5小火龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('500', '8', '8117', '117金属怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('501', '8', '8118', '118雷吉艾斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('502', '8', '8119', '119拉帝亚斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('503', '8', '8120', '120盖欧卡', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('504', '8', '8121', '121烈空座', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('505', '8', '8122', '122代欧奇希斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('506', '8', '8123', '123树林龟', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('507', '8', '8124', '124猛火猴', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('508', '8', '6093', '硬核93珍珠贝', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('509', '8', '6094', '硬核94樱花鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('510', '8', '6095', '硬核95爱心鱼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('511', '8', '6096', '硬核96甲壳龙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('512', '8', '6097', '硬核97铁哑铃', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('513', '8', '6098', '硬核98雷吉洛克', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('514', '8', '6099', '硬核99雷吉斯奇鲁', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('515', '8', '6100', '硬核100拉帝欧斯', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('516', '8', '5191', 'P191花岩怪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('517', '8', '5192', 'P192毒骷蛙', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('518', '8', '5193', 'P193雪妖女', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('519', '8', '5194', 'P194浮潜鼬', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('520', '8', '5195', 'P195魅力喵', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('521', '8', '5196', 'P196圆陆鲨', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('522', '8', '5197', 'P197尖牙笼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('523', '8', '5198', 'P198洛托姆', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('524', '8', '5199', 'P199由克希', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('525', '8', '5200', 'P200藤藤蛇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('526', '8', '5201', 'P201青藤蛇', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('527', '8', '3077', '应用宝77巨牙鲨', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('528', '8', '3078', '应用宝78呆火驼', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('529', '8', '3079', '应用宝79跳跳猪', '', '0', '', '', '', '0');
-INSERT INTO `web_game_server` VALUES ('530', '8', '3080', '应用宝80大颚蚁', '', '0', '', '', '', '0');
 
 -- ----------------------------
 -- Table structure for web_index_id
@@ -2165,11 +1531,51 @@ CREATE TABLE `web_login_auto` (
   `mac` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `token` (`token`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of web_login_auto
 -- ----------------------------
+INSERT INTO `web_login_auto` VALUES ('1', '8', '4720834', '4720834', '41bc507e8e47c4a74b4cdfb5911b1d56', '1509080341', '1509073141', null);
+INSERT INTO `web_login_auto` VALUES ('2', '8', '4720834', '4720834', 'dbfdf4bd28d0539b1b2850e01a2704a1', '1509096485', '1509089285', null);
+INSERT INTO `web_login_auto` VALUES ('3', '8', '4720835', '4720835', '6767693f03ce5e9654ff345ba3ea3355', '1509097900', '1509090700', null);
+INSERT INTO `web_login_auto` VALUES ('4', '8', '4720837', '4720837', 'f20499e443b8d41a816b6da9e302c73a', '1509363720', '1509356520', null);
+INSERT INTO `web_login_auto` VALUES ('5', '8', '690001', '4720842', '18b2230a6151b095777abd4066f54bf8', '1509524216', '1509517016', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('6', '8', '690001', '4720842', 'adef7fd00fea709677d8e88eb1170216', '1509529182', '1509521982', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('7', '8', '690001', '4720842', 'ffc2e15d967b060e0de0814c71d537aa', '1509532797', '1509525597', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('8', '8', '690001', '4720848', '18c2585d16ca34ee71046cae5ddfab9e', '1509538189', '1509530989', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('9', '8', '690001', '4720848', 'c739a60682a1f9e1ba4e342033b661b0', '1510655031', '1510647831', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('10', '8', '690001', '4720848', 'c3efd30abf8063482eb216fdca3660e7', '1510656598', '1510649398', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('11', '8', '4720852', '4720852', 'd861addc84f65fe825af59d4476df0cb', '1510659176', '1510651976', null);
+INSERT INTO `web_login_auto` VALUES ('12', '8', '4720853', '4720853', '288abaabaa376aa27690da087beaf13d', '1510664174', '1510656974', null);
+INSERT INTO `web_login_auto` VALUES ('13', '8', '4720853', '4720853', '08bed86c30567b8a662d440e263a6833', '1510720186', '1510712986', null);
+INSERT INTO `web_login_auto` VALUES ('14', '8', '4720853', '4720853', 'e80c35c86f801a8d7682336225b8950a', '1510720901', '1510713701', null);
+INSERT INTO `web_login_auto` VALUES ('15', '8', '4720848', '4720848', '5d7dbcf87261b97299b6946ac7481456', '1510721351', '1510714151', null);
+INSERT INTO `web_login_auto` VALUES ('16', '8', '4720856', '4720856', '30cfa60caa3614ee2e024b94074a5bbb', '1510721675', '1510714475', null);
+INSERT INTO `web_login_auto` VALUES ('17', '8', '4720849', '4720849', 'faa8854596d7674874d4f49474b38333', '1510731495', '1510724295', null);
+INSERT INTO `web_login_auto` VALUES ('18', '8', '690001', '4720848', '9e28ab7b274008d3eb4b18993edd9fa3', '1510738254', '1510731054', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('19', '8', '690001', '4720848', '7d4de2bcb0de664254d77bdbe0751fb4', '1510738382', '1510731182', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('20', '8', '690001', '4720848', '86eb3300f5ad863220e4ca70512ae289', '1510739026', '1510731826', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('21', '8', '690001', '4720857', '6cb97cdd51db140021f50d5fa097738d', '1510739442', '1510732242', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('22', '8', '4720859', '4720859', '72b8b2a7cf3ced7a2b4eaa6c0bd9587d', '1510744455', '1510737255', null);
+INSERT INTO `web_login_auto` VALUES ('23', '8', '690001', '4720860', '4b3026559bc339e39e46d3c9f6a77c40', '1510749310', '1510742110', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('24', '8', '690001', '4720861', 'a7e2d53ff4318ec7a1ebe70918b3d14c', '1510749392', '1510742192', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('25', '8', '4720862', '4720862', '480940658a24656387aca95cb8eac8eb', '1510751268', '1510744068', null);
+INSERT INTO `web_login_auto` VALUES ('26', '8', '690001', '4720863', 'dffe3a5110dae676eacddde4e31aca2e', '1510810302', '1510803102', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('27', '8', '690001', '4720863', '7dd5c96ab3a9db812c0858819bdac6ac', '1511600456', '1511593256', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('28', '8', '690001', '4720862', '6c7e57af94aa90a3ceb8dcab52c96d2d', '1511601585', '1511594385', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('29', '8', '690001', '4720865', 'c488f2ccc1deced410f15b57908549e3', '1511601772', '1511594572', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('30', '8', '690001', '4720867', 'a89d04c8fe42f8e4faaafbd058bf00a6', '1511604235', '1511597035', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('31', '8', '690001', '4720869', '2a7284c723b12d0822f3895c2694aefb', '1511607033', '1511599833', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('32', '8', '690001', '4720867', '6ba1937f9db5ae294986cd0841cf43ce', '1511607104', '1511599904', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('33', '8', '690001', '4720868', '6307d8520271111fab8b5b1c9e9db159', '1511607394', '1511600194', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('34', '8', '690001', '4720871', '0477b0b1c07700d40e40b27dff62e3b8', '1511608366', '1511601166', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('35', '8', '690001', '4720871', '76947525fbb4d9bf1dc4c1d0dcf10e82', '1511608414', '1511601214', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('36', '8', '4720870', '4720870', '9887eab1356e1b21f2b5fb3c2dfdf1d2', '1511608707', '1511601507', null);
+INSERT INTO `web_login_auto` VALUES ('37', '8', '690001', '4720871', '80b0a3a9496438684717664e453fe8e5', '1511608898', '1511601698', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('38', '8', '690001', '4720870', 'c3b5b8ba40a2eca6b455b7a6f65c8ad5', '1511612468', '1511605268', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('39', '8', '690001', '4720873', '6c9d4f6be8baf8a61f5aac967eb90f4a', '1511612591', '1511605391', '9dfaa493119da7e9b907bc29c713ecec');
+INSERT INTO `web_login_auto` VALUES ('40', '8', '690001', '4720874', '0a69b39a017264431a83c2624a229fe9', '1511856395', '1511849195', '633af0f85259f379a12f6d6cb5583755');
 
 -- ----------------------------
 -- Table structure for web_manager
@@ -2197,7 +1603,7 @@ CREATE TABLE `web_manager` (
 -- ----------------------------
 -- Records of web_manager
 -- ----------------------------
-INSERT INTO `web_manager` VALUES ('1', 'admin', 'c571637aa1a2e1b1bf862566ba7eae52', '1', '落雪', '663', '1499224671', '0', '127.0.0.1', null, '8', '1', '0', '0', '0');
+INSERT INTO `web_manager` VALUES ('1', 'admin', 'c571637aa1a2e1b1bf862566ba7eae52', '1', '落雪', '674', '1512722241', '0', '222.76.67.254', null, '8', '1', '0', '0', '0');
 INSERT INTO `web_manager` VALUES ('411', 'cp_zhangj', 'c571637aa1a2e1b1bf862566ba7eae52', '1', '张建', '41', '1491879315', '1461550744', '220.160.57.12', '::1', '7', '0', '0', '0', '0');
 INSERT INTO `web_manager` VALUES ('412', 'cp_koudai', 'c571637aa1a2e1b1bf862566ba7eae52', '1', '口袋妖怪', '4265', '1499218999', '1468290256', '110.90.14.199', '110.90.12.140', '8', '0', '0', '0', '0');
 INSERT INTO `web_manager` VALUES ('413', 'wenschan', 'eb263c77186fceb0f9e6703b7cfa3ab4', '1', 'wenschan', '500', '1499222488', '1469772579', '121.204.104.179', '110.90.15.112', '8', '1', '0', '0', '0');
@@ -2235,7 +1641,7 @@ CREATE TABLE `web_manual_log` (
   `account_name` varchar(100) COLLATE utf8_bin NOT NULL,
   `payCode` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT 'CNY',
   `is_emp` tinyint(4) NOT NULL DEFAULT '0' COMMENT '1表示内部号',
-  PRIMARY KEY (`id`,`addtime`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `orderId` (`order_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=278 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -2264,7 +1670,7 @@ CREATE TABLE `web_menu` (
   `lock` int(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `m_id` (`m_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=215 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='菜单';
+) ENGINE=MyISAM AUTO_INCREMENT=217 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='菜单';
 
 -- ----------------------------
 -- Records of web_menu
@@ -2328,6 +1734,8 @@ INSERT INTO `web_menu` VALUES ('209', '渠道发送信息', '9', '3', '159', 'Op
 INSERT INTO `web_menu` VALUES ('210', '渠道查询', '6', '3', '165', 'payLog', 'fenbaoIndex', '', '1', '0', '1', '5', null, '0');
 INSERT INTO `web_menu` VALUES ('214', 'T权限管理', '42', '3', '43', 'accessTable', 'index', '', '1', '0', '1', '5', null, '0');
 INSERT INTO `web_menu` VALUES ('213', '配置信息', '42', '3', '157', 'config', 'update', '', '1', '0', '1', '0', null, '0');
+INSERT INTO `web_menu` VALUES ('215', '内部账号', '42', '3', '157', 'empAccount', 'index', '', '1', '0', '1', '0', null, '0');
+INSERT INTO `web_menu` VALUES ('216', '区服ip查询', '9', '3', '159', 'operators', 'getip', '', '1', '0', '1', '0', null, '0');
 
 -- ----------------------------
 -- Table structure for web_message
@@ -2367,7 +1775,7 @@ CREATE TABLE `web_node` (
   KEY `pid` (`pid`),
   KEY `status` (`status`),
   KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=522 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
+) ENGINE=MyISAM AUTO_INCREMENT=527 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of web_node
@@ -2520,6 +1928,11 @@ INSERT INTO `web_node` VALUES ('518', 'add', '添加', '1', '', null, '516', '3'
 INSERT INTO `web_node` VALUES ('519', 'update', '更新', '1', '', null, '516', '3', '0', '0');
 INSERT INTO `web_node` VALUES ('520', 'del', '删除', '1', '', null, '516', '3', '0', '0');
 INSERT INTO `web_node` VALUES ('521', 'oneKeyPass', '一键补单', '1', '', null, '409', '3', '0', '0');
+INSERT INTO `web_node` VALUES ('522', 'oneKeyPass', '一键审核', '1', '', null, '473', '3', '0', '0');
+INSERT INTO `web_node` VALUES ('523', 'EmpAccount', '内部帐号', '1', '', null, '1', '2', '0', '0');
+INSERT INTO `web_node` VALUES ('524', 'index', '显示', '1', '', null, '523', '3', '0', '0');
+INSERT INTO `web_node` VALUES ('525', 'add', '新增', '1', '', null, '523', '3', '0', '0');
+INSERT INTO `web_node` VALUES ('526', 'getip', '区服ip查询', '1', '', null, '414', '3', '0', '0');
 
 -- ----------------------------
 -- Table structure for web_pay_log
@@ -2556,52 +1969,31 @@ CREATE TABLE `web_pay_log` (
   UNIQUE KEY `OrderID` (`OrderID`) USING BTREE,
   KEY `payIdGameId` (`PayID`,`game_id`),
   KEY `addTime` (`Add_Time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=1581995 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1582015 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of web_pay_log
 -- ----------------------------
-
--- ----------------------------
--- Table structure for web_pay_log_copy
--- ----------------------------
-DROP TABLE IF EXISTS `web_pay_log_copy`;
-CREATE TABLE `web_pay_log_copy` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
-  `PayID` int(4) DEFAULT NULL,
-  `PayName` varchar(50) DEFAULT NULL,
-  `ServerID` int(4) DEFAULT NULL,
-  `PayMoney` float(10,2) DEFAULT '0.00',
-  `OrderID` varchar(200) DEFAULT NULL,
-  `CardNO` varchar(50) DEFAULT NULL,
-  `CardPwd` varchar(50) DEFAULT NULL,
-  `BankID` varchar(50) DEFAULT NULL,
-  `BankOrderID` varchar(50) DEFAULT NULL,
-  `rpCode` varchar(30) DEFAULT NULL,
-  `rpTime` datetime DEFAULT NULL,
-  `PayType` int(4) DEFAULT NULL,
-  `dwFenBaoID` varchar(50) DEFAULT NULL,
-  `Add_Time` datetime DEFAULT NULL,
-  `PayCode` varchar(50) DEFAULT 'CNY',
-  `SubStat` tinyint(1) NOT NULL DEFAULT '1',
-  `IsUC` int(11) DEFAULT '0',
-  `CPID` int(11) DEFAULT NULL,
-  `tag` enum('0','1') NOT NULL DEFAULT '0',
-  `game_id` smallint(3) NOT NULL DEFAULT '1',
-  `clienttype` varchar(50) DEFAULT NULL,
-  `transaction_id` varchar(50) DEFAULT NULL,
-  `packageName` varchar(255) DEFAULT NULL,
-  `channelID` varchar(255) DEFAULT NULL,
-  `currency` varchar(30) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `OrderID` (`OrderID`) USING BTREE,
-  KEY `payIdGameId` (`PayID`,`game_id`),
-  KEY `addTime` (`Add_Time`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=1183794 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of web_pay_log_copy
--- ----------------------------
+INSERT INTO `web_pay_log` VALUES ('1581995', '4720852', 'ACE60647-7994-4483-8509-AD61C57F0A61@u591', '8999', '75.00', '1000000349468678', null, null, null, null, '1', null, null, '914001', '2017-11-03 11:10:35', 'RUB', '1', '1', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1581996', '4720852', 'ACE60647-7994-4483-8509-AD61C57F0A61@u591', '8999', '75.00', '1000000349468873', null, null, null, null, '1', null, null, '914001', '2017-11-03 11:11:28', 'RUB', '1', '1', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1581997', '4720852', 'ACE60647-7994-4483-8509-AD61C57F0A61@u591', '8999', '75.00', '1000000349478706', null, null, null, null, '1', null, null, '914001', '2017-11-03 11:44:36', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1581998', '4720852', 'ACE60647-7994-4483-8509-AD61C57F0A61@u591', '8999', '379.00', '1000000349479144', null, null, null, null, '1', null, null, '914001', '2017-11-03 11:45:55', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1581999', '4720857', '82ca3a872fc78231@u591', '8999', '299.00', '1000000352378962', null, null, null, null, '1', null, null, '914001', '2017-11-15 11:05:09', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582000', '4720857', '82ca3a872fc78231@u591', '8999', '75.00', '1000000352379186', null, null, null, null, '1', null, null, '914001', '2017-11-15 11:05:58', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582001', '4720859', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '75.00', '1000000352412286', null, null, null, null, '1', null, null, '914001', '2017-11-15 12:30:24', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582002', '4720859', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '75.00', '1000000352412511', null, null, null, null, '1', null, null, '914001', '2017-11-15 12:30:42', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582003', '4720859', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '379.00', '1000000352412592', null, null, null, null, '1', null, null, '914001', '2017-11-15 12:31:05', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582004', '4720859', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '1490.00', '1000000352412648', null, null, null, null, '1', null, null, '914001', '2017-11-15 12:31:29', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582005', '4720859', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '3790.00', '1000000352412710', null, null, null, null, '1', null, null, '914001', '2017-11-15 12:31:56', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582006', '4720859', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '7490.00', '1000000352413071', null, null, null, null, '1', null, null, '914001', '2017-11-15 12:32:18', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582007', '4720859', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '1490.00', '1000000352413213', null, null, null, null, '1', null, null, '914001', '2017-11-15 12:33:24', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582008', '4720859', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '299.00', '1000000352417391', null, null, null, null, '1', null, null, '914001', '2017-11-15 12:46:29', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582009', '4720870', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '299.00', '1000000354907858', null, null, null, null, '1', null, null, '914001', '2017-11-25 12:40:36', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582010', '4720870', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '75.00', '1000000354907863', null, null, null, null, '1', null, null, '914001', '2017-11-25 12:40:54', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582011', '4720870', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '379.00', '1000000354907874', null, null, null, null, '1', null, null, '914001', '2017-11-25 12:41:32', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582012', '4720870', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '1490.00', '1000000354907897', null, null, null, null, '1', null, null, '914001', '2017-11-25 12:42:38', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582013', '4720870', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '3790.00', '1000000354907950', null, null, null, null, '1', null, null, '914001', '2017-11-25 12:43:56', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
+INSERT INTO `web_pay_log` VALUES ('1582014', '4720870', 'D4704048-A971-4BE2-9429-13B909AF08EE@u591', '8999', '7490.00', '1000000354908492', null, null, null, null, '1', null, null, '914001', '2017-11-25 12:45:32', 'RUB', '1', '0', '19', '0', '8', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for web_player_limit
@@ -2744,11 +2136,141 @@ CREATE TABLE `web_token` (
   `addtime` int(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `accountIdOrGameId` (`account_id`,`game_id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=297998 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=298128 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of web_token
 -- ----------------------------
+INSERT INTO `web_token` VALUES ('297998', '4720836', '8', 'VmIBa1A_bAGtfDgs6CmdRalI_aUHVTcFUlCmUFcgZsBWIAPlo0UW9bZQA4CmUINwJGUzMGPQBgAiwLMlAQDE4IOFYoAT5QZwA8XxcLfgpBURRSN1BlUyhVZAo1BUIGQwUyAGRaYFFlW2AASgpmCDICIlNnBmYANQJuC3RQOwx8CFFWbAFuUG4AOl9mC2EKM1FvUjRQZVMjVTMKeAVwBmsFcQA2WjVRb1tkADsKYgg4AjRTPwY3AGICMAsy', '1509092413');
+INSERT INTO `web_token` VALUES ('297999', '4720836', '8', 'VWFeNANtDWYAUQ8_bDWADOFY7BCFRcgJyWjVSJVE7BGMEOg1jVmhYZlpiAG8MM1AUVjYNNlAwBCoPNlkZAEIGNlUrXmEDNA0xAEgPeg1GA0ZWMwQxUSoCM1plUhVRFAQzBGANN1ZiWGNaEABsDDZQcFZiDW1QZQRoD3BZMgBwBl9Vb14xAz0NNwA5D2UNNAM9VjAEMVEhAmRaKFInUTwEcAQyDWJWaFhnWmEAaAw8UGZWOg08UDIEPw8y', '1509092487');
+INSERT INTO `web_token` VALUES ('298000', '4720836', '8', 'AzcKYAZoWjFbCgs6DWABOgFsU3ZRcgl5CWZUIwRuBWJTbV4wUG4LNQgwWDcPMFAUAGAHPAVlVXteZwJCDU8ENAN9CjUGMVpmWxMLfg1GAUQBZFNmUSoJOAk2VBMEQQUyUzdeZFBkCzAIQlg0DzVQcAA0B2cFMFU5XiECaQ19BF0DOQplBjhaYFtiC2ENNAE_aAWdTZlEhCW8Je1QhBGkFcVNlXjFQbgs0CDNYMA8_aUGcAZQc0BWJVYV5j', '1509100177');
+INSERT INTO `web_token` VALUES ('298001', '4720837', '8', 'WGwLYVU7DWZYCV9uCWQAO10wAidQcwZ2DWIHcAVvB2AEOlk3AD4LQwE4DGcJMVdiARVWEwUWBykLMQI_bAUMDRFgmCzRVFA0wWGNfKgk5AD9dPgJAUCsGMw0wB0QFQgdCBGJZZgAzCzYBPgwXCThXdwE1VjYFMAdrC3QCaQFxA1pYYgtkVWsNN1hhXzUJMAA_bXTsCNlAgBmANfwdyBWgHcwQyWTYAPgs0AToMZAk5V2IBYVZjBWcHMQsy', '1509356453');
+INSERT INTO `web_token` VALUES ('298002', '4720837', '8', 'ADRcNlI8DGdcDQs6DGEMNwdqUXQAIwZ2WzRQJwJoCW5QbghmUmxYEFtiCGNdZVFkUkYDRgMQUX8NNwQ4DE5SFQB_bXGNSEwwxXGcLfgw8DDMHZFETAHsGM1tmUBMCRQlMUDYIN1JhWGVbZAgTXWxRcVJmA2MDNlE9DXIEbwx8UgsAOlwzUmwMNlxlC2EMNQwyB2FRZQBwBmBbKVAlAm8JfVBmCGdSbFhnW2AIYF1tUWNSNQMxA2RRZQ0w', '1509421177');
+INSERT INTO `web_token` VALUES ('298003', '4720838', '8', 'AzcLYQNtXTZbCl9uCmdVbgdqASRXdAFxWzQDdFI4UzRZZwhmUG5YYVtiDmFdbQMzXE0BOlEyUnxcZFhuUhABRQN9CzQDQ11rW2BfKgpBVWsHZgE3VywBMlsQA0VSZ1NiWUwIMFBmWBVbZg5jXWwDI1xoAWFRZFI_bXCNYM1IiAVgDOQtkAz1dZ1tiXzUKM1VrB2EBOlcnAWdbKQN2Uj9TJ1lvCGdQblhnW2AOZl1tAzFcOwEzUTBSYVxu', '1509421708');
+INSERT INTO `web_token` VALUES ('298004', '4720838', '8', 'BDAJY1c5C2AAUVtqCWRSaQFsDShRclIiAW5ZLgZsB2BVaw9hDDIPNgsyCGddbVVlBxYNNlk6AixbY1RiVxVWEgR6CTZXFws9ADtbLglCUmwBYA07USpSYQFKWR8GMwc2VUAPNww6D0ILNghlXWxVdQczDW1ZbAJuWyRUP1cnVg8EPglmV2kLMQA5WzEJMFJsAWcNNlEhUjQBc1ksBmsHc1VjD2AMMg8wCzAIYF1tVWcHYA08WT0CM1tl', '1509422224');
+INSERT INTO `web_token` VALUES ('298005', '4720838', '8', 'VGBcNgRqXzQOX11sWDVRalM_bDShVdgFxXTJXIFU_aBWJVawtlBDoIMVtiDWJfbwc3XE1TaAdkVnhdZVhuAkAARFQqXGMERF9pDjVdKFgTUW9TMg07VS4BMl0WVxFVYAU0VUALMwQyCEVbZg1gX24HJ1xoUzMHMlY6XSJYMwJyAFlUblwzBDpfZQ43XTdYYVFvUzUNNlUlAWddL1ciVTgFcVVjC2QEOgg3W2ANZV9vBzVcO1NiB2RWZV1g', '1509422507');
+INSERT INTO `web_token` VALUES ('298006', '4720838', '8', 'UGQNZwNtXTZbCltqWDVVblI_aV3JYewBwCGdWIQJoCG9Qblo0VWtfZgozWDcOPgY2V0ZTaAJhUX8LMwcxB0VUEFAuDTIDQ11rW2BbLlgTVWtSM1dhWCMAMwhDVhACNwg5UEVaYlVjXxIKN1g1Dj8GJldjUzMCN1E9C3QHbAd3VA1Qag1iAz1dZ1tiWzFYYVVrUjRXbFgoAGYIelYjAm8IfFBmWjVVa19gCjFYMA4_bBjRXMVNhAmxRYQs0', '1509431835');
+INSERT INTO `web_token` VALUES ('298007', '4720838', '8', 'UGRdNwxiAWpdDF9uCWRQa1A9VHEAIwFxDmEAdwRuUTZVa1o0UmwIMQkwAG8NPQY2BRRQa1g7CScKMlNlAkADR1AuXWIMTAE3XWZfKglCUG5QMVRiAHsBMg5FAEYEMVFgVUBaYlJkCEUJNABtDTwGJgUxUDBYbQllCnVTOAJyA1pQal0yDDIBO11kXzUJMFBuUDZUbwBwAWcOfAB1BGlRJVVjWjVSbAg3CTIAaA09BjQFY1BgWD0JOAo1', '1509433325');
+INSERT INTO `web_token` VALUES ('298008', '4720839', '8', 'AjYMZg1jCGMOXwo7XDEFPlc6ACUAI1QkWjUFcgJoCG8DPVk3DDJYYg85CGJfFwExUz4FM1lOBSsNPgdGBTBTFgJ8DDMNSAg3DkIKf1xsBTJXNwBAAHtUEVpmBTgCRwhMA2RZFAw2WGQPNAhhX2cBIVNnBWVZbAVpDXIHbAV1UwoCOAxjDTMIMg43CmBcZQU7VzEAOgBwVDJaKAVwAm8IfAM1WTYMMlhnDzQIYF9vATNTNQUzWT4FMQ0x', '1509435176');
+INSERT INTO `web_token` VALUES ('298009', '4720840', '8', 'AzdcNgFvWjEBUA08CGVSaVE8BiMCIVQkD2AEcwVvVTIAPls1Az1YEw1FWEUNMA0_bVzcBMlk2UX8AOFZlUhQITwN9XGMBRFoWAToNeAhDUhBRRQY2AnlUFA9HBDgFNVUXABdbEgNGWGQNRlhGDTINLVdjAWFZbFE9AH9WPVIiCFEDOVwzAT9aYAE4DWcIMVJsUTAGNQJyVDIPfQRxBWhVIQA2WzQDPVhnDTZYMA09DT9XMQE0WTlRZQA6', '1509436670');
+INSERT INTO `web_token` VALUES ('298010', '4720840', '8', 'BzMOZFc5DGdbCgg5AG1VbgFsAyZQcwZ2CmUDdAZsAmUAPghmUW9dFglBDBEJNFBjUjIGNVM8BiheZlVmB0EITwd5DjFXEgxAW2AIfQBLVRcBFQMzUCsGRgpCAz8GNgJAABcIQVEUXWEJQgwSCTZQcFJmBmZTZgZqXiFVPgd3CFEHPQ5hV2kMNltiCGIAOVVrAWADMFAgBmAKeAN2BmsCdgA2CGdRb11iCTIMZAk5UGJSMwY1UzIGM15j', '1509440767');
+INSERT INTO `web_token` VALUES ('298011', '4720841', '8', 'VGAKYFU7D2QAUQ8_bWjcCOVY7VHEEJwV1WzQFcgVvA2QHOQ5gVmgOMgs8D2cJNFJmB2EMPFg3AC4INlQVDTgFNFQqCjVVYA85AD4PeloSAjxWM1QRBH8FNlthBTMFRwM9B2AONVZmDkILNw9nCTZScgczDGxYbQBsCHdUPw19BVxUbgplVWsPNQA5D2VaYwI8VjdUZgR0BWNbKQVwBWgDdwcxDmFWaA4xCzAPZwk5UmAHZgw9WD4AMQg6', '1509442028');
+INSERT INTO `web_token` VALUES ('298012', '4720842', '8', 'BTEOZFU7D2QAUQw9DWANNgVoACVZegR0AG8HcAVvAGdUaglnBDoKPFtnW2BYMFZjBzNWbQBhBzYOYgNlV2QHOQVkDjZVZw8nAG8MNw1nDWQFJQBtWXsEWABjB2YFPAAyVDAJMAQ3CjxbYVsxWHdWNQcqViUAPwd2DmEDYlduBzAFYw41VW8PNAA_aDGINNQ05BWM=', '1509516123');
+INSERT INTO `web_token` VALUES ('298013', '4720842', '8', 'VWEPZQ1jXTZaC1xtCmcNNlM_bDShTcAV1DmFYLwVvCG8FO1wyDDJcal9jW2ALYwcyBTFTaAdmVmcOYlE3ATIHOVU0DzcNP111WjVcZwpgDWRTcw1gU3EFWQ5tWDkFPAg6BWFcZQw_aXGpfZVsxCyQHZAUoUyAHOFYnDmFRMAE4BzBVMw80DTddZlplXDIKOw0_aUzA=', '1509516846');
+INSERT INTO `web_token` VALUES ('298014', '4720842', '8', 'U2dbMQ1jWzBaC11sAWxXbFQ5UHVScQl5DmEDdABqBGMFOwpkDDIJPws3W2AMZFFkV2NUb1Q1U2IOYgVjBzQINlMyW2MNP1tzWjVdZgFrVz5UdFA9UnAJVQ5tA2IAOQQ2BWEKMww_aCT8LMVsxDCNRMld6VCdUa1MiDmEFZAc_bCD9TNVtgDTdbYFplXTIBOFdhVDk=', '1509517008');
+INSERT INTO `web_token` VALUES ('298015', '4720844', '8', 'VWFeNANtCGMLWg08AG1SaQJvAicEJ1UlWjUDdFE7UjVTbQ5gUG4PNFxmDWFcEQA_aBWVWZlg_aAS8PPFcQBjoBQ1UrXmEDMwgzC0ENeAAxUmICZQJEBH9VblpkAzdREVISUzIORlBlDzdcYw1nXBcAIAUxVjZYbQFtD3BXPAZ2AVhVb14xAz0IMgsyDWcAOVJsAmMCNQR0VTNaKAN2UTxSJlNlDmFQbg8wXGcNZVxsADMFYlZnWD0BNQ82', '1509522373');
+INSERT INTO `web_token` VALUES ('298016', '4720844', '8', 'VGALYQFvCmELWlprXTBSaVwxBSADIAd3CGcFclc9VjFUaghmDDJdZgsxCmYOQ1ZpVTVTYwJlUX9baABHV2sJS1QqCzQBMQoxC0FaL11sUmJcOwVDA3gHPAg2BTFXF1YWVDUIQAw5XWULNApgDkVWdlVhUzMCN1E9WyQAa1cnCVBUbgtkAT8KMAsyWjBdZFJsXD0FMgNzB2EIegVwVzpWIlRiCGcMMl1iCzAKYg4_bVmVVMlNiAmBRa1th', '1509522490');
+INSERT INTO `web_token` VALUES ('298017', '4720844', '8', 'AzdZMwZoDWZYCQ4_aXTADOAJvAyZTcFYmDGNXIAFrVDNUalwyVWsLMA40CmYPQgwzUzMCMlYxVHpaaQJFAz8HRQN9WWYGNg02WBIOe11sAzMCZQNFUyhWbQwyV2MBQVQUVDVcFFVgCzMOMQpgD0QMLFNnAmJWY1Q4WiUCaQNzB14DOVk2BjgNN1hhDmRdZAM9AmMDNFMjVjAMflciAWxUIFRiXDNVaws0DjUKYg8_aDD9TNAIyVjBUYVpk', '1509523064');
+INSERT INTO `web_token` VALUES ('298018', '4720844', '8', 'VmJeNFE_aXzQOXwk4DWABOlM_bBSAFJgR0AG8CdVI4VjEEOghmUW9dZgw2CmYKR1ZpAmIAMFI1UnwJOlkeBzsGRFYoXmFRYV9kDkQJfA08ATFTNAVDBX4EPwA_bAjZSElYWBGUIQFFkXWUMMwpgCkFWdgI2AGBSZ1I_bCXZZMgd3Bl9WbF4xUW9fZQ43CWMNNAE_aUzIFMgV1BGIAcgJ3Uj9WIgQyCGdRb11iDDcKYgo6VmUCZQAwUjJSYwk0', '1509523627');
+INSERT INTO `web_token` VALUES ('298019', '4720844', '8', 'UWVZM1A_bCmEBUFtqAG0BOgBtU3ZQcwNzDmFUI1I4CG9YZgFvAjxYY11nCmYKRwY5VTUAMFE2U30IOwVCUm4BQ1EvWWZQYAoxAUtbLgAxATEAZ1MVUCsDOA4wVGBSEghIWDkBSQI3WGBdYgpgCkEGJlVhAGBRZFM_aCHcFblIiAVhRa1k2UG4KMAE4WzEAOQE_aAGFTZFAgA2UOfFQhUj8IfFhuAW4CPFhnXWYKYgo6BjVVMgAwUT5TZwg0', '1509523976');
+INSERT INTO `web_token` VALUES ('298020', '4720844', '8', 'U2cOZFA_bXTYAUQ4_aWzYMN1Q5UHUCIQl5XTJSJVY8AGcAPlk3UG4NNl9lDmIMQQI9UzNUZFA3AC5aaVUSBjpRE1MtDjFQYF1mAEoOe1tqDDxUM1AWAnkJMl1jUmZWFgBAAGFZEVBlDTVfYA5kDEcCIlNnVDRQZQBsWiVVPgZ2UQhTaQ5hUG5dZwA5DmRbYgwyVDVQZwJyCW9dL1InVjsAdAA2WTZQbg0yX2QOZgw8AjFTNFRjUDYANVpm', '1509524066');
+INSERT INTO `web_token` VALUES ('298021', '4720842', '8', 'AzdcNgZoDmUPXg8_bXDEEP1Y7ByJRclUlC2QHcFA6AGdSbFwyVmgANg8zCzAMZFdiU2dUb1U0CDlaNgRiVmUJNwNiXGQGNA4mD2APNFw2BG1WdgdqUXNVCQtoB2ZQaQAyUjZcZVZlADYPNQthDCNXNFN_bVCdVagh5WjUEZVZvCT4DZVxnBjwONQ8zD2JcYAQ7VjM=', '1509525590');
+INSERT INTO `web_token` VALUES ('298022', '4720844', '8', 'UmYPZQVrCmEOX1prWzYDOFY7BSBUdwJyCWZXIARuVTJZZwpkDTNaYV1nCmYPQgE_bXDwBMVk_bAC4PPAVCV2sERlIsDzAFNQoxDkRaL1tqAzNWMQVDVC8COQk3V2MERFUVWTgKQg04WmJdYgpgD0QBIVxoAWFZbABsD3AFblcnBF1SaA9gBTsKMA43WjBbYgM9VjcFMlQkAmQJe1ciBGlVIVlvCmUNM1plXWYKYg8_aATJcOwE0WTgAMw88', '1509526709');
+INSERT INTO `web_token` VALUES ('298023', '4720844', '8', 'VmJcNg1jXTYBUF1sWDUNNlU4AicFJgd3AW4FcgdtB2BUaghmAD4JMggyWDQJRAI9VzdUZARjVnhbaAJFVmpSEFYoXGMNPV1mAUtdKFhpDT1VMgJEBX4HPAE_aBTEHRwdHVDUIQAA1CTEIN1gyCUICIldjVDQEMVY6WyQCaVYmUgtWbFwzDTNdZwE4XTdYYQ0zVTQCNQV1B2EBcwVwB2oHc1RiCGcAPgk2CDNYMAk5AjFXMFRgBGZWZltm', '1509527437');
+INSERT INTO `web_token` VALUES ('298024', '4720846', '8', 'UmZeNABuCmEKWwo7DWABOlc6AyYDIFUlXjECdVY8BWJVaw5gVWtdZgszWjJfFwYxARYANwVqByldYFluBzQCRVIsXmEAMwo2CjUKfw1FAUVXQQM5A3hVY15gAkZWYwU0VT8ONVVnXWILMlpAXxQGJgE1AGAFMAdrXSJZMgd3AltSaF4xAD4KMAozCmANNAE_aVzYDNgNzVTNeLAJ3VjsFcVVjDmFVa11iCzBaMl9vBjUBZgA6BWIHPV1i', '1509529195');
+INSERT INTO `web_token` VALUES ('298025', '4720846', '8', 'BzNZM1Y4WzALWlprWzYNNlM_bAyZTcFIiC2QDdFA6CW5Qbg9hUmwNNgkxD2cLQwE2UUYFMlk2BykBPFBnUWJUEwd5WWZWZVtnCzRaL1sTDUlTRQM5UyhSZAs1A0dQZQk4UDoPNFJgDTIJMA8VC0ABIVFlBWVZbAdrAX5QO1EhVA0HPVk2VmhbYQsyWjBbYg0zUzIDNlMjUjQLeQN2UD0JfVBmD2BSbA0yCTIPZws7ATJRNgU_aWTYHNgEy', '1509529929');
+INSERT INTO `web_token` VALUES ('298026', '4720842', '8', 'BDAKYAZoXzRdDFxtDmMEP1I_aAicEJ1UlCWYCdQNpAGcEOlk3VmgKPA0xXGcPZw04XWkNNlIzAjMAbFg_bUmFTbQRlCjIGNF93XTJcZw5kBG1ScgJvBCZVCQlqAmMDOgAyBGBZYFZlCjwNN1w2DyANbl1wDX5SbQJzAG9YOVJrU2QEYgoxBjxfZF1hXD0OPgQxUjE=', '1509529936');
+INSERT INTO `web_token` VALUES ('298027', '4720846', '8', 'BDABawxiCmFdDA8_bCWRQa1E8V3JWdQZ2DGNUIwVvAWYFOw1jDDIIM1piAWlYEFZhVUJRZlY5AS8LNlFmADMBRgR6AT4MPwo2XWIPeglBUBRRR1dtVi0GMAwyVBAFMAEwBW8NNgw_bCDdaYwEbWBNWdlVhUTFWYwFtC3RROgBwAVgEPgFuDDIKMF1kD2UJMFBuUTBXYlYmBmAMflQhBWgBdQUzDWIMMgg3WmEBaVhoVmVVM1FiVjABMQsx', '1509530030');
+INSERT INTO `web_token` VALUES ('298028', '4720847', '8', 'VmIMZgRqAWpaCww9XTBQa1A9V3JUd1MjWzRWIQJoUzQCPAxiV2kIMw83WzMPRwE2XEtRZgNsBCoMMVdgADMDRFYoDDMENwE9WmUMeV0VUBRQRldtVC9TZVtlVhICN1NiAmgMN1dlCDcPNltBD0QBIVxoUTEDNgRoDHNXPABwA1pWbAxjBDoBO1pjDGZdZFBuUDFXY1QkUzVbKVYjAm9TJwI0DGNXaQg3DzRbMw8_aATJcOlFiA2UEPgw0', '1509530092');
+INSERT INTO `web_token` VALUES ('298029', '4720848', '8', 'UWVaMAFvXzQBUA4_aDWBRagZrDShRcgJyCWZWIQVvAmVTbQBuVmgIPgg0ATpbMwM2XWkAO1U0VWQOYlYwVWYBP1EwWmIBM193AW4ONQ1nUTgGJg1gUXMCXglqVjcFPAIwUzcAOVZlCD4IMgFhW3QDYF1wAHNValUkDmFWN1VsATZRN1phATtfZAE8DmYNPVFvBmQ=', '1509530987');
+INSERT INTO `web_token` VALUES ('298030', '4720847', '8', 'AzdbMQRqCGNfDlhpXzJXbAFsBiMFJlQkWzQAd1E7UzQDPQ5gBjgPNFxkCWFaEgI1UUYCNQRrBCoKNwM0UGMJTgN9W2QENwg0X2BYLV8XVxMBFwY8BX5UYltlAERRZFNiA2kONQY0DzBcZQkTWhECIlFlAmIEMQRoCnUDaFAgCVADOVs0BDoIMl9mWDJfZldpAWAGMgV1VDJbKQB1UTxTJwM1DmEGOA8wXGcJYVpqAjFRNwIxBGsEPgo5', '1509530999');
+INSERT INTO `web_token` VALUES ('298031', '4720847', '8', 'VmJeNFY4CmFdDF9uDGEEPwVoVnMDIABwD2BXIA1nUTYAPgpkBTsLMAgwDmZdFQUyARZTZAdoUX9bZlFmUGMJTlYoXmFWZQo2XWJfKgxEBEAFE1ZsA3gANg8xVxMNOFFgAGoKMQU3CzQIMQ4UXRYFJQE1UzMHMlE9WyRROlAgCVBWbF4xVmgKMF1kXzUMNQQ6BWRWYgNzAGYPfVciDWBRJQA2CmUFOws0CDMOZl1tBTYBZ1NhB2FRZ1ti', '1509531053');
+INSERT INTO `web_token` VALUES ('298032', '4720849', '8', 'VGAMZgZoDGdYCQo7AG1QawFsUHUFJgR0DGMEcw1nBmEEOghmBTsNQl0XARpdZVJmUkRUYFlOCScOMQJEAEJSYlQqDDMGRwxDWBcKfwBIUG8BYVBnBX4EMwwyBDQNOQZGBG8IMQVFDUZdZwFtXW1SclJmVDRZbAllDnECaQBwUgtUbgxjBjgMNlhhCmAAOVBuAWBQagV1BGIMfgRxDWAGcgQyCGcFOw0yXWYBaV1tUmFSNFRmWTwJOg40', '1509531300');
+INSERT INTO `web_token` VALUES ('298033', '4720850', '8', 'UmYLYQBuWzABUF9uXzIHPFI_aDCkCIVQkDmFTJFI4AWZZZw5gVWtcY11rCmoJNQU2VDQENQVqUnwONFZmVmpUa1IsCzQAQVsWATxfKl8XB0RSMwxLAnlUYg4zUxNSZAExWTMONFViXBZdEQoQCTEFJVRgBGQFMFI_bDnFWPVYmVA1SaAtkAD5bYQE4XzVfZgc5UjIMPwJyVDIOfFMmUj8BdVlvDmFVa1xjXWYKYgk5BTZUMgQ1BWFSYA4x', '1509532215');
+INSERT INTO `web_token` VALUES ('298034', '4720850', '8', 'AjYIYgdpCGMIWQ4_aDWAMN1Q5V3JYe1IiCmUAd1Y8BmFQbg5gUmxdYl9pAWFbZ1BjXDxUZVU6BihbYQIyDDBSbQJ8CDcHRghFCDUOew1FDE9UNVcQWCNSZAo3AEBWYAY2UDoONFJlXRdfEwEbW2NQcFxoVDRVYAZqWyQCaQx8UgsCOAhnBzkIMggxDmQNNAwyVDRXZFgoUjQKeAB1VjsGclBmDmFSbF1iX2QBaVtrUGNcOlRlVToGN1tn', '1509532926');
+INSERT INTO `web_token` VALUES ('298035', '4720850', '8', 'U2ddNwRqWDNdDFxtAWwEP1Q5ByJRcgl5WjVQJw1nUjUCPF4wDTMLNF1rDGwAPFFiBmYHNgVqCSdZY1ZmDTEDPFMtXWIERVgVXWBcKQFJBEdUNQdAUSoJP1pnUBANO1JiAmheZA06C0FdEQwWADhRcQYyB2cFMAllWSZWPQ19A1pTaV0yBDpYYl1kXDYBOAQ6VDQHNFEhCW9aKFAlDWBSJgI0XjENMws0XWYMZAAwUWIGYAcwBWsJPFlq', '1509534869');
+INSERT INTO `web_token` VALUES ('298036', '4720850', '8', 'UmYPZQ1jAGtdDA08CmcEP1A9AicCIVYmCWZQJ1E7UjVTbV0zAD4JNg85WzsLNwMwAWFWZwJtAC5dZ1lpUm5ValIsDzANTABNXWANeApCBEdQMQJFAnlWYAk0UBBRZ1JiUzldZwA3CUMPQ1tBCzMDIwE1VjYCNwBsXSJZMlIiVQxSaA9gDTMAOl1kDWcKMwQ6UDACMQJyVjAJe1AlUTxSJlNlXTIAPgk2DzRbMws7AzABZ1ZgAmwANF1l', '1509535872');
+INSERT INTO `web_token` VALUES ('298037', '4720848', '8', 'WGwAag1jAWoJWF9uCWQFPlA9ACVYe1IiWzRUIwxmVjFRbwFvAz0KPAA8XWYIYAE0UGQFPgRlBTQBbVA2BTZRb1g5ADgNPwEpCWZfZAljBWxQcABtWHpSDls4VDUMNVZkUTUBOAMwCjwAOl09CCcBYlB9BXYEOwV0AW5QMQU8UWZYPgA7DTcBOgk0XzEJMQU6UDA=', '1509536195');
+INSERT INTO `web_token` VALUES ('298038', '4720850', '8', 'BDALYVU7DmUMXQs6XzIBOlI_aBCFUd1EhCWYCdVU_aBWIAPl0zDDIKNVpsWzsNMQw_aUzNTYlY5BihdZwAwAT0APwR6CzRVFA5DDDELfl8XAUJSMwRDVC9RZwk0AkJVYwU1AGpdZww7CkBaFltBDTUMLFNnUzNWYwZqXSIAawFxAFkEPgtkVWsONAw1C2FfZgE_aUjIEN1QkUTcJewJ3VTgFcQA2XTIMMgo1WmFbMw09DD9TNVNmVjYGNl1g', '1509536637');
+INSERT INTO `web_token` VALUES ('298039', '4720850', '8', 'AzcKYAZoAWpfDg8_bCWRXbABtByJTcABwCGdQJwZsBWJYZg5gDTMNMg85DW1aZgMwUzNXZgBvBykNN1hoVmoAPwN9CjUGRwFMX2IPeglBVxQAYQdAUygANgg1UBAGMAU1WDIONA06DUcPQw0XWmIDI1NnVzcANQdrDXJYM1YmAFkDOQplBjgBO19mD2UJMFdpAGAHNFMjAGYIelAlBmsFcVhuDmENMw0yDzQNZVpqAzBTNVdjAGYHNQ0w', '1509537017');
+INSERT INTO `web_token` VALUES ('298040', '4720848', '8', 'U2daMFA_bCmEIWQg5DWAAO1E8UXQCIQd3WTYAdwJoA2RSbFo0AT8JPwA8ADsAaAUwUmYBOlQ1BjddMVYwUWJTbVMyWmJQYgoiCGcIMw1nAGlRcVE8AiAHW1k6AGECOwMxUjZaYwEyCT8AOgBgAC8FZlJ_aAXJUawZ3XTJWN1FoU2RTNVphUGoKMQg1CGcNMwAyUTU=', '1509537741');
+INSERT INTO `web_token` VALUES ('298041', '4720850', '8', 'V2MKYFA_bXDdfDgo7WDUNNgVoASQCIVQkD2BUIwRuBmEAPgFvDDJcY1ttAWELNwU2UTFXZgdoU30AOlNjADwIN1cpCjVQEVwRX2IKf1gQDU4FZAFGAnlUYg8yVBQEMgY2AGoBOww7XBZbFwEbCzMFJVFlVzcHMlM_aAH9TOABwCFFXbQplUG5cZl9mCmBYYQ0zBWUBMgJyVDIPfVQhBGkGcgA2AW4MMlxjW2ABaQs7BTZRN1dsB2FTZgA6', '1509538060');
+INSERT INTO `web_token` VALUES ('298042', '4720850', '8', 'UWUMZgZoDGdcDQ4_aXDENNlM_bU3YEJwJyAG9VIlY8AmVXaVs1V2kKNQA2XDwNMQQ3VzdWZ1k2BigMNgc3BztWaVEvDDMGRwxBXGEOe1wUDU5TMlMUBH8CNAA9VRVWYAIyVz1bYVdgCkAATFxGDTUEJFdjVjZZbAZqDHMHbAd3Vg9RawxjBjgMNlxlDmRcZQ0zUzNTYAR0AmQAclUgVjsCdldhWzRXaQo1ADtcNA09BDdXMVZtWTsGPAw2', '1509538490');
+INSERT INTO `web_token` VALUES ('298043', '4720850', '8', 'AzcAalU7AGsLWgw9DmNRalM_bBSACIQV1CGdTJFA6UTYFO1wyAD4NMgg_bXT1dYVVmUTEFNAJtVHoLMQU1Um4JNgN9AD9VFABNCzYMeQ5GURJTMgVCAnkFMwg1UxNQZlFhBW9cZgA3DUcIRF1HXWVVdVFlBWUCN1Q4C3QFblIiCVADOQBvVWsAOgsyDGYON1FvUzMFNgJyBWMIelMmUD1RJQUzXDMAPg0yCDNdNV1tVWZRNwU_bAmFUYAs2', '1509538577');
+INSERT INTO `web_token` VALUES ('298044', '4720850', '8', 'ADQPZQdpD2RYCQAxDWBRalE8BSBWdQh4DmFWIQVvVjFTbV0zBjgNMlpsAGAAPAMwAmJXZgVqVngJMwIyAz8APwB_bDzAHRg9CWGUAdQ1FURJRMAVCVi0IPg4zVhYFM1ZmUzldZwYxDUdaFgAaADgDIwI2VzcFMFY6CXYCaQNzAFkAOg9gBzkPNVhhAGoNNFFvUTEFNlYmCG4OfFYjBWhWIlNlXTIGOA0yWmEAaAAwAzACZFdsBWZWYgk7', '1509538578');
+INSERT INTO `web_token` VALUES ('298045', '4720850', '8', 'UWUBa1A_bWzBdDFtqDGFSaVA9U3ZYe1MjWjVYLwNpAWYAPlo0BzkBPlttAGAJNVVmVjYGN1k2AiwIMlFhBzsEO1EvAT5QEVsWXWBbLgxEUhFQMVMUWCNTZVpnWBgDNQExAGpaYAcwAUtbFwAaCTFVdVZiBmZZbAJuCHdROgd3BF1RawFuUG5bYV1kWzEMNVJsUDBTYFgoUzVaKFgtA24BdQA2WjUHOQE_bW2AAaAk5VWZWMAY9WToCOQgz', '1509538581');
+INSERT INTO `web_token` VALUES ('298046', '4720848', '8', 'UmZeNAZoCWIIWQEwDGFSaVE8ByIDIAZ2XDNQJ1I4BGNRbwtlAD4NO1tnXGcJYQE0XGgHPFY3BDUPYwdhUGMFO1IzXmYGNAkhCGcBOgxmUjtRcQdqAyEGWlw_aUDFSawQ2UTULMgAzDTtbYVw8CSYBYlxxB3RWaQR1D2AHZlBpBTJSNF5lBjwJMggyAWkMMVJmUT0=', '1509540429');
+INSERT INTO `web_token` VALUES ('298047', '4720850', '8', 'BzMMZgZoCGNcDQ4_aWjdQawdqU3ZRclYmCGcCdQNpAWZWaFk3BTtaZQ44C2sINAY1UDABMFE_bUnwLMVNjAT0GOQd5DDMGRwhFXGEOe1oSUBMHZlMUUSpWYAg1AkIDNQExVjxZYwUyWhAOQgsRCDAGJlBkAWFRZFI_bC3RTOAFxBl8HPQxjBjgIMlxlDmRaY1BuB2dTYFEhVjAIegJ3A24BdVZgWTYFO1plDjULYwg4BjVQMQEwUTZSaAs1', '1509542194');
+INSERT INTO `web_token` VALUES ('298048', '4720850', '8', 'VGAIYgRqAWpdDA4_aAWxXbFM_bVHFVdgBwCWYEc1c9AGcDPV0zDTMBPgo8DW0INAMwXT1WZwVqVHpZY1lpUW1Ua1QqCDcERQFMXWAOewFJVxRTMlQTVS4ANgk0BERXYQAwA2ldZw06AUsKRg0XCDADI11pVjYFMFQ4WSZZMlEhVA1UbghnBDoBO11kDmQBOFdpUzNUZ1UlAGYJewRxVzoAdAM1XTINMwE_bCjENZQg4AzBdPFZnBWZUZlli', '1509542511');
+INSERT INTO `web_token` VALUES ('298049', '4720850', '8', 'UGQJYwxiCmEJWAs6AWwFPlI_aDClScQR0CGcAd1I4BmFWaFs1DDIKNVhuXT0APA0_bXT0ENVM8BCpaYAc3BzsJNlAuCTYMTQpHCTQLfgFJBUZSMwxLUikEMgg1AEBSZAY2VjxbYQw7CkBYFF1HADgNLV1pBGRTZgRoWiUHbAd3CVBQaglmDDIKMAkwC2EBOAU7UjIMP1IiBGIIegB1Uj8GclZgWzQMMgo1WGNdNQAwDT5dPAQ0UzAENFpg', '1509543530');
+INSERT INTO `web_token` VALUES ('298050', '4720850', '8', 'BDAPZQZoAWoNXA8_bWDVRagZrASRRcgJyC2QDdFE7VTJQbg1jBjgAP1psWDgOMlZlUDAGN1M8BSsLMVFhUW0FOgR6DzAGRwFMDTAPelgQURIGZwFGUSoCNAs2A0NRZ1VlUDoNNwYxAEpaFlhCDjZWdlBkBmZTZgVpC3RROlEhBVwEPg9gBjgBOw00D2VYYVFvBmYBMlEhAmQLeQN2UTxVIVBmDWIGOAA_aWmFYMA4_bVmVQMQY2Uz0FPwsx', '1509543890');
+INSERT INTO `web_token` VALUES ('298051', '4720852', '8', 'VGBZMwFvWDNcDQ8_bXzIHPFY7UHVWdVEhXjFQJwRuAWYHOQpkBTsKRVoXChcKNQUzAmEMO1Q1BCoKN1FtAz4AMlQqWWYBNlhuXGEPel9uBzRWM1BqVi1RE14QUGMEMQFEB2EKNgVACjRaFQpkCjIFJQI2DGxUYQRoCnVROgNzAFlUblk2AT9YYlxlD2VfZgc5VjZQYVYmUTdeLFAlBGkBdQcxCmUFOwo1WmEKYgo6BTYCbgw3VDcEMwo2', '1509598546');
+INSERT INTO `web_token` VALUES ('298052', '4720852', '8', 'VGBeNAVrC2AJWA08XTBWbQVoVnMCIVEhDmEAdwZsBmFRbw5gBjgATwxBARxcYwQyVTZXYAdmAS8MMQQ4BDkAMlQqXmEFMgs9CTQNeF1sVmUFYFZsAnlREw5AADMGMwZDUTcOMgZDAD4MQwFvXGQEJFVhVzcHMgFtDHMEbwR0AFlUbl4xBTsLMQkwDWddZFZoBWVWZwJyUTcOfAB1BmsGclFnDmEGOAA_aDDcBaVxsBDRVMFdlB2QBNww3', '1509601551');
+INSERT INTO `web_token` VALUES ('298053', '4720852', '8', 'BDALYQZoD2QPXgEwAWxWbQdqBCECIQBwXjFZLlI4VjFSbF0zBjhYFwxBWkcMM1BmUjEDNFIzUnwKN1ZqVWgGNAR6CzQGMQ85DzIBdAEwVmUHYgQ_bAnkAQl4QWWpSZ1YTUjRdYQZDWGYMQ1o0DDRQcFJmA2NSZ1I_bCnVWPVUlBl8EPgtkBjgPNQ82AWsBOFZoB2cENQJyAGZeLFksUj9WIlJkXTIGOFhnDDdaMgw8UGBSNwMzUjFSaQow', '1509603580');
+INSERT INTO `web_token` VALUES ('298054', '4720852', '8', 'BzMKYA1jXzQPXltqXzJXbAJvVHEHJAFxCmUDdAVvAGdZZwhmV2lbFAlEWkcMM1BmBWZUY1EwCScJNFRoAj8DMQd5CjUNOl9pDzJbLl9uV2QCZ1RuB3wBQwpEAzAFMABFWT8INFcSW2UJRlo0DDRQcAUxVDRRZAllCXZUPwJyA1oHPQplDTNfZQ82WzFfZldpAmJUZQd3AWcKeAN2BWgAdFlvCGdXaVtkCTJaMgw8UGAFYFRjUTUJPQkx', '1509604272');
+INSERT INTO `web_token` VALUES ('298055', '4720852', '8', 'ADRdNwdpCGNdDAk4CWQMN1c6AidVdgZ2D2ACdQFrUzRTbVwyAz0MQ1wRDxJdYlZgVDcHMFEwAy0BPFZqAz4BMwB_bXWIHMAg_bXWAJfAk4DD9XMgI4VS4GRA9BAjEBNFMWUzVcYANGDDJcEw9hXWVWdlRgB2dRZANvAX5WPQNzAVgAOl0yBzkIMl1kCWMJMAwyVzcCM1UlBmAPfQJ3AWxTJ1NlXDMDPQwzXGcPZ11tVmZUMQcwUTIDNAE8', '1509604547');
+INSERT INTO `web_token` VALUES ('298056', '4720852', '8', 'U2cAagxiCGMIWQw9XDFXbFM_bAicFJgh4D2BTJFA6AWZUagFvUmwPQAtGWEUNMgE3VDdWYQRlAixdYFJuAj9SYFMtAD8MOwg_bCDUMeVxtV2RTNgI4BX4ISg9BU2BQZQFEVDIBPVIXDzELRFg2DTUBIVRgVjYEMQJuXSJSOQJyUgtTaQBvDDIIMggxDGZcZVdpUzMCMwV1CG4PfVMmUD0BdVRiAW5SbA8wCzBYMA09ATFUMVZgBGcCN11l', '1509605562');
+INSERT INTO `web_token` VALUES ('298057', '4720852', '8', 'BTFcNg1jWzBbCgk4XTAHPFU4BCEFJgBwD2ADdFc9VTIFO14wAD4IRwFMDxIPMFdhVDcFMgNiUnwPMgA8BTgENgV7XGMNOlttW2YJfF1sBzRVMAQ_bBX4AQg9BAzBXYlUQBWNeYgBFCDYBTg9hDzdXd1RgBWUDNlI_bD3AAawV1BF0FP1wzDTNbYVtiCWNdZAc5VTUENQV1AGYPfQN2VzpVIQUzXjEAPgg3AToPZw8_aV2dUMQUwA2xSYA83', '1509606912');
+INSERT INTO `web_token` VALUES ('298058', '4720852', '8', 'WW0JY1c5DWZaC19uXDEEP1I_aByJVdgR0XTJQJ1E7CW5WaF4wBjhbFAFMDxIBPg07VDdUYwBhVXsBPAA8DTBWZFknCTZXYA07WmdfKlxtBDdSNwc9VS4ERl0TUGNRZAlMVjBeYgZDW2UBTg9hATkNLVRgVDQANVU5AX4Aaw19Vg9ZYwlmV2kNN1pjXzVcZQQ6UjIHNlUlBGJdL1AlUTwJfVZgXjEGOFtkAToPZwExDT1UOVRkAGJVYAEz', '1509683468');
+INSERT INTO `web_token` VALUES ('298059', '4720852', '8', 'AjYLYQVrDWYAUQAxCWRQa1wxU3ZQcwd3C2RYL1A6VTIAPl4wBjgLRAFMCxZYZ1VjAmEMOwJjCSdZZFBsDDFRYwJ8CzQFMg07AD0AdQk4UGNcOVNpUCsHRQtFWGtQZVUQAGZeYgZDCzUBTgtlWGBVdQI2DGwCNwllWSZQOwx8UQgCOAtkBTsNNwA5AGoJMFBuXDxTYlAgB2ELeVgtUD1VIQA2XjEGOAs0AToLY1hoVWUCbww2AmYJPllk', '1509689247');
+INSERT INTO `web_token` VALUES ('298060', '4720852', '8', 'BDBZMwJsAGsLWg8_bAG0AO1Q5DCkCIQNzXjEAd1E7AmVSbABuVmhbFFsWAB0LNAM1BWYDNFQ1CSdbZgU5ATxUZgR6WWYCNQA2CzYPegAxADNUMQw2AnkDQV4QADNRZAJHUjQAPFYTW2VbFABuCzMDIwUxA2NUYQllWyQFbgFxVA0EPlk2AjwAOgsyD2UAOQA_bVDQMPQJyA2VeLAB1UTwCdlJkAG9WaFtkW2AAaAs7AzMFaQMwVDMJOlto', '1509690109');
+INSERT INTO `web_token` VALUES ('298061', '4720852', '8', 'VmIPZVE_aAGsIWQAxXDENNgFsDShWdQd3WjVQJ1A6BWIEOgFvBTtcEwBNCBVYZwA2VzQFMlk4UX8NMAM_aUG0DMVYoDzBRZgA2CDUAdVxtDT4BZA03Vi0HRVoUUGNQZQVABGIBPQVAXGIATwhmWGAAIFdjBWVZbFE9DXIDaFAgA1pWbA9gUW8AOggxAGpcZQ0zAWENPFYmB2FaKFAlUD0FcQQyAW4FO1xjADsIYFhoADBXOwU2WTZRZA0_a', '1509690968');
+INSERT INTO `web_token` VALUES ('298062', '4720852', '8', 'UGQBa1E_aCmEIWVtqDmMNNl0wAidYewBwAW5XIAVvA2QFO1k3UG4KRV8SX0IKNQA2UDMFMgBhVngJNFhkATwHNVAuAT5RZgo8CDVbLg4_aDT5dOAI4WCMAQgFPV2QFMANGBWNZZVAVCjRfEF8xCjIAIFBkBWUANVY6CXZYMwFxB15QagFuUW8KMAgxWzEONw0zXT0CM1goAGYBc1ciBWgDdwUzWTZQbgo1X2RfNwo6ADBQPAUyAG9WZgk3', '1509694934');
+INSERT INTO `web_token` VALUES ('298063', '4720852', '8', 'VWFbMVU7WDMPXg8_bXTBXbFA9ACVQcwl5XTIFclI4AmVZZ1s1DDIJRgBNDhMLNFJkXD8BNgdmBCoINQM_aV2pUZlUrW2RVYlhuDzIPel1sV2RQNQA6UCsJS10TBTZSZwJHWT9bZwxJCTcATw5gCzNSclxoAWEHMgRoCHcDaFcnVA1Vb1s0VWtYYg82D2VdZFdpUDAAMVAgCW9dLwVwUj8CdllvWzQMMgk2ADsOZgs7UmJcMAE0B2QEMQg3', '1509696565');
+INSERT INTO `web_token` VALUES ('298064', '4720852', '8', 'UmYLYVE_aCmEOX1tqCmcFPl0wBCEAI1EhCWZXIAxmA2RXaQ5gUW9bFF0QDhMPMFdhVDdXYFAxVngAPVRoDTAHNVIsCzRRZgo8DjNbLgo7BTZdOAQ_bAHtREwlHV2QMOQNGVzEOMlEUW2VdEg5gDzdXd1RgVzdQZVY6AH9UPw19B15SaAtkUW8KMA43WzEKMwU7XT0ENQBwUTcJe1ciDGEDd1dhDmFRb1tkXWYOZg8_aV2dUOFdsUDBWZQA7', '1509698601');
+INSERT INTO `web_token` VALUES ('298065', '4720852', '8', 'UWUPZQNtXTYIWV1sD2IMN1Q5VHFZelYmWTZYL1E7UTZZZwhmUmwIR1oXAB0APwM1BmUHMFQ1CCYPMlRoBDlUZlEvDzADNF1rCDVdKA8_bDD9UMVRuWSJWFFkXWGtRZFEUWT8INFIXCDZaFQBuADgDIwYyB2dUYQhkD3BUPwR0VA1Raw9gAz1dZwgxXTcPNgwyVDRUZVkpVjBZK1gtUTxRJVlvCGdSbAg3WmEAaAAwAzwGYAcwVDAIPA80', '1509934271');
+INSERT INTO `web_token` VALUES ('298066', '4720852', '8', 'ADQMZgJsDWYBUFhpDGFVbgdqBiNXdFYmC2RWIQRuUzRUaghmAD5bFA1ADhNfYAQyAmFTZFg5BCpeYwA8UG1WZAB_bDDMCNQ07ATxYLQw9VWYHYgY8VyxWFAtFVmUEMVMWVDIINABFW2UNQg5gX2cEJAI2UzNYbQRoXiEAa1AgVg8AOgxjAjwNNwE4WDIMNVVrB2cGN1cnVjALeVYjBGlTJ1RiCGcAPltkDTYOZl9vBDsCZFNlWD8EMV5g', '1509935164');
+INSERT INTO `web_token` VALUES ('298067', '4720853', '8', 'ADRZM1Y4WzBdDF9uXzIMNwZrU3YAIwl5WzRSJVI4VTIHOQFvAT9cFlxmXzBYYQAyAWRWYVY4U30IQwA8UWIEMwB_bWWZWF1sQXWFfKl9vDD4GYVNpAHsJO1tiUhVSb1VjB20BSwFEXGJcal9CWBQAIAE1VjZWY1M_aCHcAa1EhBF0AOlk2VmhbYV1kXzVfZgwyBmZTYwBwCW9bKVInUj9VIQcxAW4BP1xjXGdfNlhhADYBZlZnVjRTZwg6', '1510022478');
+INSERT INTO `web_token` VALUES ('298068', '4720853', '8', 'UmYIYlA_bCGMLWgg5XzICOQJvAyZRclEhCWYDdA1nCG9WaFwyAT8ASgkzDWJaYwMxAmcAN1Q6U31cF1ZqVWYGMVIsCDdQEQhDCzcIfV9vAjACZQM5USpRYwkwA0QNMAg_bVjxcFgFEAD4JPw0QWhYDIwI2AGBUYVM_aXCNWPVUlBl9SaAhnUG4IMgsyCGJfZgI8AmIDM1EhUTcJewN2DWAIfFZgXDMBPwA_aCTINZFpjAzUCYgAyVDdTZ1xu', '1510051578');
+INSERT INTO `web_token` VALUES ('298069', '4720853', '8', 'BDANZ1Y4DmUKWwAxAG1VblwxVHFZelMjDWIEcwRuAGdTbVk3VmgBS11nD2BaYwIwAGUAN1A_bBykBSlNvADMFMgR6DTJWFw5FCjYAdQAwVWdcO1RuWSJTYQ00BEMEOQA2UzlZE1YTAT9daw8SWhYCIgA0AGBQZQdrAX5TOABwBVwEPg1iVmgONAozAGoAOVVrXDxUZFkpUzUNfwRxBGkAdFNlWTZWaAE_bXWYPZlpjAjQAYAAwUDAHMAE_a', '1510053644');
+INSERT INTO `web_token` VALUES ('298070', '4720853', '8', 'AzdbMQxiWDMLWg8_bAWwCOQJvV3JScVQkAG8Fclc9BGNTbV4wDDJYEgw2WzRYYQU3UzYBNgNtU30NRgU5VmUANwN9W2QMTVgTCzcPegExAjACZVdtUilUZgA5BUJXagQyUzleFAxJWGYMOltGWBQFJVNnAWEDNlM_aDXIFblYmAFkDOVs0DDJYYgsyD2UBOAI8AmJXZ1IiVDIAcgVwVzoEcFNlXjEMMlhnDDdbMlhhBTJTNwExA2ZTYA02', '1510113301');
+INSERT INTO `web_token` VALUES ('298071', '4720853', '8', 'VGBcNgdpC2ALWgg5C2YHPFM_bVHFUdwNzAG9VIlY8BGNUag5gDDIJQ1hiWDcKM1dlAmcHMFQ6UnwBSgA8ATICNVQqXGMHRgtACzcIfQs7BzVTNFRuVC8DMQA5VRJWawQyVD4ORAxJCTdYblhFCkZXdwI2B2dUYVI_bAX4AawFxAltUblwzBzkLMQsyCGILMgc5UzNUZFQkA2UAclUgVjsEcFRiDmEMMgk2WGNYMQozV2ACZgc3VDFSZwE_a', '1510113364');
+INSERT INTO `web_token` VALUES ('298072', '4720853', '8', 'V2MIYgVrDGcJWAAxDWAGPQFsU3YDIABwCWZSJQJoBGNRb1o0AT9dF19lCGcPNgw_bAGUEMwJsAS9dFgI_bADMJPlcpCDcFRAxHCTUAdQ09BjQBZlNpA3gAMgkwUhUCPwQyUTtaEAFEXWNfaQgVD0MMLAA0BGQCNwFtXSICaQBwCVBXbQhnBTsMNgkwAGoNNAY4AWFTYwNzAGYJe1InAm8EcFFnWjUBP11iX2QIYQ82DDsAZAQ0AmIBMV1i', '1510113635');
+INSERT INTO `web_token` VALUES ('298073', '4720853', '8', 'AzcMZlE_aWDMKWwo7XzIDOF0wU3YCIQd3WjUEcwRuBWJVawhmUmxbEVxmDWIIMVBiVDEMOwBuBCoNRgQ4BjUGMQN9DDNREFgTCjYKf19vAzFdOlNpAnkHNVpjBEMEOQUzVT8IQlIXW2Vcag0QCERQcFRgDGwANQRoDXIEbwZ2Bl8DOQxjUW9YYgozCmBfZgM9XT1TYwJyB2FaKARxBGkFcVVjCGdSbFtkXGcNZAgxUGdUMAw7AGYEMg0_b', '1510114059');
+INSERT INTO `web_token` VALUES ('298074', '4720853', '8', 'AzdbMQdpD2QBUAAxD2IFPlY7AyYDIFYmWjUCdQZsAmVSbA1jAD4BSw03D2AON1ZkUzYMO1Q6CScNRldrBzQFMgN9W2QHRg9EAT0AdQ8_aBTdWMQM5A3hWZFpjAkUGOwI0UjgNRwBFAT8NOw8SDkJWdlNnDGxUYQllDXJXPAd3BVwDOVs0BzkPNQE4AGoPNgU7VjYDMwNzVjBaKAJ3BmsCdlJkDWIAPgE_bDTYPZg43VmFTNww7VDcJOQ02', '1510114531');
+INSERT INTO `web_token` VALUES ('298075', '4720853', '8', 'WGxdN1Y4AWoOXwAxCmcCOVM_bUHVXdFMjXDNQJ1A6UTZQbgxiDDIBSwgyXTJbYldlAGUGMVY4VnheFQU5ADNTZFgmXWJWFwFKDjIAdQo6AjBTNFBqVyxTYVxlUBdQbVFnUDoMRgxJAT8IPl1AWxdXdwA0BmZWY1Y6XiEFbgBwUwpYYl0yVmgBOw43AGoKMwI8UzNQYFcnUzVcLlAlUD1RJVBmDGMMMgE_bCDNdNFtiV2AAZAYxVjdWbF5g', '1510114794');
+INSERT INTO `web_token` VALUES ('298076', '4720852', '8', 'AzcKYAVrCGMKWws6XzIEP1I_aAyZTcFQkXTJQJwBqCW5WaA9hV2kPQAxBWEUMM1VjVzQANwVkVHoPMgM_aAz4IOgN9CjUFMgg_bCjcLfl9uBDdSNwM5UyhUFl0TUGMANQlMVjAPM1cSDzEMQ1g2DDRVdVdjAGAFMFQ4D3ADaANzCFEDOQplBTsIMgozC2FfZgQ6UjIDMlMjVDJdL1AlAG0JfVZgD2BXaQ8wDDdYMQw1VWBXMwAwBWpUYA89', '1510313978');
+INSERT INTO `web_token` VALUES ('298077', '4720852', '8', 'AjZcNgNtXzRbCgw9XTBVbgZrByJUdwR0DmFQJ1c9CG8HOQxiAT8KRQxBW0ZbZAw6VjUMO1Y3CCYINVFtBjsIOgJ8XGMDNF9pW2YMeV1sVWYGYwc9VC8ERg5AUGNXYghNB2EMMAFECjQMQ1s1W2MMLFZiDGxWYwhkCHdROgZ2CFECOFwzAz1fZVtiDGZdZFVrBmYHNlQkBGIOfFAlVzoIfAcxDGMBPwo1DDdbMltiDDlWMgw7VjEIOggy', '1510314110');
+INSERT INTO `web_token` VALUES ('298078', '4720852', '8', 'BTELYQBuD2QJWAg5DWABOgJvDSgCIQBwWzRZLgxmCG9XaQhmAD5fEApHDBEIN1JkVzRXYFU0UX9dYFhkDTAAMgV7CzQANw85CTQIfQ08ATICZw03AnkAQlsVWWoMOQhNVzEINABFX2EKRQxiCDBScldjVzdVYFE9XSJYMw19AFkFPwtkAD4PNQkwCGINNAE_aAmINPAJyAGZbKVksDGEIfFdhCGcAPl9gCjEMZQgxUmdXNVdtVTtRZF1k', '1510379863');
+INSERT INTO `web_token` VALUES ('298079', '4720848', '8', 'AzdZMwJsWDNbCl9uDmMHPFU4BiNXdFIiD2AEc1A6AWZWaA9hBjgMOlpmDDcBaVVgAjYGPVg5U2JbNwJkATJTbQNiWWECMFhwWzRfZA5kB25VdQZrV3VSDg9sBGVQaQEzVjIPNgY1DDpaYAxsAS5VNgIvBnVYZ1MiWzQCYwE4U2QDZVljAjFYYFthXzAOPwczVTY=', '1510647826');
+INSERT INTO `web_token` VALUES ('298080', '4720848', '8', 'U2cNZwJsXDddDFprWzZWbVE8BCECIQd3XjEEcwBqAGcFO1s1UG5faVpmATpbMwUwU2cEPwdmATABbVg_bUmFWaFMyDTUCMFx0XTJaYVsxVj9RcQRpAiAHW149BGUAOQAyBWFbYlBjX2laYAFhW3QFZlN_bBHcHOAFwAW5YOVJrVmFTNQ03AjFcZF1nWjtbYVZpUTU=', '1510649391');
+INSERT INTO `web_token` VALUES ('298081', '4720852', '8', 'UmZdNwxiCWINXAo7XDEFPlE8DClWdQZ2WzQFclc9VTICPFwyUmwNQloXX0IJNgUzAWJWYVg5UnwBPFFtBDlTYVIsXWIMOwk_aDTAKf1xtBTZRNAw2Vi0GRFsVBTZXYlUQAmRcYFIXDTNaFV8xCTEFJQE1VjZYbVI_bAX5ROgR0UwpSaF0yDDIJMw00CmBcZQU7UTEMPVYmBmBbKQVwVzpVIQI0XDNSbA0yWmFfNgkwBTUBYVZkWDdSYAE8', '1510651917');
+INSERT INTO `web_token` VALUES ('298082', '4720853', '8', 'WW0AagZoAWpaCw08XzIHPF0wUHVZelIiAG9YLw1nB2BZZwxiAz0BSw81DmELMg0_aB2IMO1E_aAS9aEQc7AjECNVknAD8GRwFKWmYNeF9vBzVdOlBqWSJSYAA5WB8NMAcxWTMMRgNGAT8POQ4TC0cNLQczDGxRZAFtWiUHbAJyAltZYwBvBjgBO1pjDWdfZgc5XT1QYFkpUjQAclgtDWAHc1lvDGMDPQE_bDzQOZwsyDT0HZww5UT8BNVpl', '1510656875');
+INSERT INTO `web_token` VALUES ('298083', '4720853', '8', 'U2cBawNtXDdfDgo7CWRQawVoVHFZegZ2CmUEc1c9BGNVa14wBzkORA81XDMONwQ2BmNXYFI8CScPRAc7ADMIP1MtAT4DQlwXX2MKfwk5UGIFYlRuWSIGNAozBENXagQyVT9eFAdCDjAPOVxBDkIEJAYyVzdSZwllD3AHbABwCFFTaQFuAz1cZl9mCmAJMFBuBWVUZFkpBmAKeARxVzoEcFVjXjEHOQ4xDzRcNQ43BDUGYldlUj0JOA8x', '1510711924');
+INSERT INTO `web_token` VALUES ('298084', '4720853', '8', 'ADQKYFU7XDdfDltqDGFXbFM_bAicAIwV1CmVSJQFrAmVWaA1jUmxcFgsxAG9aY1ZkXTgFMlM9UX9ZEgc7BTYGMQB_bCjVVFFwXX2NbLgw8V2VTNAI4AHsFNwozUhUBPAI0VjwNR1IXXGILPQAdWhZWdl1pBWVTZlE9WSYHbAV1Bl8AOgplVWtcZl9mWzEMNVdpUzMCMgBwBWMKeFInAWwCdlZgDWJSbFxjCzAAaVpjVmddOQU1UzNRZllr', '1510713648');
+INSERT INTO `web_token` VALUES ('298085', '4720848', '8', 'VGBaMAxiDmUNXF9uDmNXbF0wACVTcFIiXjECdQJoBGMDPVwyBDoJPw8zAToPZwM2VGBRalMyAjMKZlI0AzAJN1Q1WmIMPg4mDWJfZA5kVz5dfQBtU3FSDl49AmMCOwQ2A2dcZQQ3CT8PNQFhDyADYFR5USJTbAJzCmVSMwM6CT5UMlpgDD8ONw0wXzYON1dlXTA=', '1510731048');
+INSERT INTO `web_token` VALUES ('298086', '4720848', '8', 'UWVeNAxiCmEKWwAxXDEFPl0wBiNUd1UlWTZRJlU_aAWZSbFk3AD4IPgk1DTYJYQUwXGhTaAJjU2IIZFM1BTZSbFEwXmYMPgoiCmUAO1w2BWxdfQZrVHZVCVk6UTBVbAEzUjZZYAAzCD4JMw1tCSYFZlxxUyACPVMiCGdTMgU8UmVRN15kDD8KMwo3AGlcbQUxXTw=', '1510731824');
+INSERT INTO `web_token` VALUES ('298087', '4720852', '8', 'WGwPZQRqAGsLWltqXDFSaVE8BiMHJAV1WzQDdAFrUjVRbw9hUG4LRABNXUAOMVJkVjUMO1AxBCpdYFJuBDkHNVgmDzAEMwA2CzZbLlxtUmFRNAY8B3wFR1sVAzABNFIXUTcPM1AVCzUAT10zDjZSclZiDGxQZQRoXSJSOQR0B15YYg9gBDoAOgsyWzFcZVJsUTEGNwd3BWNbKQN2AWxSJlFnD2BQbgs0ADtdNA43UmNWMAw9UDcEMl1u', '1510732159');
+INSERT INTO `web_token` VALUES ('298088', '4720857', '8', 'VWEKYARqCGMNXA08XzIAOwBtDShVdgR0D2BVIlI4BWJSbABuAT8POQ4yX2QPZwM2ADRTaFY3ADEAbAVjAzBUalU0CjIENgggDWINNl81AGkAIA1gVXcEWA9sVTRSawU3UjYAOQEyDzkONV8wDyADYAAtUyBWaQBxAG8FZAM6VGNVMwowBDcIMQ0wDWdfZAAyAGU=', '1510732240');
+INSERT INTO `web_token` VALUES ('298089', '4720857', '8', 'BDBZM1E_aXzQOXw8_bCGUBOgBtACVXdAJyAW4Fclc9UjVQbgtlVWtfaQo2CzAJYQ04V2MDOANiUmMBbQdhV2RTbQRlWWFRY193DmEPNAhiAWgAIABtV3UCXgFiBWRXblJgUDQLMlVmX2kKMQtkCSYNbld6A3ADPFIjAW4HZlduU2QEYlljUWJfZg4zD2UIMwEzAGQ=', '1510732241');
+INSERT INTO `web_token` VALUES ('298090', '4720857', '8', 'U2dZMw1jCGMPXgk4AG0EP1A9VHFQcwNzWjUCdQxmAmVXaQpkUW9faQwwDDcMZAcyAjZRagBhUWBaNgdhADMBP1MyWWENPwggD2AJMgBqBG1QcFQ5UHIDX1o5AmMMNQIwVzMKM1FiX2kMNwxjDCMHZAIvUSIAP1EgWjUHZgA5ATZTNVljDT4IMQ8yCWMAOwQ2UDQ=', '1510732241');
+INSERT INTO `web_token` VALUES ('298091', '4720857', '8', 'V2NeNFY4WDMMXQs6CmcFPgBtACVVdgJyXTJXIA1nBGMCPFwyUmwKPF1hWGMNZVJnADQNNlAxATAAbFUzDT5Ualc2XmZWZFhwDGMLMApgBWwAIABtVXcCXl0_bVzYNNAQ2AmZcZVJhCjxdZlg3DSJSMQAtDX5QbwFwAG9VNA00VGNXMV5kVmVYYQwxC2AKNgUwAGU=', '1510733530');
+INSERT INTO `web_token` VALUES ('298092', '4720858', '8', 'V2NcNlc5AGsJWFxtDWAGPQJvACVYewJyAW5SJVY8AGcDPQhmBTsMQw9CDRBaZQM1BmVRZlk4BStdYFVpDDFUZlcpXGNXYAA2CTRcKQ08BjUCZwA6WCMCQAFPUmFWYwBFA2UINAVADDIPQA1jWmIDIwYyUTFZbAVpXSJVPgx8VA1XbVwzV2kAOgkwXDYNNAY4AmIAO1goAmQBc1InVjsAdAM1CGcFOwwzDzQNZFpjAzIGYFFnWT4FN11m', '1510735111');
+INSERT INTO `web_token` VALUES ('298093', '4720859', '8', 'WW1eNAVrAWoJWAg5XDFXbFM_bUHVWdVIiDmEFcgJoUzRTbVwyBzkIQgw2XTILMlZkBmMMO1U7Ay1eFVdrUmEBNlknXmEFRAFKCTUIfVxsV2VTNFBqVi1SYA43BUICP1NlUzlcFgdCCDYMOl1AC0dWdgYyDGxVYANvXiFXPFIiAVhZY14xBTsBOwkwCGJcZVdpUzNQalYmUjQOfAVwAm9TJ1NlXDMHOQg3DDddNAsyVmcGYAw4VTMDM15s', '1510737038');
+INSERT INTO `web_token` VALUES ('298094', '4720858', '8', 'UGQJYwxiAWoBUA4_aDWAFPgZrBSBVdgR0DWIAd1A6AGdRbwxiAD4KRQlECBUNMlBmAmEFMgJjAixZZAM_aBDlUZlAuCTYMOwE3ATwOew08BTYGYwU_aVS4ERg1DADNQZQBFUTcMMABFCjQJRghmDTVQcAI2BWUCNwJuWSYDaAR0VA1QaglmDDIBOwE4DmQNNAU7BmYFPlUlBGINfwB1UD0AdFFnDGMAPgo1CTIIYQ00UGECZAUxAmcCN1li', '1510737361');
+INSERT INTO `web_token` VALUES ('298095', '4720859', '8', 'V2NbMQxiCGNcDQAxC2ZQawJvU3ZXdAJyXjFUI1c9CW4APghmUG4NRwgyDmEBOAAyAGUCNVk3U30JQlFtUmEJPlcpW2QMTQhDXGAAdQs7UGICZVNpVywCMF5nVBNXagk_aAGoIQlAVDTMIPg4TAU0AIAA0AmJZbFM_aCXZROlIiCVBXbVs0DDIIMlxlAGoLMlBuAmJTaVcnAmReLFQhVzoJfQA2CGdQbg0yCDMOZwE4ADEAZgI2WTpTZQkx', '1510737552');
+INSERT INTO `web_token` VALUES ('298096', '4720859', '8', 'U2cIYgxiCWINXF9uD2IHPFU4UXQFJgl5C2QAdwxmB2ADPQhmDTMNRwkzAG8IMVZkVzIBNlA_bVngIQwI_bBTYBNlMtCDcMTQlCDTFfKg8_aBzVVMlFrBX4JOwsyAEcMMQcxA2kIQg1IDTMJPwAdCERWdldjAWFQZVY6CHcCaQV1AVhTaQhnDDIJMw00XzUPNgc5VTVRawV1CW8LeQB1DGEHcwM1CGcNMw0yCTIAaQgxVmdXMQE7UDdWZAg1', '1510739117');
+INSERT INTO `web_token` VALUES ('298097', '4720857', '8', 'WGwNZw1jCGMJWAw9DGFXbAFsV3IEJwh4DWJTJARuUzRVa1o0BjhfaQE9W2APZ1FkVmIEP1U0BDUIZAJkBjUGOFg5DTUNPwggCWYMNwxmVz4BIVc6BCYIVA1uUzIEPVNhVTFaYwY1X2kBOls0DyBRMlZ7BHdVagR1CGcCYwY_aBjFYPg03DT4IMQkzDGUMPFdkAWY=', '1510741952');
+INSERT INTO `web_token` VALUES ('298098', '4720863', '8', 'AzcAagVrWzAIWQk4XTABOgFsBSBRcgBwWzRVIgZsVjFZZw1jAz1Ybgg0W2BcNFZjBjJXbABhATBcMFM1BjUHOQNiADgFN1tzCGcJMl03AWgBIQVoUXMAXFs4VTQGP1ZkWT0NNAMwWG4IMFswXHNWNQYrVyQAPwFwXDNTMgY_aBzADZQA6BTZbbQg2CWJdZQE3AWU=', '1510803101');
+INSERT INTO `web_token` VALUES ('298099', '4720863', '8', 'UWUKYFE_aWDMJWF1sWzYCOVc6ASRQcwh4XDMAd1U_aUTYFO1s1UW8MOgs3DTZYMFVgADRUbwVkUWBbNwNlADNVa1EwCjJRY1hwCWZdZlsxAmtXdwFsUHIIVFw_aAGFVbFFjBWFbYlFiDDoLMw1mWHdVNgAtVCcFOlEgWzQDYgA5VWJRNwowUWJYbgk3XTZbYwI0VzM=', '1510803101');
+INSERT INTO `web_token` VALUES ('298100', '4720864', '8', 'BzMJY1I8D2RaCwo7WDUDOFE8VHFVdlYmDmFRJgxmBmFUalwyAT8LRFsWCBUINwA2XD8BNlEwVnhcYVRoUG0IOgd5CTZSZQ85WmcKf1hpAzBRNFRuVS5WFA5AUWIMOQZDVDJcYAFECzVbFAhmCDAAIFxoAWFRZFY6XCNUP1AgCFEHPQlmUmwPNVpjCmBYYQM9UTJUY1UlVjAOfFEkDGEGclRiXDMBPws0W2AIYQgwADNcOAE1UTFWZVxn', '1511517601');
+INSERT INTO `web_token` VALUES ('298101', '4720864', '8', 'WW0BawxiCGMJWAAxWjcEPwZrDSgHJAJyD2ACdQxmAGdQblo0AjxYF10QARwBPgQyUzABNgBhUX8APVRoDTBVZ1knAT4MOwg_bCTQAdVprBDcGYw03B3wCQA9BAjEMOQBFUDZaZgJHWGZdEgFvATkEJFNnAWEANVE9AH9UPw19VQxZYwFuDDIIMgkwAGpaYwQ6BmUNOgd3AmQPfQJ3DGEAdFBmWjUCPFhnXWYBaAE5BDdTNwE6AGVRYQA4', '1511518332');
+INSERT INTO `web_token` VALUES ('298102', '4720864', '8', 'AzdZM1c5XDcJWA4_aAWwHPFA9AidUdwZ2WzQAd1I4UTZWaA9hDDIMQwpHXEEBPgM1B2QFMlg5VHoBPFhkVmtRYwN9WWZXYFxqCTQOewEwBzRQNQI4VC8GRFsVADNSZ1EUVjAPMwxJDDIKRVwyATkDIwczBWVYbVQ4AX5YM1YmUQgDOVk2V2lcZgkwDmQBOAc5UDMCNVQkBmBbKQB1Uj9RJVZgD2AMMgwzCjFcNQE5AzAHYwU_bWD1UYQE5', '1511518362');
+INSERT INTO `web_token` VALUES ('298103', '4720864', '8', 'BTFeNFA_bXDcKWws6D2IBOgFsAyYFJlMjXTJSJVE7BWJUag5gDTNfEAxBDxIJNgUzVzQBNlc2BigINVFtATwGNAV7XmFQZ1xqCjcLfg8_bATIBZAM5BX5TEV0TUmFRZAVAVDIOMg1IX2EMQw9hCTEFJVdjAWFXYgZqCHdROgFxBl8FP14xUG5cZgozC2EPNgE_aAWIDNAV1UzVdL1InUTwFcVRiDmENM19gDDcPZgkxBTZXMwE6VzIGMwg7', '1511518369');
+INSERT INTO `web_token` VALUES ('298104', '4720864', '8', 'BTFeNFU7WzAOX1xtC2YDOFQ5V3JZelQkWjVUIwRuAmVWaA9hBzkJRloXCBVcY1FnB2QMOwBhU30INVdrDDFUZgV7XmFVYlttDjNcKQs6AzBUMVdtWSJUFloUVGcEMQJHVjAPMwdCCTdaFQhmXGRRcQczDGwANVM_aCHdXPAx8VA0FP14xVWtbYQ43XDYLMgM9VDdXYFkpVDJaKFQhBGkCdlZgD2AHOQk2WmEIYVxkUWIHYAw6AGRTYgg0', '1511525226');
+INSERT INTO `web_token` VALUES ('298105', '4720863', '8', 'UmZeNARqCGNdDA08CmdWbQFsAyZXdAh4XTJSJQBqAGdUal0zVmhdawwwX2RYMAI3UGQGPVg5ATAMYFYwAjEDPVIzXmYENgggXTINNgpgVj8BIQNuV3UIVF0_bUjMAOQAyVDBdZFZlXWsMNF80WHcCYVB9BnVYZwFwDGNWNwI7AzRSNF5kBDYIM11qDWcKMFZhAWQ=', '1511592310');
+INSERT INTO `web_token` VALUES ('298106', '4720863', '8', 'WGwIYgBuD2QKWwg5CWRQa1Q5UHVXdAV1DGMAd1A6B2BUal0zUG4NOws3WmELYwcyXWkBOlAxBDVcMFE3UmFVa1g5CDAAMg8nCmUIMwljUDlUdFA9V3UFWQxvAGFQaQc1VDBdZFBjDTsLM1oxCyQHZF1wAXJQbwR1XDNRMFJrVWJYPggyADIPNAo9CGMJMVBkVDA=', '1511593121');
+INSERT INTO `web_token` VALUES ('298107', '4720863', '8', 'BTELYQFvWzBfDl9uXTAMNwZrASRWdQl5CWYFcgdtB2AEOlk3DDIJP1tnW2AAaAcyBTEBOlAxUWBbN1cxBDdUagVkCzMBM1tzXzBfZF03DGUGJgFsVnQJVQlqBWQHPgc1BGBZYAw_aCT9bY1swAC8HZAUoAXJQb1EgWzRXNgQ9VGMFYwsxATNbYF9oXzRdZQwyBmQ=', '1511593187');
+INSERT INTO `web_token` VALUES ('298108', '4720863', '8', 'UmYLYVA_bXDcOX19uCmcMN10wV3IAIwNzWTYFcgxmAmVVa1s1UG4POV1hW2ANZQw5UGRRalg5U2IJZVM1VWYDPVIzCzNQYlx0DmFfZApgDGVdfVc6ACIDX1k6BWQMNQIwVTFbYlBjDzldZVswDSIMb1B9USJYZ1MiCWZTMlVsAzRSNAsxUGJcZw45XzQKMQw4XT0=', '1511593225');
+INSERT INTO `web_token` VALUES ('298109', '4720863', '8', 'VWFZMwBuD2QKWww9DWACOQFsUXQHJAV1WTZUI1Y8UTYDPQtlUmwNOw8zWGNYMAI3V2MEPwBhUmNeMlcxBTYBP1U0WWEAMg8nCmUMNw1nAmsBIVE8ByUFWVk6VDVWb1FjA2cLMlJhDTsPN1gzWHcCYVd6BHcAP1IjXjFXNgU8ATZVM1ljADIPNAo9DGcNNgIxAWY=', '1511593252');
+INSERT INTO `web_token` VALUES ('298110', '4720863', '8', 'ADQOZARqC2BcDQEwD2IGPVE8BSBScQFxXjFRJg1nUTZRbwBuUG5cag4yDzRcNAM2U2dWbVg5VGVeMlcxBDdTbQBhDjYENgsjXDMBOg9lBm9RcQVoUnABXV49UTANNFFjUTUAOVBjXGoONg9kXHMDYFN_bViVYZ1QlXjFXNgQ9U2QAZg40BDYLMFxrAWoPNAY3UTM=', '1511593277');
+INSERT INTO `web_token` VALUES ('298111', '4720863', '8', 'VGAPZQ1jD2QLWlhpWjcGPV0wVnMAIwV1D2AAd1U_aAWZTbQBuUmwBNws3ATpfNwcyBzMBOgRlVGVeMlcxATJTbVQ1DzcNPw8nC2RYY1owBm9dfVY7ACIFWQ9sAGFVbAEzUzcAOVJhATcLMwFqX3AHZAcqAXIEO1QlXjFXNgE4U2RUMg81DT8PNAs8WDNaYAYxXTA=', '1511593318');
+INSERT INTO `web_token` VALUES ('298112', '4720863', '8', 'UmYOZABuXzQPXgEwDmNRagBtByJVdgl5AG9ZLlY8BWJZZw9hBzkMOlhkCDNcNAUwBzNWbQVkADEBbQVjUWIDPVIzDjYAMl93D2ABOg5kUTgAIAdqVXcJVQBjWThWbwU3WT0PNgc0DDpYYAhjXHMFZgcqViUFOgBxAW4FZFFoAzRSNA40ADJfZA84AW0OM1FlAG0=', '1511594428');
+INSERT INTO `web_token` VALUES ('298113', '4720864', '8', 'WGwLYQFvCGMBUA8_bAG0NNlwxVnMFJlUlWTZUI1U_aCW4FOwFvUmwLRF0QDBEOMQQyAGNUYwJjVHoBPAM_aVmsCMFgmCzQBNgg_bATwPegAxDT5cOVZsBX5VF1kXVGdVYAlMBWMBPVIXCzVdEgxiDjYEJAA0VDQCN1Q4AX4DaFYmAltYYgtkAT8IMgE4D2UAOQ0zXD9WYQV1VTNZK1QhVTgJfQUzAW5SbAs0XWYMZQ42BDcAbFRjAmNUYQEz', '1511594768');
+INSERT INTO `web_token` VALUES ('298114', '4720864', '8', 'WGwAagJsDWYKWwEwD2JQawFsDCkFJgNzXjEFcgJoAGcEOghmAz1bFF8SWkdfYFZgUjEHMABhAiwOM1hkDTBSYFgmAD8CNQ07CjcBdA8_bUGMBZAw2BX4DQV4QBTYCNwBFBGIINANGW2VfEFo0X2dWdlJmB2cANQJuDnFYMw19UgtYYgBvAjwNNwozAWsPNlBuAWIMOwV1A2VeLAVwAm8AdAQyCGcDPVtkX2RaM19nVmVSPgcyAGUCMg4y', '1511596336');
+INSERT INTO `web_token` VALUES ('298115', '4720866', '8', 'AjYNZ1E_aDmUKW19uCGVRalA9ASRZegd3CWYHcANpBWIFOw1jBDoIQgowCGcBOA0_aUDVXYFQ6AS9ZElRoV2QCNQJ8DTJREA5FCjZfKgg4UWNQNwE7WSIHNQkwB0ADPgUzBW8NRwRBCDYKPAgVAU0NLVBkVzdUYQFtWSZUP1cnAlsCOA1iUW8ONAozXzUIMVFvUDMBNFkpB2EJewdyA24FcQUzDWIEOgg3CjEIYQE5DT5QPFdiVDEBO1lg', '1511596393');
+INSERT INTO `web_token` VALUES ('298116', '4720866', '8', 'BzMNZ1E_aCGMKWw08CmcCOVU4ASRVdgFxWTYFclU_aVTJQbg1jUmwIQg40AW4KMwEzVTAHMFk3BCoBSgU5BTYANwd5DTJREAhDCjYNeAo6AjBVMgE7VS4BM1lgBUJVaFVjUDoNR1IXCDYOOAEcCkYBIVVhB2dZbARoAX4FbgV1AFkHPQ1iUW8IMgozDWcKMwI8VTYBNFUlAWdZKwVwVThVIVBmDWJSbAg3DjUBaAoyATJVOQcyWToENgE4', '1511596513');
+INSERT INTO `web_token` VALUES ('298117', '4720867', '8', 'VWEAagNtDmUJWFhpXzIBOlI_aUXRQcwh4CmVSJVA6BWJXaQpkBDoLM1tlC2QKMAQ6BmsMOVU7BSsPYwQ1BWAGNFUrADgDYg4zCTFYLV9vATZSMlE3UCsIbQo4UjVQNQU6VzYKMgQ1CzZbZQtqCmcEJAYyDGxVYAVpD3AEbwV1Bl9VbwBvAz0ONAkwWDJfZgE_aUjFRZVAgCG4KeFInUD0FcVdhCmUEOgs0W2ALYgoyBDcGagw4VTMFNA8z', '1511597026');
+INSERT INTO `web_token` VALUES ('298118', '4720868', '8', 'VGANZ1c5WzAPXl9uWjdXbFQ5UXQEJwNzCmVYLwxmBmFZZw9hDTMLQQkzD2APNgU3UDVWYQBuVnhcFwA8BTYFMlQqDTJXFlsQDzNfKlpqV2VUM1FrBH8DMQozWB8MMQYwWTMPRQ1ICzUJPw8SD0MFJVBkVjYANVY6XCMAawV1BVxUbg1iV2lbYQ82XzVaY1dpVDdRagR0A2UKeFgtDGEGcllvD2ANMws0CTIPZg83BTZQPFZtAGZWbVxk', '1511598082');
+INSERT INTO `web_token` VALUES ('298119', '4720868', '8', 'BTEJY1U7DGcAUQEwDGEMN1wxU3ZRcgV1CWZYL1E7UTYCPFk3DTMMRlthWzRaYwU3B2JWYQBuBykAS1RoUGMEMwV7CTZVFAxHADwBdAw8DD5cO1NpUSoFNwkwWB9RbFFnAmhZEw1IDDJbbVtGWhYFJQczVjYANQdrAH9UP1AgBF0FPwlmVWsMNgA5AWsMNQwyXD9TaFEhBWMJe1gtUTxRJQI0WTYNMwwzW2BbMlpiBTYHa1ZsAGcHMwA_a', '1511599175');
+INSERT INTO `web_token` VALUES ('298120', '4720869', '8', 'VWFaMFY4CmEPXgg5D2IDOFwxBSAFJgNzCmVUI1U_aVTJZZwBuDTNda1xgAToPZw04UWUNNlEwCDlcMFk_aAjEEOlU0WmJWZAoiD2AIMw9lA2pcfAVoBScDXwppVDVVbFVnWT0AOQ0_bXWtcZAFgDyANblF8DX5Rbgh5XDNZOAI7BDNVM1pgVmQKMQ84CGkPPgM3XDE=', '1511599828');
+INSERT INTO `web_token` VALUES ('298121', '4720870', '8', 'VmIOZAVrCmEBUAo7XzINNgZrVHEHJFIiCWYFclU_aBmEHOVwyDTNbEVthCWYNNAAyXThQZwBuUX8AS1VpBzQJPlYoDjEFRApBAT0Kf19vDT8GYVRuB3xSYAkwBUJVaAYwB21cFg1IW2VbbQkUDUEAIF1pUDAANVE9AH9VPgd3CVBWbA5hBTsKMAE4CmBfZg0zBmRUZwd3UjQJewVwVTgGcgcxXDMNM1tkW2AJYA01ADBdOFBiAGdRZgA4', '1511601142');
+INSERT INTO `web_token` VALUES ('298122', '4720871', '8', 'BTELYVc5AGtbClprCmcAO1M_bUXRVdlYmWjUDdAZsBmFRbw9hUW9YblxgATpfNwM2VWEBOlAxVmcLZ1k_aV2QBPwVkCzNXZQAoWzRaYQpgAGlTc1E8VXdWClo5A2IGPwY0UTUPNlFiWG5cZQFoX3ADYFV4AXJQb1YnC2RZOFduATYFYwsxV2UAOFtlWjMKMgAwUzU=', '1511601163');
+INSERT INTO `web_token` VALUES ('298123', '4720871', '8', 'UGQMZgNtXzQLWg08C2ZRalQ5DClYewh4DGMEc1I4BGNYZlwyUG4NO11hCDMMZAUwATUNNlAxVGUAbFYwV2QGOFAxDDQDMV93C2QNNgthUThUdAxhWHoIVAxvBGVSawQ2WDxcZVBjDTtdZAhhDCMFZgEsDX5Qb1QlAG9WN1duBjFQNgw2AzFfZws1DWQLNFFuVDU=', '1511601694');
+INSERT INTO `web_token` VALUES ('298124', '4720870', '8', 'AzcJYwRqAGsIWQ8_bCWRRalc6AidRclYmAG9XIAVvVDMEOl0zBzkNRw81AW4AOQQ2BmNUY1I8AS9aEVVpUGMBNgN9CTYERQBLCDQPegk5UWNXMAI4USpWZAA5VxAFOFRiBG5dFwdCDTMPOQEcAEwEJAYyVDRSZwFtWiVVPlAgAVgDOQlmBDoAOggxD2UJMFFvVzUCMVEhVjAAclciBWhUIAQyXTIHOQ0yDzQBaAA4BDQGY1RmUjMBO1pn', '1511601797');
+INSERT INTO `web_token` VALUES ('298125', '4720871', '8', 'WGwPZQFvWDNcDQo7DWACOVQ5ByJUd1MjC2QEcw1nBWJRbwhmUG5faQs3CDMMZAcyADQHPFY3AzILZwNlUmFSbFg5DzcBM1hwXDMKMQ1nAmtUdAdqVHZTDwtoBGUNNAU3UTUIMVBjX2kLMghhDCMHZAAtB3RWaQNyC2QDYlJrUmVYPg81ATNYYFxiCmcNNwI2VDY=', '1511605327');
+INSERT INTO `web_token` VALUES ('298126', '4720873', '8', 'AzdcNgxiCWJfDl1sDmNVblE8U3ZXdAZ2XDNRJlI4B2BVawxiBTsIPl1hDjUOZlVgAjZWbVQ1BDVaNgNlVmUEOgNiXGQMPgkhXzBdZg5kVTxRcVM_bV3UGWlw_aUTBSawc1VTEMNQU2CD5dZA5lDiFVNgIvViVUawR1WjUDYlZvBDMDZVxmDD4JMV9hXTAONFVrUTw=', '1511605388');
+INSERT INTO `web_token` VALUES ('298127', '4720873', '8', 'AzcJYwVrCWJaCw08WDVQa1Y7ByJXdAh4XTJVIgRuCW4FOw1jVmgBNw0xXWZaMgI3VWEEPwdmADELZ1E3VmUEOgNiCTEFNwkhWjUNNlgyUDlWdgdqV3UIVF0_bVTQEPQk7BWENNFZlATcNNF02WnUCYVV4BHcHOABxC2RRMFZvBDMDZQkzBTQJNlpmDWdYZlBgVjo=', '1512122769');
 
 -- ----------------------------
 -- Table structure for web_welfare

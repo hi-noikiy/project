@@ -28,7 +28,7 @@ function write_log($dirName, $logName, $str) {
 }
 // 充值成功写入游戏库
 // 参数说明：充值方式,服务区ID,充值类型,帐号ID,定单号
-function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8, $i=0,$wap=0) {
+function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8, $i=0,$wap=0,$id_buygoods=0) {
 	$i++;
     $sid = togetherServer($ServerID);
     $table = betaSubTable($sid, 'u_card', 1000);
@@ -51,19 +51,26 @@ function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8,
 	}
 	$rows = @mysqli_fetch_assoc($query);
 	if ($rows['count'] == 0) {
-		$sql = "insert into $table(data,account_id,ref_id,time_stamp,used,type,server_id)";
-		$sql = $sql . " values('$money',$PayID,'$OrderID',$time_stamp,0,'$type','$ServerID')";
+		$sql = "insert into $table(data,account_id,ref_id,time_stamp,used,type,server_id";
+		$mysql = " values('$money',$PayID,'$OrderID',$time_stamp,0,'$type','$ServerID'";
 		if($wap == 1){
-			$sql = "insert into $table(data,account_id,ref_id,time_stamp,used,type,server_id,wap_flag)";
-			$sql = $sql . " values('$money',$PayID,'$OrderID',$time_stamp,0,'$type','$ServerID',$wap)";
+			$sql .= ',wap_flag';
+			$mysql .= ",'$wap'";
 		}
+		if($id_buygoods){
+			$sql .= ',id_buygoods';
+			$mysql .= ",'$id_buygoods'";
+		}
+		$sql .= ')';
+		$mysql .= ')';
+		$sql = $sql . $mysql;
 		
 		if (mysqli_query ($conn, $sql ) == false) {
 			write_log (ROOT_PATH."log", "card_err_", "sql=$sql, ".mysqli_error($conn)." ".date ("Y-m-d H:i:s")."\r\n");
 			gameOrder($OrderID); //更新订单状态
 			//执行失败再次请求
 			if($i == 1){
-				WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type = 8, $i,$wap);
+				WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type = 8, $i,$wap,$id_buygoods);
 			}
 		} else {
 			write_log (ROOT_PATH."log", "card_true_", "ServerID=$ServerID,sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
@@ -205,7 +212,7 @@ function SAddData($data){
 	}
 }
 
-function sendTongjiData($gameId, $accountId,$serverId,$channel,$lev=0,$money,$orderId,$isNew=1,$appId,$isPay=0 , $isbt = '2' ,$created = 0){
+function sendTongjiData($gameId, $accountId,$serverId,$channel,$lev=0,$money,$orderId,$isNew=1,$appId,$isPay=0, $isbt = '2' ,$created = 0){
     $tongjiArr = array();
     $tongjiArr['accountid'] = $accountId;
     $tongjiArr['serverid'] = $serverId;

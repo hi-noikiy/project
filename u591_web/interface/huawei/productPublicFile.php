@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
 
-$filename = dirname(__FILE__)."/payPublicKey.pem";
+$filename = dirname(__FILE__)."/payPublicKey1.pem";
 	
 	@chmod($filename, 0777);
 	@unlink($filename);
