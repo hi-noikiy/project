@@ -19,6 +19,7 @@ $gameId = $cpOrderIdArr[0];
 $serverId = $cpOrderIdArr[1];
 $accountId = $cpOrderIdArr[2];
 $type = $cpOrderIdArr[3];
+$isgoods = intval($cpOrderIdArr[4]);
 global $key_arr;
 $secKey = $key_arr[$gameId][$type]['secKey'];
 $array = array();
@@ -75,7 +76,7 @@ if (mysqli_query($conn,$sql) == False){
     $isPay = 1;
     if($array['order_status'] == 1){
         $isPay = 0;
-        WriteCard_money(1,$serverId, $PayMoney,$accountId, $order_id);
+        WriteCard_money(1,$serverId, $PayMoney,$accountId, $order_id,8,0,0,$isgoods);
     }
     //统计
     global $tongjiServer;

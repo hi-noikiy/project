@@ -19,6 +19,9 @@ $key_arr = array(
     			'iosyn'=>array('apiKey'=>'pem/yn.pem'),
     			'androidels'=>array('apiKey'=>'AAAAseXPhnk:APA91bGlI9q_tOyaSJlXEZHRQUpEGFVbV-ZkZ2cLKOeFZ3-HguGXoET_eMeMJmUsAdceF_FAZaIKwK8iT6kTkXPdt1X1mmyE61mEpVPXT6hUO4Ti6rmIQlMbjj5Y-QuGX6G1vCMYP8Bu'),
     			'iosels'=>array('apiKey'=>'pem/els.pem'),
+    			'androidels2'=>array('apiKey'=>'AAAAPUCRPZU:APA91bF4_l_QuhmDeINKphVyPx27ENw_8FNEkyLJyvAl_IttVIl83johaMarrl5hUWeuaO556_whDm3hdE4z9XU3mH2rrp-STH9s907yR3_pTWTS3jBjqFO8fMKEkLF19FeBeKQXmmF9'),
+    			'androidels3'=>array('apiKey'=>'AAAA6T-qdI0:APA91bFwpLq0I34_T_2oiloT4uzz88VDRmS2RhiYjSIwMqrot-gyaH_LOqn2wYyG4HZRLv0sdG2mQyrs4Fo0aKqK5zDY_2NArKvQcjyOh9R-Rtr0Za_mIy88Iz_dqv7SQrsR9LFfur9L'),
+    			 
     	),
 );
 
@@ -59,7 +62,7 @@ function send_apn_notify($deviceToken,$message,$apnsCert) {
 	$serverUrl   = "ssl://gateway.sandbox.push.apple.com:2195";//"ssl://gateway.sandbox.push.apple.com:2195";push服务器，这里是开发测试服务器
 	$badge   = ( int ) $_GET ['badge'] or $badge = 2;
 	$sound   = $_GET ['sound'] or $sound = "default";
-	$body    = array('aps' => array('alert' => $message , 'badge' => $badge , 'sound' => $sound));
+	$body    = array('aps' => array('alert' => $message));
 	$streamContext = stream_context_create();
 	stream_context_set_option ( $streamContext, 'ssl', 'local_cert', $apnsCert );
 	stream_context_set_option ( $streamContext, 'ssl', 'passphrase', $pass );

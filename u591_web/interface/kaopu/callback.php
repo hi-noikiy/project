@@ -33,6 +33,7 @@ $ywordernumArr=explode('_', $ywordernum);
 $gameId = $ywordernumArr[0];
 $serverId= $ywordernumArr[1];
 $accountId= $ywordernumArr[2];
+$isgoods= $ywordernumArr[4];
 
 if(!$gameId || !$serverId || !$accountId){
 	$str= "parameters error: post=$post, get=$get,".date("Y-m-d H:i:s")."\r\n";
@@ -94,7 +95,7 @@ if($status == '1'){
 		write_log(ROOT_PATH."log","kaopu_callback_error_log_",$str);
 		exit("-3");
 	}
-	WriteCard_money(1,$serverId, $PayMoney,$accountId, $orderid);
+	WriteCard_money(1,$serverId, $PayMoney,$accountId, $orderid,8,0,0,$isgoods);
 	$msg = urlencode('成功');
 	//统计数据
 	global $tongjiServer;

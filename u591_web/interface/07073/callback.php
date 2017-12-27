@@ -16,6 +16,7 @@ $extendsInfoArr = explode('_', $extendsInfo);
 $gameId = $extendsInfoArr[0];
 $serverId = $extendsInfoArr[1];
 $accountId = $extendsInfoArr[2];
+$isgoods = $extendsInfoArr[4];
 //去掉不参与签名的元素
 unset($data['sign']);
 unset($data['extendsInfo']);
@@ -62,7 +63,7 @@ if(!$result){
         write_log(ROOT_PATH."log","07073_callback_error_","sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
         exit('failure');
     }
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$gameId];

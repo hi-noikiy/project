@@ -34,6 +34,7 @@ if (empty($GLOBALS["HTTP_RAW_POST_DATA"])) {
 	$server_id = $exInfoArr[1];
 	$account_id = $exInfoArr[2];
 	$type = $exInfoArr[3];
+	$isgoods = intval($exInfoArr[4]);
 	global $key_arr;
 	$msg = SDKServices::verifyNotify($ttsign, $urldata,$key_arr[$type]['chargekey']);
 	write_log(ROOT_PATH."log","TTyuyin_callback_all_"," post=$post,get=$get, result=$msg, ".date("Y-m-d H:i:s")."\r\n");
@@ -78,7 +79,7 @@ if (empty($GLOBALS["HTTP_RAW_POST_DATA"])) {
 			write_log(ROOT_PATH."log","TTyuyin_callback_error_", $sql.", post=$post, get=$get, data=$urldecodeData, ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
 			exit('FAIL');
 		} else {
-			WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
+			WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);
 			//统计数据
 			global $tongjiServer;
             $tjAppId = $tongjiServer[$game_id];

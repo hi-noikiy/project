@@ -24,6 +24,9 @@ $game_id = $privateFieldArr[0];
 $server_id = $privateFieldArr[1];
 $account_id = $privateFieldArr[2];
 
+$goodsarr = explode('_', $privateFieldArr[4]);
+$isgoods = intval($goodsarr[0]);
+
 global $key_arr;
 $privateKey = $key_arr[$game_id]['appkey'];//开发者自定义参数
 //sign=md5(cpTradeNo|gameId|userId|roleId|serverId|channelId|itemId|itemAmount|privateField|money|status|privateKey)
@@ -63,7 +66,7 @@ if($sign == $dataArr['sign'] && $dataArr['status'] == 0){
 		write_log(ROOT_PATH."log","hanfeng_callback_error_", $sql.", post=$post, get=$get, ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
 		exit('-1');
 	} else {
-		WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
+		WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);
 		//统计数据
         global $tongjiServer;
 		$tjAppId = $tongjiServer[$game_id];

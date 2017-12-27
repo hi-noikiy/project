@@ -18,8 +18,8 @@ $key_arr = array(
 						'app_key'=>'YcemulRSAPv7zrdH0i7I99Ejp0fw2UtIZ1gXfL4SB196Aocp0sKDiebrSsa',//'cwxYc6p5RuN7X6_J1Cx1Pc8PWS1NfPBHkodsNFg1xPjHuBuKdacWS9IHfpS',
 				),
 				'els'=>array(
-						'business'=>'wenschan.hotmail.com',//'821586178@qq.com',//卖家帐号 也就是收钱的帐号
-						'currency_code'=>'USD',// 货币
+						'business'=>'wenschan@hotmail.com',//'821586178@qq.com',//卖家帐号 也就是收钱的帐号
+						'currency_code'=>'RUB',// 货币
 						'return'=>'http://pokeruweb.u776hainiu.com/interface/paypal/payment.php',// 支付成功后网页跳转地址
 						'notify_url'=>'http://pokeruweb.u776hainiu.com/interface/paypal/callback.php',//'http://wanda.imwork.net:31783/interface/paypal/callback.php',//支付成功后paypal后台发送订单通知地址
 						'cancel_return'=>'http://pokeruweb.u776hainiu.com/interface/paypal/cancel.php',//用户取消交易返回地址

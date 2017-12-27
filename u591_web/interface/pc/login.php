@@ -19,8 +19,8 @@ if(!$userToken || !$gameId){
     exit('2 0');
 }
 
-$data['tokenid'] = $userToken;  //获取的user_token
-$url = "http://pk.yilewan.com/login/checkToken";
+//$data['tokenid'] = $userToken;  //获取的user_token
+$url = "http://pk.yilewan.com/login/checkToken?token=$userToken";
 $rdata = https_post($url, $data);
 
 write_log(ROOT_PATH."log","pc_result_log_","result=".$rdata.", post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
@@ -59,5 +59,5 @@ if($rdata){
         }
     }
 }
-write_log(ROOT_PATH."log","pc_login_error_","result=$rdata, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
+write_log(ROOT_PATH."log","pc_login_error_","result=".json_encode($rdata).", post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 exit('4 0');

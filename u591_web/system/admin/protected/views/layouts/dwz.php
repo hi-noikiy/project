@@ -35,9 +35,6 @@
                     <li class="nav-item dl-selected"><div class="nav-item-inner nav-home">系统管理</div></li>
                     <li class="nav-item"><div class="nav-item-inner nav-inventory">充值管理</div><div class="nav-item-mask"></div></li>
                     <li class="nav-item"><div class="nav-item-inner nav-marketing">运营管理</div><div class="nav-item-mask"></div></li>
-                    <?php if($this->mangerInfo['game_id'] == 9 || $this->mangerInfo['game_id'] == 0){ ?>
-                    <li class="nav-item"><div class="nav-item-inner nav-supplier">时尚管理</div><div class="nav-item-mask"></div></li>
-                    <?php } ?>
                     <!-- <li class="nav-item"><div class="nav-item-inner nav-order"></div><div class="nav-item-mask"></div></li>
                     <li class="nav-item"><div class="nav-item-inner nav-product-certified"></div><div class="nav-item-mask"></div></li>
                     <li class="nav-item"><div class="nav-item-inner nav-sample"></div><div class="nav-item-mask"></div></li>         -->           

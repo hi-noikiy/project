@@ -25,7 +25,7 @@ if(!$accessToken || !$gameId || !$appUid){
 $appId = $key_arr[$gameId]['appId'];
 $url = "https://passport.bignox.com/sso/o2/validation?accessToken=$accessToken&uid=$appUid&appId=$appId";
 
-$result = file_get_contents($url);
+$result = https_post($url,array());
 
 $resultArr = json_decode($result, true);
 if(isset($resultArr['errNum']) && $resultArr['errNum'] == 0){

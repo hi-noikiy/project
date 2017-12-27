@@ -26,6 +26,7 @@ $partnerTransactionNoArr = explode('_', $array['partnerTransactionNo']);
 $gameId = $partnerTransactionNoArr[0];
 $serverId = $partnerTransactionNoArr[1];
 $accountId = $partnerTransactionNoArr[2];
+$isgoods = $partnerTransactionNoArr[4];
 
 global $key_arr;
 $appSecret = $key_arr[$gameId]['appSecret'];
@@ -77,7 +78,7 @@ if($array['statusCode'] == '0000'){
     $rpCode =1;
     $isPay = 0;
     PayLog_chongchong($order_id,$rpCode,$PayMoney);//更新充值记录
-    WriteCard_money(1,$serverId, $PayMoney,$accountId, $order_id);
+    WriteCard_money(1,$serverId, $PayMoney,$accountId, $order_id,8,0,0,$isgoods);
 }else{
 	$isPay = 1;
     $rpCode =2;

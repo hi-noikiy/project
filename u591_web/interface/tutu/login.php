@@ -28,7 +28,7 @@ $verfy = md5('www.feng.com'.$openId.$openKey.$mappKey);
 
 $url = "http://cp.tutuapp.com/index.php?r=sk/user/verfyUserLogin&open_id=$openId&open_key=$openKey&mapp_key=$mappKey&verfy=$verfy";
 
-$result = file_get_contents($url);
+$result = https_post($url,array());
 $resultArr = json_decode($result, true);
 write_log(ROOT_PATH."log","tutu_result_log_","url=$url, result=$result,".date("Y-m-d H:i:s")."\r\n");
 if(isset($resultArr['success']) && $resultArr['success']==1){

@@ -30,6 +30,7 @@ $exorderno_arr = explode("_", $exorderno);
 $game_id = intval($exorderno_arr[0]);
 $server_id = intval($exorderno_arr[1]);
 $account_id = intval($exorderno_arr[2]);
+$isgoods = intval($exorderno_arr[4]);
 
 if(!$game_id || !$server_id || !$account_id){
 	write_log(ROOT_PATH."log","lenovo_callback_error_", "param error, get=$get, post=$post, ".date("Y-m-d H:i:s")."\r\n");
@@ -97,7 +98,7 @@ if (mysqli_query($conn,$sql) == False){
 $isPay = 0;
 if($result==0){
 	lenovoPayLog($order_id,1,$PayMoney);//更新充值记录
-	WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
+	WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);
 }else{
 	$isPay =1;
 	lenovoPayLog($order_id,2,$PayMoney);//更新充值记录

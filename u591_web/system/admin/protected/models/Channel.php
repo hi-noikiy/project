@@ -36,7 +36,7 @@ class Channel extends CActiveRecord{
 	}
 	
 	public function getInfo($cid = 0){
-	    $where = ($cid != 0) ? "cid='$cid' and status=1" : 'status=1';
+	    $where = ($cid != 0) ? "cid in ($cid) and status=1" : 'status=1';
 		$sql = "select * from {{channel}} where $where";
 		$rs = $this->findAllBySql($sql);
 		$arr = array();

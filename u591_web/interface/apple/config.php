@@ -28,6 +28,13 @@ $appleIdVal = array(
 		'jhgfj_328'            =>'328',
 		'xdfgb_648'            =>'648',
 		
+		'cneiwu_6'              =>'6',
+		'cfe_25'             =>'25',
+		'fwrfew_30'             =>'30',
+		'sgsrgrfbvg_128'            =>'128',
+		'asdwqa_328'            =>'328',
+		'freg_648'            =>'648',
+		
 		'xdscw_6'              =>'6',
 		'gteg_25'             =>'25',
 		'ujebgh_30'             =>'30',

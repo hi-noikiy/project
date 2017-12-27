@@ -12,7 +12,6 @@
 include_once 'config.php';
 $post = serialize($_POST);
 write_log(ROOT_PATH."log","actinfos_log_","post=$post, ".date("Y-m-d H:i:s")."\r\n");
-$serverid = 8001;
 $serverid = intval($_POST['serverid']);
 $sign = trim($_POST['sign']);
 $appKey = $key_arr['appKey'];
@@ -24,6 +23,7 @@ if($sign != $my_sign)
 
 $sid = substr($serverid, 0,strlen($serverid)-3).'001';
 $conn = SetConn($sid);
+$serverid = togetherServer($serverid);
 $sql = "select data from u_statistic where serverid = '$serverid' and event_type='27' limit 1";
 if(false == $query = mysqli_query($conn,$sql)){
 	write_log(ROOT_PATH."log","actinfos_error_",$sql.",post=$post, ".date("Y-m-d H:i:s")."\r\n");

@@ -17,6 +17,7 @@ $ext_arr = explode("_", $ext);
 $game_id = intval($ext_arr[0]);
 $server_id = intval($ext_arr[1]);
 $account_id = intval($ext_arr[2]);
+$isgoods = intval($ext_arr[4]);
 global $key_arr;
 $payment_key = $key_arr[$game_id]['payment_key'];
 $addCpOrder = isset($cpOrder) ? "&cpOrder=$cpOrder" : '';
@@ -72,7 +73,7 @@ if($result==1){
 	$isPay = 0;
     $rpCode =1;
     dlPayLog($order_id,$rpCode,$PayMoney);//更新充值记录
-    WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
+    WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);
 }else{
 	$isPay = 1;
     $rpCode =2;

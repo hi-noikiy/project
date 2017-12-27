@@ -1,4 +1,5 @@
 ﻿
+
 <!DOCTYPE html>
     <html>
     <head>
@@ -24,20 +25,21 @@
                 }
             </style>
     </head>
-    <body>
-        <h1>默认主题---登录内嵌页  (无布局)</h1>
-        <div id="main"></div>
+    <body style="text-align:center;	margin-left:auto;margin-right:auto;">
+        <h1>登录</h1>
+        <div id="main" align="center"></div>
 
         <script type="text/javascript" src="http://res.yilewan.com/etpResource/js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="http://pk-res.yilewan.com/home/js/sdk/yilewanClientGameSDK.1.0.1.min.js"></script>
         <script type="text/javascript">
-
+			function SCBrowserCallMono(data)
+			{
+				return JSON.stringify(data);
+			}
             window.clientSDK.init({
                 el:'#main',
-                gameId:'land',
+                gameId:'kdygol',
                 defaultMainPage: 'login',
-                defaultArticle: {'news':5},
-                defaultSection: {'mini_slider':5},
                 checkFomCallback: function(mes,obj){
                     if(mes){
                         $('.error-txt').html(mes).css("visibility", "visible");
@@ -58,7 +60,8 @@
 
                     SDK.$el.on("loginSuccess", function(event,res){
                         $('.error-txt').html("").css("visibility", "hidden");
-                        console.log(res.data);
+                        console.log(JSON.stringify(res.data));
+						SCBrowserCallMono(res.data);
                    });
 
                     SDK.$el.on("reging", function(){

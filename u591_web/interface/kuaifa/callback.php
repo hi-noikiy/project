@@ -28,6 +28,7 @@ $gameId = $extendArr[0];
 $serverId = $extendArr[1];
 $accountId = $extendArr[2];
 $type = $extendArr[3];
+$isgoods = intval($extendArr[4]);
 global $key_arr;
 $secretKey = $key_arr[$gameId][$type]['securutykey'];
 $signStr = implode('&',$data);
@@ -71,7 +72,7 @@ if (mysqli_query($conn,$sql) == False){
 } else {
     if($_POST['result'] == 0){
         ChangPayLog($order_id, 1, $paymoney);
-        WriteCard_money(1,$serverId, $paymoney,$accountId, $order_id);
+        WriteCard_money(1,$serverId, $paymoney,$accountId, $order_id,8,0,0,$isgoods);
         //统计数据
         global $tongjiServer;
         $tjAppId = $tongjiServer[$gameId];

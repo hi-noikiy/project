@@ -98,7 +98,7 @@ if ($notify->checkSign()) {
         echo json_encode(array('errno' => "-1", 'errmsg' => 'insert order error.', 'data' => ''));
         exit();
     }
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$gift);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$gameId];

@@ -29,6 +29,7 @@ $trade_no_arr = explode("_", $trade_no);
 $game_id = $trade_no_arr[0];
 $server_id = $trade_no_arr[1];
 $account_id = $trade_no_arr[2];
+$isgoods = intval($trade_no_arr[4]);
 
 $app_id = $arr_key[$game_id]['app_id'];
 $app_key = $arr_key[$game_id]['app_key'];
@@ -72,7 +73,7 @@ if (mysqli_query($conn,$sql) == False){
     write_log(ROOT_PATH."log","tongbu_callback_error_", $sql.", post=$post, get=$get, ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
     exit('{"status":"fail"}');
 } else {
-	WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
+	WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);
 	//统计数据
     global $tongjiServer;
 	$tjAppId = $tongjiServer[$game_id];

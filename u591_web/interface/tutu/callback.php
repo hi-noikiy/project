@@ -14,6 +14,7 @@ $cpOrderNoArr = explode('_', $cpOrderNo);
 $gameId = $cpOrderNoArr[0];
 $serverId = $cpOrderNoArr[1];
 $accountId = $cpOrderNoArr[2];
+$isgoods = intval($cpOrderNoArr[4]);
 global $key_arr;
 $appKey = $key_arr[$gameId]['appkey'];
 $skey = $key_arr[$gameId]['skey'];
@@ -54,7 +55,7 @@ if(!$result){
         write_log(ROOT_PATH."log","tutu_callback_error_","sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
         exit('failure');
     }
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$gameId];

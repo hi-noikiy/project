@@ -22,6 +22,7 @@ $gameId = $cpOrderId_arr[0];
 $serverId = $cpOrderId_arr[1];
 $accountId = $cpOrderId_arr[2];
 $type = $cpOrderId_arr[3];
+$isgoods = intval($cpOrderId_arr[4]);
 global $key_arr;
 $appSecret = $key_arr[$gameId][$type]['appSecret'];
 $signature_check = hash_hmac("sha1",$text,$appSecret);
@@ -60,7 +61,7 @@ if($signature_check == $signature){
         write_log(ROOT_PATH."log","xiaomi_callback_error_","sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
         exit('{"errcode":1525}');
     }
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$gameId];

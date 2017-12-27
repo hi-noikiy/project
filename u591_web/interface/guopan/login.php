@@ -34,7 +34,7 @@ $t = time();
 $sign = md5($game_uin.$appid.$t.$appsecret) ;
 $url = "http://guopan.cn/gamesdk/verify/?game_uin=$game_uin&appid=$appid&token=$token&t=$t&sign=$sign";
 
-$result = file_get_contents($url);
+$result = https_post($url,array());
 write_log(ROOT_PATH."log","guopan_login_result_log_"," url=$url, result=$result, post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
 if($result != 'true'){
 	write_log(ROOT_PATH."log","guopan_login_error_log_","url=$url, result=$result, post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");

@@ -27,7 +27,7 @@ if($sign != $data['sign']) {
 }
 $serverId = $_POST['serverId'];
 $roleId = $_POST['roleId'];
-$myconn = mydb();
+$myconn = mydb($serverId);
 if($myconn == false) return false;
 $table = betaSubTable($serverId, 'u_player_activity', '1000');
 $sql = "select type5 from $table where player_id='$roleId' limit 1";

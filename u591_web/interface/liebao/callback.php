@@ -30,6 +30,8 @@ if(!isset($attachArr[0]) || !isset($attachArr[1]) || !isset($attachArr[2])){
 $gameId = $attachArr[0];
 $serverId = $attachArr[1];
 $accountId = $attachArr[2];
+$isgoods = intval($attachArr[4]);
+
 global $key_arr;
 $appGameId = $key_arr[$gameId]['gameId'];
 $appKey = $key_arr[$gameId]['appKey'];
@@ -77,7 +79,7 @@ if (mysqli_query($conn,$sql) == False){
     write_log(ROOT_PATH."log","liebao_callback_error_", $sql.", post=$post, get=$get, ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
     exit('fail');
 } else {
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
 }
 global $tongjiServer;
 $tjAppId = $tongjiServer[$gameId];

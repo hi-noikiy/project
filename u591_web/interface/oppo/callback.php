@@ -25,7 +25,7 @@ if($re==1){
     $game_id = intval($attachArr[0]);
     $server_id = intval($attachArr[1]);
     $account_id = intval($attachArr[2]);
-    $type = $attachArr[3];
+    $isgoods = intval($attachArr[4]);
     global $accountServer;
     $accountConn = $accountServer[$game_id];
     $conn = SetConn($accountConn);
@@ -57,7 +57,7 @@ if($re==1){
         write_log(ROOT_PATH."log","oppo_callback_error_", "sql error! $sql,".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
         exit("f");
     }
-    WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
+    WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$game_id];

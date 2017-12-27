@@ -24,6 +24,7 @@ $callbackInfo_arr = explode("_",$callbackInfo);
 $game_id = intval($callbackInfo_arr[0]) ? intval($callbackInfo_arr[0]) : 8;
 $server_id = intval($callbackInfo_arr[1]);
 $pay_id = intval($callbackInfo_arr[2]);
+$isgoods =  intval($callbackInfo_arr[4]);
 
 //$channel = $callbackInfo_arr[3];
 //$apiKey = $key_arr[$game_id][$channel]['apiKey'];
@@ -76,7 +77,7 @@ if(!$result){
     $isPay = 0;
     if($orderStatus=='S'){
         ChangPayLog($orderId, 1, $PayMoney);
-        WriteCard_money(1,$server_id, $PayMoney,$pay_id, $orderId);
+        WriteCard_money(1,$server_id, $PayMoney,$pay_id, $orderId,8,0,0,$isgoods);
     }else if($orderStatus=='F'){
         $isPay = 1;
         ChangPayLog($orderId,2,$PayMoney);

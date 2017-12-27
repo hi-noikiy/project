@@ -44,6 +44,7 @@ $custominfoArr = explode('_', $custominfo);
 $gameId = $custominfoArr[0];
 $serverId= $custominfoArr[1];
 $accountId= $custominfoArr[2];
+$isgoods = $custominfoArr[4];
 $appKey = $arr_key[$gameId]['appKey'];
 
 $mySign = httpBuidQuery($array, $appKey);
@@ -90,7 +91,7 @@ if($success == 1){
 		exit("fail");
 	}
 
-	WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+	WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
 	//统计数据
     global $tongjiServer;
 	$tjAppId = $tongjiServer[$gameId];

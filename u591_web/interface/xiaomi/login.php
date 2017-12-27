@@ -22,7 +22,7 @@ $appSecret = $key_arr[$game_id][$type]['appSecret'];
 $text = "appId=$appId&session=$session_id&uid=$uid";
 $signature = get_signature($text, $appSecret);
 $url = "http://mis.migc.xiaomi.com/api/biz/service/verifySession.do?appId=$appId&session=$session_id&uid=$uid&signature=$signature";
-$result = file_get_contents($url);
+$result = https_post($url,array());
 write_log(ROOT_PATH."log","xiaomi_login_result_log_"," url=$url, result=$result, ".date("Y-m-d H:i:s")."\r\n");
 
 $result_arr = json_decode($result,true);

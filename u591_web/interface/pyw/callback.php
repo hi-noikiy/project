@@ -20,6 +20,7 @@ $gameId = $extendsInfoArr[0];
 $serverId = $extendsInfoArr[1];
 $accountId = $extendsInfoArr[2];
 $type = $extendsInfoArr[3];
+$isgoods = intval($extendsInfoArr[4]);
 global $key_arr;
 $success = '{"ack":200,"msg":"Ok"}';
 $data['apiSecret'] = $key_arr[$gameId][$type]['appSecret'];
@@ -64,7 +65,7 @@ if(!$result){
         exit('FAILURE');
     }
     //write_log(ROOT_PATH."log","pyw_callback_info_","OK".date("Y-m-d H:i:s")."\r\n");
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$gameId];

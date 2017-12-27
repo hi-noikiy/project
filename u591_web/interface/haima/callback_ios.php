@@ -29,6 +29,7 @@ $gameId = $userParamArr[0];
 $serverId = $userParamArr[1];
 $accountId = $userParamArr[2];
 $type = $userParamArr[3];
+$isgoods = $userParamArr[4];
 global $key_arr;
 $appKey = $key_arr[$gameId][$type]['appKey'];
 
@@ -80,7 +81,7 @@ $isPay = 1;
 if($trade_status == '1'){
     $isPay = 0;
     ChangPayLog($orderId, 1, $payMoney);
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
 }
 global $tongjiServer;
 $tjAppId = $tongjiServer[$gameId];

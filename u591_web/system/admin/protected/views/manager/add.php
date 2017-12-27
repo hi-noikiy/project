@@ -48,7 +48,7 @@
 
                 <tr>
                     <th style="width:130px;line-height:30px;text-align:right"><?=CHtml::activeLabel($model, 'channel_id'); ?></th>
-                    <td><?=CHtml::activeDropDownList($model,'channel_id', $channelInfo); ?></td>
+                    <td><?=CHtml::activeTextField($model,'channel_id', array('placeholder'=>'输入分包ID，多个逗号隔开.默认不需要.', 'class'=> 'input-xlarge',  'value'=>'')); ?></td>
                 </tr>
 
                 <tr>

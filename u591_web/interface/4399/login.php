@@ -23,9 +23,9 @@ if(!$openId || !$token || !$game_id){
 	write_log(ROOT_PATH."log","4399_login_error_"," parameter is error ,post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
 	exit('2 0');
 }
-
+$data = array();
 $url = "http://m.4399api.com/openapi/oauth-check.html?state=$token&uid=$openId";
-$result = file_get_contents($url);
+$result =https_post($url, $data);
 $resultArr = json_decode($result, true);
 write_log(ROOT_PATH."log","4399_result_log_","url=$url, result=$result,".date("Y-m-d H:i:s")."\r\n");
 if(isset($resultArr['code']) && $resultArr['code']==100){

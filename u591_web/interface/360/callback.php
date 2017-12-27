@@ -28,7 +28,8 @@ $gameId = $app_order_id_arr[0];
 $serverId = $app_order_id_arr[1];
 $accountId = $app_order_id_arr[2];
 $type = $app_order_id_arr[3];
-
+$type = $app_order_id_arr[3];
+$isgoods = $app_order_id_arr[4];
 $data = $_REQUEST;
 
 unset($data['sign'],$data['sign_return']);
@@ -77,7 +78,7 @@ if($sign_my==$sign){//验证成功
         write_log(ROOT_PATH."log","xiaomi_callback_error_","sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
         exit($fail);
     }
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$gameId];

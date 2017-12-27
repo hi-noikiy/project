@@ -1,9 +1,9 @@
 <?php
 error_reporting(0);
 include_once 'config.php';
-/*$_POST['regid'] = 'dQ9lZm0xQO4:APA91bGFm3tTDxTF-YuL8QA9vKkdeUzMquYdq4P5jFDHDBS_bB0vgu0_7EW7YlOaJJW8dNd33W07Mp3M-zObx5_0TiKMcmyxLOnlXYn4NfciQyP5RfspG69W9T0ilyKmQhqe54NWGPFZ';
-$_POST['message'] = '今天登录可以免费领取大礼包一份！';
-$_POST['type'] = 'androidyn6';*/
+/*$_POST['regid'] = 'a7ce3f0b616997c96228db8e75e878600e40de02ebfd283b715e836e94719a63';
+$_POST['message'] = 'test again';
+$_POST['type'] = 'iosnm';*/
 $post = serialize($_POST);
 write_log(ROOT_PATH."log","tuisong_info_","post=$post, ".date("Y-m-d H:i:s")."\r\n");
 $reg_id = $_POST['regid'];
@@ -28,7 +28,7 @@ function send_notify($type,$reg_id,$message,$apikey){
 				'yn'=>'',
 				'zg'=>'口袋妖怪'
 		);
-		return send_gcm_notify($reg_id,$message,$apikey,$title);
+		return send_gcm_notify($reg_id,$message,$apikey,$title['nm']);
 	}else{
 		return send_apn_notify($reg_id,$message,$apikey);
 	}

@@ -29,7 +29,7 @@ if($type == 'android')
 else
     $url = "http://kdygvs-ios.88box.com:8091/pocketgames/"; //ios url
 $url .= "client/user/verifyToken/$appId/$appUserId/$token/$sign";
-$result = file_get_contents($url);
+$result = https_post($url, array());
 $resultArr = json_decode($result, true);
 write_log(ROOT_PATH."log","gangtai_result_log_","url=$url, result=$result, ".date("Y-m-d H:i:s")."\r\n");
 if(isset($resultArr['code']) && $resultArr['code'] == 200){

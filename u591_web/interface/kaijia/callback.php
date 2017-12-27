@@ -39,6 +39,7 @@ $gameId = isset($extinfoArr[0]) ? $extinfoArr[0] : '';
 $serverId = isset($extinfoArr[1]) ? $extinfoArr[1] : '';
 $accountId = isset($extinfoArr[2]) ? $extinfoArr[2] : '';
 $type = isset($extinfoArr[3]) ? $extinfoArr[3] : '';
+$isgoods = intval($extinfoArr[4]);
 if(!$gameId || !$serverId || !$accountId)
     exit('ERROR');
 global $key_arr;
@@ -91,7 +92,7 @@ if (mysqli_query($conn,$sql) == false){
     write_log(ROOT_PATH."log","kaijia_callback_error_", $sql."  ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
     exit('ERROR');
 }
-WriteCard_money(1,$serverId,$amount,$accountId,$orderid);
+WriteCard_money(1,$serverId,$amount,$accountId,$orderid,8,0,0,$isgoods);
 //统计数据
 global $tongjiServer;
 $tjAppId = $tongjiServer[$gameId];

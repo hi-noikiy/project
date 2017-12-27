@@ -31,6 +31,8 @@ $o_idArr = explode("_", $o_id);
 $game_id = $o_idArr[0];
 $server_id = $o_idArr[1];
 $account_id = $o_idArr[2];
+$isgoods = $o_idArr[4];
+
 
 $appkey = $arr_key[$game_id]['appkey'];
 // post=a:10:{s:6:"n_time";s:19:"2016-05-24 17:08:25";s:5:"appid";s:32:"7e1f5aa92a5b2ddc4c4ae17626b68657";s:4:"o_id";s:31:"6_1201_6205530_485773677.884424";s:5:"t_fee";s:4:"0.01";s:6:"g_name";s:8:"60元宝";s:6:"g_body";s:8:"60元宝";s:8:"t_status";s:1:"1";s:9:"o_orderid";s:20:"CZ201605241708057259";s:6:"o_sign";s:32:"ca41cf1d83740eb124f6a353cb8eff15";s:7:"u_param";s:31:"6_1201_6205530_485773677.884424";}, get=a:0:{}, ip=121.40.146.217, 2016-05-24 17:08:12
@@ -74,7 +76,7 @@ if($t_status == 1){
 		write_log(ROOT_PATH."log","le8_callback_error_", $sql." ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
 		exit("fail");
 	}
-	WriteCard_money(1,$server_id, $money,$account_id, $o_orderid);
+	WriteCard_money(1,$server_id, $money,$account_id, $o_orderid,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$game_id];

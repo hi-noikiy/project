@@ -30,6 +30,7 @@ if ($notify->verify($notify_data, $sign)) {
     $game_id = $order_id_com_arr[0];
     $server_id = $order_id_com_arr[1];
     $account_id = $order_id_com_arr[2];
+    $isgoods = intval($order_id_com_arr[4]);
 
     if($result!="success"){
         write_log(ROOT_PATH."log","itools_callback_error_", "result=$notify_data, post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
@@ -71,7 +72,7 @@ if ($notify->verify($notify_data, $sign)) {
     }
     $rpCode =1;
     PayLog_itools($order_id,$rpCode,$PayMoney);//更新充值记录
-    WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
+    WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$game_id];

@@ -40,7 +40,7 @@ if(!$result_account['id']){
 	$returnarr['message'] = 'accountid is not exist';
 	exit(json_encode($returnarr));
 }
-$myconn = mydb();
+$myconn = mydb($serverId);
 if($myconn == false) return false;
 $table = betaSubTable($serverId, 'u_player', '1000');
 $sql = "select id as roleId,name as roleName,level as roleLevel,login_time as lastLoginTime,create_time as createTime from $table where account_id='{$result_account['id']}' limit 1";

@@ -66,6 +66,7 @@ class TestNotifyPayResult {
             $gameId = $extenArr[0];
             $serverId = $extenArr[1];
             $accountId = $extenArr[2];
+            $isgoods = intval($extenArr[4]);
             $conn = SetConn(88);
             $sql = "select rpCode from web_pay_log where OrderID = '$orderId' limit 1;";
             $query = @mysqli_query($conn, $sql);
@@ -101,7 +102,7 @@ class TestNotifyPayResult {
             		return NoxConstant::MSG_FAILURE;
             	}
             	
-            	WriteCard_money(1,$serverId, $PayMoney,$accountId, $orderId);
+            	WriteCard_money(1,$serverId, $PayMoney,$accountId, $orderId,8,0,0,$isgoods);
                 //统计数据
                 global $tongjiServer;
                 $tjAppId = $tongjiServer[$gameId];

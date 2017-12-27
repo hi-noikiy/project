@@ -31,6 +31,7 @@ $extraInfo_arr = explode("_", $billno);
 $game_id = intval($extraInfo_arr[0]);
 $server_id = intval($extraInfo_arr[1]);
 $account_id = intval($extraInfo_arr[2]);
+$isgoods = intval($extraInfo_arr[4]);
 
 write_log(ROOT_PATH."log","pp_callback_info_log_", "post=$post, get=$get, ip=$ip, ".date("Y-m-d H:i:s")."\r\n");
 /*if(!in_array($ip, $pp_ip)){
@@ -78,7 +79,7 @@ if($order_id && $result=='success'){
     $isPay = 0;
     if($status==0){
         ppPayLog($order_id,1,$PayMoney);//更新充值记录
-        WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);    
+        WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);    
     }else{
         $isPay = 1;
         ppPayLog($order_id,2,$PayMoney);//更新充值记录

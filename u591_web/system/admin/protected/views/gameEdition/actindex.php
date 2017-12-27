@@ -89,7 +89,7 @@
 		                    $('input[type="radio"]').change(function(){
 			                     id = $(this).attr('attrid');
 			                     status = $(this).val();
-		            			$.get("<?=$this->createUrl('gameEdition/actedit'); ?>",{id:id,status:status},function(json){});
+		            			$.get("<?=$this->createUrl('ajax/actedit'); ?>",{id:id,status:status},function(json){});
 		                    });
 	                 	});
 	              	 }

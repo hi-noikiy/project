@@ -203,11 +203,4 @@ class GameEditionController extends Controller{
     	}
     	$this->renderPartial('actupdate', array('title' =>'运营活动', 'info' => $act));
     }
-    public function actionActedit(){
-    	$id = $_GET['id'];
-    	$isShowActivity = $_GET['status'];
-    	$rs = Act::model()->findByPk($id);
-    	$rs->isShowActivity=$isShowActivity;
-    	$rs->save();
-    }
 }

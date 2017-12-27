@@ -14,6 +14,7 @@ $gameId = $gameOrderIdArr[0];
 $serverId = $gameOrderIdArr[1];
 $accountId = $gameOrderIdArr[2];
 $type = $gameOrderIdArr[3];
+$isgoods = intval($gameOrderIdArr[4]);
 global $key_arr;
 $publickey = ($type == 'android') ? $key_arr[$gameId]['android']['publickey'] : $key_arr[$gameId]['ios']['publickey'];
 
@@ -80,7 +81,7 @@ if(isset($arr['game_orderid']) && $arr['game_orderid']==$_POST['game_orderid']){
 			write_log(ROOT_PATH."log","xiao7_callbacknew_error_","sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
 			ReturnResult("failed:order error");
 		}
-        WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+        WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
 		//统计数据
         global $tongjiServer;
 		$tjAppId = $tongjiServer[$gameId];

@@ -75,6 +75,7 @@ $gameId = $extendsInfoArr[0];
 $serverId = $extendsInfoArr[1];
 $accountId = $extendsInfoArr[2];
 $type = $extendsInfoArr[3];
+$isgoods = $extendsInfoArr[4];
 $pubKey = $key_arr[$gameId][$type]['appKey'];
 $openssl_public_key = @openssl_get_publickey($pubKey);
 write_log(ROOT_PATH."log","huawei_callback_result_","content={$content},sign={$sign},openssl_public_key={$pubKey},post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
@@ -119,7 +120,7 @@ if($ok)
 			exit($fail);
 		}
 		//write_log(ROOT_PATH."log","huawei_callback_info_","OK".date("Y-m-d H:i:s")."\r\n");
-		WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+		WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
 		//统计数据
 		global $tongjiServer;
 		$tjAppId = $tongjiServer[$gameId];

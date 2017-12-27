@@ -58,7 +58,7 @@ $rs = mysqli_fetch_assoc($query);
 if(isset($rs['id'])) 
 	exit(json_encode(array('status'=>1, 'msg'=>'account  exists.')));
 
-$channel_account = strtolower($encoding).'@u591';
+$channel_account = $encoding.'@u591';
 $sql2 = "select id,NAME from account where channel_account='$channel_account' limit 1";
 if(false == $query2 = mysqli_query($conn,$sql2))
 	exit(json_encode(array('status'=>1, 'msg'=>'sql error.')));

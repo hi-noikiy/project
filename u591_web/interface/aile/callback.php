@@ -44,6 +44,7 @@ $attachArr = explode('_', $ext);
 $gameId = $attachArr[0];
 $serverId = $attachArr[1];
 $accountId = $attachArr[2];
+$isgoods = $attachArr[4];
 global $key_arr;
 $appkey = $key_arr[$gameId]['appKey'];
 $paramstr = "app_id=$app_id&cp_order_id=".urlencode($cp_order_id)."&mem_id=$mem_id&order_id=$order_id&order_status=$order_status&pay_time=$paytime&";
@@ -95,7 +96,7 @@ if (mysqli_query($conn,$sql) == false){
     exit($fail);
 }
 
-WriteCard_money(1,$serverId, $money,$accountId, $order_id);
+WriteCard_money(1,$serverId, $money,$accountId, $order_id,8,0,0,$isgoods);
 //统计数据
 global $tongjiServer;
 $tjAppId = $tongjiServer[$gameId];

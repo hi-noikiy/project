@@ -19,7 +19,7 @@ $markArr = explode('_', $mark);
 $gameId = $markArr[0];
 $serverId = $markArr[1];
 $accountId = $markArr[2];
-
+$isgoods= isset($markArr[4])?$markArr[4]:0;;
 global $key_arr;
 $appSecret = $key_arr[$gameId]['appsecret'];
 
@@ -64,7 +64,7 @@ if(!$result){
         write_log(ROOT_PATH."log","4399_callback_error_","sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
         exit(json_encode(array('status'=>1, 'code'=>'other_error', 'money'=>$amount, 'gamemoney'=>$gamemoney, 'msg'=>'msql error.')));
     }
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$gameId];

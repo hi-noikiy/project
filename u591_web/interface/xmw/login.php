@@ -24,7 +24,7 @@ if(!$gameId || !$appId || !$appSecret || !$accessToken){
 	exit("2 0");
 }
 $url = 'http://open.xmwan.com/v2/users/me?access_token='.$accessToken;
-$result = file_get_contents($url);
+$result = https_post($url,array());
 write_log(ROOT_PATH."log","xmw_login_result_log_","result=$result, ".date("Y-m-d H:i:s")."\r\n");
 $resultArr = json_decode($result, true);
 if(isset($resultArr['xmw_open_id'])){

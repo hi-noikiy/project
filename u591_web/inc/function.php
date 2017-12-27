@@ -30,14 +30,14 @@ function write_log($dirName, $logName, $str) {
 // 参数说明：充值方式,服务区ID,充值类型,帐号ID,定单号
 function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8, $i=0,$wap=0,$id_buygoods=0) {
 	$i++;
-    $sid = togetherServer($ServerID);
-    $table = betaSubTable($sid, 'u_card', 1000);
-    $conn = SetConn($sid);
+	$sid = togetherServer($ServerID);
+	$table = betaSubTable($sid, 'u_card', 1000);
+	$conn = SetConn($sid);
 
 	if($conn == false){
 		gameOrder($OrderID); //更新订单状态
-        write_log (ROOT_PATH."log", "card_err_", "serverId=$ServerID, game mysql connect error. ".date ("Y-m-d H:i:s")."\r\n");
-        return ;
+		write_log (ROOT_PATH."log", "card_err_", "serverId=$ServerID, game mysql connect error. ".date ("Y-m-d H:i:s")."\r\n");
+		return ;
 	}
 
 	$time_stamp = date ('ymdHi');
@@ -64,7 +64,7 @@ function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8,
 		$sql .= ')';
 		$mysql .= ')';
 		$sql = $sql . $mysql;
-		
+
 		if (mysqli_query ($conn, $sql ) == false) {
 			write_log (ROOT_PATH."log", "card_err_", "sql=$sql, ".mysqli_error($conn)." ".date ("Y-m-d H:i:s")."\r\n");
 			gameOrder($OrderID); //更新订单状态
@@ -77,6 +77,48 @@ function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8,
 		}
 	}
 }
+/*function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8, $i=0,$wap=0) {
+	$i++;
+    $sid = togetherServer($ServerID);
+    $table = betaSubTable($sid, 'u_card', 1000);
+    $conn = SetConn($sid);
+
+	if($conn == false){
+		gameOrder($OrderID); //更新订单状态
+        write_log (ROOT_PATH."log", "card_err_", "serverId=$ServerID, game mysql connect error. ".date ("Y-m-d H:i:s")."\r\n");
+        return ;
+	}
+
+	$time_stamp = date ('ymdHi');
+	// 判断定单号是否重复
+	$sql = "select count(*) as count from $table where ref_id='$OrderID' limit 1;";
+	$query = @mysqli_query ($conn, $sql);
+	if($query == false){
+		write_log (ROOT_PATH."log", "card_err_", "sql=$sql, ".mysqli_error($conn)." ".date ("Y-m-d H:i:s")."\r\n");
+		gameOrder($OrderID); //更新订单状态
+		return ;
+	}
+	$rows = @mysqli_fetch_assoc($query);
+	if ($rows['count'] == 0) {
+		$sql = "insert into $table(data,account_id,ref_id,time_stamp,used,type,server_id)";
+		$sql = $sql . " values('$money',$PayID,'$OrderID',$time_stamp,0,'$type','$ServerID')";
+		if($wap == 1){
+			$sql = "insert into $table(data,account_id,ref_id,time_stamp,used,type,server_id,wap_flag)";
+			$sql = $sql . " values('$money',$PayID,'$OrderID',$time_stamp,0,'$type','$ServerID',$wap)";
+		}
+		
+		if (mysqli_query ($conn, $sql ) == false) {
+			write_log (ROOT_PATH."log", "card_err_", "sql=$sql, ".mysqli_error($conn)." ".date ("Y-m-d H:i:s")."\r\n");
+			gameOrder($OrderID); //更新订单状态
+			//执行失败再次请求
+			if($i == 1){
+				WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type = 8, $i);
+			}
+		} else {
+			write_log (ROOT_PATH."log", "card_true_", "ServerID=$ServerID,sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
+		}
+	}
+}*/
 
 function gameOrder($orderId, $isUc = 1){
 	$conn = SetConn (88); // 连接u591数据库

@@ -24,7 +24,7 @@ $token = $datas[1];
 $time = $datas[2];
 $type = isset($datas[3])?$datas[3]:'android';
 global $key_arr;
-$appid = $key_arr[$gameId]['appid'];
+$appid = $key_arr[$gameId][$type]['appid'];
 $secret = $key_arr[$gameId][$type]['appSecret'];
 $signstr = $appid.$uid.$token.$time.$secret;
 $sign = strtolower(md5($signstr));

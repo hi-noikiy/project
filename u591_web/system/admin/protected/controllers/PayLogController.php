@@ -16,14 +16,18 @@ class PayLogController extends Controller{
 
 	public function _condition(&$condition){
         $gameId = isset($_POST['gameid']) ? intval($_POST['gameid']) : $this->mangerInfo['game_id'];
-		$channelId = isset($_POST['channel']) && !empty($_POST['channel']) ? intval($_POST['channel']) : $this->mangerInfo['channel_id'];
+		$channelId = isset($_POST['channel'])? $_POST['channel']:0;// $this->mangerInfo['channel_id'];
 
         $condition=array();
 		$startTime = isset($_POST['startTime']) ? $_POST['startTime'] : date('Y-m-d').' 00:00:00';
 		$endTime = isset($_POST['endTime']) ? $_POST['endTime'] : date('Y-m-d').' 23:59:59';
 		$condition[] = "Add_Time >='$startTime' and Add_Time<='$endTime'";
-        if(!empty($channelId))
-			$condition[]="CPID = '$channelId'";
+        if(!empty($channelId)){
+        	$condition[]="CPID = '$channelId'";
+        }elseif($this->mangerInfo['channel_id']){
+        	$condition[]="CPID in ({$this->mangerInfo['channel_id']})";
+        }
+			
 		
 		if(isset($_POST['name']) && !empty($_POST['name']))
 			$condition[]="PayName = '{$_POST['name']}'";
@@ -224,7 +228,7 @@ class PayLogController extends Controller{
 	//充值统计
 	public function actionStatistics(){
         $gameId = isset($_POST['gameid']) ? intval($_POST['gameid']) : $this->mangerInfo['game_id'];
-        $channelId = isset($_POST['channel']) && !empty($_POST['channel']) ? intval($_POST['channel']) : $this->mangerInfo['channel_id'];
+        $channelId = isset($_POST['channel'])? $_POST['channel']:0;// $this->mangerInfo['channel_id'];
         $unityCurrency = isset($_POST['unityCurrency']) ? $_POST['unityCurrency'] : 'CNY';
         $condition=array();
 		$condition[] = "rpCode in ('1','10')";
@@ -232,8 +236,11 @@ class PayLogController extends Controller{
 		$startTime = isset($_POST['startTime']) ? $_POST['startTime'] : date('Y-m-d 00:00:00', time()-7*86400);
 		$endTime = isset($_POST['endTime']) ? $_POST['endTime'] : date('Y-m-d').' 23:59:59';
 		$condition[] = "Add_Time between '$startTime' and '$endTime'";
-		if(!empty($channelId))
-			$condition[]="CPID = '$channelId'";
+		if(!empty($channelId)){
+        	$condition[]="CPID = '$channelId'";
+        }elseif($this->mangerInfo['channel_id']){
+        	$condition[]="CPID in ({$this->mangerInfo['channel_id']})";
+        }
 		//如果账号游戏id不为0 查询该游戏ID的订单
 		if(!empty($gameId))
 			$condition[] =  "game_id = '$gameId'";
@@ -375,7 +382,7 @@ class PayLogController extends Controller{
 		$condition=array();
 		$condition[] = "rpCode in ('1','10')";
 	    $gameId = isset($_POST['gameid']) ? $_POST['gameid'] : $this->mangerInfo['game_id'];
-        $channelId = isset($_POST['channel']) && !empty($_POST['channel']) ? $_POST['channel'] : $this->mangerInfo['channel_id'];
+        $channelId = isset($_POST['channel'])? $_POST['channel']:0;// $this->mangerInfo['channel_id'];
 
 		$startTime = isset($_POST['startTime']) ? $_POST['startTime'] : date('Y-m-d 00:00:00', time()-7*86400);
 		$endTime = isset($_POST['endTime']) ? $_POST['endTime'] : date('Y-m-d').' 23:59:59';
@@ -383,16 +390,11 @@ class PayLogController extends Controller{
 		//如果账号游戏id不为0 查询该游戏ID的订单
 		if(!empty($gameId))
 			$condition[] =  "game_id = '$gameId'";
-        if(!empty($channelId))
-            $condition[] =  "CPID = '$channelId'";
-/*         $config = Config::model()->getInfo();
-		if(in_array($config['openbt'], array('0','1'))){
-			if($config['openbt'] == 0){
-				$condition[]="isbt = 0";
-			}else{
-				$condition[]="isbt in(0,1,6)";
-			}
-		}	 */
+		if(!empty($channelId)){
+        	$condition[]="CPID = '$channelId'";
+        }elseif($this->mangerInfo['channel_id']){
+        	$condition[]="CPID in ({$this->mangerInfo['channel_id']})";
+        }
 		if(isset($_POST['serverid']) && !empty($_POST['serverid']))
 			$condition[]="ServerID = '{$_POST['serverid']}'";
         if(isset($_POST['payCode']) && !empty($_POST['payCode']))
@@ -631,7 +633,7 @@ class PayLogController extends Controller{
         $condition=array();
         $condition[] = "rpCode in ('1','10')";
         if(!empty($this->mangerInfo['channel_id']))
-            $condition[] =  "CPID = '{$this->mangerInfo['channel_id']}'";
+        	$condition[]="CPID in ({$this->mangerInfo['channel_id']})";
         if(isset($_POST['payCode']) && !empty($_POST['payCode']))
             $condition[]="PayCode = '{$_POST['payCode']}'";
         $startTime = isset($_POST['startTime']) ? $_POST['startTime'].' 00:00:00' : date('Y-m-d 00:00:00');
@@ -640,14 +642,6 @@ class PayLogController extends Controller{
         //如果账号游戏id不为0 查询该游戏ID的订单
         if(!empty($gameId))
             $condition[] =  "game_id = '$gameId'";
-/*         $config = Config::model()->getInfo();
-    if(in_array($config['openbt'], array('0','1'))){
-			if($config['openbt'] == 0){
-				$condition[]="isbt = 0";
-			}else{
-				$condition[]="isbt in(0,1,6)";
-			}
-		}	 */
         $model = PayLog::model();
         $criteria = new CDbCriteria;
         $condition = implode($condition,' and ');
@@ -686,25 +680,15 @@ class PayLogController extends Controller{
         $condition=array();
         $condition[] = "rpCode in ('1','10')";
         if(!empty($this->mangerInfo['channel_id']))
-            $condition[] =  "CPID = '{$this->mangerInfo['channel_id']}'";
+            $condition[] =  "CPID in ({$this->mangerInfo['channel_id']})";
         $startTime = isset($_POST['startTime']) ? $_POST['startTime'].' 00:00:00' : date('Y-m-d 00:00:00');
         $endTime = isset($_POST['endTime']) ? $_POST['endTime'].' 23:59:59' : date('Y-m-d 23:59:59');
         $condition[] = "Add_Time between '$startTime' and '$endTime'";
         //如果账号游戏id不为0 查询该游戏ID的订单
         if(!empty($gameId))
             $condition[] =  "game_id = '$gameId'";
-/*         $config = Config::model()->getInfo();
-    if(in_array($config['openbt'], array('0','1'))){
-			if($config['openbt'] == 0){
-				$condition[]="isbt = 0";
-			}else{
-				$condition[]="isbt in(0,1,6)";
-			}
-		}	 */
         if(isset($_POST['serverid']) && !empty($_POST['serverid']))
             $condition[]="ServerID = '{$_POST['serverid']}'";
-        if(!empty($this->mangerInfo['channel_id']))
-            $condition[] =  "CPID = '{$this->mangerInfo['channel_id']}'";
         if(isset($_POST['payCode']) && !empty($_POST['payCode']))
             $condition[]="PayCode = '{$_POST['payCode']}'";
         $model = PayLog::model();

@@ -32,6 +32,7 @@ if($check_result){
     $game_id = $billno_arr[0];
     $server_id = $billno_arr[1];
     $account_id = $billno_arr[2];
+    $isgoods = $billno_arr[4];
     $PayMoney = intval($amount);
     //获取账号信息
     global $accountServer;
@@ -69,7 +70,7 @@ if($check_result){
         write_log(ROOT_PATH."log","i4_callback_error_", $sql." ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
         exit("fail");
     }
-    WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
+    WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$game_id];

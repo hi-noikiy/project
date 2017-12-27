@@ -28,6 +28,7 @@ $dealseq_arr = explode("_", $dealseq);
 $game_id = $dealseq_arr[0];
 $server_id = $dealseq_arr[1];
 $account_id = $dealseq_arr[2];
+$isgoods = intval($dealseq_arr[4]);
 
 $public_key = $arr_key[$game_id]['public_key'];
 
@@ -100,7 +101,7 @@ if($re==1){
             write_log(ROOT_PATH."log","kuaiyong_callback_error_", $sql."  ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
             exit("failed");
         }
-        WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
+        WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);
     }else{//充值失败
     	$isPay = 1;
         $conn = SetConn(88);

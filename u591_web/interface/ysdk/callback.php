@@ -23,6 +23,7 @@ $serverId = $_POST['server_id'];
 $chn = explode('_', $channel);
 $channel = $chn[0];
 $type = isset($chn[1])?$chn[1]:'android';
+$isgoods = isset($chn[2])?$chn[2]:'0';
 global $key_arr;
 /*if($channel == 'qq'){
 	$appid = $key_arr[$gameId][$channel]['appId'];
@@ -117,7 +118,7 @@ if($ret['ret'] == 0){
  		$sql="insert into web_pay_log (CPID,PayID,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,rpCode)";
  		$sql=$sql." VALUES (114,$accountId,'$PayName','$serverId','$payMoney','$orderId','$dwFenBaoID','$Add_Time','1','$gameId','$clienttype',1)";
 		if(mysqli_query($conn,$sql)){
-			WriteCard_money(1, $serverId, $payMoney, $accountId, $orderId);
+			WriteCard_money(1, $serverId, $payMoney, $accountId, $orderId,8,0,0,$isgoods);
 			//统计数据
             global $tongjiServer;
 			$tjAppId = $tongjiServer[$gameId];

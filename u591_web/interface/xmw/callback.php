@@ -21,6 +21,7 @@ if(!isset($appExt1Arr[0]) || !isset($appExt1Arr[1]) || !isset($appExt1Arr[2])){
 $gameId = $appExt1Arr[0];
 $serverId = $appExt1Arr[1];
 $accountId = $appExt1Arr[2];
+$isgoods = intval($appExt1Arr[4]);
 global $key_arr;
 $appId = $key_arr[$gameId]['appkey'];
 $appSecret = $key_arr[$gameId]['appsecret'];
@@ -75,7 +76,7 @@ try {
             write_log(ROOT_PATH."log","xmw_callback_error_", $sql.", post=$post, get=$get, ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
             exit('fail');
         } else {
-            WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+            WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
             //统计数据
             global $tongjiServer;
             $tjAppId = $tongjiServer[$gameId];

@@ -28,6 +28,7 @@ $gameId = $extendsInfoArr[0];
 $serverId = $extendsInfoArr[1];
 $accountId = $extendsInfoArr[2];
 $type = $extendsInfoArr[3];
+$isgoods = $extendsInfoArr[4];
 $platpkey = $karr[$type]['platpkey'];
 $respData = 'transdata='.$string['transdata'].'&sign='.$string['sign'].'&signtype='.$string['signtype'];//把数据组装成验签函数要求的参数格式
 if(!parseResp($respData, $platpkey, $respJson)) {
@@ -69,7 +70,7 @@ if(!$result){
         exit('FAILURE');
     }
     write_log(ROOT_PATH."log","aibei_callback_info_","OK".date("Y-m-d H:i:s")."\r\n");
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
     //统计数据
     global $tongjiServer;
     $tjAppId = $tongjiServer[$gameId];

@@ -29,7 +29,7 @@ $serverId = $_POST['serverId'];
 $roleId = $_POST['roleId'];
 $beginTime = $_POST['beginTime'];
 $endTime = $_POST['endTime'];
-$myconn = mydb();
+$myconn = mydb($serverId);
 if($myconn == false) return false;
 $table = betaSubTable($serverId, 'u_player', '1000');
 $sql = "select account_id from $table where id='$roleId' limit 1";
@@ -42,6 +42,7 @@ if(!$rows){
 	exit(json_encode($returnarr));
 }
 $sid = togetherServer($serverId);
+$myconn = mydb($sid);
 $table = betaSubTable($sid, 'u_card', '1000');
 $sql = "select sum(data) as money from $table where account_id='{$rows['account_id']}' and server_id='$serverId' and time_stamp between '$beginTime' and '$endTime' limit 1";
 $query = @mysqli_query($myconn,$sql);

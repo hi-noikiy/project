@@ -20,7 +20,8 @@ if(!$userToken || !$gameId){
 }
 
 $data['tokenid'] = $userToken;  //获取的user_token
-$url = "http://mixsdk.diaigame.com/user/validate";
+//$url = "http://mixsdk.diaigame.com/user/validate";
+$url = "http://sdk.diaigame.com/user/validate";
 $rdata = https_post($url, $data);
 
 write_log(ROOT_PATH."log","shenhai_result_log_","result=".$rdata.", post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");

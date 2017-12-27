@@ -28,6 +28,7 @@ $game_id = $serialNumberArr[0];
 $server_id = $serialNumberArr[1];
 $account_id = $serialNumberArr[2];
 $channel = $serialNumberArr[3];
+$isgoods = $serialNumberArr[4];
 global $key_arr;
 $appsecret = $key_arr[$game_id][$channel]['appSecret'];
 $md5Str = $serialNumber.$money.$status.$t.$appsecret;
@@ -69,7 +70,7 @@ if($status == 1){
 		write_log(ROOT_PATH."log","guopan_callback_error_", $sql." ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
 		exit("fail");
 	}
-	WriteCard_money(1,$server_id, $money,$account_id, $trade_no);
+	WriteCard_money(1,$server_id, $money,$account_id, $trade_no,8,0,0,$isgoods);
 	//统计数据
 	global $tongjiServer;
 	$tjAppId = $tongjiServer[$game_id];

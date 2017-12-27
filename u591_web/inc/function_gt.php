@@ -28,25 +28,21 @@ function write_log($dirName, $logName, $str) {
 }
 // 充值成功写入游戏库
 // 参数说明：充值方式,服务区ID,充值类型,帐号ID,定单号
-function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8, $i=0) {
+function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8, $i=0,$wap=0,$id_buygoods=0) {
 	$i++;
-	$conn = SetConn ($ServerID);
+    $sid = togetherServer($ServerID);
+    $table = betaSubTable($sid, 'u_card', 1000);
+    $conn = SetConn($sid);
+
 	if($conn == false){
 		gameOrder($OrderID); //更新订单状态
-        write_log (ROOT_PATH."log", "card_err_", "serverId=$$ServerID, game mysql connect error. ".date ("Y-m-d H:i:s")."\r\n");
+        write_log (ROOT_PATH."log", "card_err_", "serverId=$ServerID, game mysql connect error. ".date ("Y-m-d H:i:s")."\r\n");
         return ;
 	}
-	$table = betaSubTable($ServerID, 'u_card', 1000);
-	$sql = "insert into u_card_id(serverid) values('$ServerID')";
-	if(mysqli_query($conn, $sql) == false){
-		write_log (ROOT_PATH."log", "card_err_", "sql=$sql, ".mysqli_error($conn)." ".date ("Y-m-d H:i:s")."\r\n");
-		gameOrder($OrderID); //更新订单状态
-		return ;
-	}
-	$nowId = @mysqli_insert_id($conn);
+
 	$time_stamp = date ('ymdHi');
 	// 判断定单号是否重复
-	$sql = "select count(*) as count from $table where ref_id='$OrderID'";
+	$sql = "select count(*) as count from $table where ref_id='$OrderID' limit 1;";
 	$query = @mysqli_query ($conn, $sql);
 	if($query == false){
 		write_log (ROOT_PATH."log", "card_err_", "sql=$sql, ".mysqli_error($conn)." ".date ("Y-m-d H:i:s")."\r\n");
@@ -55,17 +51,29 @@ function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8,
 	}
 	$rows = @mysqli_fetch_assoc($query);
 	if ($rows['count'] == 0) {
-		$sql = "insert into $table(id,data,account_id,ref_id,time_stamp,used,type,server_id)";
-		$sql = $sql . " values($nowId,'$money',$PayID,'$OrderID',$time_stamp,0,'$type','$ServerID')";
+		$sql = "insert into $table(data,account_id,ref_id,time_stamp,used,type,server_id";
+		$mysql = " values('$money',$PayID,'$OrderID',$time_stamp,0,'$type','$ServerID'";
+		if($wap == 1){
+			$sql .= ',wap_flag';
+			$mysql .= ",'$wap'";
+		}
+		if($id_buygoods){
+			$sql .= ',id_buygoods';
+			$mysql .= ",'$id_buygoods'";
+		}
+		$sql .= ')';
+		$mysql .= ')';
+		$sql = $sql . $mysql;
+		
 		if (mysqli_query ($conn, $sql ) == false) {
 			write_log (ROOT_PATH."log", "card_err_", "sql=$sql, ".mysqli_error($conn)." ".date ("Y-m-d H:i:s")."\r\n");
 			gameOrder($OrderID); //更新订单状态
 			//执行失败再次请求
 			if($i == 1){
-				WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type = 8, $i);
+				WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type = 8, $i,$wap,$id_buygoods);
 			}
 		} else {
-			write_log (ROOT_PATH."log", "card_true_", "ServerID=$ServerID, insert_id=$nowId, sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
+			write_log (ROOT_PATH."log", "card_true_", "ServerID=$ServerID,sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
 		}
 	}
 }
@@ -152,7 +160,7 @@ function https_post($url, $data, $i = 0) {
 	}
 	$curl = curl_init ( $url ); // 启动一个CURL会话
 	curl_setopt ( $curl, CURLOPT_SSL_VERIFYPEER, 0 ); // 对认证证书来源的检查
-	curl_setopt ( $curl, CURLOPT_SSL_VERIFYHOST, 1 ); // 从证书中检查SSL加密算法是否存在
+	curl_setopt ( $curl, CURLOPT_SSL_VERIFYHOST, 2 ); // 从证书中检查SSL加密算法是否存在
 	// curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
 	curl_setopt ( $curl, CURLOPT_FOLLOWLOCATION, 1 ); // 使用自动跳转
 	curl_setopt ( $curl, CURLOPT_AUTOREFERER, 1 ); // 自动设置Referer
@@ -184,14 +192,14 @@ function Sign($data){
 }
 //分表
 function betaSubTable($serverId, $table, $sum){
-	$suffix = $serverId%$sum;
-	$s = sprintf('%03d', $suffix);
-	return $table.$s;
+    $suffix = $serverId%$sum;
+    $s = sprintf('%03d', $suffix);
+    return $table.$s;
 }
 
 //统计数据处理
 function SAddData($data){
-	$url = 'http://poketwtj.u591776.com:8080/index.php/ApiPay/PaylogProcess';
+	$url = 'http://poketj.u591776.com:8080/index.php/ApiPay/PaylogProcess';
 	$jsonData = base64_encode(json_encode($data));
 	$postData = array();
 	$postData['data'] = $jsonData;
@@ -200,34 +208,40 @@ function SAddData($data){
 	$rs = https_post($url, $postData);
 	$rows = json_decode($rs, true);
 	if(is_array($rows) && $rows['errcode'] != 0){
-		write_log(ROOT_PATH."log","SAddData_error_","result=$rs, ".date("Y-m-d H:i:s")."\r\n");
+        write_log(ROOT_PATH."log","SAddData_error_","result=$rs, ".date("Y-m-d H:i:s")."\r\n");
 	}
 }
 
-function sendTongjiData($gameId, $accountId,$serverId,$channel,$lev=0,$money,$orderId,$isNew=1,$appId,$isPay=0){
-	$tongjiArr = array();
-	$tongjiArr['accountid'] = $accountId;
-	$tongjiArr['serverid'] = $serverId;
-	$tongjiArr['channel'] = $channel;
-	$tongjiArr['lev'] = $lev;
-	$tongjiArr['money'] = $money;
-	$tongjiArr['orderid'] = $orderId;
-	$tongjiArr['is_new'] = $isNew;
-	$tongjiArr['is_pay'] = $isPay;
-	$conn = SetConn(88);
-	if($conn == false){
-		write_log(ROOT_PATH."log","SAddData_error_","web mysql connect error. ".date("Y-m-d H:i:s")."\r\n");
-		return false;
-	}
-	$sql = "select count(id) as count from web_pay_log where PayID=$accountId and game_id=$gameId limit 1;";
-	$query = @mysqli_query($conn, $sql);
-	$rows = @mysqli_fetch_array($query);
-	if($rows['count'] > 1)
-		$tongjiArr['is_new'] = 0;
-	$tongjiArr['created_at'] = time();
-	$tongjiArr['appid'] = $appId; //$tongjiServer[$gameId];
-	//发送数据
-	SAddData($tongjiArr);
-	return true;
+function sendTongjiData($gameId, $accountId,$serverId,$channel,$lev=0,$money,$orderId,$isNew=1,$appId,$isPay=0, $isbt = '2' ,$created = 0){
+    $tongjiArr = array();
+    $tongjiArr['accountid'] = $accountId;
+    $tongjiArr['serverid'] = $serverId;
+    $tongjiArr['channel'] = $channel;
+    $tongjiArr['lev'] = $lev;
+    $tongjiArr['money'] = $money;
+    $tongjiArr['orderid'] = $orderId;
+    $tongjiArr['is_new'] = $isNew;
+    $tongjiArr['is_pay'] = $isPay;
+    if(in_array($isbt, array(0,1))){
+    	$tongjiArr['isbt'] = $isbt;
+    }
+    $conn = SetConn(88);
+    if($conn == false){
+        write_log(ROOT_PATH."log","SAddData_error_","web mysql connect error. ".date("Y-m-d H:i:s")."\r\n");
+        return false;
+    }
+    $sql = "select count(id) as count from web_pay_log where PayID=$accountId and game_id=$gameId limit 1;";
+    $query = @mysqli_query($conn, $sql);
+    $rows = @mysqli_fetch_array($query);
+    if($rows['count'] > 1)
+        $tongjiArr['is_new'] = 0;
+    $tongjiArr['created_at'] = time();
+    if($created){
+    	$tongjiArr['created_at'] = $created;
+    }
+    $tongjiArr['appid'] = $appId; //$tongjiServer[$gameId];
+    //发送数据
+    SAddData($tongjiArr);
+    return true;
 }
 ?>

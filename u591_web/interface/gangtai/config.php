@@ -24,10 +24,40 @@ $key_arr = array(
         ),
     )
 );
-
-function mydb(){
-	return ConnServer("203.66.13.158:3356","gameusertj","df,yyo67.yyo,ddjh","pokegametw");
+function mydb($serverid){
+	$conn1 = ConnServer("203.66.13.158:3356","gameusertj","df,yyo67.yyo,ddjh","pokegametw");
+	$sql = 'select DBName,idserver1 from g_dbconfig';
+	$query_account = mysqli_query($conn, $sql);
+	while($v = @mysqli_fetch_assoc($query_account)){
+		if(empty($v['DBName'])){ //第一个库略过
+			continue;
+		}
+		$myservers = explode(',', $v['idserver1']);
+		foreach ($myservers as $value){
+			if(substr($value, 1,1) == 9){ //pk服
+				continue;
+			}
+			$myserver = explode('-', $value);
+			$myserver[0] = intval(substr($myserver[0] , 1));
+			if(!isset($myserver[1])){
+				$myserver[1] = $myserver[0];
+			}else{
+				$myserver[1] = intval(substr($myserver[1] , 1));
+			}
+			if($serverid>=$myserver[0] && $serverid<=$myserver[1]){
+				return ConnServer("203.66.13.158:3357","gameusertj","df,yyo67.yyo,ddjh","pokegametw2");
+				break;
+			}
+		}
+	}
+	return $conn1;
 }
+/*function mydb($serverid){
+	if($serverid>=8100 && $serverid<=8170){
+		return ConnServer("203.66.13.158:3357","gameusertj","df,yyo67.yyo,ddjh","pokegametw2");
+	}
+	return ConnServer("203.66.13.158:3356","gameusertj","df,yyo67.yyo,ddjh","pokegametw");
+}*/
 function subTable($accountId, $table, $sum){
 	$suffix = $accountId%$sum;
 	$s = sprintf('%03d', $suffix);

@@ -16,6 +16,7 @@ $extra_arr = explode("_", $extra);
 $game_id = $extra_arr[0];
 $server_id = $extra_arr[1];
 $account_id = $extra_arr[2];
+$isgoods = intval($extra_arr[4]);
 
 $appkey = $arr_key[$game_id]['appkey'];
 $paykey = $arr_key[$game_id]['paykey'];
@@ -72,7 +73,7 @@ if (mysqli_query($conn,$sql) == False){
     exit(json_encode(array("ret"=>8,"msg"=>"")));
 }
 
-WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id);
+WriteCard_money(1,$server_id, $PayMoney,$account_id, $order_id,8,0,0,$isgoods);
 //统计数据
 global $tongjiServer;
 $tjAppId = $tongjiServer[$game_id];

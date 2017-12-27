@@ -55,6 +55,13 @@ class AjaxController extends Controller{
 		exit($str);	
 	}
 	
+	public function actionActedit(){
+		$id = $_GET['id'];
+		$isShowActivity = $_GET['status'];
+		$rs = Act::model()->findByPk($id);
+		$rs->isShowActivity=$isShowActivity;
+		$rs->save();
+	}
 	public function actionGetServerList(){
 		if(!isset($_POST['gameId']))
 			return '';
