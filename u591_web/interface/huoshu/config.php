@@ -35,6 +35,8 @@ $key_arr = array(
 				'ios25'=>array('appId'=>'59','appSecret'=>'fa4d435ea41f7c186ed0b49cd589d310'),
 				'ios26'=>array('appId'=>'60035','appSecret'=>'0921d0aefc330587692beb65c8ff72ba'),
 				'ios27'=>array('appId'=>'60038','appSecret'=>'460b30a5394ea297a56ecf6fdaca3c3c'),
+				'ios28'=>array('appId'=>'60053','appSecret'=>'a4239489daeb53ee861fb0e8a6c45b71'),
+				'ios29'=>array('appId'=>'60057','appSecret'=>'dc96e055a579a6ee830b91ee3411cf8f'),
 				'android'=>array('appId'=>'60011','appSecret'=>'93f35bd538761f5fbe2329dafe20c6e3'),
 		),
 );

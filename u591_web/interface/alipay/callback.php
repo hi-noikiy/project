@@ -12,6 +12,7 @@ $outTradeNoArr = explode('_', $out_trade_no);
 $game_id = $outTradeNoArr[0];
 $server_id = $outTradeNoArr[1];
 $account_id = $outTradeNoArr[2];
+$isgoods = isset($outTradeNoArr[4])?$outTradeNoArr[4]:0;
 global $key_arr;
 $rsaPublicKey = $key_arr[$game_id]['publicKey'];
 
@@ -51,7 +52,7 @@ if($result && $_POST['trade_status'] == 'TRADE_SUCCESS'){
 		write_log(ROOT_PATH."log","alipay_callback_error_", $sql." ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
 		exit("failure");
 	}
-	WriteCard_money(1,$server_id, $money,$account_id, $out_trade_no);
+	WriteCard_money(1,$server_id, $money,$account_id, $out_trade_no,8,0,0,$isgoods);
 	//统计数据
     global $tongjiServer;
 	$tjAppId = $tongjiServer[$game_id];
@@ -59,5 +60,5 @@ if($result && $_POST['trade_status'] == 'TRADE_SUCCESS'){
     exit("success");
 }else{
 	write_log(ROOT_PATH."log","alipay_callback_error_", "sign error! result=$result, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
-	exit("failure"); 
+	exit("success"); 
 }

@@ -22,8 +22,9 @@ $extArr = explode('_', $ext);
 $game_id = $extArr[0];
 $server_id = $extArr[1];
 $account_id = $extArr[2];
-$type = $extArr[3];
+$isgoods = $extArr[5];
 $sandbox = $extArr[4];
+$mac = $extArr[7];
 
 if($sandbox == 'sandbox')
     $url = "https://sandbox.itunes.apple.com/verifyReceipt";  //测试的
@@ -98,9 +99,10 @@ foreach ($orderInfo as $v){
         $insert_sql = " insert into web_pay_log(CPID,PayCode,ServerID,PayMoney,PayName,dwFenBaoID,Add_Time,rpCode,PayID,OrderID,game_id) values('19','$currency','$server_id','$money','$PayName','$dwFenBaoID','$Add_Time','$rpCode','$account_id','$orderId','$game_id') ";
         if(mysqli_query($conn, $insert_sql)){
             $gameMoney = $yuanbao;//转化为RMB
-            WriteCard_money(1,$server_id, $gameMoney,$account_id, $orderId,8,0,$type);//写入游戏库
+            WriteCard_money(1,$server_id, $gameMoney,$account_id, $orderId,8,0,0,$isgoods);//写入游戏库
             //统计数据
             sendTongjiData($game_id,$account_id,$server_id,$dwFenBaoID,0,$money,$orderId,1,$tjAppId);
+            appData(array('accountid'=>$account_id,'serverid'=>$server_id,'channel'=>$dwFenBaoID,'money'=>$money,'orderid'=>$orderId,'created_at'=>time(),'mac'=>$mac));
             $returnMsg = 'success';
         }else{
             write_log(ROOT_PATH."log","apple_error_log_","sql error,sql=$insert_sql, ".date("Y-m-d H:i:s")."\r\n");
@@ -114,5 +116,19 @@ foreach ($orderInfo as $v){
 }
 exit($returnMsg);
 
+//统计数据处理
+function appData($data){
+	$url = 'http://poketj.u591776.com:8080/index.php/ApiPay/ApplePaylog';
+	$jsonData = base64_encode(json_encode($data));
+	$postData = array();
+	$postData['data'] = $jsonData;
+	$postData['sign'] = Sign($data);
+
+	$rs = https_post($url, $postData);
+	$rows = json_decode($rs, true);
+	if(is_array($rows) && $rows['errcode'] != 0){
+		write_log(ROOT_PATH."log","appData_error_","result=$rs, ".date("Y-m-d H:i:s")."\r\n");
+	}
+}
 
 

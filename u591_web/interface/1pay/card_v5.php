@@ -60,6 +60,7 @@ if (isset($decode_cardCharging)) {
         exit(json_encode(array('code'=>"200",'description'=>$description)));
     }
 } else {
+	sleep(30);
     $data_ep = "access_key=" . $access_key . "&pin=" . $pin . "&serial=" . $serial . "&transId=&transRef=" . $transRef . "&type=" . $type;
     $signature_ep = hash_hmac("sha256", $data_ep, $secret);
     $data_ep.= "&signature=" . $signature_ep;

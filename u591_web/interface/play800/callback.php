@@ -35,6 +35,7 @@ $gameId = $extArr[0];
 $serverId = $extArr[1];
 $accountId = $extArr[2];
 $type = $extArr[3];
+$isgoods = $extArr[4];
 global $key_arr;
 $key = $key_arr[$gameId][$type]['key'];
 
@@ -81,7 +82,7 @@ if (mysqli_query($conn,$sql) == False){
     write_log(ROOT_PATH."log","play800_callback_error_", $sql.", post=$post, get=$get, ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
     exit('fail');
 } else {
-    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId);
+    WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
     //统计
     global $tongjiServer;
     $tjAppId = $tongjiServer[$gameId];

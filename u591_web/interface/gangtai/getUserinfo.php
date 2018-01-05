@@ -46,13 +46,13 @@ $table = betaSubTable($serverId, 'u_player', '1000');
 $sql = "select id as roleId,name as roleName,level as roleLevel,login_time as lastLoginTime,create_time as createTime from $table where account_id='{$result_account['id']}' limit 1";
 $query = @mysqli_query($myconn,$sql);
 $rows = @mysqli_fetch_assoc($query);
-@mysqli_close($myconn);
 if(!$rows){
-	write_log(ROOT_PATH."log","gangtai_getuserinfo_error_",$sql."player is null, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
+	write_log(ROOT_PATH."log","gangtai_getuserinfo_error_",$sql."player is null, post=$post, ".mysqli_error($myconn).','.date("Y-m-d H:i:s")."\r\n");
 	$returnarr['code'] = '1';
 	$returnarr['message'] = 'player is not exist';
 	exit(json_encode($returnarr));
 }
+@mysqli_close($myconn);
 write_log(ROOT_PATH."log","gangtai_getuserinfo_success_","获取角色信息成功, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 $returnarr['code'] = '200';
 $returnarr['message'] = 'ok';

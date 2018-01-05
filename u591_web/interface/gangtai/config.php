@@ -27,7 +27,7 @@ $key_arr = array(
 function mydb($serverid){
 	$conn1 = ConnServer("203.66.13.158:3356","gameusertj","df,yyo67.yyo,ddjh","pokegametw");
 	$sql = 'select DBName,idserver1 from g_dbconfig';
-	$query_account = mysqli_query($conn, $sql);
+	$query_account = mysqli_query($conn1, $sql);
 	while($v = @mysqli_fetch_assoc($query_account)){
 		if(empty($v['DBName'])){ //第一个库略过
 			continue;
@@ -38,18 +38,17 @@ function mydb($serverid){
 				continue;
 			}
 			$myserver = explode('-', $value);
-			$myserver[0] = intval(substr($myserver[0] , 1));
 			if(!isset($myserver[1])){
 				$myserver[1] = $myserver[0];
-			}else{
-				$myserver[1] = intval(substr($myserver[1] , 1));
 			}
 			if($serverid>=$myserver[0] && $serverid<=$myserver[1]){
+				write_log(ROOT_PATH."log","gangtai_getserver_error_","$serverid, 2库".date("Y-m-d H:i:s")."\r\n");
 				return ConnServer("203.66.13.158:3357","gameusertj","df,yyo67.yyo,ddjh","pokegametw2");
 				break;
 			}
 		}
 	}
+	write_log(ROOT_PATH."log","gangtai_getserver_error_","$serverid, 1库".date("Y-m-d H:i:s")."\r\n");
 	return $conn1;
 }
 /*function mydb($serverid){

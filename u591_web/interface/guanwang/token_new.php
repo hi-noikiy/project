@@ -72,7 +72,7 @@ if(isset($code) && !empty($code)){
 	$conn = SetConn($accountConn);
 	$sql = "select id from account where NAME = '$username' limit 1";
 	if(false == $query = mysqli_query($conn,$sql)){
-		
+		write_log(ROOT_PATH."log","guanwang_token_error_","sql=$sql, ".mysqli_error($conn).date("Y-m-d H:i:s")."\r\n");
 		exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
 	}
 	$result = @mysqli_fetch_assoc($query);
@@ -94,7 +94,7 @@ if(isset($code) && !empty($code)){
 	$password = md5($pass.$mdString);
 	$sql = "select id, password from account where NAME = '$username' limit 1";
 	if(false == $query = mysqli_query($conn,$sql)){
-		
+		write_log(ROOT_PATH."log","guanwang_token_error_","sql=$sql, ".mysqli_error($conn).date("Y-m-d H:i:s")."\r\n");
 		exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
 	}
 	$result = @mysqli_fetch_assoc($query);
@@ -111,8 +111,11 @@ if(isset($code) && !empty($code)){
 	$conn = SetConn($accountConn);
 	$channel_account = $username.'@u591';
 	$sql = "select id from account where channel_account = '$channel_account' limit 1;";
-	if(false == $query = mysqli_query($conn,$sql))
+	if(false == $query = mysqli_query($conn,$sql)){
+		write_log(ROOT_PATH."log","guanwang_token_error_","sql=$sql, ".mysqli_error($conn).date("Y-m-d H:i:s")."\r\n");
 		exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
+	}
+		
 	$result = @mysqli_fetch_assoc($query);
 	if($result){
 		$insert_id = intval($result['id']);

@@ -49,8 +49,11 @@ if($sign != $my_sign)
 	exit(json_encode(array('status'=>2, 'msg'=>'sign错误.')));
 $conn = SetConn($accountConn);
 $sql = "select id from account where NAME = '$email' or email='$email' limit 1";
-if(false == $query = mysqli_query($conn,$sql))
+if(false == $query = mysqli_query($conn,$sql)){
+	write_log(ROOT_PATH."log","checkemail_error_","sql=$sql, ".mysqli_error($conn).date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
+}
+
 
 $result = @mysqli_fetch_assoc($query);
 $msg = isset($result['id']) ? 'registered' : 'unregistered';

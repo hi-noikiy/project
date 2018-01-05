@@ -28,7 +28,8 @@ class PayLogController extends Controller{
         	$condition[]="CPID in ({$this->mangerInfo['channel_id']})";
         }
 			
-		
+        if(!empty($this->mangerInfo['dwFenbao']))
+        	$condition[] =  "dwFenBaoID in ({$this->mangerInfo['dwFenbao']})";
 		if(isset($_POST['name']) && !empty($_POST['name']))
 			$condition[]="PayName = '{$_POST['name']}'";
 		if(isset($_POST['accountId']) && !empty($_POST['accountId']))
@@ -241,6 +242,8 @@ class PayLogController extends Controller{
         }elseif($this->mangerInfo['channel_id']){
         	$condition[]="CPID in ({$this->mangerInfo['channel_id']})";
         }
+        if(!empty($this->mangerInfo['dwFenbao']))
+        	$condition[] =  "dwFenBaoID in ({$this->mangerInfo['dwFenbao']})";
 		//如果账号游戏id不为0 查询该游戏ID的订单
 		if(!empty($gameId))
 			$condition[] =  "game_id = '$gameId'";
@@ -273,6 +276,7 @@ class PayLogController extends Controller{
         $model = PayLog::model();
 		$criteria = new CDbCriteria;
 		$condition=implode($condition,' and ');
+		
 		$criteria->condition =$condition;
 		//print_r($condition);
 		if($type == 1){
@@ -395,6 +399,8 @@ class PayLogController extends Controller{
         }elseif($this->mangerInfo['channel_id']){
         	$condition[]="CPID in ({$this->mangerInfo['channel_id']})";
         }
+        if(!empty($this->mangerInfo['dwFenbao']))
+        	$condition[] =  "dwFenBaoID in ({$this->mangerInfo['dwFenbao']})";
 		if(isset($_POST['serverid']) && !empty($_POST['serverid']))
 			$condition[]="ServerID = '{$_POST['serverid']}'";
         if(isset($_POST['payCode']) && !empty($_POST['payCode']))

@@ -27,6 +27,7 @@ $gameId = $extendsInfoArr[0];
 $serverId = $extendsInfoArr[1];
 $accountId = $extendsInfoArr[2];
 $type = $extendsInfoArr[3];
+$isgoods = $extendsInfoArr[4];
 global $key_arr;
 $api_key  = $key_arr[$gameId][$type]['api_key'];
 $secret_key = $key_arr[$gameId][$type]['secret_key'];
@@ -84,7 +85,7 @@ if ($notify_sig == $check_sig) {
 	}
 	$EMoney = ceil($payMoney*60);//emoney
 	//write_log(ROOT_PATH."log","payssion_callback_info_","OK".date("Y-m-d H:i:s")."\r\n");
-	WriteCard_money(1,$serverId, $EMoney,$accountId, $orderId);
+	WriteCard_money(1,$serverId, $EMoney,$accountId, $orderId,8,0,0,$isgoods);
 	//统计数据
 	global $tongjiServer;
 	$tjAppId = $tongjiServer[$gameId];

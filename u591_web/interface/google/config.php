@@ -108,6 +108,11 @@ $key_arr = array(
     				'appSecret' =>'m1JLspIFm-j5eOTi-YM2ZHPi',
     				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnsoEyH2LOz2jMTz3Y5Ngj1L8urIZUCwDq/yJzTKsgYEm+Vx1bxlPjevqkHx/rW+C0fVs+OWkHsACQS5yFIgqk7p1r9TPlKQIW/MpIp3W2WmCWm7dVRO+OIVW1m02FhwMSOmSreKZ39jeXAa2PhcCkG6k6nczwrnv3f85sXO8SbQd4aoe+WMwPVWFvexGOsr3eXW3v+fVrPQrgEK6+dQssfRAuwUpxjN/O8QSVTTk6kG83cns4cuF1/oAeMPcf/z+9mLWuzSVLJuS7ZqxenndaUFVauGQB4JkGNoImM+44PVr5eqmHpzHVWlu1CzCm+na5GJuSAZySNSGhV8OMydxYQIDAQAB',
     		),
+    		'androidar'=>array(
+    				'appId'     =>'13000614965-dhh3qk5ug4agk2vdblluudldi54p60mb.apps.googleusercontent.com',
+    				'appSecret' =>'KNCvmRY4cAsF0a84cteDRnn1',
+    				'public_key'=>'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp4V3KnuWpwJFaxO54ZKTa4LMBJcBLnD8UIHXJFQms1K7stOh6A2VOd1vImDTP8dHGCn9KvwPlz+eSzJUYtIKdyGqFb9c2jKdb2w2ieih/XEjQ6Mwd9wV8Lcrz6sfl3BV+GgkQHLW81404fOqmKbpD/UQxLvcV3MIH/UXix5mzCX/ZwRWDoCZh9zy1cJowYEIPo9gheAKMpg0FQK9N4mHCyBFJU7V9OYgwv9u4mjL5PZJ6IlYbXJRHNoZnbjJkXgmyzk6iDlXkvHp+FMxH0D1v+B9BBOmFck5Srt+2q9pNGyCGPbXEJczGSo4zs172HRyjNmAQmyOZDufjLlDEfxYqQIDAQAB',
+    		),
 
     ),
 );
@@ -199,4 +204,13 @@ $google_id_value = array(
 		'kshujd889_3790'     => array('3790', '4290', 'RUB'),
 		'kshujd889_7490'    => array('7490', '8500', 'RUB'),
 		'kshujd889_card'    => array('299', '200', 'RUB'),
+		
+		'arpays_60'     => array('0.99', 60	, 'USD'),
+		'arpays_300'    => array('4.99', 280,'USD'),
+		'arpays_600'    => array('9.99', 600,'USD'),
+		'arpays_900'    => array('14.99', 870, 'USD'),
+		'arpays_1500'   => array('24.99', 1450, 'USD'),
+		'arpays_3000'   => array('49.99', 3000, 'USD'),
+		'arpays_6000'   => array('99.99', 5940, 'USD'),
+		'arpays_card'   => array('5.99', 360, 'USD'),
 );

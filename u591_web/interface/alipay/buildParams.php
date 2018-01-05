@@ -34,8 +34,9 @@ $bizContentArr = json_decode($bizContent, true);
 $gameId = $bizContentArr['game_id'];
 $serverId = $bizContentArr['server_id'];
 $accountId = $bizContentArr['account_id'];
+$giftId = $bizContentArr['gift_id'];
 
-$bizContent = $gameId.'_'.$serverId.'_'.$accountId;
+$bizContent = $gameId.'_'.$serverId.'_'.$accountId.'_android_'.$giftId;
 $appId = $key_arr[$gameId]['appId'];
 $rsaPrivateKey = $key_arr[$gameId]['privateKey'];
 

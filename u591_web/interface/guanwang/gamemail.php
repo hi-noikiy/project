@@ -39,8 +39,11 @@ if(!$message){
 $sid = togetherServer($serverid);
 $table = betaSubTable($sid, 'u_gmtool', 1000);
 $conn = SetConn($sid);
-
-$sql = "insert into $table(type, serverid, param, message) values('$type', '$serverid', '$playerId', '$message')";
+$mess = <<<EOF
+$message
+如对此回复还有其他异议，请联系我们客服QQ：2637357440；3094399563；3327487243
+EOF;
+$sql = "insert into $table(type, serverid, param, message) values('$type', '$serverid', '$playerId', '$mess')";
 
 $queryR = @mysqli_query($conn,$sql);
 if($queryR){
