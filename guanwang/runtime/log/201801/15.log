@@ -1,0 +1,974 @@
+---------------------------------------------------------------
+[ 2018-01-15T11:35:02+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon
+[ info ] 127.0.0.1:81/public/index.php/pokemon [运行时间：0.078000s][吞吐率：12.82req/s] [内存消耗：2,600.10kb] [文件加载：65]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=1',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_us.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'bannerList',
+  18 => 'newsTypeList',
+  19 => 'newsList',
+  20 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_us' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_us' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'us' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'us' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'us' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'us' ORDER BY sorts asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-01-15T11:35:07+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?vn
+[ info ] 127.0.0.1:81/public/index.php/pokemon?vn [运行时间：0.083000s][吞吐率：12.05req/s] [内存消耗：2,600.84kb] [文件加载：68]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=2',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'vn' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_vn.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'pokemon',
+  2 => 'qq_group',
+  3 => 'qq_service',
+  4 => 'bannerList',
+  5 => 'newsTypeList',
+  6 => 'newsList',
+  7 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_vn' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_vn' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:83]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: fuli_url[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:38]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:53]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:55]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:60]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:61]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:66]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:67]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:105]
+[ error ] [8]未定义变量: privilege_code[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:202]
+[ error ] [8]未定义变量: copyright[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:206]
+[ error ] [8]未定义变量: contact_us[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:207]
+---------------------------------------------------------------
+[ 2018-01-15T12:02:51+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?vn
+[ info ] 127.0.0.1:81/public/index.php/pokemon?vn [运行时间：0.072000s][吞吐率：13.89req/s] [内存消耗：2,467.15kb] [文件加载：66]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=3',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'vn' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_vn.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'pokemon',
+  2 => 'qq_group',
+  3 => 'qq_service',
+  4 => 'bannerList',
+  5 => 'newsTypeList',
+  6 => 'newsList',
+  7 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_vn' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_vn' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:83]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: fuli_url[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:38]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:53]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:55]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:60]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:61]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:66]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:67]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:105]
+[ error ] [8]未定义变量: privilege_code[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:202]
+[ error ] [8]未定义变量: copyright[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:206]
+[ error ] [8]未定义变量: contact_us[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:207]
+---------------------------------------------------------------
+[ 2018-01-15T12:02:52+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?vn
+[ info ] 127.0.0.1:81/public/index.php/pokemon?vn [运行时间：0.098000s][吞吐率：10.20req/s] [内存消耗：2,467.20kb] [文件加载：66]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=4',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'vn' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_vn.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'pokemon',
+  2 => 'qq_group',
+  3 => 'qq_service',
+  4 => 'bannerList',
+  5 => 'newsTypeList',
+  6 => 'newsList',
+  7 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_vn' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_vn' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:83]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: fuli_url[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:38]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:53]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:55]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:60]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:61]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:66]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:67]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:105]
+[ error ] [8]未定义变量: privilege_code[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:202]
+[ error ] [8]未定义变量: copyright[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:206]
+[ error ] [8]未定义变量: contact_us[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:207]
+---------------------------------------------------------------
+[ 2018-01-15T12:02:52+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?vn
+[ info ] 127.0.0.1:81/public/index.php/pokemon?vn [运行时间：0.110000s][吞吐率：9.09req/s] [内存消耗：2,467.20kb] [文件加载：66]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=5',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'vn' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_vn.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'pokemon',
+  2 => 'qq_group',
+  3 => 'qq_service',
+  4 => 'bannerList',
+  5 => 'newsTypeList',
+  6 => 'newsList',
+  7 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_vn' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_vn' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY create_time desc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:83]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: fuli_url[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:38]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:53]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:55]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:60]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:61]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:66]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:67]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:105]
+[ error ] [8]未定义变量: privilege_code[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:202]
+[ error ] [8]未定义变量: copyright[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:206]
+[ error ] [8]未定义变量: contact_us[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:207]
+---------------------------------------------------------------
+[ 2018-01-15T12:02:52+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?vn
+[ info ] 127.0.0.1:81/public/index.php/pokemon?vn [运行时间：0.083000s][吞吐率：12.05req/s] [内存消耗：2,467.20kb] [文件加载：66]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=6',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'vn' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_vn.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'pokemon',
+  2 => 'qq_group',
+  3 => 'qq_service',
+  4 => 'bannerList',
+  5 => 'newsTypeList',
+  6 => 'newsList',
+  7 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_vn' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_vn' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:83]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: fuli_url[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:38]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:53]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:55]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:60]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:61]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:66]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:67]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:105]
+[ error ] [8]未定义变量: privilege_code[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:202]
+[ error ] [8]未定义变量: copyright[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:206]
+[ error ] [8]未定义变量: contact_us[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:207]
+---------------------------------------------------------------
+[ 2018-01-15T12:02:53+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?vn
+[ info ] 127.0.0.1:81/public/index.php/pokemon?vn [运行时间：0.067000s][吞吐率：14.93req/s] [内存消耗：2,467.20kb] [文件加载：66]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=7',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'vn' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_vn.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'pokemon',
+  2 => 'qq_group',
+  3 => 'qq_service',
+  4 => 'bannerList',
+  5 => 'newsTypeList',
+  6 => 'newsList',
+  7 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_vn' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_vn' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:83]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: fuli_url[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:38]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:53]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:55]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:60]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:61]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:66]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:67]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:105]
+[ error ] [8]未定义变量: privilege_code[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:202]
+[ error ] [8]未定义变量: copyright[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:206]
+[ error ] [8]未定义变量: contact_us[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:207]
+---------------------------------------------------------------
+[ 2018-01-15T12:02:56+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?vn
+[ info ] 127.0.0.1:81/public/index.php/pokemon?vn [运行时间：0.119000s][吞吐率：8.40req/s] [内存消耗：2,467.20kb] [文件加载：66]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=8',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'vn' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_vn.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'pokemon',
+  2 => 'qq_group',
+  3 => 'qq_service',
+  4 => 'bannerList',
+  5 => 'newsTypeList',
+  6 => 'newsList',
+  7 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_vn' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_vn' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:83]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: fuli_url[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:38]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:53]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:55]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:60]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:61]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:66]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:67]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:105]
+[ error ] [8]未定义变量: privilege_code[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:202]
+[ error ] [8]未定义变量: copyright[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:206]
+[ error ] [8]未定义变量: contact_us[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:207]
+---------------------------------------------------------------
+[ 2018-01-15T12:02:57+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?vn
+[ info ] 127.0.0.1:81/public/index.php/pokemon?vn [运行时间：0.106000s][吞吐率：9.43req/s] [内存消耗：2,467.20kb] [文件加载：66]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=9',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'vn' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_vn.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'pokemon',
+  2 => 'qq_group',
+  3 => 'qq_service',
+  4 => 'bannerList',
+  5 => 'newsTypeList',
+  6 => 'newsList',
+  7 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_vn' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_vn' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY create_time desc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:83]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: fuli_url[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:38]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:53]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:55]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:60]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:61]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:66]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:67]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:91]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:92]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:105]
+[ error ] [8]未定义变量: privilege_code[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:202]
+[ error ] [8]未定义变量: copyright[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:206]
+[ error ] [8]未定义变量: contact_us[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:207]
+---------------------------------------------------------------
+[ 2018-01-15T15:39:39+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?r
+[ info ] 127.0.0.1:81/public/index.php/pokemon?r [运行时间：0.094000s][吞吐率：10.64req/s] [内存消耗：2,603.09kb] [文件加载：68]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=11',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'r' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_vn.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'pokemon',
+  2 => 'qq_group',
+  3 => 'qq_service',
+  4 => 'bannerList',
+  5 => 'newsTypeList',
+  6 => 'newsList',
+  7 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_vn' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_vn' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'vn' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:85]
+[ error ] [8]未定义变量: fuli_url[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:38]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:59]
+[ error ] [8]未定义变量: baidu_bbs[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:61]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:66]
+[ error ] [8]未定义变量: qrcode_wechart[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:67]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:72]
+[ error ] [8]未定义变量: qrcode_wb[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:73]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:98]
+[ error ] [8]未定义变量: service_phone[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:98]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:99]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:99]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:105]
+[ error ] [8]未定义变量: service_online[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:105]
+[ error ] [8]未定义变量: privilege_code[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:215]
+[ error ] [8]未定义变量: copyright[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:219]
+[ error ] [8]未定义变量: contact_us[F:\wamp\www\project\guanwang\runtime\temp\2f00d919123d108af84954dd333bc914.php:220]
+---------------------------------------------------------------
+[ 2018-01-15T15:39:46+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?ru
+[ info ] 127.0.0.1:81/public/index.php/pokemon?ru [运行时间：0.088000s][吞吐率：11.36req/s] [内存消耗：2,455.46kb] [文件加载：67]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=12',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'ru' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_ru' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_ru' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:85]
+[ error ] [0]模板文件不存在:F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_ru.html[F:\wamp\www\project\guanwang\thinkphp\library\think\view\driver\Think.php:80]
+---------------------------------------------------------------
+[ 2018-01-15T15:43:22+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?ru
+[ info ] 127.0.0.1:81/public/index.php/pokemon?ru [运行时间：0.091000s][吞吐率：10.99req/s] [内存消耗：2,455.73kb] [文件加载：67]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=13',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'ru' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_ru' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_ru' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY create_time desc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:85]
+[ error ] [0]模板文件不存在:F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_ru.html[F:\wamp\www\project\guanwang\thinkphp\library\think\view\driver\Think.php:80]
+---------------------------------------------------------------
+[ 2018-01-15T15:43:25+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?ru
+[ info ] 127.0.0.1:81/public/index.php/pokemon?ru [运行时间：0.105000s][吞吐率：9.52req/s] [内存消耗：2,455.73kb] [文件加载：67]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=14',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'ru' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_ru' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_ru' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY create_time desc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:85]
+[ error ] [0]模板文件不存在:F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_ru.html[F:\wamp\www\project\guanwang\thinkphp\library\think\view\driver\Think.php:80]
+---------------------------------------------------------------
+[ 2018-01-15T15:51:32+08:00 ] 127.0.0.1 127.0.0.1 GET /public/index.php/pokemon?ru
+[ info ] 127.0.0.1:81/public/index.php/pokemon?ru [运行时间：0.082000s][吞吐率：12.20req/s] [内存消耗：2,455.72kb] [文件加载：67]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; PHPSESSID=uqkqiljhh7jplo9q9l08h76gg3; _ga=GA1.1.410614121.1509614278; name=%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7; uname=root; uid=2; avatar=%2Fpublic%2Fuserfiles%2Fimages%2F548398.jpg; monitor_count=15',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+  'ru' => '',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'tf',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ F:\wamp\www\project\guanwang\application\pokemon\controller\Index.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon_ru' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon_ru' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.005000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'ru' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: qq_group[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:84]
+[ error ] [8]未定义变量: qq_service[F:\wamp\www\project\guanwang\application\pokemon\controller\Common.php:85]
+[ error ] [0]模板文件不存在:F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index_ru.html[F:\wamp\www\project\guanwang\thinkphp\library\think\view\driver\Think.php:80]

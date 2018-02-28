@@ -104,7 +104,7 @@ class leave extends getList {
 		$ny2 = 0;//请去年时长
 		$ny3 = 0;//请今年时长
 		if($array['leaveType'] == '年假'){
-			//$md = date('md');
+			$fy = date('Y',strtotime($array['fromTime']));
 			$md = date('md',strtotime($array['fromTime'])); //使用开始日期
 			
 			$nowy = date('Y');
@@ -113,14 +113,16 @@ class leave extends getList {
 			if($result){
 				$ny = $result['allTime']-$result['useTime'];//今年年假剩余时长
 			}
-			if($md<'0301'){ //先取去年年假时间
+			if($md<'0301' || $fy == $lasty){ //先取去年年假时间
 				$result1 = $this->getAnnual($uid,$lasty);//去年年假
 				if($result1){
 					$ny1 = ($result1['allTime']-$result1['useTime']);//去年年假剩余时长
 				}
-				$lastd = (strtotime($nowy.'0301')-strtotime($nowy.$md))/24*8;//可使用去年时长
-				if($lastd<$ny1){
-					$ny1 = $lastd;
+				if($fy == $nowy){
+					$lastd = (strtotime($nowy.'0301')-strtotime($nowy.$md))/3600/3;//可使用去年时长
+					if($lastd<$ny1){
+						$ny1 = $lastd;
+					}
 				}
 			}
 			if($ny+$ny1<$array['totalTime']){

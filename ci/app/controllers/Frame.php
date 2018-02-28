@@ -1376,6 +1376,55 @@ class Frame extends CI_Controller {
 	}
 	
 	
+	
+	
+	public function community(){
+	
+	
+	    if ($this::isAjax ()) {
+	      
+	        $date = $this->input->get ( 'date' );
+	        $date2 = $this->input->get ( 'date2' );
+	        
+	        $parameter= $this->input->get ( 'parameter' );
+	       
+	   echo    $where['classify'] = $this->input->get ( 'classify' );
+/* 	       if(  $where['classify']==1){
+	           echo 1;
+	       } 
+	       
+	       if(  $where['classify']==2){
+	           echo 2;
+	       } */
+	    //    echo 111;
+	        
+	        $where ['logdate']= date ( 'Ymd', strtotime ( $parameter) );
+	
+	
+	
+	        $field="id,communityid";
+	        $group="serverid";
+	    
+	       
+	       $this->load->model ( 'Frame_model' );
+	       $data = $this->Frame_model->community ($where,$field,$group,$order);
+	       
+	        
+	      
+	      $data='';
+	
+	        echo json_encode ( [
+	            'status' => 'ok',
+	            'data' => $data,
+	        ] );
+	    } else {
+	        $this->body = 'Frame/community';
+	        $this->load->view ( $this->body );
+	    }
+	
+	
+	}
+	
 	public static function isAjax() {
 		$r = isset ( $_SERVER ['HTTP_X_REQUESTED_WITH'] ) ? strtolower ( $_SERVER ['HTTP_X_REQUESTED_WITH'] ) : '';
 		return $r === 'xmlhttprequest';

@@ -1096,7 +1096,9 @@ class DataAnalysis extends MY_Controller {
 	
 	
 	public  function activityClick(){	
+	    $types_one = include APPPATH . '/config/click_type_one.php';
 		$types = include APPPATH . '/config/click_type_two.php';
+		
 
        
 		if (parent::isAjax ()) {
@@ -1155,9 +1157,10 @@ class DataAnalysis extends MY_Controller {
 					] );
 		} else {
 			
-			
+		    $this->data ['click_type_one_list'] = $types_one;
 			$this->data ['click_type_list'] = $types['1'];
-			$this->data ['click_type_two'] = true;
+			$this->data ['click_type_one'] = true;
+			$this->data ['click_type_two'] = true;			
 			$this->data ['hide_end_time'] = true;
 			$this->data ['click_type'] = true;
 			$this->body = 'DataAnalysis/activityClick';
@@ -1231,6 +1234,7 @@ class DataAnalysis extends MY_Controller {
 	
 	
 	
+
 	/*
 	 *  二级菜单
 	 */

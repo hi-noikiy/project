@@ -1,0 +1,158 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{if condition="$data"}{$Think.lang.edit}{else /}{$Think.lang.create}{/if}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>新闻信息</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 新闻信息</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">{$Think.lang.base_param}</a></li>
+                        <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <input type="hidden" name="id" value="{$data.id}" />
+                            <input type="hidden" name="subType" value="form" />
+                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.title}</label>
+                                <div class="col-sm-7">
+                                <input class="form-control" id="title" name="title" value="{$data.title}" placeholder="{$Think.lang.title}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.image_url}</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <input class="form-control" id="image_url-input" name="image_url" value="{$data.image_url}" placeholder="{$Think.lang.image_url}" >
+                                        <span class="input-group-btn">
+                                            <a href="{$data.image_url|default='__static__/global/face/no-image.png'}" target="_blank" >
+                                                <img id="image_url-img" src="{$data.image_url|default='__static__/global/face/no-image.png'}" style="height:34px; width:68px;" />
+                                            </a>
+                                            <button id="image_urlBtn" class="btn" type="button">
+                                                <i class="fa fa-cloud-upload"> {$Think.lang.Upload}</i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.description}</label>
+                                <div class="col-sm-7"><textarea class="form-control" style="resize:none;height:80px;" id="description" name="description" placeholder="{$Think.lang.description}">{$data.description}</textarea></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.type_name}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="type_id" style="width:100%;">
+                                        {volist name="vsNewsTypeList" id="vo"}
+                                        <option value="{$vo.id}" {if condition=" ($vo.id eq $data.type_id) and ($data.type_id neq -1) "}selected="selected"{/if}>
+                                            {$vo.name}
+                                        </option>
+                                        {/volist}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.content}</label>
+                                <div class="col-sm-7"><textarea class="form-control" name="content" placeholder="{$Think.lang.content}">{$data.content}</textarea></div>
+                            </div>
+                           <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.top}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="top" style="width:100%;">
+                                        <option value="1" {if condition="$data.top eq '1'"}selected="selected"{/if} >{$Think.lang.top1}</option>
+                                        <option value="0" {if condition="$data.top eq '0'"}selected="selected"{/if} >{$Think.lang.top0}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.author}</label>
+                                <div class="col-sm-7"><input class="form-control" name="author" value="{$data.author}" placeholder="{$Think.lang.author}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.status}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="status" style="width:100%;">
+                                        <option value="1" {if condition="$data.status eq '1'"}selected="selected"{/if} >{$Think.lang.status1}</option>
+                                        <option value="0" {if condition="$data.status eq '0'"}selected="selected"{/if} >{$Think.lang.status0}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">语言</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="lang" style="width:100%;">
+                                                                            {volist name="langarr" id="vo"}
+                                    <option value="{$key}" {if condition="$data.lang eq $key"}selected="selected"{/if} >{$vo}</option>
+                    				{/volist}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group">
+                                <button id="vsNewsSubmit" type="submit" class="btn btn-info submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function(){
+    var button = document.getElementById( 'image_urlBtn' );
+    button.onclick = function() {
+        selectFileWithCKFinder( 'image_url' );
+    };
+
+    CKEDITOR.replace( 'content' );
+    $("#vsNewsSubmit").click(function(){ 
+        CKupdate();
+    });
+    
+    {if condition=" $rest_login == 1 "}
+    restlogin('{$rest_login_info}');   //登录超时
+    {/if}
+})
+
+function CKupdate() {
+    for (instance in CKEDITOR.instances){
+       CKEDITOR.instances[instance].updateElement();
+    }
+}
+
+function selectFileWithCKFinder( elementId ) {
+    CKFinder.popup( {
+        chooseFiles: true,
+        width: 1000,
+        height: 600,
+        onInit: function( finder ) {
+            finder.on( 'files:choose', function( evt ) {
+                var file = evt.data.files.first();
+                $("#"+elementId+"-img").attr("src",file.getUrl());
+                $("#"+elementId+"-input").val(file.getUrl());
+            } );
+
+            finder.on( 'file:choose:resizedImage', function( evt ) {
+                $("#"+elementId+"-img").attr("src",evt.data.resizedUrl);
+                $("#"+elementId+"-input").val(evt.data.resizedUrl);
+            } );
+        }
+    } );
+}
+</script>
+{/block}

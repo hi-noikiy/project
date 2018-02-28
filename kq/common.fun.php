@@ -523,7 +523,7 @@ function getTotalTime($ary,$id,$date,$menka)
 
     if($new_ary){
     	foreach ($new_ary as $key=>$val){
-    		if($new_ary[$key+1]!=''&&$new_ary[$key+1]-$val<=5 && !($val == '1200' && $new_ary[$key+1] =='1200')){
+    		if($new_ary[$key+1]!=''&&$new_ary[$key+1]-$val<=5 && !($val == '1200' && $new_ary[$key+1] =='1200') && !($val == '1830' && $new_ary[$key+1] =='1830')){
     			$unset_ary[]=substr($new_ary[$key+1],0,2).':'.substr($new_ary[$key+1],-2);
     		}
     	}

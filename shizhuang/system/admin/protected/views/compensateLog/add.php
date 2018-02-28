@@ -60,7 +60,7 @@
 					<th style="width:130px;line-height:30px;text-align:right">道具<?=$i?></th>
 					<td>
 						<?=CHtml::activeDropDownList($model, "type{$i}", $goodsType, $i==1?array('class'=>'input-medium', 'required'=>'required'):array('class'=>'input-medium')); ?>
-						<?=CHtml::activeTextField($model, "param{$i}",array('value'=>'','placeholder'=>'物品ID或者数据或者等级', 'class'=>'input-medium itemtypeId'));?>
+						<?=CHtml::activeTextField($model, "param{$i}",array('value'=>'','placeholder'=>'物品ID或者数据或者等级', 'class'=>'input-medium'));?>
 					</td>
 				</tr>
 				<?php } ?>

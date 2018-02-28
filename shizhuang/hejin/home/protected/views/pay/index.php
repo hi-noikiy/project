@@ -9,6 +9,76 @@
 <script src="webpay/recharge/utility.js"></script>
 <script src="webpay/recharge/wap.js"></script>
 <script src="webpay/recharge/layer.js"></script>
+<style type="text/css">
+	.pagetop{
+		height: 0.737rem!important;
+		border-bottom: 1px solid #252525!important;
+	}
+	.pagetop dt img{
+		left: 0.213rem!important;
+	}
+	.pagetop dt h1{
+		left: 0.84rem!important;
+	}
+	.pagetitle h2 strong{
+		font-size: 0.1466rem!important;
+		font-weight: bold!important;
+		color: #CCCCCC!important;
+	}
+	.formline li{
+		font-size: 0.1466rem!important;
+		color: #a2873d!important;
+	}
+	.selected{
+		margin-left: 0.213rem!important;
+		height: 0.573!important;
+	}
+	.payway{
+		padding-left: 0.46rem!important;
+	}
+	.selectlist .selected dt{
+		font-size: 0.1466rem!important;
+		color: #f5ff00!important;
+	}
+	
+	.selectlist .select dt{
+		font-size: 0.1466rem!important;
+		color: #CCCCCC!important;
+	}
+	.select,.selected{
+		margin-left: 0.213rem!important;
+	}
+	.selectlist .selected dt span{
+		font-size: 0.1466rem!important;
+		color: #f5ff00!important;
+	}
+	.selectlist .select  dt span{
+		font-size: 0.1466rem!important;
+		color: #CCCCCC!important;
+	}
+	
+	.selectlist dd{
+		margin-right: 0.14rem!important;
+	}
+	form {
+		position: relative!important;
+		background-color: #424242!important;
+		height: 0.7rem!important;
+	}
+	form .formline{
+		margin: 0px!important;
+	}
+	form .formline li{
+		margin: 0px!important;
+	}
+	.formline .inputbutton input{
+		position: absolute;
+		top: 15px!important;
+		background-image: none!important;
+		font-size: 0.2rem!important;
+		color: #fefefe!important;
+	}
+</style>
 </head><body style="visibility: visible;">
 <dl class="pagetop">
  <dt><img src="webpay/recharge/icon.png" alt="衣范儿用户平台">
@@ -42,7 +112,7 @@
     </li>
           </ul>
   <ul class="formline">
-    <li>充值金额</li>
+    <li style="margin: 0.213rem;font-size: 0.1466rem;color: #a2873d;">充值金额</li>
   </ul>
 <ul class="selectlist" id="packageList">
 			<?php foreach($menu as $k=>$v){ ?>

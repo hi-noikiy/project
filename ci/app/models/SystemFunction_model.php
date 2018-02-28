@@ -229,6 +229,7 @@ class SystemFunction_model  extends CI_Model
     	if($limit){
     		$sql .= " limit $limit";
     	} 
+
     	$query = $this->db_sdk->query($sql);    	
     	if ($query) return $query->result_array();
     	return array();
@@ -349,8 +350,7 @@ class SystemFunction_model  extends CI_Model
     	if($group){
     		$sql .= " group by $group";
     	} 
-    	echo $sql;
-    	//var_dump($sql);
+    //	echo $sql;    
     	$query = $this->db_sdk->query($sql);
     	if ($query) return $query->result_array();
     	return false;
@@ -1080,7 +1080,8 @@ SQL;
       if($group){
           $sql .= " group by $group";
       }
-    
+     
+  
 /*       if($where['cid']){
           $sql .= " having cid IN({$where['cid']})";
       } */
@@ -1093,5 +1094,469 @@ SQL;
   
   }
   
+  /**
+   *  精灵塔  增加条件 新
+   * @author zzl 20170908   param参数变为param1
+   */
+  public function ActionByParamNew($where = array() , $field = '*' ,$group = '',$order ='',$limit='')
+  {
+  
+      $date = date("Ymd",$where['begintime']);
+      $utable   = "u_behavior_$date";
+      $sql = "select $field FROM $utable where 1=1";
+  
+      if ($where ['beginserver'] && $where ['endserver']) {
+          $server_list = $this->db_sdk->query ( "select serverid from server_date where serverdate>={$where['beginserver']} and  serverdate<={$where['endserver']}" );
+           
+          if ($server_list) {
+              foreach ( $server_list->result_array () as $k => $v ) {
+                   
+                  $server_list_new .= $v ['serverid'] . ',';
+              }
+              $server_list_new = rtrim ( $server_list_new, ',' );
+          }
+      }
+       
+      if ($server_list) {
+          $sql .= " AND serverid IN($server_list_new)";
+      }    
 
+      if($where['param_list']){
+          $sql .= " AND param1 in ({$where['param_list']})";
+      }
+      if($where['userid']){
+          $sql .= " AND userid =".$where['userid'];
+      }
+      if($where['viplev_min']){
+          $sql .= " AND vip_level >=".$where['viplev_min'];
+      }
+      if($where['viplev_max']){
+          $sql .= " AND vip_level <=".$where['viplev_max'];
+      }
+      if($where['serverids']){
+          $sql .= " AND serverid IN(".implode(',', $where['serverids']).")";
+      }
+      if($where['channels']){
+          $sql .= " AND channel IN(".implode(',', $where['channels']).")";
+      }
+      if($where['typeids']){
+          $sql .= " AND act_id IN(".implode(',', $where['typeids']).")";
+      }
+      if($where['beginh']){
+          $sql .= " AND from_unixtime(client_time,'%H%i') between {$where['beginh']} and {$where['endh']}";
+      }
+     
+      if($group){
+          $sql .= " group by $group";
+      }
+      if($limit){
+          $sql .= " limit $limit";
+      } 
+    
+
+      $query = $this->db_sdk->query($sql);
+      if ($query) return $query->result_array();
+      return array();
+  
+  }
+  /*
+   * 精灵配招推荐  zzl 20170921
+   */
+  public function recommend($where, $field = '*' ,$group = '',$order ='',$limit=''){
+      
+
+
+     $Ym = date("Ym",strtotime($where['date']));
+     $sql = "SELECT $field from  game_user_{$Ym} as gu INNER JOIN  game_data_{$Ym} as gd on gu.gameid=gd.id INNER JOIN game_user_eudemon_{$Ym} gue  on gue.gameuserid=gu.id"; 
+      
+     if( empty($where ['eudemon'])){
+         return false;
+     }
+
+     if($where['btype']){
+         $sql .= " AND gd.btype={$where['btype']}";
+     }
+     if($where['type']){
+         $sql .= " AND gd.type={$where['type']}";
+     }
+     
+     
+     if($where ['dan_s']){
+         $sql .= " AND gu.dan>={$where['dan_s']}";
+     }
+     if($where ['dan_e']){
+         $sql .= " AND gu.dan<={$where['dan_e']}";
+     }
+     
+     if( $where ['eudemon']){
+         $sql .= " AND gue.eudemon =".$where['eudemon'];
+     }
+      if($where['userid']){
+          $sql .= " AND userid =".$where['userid'];
+      }
+      if($where['viplev_min']){
+          $sql .= " AND vip_level >=".$where['viplev_min'];
+      }
+      if($where['viplev_max']){
+          $sql .= " AND vip_level <=".$where['viplev_max'];
+      }
+      if($where['serverids']){
+          $sql .= " AND gu.serverid IN(".implode(',', $where['serverids']).")";
+      }
+      if($where['channels']){
+          $sql .= " AND channel IN(".implode(',', $where['channels']).")";
+      }
+      if($where['typeids']){
+          $sql .= " AND act_id IN(".implode(',', $where['typeids']).")";
+      }
+      if($where['beginh']){
+          $sql .= " AND from_unixtime(client_time,'%H%i') between {$where['beginh']} and {$where['endh']}";
+      }
+       
+      if($group){
+          $sql .= " group by $group";
+      }
+      if($limit){
+          $sql .= " limit $limit";
+      }
+      $query = $this->db_sdk->query($sql);
+      if ($query) return $query->result_array();
+      return array();
+      
+      
+  }
+  /*
+   * 技能专精  zzl 20170921
+   */
+  public function mastery($where, $field = '*' ,$group = '',$order ='',$limit=''){
+
+
+      $Ym = date("Ym",strtotime($where['date']));
+      $Ymd = date("Ymd",strtotime($where['date']));
+
+    $begintime=strtotime ( $where['begintime'] );
+    $endtime=strtotime ( $where['endtime'] );
+    $sql=" SELECT {$field} FROM game_synscience_{$Ym} gsy,
+(SELECT accountid,dan from game_data_{$Ym} a,game_user_{$Ym} b WHERE a.btype=1 and a.id=b.gameid and a.endTime like '{$where ['begintime']}%'  GROUP BY accountid) s
+WHERE gsy.logdate={$Ymd} and gsy.account_id=s.accountid group by dan";
+
+      $query = $this->db_sdk->query($sql);
+      if ($query) return $query->result_array();
+      return array();
+       
+  }
+  
+  /*
+   * 社团争霸赛数据提取并处理  zzl  20170927
+   */
+  public function hegemony($where, $field = '*' ,$group = '',$order ='',$limit=''){
+      
+
+      $sql = "SELECT $field from synpkgame_history where 1=1";
+      
+
+      if($where['serverids']){
+          $sql .= " AND gu.serverid IN(".implode(',', $where['serverids']).")";
+      }
+      if($where['channels']){
+          $sql .= " AND channel IN(".implode(',', $where['channels']).")";
+      }
+      if($where['typeids']){
+          $sql .= " AND act_id IN(".implode(',', $where['typeids']).")";
+      }
+      
+      if($where ['pk_th']){
+          $sql .= " AND pk_th={$where ['pk_th']}";
+      }
+       
+      if($group){
+          $sql .= " group by $group";
+      }
+      if($limit){
+          $sql .= " limit $limit";
+      }
+      $query = $this->db_sdk->query($sql);
+      if ($query) return $query->result_array();
+      return array();
+  
+  }
+  
+  /*社团争霸赛社团  zzl  20170927
+   * 
+   */
+  
+  public function hegemonyGroup($where, $field = '*' ,$group = '',$order ='',$limit=''){
+  
+  
+      $sql = "SELECT $field from synpkgame_history where 1=1";
+  
+  
+      if($where['serverids']){
+          $sql .= " AND gu.serverid IN(".implode(',', $where['serverids']).")";
+      }
+      if($where['channels']){
+          $sql .= " AND channel IN(".implode(',', $where['channels']).")";
+      }
+      if($where['typeids']){
+          $sql .= " AND act_id IN(".implode(',', $where['typeids']).")";
+      }
+      if($where ['pk_th']){
+          $sql .= " AND pk_th={$where ['pk_th']}";
+      }
+       
+      if($group){
+          $sql .= " group by $group";
+      }
+      if($limit){
+          $sql .= " limit $limit";
+      }
+
+      $query = $this->db_sdk->query($sql);
+      if ($query) return $query->result_array();
+      return array();
+  
+  }
+  
+  /*1.	远古宝藏统计    zzl  20170930
+   *
+   */
+  
+  public function ancient($where, $field = '*' ,$group = '',$order ='',$limit=''){
+  
+  
+      $sql = "SELECT $field from game_egg where 1=1";
+  
+  
+      if($where['serverids']){
+          $sql .= " AND serverid IN(".implode(',', $where['serverids']).")";
+      }
+      if($where['channels']){
+          $sql .= " AND channel IN(".implode(',', $where['channels']).")";
+      }
+      if($where['typeids']){
+          $sql .= " AND act_id IN(".implode(',', $where['typeids']).")";
+      }
+      if($where ['begintime'] && $where ['endtime']){
+          $sql .= " AND logdate>={$where ['begintime']} and logdate<={$where ['endtime']}";
+      }
+ 
+      if($group){
+          $sql .= " group by $group";
+      }
+      
+      if($order){
+          $sql .= " order by $order";
+      }
+      if($limit){
+          $sql .= " limit $limit";
+      }
+      
+      $query = $this->db_sdk->query($sql);
+      if ($query) return $query->result_array();
+      return array();
+  
+  }
+  
+  // 挑战次数
+  public function challenge($where, $field = '*' ,$group = '',$order ='',$limit=''){
+  
+  
+     $sql = "SELECT $field from game_community where status = 5 and  type = 4";
+    //  $sql = "SELECT $field from game_community where 1=1";
+  
+  
+      if($where['serverids']){
+          $sql .= " AND serverid IN(".implode(',', $where['serverids']).")";
+      }
+      if($where['channels']){
+          $sql .= " AND channel IN(".implode(',', $where['channels']).")";
+      }
+      if($where['typeids']){
+          $sql .= " AND act_id IN(".implode(',', $where['typeids']).")";
+      }
+      if($where ['begintime'] && $where ['endtime']){
+          $sql .= " AND logdate>={$where ['begintime']} and logdate<={$where ['endtime']}";
+      }
+  
+      if($group){
+          $sql .= " group by $group";
+      }
+  
+      if($order){
+          $sql .= " order by $order";
+      }
+      if($limit){
+          $sql .= " limit $limit";
+      }
+    //    echo $sql;
+      $query = $this->db_sdk->query($sql);
+      if ($query) return $query->result_array();
+      return array();
+  
+  }
+  
+  
+  // 参与远古
+  public function participation($where, $field = '*' ,$group = '',$order ='',$limit=''){  
+  
+      $sql = "SELECT $field from game_community where status = 5 and  type = 4";  
+  
+      if($where['serverids']){
+          $sql .= " AND serverid IN(".implode(',', $where['serverids']).")";
+      }
+      if($where['channels']){
+          $sql .= " AND channel IN(".implode(',', $where['channels']).")";
+      }
+      if($where['typeids']){
+          $sql .= " AND act_id IN(".implode(',', $where['typeids']).")";
+      }
+      if($where ['begintime'] && $where ['endtime']){
+          $sql .= " AND logdate>={$where ['begintime']} and logdate<={$where ['endtime']}";
+      }
+  
+      if($group){
+          $sql .= " group by $group";
+      }
+  
+      if($order){
+          $sql .= " order by $order";
+      }
+      if($limit){
+          $sql .= " limit $limit";
+      }
+  //    echo $sql;
+      $query = $this->db_sdk->query($sql);
+      if ($query) return $query->result_array();
+      return array();
+  
+  }
+  
+  
+  
+  
+  public function elite($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '') {
+ 
+  
+
+  
+     // $sql = "select $field from u_behavior_{$where['date']} a inner join item_trading_{$where['date']} b on a.id=b.behavior_id and b.item_id=3 and b.type=1 and a.act_id=121 where 1=1";
+     $sql = "select $field from u_behavior_{$where['date']}  where act_id=142 and 1=1";
+      if ($server_list) {
+          $sql .= " AND a.serverid IN($server_list_new)";
+      }
+      if ($where ['serverids']) {
+          $sql .= " AND serverid IN(" . implode ( ',', $where ['serverids'] ) . ")";
+      }
+      
+      
+      if ($where ['user_level']) {
+          $sql .= " AND user_level={$where ['user_level']}";
+      }
+      if ($group) {
+          $sql .= " group by $group";
+      }
+      if ($order) {
+          $sql .= " order by $order";
+      }
+      if ($limit) {
+          $sql .= " limit $limit";
+      }
+ // echo $sql;
+      $query = $this->db_sdk->query ( $sql );
+      
+  
+  
+      $result = array ();
+      if ($query) {
+          $result = $query->result_array ();
+      }
+  
+      return $result;
+  }
+  
+
+  public function elite_treasure($table = '', $where = array(), $field = '*', $group = 'vip_level', $order = '', $limit = '') {
+      $sql = "select $field from u_behavior_{$where['date']}  where act_id=141 and 1=1";
+      if ($server_list) {
+          $sql .= " AND a.serverid IN($server_list_new)";
+      }
+      if ($where ['serverids']) {
+          $sql .= " AND serverid IN(" . implode ( ',', $where ['serverids'] ) . ")";
+      }
+  
+  
+      if ($where ['user_level']) {
+          $sql .= " AND user_level={$where ['user_level']}";
+      }
+      if ($group) {
+          $sql .= " group by $group";
+      }
+      if ($order) {
+          $sql .= " order by $order";
+      }
+      if ($limit) {
+          $sql .= " limit $limit";
+      }
+//  echo $sql;
+      $query = $this->db_sdk->query ( $sql );
+  
+      $result = array ();
+      if ($query) {
+          $result = $query->result_array ();
+      }
+  
+      return $result;
+  }
+
+        /*
+     * 周任务链后台统计 zzl 20171027
+     */
+    public function mission($table = '', $where = array(), $field = '*', $group = 'vip_level', $order = '', $limit = '')
+    {
+        $itable = "item_trading_{$where['date']}";
+        $utable = "u_behavior_{$where['date']}";
+        $u_register = "u_register";
+        $sql = "SELECT $field FROM $itable i inner join $utable u on i.behavior_id=u.id  where act_id=151 ";
+        
+        if ($where['serverids']) {
+            $sql .= " AND u.serverid IN(" . implode(',', $where['serverids']) . ")";
+        }
+        if ($where['channels']) {
+            $sql .= " AND u.channel IN(" . implode(',', $where['channels']) . ")";
+        }
+        if ($where['typeids']) {
+            $sql .= " AND u.act_id IN(" . implode(',', $where['typeids']) . ")";
+        }
+        if ($where['type']) {
+            $sql .= " AND i.type = {$where['type']}";
+        }
+        
+        if ($group) {
+            $sql .= " group by $group";
+        }
+      
+        $sql2 = "SELECT count(if(param=1,true,null)) p1,count(if(param=2,true,null)) p2,count(if(param=3,true,null)) p3,
+      count(if(param=4,true,null)) p4,vip_level from u_behavior_{$where['date']} u  where  act_id=152";
+        
+        if ($where['serverids']) {
+            $sql2 .= " AND u.serverid IN(" . implode(',', $where['serverids']) . ")";
+        }
+        if ($where['channels']) {
+            $sql2 .= " AND u.channel IN(" . implode(',', $where['channels']) . ")";
+        }
+        $sql2 .= "  group by vip_level";        
+   
+        $query = $this->db_sdk->query($sql);
+        if ($query) {
+            $result = $query->result_array();
+        }
+        
+        $query2 = $this->db_sdk->query($sql2);
+        if ($query2) {
+            $result['param'] = $query2->result_array();
+        }
+        
+        return $result;
+    }
+  
 }

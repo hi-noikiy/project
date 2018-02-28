@@ -11,10 +11,14 @@ return array(
                     'title'     =>'汇总',
                     'controller'=>'Home/Summary',
                 ],
-            	[
+                [
+                'title'     =>'一天汇总详情',
+                'controller'=>'Home/summaryByDay',
+                ],
+          /*   	[
             		'title'     =>'渠道推广数据',
             		'controller'=>'Home/summary_by_ad',
-            	],
+            	], */
                 [
                     'title'     =>'汇总(按渠道)',
                     'controller'=>'Home/summary_by_channel',
@@ -159,6 +163,10 @@ return array(
                 [
                 'title'     =>'邀请好友统计需求',
                 'controller'=>'PlayerAnalysis/inviteFriend',
+                ],
+                [
+                'title'     =>'典型玩家数据',
+                'controller'=>'PlayerAnalysis/tipical',
                 ],
                 
             ]
@@ -389,6 +397,34 @@ return array(
             		'title'     =>'全球对战-战斗回合数统计',
             		'controller'=>'SystemFunction/combatBout',
             	],
+                [
+                'title'     =>'精灵推荐配招',
+                'controller'=>'SystemFunction/recommend',
+                ],
+                [
+                'title'     =>'技能专精',
+                'controller'=>'SystemFunction/mastery',
+                ],
+           /*      [
+                'title'     =>'创世徽章',
+                'controller'=>'SystemFunction/badge',
+                ], */
+                [
+                'title'     =>'社团争霸赛',
+                'controller'=>'SystemFunction/hegemony',
+                ],
+           /*      [
+                'title'     =>'远古宝藏统计',
+                'controller'=>'SystemFunction/ancient',
+                ], */
+                [
+                'title'     =>'菁英挑战统计',
+                'controller'=>'SystemFunction/elite',
+                ],
+                [
+                'title'     =>'周任务链接统计',
+                'controller'=>'SystemFunction/mission',
+                ],
             ]
         ],
         [
@@ -406,6 +442,10 @@ return array(
             		[
             		'title'     =>'跨服操作配置',
             		'controller'=>'SystemAnalysis/crossServer',
+            		],
+            		[
+            		'title'     =>'获取精灵数据',
+            		'controller'=>'ActiveAnalysis/getelves',
             		],
             ]
         ],
@@ -491,6 +531,15 @@ return array(
     		    'title'     =>' 每个服务器的活跃VIP分布',
     		    'controller'=>'DataAnalysis/activeVip',
     		    ],
+    			[
+    				'title'     =>' 坐骑数据统计',
+    				'controller'=>'ActiveAnalysis/horse',
+    			],
+    		    [
+    		    'title'     =>'精灵拥有数统计',
+    		    'controller'=>'ActiveAnalysis/elves',
+    		    ], 
+    		
     		]
     	],
     	[

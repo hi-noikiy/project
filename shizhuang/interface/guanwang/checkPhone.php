@@ -17,7 +17,7 @@ $game_id = intval($_POST['game_id']);
 $sign = trim($_POST['sign']);
 $phone = $_POST['phone'];
 $appKey = $key_arr['appKey'];
-$accountConn = $accountServer[$game_id];
+$accountConn = $game_id;
 
 if(strlen($phone) != 11 || !preg_match('/^1[34578]{1}\d{9}$/', $phone))
 	exit(json_encode(array('status'=>2, 'msg'=>'手机格式错误.')));
@@ -48,19 +48,18 @@ $my_sign = md5($md5Str.$appKey);
 
 if($sign != $my_sign)
 	exit(json_encode(array('status'=>2, 'msg'=>'验证错误.')));
-$conn = SetConn($accountConn);
-$sql = "select id from account where NAME = '$phone' limit 1";
-if(false == $query = mysqli_query($conn,$sql))
+$snum = giQSAccountHash($phone);
+$conn = SetConn($game_id,$snum);
+$bindtable = getAccountTable($phone,'mobile_bind');
+$bindwhere = 'mobile';
+$selectsql = "select accountid from $bindtable where $bindwhere = '$phone' and gameid='$game_id' limit 1";
+if(false == $query = mysqli_query($conn,$selectsql)){
+	write_log(ROOT_PATH."log","checkphone_error_",$selectsql.",post=$post, ".date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
-$result = @mysqli_fetch_assoc($query);
-
-if(!isset($result['id'])){
-	$sql = "select id from account where phone='$phone' limit 1";
-	if(false == $query = mysqli_query($conn,$sql))
-		exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
-	$result = @mysqli_fetch_assoc($query);
 }
 
-$msg = isset($result['id']) ? 'registered' : 'unregistered';
+$result = @mysqli_fetch_assoc($query);
+
+$msg = isset($result['accountid']) ? 'registered' : 'unregistered';
 
 exit(json_encode(array('status'=>0, 'msg'=>$msg)));

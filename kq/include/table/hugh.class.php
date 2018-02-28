@@ -81,7 +81,6 @@ class hugh extends getList {
 			$filing=new leave_filing();
 			//搜索是否报备
 			$filingArr=$filing->isFiling($array['uid'], $fromTime);
-			
 			if(!empty($filingArr)){
 				$filingFlag=false;
 				foreach ($filingArr as $v){
@@ -91,19 +90,21 @@ class hugh extends getList {
 						$filingFlag=true;
 						break;
 					}
-				}	
+				}
 				//找不到记录只能9：00-9：30可以调
 				$startTime=strtotime($array ['fromTime'].' 09:00:00');
 				$endTime  =strtotime($array ['toTime'].' 09:30:00');
 				if($sttime==$startTime && $entime==$endTime )
 					$filingFlag=true;
 				//还有一种情况，昨天加班21点以后，早上9.30之后才来，下午又请假报备，有时间完善
-				if($filingFlag==false){
-					echo "<script>alert('调休单子填写错误！')</script>";
-					go('index.php?type=web&do=info&cn=hugh');
+				if($filingFlag){
+					$jobId = $this->addData($array);
+					acLateTime($jobId); // 计算调休对应的迟到早退时间
+					$this->dure($array['uid']);
 					exit();
 				}
-			} else {
+			}
+			
 				$record= new record();
 				//没有报备，查询是否有凌晨加班
 				$recordRow=$record->getOneRow($array['name'], $fromTime);
@@ -176,7 +177,7 @@ class hugh extends getList {
 						if($menjinTime>= $threeGear || $zhiwenTime>=$threeGear){
 							//可以调休早上
 							$morningTime=strtotime($array ['toTime'].' 12:00:00');
-							if($entime>=$morningTime || $sttime>=$morningTime){
+							if($entime>$morningTime || $sttime>$morningTime){
 								echo "<script>alert('只能早上调休！如有问题，请咨询管理员！')</script>";
 								go('index.php?type=web&do=info&cn=hugh');
 								exit();
@@ -212,7 +213,6 @@ class hugh extends getList {
 					}	
 				}	
 			}
-		}
 		$jobId = $this->addData($array);
 		acLateTime($jobId); // 计算调休对应的迟到早退时间
 		$this->dure($array['uid']);
@@ -241,13 +241,13 @@ class hugh extends getList {
 	    if($uid=='330')
 	    	$overtime+=0.5;
 	    //统计已经调休了多少时间
-		$sql="select sum(totalTime) as hughtime from _web_hugh where depTag='2' and perTag='2' and manTag='2' and uid=$uid and addDate<='$fromTime'";
+		$sql="select sum(totalTime) as hughtime from _web_hugh where depTag !='1' and perTag !='1' and manTag !='1' and uid=$uid and addDate<='$fromTime' and available='1'";
 		$query2=mysql_query($sql);
 		$hughResult=mysql_fetch_row($query2);
 		if(!empty($hughResult[0]))
 			$hughtime=$hughResult[0];
 		//小时转化为分钟
-		if($totalTime*60+$reserve+$hughtime*60>$overtime*60)
+		if($totalTime*60+$hughtime*60>$overtime*60)
 			return true;
 		return false;
 	}

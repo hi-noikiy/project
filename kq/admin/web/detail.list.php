@@ -150,7 +150,7 @@ foreach($recordlist as $val){
 	        </td>
 	        <td class="N_title">
 		        <?//实际扣考勤
-		        	$late=$val['latetime']-$outRecord-$lt -$ld;
+		        	$late=$val['latetime']-$outRecord-$lt -$ld*60;
 		        	echo ($late>0)?(floor($late/60)."小时".($late%60)."分钟"):"0小时0分钟"
 		        ?>
 	        </td>
@@ -204,7 +204,7 @@ foreach($recordlist as $val){
 	        </td>
 	        <td class="N_title">
 		        <?//实际扣考勤
-		        	$late=480-$outRecord-$lt;
+		        	$late=480-$outRecord-$lt -$ld*60;;
 		        	echo ($late>0)?(floor($late/60)."小时".($late%60)."分钟"):"0小时0分钟";
 		        ?>
 	        </td>

@@ -4,9 +4,17 @@ var g_Timer;
 var stoptime;
 var employdata;
 var prizedata;
+var html;
 var runstatus  = false;
 var media = document.getElementById("media");
 function beginRndNum(trigger){
+	if(!runstatus){
+		getlist();
+	}
+	 if (!employdata) {
+		 alert('等待数据加载');
+		 return false;
+	 }
 	if(employdata['code'] == 1){
 		alert(employdata['data']);return false;
 	}
@@ -17,13 +25,13 @@ function beginRndNum(trigger){
 		clearInterval(g_Timer);
 		$('#Button').css('background-image',"url('image/button.png')");
 		$('#ResultNum').css('color','white');
-		getlist();
 	}else{
 		runstatus = true;
 		$('#ResultName').html('');
 		$('#ResultNum').html('');
 		media.play();
 		$('#Button').css('background-image',"url('image/stop.png')");
+		$('#hidediv').css('display',"block");
 		$('#ResultNum').css('color','black');
 		$(trigger).val("停止");
 		beginTimer();
@@ -34,17 +42,15 @@ function updateRndNum(status){
 	var num = employdata['data'][Math.floor(Math.random()*employdata['data'].length)]['ename'];
 	if(status == 1){
 		num = prizedata['data'][0]['dname']+'  '+prizedata['data'][0]['ename'];
-		var shtml = prizedata['data'][0]['levelname']+'(第'+prizedata['data'][0]['curid']+'位)';
-		//alert(prizedata['data'][0]['prizename']);
-		if(prizedata['data'][0]['prizename'] != undefined)shtml+=prizedata['data'][0]['prizename'];
-		$('#ResultName').html(shtml);
+		getinfo();
 	}
 	$('#ResultNum').html(num);
 }
 
 function beginTimer(){
 	$('#ResultName').html();
-	$.get('/core/index.php',{act:'start'},function(json){
+	var type = $('#sel').val();
+	$.get('/core/index.php',{act:'start',type:type},function(json){
 		prizedata = JSON.parse(json);
 	});
 	stoptime = 10;
@@ -55,7 +61,9 @@ function beginTimer(){
 function beat() {
 	stoptime-=g_Interval/1000;
 	if(stoptime >0 ){
-		//$('#btn').val(Math.round(stoptime));
+		if(stoptime<=8){
+			$('#hidediv').css('display',"none");
+		}
 		updateRndNum(0);
 	}else{
 		runstatus = false;
@@ -64,11 +72,33 @@ function beat() {
 		clearInterval(g_Timer);
 		$('#Button').css('background-image',"url('image/button.png')");
 		$('#ResultNum').css('color','white');
-		getlist();
 	}
 }
 function getlist(){
-	$.get('/core/index.php',{act:'getemploy'},function(json){
-		employdata = JSON.parse(json);
+	var type = $('#sel').val();
+	$.ajax({
+		type : "get",
+		url : "/core/index.php",
+		data : "act=getemploy&type="+type,
+		async : false,
+		success : function(data){
+			employdata = JSON.parse(data);
+		}
 	});
 }
+function getinfo(){
+	$.get('/core/index.php',{act:'getinfo'},function(json){
+		html = '';
+		result = JSON.parse(json);
+		if(result['code'] == 1){
+			return false;
+		}
+		for(var i in result.data){
+			if(result['data'].hasOwnProperty(i)){
+				html += '<div>'+result['data'][i]+'</div>';
+			}
+		}
+		$('#mydiv').html(html);
+	});
+}
+getinfo();

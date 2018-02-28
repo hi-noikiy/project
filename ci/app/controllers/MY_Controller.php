@@ -66,7 +66,11 @@ class MY_Controller extends CI_Controller
             $groupData = $this->ion_auth->get_users_groups($this->userData->id)->row();
             $this->group_info = $this->ion_auth->group($groupData->id)->row();
             $this->data['menus']        = $this->my_menus( $this->group_info);
-            $this->data['channel_list'] = [$this->group_info->channel=>$global_channel[$this->group_info->channel]];
+            $this->data['all_channel_list'] = $this->group_info->channel;
+            foreach (explode(',', $this->group_info->channel) as $v){
+            	$v&&$this->data['channel_list'][$v] = $global_channel[$v];
+            }
+            //$this->data['channel_list'] = [$this->group_info->channel=>$global_channel[$this->group_info->channel]];
             if($this->group_info->serverids){
             	$this->data['big_server_list'] = '';
             	$serverids = explode(',', $this->group_info->serverids);

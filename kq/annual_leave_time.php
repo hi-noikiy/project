@@ -12,7 +12,7 @@ $mysql = 'insert into _web_annual_leave(uid,useYear,allTime)values';
 foreach($result as $v){
 	$intime = $v['inTime'];
 	$n = 0;//今年入职的无年假(记录总年假时间)
-	if($intime && $intime<$ydate){ //至少去年入职的计算年假
+	if($intime && date('Ymd',strtotime($intime)+24*365*60*60)<$date){ //至少去年入职的计算年假
 		$ld = $webdb->getValue("select sum(totalTime) as ld from _web_leave where uid='".$v['id']."' and available='1' and manTag='2' and fromTime like '".$lasty."%' and leaveType='产假'",'ld');
 		if($ld>0){//请产假则不计算年假
 			$n=0;

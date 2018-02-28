@@ -31,11 +31,12 @@ if(!$subject || !$bizContent || !$amount){
  * 客户端修改又麻烦，自己转了。
  */
 $bizContentArr = json_decode($bizContent, true);
-$gameId = $bizContentArr['game_id'];
-$serverId = $bizContentArr['player_id'];
+$gameId = 9;
+$serverId = $bizContentArr['server_id'];
+$player_id = $bizContentArr['player_id'];
 $accountId = $bizContentArr['account_id'];
 
-$bizContent = $gameId.'_'.$serverId.'_'.$accountId;
+$bizContent = $serverId.'_'.$player_id.'_'.$accountId;
 $appId = $key_arr[$gameId]['appId'];
 $rsaPrivateKey = $key_arr[$gameId]['privateKey'];
 

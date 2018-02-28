@@ -59,6 +59,7 @@ class ManualLogController extends CommonController{
         if($maxLevel == $this->mangerInfo['level']){
             //流程已经到最后一步了，执行sql
             $accountId = $rs->account_id;
+            $playerId = $rs->player_id;
             $accountName = $rs->account_name;
             $serverId = $rs->server_id;
             $emoney = $rs->emoney;
@@ -68,19 +69,13 @@ class ManualLogController extends CommonController{
             $addTime = date('Y-m-d H:i:s');
             $dwFenBaoID = $rs->dwFenBaoID;
 
-            $sql = "insert into web_pay_log (CPID,PayCode,PayID,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,rpTime,game_id, rpCode)";
-            $sql .=" VALUES ('9', '$payCode', '$accountId', '$accountName', '$serverId', '$emoney', '$orderId','$dwFenBaoID','$addTime', '$addTime', '$gameId', '1')";
+            $sql = "insert into web_pay_log (CPID,PayCode,PayID,PlayerID,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,rpTime,game_id, rpCode)";
+            $sql .=" VALUES ('9', '$payCode', '$accountId','$playerId', '$accountName', '$serverId', '$emoney', '$orderId','$dwFenBaoID','$addTime', '$addTime', '$gameId', '1')";
 
             $connection = Yii::app()->db;
             $command = $connection->createCommand($sql);
             if($command->execute()){
-                if(in_array($rs->payCode, array('USD', 'TWD'))){
-                    if($rs->payCode == 'TWD') //台湾币
-                        $emoney = $rs->emoney*2;
-                    elseif($rs->payCode == 'USD') //美元
-                        $emoney = round($rs->emoney)*60;
-                }
-                $this->writeCard($orderId,$accountId, $serverId, $emoney);
+                $this->writeCard($orderId,$playerId, $serverId, $emoney);
                 $manualLogModel->updateByPk($id, array('status'=>2));
                 $erpLogModel->saveData($this->getId(), '流程结束', $rs->id);
 
@@ -107,16 +102,12 @@ class ManualLogController extends CommonController{
             /*if(empty($serverId))
                 $this->display('服务器ID不能为空！', 0);*/
             if(empty($username))
-                $this->display('账号或角色名任填一个！', 0);
+                $this->display('角色名不能为空！', 0);
 
-            if($type == 0){
-                $accountInfo = $this->checkAccount($username, false, $gameId);
-            } else {
-                $palyerInfo = $this->checkPlayer($username, 0 , $serverId);
-                if($palyerInfo == false)
-                    $this->display('角色不存在！', 0);
-                $accountInfo = $this->checkAccount($palyerInfo['account_id'], true, $gameId);
-            }
+            $palyerInfo = $this->checkPlayer($username, 0 , $serverId);
+            if($palyerInfo == false)
+            	$this->display('角色不存在！', 0);
+            $accountInfo = $this->checkAccount($palyerInfo['account_id'], true, $gameId);
             if($accountInfo == false)
                 $this->display('账号不存在！', 0);
             $accountId = $accountInfo['id'];
@@ -142,6 +133,7 @@ class ManualLogController extends CommonController{
                 $manualLogModel->dwFenBaoID = $dwFenBaoID;
                 $manualLogModel->emoney = $emoney;
                 $manualLogModel->account_id = $accountId;
+                $manualLogModel->player_id = $palyerInfo['id'];
                 $manualLogModel->account_name = $accountName;
                 $manualLogModel->payCode = $_POST['payCode'];
                 $manualLogModel->verify_level = $this->mangerInfo['level'];;
@@ -175,14 +167,10 @@ class ManualLogController extends CommonController{
         $gameId = isset($_POST['gameid']) ? intval($_POST['gameid']) : $rs->game_id;
         $serverId = isset($_POST['serverid']) ? intval($_POST['serverid']) : $rs->server_id;
         $username =  isset($_POST['username']) ? trim($_POST['username']) : $rs->name;
-        if($type == 0){
-            $accountInfo = $this->checkAccount($username, false, $gameId);
-        } else {
-            $palyerInfo = $this->checkPlayer($username, 0 , $serverId);
-            if($palyerInfo == false)
-                $this->display('角色不存在！', 0);
-            $accountInfo = $this->checkAccount($palyerInfo['account_id'], true, $gameId);
-        }
+        $palyerInfo = $this->checkPlayer($username, 0 , $serverId);
+        if($palyerInfo == false)
+        	$this->display('角色不存在！', 0);
+        $accountInfo = $this->checkAccount($palyerInfo['account_id'], true, $gameId);
         if($accountInfo == false)
             $this->display('账号不存在！', 0);
 
@@ -196,8 +184,6 @@ class ManualLogController extends CommonController{
         if(!empty($_POST)){
             if(empty($gameId))
                 $this->display('游戏ID不能为空！', 0);
-            /*if(empty($serverId))
-                $this->display('服务器ID不能为空！', 0);*/
             if(empty($username))
                 $this->display('账号或角色名任填一个！', 0);
             $accountId = $accountInfo['id'];
@@ -218,6 +204,7 @@ class ManualLogController extends CommonController{
                 $rs->dwFenBaoID = $dwFenBaoID;
                 $rs->emoney = $emoney;
                 $rs->account_id = $accountId;
+                $rs->player_id = $palyerInfo['id'];
                 $rs->account_name = $accountName;
                 $rs->payCode = $_POST['payCode'];
                 $rs->verify_level = $this->mangerInfo['level'];
@@ -237,9 +224,9 @@ class ManualLogController extends CommonController{
         ));
     }
 
-    private function writeCard($orderId, $accountId, $serverId, $payMoney, $type = 8){
+    private function writeCard($orderId, $playerId, $serverId, $payMoney, $type = 8){
         $conn = SetConn($serverId);
-        $table = u_card;
+        $table = 'u_card';
         $sql="select count(id) as count from $table where ref_id='$orderId' limit 1";
         $query = @mysqli_query($conn,$sql);
         $count = @mysqli_fetch_assoc($query);
@@ -247,7 +234,7 @@ class ManualLogController extends CommonController{
         if ($count['count'] == 0) {
             $time_stamp=date('ymdHi');
             $sql_insert="insert into $table(data, player_id, ref_id, time_stamp, used, type)";
-            $sql_insert=$sql_insert." values('$payMoney', $accountId, '$orderId',$time_stamp, 0, '$type')";
+            $sql_insert=$sql_insert." values('$payMoney', $playerId, '$orderId',$time_stamp, 0, '$type')";
             $msg = @mysqli_query($conn,$sql_insert) ? $orderId : false;
         }
         @mysqli_close($conn);

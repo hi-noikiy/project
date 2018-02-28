@@ -729,12 +729,78 @@ class PlayerAnalysis extends MY_Controller {
             $this->layout ();
         }
         
-         
+    
+    }
+    
+    /*
+     * 典型玩家数据 zzl  20171025
+     */
+    public function tipical(){
+        
+
+        if (parent::isAjax ()) {
+            $date = $this->input->get ( 'date1' ) ? $this->input->get ( 'date1', true ) : date ( 'Y-m-d' );
+            $where ['days'] = $this->input->get ( 'days' ) ? $this->input->get ( 'days', true ) : 10;
+            $where ['days2'] = $this->input->get ( 'days2' ) ? $this->input->get ( 'days2', true ) : 15;
+            $where ['vip_level'] = $this->input->get ( 'vip_level' ) ? $this->input->get ( 'vip_level', true ) : '';
+            $where ['channel'] = $this->input->get ( 'channel' );           
+          
+            $where ['date']=date ( 'Ymd', strtotime ( $date ) );
+            $where ['begindate'] = date ( 'Ymd', strtotime ( $date ) );
+          
+            $where ['serverids'] = $this->input->get ( 'server_id' );
+            $where ['channels'] = $this->input->get ( 'channel_id' );     
+             
+            $table = '';
+            $group="total_days";
+            $order='total_days';
+            $field="count(*) as signin ,userid,accountid,serverid,channel,vip_level,client_time,ROUND(AVG(user_level),2) as user_level ,create_time,total_days,ROUND(AVG(prestige),2) as prestige,ROUND(AVG(synscience_avg),2) as synscience_avg,ROUND(AVG(godstep),2) as godstep,ROUND(AVG(stonestep_avg),2) as stonestep_avg,ROUND(AVG(stonelevel_avg),2) as stonelevel_avg,ROUND(AVG(level_avg),2) as level_avg,ROUND(AVG(intimacy_avg),2) as intimacy_avg,ROUND(AVG(individual_avg),2) as individual_avg,ROUND(AVG(effort_avg),2) as effort_avg,ROUND(AVG(baofen_avg),2) as baofen_avg,ROUND(AVG(prestige_avg),2) as prestige_avg,ROUND(AVG(handbook_avg),2) as handbook_avg,logdate,created_at";            
+            $this->loadModel();
+            $data = $this->player_analysis_model->tipical( $table, $where, $field, $group, $order, $limit);
+            foreach ($data as &$v){                
+                foreach ($data['data2'] as $v2){
+                   if($v['total_days']==$v2['total_days']){
+                       
+                       $v['pay_avg']=round($v2['avg_money'],2);                       
+                   }                
+                }                
+                
+           if($data['data3']){
+               foreach($data['data3'] as $v3){
+                   if($v['total_days']==$v3['total_days']){
+                       $v['consume']=round($v3['consume'],2);                        
+                   }
+               }
+           }
+                
+            }             
+             
+            if (! empty ( $data))
+                echo json_encode ( [
+                    'status' => 'ok',
+                    'data' => $data
+                ] );
+                else
+                    echo json_encode ( [
+                        'status' => 'fail',
+                        'info' => '未查到数据'
+                    ] );
+        } else {
+            
+            $this->data ['show_vip_level'] = true;
+            $this->data ['show_days'] = true;
+            $this->data ['type_list'] = $types;
+            $this->data ['hide_end_time'] = true;
+            $this->data ['hide_server_list'] = true;             
+            $this->body = 'PlayerAnalysis/tipical';
+            $this->layout ();
+        }
+        
+        
         
         
         
     }
-    
     
     
     

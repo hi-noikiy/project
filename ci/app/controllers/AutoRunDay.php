@@ -53,7 +53,7 @@ class AutoRunDay extends CI_Controller{
     }
     
     public function summary($date1=''){
-        parent::log(summary, LOG_PATH . '/summary2.log');
+      
     	$date1 = $date1 ? $date1 : date('Ymd', strtotime('-1 days'));
     	$date2 = $date1;
     	
@@ -106,8 +106,6 @@ class AutoRunDay extends CI_Controller{
     	//print_r($output);
     	$this->insert_batch('sum_summary',$output,$this->db);
     	
-    	parent::log(summary222, LOG_PATH . '/summary2.log');
-    	parent::log($this->db->last_query(), LOG_PATH . '/summary.log');
     	print_r($this->db->error());
     }
     public function summary_by_channel($date1=''){
@@ -530,8 +528,8 @@ class AutoRunDay extends CI_Controller{
 	 */
     function run_ad()
     {
-    	$begin = strtotime('2017-09-12 00:00:00');
-    	$end   = strtotime('2017-09-27 23:59:59');
+    	$begin = strtotime('2017-10-02 00:00:00');
+    	$end   = strtotime('2017-10-05 23:59:59');
     	$diff =1;//floor( ($end - $begin ) / 86400) ;// 1;
     
     	for ($i=0; $i<$diff; $i ++) {
@@ -565,7 +563,7 @@ usleep(1000);
     {
         $this->load->database();
         //$begin = strtotime('2016-11-29 00:00:00');
-        $begin = strtotime('2017-09-11 00:00:00');
+        $begin = strtotime('2017-11-03 00:00:00');
      //   $end   = strtotime('2017-04-10 23:59:59');
         //$begin = strtotime('2016-07-13 00:00:00');
         $_d['appid'] = $this->appids[0]['appid'];
@@ -581,32 +579,44 @@ usleep(1000);
             //continue;
             $t1=strtotime(date('Y-m-d 00:00:00', $now));
             $t2=strtotime(date('Y-m-d 23:59:00', $now));
-        /*      $this->OnlineTime($t1, $t2);
-            $this->SystemAnalysis($t1, $t2);
+            
+       
+            
+          /*      $this->OnlineTime($t1, $t2);
+            $this->SystemAnalysis($t1, $t2);  */  
 
-         $this->NewPlayerCal($_d['appid'], $date);
+/*     $this->NewPlayerCal($_d['appid'], $date);
             $this->ActiveAccountCount( $now);
-            $this->UserRemainNew($now); */
+            $this->UserRemainNew($now);   */
            
          $this->run_summary($date); 
-            //$this->UserLost( $date);
+       //     $this->UserLost( $date);
 
-        $this->au( $now);
+  //     $this->au( $now);
         
 
-     //  echo    $date = date('Ymd', $bt);
+ //   echo    $date = date('Ymd', $bt);
             //echo $date, '<br/>';
-          /*     $this->OnlineCal($_d['appid'],$date);
+/*           $this->OnlineCal($_d['appid'],$date);
            $this->DeviceCal($_d['appid'], $date);
             $this->NewPlayerCal($_d['appid'], $date);
-         $this->LoginCal($_d['appid'],$date); 
-         */
+         $this->LoginCal($_d['appid'],$date);    */
+    
+    
+         
+         
+         //新设备使用旧账号登录数量   安装新包使用旧账号登录数量
+  /*       $date=20171103;
+     $this->load->model('Mydb_sum_model');
+    $res = $this->Mydb_sum_model->accountDevice($date);  */
+ 
+       
             usleep(500);
 
         }
     }
     /*
-     *  删除 u_behavior_20170713    .accountid < 1000    zzl
+     *  删除 u_behavior    zzl
      */
     public function delBehavior()
     {
@@ -615,6 +625,17 @@ usleep(1000);
     	$dbsdk = $this->load->database('sdk', true);    	
     	$dbsdk->query("DELETE u_behavior_{$suffix}.*,item_trading_{$suffix}.* FROM u_behavior_{$suffix} inner JOIN item_trading_{$suffix}  on u_behavior_{$suffix}.id=item_trading_{$suffix}.behavior_id WHERE u_behavior_{$suffix}.accountid<1000 and u_behavior_{$suffix}.accountid>0");
       	unset($dbsdk);  
+    }
+    
+    /*
+     * 新设备使用旧账号登录数量   安装新包使用旧账号登录数量  zzl 20171018
+     */
+    public  function accountDevice(){
+     //   $assign_date="20171018";
+        $assign_date='';
+        $this->load->model('Mydb_sum_model');
+        $res = $this->Mydb_sum_model->accountDevice($assign_date);
+         
     }
 
 }

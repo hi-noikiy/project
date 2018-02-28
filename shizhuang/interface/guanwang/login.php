@@ -17,10 +17,9 @@ $get = serialize($_GET);
 write_log(ROOT_PATH."log","guanwang_login_log_","post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
 
 $token = trim($_REQUEST['token']);
-$gameId = intval($_REQUEST['game_id']);
-$accountConn = $accountServer[$gameId];
-if(!$token || !$gameId || !$accountConn){
-	write_log(ROOT_PATH."log","guanwang_login_error_log_"," parameter error!, accountConn=$accountConn, token=$token ,game_id=$gameId, ".date("Y-m-d H:i:s")."\r\n");
+$gameId = trim($_REQUEST['game_id']);
+if(!$token || !$gameId){
+	write_log(ROOT_PATH."log","guanwang_login_error_log_"," parameter error!, token=$token ,game_id=$gameId, ".date("Y-m-d H:i:s")."\r\n");
 	exit('2 0');
 }
 $appSecret = $key_arr['appSecret'];

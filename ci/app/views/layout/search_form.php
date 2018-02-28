@@ -45,6 +45,17 @@
                 <?php endif;?>
                 
                 
+                 <?php if(isset($show_start_time_month) || $show_start_time_month==true):?>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class="fg-line">
+                            <input title="查询开始时间" type="text" name="date1" value="<?php echo $bt?>" class="form-control <?php echo isset($date_time_picker) ? 'date-time-picker' :'date-picker-month'?>" placeholder="查询开始时间">
+                        </div>
+                    </div>
+                </div>
+                <?php endif;?>
+                
+                
                 <?php if(!isset($hide_server_list) || $hide_server_list!==true):?>
                 <?php if(!empty($big_server_list)):?>
                 <div class="col-sm-2">
@@ -114,14 +125,14 @@
                 <div class="col-sm-2">
                         <div class="form-group">
                             <div class="fg-line">
-                            <select name="click_type"  id="click_type" class="form-control"  data-name="click_type" >
-                              <option value="">游戏类型</option>
-                                <option value="0">日常活动 </option>
-                                <option value="1">热门活动</option>
-                                <option value="2" >节日活动 </option>      
-                                <option value="3" >下期预告</option>
-                                 <option value="9" >游戏公告</option>
-                                <option value="500" >新服运营活动</option>
+                            <select name="click_type"  id="click_type" class="form-control"  data-name="click_type_one_list" >
+                            
+                             <?php foreach($click_type_one_list as $channel_id=>$channel_name):?>
+                                    <option value="<?php echo $channel_id?>" <?php echo count($channel_list)==1 ? 'selected' : ''?>>
+                                        <?php echo $channel_name;?>
+                                    </option>
+                                <?php endforeach;?>   
+                       
                             </select>
                             </div>
                         </div>
@@ -129,7 +140,7 @@
                     <?php endif;?>
                     
                     
-                                <?php if(isset($click_type_two) && $click_type_two===true):?>
+                 <?php if(isset($click_type_two) && $click_type_two===true):?>
                 <div class="col-sm-2">
                         <div class="form-group">
                             <div class="fg-line">
@@ -327,6 +338,28 @@
                         </div>
                     </div>
                 <?php endif;?>
+                
+                
+                <?php if(isset($show_combat_type) && $show_combat_type===true):?>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="fg-line">
+                            <select  name="combattype" class="form-control" id='combattype'>
+                            <option value="-1">请选择比赛类型</option>
+                                <option value="0">全球对战-练习</option>
+                                <option value="1">全球对战-普通</option>
+                                <option value="2" selected="selected">全球对战-精英</option>
+                                <option value="3">冠军之夜</option>                              
+                            </select>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;?>
+
+                
+                
+                
+                
                 <?php if(isset($estatus_filter) && $estatus_filter===true):?>
                     <div class="col-sm-2">
                         <div class="form-group">
@@ -349,7 +382,7 @@
             <div class="col-sm-2">
                 <div class="form-group">
                     <div >
-                        <input  title="开始段位" type="text" name="dan_s" value=""  placeholder="开始段位">
+                        <input  title="开始段位" type="text" name="dan_s" value="1"  placeholder="开始段位">
                     </div>
                 </div>
             </div>
@@ -358,7 +391,7 @@
             <div class="col-sm-2">
                 <div class="form-group">
                     <div >
-                        <input  title="结束段位" type="text" name="dan_e" value=""  placeholder="结束段位">
+                        <input  title="结束段位" type="text" name="dan_e" value="10"  placeholder="结束段位">
                     </div>
                 </div>
             </div>
@@ -366,7 +399,7 @@
             
            
             
-                        <?php if(isset($show_register_start_date) || $show_register_start_date==true):?>
+         <?php if(isset($show_register_start_date) || $show_register_start_date==true):?>
   
                 <div class="col-sm-2">
           
@@ -380,8 +413,78 @@
    
             <?php endif;?>
             
+           <?php if(isset($show_user_level) || $show_user_level==true):?>
+  
+                <div class="col-sm-2">
+          
+                    <div class="form-group">
+                        <div class="fg-line">
+                         <input title="等级段位" type="text" name="user_level" value=""    placeholder="等级段位">
+                        </div>
+                    </div>
+                </div>     
+           
+   
+            <?php endif;?>
             
             
+                     <?php if(isset($show_days) || $show_days==true):?>
+  
+                <div class="col-sm-2">
+          
+                    <div class="form-group">
+                        <div class="fg-line">签到天数
+                         <input title="签到天数" type="text" name="days" value="10"    placeholder="签到天数">
+                        </div>
+                    </div>
+                </div> 
+                
+                <div class="col-sm-2">
+          
+                    <div class="form-group">
+                        <div class="fg-line">签到天数
+                         <input title="签到天数" type="text" name="days2" value="15"    placeholder="签到天数">
+                        </div>
+                    </div>
+                </div> 
+            <?php endif;?>
+            
+            
+            
+                            <?php if(isset($show_vip_level) || $show_vip_level==true):?>
+  
+                <div class="col-sm-2">
+          
+                    <div class="form-group">
+                        <div class="fg-line">
+                         <input title="vip等级" type="text" name="vip_level" value=""    placeholder="vip等级">
+                        </div>
+                    </div>
+                </div> 
+            <?php endif;?>
+            
+            
+                 <?php if(isset($show_eudemonr) && $show_eudemonr===true):?>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="fg-line">
+                                <input title="dan" type="text" name="eudemon" class="form-control" placeholder="精灵id">
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;?>
+                
+                
+               <?php if(isset($show_syn_id) && $show_syn_id===true):?>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="fg-line">
+                                <input title="dan" type="text" name="pk_th" class="form-control" placeholder="赛事编号">
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;?>
+    
                 
                 
              

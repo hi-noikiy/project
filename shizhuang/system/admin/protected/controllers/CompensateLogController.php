@@ -66,8 +66,8 @@ class CompensateLogController extends CommonController{
             foreach ($serverIdArr as $serverId){
                 $conn = SetConn($serverId);
                 if($conn){
-                    $table = subTable($serverId, $this->compensateTable, 1000);
-                    $mailtable = subTable($serverId, $this->gmtoolTable, 1000);
+                    $table = $this->compensateTable;
+                    $mailtable = $this->gmtoolTable;
                     $indexId = $rs->index_id;
                     $beginTime = $rs->begin_time;
                     $endTime = $rs->end_time;

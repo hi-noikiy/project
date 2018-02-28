@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>h5</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/h5.css" />
+		<script src="js/template-web.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<!--<header>
+			<p>帮助</p>
+			<img src="img/left.png" />
+		</header>-->
+		<ul style="margin-top: 0px;">
+			<!--<a href="h5_2.html"><li>联系客服<img src="img/right.png" /></li></a>
+			<a href="h5_2.html"><li>常见问题<img src="img/right.png" /></li></a>
+			<a href="h5_2.html"><li>如何充值？<img src="img/right.png" /></li></a>
+			<a href="h5_2.html"><li>怎么更新游戏？<img src="img/right.png" /></li></a>
+			<a href="h5_2.html"><li>游戏闪退解决方法<img src="img/right.png" /></li></a>-->
+		</ul>
+		<script id="test" type="text/html">
+			{{each list value i}}
+			<a href="h5_2.html?id={{i}}">
+				<li>{{value}}<img src="img/right.png" /></li>
+			</a>
+			{{/each}}
+		</script>
+		<script type="text/javascript">
+			var data = {
+				list: ['衣范儿总共几个大区，数据可以互通吗？', '游戏设置界面在哪里？可以进行哪些设置', '游戏时出现黑屏，卡住或提示断开连接怎么办？', '如何添加时尚圈？添加时尚圈的益处有哪些？', '签到七天的套装要求连续签到7天吗？', '如何获取体力？', '妆容发型解锁只能通过升级么？', '每日任务刷新时间和奖励结算时间？', '主题任务刷新时间和奖励结算时间？', '搭配赛刷新时间和奖励结算时间？', '时尚资讯每日刷新时间？', '礼包码在哪里兑换？', '评委会邮件、系统邮件等邮件保存期限是多久？', '充值有什么好处？', '不同VIP等级需要充值多少？', '首冲双倍送套装是怎么回事？即时到账吗？', '充值未到账，却又扣款了怎么办？会不会就这样没了啊？']
+			};
+			var html = template('test', data);
+			document.getElementsByTagName('ul')[0].innerHTML = html;
+		</script>
+	</body>
+
+</html>

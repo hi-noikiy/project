@@ -11511,3 +11511,691 @@ REQUEST_URI=/hejin/pay?player_id=1
 in E:\wamp\www\shizhuang\hejin\home\protected\views\pay\index.php (75)
 in E:\wamp\www\shizhuang\hejin\home\protected\controllers\PayController.php (42)
 in E:\wamp\www\shizhuang\hejin\index.php (22)
+2017/12/11 15:58:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/utility.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap501b.css
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:17 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap501b.css
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/utility.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap501b.css
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:28 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap501b.css
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:35 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/utility.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 15:59:36 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 16:00:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/hejin/pay/webpay/recharge/utility.js
+HTTP_REFERER=http://127.0.0.1:84/hejin/pay/index
+---
+2017/12/11 16:00:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/hejin/pay/webpay/recharge/wap501b.css
+HTTP_REFERER=http://127.0.0.1:84/hejin/pay/index
+---
+2017/12/11 16:00:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/hejin/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:84/hejin/pay/index
+---
+2017/12/11 16:00:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/hejin/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:84/hejin/pay/index
+---
+2017/12/11 16:00:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/hejin/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:84/hejin/pay/index
+---
+2017/12/11 16:00:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/hejin/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:84/hejin/pay/index
+---
+2017/12/11 16:00:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/hejin/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:84/hejin/pay/index
+---
+2017/12/11 16:00:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap501b.css
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 16:00:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 16:00:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/utility.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 16:00:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 16:00:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 16:00:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 16:00:31 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/pay/index
+---
+2017/12/11 16:00:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/wap501b.css
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/utility.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:38 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/utility.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/wap501b.css
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/wap501b.css
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/utility.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/wap.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/layer.js
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:00:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "webpay".' in F:\wamp\www\project\shizhuang\system\framework\web\CController.php:483
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CController.php(270): CController->missingAction('webpay')
+#1 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(282): CController->run('webpay')
+#2 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('pay/webpay/rech...')
+#3 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#4 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/pay/webpay/recharge/icon.png
+HTTP_REFERER=http://127.0.0.1:86/index.php/pay/index
+---
+2017/12/11 16:52:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "favicon.ico".' in F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\wamp\www\project\shizhuang\system\framework\web\CWebApplication.php(141): CWebApplication->runController('favicon.ico')
+#1 F:\wamp\www\project\shizhuang\system\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 F:\wamp\www\project\shizhuang\hejin\index.php(21): CApplication->run()
+#3 {main}
+REQUEST_URI=/favicon.ico
+---

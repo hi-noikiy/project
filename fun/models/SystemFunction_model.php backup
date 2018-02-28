@@ -1,0 +1,340 @@
+<?php
+
+/**
+ * Created by PhpStorm.
+ * User: guangpeng
+ * Date: 8/15-015
+ * Time: 21:05
+ */
+class SystemFunction_model  extends CI_Model
+{
+    /**
+     * @var $db_sdk CI_DB_driver
+     */
+    private $db_sdk;
+    private $appid;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->db_sdk = $this->load->database('sdk', TRUE);
+    }
+    public function setAppid($appid)
+    {
+        $this->appid = $appid;
+    }
+    public function PlayerDevelop($serverid, $channel, $viplev_min, $viplev_max=0)
+    {
+        $sql = "SELECT count(*) as cnt,viplev FROM u_login_new WHERE appid={$this->appid}";
+        if (is_numeric($serverid) && $serverid>0) $sql .= " AND serverid=$serverid";
+        elseif (is_array($serverid) && count($serverid)>0) $sql .= " AND serverid IN(".implode(',', $serverid).")";
+        if (is_numeric($channel) && $channel>0) $sql .= " AND channel=$channel";
+        elseif (is_array($channel) && count($channel)>0) $sql .= " AND channel IN(".implode(',', $channel).")";
+        if ($viplev_min>0)         $sql .= " AND viplev>=$viplev_min";
+        if ($viplev_max>0)        $sql .= " AND viplev<=$viplev_max";
+        $sql .= " GROUP BY viplev ORDER BY viplev ASC";
+        $query = $this->db_sdk->query($sql);
+        if ($query) return $query->result_array();
+        return false;
+    }
+
+    public function PlayerDevelopDetail()
+    {
+
+    }
+
+    public function money_use($timestamp1, $timestamp2, $serverid, $channel)
+    {
+        $table   = "type_005_" . $this->appid;
+        $sql = "SELECT SUM(currency_num) as money,get_or_use,currency_type FROM $table";
+        $sql .= " WHERE appid={$this->appid} AND created_at between $timestamp1 AND $timestamp2 ";
+        if (is_numeric($serverid) && $serverid>0) $sql .= " AND serverid=$serverid";
+        elseif (is_array($serverid) && count($serverid)>0) $sql .= " AND serverid IN(".implode(',', $serverid).")";
+        if (is_numeric($channel) && $channel>0) $sql .= " AND channel=$channel";
+        elseif (is_array($channel) && count($channel)>0) $sql .= " AND channel IN(".implode(',', $channel).")";
+        $sql .= " GROUP BY currency_type,get_or_use ORDER BY currency_type ASC";
+        $query = $this->db_sdk->query($sql);
+        //echo $sql;
+        if ($query) return $query->result_array();
+        return false;
+    }
+
+    public function props_shop($timestamp1, $timestamp2, $serverid, $channel)
+    {
+        $table   = "type_007_" . $this->appid;
+        $sql = "SELECT buy_item_id,buy_item_name,COUNT(*) AS cnt,SUM(buy_item_num) as num,SUM(currency_num) AS money FROM $table";
+        $sql .= " WHERE appid={$this->appid} AND created_at between $timestamp1 AND $timestamp2 ";
+        if (is_numeric($serverid) && $serverid>0) $sql .= " AND serverid=$serverid";
+        elseif (is_array($serverid) && count($serverid)>0) $sql .= " AND serverid IN(".implode(',', $serverid).")";
+        if (is_numeric($channel) && $channel>0) $sql .= " AND channel=$channel";
+        elseif (is_array($channel) && count($channel)>0) $sql .= " AND channel IN(".implode(',', $channel).")";
+        $sql .= " GROUP BY buy_item_id";
+        $query = $this->db_sdk->query($sql);
+        //echo $sql;
+        if ($query) return $query->result_array();
+        return false;
+    }
+    public function BehaviorProduceSale($timestamp1, $timestamp2, $serverid, $channel, $account_id, $userid)
+    {
+        $table   = "type_018_" . $this->appid;
+        $sql = "SELECT * FROM $table";
+        $sql .= " WHERE appid={$this->appid} AND created_at between $timestamp1 AND $timestamp2 ";
+        if (is_numeric($serverid) && $serverid>0) $sql .= " AND serverid=$serverid";
+        elseif (is_array($serverid) && count($serverid)>0) $sql .= " AND serverid IN(".implode(',', $serverid).")";
+        if (is_numeric($channel) && $channel>0) $sql .= " AND channel=$channel";
+        elseif (is_array($channel) && count($channel)>0) $sql .= " AND channel IN(".implode(',', $channel).")";
+        if ($account_id) $sql .= " AND accountid=$account_id";
+        if ($userid) $sql .= " AND userid=$userid";
+        $sql .= " ORDER BY created_at DESC";
+        $query = $this->db_sdk->query($sql);
+        //echo $sql;
+        if ($query) return $query->result_array();
+        return false;
+    }
+    /**
+     * 行为产销统计
+     * @param unknown $where
+     * @return boolean
+     * @author 王涛 20161230
+     */
+    public function ActionProduceSaleNew($where = array() , $field = '*' ,$group = '')
+    {
+    	$date = date("Ymd",$where['begintime']);
+    	$itable   = "item_trading_$date";
+    	$utable   = "u_behavior_$date";
+    	//$sql = "SELECT $field FROM $itable i inner join $utable u on i.behavior_id=u.id inner join (select act_id,count(DISTINCT accountid) as caccountid FROM $utable  group by act_id)as n on u.act_id=n.act_id";
+    	$sql = "SELECT $field FROM $itable i inner join $utable u on i.behavior_id=u.id ";
+    	
+    	if($where['params']){
+    		$sql .= " AND param IN(".implode(',', $where['params']).")";
+    	}
+    	if($where['userid']){
+    		$sql .= " AND userid =".$where['userid'];
+    	}
+    	if($where['serverids']){
+    		$sql .= " AND u.serverid IN(".implode(',', $where['serverids']).")";
+    	}
+    	if($where['channels']){
+    		$sql .= " AND u.channel IN(".implode(',', $where['channels']).")";
+    	}
+    	if($where['typeids']){
+    		$sql .= " AND u.act_id IN(".implode(',', $where['typeids']).")";
+    	}
+    	if(isset($where['type'])){
+    		$sql .= " AND i.type = {$where['type']}";
+    	}
+    	
+    	if(isset($where['item_id'])){
+    		$sql .= " AND item_id = {$where['item_id']}";
+    	}
+    	if(isset($where['accountid'])){
+    		if($where['accountid']==0){
+    			$sql .= " AND accountid!=0";
+    		}
+    	}
+    	 
+    	if($group){
+    		$sql .= " group by $group";
+    	}
+    	//var_dump($sql);
+    	$query = $this->db_sdk->query($sql);
+    	if ($query) return $query->result_array();
+    	return false;
+    }
+    /**
+     * 道具产销统计
+     * @param unknown $where
+     * @return boolean
+     * @author 王涛 20161230
+     */
+    public function BehaviorProduceSaleNew($where = array() , $field = '*' ,$group = '' ,$order = '')
+    {
+    	$date = date("Ymd",$where['begintime']);
+    	$itable   = "item_trading_$date";
+    	$utable   = "u_behavior_$date";
+    	$sql = "SELECT $field FROM $itable i inner join $utable u on i.behavior_id=u.id where 1=1";
+    	if($where['params']){
+    		$sql .= " AND param IN(".implode(',', $where['params']).")";
+    	}
+    	if($where['viplev_min']){
+    		$sql .= " AND vip_level >=".$where['viplev_min'];
+    	}
+    	if($where['viplev_max']){
+    		$sql .= " AND vip_level <=".$where['viplev_max'];
+    	}
+    	if($where['itemid']){
+    		$sql .= "  AND item_id in ({$where['itemid']})";
+    	}
+    	if($where['userid']){
+    		$sql .= " AND userid =".$where['userid'];
+    	}
+    	if($where['serverids']){
+    		$sql .= " AND u.serverid IN(".implode(',', $where['serverids']).")";
+    	}
+    	if($where['channels']){
+    		$sql .= " AND u.channel IN(".implode(',', $where['channels']).")";
+    	}
+    	if($where['typeids']){
+    		$sql .= " AND act_id IN(".implode(',', $where['typeids']).")";
+    	}
+    	if(isset($where['type'])){
+    		$sql .= " AND i.type = {$where['type']}";
+    	}
+    	
+    	if($group){
+    		$sql .= " group by $group";
+    	}
+    	if($order){
+    		$sql .= " order by $order";
+    	}
+
+    	$query = $this->db_sdk->query($sql);
+    	if ($query) return $query->result_array();
+    	return array();
+    }
+    
+    /**
+     * 行为产销统计记录总表
+     * @param unknown $where
+     * @return boolean
+     * @author 王涛 20170203
+     */
+	public function ActionCount($group='' , $date='')
+    {
+    	$types = array(
+    			'act_id'=>0,
+    			'serverid'=>1,
+    			'channel'=>2
+    	);
+    	if(!$group){
+    		$group='act_id';
+    	}
+    	if(!$date){ //前7天的数据
+    		$date = date("Ymd",strtotime("-1 days"));
+    	}
+    	$mysql = "insert into mydb_dev.sum_act_by_type(logdate,type,typeid,consume_money,consume_diamond,consume_tired,get_money,get_diamond,get_tired)  ";
+    	$field = "$date as logdate,{$types[$group]} as type,$group as typeid,";
+    	$field .= "sum(if(item_id=1&&type=1,item_num,0)) as consume_money,sum(if(item_id=3&&type=1,item_num,0)) as consume_diamond,sum(if(item_id=2&&type=1,item_num,0)) as consume_tired,";
+    	$field .= "sum(if(item_id=1&&type=0,item_num,0)) as get_money,sum(if(item_id=3&&type=0,item_num,0)) as get_diamond,sum(if(item_id=2&&type=0,item_num,0)) as get_tired";
+    	$itable   = "sdk_dev.item_trading_$date";
+    	$utable   = "sdk_dev.u_behavior_$date";
+    	$sql = $mysql . "SELECT $field FROM $itable i inner join $utable u on i.behavior_id=u.id where item_id not between 1000000000 and 1999999999";
+    	$sql .= " and  u.created_at between " . strtotime($date) . " AND " . (strtotime($date)+86399);
+    	$sql .= " group by typeid ON DUPLICATE KEY UPDATE `consume_money`=VALUES(consume_money),`consume_diamond`=VALUES(consume_diamond),`consume_tired`=VALUES(consume_tired),
+    			`get_money`=VALUES(get_money),`get_diamond`=VALUES(get_diamond),
+`get_tired`=VALUES(get_tired)";
+    	$db_sdk = $this->load->database('rootsdk', TRUE);
+    	$query = $db_sdk->query($sql);
+    	print_r($db_sdk->error());
+    	$mysql = "insert into mydb_dev.sum_act_by_type(logdate,type,typeid,account_num)  ";
+    	$field = "$date as logdate,{$types[$group]} as type,$group as typeid,count(distinct(accountid)) as account_num";
+    	$utable   = "sdk_dev.u_behavior_$date";
+    	$sql = $mysql . "SELECT $field FROM $utable ";
+    	$sql .= " group by typeid ON DUPLICATE KEY UPDATE `account_num`=VALUES(account_num)";
+    	$query = $db_sdk->query($sql);
+    	print_r($db_sdk->error());
+    	return true;
+    }
+    /**
+     * 道具产销统计记录总表
+     * 
+     * @author 王涛 20170204
+     */
+    public function ItemCount($date='')
+    {
+    	if(!$date){ //前天的数据
+    		$date = date("Ymd",strtotime("-1 days"));
+    	}
+    	$db_sdk = $this->load->database('rootsdk', TRUE);
+    	$mysql = "insert into mydb_dev.sum_item_by_type(logdate,type,typeid,itemid,consume_num,get_num)  ";
+    	$field = "$date as logdate,act_id as type,param as typeid,item_id,sum(if(type=1,item_num,0)) as consume_num,sum(if(type=0,item_num,0)) as get_num ";
+    	$itable   = "sdk_dev.item_trading_$date";
+    	$utable   = "sdk_dev.u_behavior_$date";
+    	$sql = $mysql . "SELECT $field FROM $itable i inner join $utable u on i.behavior_id=u.id where item_id not between 1000000000 and 1999999999";
+    	$sql .= " and  u.created_at between " . strtotime($date) . " AND " . (strtotime($date)+86399) . ' and act_id in (1,41) ';
+    	$sql .= " group by item_id,act_id,param";
+    	$query = $db_sdk->query($sql);
+    	print_r($db_sdk->error());
+    	
+    	$mysql = "insert into mydb_dev.sum_item(logdate,type,itemid,consume_num,get_num)  ";
+    	$field = "$date as logdate,act_id as type,item_id,sum(if(type=1,item_num,0)) as consume_num,sum(if(type=0,item_num,0)) as get_num ";
+    	$sql = $mysql . "SELECT $field FROM $itable i inner join $utable u on i.behavior_id=u.id where item_id not between 1000000000 and 1999999999";
+    	$sql .= " and  u.created_at between " . strtotime($date) . " AND " . (strtotime($date)+86399) ;
+    	$sql .= " group by item_id,act_id";
+    	$query = $db_sdk->query($sql);
+    	print_r($db_sdk->error());
+    	return true;
+    }
+
+    public function FoolBird($timestamp1, $timestamp2, $channel, $typeid_list)
+    {
+        //编号：process_index
+        //结果：process_result字段
+        //总数：process_index字段=1的数据条数
+        $table   = "u_game_process_".date('Ym',$timestamp1);
+        $sql_total = "SELECT count(*) as cnt from {$table}";
+        $where = " WHERE appid={$this->appid} AND created_at between $timestamp1 AND $timestamp2 ";
+        if (is_numeric($channel) && $channel>0) $where .= " AND channel=$channel";
+        elseif (is_array($channel) && count($channel)>0) $where .= " AND channel IN(".implode(',', $channel).")";
+        $sql_total = $sql_total . $where . " AND process_index=1";
+        $query_total = $this->db_sdk->query($sql_total);
+        //echo $sql_total;
+        if (!$query_total) return false;
+        if (is_numeric($typeid_list) && $typeid_list>0) $where .= " AND process_index=$typeid_list";
+        elseif (is_array($typeid_list) && count($typeid_list)>0) $where .= " AND process_index IN(".implode(',', $typeid_list).")";
+        $total = $query_total->result_array();
+        $sql_query = <<<SQL
+select process_index,process_result,count(*) as cnt from {$table} $where
+group by process_index,process_result
+ORDER BY process_index asc,process_result asc
+SQL;
+        //echo $sql_query;
+        $query = $this->db_sdk->query($sql_query);
+        $result = $query->result_array();
+        $output = [];
+        foreach ($result as $item) {
+            $output[$item['process_index']][$item['process_result']]['cnt'] = $item['cnt'];
+            $output[$item['process_index']][$item['process_result']]['per'] = number_format($item['cnt'] / $total[0]['cnt'] * 100,2);
+        }
+        return ['total'=>$total[0]['cnt'], 'data'=>$output];
+    }
+
+    public function BehaviorProductSaleConf()
+    {
+        return [
+            1=> ['title'=>'商店购买', 'params'=>[1=> '道具商店',2=> '联盟商店',3=> '冠军商店', 4=> '全球商店',6=> '神秘商店',7=> '友好商店']],
+            2=> ['title'=>'普通关卡', 'params'=>'通关的关卡id'],
+            3=> ['title'=>'精英关卡', 'params'=>'通关的关卡id'],
+            4=> ['title'=>'试练挑战', 'params'=>'通关的关卡id'],
+            5=> ['title'=>'关卡任务', 'params'=>'完成的任务id'],
+            6=> ['title'=>'联盟大赛', 'params'=>[1=> '挑战',2=> '排名结算']],
+            7=> ['title'=>'祈愿', 'params'=>[1=> '第一次',2=> '第二次',3=> '第三次',4=> '第四次']],
+            8=> ['title'=>'好友体力赠送', 'params'=>'今日领取的体力次数'],
+            9=> ['title'=>'七日礼包', 'params'=>'领取第几天的礼包'],
+            10=>['title'=>'购买金币', 'params'=>'购买次数'],
+            11=>['title'=>'购买体力', 'params'=>'记录购买次数'],
+            12=>['title'=>'副本评星奖励', 'params'=>'领取的副本片区id'],
+            13=>['title'=>'精灵进化', 'params'=>'精灵的id'],
+            14=>['title'=>'分配努力值', 'params'=>'精灵的id'],
+            15=>['title'=>'图鉴升级', 'params'=>'精灵的类型id'],
+            16=>['title'=>'vip特权礼包', 'params'=>'领取第几级的VIP特权礼包'],
+            17=>['title'=>'成就奖励', 'params'=>'成就任务id'],
+            18=>['title'=>'狩猎场', 'params'=>[1=> '初级狩猎场',2=> '中级狩猎场',3=> '高级狩猎场']],
+            19=>['title'=>'全球对战', 'params'=>[1=> '对战',2=> '星级宝箱',3=> '赛季结算']],
+            20=>['title'=>'固定交换', 'params'=> [1=> '初级交换',2=> '中级交换',3=> '高级交换']],
+            21=>['title'=>'社团捐献', 'params'=>'捐献第几次'],
+            22=>['title'=>'扭蛋', 'params'=>[1=> '免费扭蛋',2=> '购买一次',3=> '购买十次']],
+            23=>['title'=>'商店刷新', 'params'=>[2=> '联盟商店',3=> '冠军商店',4=> '全球商店',6=> '神秘商店',7=>'友好商店']],
+            24=>['title'=>'活跃礼包', 'params'=>[1=> '第一个活跃礼包',2=> '第二个活跃礼包',3=> '第三个活跃礼包']],
+            25=>['title'=>'精灵融合', 'params'=>'精灵id'],
+            26=>['title'=>'图鉴合成', 'params'=>'',],
+            27=>['title'=>'道具出售', 'params'=>'',],
+            28=>['title'=>'精灵放生', 'params'=>'',],
+            29=>['title'=>'购买精英副本次数', 'params'=>'精英副本关卡id'],
+            30=>['title'=>'一日三餐', 'params'=>[1=> '午餐',2=> '晚餐',3=> '夜宵']],
+            31=>['title'=>'日常任务', 'params'=>'任务id'],
+            32=>['title'=>'兑换码礼包', 'params'=>''],
+            33=>['title'=>'封测排名礼包', 'params'=>'名次'],
+            34=>['title'=>'封测冲级礼包', 'params'=>'领取礼包对应的等级'],
+        ];
+    }
+}

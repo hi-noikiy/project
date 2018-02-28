@@ -97,14 +97,9 @@ class PayLogController extends Controller{
                 $id = $v->id;
                 $orderId = $v->OrderID;
                 $serverId = $v->ServerID;
-                $accountId = $v->PayID;
-                if($v->PayCode == 'TWD') //台湾币
-                    $payMoney = $v->PayMoney*2;
-                elseif($v->PayCode == 'USD') //美元
-                    $payMoney = round($v->PayMoney)*60;
-                else //RMB
-                    $payMoney = $v->PayMoney;
-                $rsCard = $this->writeCard($orderId, $accountId, $serverId, $payMoney);
+                $playertId = $v->PlayerID;
+                $payMoney = $v->PayMoney;
+                $rsCard = $this->writeCard($orderId, $playertId, $serverId, $payMoney);
                 if($rsCard === null){
                     $payLog->updateByPk($id, array('IsUC'=>'0'));
                 } elseif ($rsCard === false){
@@ -140,7 +135,7 @@ class PayLogController extends Controller{
         if(isset($_REQUEST['orderid'])){
             $orderId = trim($_REQUEST['orderid']);
             $payLog = PayLog::model();
-            $sql = "select id,ServerID,PayType,PayID,OrderID,PayMoney,PayCode from {{pay_log}} where OrderID='$orderId' And rpCode in ('1','10')";
+            $sql = "select id,ServerID,PayType,PayID,PlayerID,OrderID,PayMoney,PayCode from {{pay_log}} where OrderID='$orderId' And rpCode in ('1','10')";
             $rs = $payLog->findBySql($sql);
             if(empty($rs))
                 $this->display('订单号不存在', 0);
@@ -149,15 +144,10 @@ class PayLogController extends Controller{
                 $this->display('手工充值和移动梦网渠道无需补单', 0);
 
             $serverId = $rs->ServerID;
-            $accountId = $rs->PayID;
-            if($rs->PayCode == 'TWD') //台湾币
-                $payMoney = $rs->PayMoney*2;
-            elseif($rs->PayCode == 'USD') //美元
-                $payMoney = round($rs->PayMoney)*60;
-            else //RMB
-                $payMoney = $rs->PayMoney;
+            $playertId = $rs->PlayerID;
+            $payMoney = $rs->PayMoney;
             $payId = $rs->id;
-            $rsCard = $this->writeCard($orderId, $accountId, $serverId, $payMoney);
+            $rsCard = $this->writeCard($orderId, $playertId, $serverId, $payMoney);
             if($rsCard === null){
                 $payLog->updateByPk($payId, array('IsUC'=>'0'));
                 $this->display('您的订单已存在，无需处理！', 1);
@@ -169,19 +159,19 @@ class PayLogController extends Controller{
         }
     }
     //批量补单
-    private function writeCard($orderId, $accountId, $serverId, $payMoney, $type = 8){
+    private function writeCard($orderId, $playerId, $serverId, $payMoney, $type = 8){
         $conn = SetConn($serverId);
         if($conn == false)
             return false;
-        $table = subTable($serverId, 'u_card', 1000);
+        $table = 'u_card';
         $sql="select count(id) as count from $table where ref_id='$orderId' limit 1";
         $query = @mysqli_query($conn,$sql);
         $count = @mysqli_fetch_assoc($query);
         $msg = null;
         if ($count['count'] == 0) {
             $time_stamp=date('ymdHi');
-            $sql_insert="insert into $table(data, account_id, ref_id, time_stamp, used, type, server_id)";
-            $sql_insert=$sql_insert." values('$payMoney', $accountId, '$orderId',$time_stamp, 0, '$type', '$serverId')";
+            $sql_insert="insert into $table(data, player_id, ref_id, time_stamp, used, type)";
+            $sql_insert=$sql_insert." values('$payMoney', $playerId, '$orderId',$time_stamp, 0, '$type')";
 
             $msg = @mysqli_query($conn,$sql_insert) ? $orderId : false;
             if($msg == false)

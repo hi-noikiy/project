@@ -48,6 +48,8 @@ class AutoRunMonth extends CI_Controller{
     	}
     	$sql = "drop table `intimacy_".$Ym."`";
     	$dbsdk->query($sql);
+    	$sql = "drop table `ad_login_".$Ym."`";
+    	$dbsdk->query($sql);
     	unset($dbsdk);
     }
     
@@ -250,6 +252,20 @@ class AutoRunMonth extends CI_Controller{
   `created_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='战斗匹配时长';";
+    	$dbsdk->query($sql);
+    	echo json_encode($dbsdk->error());
+    	
+    	//渠道登录
+    	$sql = "CREATE TABLE `ad_login_$Ym` (
+    	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `accountid` varchar(50) NOT NULL COMMENT '设备号',
+  `used` int(11) NOT NULL DEFAULT '0' COMMENT '是否记录',
+  `logdate` int(11) NOT NULL DEFAULT '0' COMMENT '记录日期',
+  `media_source` varchar(50) NOT NULL DEFAULT 'Organic' COMMENT '广告渠道',
+  `bundle_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk` (`accountid`,`logdate`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
     	$dbsdk->query($sql);
     	echo json_encode($dbsdk->error());
     	//新手注册流程分表
@@ -535,7 +551,8 @@ class AutoRunMonth extends CI_Controller{
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_uni` (`accountid`,`serverid`,`appid`) USING BTREE,
   KEY `idx_sv_cnl` (`serverid`,`channel`),
-  KEY `idx_login` (`created_at`) USING BTREE
+  KEY `idx_login` (`created_at`) USING BTREE,
+  KEY `idx_mac` (`mac`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;";
     		$dbsdk->query($sql);
     		echo json_encode($dbsdk->error());
@@ -624,7 +641,8 @@ class AutoRunMonth extends CI_Controller{
     	/*$sql = "alter table `game_data_".$Ym."` add gameround int(11) NOT NULL DEFAULT '0' COMMENT '多少轮'";
     	 $dbsdk->query($sql);*/
     	for($i = 1;$i<=$t;$i++){
-    		$sql = "alter table `u_behavior_".$Ym.str_pad($i,2,0,STR_PAD_LEFT)."` add `param1` int(11) NOT NULL DEFAULT '0' COMMENT '子运营活动'";
+    		$sql = "ALTER TABLE `u_login_".$Ym.str_pad($i,2,0,STR_PAD_LEFT)."` ADD INDEX idx_mac (`mac` )";
+    		//$sql = "alter table `u_behavior_".$Ym.str_pad($i,2,0,STR_PAD_LEFT)."` add `param1` int(11) NOT NULL DEFAULT '0' COMMENT '子运营活动'";
     		$dbsdk->query($sql);
     		echo json_encode($dbsdk->error());
     	}

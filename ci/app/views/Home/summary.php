@@ -26,8 +26,13 @@
                             <!--<th>新付费累计金额</th>-->
                             <th>创建数</th>
                             <th>创建率</th>
+                              <th> 新设备使用<br>旧账号登录数量</th>
+                               <th> 安装新包使用<br>旧账号登录数量</th>
+                           
                             <th>DAU</th>
                             <th>DAU递增百分比</th>
+                              <th>净DAU</th>
+                               <th>净DAU递增百分比</th>
                             <th>WAU</th>
                             <th>MAU</th>
                             <th>最高在线<br/>(在线峰值)</th>
@@ -96,9 +101,13 @@ function showdetail(date,where){
                         '<td>'+result['data'][i]['reg']+'</td>' +
                         '<td>'+result['data'][i]['reg_rate']+'%</td>' +                        
                         '<td>'+result['data'][i]['role']+'</td>' +
-                        '<td>'+result['data'][i]['trans_rate']+'%</td>' +
+                        '<td>'+result['data'][i]['trans_rate']+'%</td>' +                        
+                        '<td>'+result['data'][i]['device_old_account']+'</td>' +
+                        '<td>'+result['data'][i]['install_old_account']+'</td>' +     
                         '<td>'+result['data'][i]['dau']+'</td>' +
                         '<td>'+result['data'][i]['dau_rate']+'%</td>' +
+                        '<td>'+result['data'][i]['clean_dau']+'</td>' +
+                        '<td>'+result['data'][i]['clean_dau_rate']+'</td>' +
                         '<td>'+result['data'][i]['wau']+'</td>' +
                         '<td>'+result['data'][i]['mau']+'</td>' +
                         '<td>'+result['data'][i]['max_online']+'</td>' +

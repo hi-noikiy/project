@@ -15,7 +15,9 @@ class Home extends MY_Controller {
     }
     public function emptyhtml()
     {
-    	//$this->body = 'welcome_message';
+/*$host =	 'http://1.1kpzs.com';
+
+echo preg_match("/[^\.]+\.kpzs\.com$/", $host); die;*/
         $this->layout();
     }
     
@@ -159,6 +161,7 @@ class Home extends MY_Controller {
     			$where['enddate'] = date('Ymd', strtotime($date1));
     		}
     		$data = $this->Sdk_sum_model->sumJoin($where,$field,$group);
+    	
     		foreach ($data as $v){
     			if(!isset($newdata[$v['act_id']][$v['param']])){
     				$newdata[$v['act_id']][$v['param']]['act_id'] = $v['act_id'];
@@ -171,6 +174,7 @@ class Home extends MY_Controller {
     			$newdata[$v['act_id']][$v['param']]['act_count_'.$v['logdate']] = $v['allcount'];
     			$newdata[$v['act_id']][$v['param']]['act_account_'.$v['logdate']] = $v['allaccount'];
     		}
+    	
     		foreach ($newdata['101'] as $k=>$v){
     			if(!$k) continue;
     			unset($newdata['101'][$k]);
@@ -178,9 +182,15 @@ class Home extends MY_Controller {
     		$shows = include APPPATH .'/config/show_list.php'; //排序
     		asort($shows);
     		$showvalue = array();
-    		foreach ($shows as $k=>$v){
+    		
+    	/*  	foreach ($shows as $k=>$v){
     			$showvalue[] = $newdata[$k];
+    		}  */
+    		
+    		foreach ($newdata as $k=>$v){
+    		    $showvalue[] = $newdata[$k];
     		}
+    	
     		if (!empty($showvalue)) echo json_encode(['status'=>'ok', 'data'=>$showvalue,'dates'=>$dates]);
     		else echo json_encode(['info'=>'无数据']);
     	}
@@ -592,8 +602,7 @@ class Home extends MY_Controller {
      * @author 王涛  20161230
      */
     public function ActionCount()
-    {
-    	$types = include APPPATH .'/config/comsume_types.php'; //统计类型字典
+    {    	$types = include APPPATH .'/config/comsume_types.php'; //统计类型字典
     	if (parent::isAjax()) {
     		$where['channels'] = $this->input->get('channel_id');
     		$where['serverids'] = $this->input->get('server_id');
@@ -610,7 +619,11 @@ class Home extends MY_Controller {
     		}    		
     		$date = $this->input->get('date1') ?$this->input->get('date1', true) : date('Y-m-d');
     		$date3 = $this->input->get ( 'date3' ) ? $this->input->get ( 'date3', true ) : '';
-    		$date4 = $this->input->get ( 'date4' ) ? $this->input->get ( 'date4', true ) : '';
+    		$date4 = $this->input->get ( 'date4' ) ? $this->input->get ( 'date4', true ) : '';    	
+    	 	$reg1 = $this->input->get ( 'reg1' ) ? $this->input->get ( 'reg1', true ) : '';
+    		$reg2 = $this->input->get ( 'reg2' ) ? $this->input->get ( 'reg2', true ) : '';  
+    		
+    		
     		if (empty ( $date3 )) {
     			$where ['beginserver'] = '';
     		} else {
@@ -623,6 +636,14 @@ class Home extends MY_Controller {
     			$where ['endserver'] = date ( 'Ymd', strtotime ( $date4 ) );
     		}
     		$where['begintime'] = strtotime($date  . ' 00:00:00');
+    	
+    		if(!empty($reg1)){
+    		    $where ['reg1'] = date ( 'Ymd', strtotime ( $reg1 ) );
+    		}
+    		if(!empty($reg2)){
+    		    $where ['reg2'] = date ( 'Ymd', strtotime ( $reg2 ) );
+    		}
+ 
     		$channelname = '';
     		$servername = '';
     		if(!count($where['channels']) || count($where['channels'])>1){
@@ -631,8 +652,9 @@ class Home extends MY_Controller {
     		if(!count($where['serverids']) || count($where['serverids'])>1){
     			$servername = '多个区服';
     		}
+    		  
     		if($where['begintime']<=strtotime('-1 days') && empty($where['channels']) && empty($where['serverids']) && empty($where['userid']) && 
-    				!($type == 1 && count($where['typeids'])==1 && in_array($where['typeids'][0], array(1,41))) && empty($where['beginserver'])){ //查统计表
+    				!($type == 1 && count($where['typeids'])==1 && in_array($where['typeids'][0], array(1,41))) && empty($where['beginserver']) && empty($where ['reg1']) && empty($where ['reg2'])){ //查统计表
     		    
     			if($type == 1){ //按统计类型
     				$where['type'] = 0;
@@ -728,8 +750,10 @@ class Home extends MY_Controller {
     		$this->data['hide_type_list'] = 1;
     		$this->data['hide_end_time'] = true;
     		$this->data['show_server_date'] = true;
+    		//$this->data['show_register_start_date'] = true;
     		
     		
+    		$this->data['register_time'] = true;    		
     		$this->data['type_list'] = $types;
             $this->body = 'Home/action_count';
             $this->layout();
@@ -919,7 +943,8 @@ class Home extends MY_Controller {
             $date2 = date('Ymd', strtotime($date2));
             $serveid = $this->input->get('server_id');
             $channel = $this->input->get('channel_id');
-            /*if(!$channel){
+            !$channel && $this->data['all_channel_list'] && $channel =array_keys($this->data['channel_list']);
+           if(!$channel){
             	$where['begindate'] = date('Ymd', strtotime($date1));
             	$where['enddate'] = date('Ymd', strtotime($date2));
             	$this->load->model('Mydb_sum_model');
@@ -942,12 +967,11 @@ class Home extends MY_Controller {
             		$v['reg_rate'] =  $output[$k-1]['reg']?round(($v['reg']-$output[$k-1]['reg'])/$output[$k-1]['reg'],4)*100:0;  
             		$v['dau_rate'] =  $output[$k-1]['dau']?round(($v['dau']-$output[$k-1]['dau'])/$output[$k-1]['dau'],4)*100:0;
             		$v['text'] = "<a href='javascript:showdetail({$v['date']},2)'>vip</a>";
-           	}            	
-          
-           	
+           	}        	
+                 	
   
-            }else{*/
-            	$where['channels'] = $this->input->get('channel_id');
+            }else{
+            	$where['channels'] = $channel;
             	$where['begindate'] = date('Ymd', strtotime($date1));
             	$where['enddate'] = date('Ymd', strtotime($date2));
             	$this->load->model('Mydb_sum_model');
@@ -978,9 +1002,12 @@ class Home extends MY_Controller {
             		$v['text'] = "<a href='javascript:showdetail({$v['date']},2)'>vip</a>";
           	}
             
+
+          
          
+    
             	
-            	/*$this->load->model('Summary_model');
+            	/* $this->load->model('Summary_model');
             	$res = $this->Summary_model->getData($this->appid, $date1, $date2, $serveid, $channel);
             	$data = [];
             	foreach ($res['device'] as $item) {
@@ -1002,10 +1029,10 @@ class Home extends MY_Controller {
             		$data[$item['sday']]['remain_7'] = $item['day7'];
             		$data[$item['sday']]['remain_15'] = $item['day15'];
             		$data[$item['sday']]['remain_30'] = $item['day30'];
-            		//$data[$item['sday']]['dau']= (isset($data[$item['sday']]['dau'])) ?$data[$item['sday']]['dau']:0;
-            		//$data[$item['sday']]['wau']= (isset($data[$item['sday']]['wau'])) ?$data[$item['sday']]['wau']:0;
-            		//$data[$item['sday']]['mau']= (isset($data[$item['sday']]['mau'])) ?$data[$item['sday']]['mau']:0;
-            		//$data[$item['sday']]['role']= (isset($data[$item['sday']]['role'])) ?$data[$item['sday']]['role']:0;
+            		$data[$item['sday']]['dau']= (isset($data[$item['sday']]['dau'])) ?$data[$item['sday']]['dau']:0;
+            		$data[$item['sday']]['wau']= (isset($data[$item['sday']]['wau'])) ?$data[$item['sday']]['wau']:0;
+            		$data[$item['sday']]['mau']= (isset($data[$item['sday']]['mau'])) ?$data[$item['sday']]['mau']:0;
+            		$data[$item['sday']]['role']= (isset($data[$item['sday']]['role'])) ?$data[$item['sday']]['role']:0;
             	}
             	//注册
             	foreach ($res['reg'] as $item) {
@@ -1043,9 +1070,42 @@ class Home extends MY_Controller {
             				'remain_15'   => isset($item['remain_15']) ? $item['remain_15'] . '|' .($item['reg']>0 ? round(($item['remain_15'] / $item['reg']),2)*100  : 0) . '%' : 0,
             				'remain_30'   => isset($item['remain_30']) ? $item['remain_30'] . '|' .($item['reg']>0 ? round(($item['remain_30'] / $item['reg']),2)*100  : 0) . '%' : 0,
             		);
-            	}*/
-           // }
+            	} */
+            	
+            	
+           }
             
+           
+           $this->load->model('Mydb_sum_model');
+           $field = 'date,sum(device) device,sum(macregister) macregister,sum(reg) reg,sum(role) role,sum(dau) dau,wau,mau';
+           $group='date';
+           $this->load->model('Mydb_sum_model');
+           $output_max = $this->Mydb_sum_model->summary($where);
+            
+           $this->load->model('player_analysis_model');
+           $data_Real_Dau = $this->player_analysis_model->getRealAuData($this->appid, $where['begindate']-1, $where['enddate']+1, 0, $channel, $by_channel);
+           foreach ($output as &$v){
+               foreach ($data_Real_Dau as $k2=>$v2){
+                   if($v['date']==$v2['sday']){
+                       $v['clean_dau']=$v2['clean_dau'];
+                       $v['clean_dau_rate']=$data_Real_Dau[$k2-1]['clean_dau']?round(($v2['clean_dau']-$data_Real_Dau[$k-1]['clean_dau'])/$data_Real_Dau[$k2-1]['clean_dau'],4)*100:0;
+                    
+                   }
+               }
+               if(empty($channel)) {
+                   foreach ($output_max as $v3){
+                       if($v['date']==$v3['date']){
+                           $v['max_online']=$v3['max_online'];
+                           $v['avg_online_cnt'] = $v3['avg_online_cnt'];
+                       }
+                   }
+               } else {
+                   $v['max_online']=0;
+                   $v['avg_online_cnt']=0;
+                   }
+         
+           }
+           
             unset($output[0]); //删去多加的一天
             if (!empty($output)) echo json_encode(['status'=>'ok', 'data'=>$output]);
             else echo json_encode(['status'=>'fail']);
@@ -1061,6 +1121,311 @@ class Home extends MY_Controller {
         //print_r($data);
     }
 
+    
+    /*
+     * 一天汇总
+     */
+    public function summaryByDay()
+    {
+        if (parent::isAjax()) {
+            
+            $date1 = $this->input->get('date1') ? $this->input->get('date1', true) : date('Y-m-d', strtotime('-7 days'));
+            $date1 = date('Ymd', strtotime($date1));
+            $date2 = $date1;
+            $date_pre=$date1-1;
+            
+            $serveid = $this->input->get('server_id');
+            $channel = $this->input->get('channel_id');
+            
+            $this->load->model('Summary_model');
+            $res = $this->Summary_model->getDataByChannel($this->appid, $date1, $date2, $serveid, $channel);
+            $data = [];
+            foreach ($res['device'] as $item) {
+                $data[$item['channel']]['device'] = $item['cnt'];
+            }
+            foreach ($res['register'] as $item) {
+                $data[$item['channel']]['macregister'] = $item['cnt'];
+            }
+            foreach ($res['au'] as $item) {
+                $data[$item['channel']]['role'] = $item['new_role'];
+                $data[$item['channel']]['dau'] = $item['dau'];
+                $data[$item['channel']]['wau'] = $item['wau'];
+                $data[$item['channel']]['mau'] = $item['mau'];
+            }
+            //留存
+            //print_r($res['remain']);exit;
+            foreach ($res['remain'] as $item) {
+                $data[$item['channel']]['remain_1'] = $item['day1'];
+        
+            }
+            //注册
+            foreach ($res['reg'] as $item) {
+                $data[$item['channel']]['reg'] = $item['cnt'];
+            }
+            ksort($data);
+            $output = [];
+            foreach($data as $channel=>$item) {
+                $output[] = array(
+                    'channel'  => $channel,
+                    'device'=>isset($item['device']) ? $item['device'] : 0,
+                    'macregister'=>isset($item['macregister']) ? $item['macregister'] : 0,
+                    'reg'   => isset($item['reg']) ? $item['reg'] : 0,
+                    'role'   => isset($item['role']) ? $item['role'] : 0,
+           
+                    'dau'   => isset($item['dau']) ? $item['dau'] : 0,
+                    'wau'   => isset($item['wau']) ? $item['wau'] : 0,
+                    'mau'   => isset($item['mau']) ? $item['mau'] : 0,
+                    'remain_1'   => isset($item['remain_1']) ? $item['remain_1'] : 0,
+     
+                );
+            }
+            $outputs = array();
+            if($output){
+                $outputs['ios']['channel'] = 'ios';
+                $outputs['android']['channel'] = '安卓';
+            }
+            
+            foreach ($output as $v){
+                if(in_array(substr($v['channel'], 0,1), array(5,6,7,8,9))){
+                    if(substr($v['channel'], 0,1) == 6 || substr($v['channel'], 0,1) == 7){ //android
+                        $name = 'android';
+                    }else{ //ios
+                        $name = 'ios';
+                    }
+                    $outputs[$name]['device'] += $v['device'];
+                    $outputs[$name]['macregister'] += $v['macregister'];
+                    $outputs[$name]['reg'] += $v['reg'];
+                    $outputs[$name]['role'] += $v['role'];          
+                    $outputs[$name]['dau'] += $v['dau'];
+                    $outputs[$name]['wau'] += $v['wau'];
+                    $outputs[$name]['mau'] += $v['mau'];
+                    $outputs[$name]['remain_1'] += $v['remain_1'];
+   
+                }
+            
+            }
+            foreach ($outputs as $k =>$item){
+                $outputs[$k]['trans_rate'] =   $item['reg']>0? number_format($item['role'] / $item['reg'], 2) * 100 : 0;
+                $outputs[$k]['rare'] =  ($item['device']>0 ? round(($item['macregister'] / $item['device']),2)*100  : 0).'%' ;
+                $outputs[$k]['remain_rate_1'] =  $item['remain_1'] . '|' .($item['reg']>0 ? round(($item['remain_1'] / $item['reg']),2)*100  : 0).'%' ;
+                $outputs[$k]['remain_rate_1_new'] =  $item['remain_1'] . ($item['reg']>0 ? round(($item['remain_1'] / $item['reg']),2)*100  : 0) ;
+
+            }
+            
+
+       
+             //最大在线
+            $field="date,device,reg,role,dau,wau,mau,max_online,avg_online_cnt";
+            $where['begindate']=$date1;
+            $where['enddate']=$date1;
+            
+            $this->load->model('Mydb_sum_model');
+            $summary_info = $this->Mydb_sum_model->summary($where,$field,$group,$order);
+            
+      
+            $where['begindate']= $date_pre;
+            $where['enddate']= $date_pre;
+            $summary_info_pre = $this->Mydb_sum_model->summary($where,$field,$group,$order);
+         
+            
+         
+      
+            
+            
+         //前一天的统计
+            $serveid = $this->input->get('server_id');
+            $channel = $this->input->get('channel_id');
+            
+            $this->load->model('Summary_model');
+            $res = $this->Summary_model->getDataByChannel($this->appid, $date1-1, $date2-1, $serveid, $channel);
+            $data = [];
+            foreach ($res['device'] as $item) {
+                $data[$item['channel']]['device'] = $item['cnt'];
+            }
+            foreach ($res['register'] as $item) {
+                $data[$item['channel']]['macregister'] = $item['cnt'];
+            }
+            foreach ($res['au'] as $item) {
+                $data[$item['channel']]['role'] = $item['new_role'];
+                $data[$item['channel']]['dau'] = $item['dau'];
+                $data[$item['channel']]['wau'] = $item['wau'];
+                $data[$item['channel']]['mau'] = $item['mau'];
+            }
+            //留存
+            //print_r($res['remain']);exit;
+            foreach ($res['remain'] as $item) {
+                $data[$item['channel']]['remain_1'] = $item['day1'];
+ 
+            }
+            //注册
+            foreach ($res['reg'] as $item) {
+                $data[$item['channel']]['reg'] = $item['cnt'];
+            }
+            ksort($data);
+            $output = [];
+            foreach($data as $channel=>$item) {
+                $output[] = array(
+                    'channel'  => $channel,
+                    'device'=>isset($item['device']) ? $item['device'] : 0,
+                    'macregister'=>isset($item['macregister']) ? $item['macregister'] : 0,
+                    'reg'   => isset($item['reg']) ? $item['reg'] : 0,
+                    'role'   => isset($item['role']) ? $item['role'] : 0,                 
+                    'dau'   => isset($item['dau']) ? $item['dau'] : 0,
+                    'wau'   => isset($item['wau']) ? $item['wau'] : 0,
+                    'mau'   => isset($item['mau']) ? $item['mau'] : 0,
+                    'remain_1'   => isset($item['remain_1']) ? $item['remain_1'] : 0,
+       
+                  
+                );
+            }
+            $outputs_pre = array();
+            if($output){
+                $outputs_pre['ios']['channel'] = 'ios';
+                $outputs_pre['android']['channel'] = '安卓';
+            }
+            
+            foreach ($output as $v){
+                if(in_array(substr($v['channel'], 0,1), array(5,6,7,8,9))){
+                    if(substr($v['channel'], 0,1) == 6 || substr($v['channel'], 0,1) == 7){ //android
+                        $name = 'android';
+                    }else{ //ios
+                        $name = 'ios';
+                    }
+                    $outputs_pre[$name]['device'] += $v['device'];
+                    $outputs_pre[$name]['macregister'] += $v['macregister'];
+                    $outputs_pre[$name]['reg'] += $v['reg'];
+                    $outputs_pre[$name]['role'] += $v['role'];              
+                    $outputs_pre[$name]['dau'] += $v['dau'];
+                    $outputs_pre[$name]['wau'] += $v['wau'];
+                    $outputs_pre[$name]['mau'] += $v['mau'];
+                    $outputs_pre[$name]['remain_1'] += $v['remain_1'];
+      
+                }
+            
+            }
+            foreach ($outputs_pre as $k =>$item){
+                $outputs_pre[$k]['trans_rate'] =   $item['reg']>0? number_format($item['role'] / $item['reg'], 2) * 100 : 0;
+                $outputs_pre[$k]['rare'] =  ($item['device']>0 ? round(($item['macregister'] / $item['device']),2)*100  : 0).'%' ;
+                $outputs_pre[$k]['remain_rate_1'] =  $item['remain_1'] . '|' .($item['reg']>0 ? round(($item['remain_1'] / $item['reg']),2)*100  : 0).'%' ;
+                $outputs_pre[$k]['remain_rate_1_new'] =  $item['remain_1'] . ($item['reg']>0 ? round(($item['remain_1'] / $item['reg']),2)*100  : 0) ;
+     
+            }
+  
+            //新增账号
+            $group="channel";
+            $this->load->model('register_model');
+            $new_account = $this->register_model->getRegDetail($this->appid, $date1, $date1, $serverid=null, $channel=null, $table='sum_register_day',$by_channel,$group);  
+            $new_account_pre = $this->register_model->getRegDetail($this->appid, $date1-1, $date1-1, $serverid=null, $channel=null, $table='sum_register_day',$by_channel,$group);
+
+            foreach ($new_account_pre as $v){
+                if(substr($v['channel'], 0,1) == 6 || substr($v['channel'], 0,1) == 7){ //android
+                    $outputs['android']['reg_pre']+=$v['cnt'];
+                     
+                }else{ //ios
+                    $outputs['ios']['reg_pre']+=$v['cnt'];
+                }
+            }
+            
+            
+            
+              //总账号
+            $where['date1']=  $date1;
+            $where['date_pre']=  $date1-1;
+            $this->load->model('Player_analysis_model');
+            $total_account = $this->Player_analysis_model->totalAccount($table, $where, $field, $group, $order, $limit);      
+            
+            foreach ($total_account['date1'] as $v){
+                if(substr($v['channel'], 0,1) == 6 || substr($v['channel'], 0,1) == 7){ //android                 
+                    $outputs['android']['total_account']+=$v['total'];      
+                     
+                }else{ //ios                    
+                    $outputs['ios']['total_account']+=$v['total'];
+                }                 
+            }
+            
+            
+            foreach ($total_account['date_pre'] as $v){
+                if(substr($v['channel'], 0,1) == 6 || substr($v['channel'], 0,1) == 7){ //android                   
+                    $outputs['android']['total_account_pre']+=$v['total'];                    
+                }else{ //ios                   
+                    $outputs['ios']['total_account_pre']+=$v['total'];
+                }                 
+            }
+          
+            // dau
+            $group="channel";
+            $this->load->model('player_analysis_model');
+            $data_Real_Dau = $this->player_analysis_model->getRealDau($this->appid, $where,$group);
+             
+            $where['date1']= $where['date_pre'];
+            $data_Real_Dau_pre = $this->player_analysis_model->getRealDau($this->appid, $where,$group);            
+           
+            foreach ($data_Real_Dau as $v){
+                if(substr($v['channel'], 0,1) == 6 || substr($v['channel'], 0,1) == 7){ //android
+                    $outputs['android']['clean_dau']+=$v['clean_dau'];
+                    $outputs['android']['dau_pre']+=$v['clean_dau'];
+                }else{ //ios
+                    $outputs['ios']['clean_dau']+=$v['clean_dau'];
+                    $outputs['ios']['dau_pre']+=$v['clean_dau'];
+                  
+                }
+            }               
+             
+            foreach ($data_Real_Dau_pre as $v){
+                if(substr($v['channel'], 0,1) == 6 || substr($v['channel'], 0,1) == 7){ //android
+                    $outputs['android']['clean_dau_pre']+=$v['clean_dau'];
+                    $outputs['android']['wau_pre']+=$v['wau'];
+                }else{ //ios
+                    $outputs['ios']['clean_dau_pre']+=$v['clean_dau'];
+                    $outputs['ios']['wau_pre']+=$v['wau'];
+                }
+            }
+    
+            
+             $outputs['android']['total_account_rate']=round((($outputs['android']['total_account']- $outputs['android']['total_account_pre'])/ $outputs['android']['total_account_pre']),6)*100;
+             $outputs['ios']['total_account_rate']=(round(( $outputs['ios']['total_account']- $outputs['ios']['total_account_pre'])/ $outputs['ios']['total_account'],6))*100;
+     
+              $outputs['android']['dau_rate']=round((($outputs['android']['dau']- $summary_info_pre[0]['dau'])/ $outputs['android']['dau']),6)*100;
+              $outputs['ios']['dau_rate']=round((($outputs['ios']['dau']- $summary_info_pre[0]['dau'])/ $outputs['ios']['dau']),6)*100; 
+             //
+             $outputs['android']['clean_dau_rate']=round((($outputs['android']['clean_dau']- $outputs['android']['clean_dau_pre'])/ $outputs['android']['clean_dau']),6)*100;
+             $outputs['ios']['clean_dau_rate']=round((($outputs['ios']['clean_dau']- $outputs_pre['ios']['clean_dau_pre'])/ $outputs['ios']['dau']),6)*100;
+             
+             $outputs['android']['wau_rate']=round((($outputs['android']['wau']- $outputs['android']['wau_pre'])/ $outputs['android']['wau']),6)*100;
+             $outputs['ios']['wau_rate']=round((($outputs['ios']['wau']- $outputs['ios']['wau_pre'])/ $outputs['ios']['wau']),6)*100;
+             
+             $outputs['android']['reg_rate']=round((($outputs['android']['reg']- $outputs['android']['reg_pre'])/ $outputs['android']['reg']),6)*100;
+             $outputs['ios']['reg_rate']=round((($outputs['ios']['reg']- $outputs['ios']['reg_pre'])/ $outputs['ios']['reg']),6)*100;
+     
+             //最高在线不分ios android
+             $outputs['android']['max_online']=$summary_info[0]['max_online'];
+             $outputs['ios']['max_online']=$summary_info[0]['max_online'];
+             $outputs['android']['max_online_rate']=round((($summary_info[0]['max_online']- $summary_info_pre[0]['max_online'])/ $summary_info[0]['max_online']),6)*100;
+             $outputs['ios']['max_online_rate']=round((($summary_info[0]['max_online']- $summary_info_pre[0]['max_online'])/ $summary_info[0]['max_online']),6)*100;
+       
+             
+
+             $outputs['android']['remain_rate_1_rate']=round((($outputs['android']['remain_rate_1_new']- $outputs_pre['android']['remain_rate_1_new'])/ $outputs['android']['remain_rate_1_new']),6)*100;
+             $outputs['ios']['remain_rate_1_rate']=round((($outputs['ios']['remain_rate_1_new']- $outputs_pre['ios']['remain_rate_1_new'])/ $outputs['ios']['remain_rate_1_new']),6)*100;
+              
+            if (!empty($outputs)) echo json_encode(['status'=>'ok', 'data'=>$outputs]);
+            else echo json_encode(['status'=>'fail']);
+            
+            
+        
+        }
+        else {
+            $this->data['hide_server_list'] = true;
+            $this->data['hide_channel_list'] = true;
+            $this->data['hide_end_time'] = true;
+            $this->data['bt'] = date('Y-m-d', strtotime('-1 days'));
+            $this->body = 'Home/summaryByDay';
+            $this->layout();
+        }
+   
+
+    
+    }
     /**
      * 按渠道汇总数据
      */
@@ -1113,7 +1478,7 @@ class Home extends MY_Controller {
             }
             //留存
             //print_r($res['remain']);exit;
-            foreach ($res['remain'] as $item) {
+ $res_pre       foreach ($res['remain'] as $item) {
                 $data[$item['channel']]['remain_1'] = $item['day1'];
                 $data[$item['channel']]['remain_3'] = $item['day3'];
                 $data[$item['channel']]['remain_7'] = $item['day7'];
@@ -1546,17 +1911,26 @@ class Home extends MY_Controller {
     		$where['channels'] = $this->input->get('channel_id');
     		$where['begindate'] = date('Ymd', strtotime($date1));
     		$where['enddate'] = date('Ymd', strtotime($date2));
+    		
     		$this->load->model('Mydb_sum_model');
     		$field = 'sday,sum(registernum) registernum,sum(usercount) usercount,sum(day1) day1,sum(day3) day3,sum(day7) day7,sum(day15) day15,sum(day30) day30';
     		$group = 'sday';
     		$output = $this->Mydb_sum_model->summarybyad($where,$field,$group);
-    
+    		$this->load->model('Sdk_sum_model');
+    		$output1 = $this->Sdk_sum_model->recharge($where);
+    		$datarr = array();
+    		foreach ($output1 as $value){
+    			$datarr[$value['day']] = $value;
+    		}
     		foreach ($output as &$v){
     			$v['remain_1']   = $v['day1'] . '|' .($v['registernum']>0 ? round(($v['day1'] / $v['registernum']),2)*100 : 0) . '%';
     			$v['remain_3']   = $v['day3'] . '|' .($v['registernum']>0 ? round(($v['day3'] / $v['registernum']),2)*100 : 0) . '%';
     			$v['remain_7']   = $v['day7'] . '|' .($v['registernum']>0 ? round(($v['day7'] / $v['registernum']),2)*100 : 0) . '%';
     			$v['remain_15']   = $v['day15'] . '|' .($v['registernum']>0 ? round(($v['day15'] / $v['registernum']),2)*100 : 0) . '%';
     			$v['remain_30']   = $v['day30'] . '|' .($v['registernum']>0 ? round(($v['day30'] / $v['registernum']),2)*100 : 0) . '%';
+    			$v['allmoney'] = isset($datarr[$v['sday']])?$datarr[$v['sday']]['allmoney']:0;
+    			$v['countAccountid'] = isset($datarr[$v['sday']])?$datarr[$v['sday']]['countAccountid']:0;
+    			$v['count'] = isset($datarr[$v['sday']])?$datarr[$v['sday']]['count']:0;
     		}
     		
     		if (!empty($output)) echo json_encode(['status'=>'ok', 'data'=>$output]);
@@ -1567,10 +1941,16 @@ class Home extends MY_Controller {
     		$query = $sdk->query('SELECT distinct media_source FROM ad_register');
     		$channels = array();
     		if ($query) $channels = $query->result_array();
+    		$this->data['ad_list'] = include APPPATH .'/config/ad_list.php';
     		$this->data['hide_server_list'] = true;     
     		$this->data['channels'] = $channels;
     		$this->body = 'Home/summary_by_ad';
     		$this->layout();
     	}
     }
+    
+    
+    
+
+
 }

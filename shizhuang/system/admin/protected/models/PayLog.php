@@ -35,7 +35,7 @@ class PayLog extends CActiveRecord{
 				array('CPID','required','message'=>'充值渠道必填！'),
 				array('game_id','required','message'=>'游戏ID必填！'),
 					
-				array('CardNO, CardPwd, BankID, BankOrderID, PayType, Add_Time, PayCode, IsUC, tag, clienttype, transaction_id','safe'),
+				array('CardNO, PlayerID,CardPwd, BankID, BankOrderID, PayType, Add_Time, PayCode, IsUC, tag, clienttype, transaction_id','safe'),
 		);
 	}
 	
@@ -64,7 +64,7 @@ class PayLog extends CActiveRecord{
 		);
 	}
 	public function getGameOrderFailInfo(){
-	    $sql = "select id,ServerID,PayType,PayID,OrderID,PayMoney,PayCode from {{pay_log}} where IsUC='1';";
+	    $sql = "select id,ServerID,PayType,PayID,OrderID,PayMoney,PayCode,PlayerID from {{pay_log}} where IsUC='1';";
         $info = $this->findAllBySql($sql);
         return $info;
     }

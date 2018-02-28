@@ -46,8 +46,8 @@ class OperatorsController extends Controller{
         return $rs;
 	}
 	
-	private function gameAccountLimit($accountId, $serverId){
-		$conn = SetConn($serverId);//根据SvrID连接服务器
+	private function gameAccountLimit($playerId, $accountId){
+		$conn = SetConn(0);//根据SvrID连接服务器
         $table = subTable($accountId, 'u_accountlimit', 200);
 		$sql = "select count(*) as count from $table where account_id='$accountId'";
 		$query = @mysqli_query($conn,$sql);
@@ -149,10 +149,7 @@ class OperatorsController extends Controller{
 				$command->execute();
 				//写入下架标识
 				if($operate == 1){
-					foreach ($serverId as $v){
-						//游服变更accountId改为角色ID
-						$this->gameAccountLimit($gamePlayerId, $v);
-					}
+					$this->gameAccountLimit($gamePlayerId, $accountId);
 				}
 				if($this->updateAccount($accountId, $operate, $gameId) == false)
 					$this->display('执行失败，请重试！', 0);
@@ -687,7 +684,7 @@ class OperatorsController extends Controller{
                     PlayerLimit::model()->updateByPk($insertId,array('status'=>1));
 			} else {
 				//让记录失效
-				if($this->updatePlayer($playerId, $serverId) == false)
+				if($this->gamePlayerLimit($playerId, $serverId, $endtime,5) == false)
 					$this->display('执行失败，请重试！', 0);
 			}
 				$this->display('操作成功！', 1);
@@ -706,32 +703,20 @@ class OperatorsController extends Controller{
 		return $rs;
 	}
 	
-	private function gamePlayerLimit($accountId, $serverId, $endtime, $delFlag = 0){
+	private function gamePlayerLimit($playerId, $serverId, $endtime, $type = 4){
 		$conn = SetConn($serverId);//根据SvrID连接服务器
-        $table = subTable($serverId, 'u_accountlimit', '1000');
         if($conn == false)
             return false;
-		$sql = "select del_flag from $table where account_id='$accountId' and server_id='$serverId'";
-		$query = @mysqli_query($conn,$sql);
-		$rs = @mysqli_fetch_assoc($query);
-		if (!$rs){
-			$sql = "insert into $table(account_id, server_id, endtime, del_flag) values('$accountId', '$serverId', '$endtime', '$delFlag')";
-			if(mysqli_query($conn,$sql) == False) {
-                write_log(ROOT_PATH . "log", "player_limit_error_", "serverId=$serverId, accountId=$accountId " . date("Y-m-d H:i:s") . "\r\n" . "  , sql=$sql,   " . mysqli_error($conn));
-                return false;
-			}else
-				write_log(ROOT_PATH."log","player_limit_log_", "serverId=$serverId, accountId=$accountId ".date("Y-m-d H:i:s")."\r\n");
-		} else {
-			//存在就更新
-			$sql = "update $table set endtime='$endtime',del_flag='$delFlag' where account_id='$accountId' and server_id='$serverId'";
-			if(mysqli_query($conn,$sql) == False) {
-                write_log(ROOT_PATH . "log", "player_limit_error_", "serverId=$serverId, accountId=$accountId " . date("Y-m-d H:i:s") . "\r\n" . "  , sql=$sql,   " . mysqli_error($conn));
-                return false;
-			}else
-				write_log(ROOT_PATH."log","player_limit_log_", "serverId=$serverId, accountId=$accountId ".date("Y-m-d H:i:s")."\r\n");
-		}
-		@mysqli_close($conn);
-        return true;
+        $table = $this->gmtoolTable;
+        $sql = "insert into $table(type, serverid, param, award_type1) values('$type', '$serverId', '$playerId', '$endtime')";
+        $tag = ($type == 4) ? "玩家封号:$playerId 区服:$serverId" : "玩家解封:$playerId 区服:$serverId";
+        write_log(ROOT_PATH.'log', 'player_limit_log_', "$tag ".date('Y-m-d H:i:s')."\r\n");
+        $queryR = @mysqli_query($conn,$sql);
+        @mysqli_close($conn);
+        if($queryR){
+        	return true;
+        }
+        return false;
 	}
 	//重新加载定制掉落表
 	public function actionReloadDrop(){

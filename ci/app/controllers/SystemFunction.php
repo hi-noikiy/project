@@ -519,6 +519,13 @@ class SystemFunction extends MY_Controller {
 			}
 			$group = 'ranklev,develop';
 			$data = $this->GameServerData->daneudemon ( $where,$field,$group );
+			
+			$field='com_ranklev ranklev, convert(sum(intilv)/count(*),decimal(10,2)) as avg';
+			$group="ranklev";			
+			$avg_intilv = $this->GameServerData->getIntilv ( $where,$field,$group );
+			
+		
+			
 			$newdata = $three = $titledata = array();
 			$maxdevelop = 0;
 			foreach ( $data as $v ) {
@@ -558,6 +565,17 @@ class SystemFunction extends MY_Controller {
 				$processtitle = array_values($processtitle);
 			}
 			//print_r($processtitle);die;
+			
+			foreach ($three as &$v){
+			    foreach ($avg_intilv as $v2){
+			        if($v['ranklev']==$v2['ranklev']){
+			            $v['avg_intilv']=$v2['avg'];
+			             
+			        }
+			    }			    
+			}
+			
+
 			$this->output->set_content_type ( 'application/json' )->set_output ( json_encode ( [
 					'status' => 'ok',
 					'data' => array(
@@ -875,7 +893,7 @@ class SystemFunction extends MY_Controller {
 			$where ['viplev_min'] = $this->input->get ( 'viplev_min' );
 			$where ['viplev_max'] = $this->input->get ( 'viplev_max' );
 			$where ['begintime'] = strtotime ( $date . ' 00:00:00' );
-			$group = 'floor(param/5)';
+			
 			$btype = $this->input->get ( 'btype' );
 			$this->load->model ( 'SystemFunction_model' );
 			$newdata = array ();
@@ -883,59 +901,94 @@ class SystemFunction extends MY_Controller {
 				$names = array (
 						'66' => '各等级段参与精灵塔的人数' 
 				);
+				$group = 'accountid';
 				$where ['typeids'] = [ 66 ];
-				//$field = 'act_id,floor(user_level/10) as level,count(distinct accountid) cid';
-				$field = 'act_id,floor(user_level/10) as level,count(distinct accountid) cid';
+			
+				$field = 'id,act_id,user_level as level,count(distinct accountid) cid';
+
+		
 				$data = $this->SystemFunction_model->ActionProduceSaleByBehavior ( $where, $field, $group );
 				if(!$data){
 					echo json_encode(array('code'=>'fail','info'=>'未查到数据'));die;
 				}
-			
+				
+				foreach ( $data as $v ) {				
+    				for($i = 0; $i < 10; $i ++) {
+    				    $newdata [$v ['act_id']] ['level_' . $i] = 0;
+    				    $newdata [$v ['act_id']] ['act_name'] = $names [$v ['act_id']];
+    				}
+				}
+				
 				foreach ( $data as $v ) {
-					if (! isset ( $newdata [$v ['act_id']] )) {
-						for($i = 0; $i < 10; $i ++) {
-							$newdata [$v ['act_id']] ['level_' . $i] = 0;
-							$newdata [$v ['act_id']] ['act_name'] = $names [$v ['act_id']];
-						}
-					}
-					$newdata [$v ['act_id']] ['level_' . $v ['level']] = $v ['cid'];
-				}	
+				    
+				    $newdata [$v ['act_id']] ['act_name'] = $names [$v ['act_id']];
+				if($v['level']<10 ){
+				    $newdata [$v ['act_id']] ['level_0'] += $v['cid'];
+				}elseif ($v['level']>=10 && $v['level']<20 ){
+				    $newdata [$v ['act_id']] ['level_1'] += $v['cid'];
+				}elseif ($v['level']>=20 && $v['level']<30){
+				    $newdata [$v ['act_id']] ['level_2'] += $v['cid'];
+				}elseif ($v['level']>=30 && $v['level']<40){
+				    $newdata [$v ['act_id']] ['level_3'] += $v['cid'];
+				}elseif ($v['level']>=40 && $v['level']<50){
+				    $newdata [$v ['act_id']] ['level_4'] += $v['cid'];
+				}elseif ($v['level']>=50 && $v['level']<60){
+				    $newdata [$v ['act_id']] ['level_5']  += $v['cid'];
+				}elseif ($v['level']>=60 && $v['level']<70){
+				    $newdata [$v ['act_id']] ['level_6']  += $v['cid'];
+				}elseif ($v['level']>=70 && $v['level']<80){
+				    $newdata [$v ['act_id']] ['level_7']  += $v['cid'];
+				}elseif ($v['level']>=80 && $v['level']<90){
+				    $newdata [$v ['act_id']] ['level_8'] += $v['cid'];
+				}elseif ($v['level']>=90){
+				    $newdata [$v ['act_id']] ['level_9']  += $v['cid'];
+				}
+				
+				}
+				
+
+				
+				
 				
 			} elseif ($btype == 1) { // 通关精灵塔各层的人数
 			   
 				$where ['typeids'] = [ 67 ];
-				$field = 'act_id,floor(param/5) as param,floor(user_level/10) as level,count(distinct accountid) cid';
-				$group = 'accountid';
+		
+				$field = 'accountid,act_id,CEILING(param/5) as param,user_level as level,count(distinct accountid) cid';
+				$group = 'accountid';			
 				$data = $this->SystemFunction_model->ActionProduceSaleByBehavior ( $where, $field, $group );
 				
 	
+ 				if(!empty($data)){
+				    foreach ( $data as $v ) {
+				        $layer=$v ['param'];
+				      $newdata [ $v ['param']] ['act_name'] = '通关精灵塔'.$layer.'层的人数';   
+				      if($v['level']<10 ){
+				          $newdata [$v ['param']] ['level_0'] += $v['cid'];
+				      }elseif ($v['level']>=10 && $v['level']<20 ){
+				         $newdata [$v ['param']] ['level_1'] += $v['cid'];
+				      }elseif ($v['level']>=20 && $v['level']<30){
+				         $newdata [$v ['param']] ['level_2'] += $v['cid'];
+				      }elseif ($v['level']>=30 && $v['level']<40){
+				         $newdata [$v ['param']] ['level_3'] += $v['cid'];
+				      }elseif ($v['level']>=40 && $v['level']<50){
+				         $newdata [$v ['param']] ['level_4'] += $v['cid'];
+				      }elseif ($v['level']>=50 && $v['level']<60){
+				         $newdata [$v ['param']] ['level_5']  += $v['cid'];
+				      }elseif ($v['level']>=60 && $v['level']<70){
+				         $newdata [$v ['param']] ['level_6']  += $v['cid'];
+				      }elseif ($v['level']>=70 && $v['level']<80){
+				         $newdata [$v ['param']] ['level_7']  += $v['cid'];
+				      }elseif ($v['level']>=80 && $v['level']<90){
+				         $newdata [$v ['param']] ['level_8'] += $v['cid'];
+				      }elseif ($v['level']>=90){
+				         $newdata [$v ['param']] ['level_9']  += $v['cid'];
+				      }
+				   
+				    }
+				} 
 				
-				foreach ( $data as $v ) {				
-				            $newdata [ $v ['param']] ['act_name'] = '通关精灵塔'.$v ['param'].'层的人数';          
-				   
-				            if($v['level']==0){
-				                $newdata [$v ['param']] ['level_0'] ++;
-				            }elseif ($v['level']==1){
-				                $newdata [$v ['param']] ['level_1'] ++;
-				            }elseif ($v['level']==2){
-				                $newdata [$v ['param']] ['level_2'] ++;
-				            }elseif ($v['level']==3){
-				                $newdata [$v ['param']] ['level_3'] ++;
-				            }elseif ($v['level']==4){
-				                $newdata [$v ['param']] ['level_4'] ++;
-				            }elseif ($v['level']==5){
-				                $newdata [$v ['param']] ['level_5'] ++;
-				            }elseif ($v['level']==6){
-				                $newdata [$v ['param']] ['level_6'] ++;
-				            }elseif ($v['level']==7){
-				                $newdata [$v ['param']] ['level_7'] ++;
-				            }elseif ($v['level']==8){
-				                $newdata [$v ['param']] ['level_8'] ++;
-				            }elseif ($v['level']==9){
-				                $newdata [$v ['param']] ['level_9'] ++;
-				            }	
-				   
-				}
+	
 
 			} elseif ($btype == 2) { // 获得精灵各层首通各种宝箱的人数
 			  
@@ -999,38 +1052,84 @@ class SystemFunction extends MY_Controller {
 				$names = array (
 						'69' => '使用购买精灵塔宝箱功能的人数',
 						'691' => '购买精灵塔宝箱1次的人数',
-						'692' => '使用购买精灵塔宝箱2次的人数'
+						'692' => '使用购买精灵塔宝箱2次的人数',
+				        '693' => '使用购买精灵塔宝箱3次的人数'
 				);
+				$group="accountid";
 				$where ['typeids'] = [69];
-				$field = 'act_id,floor(user_level/10) as level,count(distinct accountid) cid';
+		
+				$field = 'act_id,user_level as level,count(distinct accountid) cid';
 				$data = $this->SystemFunction_model->ActionProduceSaleByBehavior ( $where, $field, $group );
+				
+				
 				foreach ( $data as $v ) {
-					if (! isset ( $newdata [$v ['act_id']] )) {
-						for($i = 0; $i < 10; $i ++) {
-							$newdata [$v ['act_id']] ['level_' . $i] = 0;
-							$newdata [$v ['act_id']] ['act_name'] = $names [$v ['act_id']];
-						}
-					}
-					$newdata [$v ['act_id']] ['level_' . $v ['level']] = $v ['cid'];
+				
+				    $newdata [$v ['act_id']] ['act_name'] = $names [$v ['act_id']];
+				    if($v['level']<10 ){
+				        $newdata [$v ['act_id']] ['level_0'] += $v['cid'];
+				    }elseif ($v['level']>=10 && $v['level']<20 ){
+				        $newdata [$v ['act_id']] ['level_1'] += $v['cid'];
+				    }elseif ($v['level']>=20 && $v['level']<30){
+				        $newdata [$v ['act_id']] ['level_2'] += $v['cid'];
+				    }elseif ($v['level']>=30 && $v['level']<40){
+				        $newdata [$v ['act_id']] ['level_3'] += $v['cid'];
+				    }elseif ($v['level']>=40 && $v['level']<50){
+				        $newdata [$v ['act_id']] ['level_4'] += $v['cid'];
+				    }elseif ($v['level']>=50 && $v['level']<60){
+				        $newdata [$v ['act_id']] ['level_5']  += $v['cid'];
+				    }elseif ($v['level']>=60 && $v['level']<70){
+				        $newdata [$v ['act_id']] ['level_6']  += $v['cid'];
+				    }elseif ($v['level']>=70 && $v['level']<80){
+				        $newdata [$v ['act_id']] ['level_7']  += $v['cid'];
+				    }elseif ($v['level']>=80 && $v['level']<90){
+				        $newdata [$v ['act_id']] ['level_8'] += $v['cid'];
+				    }elseif ($v['level']>=90){
+				        $newdata [$v ['act_id']] ['level_9']  += $v['cid'];
+				    }
+				
 				}
-				$group = 'level,accountid';
-				$where['cid'] = "1,2";
-				$field = 'act_id,floor(user_level/10) as level,count(id) cid';
+				
+			
+	
+				$group = 'accountid';
+				$where['cid'] = "1,2,3";
+				$field = 'act_id,user_level as level,count(id) cid';
+			
 				$data = $this->SystemFunction_model->ActionProduceSaleByBehavior ( $where, $field, $group );
-				foreach ($data as $v){
-					if (! isset ( $newdata [$v ['act_id'].$v['cid']] )) {
-						for($i = 0; $i < 10; $i ++) {
-							$newdata [$v ['act_id'].$v['cid']] ['level_' . $i] = 0;
-							$newdata [$v ['act_id'].$v['cid']] ['act_name'] = $names [$v ['act_id'].$v['cid']];
-						}
-					}
-					$newdata[$v['act_id'].$v['cid']] ['level_' . $v ['level']]+=1;
+				
+				foreach ( $data as $v ) {
+				    $newdata ['act_id']= $newdata [$v ['act_id'].$v['cid']] ;
+				    $newdata [$v ['act_id'].$v['cid']] ['act_name'] = $names [$v ['act_id'].$v['cid']];
+				    if($v['level']<10 ){
+				        $newdata [$v ['act_id'].$v['cid']] ['level_0'] += 1;
+				    }elseif ($v['level']>=10 && $v['level']<20 ){
+				        $newdata [$v ['act_id'].$v['cid']] ['level_1'] += 1;
+				    }elseif ($v['level']>=20 && $v['level']<30){
+				        $newdata [$v ['act_id'].$v['cid']] ['level_2'] += 1;
+				    }elseif ($v['level']>=30 && $v['level']<40){
+				        $newdata [$v ['act_id'].$v['cid']] ['level_3'] += 1;
+				    }elseif ($v['level']>=40 && $v['level']<50){
+				        $newdata [$v ['act_id'].$v['cid']] ['level_4'] += 1;
+				    }elseif ($v['level']>=50 && $v['level']<60){
+				        $newdata [$v ['act_id'].$v['cid']] ['level_5']  += 1;
+				    }elseif ($v['level']>=60 && $v['level']<70){
+				        $newdata [$v ['act_id'].$v['cid']] ['level_6']  +=1;
+				    }elseif ($v['level']>=70 && $v['level']<80){
+				        $newdata [$v ['act_id'].$v['cid']] ['level_7']  += 1;
+				    }elseif ($v['level']>=80 && $v['level']<90){
+				        $newdata [$v ['act_id'].$v['cid']] ['level_8'] += 1;
+				    }elseif ($v['level']>=90){
+				        $newdata [$v ['act_id'].$v['cid']] ['level_9']  += 1;
+				    }
+				
 				}
+				
+	
 			}elseif ($btype == 6) { // 每天获得精灵塔1层首通青铜宝箱的人数 等	 			    
 			    $names = array (			     
-                '10101'=>'每天获得精灵塔1层首通青铜宝箱的人数',
-                '10102'=>'每天获得精灵塔1层首通白银宝箱的人数',
-                '10103'=>'每天获得精灵塔1层首通黄金宝箱的人数',
+                '100101'=>'每天获得精灵塔1层首通青铜宝箱的人数',
+                '100102'=>'每天获得精灵塔1层首通白银宝箱的人数',
+                '100103'=>'每天获得精灵塔1层首通黄金宝箱的人数',
                 '100201'=>'每天获得精灵塔2层首通青铜宝箱的人数',
                 '100202'=>'每天获得精灵塔2层首通白银宝箱的人数',
                 '100203'=>'每天获得精灵塔2层首通黄金宝箱的人数',
@@ -1047,41 +1146,41 @@ class SystemFunction extends MY_Controller {
 			    );
 			    
 			    $where ['param_list'] = implode ( ',', array_keys ( $names ) );
-		    //	$where ['typeids'] = [ 67 ];
-				$field = 'act_id,param,floor(user_level/10) as level,count(distinct accountid) cid';
-				$group = 'accountid';	
-		    	$field = 'act_id,param,floor(user_level/10) as level,count(distinct accountid) cid';
-				$data = $this->SystemFunction_model->ActionByParam ( $where, $field, $group );
-		
+		    	$where ['typeids'] = [ 68 ];
 				
-
+				$group = 'id';	
+			
+		    	$field = 'id,act_id,param1,user_level as level,count(distinct accountid) cid';
+				$data = $this->SystemFunction_model->ActionByParamNew ( $where, $field, $group );	
+			
+				
 				foreach ( $data as $v ) {
-				    $newdata [ $v ['param']] ['act_name'] = $names[$v['param']];
-				    	
-				    if($v['level']==0){
-				        $newdata [$v ['param']] ['level_0'] ++;
-				    }elseif ($v['level']==1){
-				        $newdata [$v ['param']] ['level_1'] ++;
-				    }elseif ($v['level']==2){
-				        $newdata [$v ['param']] ['level_2'] ++;
-				    }elseif ($v['level']==3){
-				        $newdata [$v ['param']] ['level_3'] ++;
-				    }elseif ($v['level']==4){
-				        $newdata [$v ['param']] ['level_4'] ++;
-				    }elseif ($v['level']==5){
-				        $newdata [$v ['param']] ['level_5'] ++;
-				    }elseif ($v['level']==6){
-				        $newdata [$v ['param']] ['level_6'] ++;
-				    }elseif ($v['level']==7){
-				        $newdata [$v ['param']] ['level_7'] ++;
-				    }elseif ($v['level']==8){
-				        $newdata [$v ['param']] ['level_8'] ++;
-				    }elseif ($v['level']==9){
-				        $newdata [$v ['param']] ['level_9'] ++;
-				    }
-				    	
-				}
 				
+				   $newdata [$v ['param1']] ['act_name'] = $names [$v ['param1']];
+				    if($v['level']<10 ){
+				        $newdata [$v ['param1']] ['level_0'] += $v['cid'];
+				    }elseif ($v['level']>=10 && $v['level']<20 ){
+				        $newdata [$v ['param1']] ['level_1'] += $v['cid'];
+				    }elseif ($v['level']>=20 && $v['level']<30){
+				        $newdata [$v ['param1']] ['level_2'] += $v['cid'];
+				    }elseif ($v['level']>=30 && $v['level']<40){
+				        $newdata [$v ['param1']] ['level_3'] += $v['cid'];
+				    }elseif ($v['level']>=40 && $v['level']<50){
+				        $newdata [$v ['param1']] ['level_4'] += $v['cid'];
+				    }elseif ($v['level']>=50 && $v['level']<60){
+				        $newdata [$v ['param1']] ['level_5']  += $v['cid'];
+				    }elseif ($v['level']>=60 && $v['level']<70){
+				        $newdata [$v ['param1']] ['level_6']  += $v['cid'];
+				    }elseif ($v['level']>=70 && $v['level']<80){
+				        $newdata [$v ['param1']] ['level_7']  += $v['cid'];
+				    }elseif ($v['level']>=80 && $v['level']<90){
+				        $newdata [$v ['param1']] ['level_8'] += $v['cid'];
+				    }elseif ($v['level']>=90){
+				        $newdata [$v ['param1']] ['level_9']  += $v['cid'];
+				    }
+				
+				}
+	
 	
 
 			}elseif ($btype == 7) { //精灵塔1-9层达到扫荡要求的玩家人数 			    
@@ -1101,36 +1200,37 @@ class SystemFunction extends MY_Controller {
 			    
 			    $where ['param_list'] = implode ( ',', array_keys ( $names ) );
 		    	$where ['typeids'] = [ 107 ];
-				$field = 'act_id,param,floor(user_level/10) as level,count(distinct accountid) cid';
-				$group = 'accountid';	
-		    	$field = 'act_id,param,floor(user_level/10) as level,count(distinct accountid) cid';
+				$field = 'id,act_id,param,user_level as level,count(distinct accountid) cid';
+				$group = 'id';	
+		    	$field = 'act_id,param,user_level as level,count(distinct accountid) cid';
 				$data = $this->SystemFunction_model->ActionByParam ( $where, $field, $group );
 		
 				if(!empty($data)){
 				    foreach ( $data as $v ) {
 				        $newdata [ $v ['param']] ['act_name'] = $names[$v['param']];
 				         
-				        if($v['level']==0){
-				            $newdata [$v ['param']] ['level_0'] ++;
-				        }elseif ($v['level']==1){
-				            $newdata [$v ['param']] ['level_1'] ++;
-				        }elseif ($v['level']==2){
-				            $newdata [$v ['param']] ['level_2'] ++;
-				        }elseif ($v['level']==3){
-				            $newdata [$v ['param']] ['level_3'] ++;
-				        }elseif ($v['level']==4){
-				            $newdata [$v ['param']] ['level_4'] ++;
-				        }elseif ($v['level']==5){
-				            $newdata [$v ['param']] ['level_5'] ++;
-				        }elseif ($v['level']==6){
-				            $newdata [$v ['param']] ['level_6'] ++;
-				        }elseif ($v['level']==7){
-				            $newdata [$v ['param']] ['level_7'] ++;
-				        }elseif ($v['level']==8){
-				            $newdata [$v ['param']] ['level_8'] ++;
-				        }elseif ($v['level']==9){
-				            $newdata [$v ['param']] ['level_9'] ++;
+				        if($v['level']<10 ){
+				            $newdata [$v ['param']] ['level_0'] += $v['cid'];
+				        }elseif ($v['level']>=10 && $v['level']<20 ){
+				            $newdata [$v ['param']] ['level_1'] += $v['cid'];
+				        }elseif ($v['level']>=20 && $v['level']<30){
+				            $newdata [$v ['param']] ['level_2'] += $v['cid'];
+				        }elseif ($v['level']>=30 && $v['level']<40){
+				            $newdata [$v ['param']] ['level_3'] += $v['cid'];
+				        }elseif ($v['level']>=40 && $v['level']<50){
+				            $newdata [$v ['param']] ['level_4'] += $v['cid'];
+				        }elseif ($v['level']>=50 && $v['level']<60){
+				            $newdata [$v ['param']] ['level_5']  += $v['cid'];
+				        }elseif ($v['level']>=60 && $v['level']<70){
+				            $newdata [$v ['param']] ['level_6']  += $v['cid'];
+				        }elseif ($v['level']>=70 && $v['level']<80){
+				            $newdata [$v ['param']] ['level_7']  += $v['cid'];
+				        }elseif ($v['level']>=80 && $v['level']<90){
+				            $newdata [$v ['param']] ['level_8'] += $v['cid'];
+				        }elseif ($v['level']>=90){
+				            $newdata [$v ['param']] ['level_9']  += $v['cid'];
 				        }
+		
 				         
 				    }
 				}
@@ -1157,39 +1257,44 @@ class SystemFunction extends MY_Controller {
 			    );
 			    
 			    $where ['param_list'] = implode ( ',', array_keys ( $names ) );
-		    	$where ['typeids'] = [ 108 ];
-				$field = 'act_id,param,floor(user_level/10) as level,count(distinct accountid) cid';
-				$group = 'accountid';	
-		    	$field = 'act_id,param,floor(user_level/10) as level,count(distinct accountid) cid';
+		    	$where ['typeids'] = [ 112 ];	
+		
+				$field = 'act_id,param,user_level as level,count(distinct accountid) cid';
+				$group = 'id';	
+		    	$field = 'id,accountid,act_id,param,user_level as level,count(distinct accountid) cid';
 				$data = $this->SystemFunction_model->ActionByParam ( $where, $field, $group );
 		
 				if(!empty($data)){
-				foreach ( $data as $v ) {
-				    $newdata [ $v ['param']] ['act_name'] = $names[$v['param']];
-				     
-				    if($v['level']==0){
-				        $newdata [$v ['param']] ['level_0'] ++;
-				    }elseif ($v['level']==1){
-				        $newdata [$v ['param']] ['level_1'] ++;
-				    }elseif ($v['level']==2){
-				        $newdata [$v ['param']] ['level_2'] ++;
-				    }elseif ($v['level']==3){
-				        $newdata [$v ['param']] ['level_3'] ++;
-				    }elseif ($v['level']==4){
-				        $newdata [$v ['param']] ['level_4'] ++;
-				    }elseif ($v['level']==5){
-				        $newdata [$v ['param']] ['level_5'] ++;
-				    }elseif ($v['level']==6){
-				        $newdata [$v ['param']] ['level_6'] ++;
-				    }elseif ($v['level']==7){
-				        $newdata [$v ['param']] ['level_7'] ++;
-				    }elseif ($v['level']==8){
-				        $newdata [$v ['param']] ['level_8'] ++;
-				    }elseif ($v['level']==9){
-				        $newdata [$v ['param']] ['level_9'] ++;
+			
+				    
+				    foreach ( $data as $v ) {
+				    
+				        $newdata [$v ['param']] ['act_name'] = $names [$v ['param']];
+				        if($v['level']<10 ){
+				            $newdata [$v ['param']] ['level_0'] += $v['cid'];
+				        }elseif ($v['level']>=10 && $v['level']<20 ){
+				            $newdata [$v ['param']] ['level_1'] += $v['cid'];
+				        }elseif ($v['level']>=20 && $v['level']<30){
+				            $newdata [$v ['param']] ['level_2'] += $v['cid'];
+				        }elseif ($v['level']>=30 && $v['level']<40){
+				            $newdata [$v ['param']] ['level_3'] += $v['cid'];
+				        }elseif ($v['level']>=40 && $v['level']<50){
+				            $newdata [$v ['param']] ['level_4'] += $v['cid'];
+				        }elseif ($v['level']>=50 && $v['level']<60){
+				            $newdata [$v ['param']] ['level_5']  += $v['cid'];
+				        }elseif ($v['level']>=60 && $v['level']<70){
+				            $newdata [$v ['param']] ['level_6']  += $v['cid'];
+				        }elseif ($v['level']>=70 && $v['level']<80){
+				            $newdata [$v ['param']] ['level_7']  += $v['cid'];
+				        }elseif ($v['level']>=80 && $v['level']<90){
+				            $newdata [$v ['param']] ['level_8'] += $v['cid'];
+				        }elseif ($v['level']>=90){
+				            $newdata [$v ['param']] ['level_9']  += $v['cid'];
+				        }
+				    
 				    }
-				     
-				}		
+
+
 				}
 	
 			}
@@ -1286,7 +1391,7 @@ class SystemFunction extends MY_Controller {
 			if ($data) {
 				$cgid = $data [0] ['cgid'] * 2;
 			}
-			$field = 'eudemon,count(*) cid,sum(if(gu.status=0,1,0)) sum1,sum(if(gu.status=1,1,0)) sum0';
+			$field = 'count(DISTINCT gu.accountid) user_total,eudemon,count(*) cid,sum(if(gu.status=0,1,0)) sum1,sum(if(gu.status=1,1,0)) sum0';		
 			$group = 'eudemon';
 			$order = 'cid desc';
 			$data = $this->GameServerData->eudemonData ( $where, $field, $group, $order );
@@ -2537,5 +2642,661 @@ HTML;
 		
 		
 	}
+	
+	
+	/*
+	 *  精灵推荐配招
+	 */
+	public function recommend(){
+	    
+
+	    if (parent::isAjax ()) {
+	        $date = $this->input->get ( 'date1' );
+	        $date2 = $this->input->get ( 'date2' );
+
+	        
+	        $combattype = $this->input->get ( 'combattype' );
+	        if($combattype==0){	            
+	            $where ['btype']=1;
+	            $where ['type']=1;
+	        }elseif ($combattype==1){
+	            $where ['btype']=1;
+	            $where ['type']=2;
+	        }elseif ($combattype==2){
+	            $where ['btype']=1;
+	            $where ['type']=3;
+	        }elseif ($combattype==3){
+	            $where ['btype']=2;	           
+	        }	        
+	        
+	        $where ['date'] = $date;
+	        $where ['viplev_min'] = $this->input->get ( 'viplev_min' );
+	        $where ['eudemon'] = $this->input->get ( 'eudemon' );
+	        $where ['viplev_max'] = $this->input->get ( 'viplev_max' );
+	        $where ['estatus'] = $this->input->get ( 'estatus' );
+	        $where ['dan'] = $this->input->get ( 'dan' );
+	        $where ['serverids'] = $this->input->get ( 'server_id' );
+	        $where ['typeids'] = $this->input->get ( 'type_id' );
+	        $where ['dan_s'] = $this->input->get ( 'dan_s' );
+	        $where ['dan_e'] = $this->input->get ( 'dan_e' );	
+	        if ($date) {
+	            $where ['begintime'] = date ( 'Ymd', strtotime ( $date ) );
+	        }
+	        if ($date2) {
+	            $where ['endtime'] = date ( 'Ymd', strtotime ( $date2 ));
+	        }
+	        	
+	    
+	    
+	        	
+	        $this->load->model ( 'SystemFunction_model' );
+	        $field = "left((concat('20',gd.endTime)),8) as endTime,gu.userid,gu.name,gu.serverid,gu.dan,gu.viplevel,gu.level,gue.eudemon,gue.skills1,gue.skills2,gue.skills3,gue.skills4,gue.abilities,gue.fruit,gue.equip,gue.kidney";
+	        $group = 'gu.accountid';
+	        $order = 'gu.accountid,gu.dan';
+	        $data = $this->SystemFunction_model->recommend ($where, $field  ,$group,$order,$limit );
+	        
+	
+	       
+	        $this->output->set_content_type ( 'application/json' )->set_output ( json_encode ( [
+	            'status' => 'ok',
+	            'data' => $data,
+	            'cgid' => $cgid
+	        ] ) );
+	    } else {	        	
+	        
+	        $this->data ['show_combat_type'] = true;
+	        $this->data ['register_time'] = false;
+	        $this->data ['hide_start_time'] = true;
+	        $this->data ['hide_end_time'] = true;
+	        $this->data ['show_start_time_month'] = true;
+	        $this->data ['show_dan_list'] = true;
+	        $this->data ['show_eudemonr'] = true;
+
+	        $this->data ['hide_channel_list'] = true;
+	        $this->body = 'SystemFunction/recommend';
+	        $this->layout ();
+	    }
+
+	}
+	/*
+	 *  技能专精  zzl 20170926
+	 */
+	public function mastery(){
+	    
+
+	    if (parent::isAjax ()) {
+	        $date = $this->input->get ( 'date1' );
+	        $date2 = $this->input->get ( 'date2' );
+	           
+	        $where ['date'] = $date;
+	        $where ['viplev_min'] = $this->input->get ( 'viplev_min' );
+	        $where ['eudemon'] = $this->input->get ( 'eudemon' );
+	        $where ['viplev_max'] = $this->input->get ( 'viplev_max' );
+	        $where ['estatus'] = $this->input->get ( 'estatus' );
+	        $where ['dan'] = $this->input->get ( 'dan' );
+	        $where ['serverids'] = $this->input->get ( 'server_id' );
+	        $where ['typeids'] = $this->input->get ( 'type_id' );
+	        $where ['dan_s'] = $this->input->get ( 'dan_s' );
+	        $where ['dan_e'] = $this->input->get ( 'dan_e' );
+	        if ($date) {
+	            $where ['begintime'] = substr(date ( 'Ymd', strtotime ( $date ) ), 2,7) ;
+	        }
+	        if ($date2) {
+	            $where ['endtime'] = date ( 'Ymd', strtotime ( $date2 ));
+	        }
+	          $this->load->model ( 'SystemFunction_model' );
+	
+	        $field = "count(DISTINCT gsy.account_id) as total,dan,count(DISTINCT gsy.account_id) as user_total,count(if(group_id=1,true,null)) as num_1,count(if(group_id=2,true,null)) as num_2,count(if(group_id=3,true,null)) as num_3,count(if(group_id=4,true,null)) as num_4,count(if(group_id=5,true,null)) as num_5,count(if(group_id=6,true,null)) as num_6,count(if(group_id=7,true,null)) as num_7,count(if(group_id=8,true,null)) as num_8,count(if(group_id=9,true,null)) as num_9,count(if(group_id=10,true,null)) as num_10,count(if(group_id=11,true,null)) as num_11,count(if(group_id=12,true,null)) as num_12,count(if(group_id=13,true,null)) as num_13,count(if(group_id=14,true,null)) as num_14,count(if(group_id=15,true,null)) as num_15,count(if(group_id=16,true,null)) as num_16,count(if(group_id=17,true,null)) as num_17,count(if(group_id=18,true,null)) as num_18,sum(if(group_id=1,gsy.level,null)) as sum_1,sum(if(group_id=2,gsy.level,null)) as sum_2,sum(if(group_id=3,gsy.level,null)) as sum_3,sum(if(group_id=4,gsy.level,null)) as sum_4,sum(if(group_id=5,gsy.level,null)) as sum_5,sum(if(group_id=6,gsy.level,null)) as sum_6,sum(if(group_id=7,gsy.level,null)) as sum_7,sum(if(group_id=8,gsy.level,null)) as sum_8,sum(if(group_id=9,gsy.level,null)) as sum_9,sum(if(group_id=10,gsy.level,null)) as sum_10,sum(if(group_id=11,gsy.level,null)) as sum_11,sum(if(group_id=12,gsy.level,null)) as sum_12,sum(if(group_id=13,gsy.level,null)) as sum_13,sum(if(group_id=14,gsy.level,null)) as sum_14,sum(if(group_id=15,gsy.level,null)) as sum_15,sum(if(group_id=16,gsy.level,null)) as sum_16,sum(if(group_id=17,gsy.level,null)) as sum_17,sum(if(group_id=18,gsy.level,null)) as sum_18";
+	        $group = 'dan';
+	        
+	        
+	        
+	        $order = '';
+	        $data = $this->SystemFunction_model->mastery ($where, $field  ,$group,$order,$limit );
+	         
+	        foreach ($data as &$v){
+	          $total_num=$v['num_1']+$v['num_2']+$v['num_3']+$v['num_4']+$v['num_5']+$v['num_6']+$v['num_7']+$v['num_8']+$v['num_9']+$v['num_10']+$v['num_11']+$v['num_12']+$v['num_13']+$v['num_14']+$v['num_15']+$v['num_16']+$v['num_17']+$v['num_18'];
+	          $total_sum=$v['sum_1']+$v['sum_2']+$v['sum_3']+$v['sum_4']+$v['sum_5']+$v['sum_6']+$v['sum_7']+$v['sum_8']+$v['sum_9']+$v['sum_10']+$v['sum_11']+$v['sum_12']+$v['sum_13']+$v['sum_14']+$v['sum_15']+$v['sum_16']+$v['sum_17']+$v['sum_18'];   
+	          $v['avg_mastery']=round($total_sum/$total_num,2);
+	    
+	          
+	            $v['num_1']=round($v['sum_1']/$v['num_1'],2);
+	            $v['num_2']=round($v['sum_2']/$v['num_2'],2);
+	            $v['num_3']=round($v['sum_3']/$v['num_3'],2);
+	            $v['num_4']=round($v['sum_4']/$v['num_4'],2);
+	            $v['num_5']=round($v['sum_5']/$v['num_5'],2);
+	            $v['num_6']=round($v['sum_6']/$v['num_6'],2);
+	            $v['num_7']=round($v['sum_7']/$v['num_7'],2);
+	            $v['num_8']=round($v['sum_8']/$v['num_8'],2);
+	            $v['num_9']=round($v['sum_9']/$v['num_9'],2);
+	            $v['num_10']=round($v['sum_10']/$v['num_10'],2);
+	            $v['num_11']=round($v['sum_11']/$v['num_11'],2);
+	            $v['num_12']=round($v['sum_12']/$v['num_12'],2);
+	            $v['num_13']=round($v['sum_13']/$v['num_13'],2);
+	            $v['num_14']=round($v['sum_14']/$v['num_14'],2);
+	            $v['num_15']=round($v['sum_15']/$v['num_15'],2);
+	            $v['num_16']=round($v['sum_16']/$v['num_16'],2);
+	            $v['num_17']=round($v['sum_17']/$v['num_17'],2);
+	            $v['num_18']=round($v['sum_18']/$v['num_18'],2);
+	            
+	            
+	        }
+	    
+	    
+	        $this->output->set_content_type ( 'application/json' )->set_output ( json_encode ( [
+	            'status' => 'ok',
+	            'data' => $data,
+	            'cgid' => $cgid
+	        ] ) );
+	    } else {
+	         
+
+	        $this->data ['hide_server_list'] = true;
+	        
+	        $this->data ['hide_end_time'] = true;
+	        $this->data ['hide_channel_list'] = true;
+	        $this->body = 'SystemFunction/mastery';
+	        $this->layout ();
+	    }
+	    
+	    
+	}
+	
+	
+	/*
+	 *  徽章  zzl 20170926
+	 */
+	public function badge(){
+
+
+
+	    if (parent::isAjax ()) {
+	        $date = $this->input->get ( 'date1' );
+	        $date2 = $this->input->get ( 'date2' );
+	    
+	        $where ['date'] = $date;
+	        $where ['viplev_min'] = $this->input->get ( 'viplev_min' );
+	        $where ['eudemon'] = $this->input->get ( 'eudemon' );
+	        $where ['viplev_max'] = $this->input->get ( 'viplev_max' );
+	        $where ['estatus'] = $this->input->get ( 'estatus' );
+	        $where ['dan'] = $this->input->get ( 'dan' );
+	        $where ['serverids'] = $this->input->get ( 'server_id' );
+	        $where ['typeids'] = $this->input->get ( 'type_id' );
+	        $where ['dan_s'] = $this->input->get ( 'dan_s' );
+	        $where ['dan_e'] = $this->input->get ( 'dan_e' );
+	        if ($date) {
+	            $where ['begintime'] = substr(date ( 'Ymd', strtotime ( $date ) ), 2,7) ;
+	        }
+	        if ($date2) {
+	            $where ['endtime'] = date ( 'Ymd', strtotime ( $date2 ));
+	        }
+	        $this->load->model ( 'SystemFunction_model' );
+	    
+	        $field = "count(DISTINCT gsy.account_id) as total,dan,count(DISTINCT gsy.account_id) as user_total,count(if(group_id=1,true,null)) as num_1,count(if(group_id=2,true,null)) as num_2,count(if(group_id=3,true,null)) as num_3,count(if(group_id=4,true,null)) as num_4,count(if(group_id=5,true,null)) as num_5,count(if(group_id=6,true,null)) as num_6,count(if(group_id=7,true,null)) as num_7,count(if(group_id=8,true,null)) as num_8,count(if(group_id=9,true,null)) as num_9,count(if(group_id=10,true,null)) as num_10,count(if(group_id=11,true,null)) as num_11,count(if(group_id=12,true,null)) as num_12,count(if(group_id=13,true,null)) as num_13,count(if(group_id=14,true,null)) as num_14,count(if(group_id=15,true,null)) as num_15,count(if(group_id=16,true,null)) as num_16,count(if(group_id=17,true,null)) as num_17,count(if(group_id=18,true,null)) as num_18,sum(if(group_id=1,gsy.level,null)) as sum_1,sum(if(group_id=2,gsy.level,null)) as sum_2,sum(if(group_id=3,gsy.level,null)) as sum_3,sum(if(group_id=4,gsy.level,null)) as sum_4,sum(if(group_id=5,gsy.level,null)) as sum_5,sum(if(group_id=6,gsy.level,null)) as sum_6,sum(if(group_id=7,gsy.level,null)) as sum_7,sum(if(group_id=8,gsy.level,null)) as sum_8,sum(if(group_id=9,gsy.level,null)) as sum_9,sum(if(group_id=10,gsy.level,null)) as sum_10,sum(if(group_id=11,gsy.level,null)) as sum_11,sum(if(group_id=12,gsy.level,null)) as sum_12,sum(if(group_id=13,gsy.level,null)) as sum_13,sum(if(group_id=14,gsy.level,null)) as sum_14,sum(if(group_id=15,gsy.level,null)) as sum_15,sum(if(group_id=16,gsy.level,null)) as sum_16,sum(if(group_id=17,gsy.level,null)) as sum_17,sum(if(group_id=18,gsy.level,null)) as sum_18";
+	        $group = 'dan';
+	         
+	         
+	         
+	        $order = '';
+	        $data = $this->SystemFunction_model->mastery ($where, $field  ,$group,$order,$limit );
+	    
+	        foreach ($data as &$v){
+	            $total_num=$v['num_1']+$v['num_2']+$v['num_3']+$v['num_4']+$v['num_5']+$v['num_6']+$v['num_7']+$v['num_8']+$v['num_9']+$v['num_10']+$v['num_11']+$v['num_12']+$v['num_13']+$v['num_14']+$v['num_15']+$v['num_16']+$v['num_17']+$v['num_18'];
+	            $total_sum=$v['sum_1']+$v['sum_2']+$v['sum_3']+$v['sum_4']+$v['sum_5']+$v['sum_6']+$v['sum_7']+$v['sum_8']+$v['sum_9']+$v['sum_10']+$v['sum_11']+$v['sum_12']+$v['sum_13']+$v['sum_14']+$v['sum_15']+$v['sum_16']+$v['sum_17']+$v['sum_18'];
+	            $v['avg_mastery']=round($total_sum/$total_num,2);
+	             
+	             
+	            $v['num_1']=round($v['sum_1']/$v['num_1'],2);
+	            $v['num_2']=round($v['sum_2']/$v['num_2'],2);
+	            $v['num_3']=round($v['sum_3']/$v['num_3'],2);
+	            $v['num_4']=round($v['sum_4']/$v['num_4'],2);
+	            $v['num_5']=round($v['sum_5']/$v['num_5'],2);
+	            $v['num_6']=round($v['sum_6']/$v['num_6'],2);
+	            $v['num_7']=round($v['sum_7']/$v['num_7'],2);
+	            $v['num_8']=round($v['sum_8']/$v['num_8'],2);
+	            $v['num_9']=round($v['sum_9']/$v['num_9'],2);
+	            $v['num_10']=round($v['sum_10']/$v['num_10'],2);
+	            $v['num_11']=round($v['sum_11']/$v['num_11'],2);
+	            $v['num_12']=round($v['sum_12']/$v['num_12'],2);
+	            $v['num_13']=round($v['sum_13']/$v['num_13'],2);
+	            $v['num_14']=round($v['sum_14']/$v['num_14'],2);
+	            $v['num_15']=round($v['sum_15']/$v['num_15'],2);
+	            $v['num_16']=round($v['sum_16']/$v['num_16'],2);
+	            $v['num_17']=round($v['sum_17']/$v['num_17'],2);
+	            $v['num_18']=round($v['sum_18']/$v['num_18'],2);
+	             
+	             
+	        }
+	         
+	         
+	        $this->output->set_content_type ( 'application/json' )->set_output ( json_encode ( [
+	            'status' => 'ok',
+	            'data' => $data,
+	            'cgid' => $cgid
+	        ] ) );
+	    } else {
+	    
+	    
+	        $this->data ['hide_server_list'] = true;
+	         
+	        $this->data ['hide_end_time'] = true;
+	        $this->data ['hide_channel_list'] = true;
+	        $this->body = 'SystemFunction/badge';
+	        $this->layout ();
+	    }
+	     
+	     
+	    
+	     
+	}
+	
+	/*
+	 * 社团争霸赛数据提取并处理  zzl  20170927
+	 */
+	public function hegemony(){
+	     
+	
+	    if (parent::isAjax ()) {
+	        $date = $this->input->get ( 'date1' );
+	        $date2 = $this->input->get ( 'date2' );	
+	        $where ['date'] = $date;	       
+	        $where ['serverids'] = $this->input->get ( 'server_id' );
+	        $where ['typeids'] = $this->input->get ( 'type_id' );
+	        $where ['pk_th'] = $this->input->get ( 'pk_th' );
+	     
+	        if ($date) {
+	            $where ['begintime'] = substr(date ( 'Ymd', strtotime ( $date ) ), 2,7) ;
+	        }
+	        if ($date2) {
+	            $where ['endtime'] = date ( 'Ymd', strtotime ( $date2 ));
+	        }
+	        $this->load->model ( 'SystemFunction_model' );
+	
+            $field = "game_server as serverid,count(*) as total,count(if(vip_level=0,true,null)) vip0,count(if(vip_level=1,true,null)) vip1,count(if(vip_level=2,true,null)) vip2,count(if(vip_level=3,true,null)) vip3,count(if(vip_level=4,true,null)) vip4,count(if(vip_level=5,true,null)) vip5,count(if(vip_level=6,true,null)) vip6,count(if(vip_level=7,true,null)) vip7,count(if(vip_level=8,true,null)) vip8,count(if(vip_level=9,true,null)) vip9,count(if(vip_level=10,true,null)) vip10,count(if(vip_level=11,true,null)) vip11,count(if(vip_level=12,true,null)) vip12";
+	         
+	        $order = '';
+	        $group="game_server";
+	        $data = $this->SystemFunction_model->hegemony ($where, $field  ,$group,$order,$limit );
+	        
+	        
+	        
+	        $field = "syn_id,count(*) as total,game_server as serverid";
+	        $order = '';
+	        $group="syn_id";
+	        $data2 = $this->SystemFunction_model->hegemonyGroup ($where, $field  ,$group,$order,$limit );
+	
+
+	         
+	         
+	        $this->output->set_content_type ( 'application/json' )->set_output ( json_encode ( [
+	            'status' => 'ok',
+	            'data' => $data,
+	            'data2' => $data2,
+	            'cgid' => $cgid
+	        ] ) );
+	    } else {
+	
+	
+	        $this->data ['hide_server_list'] = true;
+	        $this->data ['show_syn_id'] = true;	        
+	        $this->data ['hide_start_time'] = true;
+	        $this->data ['hide_end_time'] = true;
+	        $this->data ['hide_channel_list'] = true;
+	        $this->body = 'SystemFunction/hegemony';
+	        $this->layout ();
+	    }
+	     
+	     
+	}
+	
+	/*
+	 *  远古宝藏统计
+	 */
+	public function ancient(){
+	    
+    if (parent::isAjax ()) {
+	        $date = $this->input->get ( 'date1' );
+	        $date2 = $this->input->get ( 'date2' );
+	      
+
+	        $where ['serverids'] = $this->input->get ( 'server_id' );
+	        $where ['typeids'] = $this->input->get ( 'type_id' );
+	    
+	        	
+	      
+	        if ($date) {
+	          $where ['begintime'] = date ( 'Ymd', strtotime ( $date . ' 00:00:00' ) );
+	        }
+	    
+	        if ($date) {
+	            $where ['endtime'] = date ( 'Ymd', strtotime ( $date2 . ' 00:00:00' ) );
+	        }
+	 
+	        
+	        
+	        $names = array (
+	            '10' => '获得物质0',
+	            '11' =>'获得物质1-100',
+	            '12' => '获得物质101-500',
+	            '13' => '获得物质501-1000',
+	            '14' =>'获得物质1001-2000',
+	            '15' => '获得物质2001-3000',
+	            '16' => '获得物质3001-5000',
+	             '17' => '获得物质5001-10000',
+	             '18' => '获得物质10000',
+	        );
+	    
+	    
+	        $this->load->model ( 'SystemFunction_model' );
+	   
+	        $field = 'id,communityid,serverid,type,operate_time,logdate, sum(if(param=0,true,null)) as sum0, sum(if(param>0 and param<=100,true,null)) as sum1,  sum(if(param>100 and param<=500,true,null)) as sum2,    sum(if(param>500 and param<=1000,true,null)) as sum3, sum(if(param>1000 and param<=2000,true,null)) as sum4, sum(if(param>2000 and param<=3000,true,null)) as sum5,sum(if(param>3001 and param<=5000,true,null)) as sum6,sum(if(param>5000 and param<=10000,true,null)) as sum7,sum(if(param>10000,true,null)) as sum8';
+	        $group = 'logdate';
+	        $order = '';
+	   
+	        $data = $this->SystemFunction_model->ancient ( $where, $field, $group, $order,$limit);
+	        
+
+	   
+	        
+	        
+	        foreach ($data as $k=>$v){
+	        
+	            if(!isset($v['sum0'])){$v['sum0']=0;	            
+	            }
+	            if(!isset($v['sum1'])){$v['sum1']=0;}
+	            if(!isset($v['sum2'])){$v['sum2']=0;}
+	            if(!isset($v['sum3'])){$v['sum3']=0;}
+	            if(!isset($v['sum4'])){$v['sum4']=0;}
+	            if(!isset($v['sum5'])){$v['sum5']=0;}
+	            if(!isset($v['sum6'])){$v['sum6']=0;}
+	            if(!isset($v['sum7'])){$v['sum7']=0;}
+	            if(!isset($v['sum8'])){$v['sum8']=0;}
+	            $v['text']= "<a href='javascript:showdetail($v[logdate],1)'>社团详细</a>";
+	            $data_new[$k]=$v;
+	        
+	        }
+	
+	   
+
+	        foreach ($data as $k=>$v){
+	            $v['sum0']=0;
+	          $v['sum1']=0;
+	         $v['sum2']=0;
+	          $v['sum3']=0;
+	          $v['sum4']=0;
+	         $v['sum5']=0;
+	         $v['sum6']=0;
+	         $v['sum7']=0;
+	         $v['sum8']=0;
+	         $v['text']= "<a href='javascript:showdetail($v[logdate],$k)'>社团详细</a>";
+	            $challenge_list[$k]=$v;
+	          //  $challenge_list[$k]['logdate']=$v['logdate'];
+	            
+	        }
+	        
+	        
+	      // print_r($challenge_list);
+	        $field ="count(*) as cnt,communityid,serverid,communityname,logdate";
+	        $group="communityid,serverid";
+	        
+	        
+
+	       
+	     $data_challenge = $this->SystemFunction_model->challenge ( $where, $field, $group, $order,$limit);
+	     
+	        
+	        
+	     $participation= $this->SystemFunction_model->participation ( $where, $field, $group, $order,$limit);
+
+ 	       foreach ($challenge_list as $k=>&$v){
+ 	         
+	              foreach ($data_challenge as $k2=>$v2){	                     
+	                  
+	                  if($v['logdate']==$v2['logdate']){      
+	         
+	                      if($v2['cnt']==0){$v['sum0']=$v['sum0']+intval($v2['cnt']);}                       
+	                      if($v2['cnt']>0 && $v2['cnt']<6){$v['sum1']+=intval($v2['cnt']);      
+	                      }
+	                    
+	                    
+	                      if($v2['cnt']>=6 && $v2['cnt']<=10){$v['sum2']+=intval($v2['cnt']);}
+	                      if($v2['cnt']>=11 && $v2['cnt']<=20){$v['sum3']+=intval($v2['cnt']);}
+	                      if($v2['cnt']>=21 && $v2['cnt']<=30){$v['sum4']=$v['sum4']+intval($v2['cnt']);}
+	                      if($v2['cnt']>=31 && $v2['cnt']<=40){$v['sum5']+=$v2['cnt'];}
+	                      if($v2['cnt']>=41 && $v2['cnt']<=50){$v['sum6']+=$v2['cnt'];}
+	                      if($v2['cnt']>=51 && $v2['cnt']<=100){$v['sum7']+=$v2['cnt'];}
+	                      if($v2['cnt']>100){$v['sum8']+=$v2['cnt'];}
+	                      $v['text']= "<a href='javascript:showdetail($v[logdate],2)'>社团详细</a>";
+	                  
+	                  } else {
+	               
+	                  } 
+	    
+		       }
+	    }
+
+	       
+	        $this->output->set_content_type ( 'application/json' )->set_output ( json_encode ( [
+	            'status' => 'ok',
+	            'data' => $data_new,	           
+	            'challenge' => $challenge_list,
+	            'cgid' => $cgid
+	        ] ) );
+	    } else {     	
+	 
+	
+	        $this->data ['hide_channel_list'] = true;	       
+	        $this->body = 'SystemFunction/ancient';
+	        $this->layout ();
+	    }
+	    
+	    
+	    
+	    
+	}
+	
+	
+	/*
+	 * 	菁英挑战统计  20171023  zzl
+	 */
+	
+	public function elite()
+    {
+        if (parent::isAjax()) {
+            $date = $this->input->get('date1');
+            $date2 = $this->input->get('date2');
+            
+            $where['serverids'] = $this->input->get('server_id');
+            $where['typeids'] = $this->input->get('type_id');
+            $where['user_level'] = $this->input->get('user_level');
+            
+            if ($date) {
+                $where['date'] = date('Ymd', strtotime($date));
+            }
+            
+            $this->load->model('SystemFunction_model');
+            
+            $field = "COUNT(*) as cnt,accountid,param,serverid,act_id,vip_level,user_level";
+            $order = '';
+            
+            $group = "accountid";
+            
+            $data = $this->SystemFunction_model->elite($table, $where, $field, $group, $order, $limit);
+            
+            
+            $group = "vip_level";
+            $field = "count(IF(param=1,true,null)) as team_1,count(IF(param=2,true,null)) as team_2,count(IF(param=3,true,null)) as team_3,accountid,param,serverid,act_id,vip_level,user_level";
+            $data2 = $this->SystemFunction_model->elite_treasure($table, $where, $field, $group, $order, $limit);
+            
+            
+            $data_new = array
+            (
+                0=>  array("vip_level"=>0,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                1=>  array("vip_level"=>1,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                2=>  array("vip_level"=>2,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                3=>  array("vip_level"=>3,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                4=>  array("vip_level"=>4,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                5=>  array("vip_level"=>5,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                6=>  array("vip_level"=>6,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                7=>  array("vip_level"=>7,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                8=>  array("vip_level"=>8,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                9=>  array("vip_level"=>9,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),                
+                10=>  array("vip_level"=>10,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                11=>  array("vip_level"=>11,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),
+                12=>  array("vip_level"=>12,"part_1"=>0,"part_2"=>0,"part_3"=>0,"part_4"=>0,"part_5"=>0,"team_1"=>0,"team_2"=>0,"team_3"=>0,"purchase_treasure"=>0,"click"=>0),               
+             
+            );
+            
+            $data_new[0]['vip_level'] = 0;
+            $data_new[1]['vip_level'] = 1;
+            $data_new[2]['vip_level'] = 2;
+            $data_new[3]['vip_level'] = 3;
+            $data_new[4]['vip_level'] = 4;
+            $data_new[5]['vip_level'] = 5;
+            $data_new[6]['vip_level'] = 6;
+            $data_new[7]['vip_level'] = 7;
+            $data_new[8]['vip_level'] = 8;
+            $data_new[9]['vip_level'] = 9;
+            $data_new[10]['vip_level'] = 10;
+            $data_new[11]['vip_level'] = 11;
+            $data_new[12]['vip_level'] = 12;
+            
+            $this->load->model('Data_analysis_model');
+            $logininfo = $this->Data_analysis_model->viplogin($where);
+            
+            foreach ($data as $v) {
+                foreach ($data_new as $k2 => &$v2) {
+                    
+        
+                    
+                    if ($v['vip_level'] == $v2['vip_level']) {
+                        
+                        if ($v['cnt'] == 1) {
+                            $v2['part_1'] ++;
+                        } elseif ($v['cnt'] == 2) {
+                            $v2['part_2'] ++;
+                        } elseif ($v['cnt'] == 3) {
+                            $v2['part_3'] ++;
+                        } elseif ($v['cnt'] == 4) {
+                            $v2['part_4'] ++;
+                        } elseif ($v['cnt'] == 5) {
+                            $v2['part_5'] ++;
+                        }
+                        
+                       
+                    }
+                    
+                    
+                    
+                    foreach ($data2 as $v6){
+                        
+                        if ($v2['vip_level'] == $v6['vip_level']) {                       
+                        
+                        if ($v6['team_1'] == 1) {
+                            $v2['team_1']=$v6['team_1'];
+                        } elseif ($v6['cnt'] == 2) {
+                            $v2['team_2']=$v6['team_2'];
+                        } elseif ($v6['cnt'] == 3) {
+                            $v2['team_3'] =$v6['team_3'];
+                        }
+                        }
+                    
+                    
+                    }
+                    
+                    
+                }
+                
+                
+                
+            }
+            foreach ($data_new as $k2 => &$v2) {
+                
+                foreach ($logininfo['day0'] as $v3) {
+                    
+                    if ($v2['vip_level'] == $v3['viplev']) {
+                        $v2['c'] = $v3['c'];
+                    }
+                    
+                    $v2['team_2']=round($v2['team_2']/2,0);
+                    $v2['team_3']=round($v2['team_3']/3,0);
+                }
+            }
+            
+            $this->output->set_content_type('application/json')->set_output(json_encode([
+                'status' => 'ok',
+                'data' => $data_new,
+                'data2' => $data2,
+                'cgid' => $cgid
+            ]));
+        } else {
+            
+            $this->data['show_user_level'] = true;
+            $this->data['hide_end_time'] = true;
+            $this->body = 'SystemFunction/elite';
+            $this->layout();
+        }
+    }
+/*
+ * 周任务链后台统计   zzl 20171027 
+ */
+    public function mission()
+    {
+        if (parent::isAjax()) {
+            $date = $this->input->get('date1');
+            $date2 = $this->input->get('date2');
+            
+            $where['serverids'] = $this->input->get('server_id');
+            $where['typeids'] = $this->input->get('type_id');
+            $where ['channels'] = $this->input->get ( 'channel_id' );
+            
+            if ($date) {
+                $where['date'] = date('Ymd', strtotime($date));
+            }
+            
+            $this->load->model('SystemFunction_model');
+            
+            $field = "sum(if(type=1 and item_id=3,item_num,null)) as consume,count(*) as achieve,vip_level";
+            $order = '';
+            
+            $group = "vip_level";
+            
+            $data = $this->SystemFunction_model->mission($table, $where, $field, $group, $order, $limit);
+            
+            $this->load->model('Data_analysis_model');
+            $logininfo = $this->Data_analysis_model->viplogin($where);
+            
+            foreach ($data as &$v) {
+                
+                  foreach ($data['param'] as $v2) {
+                    
+                    if ($v['vip_level'] == $v2['vip_level']) {
+                        
+                        $v['p1'] = $v2['p1'];
+                        $v['p2'] = $v2['p2'];
+                        $v['p3'] = $v2['p3'];
+                        $v['p4'] = $v2['p4'];
+                    }
+                    }
+             
+                foreach ($logininfo['day0'] as $v3) {
+                    if ($v['vip_level'] == $v3['viplev']) {
+                        $v['c'] = $v3['c'];
+                    }
+                }
+            }
+            
+            $this->output->set_content_type('application/json')->set_output(json_encode([
+                'status' => 'ok',
+                'data' => $data
+            ]
+            ));
+        } else {
+            
+            $this->data['hide_end_time'] = true;
+            $this->body = 'SystemFunction/mission';
+            $this->layout();
+        }
+    }
 	
 }

@@ -31,7 +31,7 @@ class GameServerData extends CI_Model
     	
     	if ($where ['beginserver'] && $where ['endserver']) {
     		$server_list = $this->db_sdk->query ( "select serverid from server_date where serverdate>={$where['beginserver']} and  serverdate<={$where['endserver']}" );
-    		 
+    		$server_list_new = '1';
     		if ($server_list) {
     			foreach ( $server_list->result_array () as $k => $v ) {
     					
@@ -473,6 +473,45 @@ class GameServerData extends CI_Model
     	}
     	return array();
     }
+    /*
+     * 亲密度平均值   zzl 20170925
+     */
+    
+    public function getIntilv($where=array(),$field='*',$group='')
+    {
+        $sql = "select $field from game_world_eudemon_{$where['date']} a inner join game_world_user_{$where['date']} b on a.playerid=b.playerid and a.serverid=b.serverid where 1=1";
+    
+        if($where['serverids']){
+            $sql .= " AND b.serverid IN(".implode(',', $where['serverids']).")";
+        }
+        if($where['accountid']){
+            $sql .= " AND b.account_id IN(".$where['accountid'].")";
+        }
+        if($where['season']){
+            $sql .= " AND season ={$where['season']}";
+        }
+        if($where['viplev_min']){
+            $sql .= " and vip_level>={$where['viplev_min']}";
+        }
+        if($where['viplev_max']){
+            $sql .= " and vip_level<={$where['viplev_max']}";
+        }
+        if($group ){
+            $sql .= " group by $group";
+        }
+        if($where['ranklev']){
+            $sql .= " having ranklev ={$where['ranklev']}";
+        }
+  
+        $query = $this->db_sdk->query($sql);
+        if ($query) {
+            return $query->result_array();
+        }
+        return array();
+    }
+    
+    
+    
     /**
      * 推荐阵容
      *

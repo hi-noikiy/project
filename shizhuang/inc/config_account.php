@@ -1,8 +1,7 @@
 <?php
-global  $accountServer;
-$accountServer = array(
-		5 =>81,
-		8 =>81, //口袋账号库
-        9 =>81, //时装
+global $tongjiServer;
+
+$tongjiServer = array(
+		9=>'http://fhtj.u776.com:8088/index.php/',  //旅行
 );
 ?>

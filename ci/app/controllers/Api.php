@@ -125,7 +125,7 @@ class Api Extends CI_Controller
         $_data = str_replace(["\n", " "], ['','+'],$_POST['data']);
         $json = base64_decode($_data);
         $data = json_decode($json, true);
-        if (in_array($request_method, array('Login','Register'))) {
+        if (in_array($request_method, array('Login','Register','tuisonginfo'))) {
             $data['ip'] = $_SERVER['REMOTE_ADDR'];
             $_data = base64_encode(json_encode($data));
         }
@@ -190,12 +190,15 @@ class Api Extends CI_Controller
     		parent::BetterLog("api/Mac","ip:{$_SERVER['REMOTE_ADDR']};request_method:Mac;;registerdata:" . json_encode($data));
     		$event_value = json_decode($data['event_value'],true);
     		$this->data['accountid'] = $event_value['af_account_id'];
+    		$this->data['bundle_id'] = $data['app_id'];
     		$this->save('ad_register');
     	}elseif($data['event_name'] == 'af_login'){
     		parent::BetterLog("api/Mac","ip:{$_SERVER['REMOTE_ADDR']};request_method:Mac;;logindata:" . json_encode($data));
     		$event_value = json_decode($data['event_value'],true);
     		$this->data['accountid'] = $event_value['af_account_id'];
     		$this->save('ad_login_'.date('Y'));
+    		$this->data['bundle_id'] = $data['app_id'];
+    		$this->save('ad_login_'.date('Ym'));
     	}
     }
     public function Online()
@@ -246,6 +249,13 @@ class Api Extends CI_Controller
         $this->save($this->config->item(__FUNCTION__));*/
     }
 
+    /**
+     * 推送消息
+     */
+    public function tuisonginfo()
+    {
+    	// $this->save($this->config->item(__FUNCTION__));
+    }
     /**
      * Bug反馈
      */
@@ -611,4 +621,15 @@ SQL;
         
         
     }
+    
+    /*
+     * 玩家综合信息  zzl 20170929
+     */
+    public  function  UserInfo(){
+    
+    
+    }
+    
+
+    
 }

@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Important Owl stylesheet -->
+    {load href="__static__/index/dist/assets/owl.carousel.css" /}
+    <!-- Default Theme -->
+    {load href="__static__/index/dist/assets/owl.theme.default.css" /}
+    {load href="__static__/index/css/style.css" /}
+	<!--南美-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-1');
+	</script>
+	<!--越南-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-2"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-2');
+	</script>
+	
+	
+	<!--俄文-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-3');
+	</script>
+	
+	<!--国内-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-4"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-4');
+	</script>
+  <meta name="keywords" content="海牛网络,热门手游,手机游戏,口袋妖怪VS,精灵世界,天问,魔兽小宠物,衣范儿,龙威,手游,充值" /> 
+  <meta name="description" content="海牛网络是集手机游戏研发、发行运营为一体的网络技术有限公司" /> 
+  <title>海牛网络_seacow官网_海牛网络技术有限公司官方网站</title> 
+</head>
+<body>
+{include file="header" /}
+<div class="screenbox">
+    <div id="screen">
+        <div class="owl-carousel owl-theme owl-loaded owl-drag">
+            {volist name="gameList" id="vo"}
+            {if condition=" $vo.recommend == 2 "}
+            {if condition=" $vo.show_way == 1 "}
+            <div>
+                <img class="banner" src="{$vo.image_url}"/>
+            {else/}
+            <div style="height: auto;">
+                <video name="video" src="{$vo.video_url}" autoplay loop></video>
+            {/if}    
+                <dl class="btnBox">
+                	<!--<a class="cn" href="/pokemon?cn" style="position:relative;top:-30px;color: #EDDE34;font-size: 16px;margin-right: 30px;display: none;" target="_blank">进入官网</a>
+                	<a class="en" href="/pokemon?us" style="position:relative;top:-30px;color: #EDDE34;font-size: 16px;margin-right: 30px;display: none;" target="_blank">Access to the official network</a>-->
+                    <dt class="cn" style="display: none;"><a href="/pokemon?cn" target="_blank"><img src="__static__/index/img/official.png"></a></dt>
+                    <dt class="en" style="display: none;"><a href="/pokemon?us" target="_blank"><img src="__static__/index/img/official.png"></a></dt>
+                    <dt><a href="{$vo.apple_url}" target="_blank"><img src="__static__/index/img/ios.png"></a></dt>
+                    <dt><a href="{$vo.android_url}" target="_blank"><img src="__static__/index/img/android.png"></a></dt>
+                </dl>
+                <p class="textBox cn" style="display: none;">
+                    <span class="title">{$vo.name}</span>
+                    <br>
+                    <span>{$vo.description}</span>
+                </p>
+                <p class="textBox en" style="display: none;">
+                    <span class="title">{$vo.name_en}</span>
+                    <br>
+                    <span>{$vo.description_en}</span>
+                </p>
+            </div>
+            {/if}
+            {/volist}
+        </div>
+    </div>
+</div>
+<div class="space"></div>
+{volist name="gameList" id="vo"}
+{if condition=" $vo.recommend == 1 "}
+<div class="imgBox">
+    <img class="showImg" src="{$vo.image_url}">
+    <dl class="imgBtnBox">
+        <dt><a href="{$vo.apple_url}"><img src="__static__/index/img/ios.png"></a></dt>
+        <dt><a href="{$vo.android_url}"><img src="__static__/index/img/android.png"></a></dt>
+    </dl>
+    <p class="imgTextBox cn" style="display: none;">
+        <span class="title">{$vo.name}</span>
+        <br>
+        <span>{$vo.description}</span>
+    </p>
+    <p class="imgTextBox en" style="display: none;">
+        <span class="title">{$vo.name_en}</span>
+        <br>
+        <span>{$vo.description_en}</span>
+    </p>
+</div>
+{/if}
+{/volist}
+{include file="footer" /}
+{load href="__static__/index/js/jquery.js" /}
+{load href="__static__/index/dist/owl.carousel.js" /}
+{load href="__static__/index/js/language.js" /}
+<script>
+    var owl = $('.owl-carousel');
+    $(document).ready(function(){
+        owl.owlCarousel({
+            items:1,
+            loop:true,
+            nav:true,
+            navText:'',
+            autoplay:false,
+            autoplayTimeout:2000,
+            autoplayHoverPause:false
+        });
+        $('video').trigger('play');
+    });
+</script>
+</body>
+</html>

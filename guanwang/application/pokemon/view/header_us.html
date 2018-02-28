@@ -1,0 +1,82 @@
+<header id="top">
+	<div class="langage">
+			<p>EN</p>
+			<img src="__static__/pokemon/img/blue_triangle.png"/>
+		</div>
+		<ul class="langage_ul">
+			<a href="/pokemon?cn"><li>CN</li></a>
+			<a href="/pokemon?ru"><li>RU</li></a>
+			<a href="/pokemon?vn"><li>VN</li></a>
+			<a href="/pokemon?us"><li>EN</li></a>
+		</ul>
+	<!--<div class="language clearfix" style="z-index: 900;">
+        <a id="english" class="" href="/pokemon?us"><img src="__static__/index/img/English.png"></a>
+        <a id="chinese" class="active" href="/pokemon?cn"><img src="__static__/index/img/chinese.png"></a>
+        <a id="vietnam" class="" href="/pokemon?vn"><img src="__static__/index/img/Vietnam.png"></a>
+        <a id="russia" class="active" href="/pokemon?ru"><img src="__static__/index/img/Russia.png"></a>
+    </div>-->
+    <img class="top_bg" src="__static__/pokemon/img/english/top_bg.png">
+    <div class="content contentB clearfix">
+        <div class="nav">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="{:url('Index/index')}">HOME</a>
+        </div>
+        <div class="nav">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="{:url('News/news')}">NEWS</a>
+        </div>
+        <div class="nav">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="{:url('Activity/activity')}">ACTIVITY</a>
+        </div>
+        <img id="logo" src="__static__/pokemon/img/english/logo.png">
+        <div class="nav">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="{$fuli_url.value}">GIFT</a>
+        </div>
+        <div class="nav" id="community">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="javascript:void(0)">COMMUNITY</a>
+        </div>
+        <div class="nav" id="contact">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="javascript:void(0)">CONTACT</a>
+        </div>
+    </div>
+    <div class="nav_hover community">
+        <img class="hover_bg" src="__static__/pokemon/img/english/top_nav_bg.png">
+        <div class="content clearfix">
+            <div class="hover_block">
+                <div class="box">
+                    <img class="code" src="/public/static/pokemon/img/english/code.png">
+                    <p>scan here to FB page</p>
+                </div>
+            </div>
+            <div class="community_block" style="width: 600px;">
+            	<p style="margin-top: 40px;">FB Page: <a href="https://business.facebook.com/LegendsofMonsters/" target="_blank">https://business.facebook.com/LegendsofMonsters/</a></p>
+            <!--{volist name="qq_group" id="vo"}
+                <p>{$vo.desc}：{$vo.value}</p>
+            {/volist}-->
+            </div>
+        </div>
+    </div>
+    <div class="nav_hover contact">
+        <img class="hover_bg" src="__static__/pokemon/img/english/top_nav_bg.png">
+        <div class="content clearfix">
+            <!--<div class="contact_block">
+                <img src="__static__/pokemon/img/english/QQ.png">
+                <div class="text_block">
+                {volist name="qq_service" id="vo"}
+                    <p>{$vo.desc}：{$vo.value}</p>
+                {/volist}
+                </div>
+            </div>-->
+            <div class="contact_block long_fix" style="width: 100%;">
+                <img src="__static__/pokemon/img/english/tel_nav.png">
+                <div class="text_block">
+                    <h1 style="margin-top: 30px;">{$service_online.desc}：{$service_online.value}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

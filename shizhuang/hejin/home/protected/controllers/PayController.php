@@ -30,7 +30,8 @@ class PayController extends Controller{
 
     	if(!isset($_GET['player_id']) || !isset($_GET['acc_id']))
     		exit('参数错误');
-    	$result = $this->checkPlayer($_GET['player_id'],$_GET['acc_id']);
+    	$serverid = isset($_GET['serverid'])?$_GET['serverid']:0;
+    	$result = $this->checkPlayer($_GET['player_id'],$_GET['acc_id'],$serverid);
     	$result = json_decode($result,true);
     	if($result['status'] == 1){
     		exit($result['msg']);
@@ -52,9 +53,9 @@ class PayController extends Controller{
     			exit('没有这个档次的充值金额');
     		}
     		$playerId = $userinfo['player_id'];
-    		//$accountId = $userinfo['account_id'];
+    		$serverid = $userinfo['serverid'];
     		$accountId = $userinfo['account_id'];
-    		$out_trade_no = $this->getOrderId('9_'.$playerId.'_'.$accountId.'_');
+    		$out_trade_no = $this->getOrderId($serverid.'_'.$playerId.'_'.$accountId.'_');
     		//订单名称，必填
     		//付款金额，必填
     		$total_amount = intval($tinfo['money']);
@@ -87,12 +88,12 @@ class PayController extends Controller{
 
 
 
-    public function checkPlayer($player_id,$account_id){
+    public function checkPlayer($player_id,$account_id,$serverid){
     	if(!isset($player_id) || !isset($account_id))
     		exit(array('status'=>1,'msg'=>'参数错误'));
         $url = "http://fhweb.u776.com:86/interface/website/checkUser.php";
         $array = array();
-        $array['game_id'] = $this->gameId;
+        $array['serverid'] = $serverid;
         $array['account_id'] = $account_id;
         $array['player_id'] = $player_id;
         $mySign = $this->httpBuidQuery($array, $this->appKey);
@@ -100,7 +101,7 @@ class PayController extends Controller{
         $result = $this->https_post($url, $array);
         $myresult = json_decode($result,true);
         if(isset($myresult['status'] ) && $myresult['status'] == 0){
-        	Yii::app()->session['userinfo']=array('account_id'=>$myresult['data']['accountId'],'player_name'=>$myresult['data']['name'],'player_id'=>$player_id);
+        	Yii::app()->session['userinfo']=array('account_id'=>$myresult['data']['accountId'],'player_name'=>$myresult['data']['name'],'player_id'=>$player_id,'serverid'=>$serverid);
         }
         return $result;
         

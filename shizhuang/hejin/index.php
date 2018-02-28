@@ -1,7 +1,6 @@
 <?php
 define('APPNAME', 'hejin');
 define('ROOT_PATH', str_replace('hejin/index.php', '', str_replace('\\', '/', __FILE__)));
-echo 1;die;
 date_default_timezone_set('PRC');
 // change the following paths if necessary
 require_once(dirname(__FILE__).'/func/func.php');

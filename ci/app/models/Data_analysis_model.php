@@ -705,7 +705,6 @@ class Data_analysis_model extends CI_Model {
 	        $wsql .= " group by $group";
 	    }
 	
-	   
 	    $sql = "SELECT $field FROM u_login_{$date0} a WHERE 1=1 " . $wsql; // 当天登录数
 	//echo $sql;
 	    $result = $this->db_sdk->query ( $sql );

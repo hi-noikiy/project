@@ -355,7 +355,11 @@ class PayAnalysis extends MY_Controller {
 		$bt = strtotime($this->bt.' 00:00:00');
 		$et = strtotime($this->et.' 23:59:59');
 		$serverId = $this->serverId ;
-		$channelId = $this->channelId;
+	//	$channelId = $this->channelId;
+		$channelId =  $this->input->get ( 'channel_id' );
+		
+	
+		
 		
 		$this->load->model('Paylog_model');
 		$this->Paylog_model->init($this->appid, $bt, $et);
@@ -388,6 +392,7 @@ class PayAnalysis extends MY_Controller {
         $group='date';
         $where['begindate']= $date1 ;
         $where['enddate']= $date2;
+        $where['channels'] = $channelId;
         $output = $this->Mydb_sum_model->summarybychannel($where,$field,$group,'date');
         
 

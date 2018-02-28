@@ -1,0 +1,236 @@
+{extend name="public/base" /}
+
+{block name="title"}<title>{if condition="$data"}{$Think.lang.edit}{else /}{$Think.lang.create}{/if}</title>{/block}
+
+{block name="pjax_container"}
+<section class="content-header">
+    <h1>游戏信息</h1>
+    <ol class="breadcrumb">
+        <li class="active"><i class="fa fa-dashboard"></i> 游戏信息</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" method="POST" action="" onsubmit="return false" >
+                <div class="nav-tabs-custom">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1" data-toggle="tab">{$Think.lang.base_param}</a></li>
+                        <li class="pull-right"><a href="javascript:history.back(-1)" class="btn btn-sm" style="padding:10px 2px;"><i class="fa fa-list"></i> {$Think.lang.back}</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <input type="hidden" name="id" value="{$data.id}" />
+                            <input type="hidden" name="subType" value="form" />
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.name}</label>
+                                <div class="col-sm-7">
+                                <div class="input-group"><input class="form-control" id="name" name="name" value="{$data.name}" placeholder="{$Think.lang.name}">
+                                <span class="input-group-btn">
+                                    <button id="translateNameBtn" class="btn" type="button">
+                                        <i class="fa fa-level-down">翻译</i>
+                                    </button>
+                                </span>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.name_en}</label>
+                                <div class="col-sm-7">
+                                <input class="form-control" id="name_en" name="name_en" value="{$data.name_en}" placeholder="{$Think.lang.name_en}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.category}</label>
+                                <div class="col-sm-7">
+                                <input class="form-control" name="category" value="{$data.category}" placeholder="{$Think.lang.category}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.recommend}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="recommend" style="width:100%;">
+                                        <option value="0" {if condition="$data.recommend eq '0'"}selected="selected"{/if} >{$Think.lang.recommend0}</option>
+                                        <option value="1" {if condition="$data.recommend eq '1'"}selected="selected"{/if} >{$Think.lang.recommend1}</option>
+                                        <option value="2" {if condition="$data.recommend eq '2'"}selected="selected"{/if} >{$Think.lang.recommend2}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.description}</label>
+                                <div class="col-sm-7">
+                                <div class="input-group"><textarea class="form-control" style="resize:none;height:80px;" id="description" name="description" placeholder="{$Think.lang.description}">{$data.description}</textarea>
+                                <span class="input-group-btn">
+                                    <button id="translateDescBtn" class="btn" type="button">
+                                        <i class="fa fa-level-down">翻译</i>
+                                    </button>
+                                </span>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.description_en}</label>
+                                <div class="col-sm-7"><textarea class="form-control" style="resize:none;height:80px;" id="description_en" name="description_en" placeholder="{$Think.lang.description_en}">{$data.description_en}</textarea></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.show_way}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="show_way" style="width:100%;">
+                                        <option value="1" {if condition="$data.show_way eq '1'"}selected="selected"{/if} >{$Think.lang.show_way1}</option>
+                                        <option value="2" {if condition="$data.show_way eq '2'"}selected="selected"{/if} >{$Think.lang.show_way2}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.image_url}</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <input class="form-control" id="image_url-input" name="image_url" value="{$data.image_url}" placeholder="{$Think.lang.image_url}" >
+                                        <span class="input-group-btn">
+                                            <a href="{$data.image_url|default='__static__/global/face/no-image.png'}" target="_blank" >
+                                                <img id="image_url-img" src="{$data.image_url|default='__static__/global/face/no-image.png'}" style="height:34px; width:68px;" />
+                                            </a>
+                                            <button id="image_urlBtn" class="btn" type="button">
+                                                <i class="fa fa-cloud-upload"> {$Think.lang.Upload}</i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.video_url}</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <input class="form-control" id="video_url-input" name="video_url" value="{$data.video_url}" placeholder="使用ftp工具上传视频到/hngame/public/userfiles/video/目录下，点击按钮进行选择" >
+                                        <span class="input-group-btn">
+                                            <button id="video_urlBtn" class="btn" type="button">
+                                                <i class="fa fa-cloud-upload"> {$Think.lang.Upload}</i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.android_url}</label>
+                                <div class="col-sm-7"><input class="form-control" name="android_url" value="{$data.android_url}" placeholder="{$Think.lang.android_url}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.apple_url}</label>
+                                <div class="col-sm-7"><input class="form-control" name="apple_url" value="{$data.apple_url}" placeholder="{$Think.lang.apple_url}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.website}</label>
+                                <div class="col-sm-7"><input class="form-control" name="website" value="{$data.website}" placeholder="{$Think.lang.website}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.sorts}</label>
+                                <div class="col-sm-7"><input class="form-control" name="sorts" value="{$data.sorts|default='1'}" placeholder="{$Think.lang.sorts}"></div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$Think.lang.status}</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="status" style="width:100%;">
+                                        <option value="1" {if condition="$data.status eq '1'"}selected="selected"{/if} >{$Think.lang.status1}</option>
+                                        <option value="0" {if condition="$data.status eq '0'"}selected="selected"{/if} >{$Think.lang.status0}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">语言</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="lang" style="width:100%;">
+                                                                            {volist name="langarr" id="vo"}
+                                    <option value="{$key}" {if condition="$data.lang eq $key"}selected="selected"{/if} >{$vo}</option>
+                    				{/volist}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-7">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-info submits" data-loading-text="&lt;i class='fa fa-spinner fa-spin '&gt;&lt;/i&gt; {$Think.lang.submit}">{$Think.lang.submit}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+var elementId="";
+$(function(){
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        checkboxClass: 'icheckbox_minimal-blue',
+        radioClass: 'iradio_minimal-blue'
+    });
+    
+    var button = document.getElementById( 'image_urlBtn' );
+    button.onclick = function() {
+        elementId='image_url';
+        selectFileWithCKFinder();
+    };
+
+    var video_urlBtn = document.getElementById( 'video_urlBtn' );
+    video_urlBtn.onclick = function() {
+        elementId='video_url';
+        selectFileWithCKFinder();
+    };
+    
+    var translateNameBtn = document.getElementById( 'translateNameBtn' );
+    translateNameBtn.onclick = function() {
+        doTranslate( setNameEn,'name' );
+    };
+    var translateDescBtn = document.getElementById( 'translateDescBtn' );
+    translateDescBtn.onclick = function() {
+        doTranslate( setDescEn,'description' );
+    };
+
+    /*ajax页面加载icheck，有该控件的页面才需要*/
+    $(".select2").select2({language:"zh-CN"});
+    
+    {if condition=" $rest_login == 1 "}
+    restlogin('{$rest_login_info}');   //登录超时
+    {/if}
+})
+
+function doTranslate(callBack,elementId){
+    var chStr = $("#"+elementId).val();
+    var enStr = translate(callBack,chStr);
+}
+
+function setNameEn(enStr){
+    $("#name_en").val(enStr);
+}
+
+function setDescEn(enStr){
+    $("#description_en").val(enStr);
+}
+
+
+function selectFileWithCKFinder() {
+    CKFinder.popup( {
+        chooseFiles: true,
+        width: 1000,
+        height: 600,
+        onInit: function( finder ) {
+            finder.on( 'files:choose', function( evt ) {
+                var file = evt.data.files.first();
+                $("#"+elementId+"-img").attr("src",file.getUrl());
+                $("#"+elementId+"-input").val(file.getUrl());
+            } );
+
+            finder.on( 'files:choose:resizedImage', function( evt ) {
+                $("#"+elementId+"-img").attr("src",evt.data.resizedUrl);
+                $("#"+elementId+"-input").val(evt.data.resizedUrl);
+            } );
+        }
+    } );
+}
+
+</script>
+{/block}

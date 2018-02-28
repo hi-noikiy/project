@@ -144,6 +144,7 @@ class RunQueue Extends CI_Controller
     				$this->data_multi[$k]      = $dt;
     				$this->data_multi[$k]['appid']      = $ret['appid'];
     				$this->data_multi[$k]['created_at'] = time();
+    				isset($dt['created_at']) && $this->data_multi[$k]['created_at'] = $dt['created_at'];
     				if ($request_method=='DayOnline') {
     					$this->data_multi[$k]['online_date'] = date('Ymd',  $timestamp);
     				}
@@ -1682,6 +1683,7 @@ class RunQueue Extends CI_Controller
         if ($response===true) {
             $this->set_response($ret);
         }
+       
         return true;
     }
     private function save($table, $response=true, $replace=false)
@@ -1711,7 +1713,7 @@ class RunQueue Extends CI_Controller
                 .",msg:".json_encode($this->db->error()));
             $this->set_response($this->errs[self::ERR6]);
         }
-
+ 
     }
     public function __destruct()
     {
@@ -1821,7 +1823,8 @@ SQL;
     	$res = $this->db->insert($this->config->item(__FUNCTION__), $this->data);
     	//写入数据到唯一的设备激活表
     	$data[0] = $this->data;
-    	$this->insert_batch("u_device_unique", $data);
+    	$this->db->insert('u_device_unique', $this->data);
+    	//$this->insert_batch("u_device_unique", $data);
     	/*$chk = "select id from u_device_unique WHERE appid={$this->data['appid']} AND mac='{$this->data['mac']}' LIMIT 1";
     	$qr  = $this->db->query($chk);
     	if (!$qr || !$qr->result()) {
@@ -2019,20 +2022,110 @@ SQL;
     
     public function  activityClick()
     {    	
+    
+     if (!empty($this->data_multi)) {
+            $dataSave = array();
+            $no_multi = false;
+            foreach ($this->data_multi as $data) {
+           
+                $table_name='activity_click_'.date('Ymd',$data['created_at']);          
+                
+                $data['logdate']  =  date('Ymd',$data['created_at']);
+                
+                unset($data['appid']);
+                if(!empty($data)){                    
+                    $dataSave[$table_name][] = $data;
+                }
+             
+            }
+            foreach ($dataSave as $table=>$save_data)
+            {
+             //   $save_data['logdate']  =  date('Ymd',$save_data['created_at']);
+                unset($save_data['appid']);
+                $ret = $this->db->insert_batch($table, $save_data);
+                
+                
+                parent::log(json_encode($save_data), LOG_PATH . '/activityClick000.log');
+                parent::log($this->db->last_query(), LOG_PATH . '/activityClick111.log');
+        
+                if ($ret!==TRUE) {
+                    log_message('error', $table
+                        . "数据写入失败,数据:".$this->json
+                        .",msg:".json_encode($this->db->error()));
+                }
+            }
+        
+        }        
+       else {
+        
     	$this->data['logdate']  =  date('Ymd', $this->data['created_at']);
     	unset($this->data['appid']);    
     	$this->save('activity_click_'.date('Ymd',$this->data['created_at']));
+          }
     }
     
     /*
      * 邀请好友统计需求  zzl 20170901
      */
-    public  function  InviteFriend(){    
+    public  function  InviteFriend(){ 
         $this->data['logdate']  =  date('Ymd', $this->data['created_at']);
         unset($this->data['appid']);
         $this->save('u_invite');
+     
     }
     
+    /**
+     * 推送消息
+     */
+    public function tuisonginfo()
+    {
+    	 if (isset($this->data['ip']) && $this->data['ip']) {
+            $ip = $this->data['ip'];
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        $this->data['ip']  =  ip2long($ip);
+        $this->data['logindate']  =  date('Ymd', $this->data['created_at']);
+        !isset($this->data['devicetype']) && $this->data['devicetype'] = 0;
+        !isset($this->data['regid']) && $this->data['regid'] = 0;
+      
+        $sql = <<<SQL
+INSERT INTO push_regid(`last_login_mac`, `login_time`, `devicetype`, `regid`, `logdate`,userid,serverid,accountid,ip,role_create_time)
+VALUES ("{$this->data['mac']}",{$this->data['created_at']},"{$this->data['devicetype']}","{$this->data['regid']}","{$this->data['logindate']}","{$this->data['userid']}"
+,"{$this->data['serverid']}","{$this->data['accountid']}","{$this->data['ip']}","{$this->data['role_create_time']}")
+ON DUPLICATE KEY UPDATE `login_time`=VALUES(login_time),`devicetype`=VALUES(devicetype),`regid`=VALUES(regid),`logdate`=VALUES(logdate)
+        ,`userid`=VALUES(userid),`serverid`=VALUES(serverid),`accountid`=VALUES(accountid),`ip`=VALUES(ip),`role_create_time`=VALUES(role_create_time)
+SQL;
+        $this->db->query($sql);
+    }
+
+        /*
+     * 玩家综合信息 zzl 20170929
+     */
+ public function UserInfo()
+    {
+        $this->data['logdate'] = date('Ymd', $this->data['client_time']);
+        unset($this->data['appid']);
+        
+        $sql = '';
+        if ($this->data['accountid'] && $this->data['serverid']) {
+            $sql = "select id from u_userinfo where accountid={$this->data['accountid']} and serverid={$this->data['serverid']} limit 1";
+        }
+        
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        
+        if (! empty($result[0])) {
+            $sql = "update u_userinfo set userid={$this->data['userid']},channel={$this->data['channel']},vip_level={$this->data['vip_level']},client_time={$this->data['client_time']},user_level={$this->data['user_level']},create_time={$this->data['create_time']},total_days={$this->data['total_days']},prestige={$this->data['prestige']},synscience_avg={$this->data['synscience_avg']},godstep={$this->data['godstep']},stonestep_avg={$this->data['stonestep_avg']},stonelevel_avg={$this->data['stonelevel_avg']},level_avg={$this->data['level_avg']},intimacy_avg={$this->data['intimacy_avg']},individual_avg={$this->data['individual_avg']},effort_avg={$this->data['effort_avg']},baofen_avg={$this->data['baofen_avg']},prestige_avg={$this->data['prestige_avg']},handbook_avg={$this->data['handbook_avg']},logdate={$this->data['logdate']} WHERE accountid={$this->data['accountid']} and serverid={$this->data['serverid']}";
+            
+            $query = $this->db->query($sql);
+        } else {
+            
+            $this->save('u_userinfo');
+        }
+    }
     
+
+   
     
 }

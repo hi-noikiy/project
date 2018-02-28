@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Эльфы  мира  VS</title>
+    {load href="__static__/pokemon/css/pmstyle.css" /}
+</head>
+<body>
+{include file="header_ru" /}
+<div class="news_block1">
+    <img class="show" src="__static__/pokemon/img/russia/activity_center.jpg">
+    <!--英文-->
+    <div class="news_nav">
+        <div class="content clearfix activity">
+            <a href="javascript:void(0)" class="new_nav_block active">
+                <span style="padding-left: 55px;">текущая деятельность</span>
+                <img class="selected_fish" src="__static__/pokemon/img/russia/selected.png">
+                <div class="selected_line" style="margin-left: -10px;"></div>
+            </a>
+            <a href="javascript:void(0)" class="new_nav_block">
+                <span style="padding-left: 120px;">последние мероприятия</span>
+                <img class="selected_fish" style="margin-left: 90px;" src="__static__/pokemon/img/russia/selected.png">
+                <div class="selected_line" style="margin-left: 50px;"></div>
+            </a>
+        </div>
+    </div>
+    <!---->
+</div>
+<div id="block_0" class="activity_content">
+    <div class="content clearfix">
+    {volist name="activityList" id="vo"}
+        {if condition=" $vo.type == 1 "}
+        <!--英文-->
+        <div class="activity_block">
+            <div class="hover_content">
+                <div class="hover_txt">
+                	<div class="hover_txt_box">
+	                    <div>деятельность, награда：</div>
+	                    <p>
+	                        {$vo.content|htmlspecialchars_decode}
+	                    </p>
+	                    <a href="javascript:{if condition=" $vo.url == '' "}void(0);{else/}window.open('{$vo.url}'){/if}">》посмотри на детали《</a>
+	                </div>
+                </div>
+            </div>
+            <a href="javascript:void(0)" style="font-size: 12px;" class="detail_btn">взгляд детали</a>
+            <div class="block_img">
+                <img src="{$vo.image_url}">
+            </div>
+            <div class="block_text">
+                <h1>{$vo.title}</h1>
+                <p>времени действия:<span>{$vo.begin_time}——{$vo.end_time}</span></p>
+                <div>{$vo.description}</div>
+            </div>
+        </div>
+        <!---->
+        {/if}
+    {/volist}
+    </div>
+</div>
+
+<div id="block_1" class="activity_content end">
+    <div class="content clearfix">
+    {volist name="activityList" id="vo"}
+        {if condition=" $vo.type == 2 "}
+        <!--英文-->
+        <div class="activity_block">
+            <div class="hover_content">
+                <div class="hover_txt">
+                	<div class="hover_txt_box">
+	                    <div>деятельность, награда：</div>
+	                    <p>
+	                        {$vo.content|htmlspecialchars_decode}
+	                    </p>
+	                    <a href="javascript:void(0)">закончил</a>
+	                </div>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="end_img"><img src="__static__/pokemon/img/russia/end.png"></a>
+            <div class="block_img">
+                <img src="{$vo.image_url}">
+            </div>
+            <div class="block_text">
+                <h1>{$vo.title}</h1>
+                <p>времени действия:<span>{$vo.begin_time}——{$vo.end_time}</span></p>
+                <div>{$vo.description}</div>
+            </div>
+        </div>
+        <!---->
+        {/if}
+    {/volist}
+    </div>
+</div>
+
+<!--英文-->
+<div class="activity_bottom">
+    <img style="margin-left:30px;" src="__static__/pokemon/img/russia/pose2.png"><img class="activity_code" src="__static__/pokemon/img/russia/code.png"><img src="__static__/pokemon/img/russia/pose1.png">
+    <p>сканирование здесь VK</p>
+</div>
+<!---->
+{include file="footer_ru" /}
+{load href="__static__/pokemon/js/jquery.js" /}
+{load href="__static__/pokemon/js/top_nav.js" /}
+<script>
+    $(".new_nav_block").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        idx=$(this).index();
+        $("#block_"+idx).show().siblings(".activity_content").hide();
+    });
+    $(".activity_block").mouseenter(function(){
+        $(this).toggleClass("mouse_enter")
+    }).mouseleave(function(){
+        $(this).toggleClass("mouse_enter")
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no" />
+    <title>Tiên trên thế giới VS</title>
+    {load href="__static__/pokemon/css/jquery.fullpage.css" /}
+    {load href="__static__/pokemon/dist/assets/owl.carousel.css" /}
+    {load href="__static__/pokemon/dist/assets/owl.theme.default.css" /}
+    {load href="__static__/pokemon/css/carousel_pc.css" /}
+    {load href="__static__/pokemon/css/carousel_moblie.css" /}
+    {load href="__static__/pokemon/css/pmstyle.css" /}
+</head>
+<body>
+<div id="fullpage">
+    <div class="section" style="background:url('__static__/pokemon/img/vietnam/moblie_indexBg.png') center center no-repeat;background-size: 100% 100%;" id="index_1">
+        {include file="header_mobile_vn" /}
+        <a id="load" href="javascript:downLoadApp();">
+            <img src="__static__/pokemon/img/vietnam/down_load.png">
+        </a>
+        <img class="down_tip" src="__static__/pokemon/img/vietnam/down_arrow.png">
+    </div>
+    <div class="section" id="index_2">
+        <!--<img src="img/moblie_index_content.png">-->
+        <div class="index_2_content">
+            <div class="moblie_content">
+                <div class="auto_play_box_moblie">
+                    <div id="owl-demo" class="owl-carousel owl-theme">
+                    {volist name="bannerList" id="vo"}
+                        {if condition=" $vo.type == 1 "}
+                        <div class="item"><a href='{if condition="($vo.url neq null) and ($vo.url != '')"}javascript:openImg("{$vo.url}");{else/}javascript:void(0);{/if}' alt="{$vo.name}"><img src="{$vo.image_url}" alt="{$vo.name}"></a></div>
+                        {/if}
+                    {/volist}
+                    </div>
+                </div>
+                <div class="moblie list_box">
+                    <ul class="list_tit clearfix">
+                        {volist name="newsTypeList" id="vo"}
+                            <li {if condition=" $key == 0 "}class="active"{/if}><a href="javascript:void(0)">{$vo.name}</a><img class="triangle" src="__static__/pokemon/img/vietnam/blue_triangle.png"></li>
+                        {/volist}
+                        <a class="more" href="javascript:openNews()">more+</a>
+                    </ul>
+                    {volist name="newsTypeList" id="vo"}
+                    <div class="list_block" id="list_{$key}" {if condition=" $key > 0 "}style="display: none;"{/if}>
+                        <div class="list_first">
+                            <a href="javascript:openNews({$vo.id})" style="color: #fff;display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$vo.description}</a>
+                            <img class="bird" src="__static__/pokemon/img/vietnam/nan_bird.png">
+                        </div>
+                        {assign name="var" value="1" /}
+                        {volist name="newsList" id="news"}
+                        {if condition=" $news.type_id == $vo.id "}
+                        {if condition=" $var <= 3 "}
+                         <a href="javascript:openDetail({$news.id})" style="position: relative;" class="list">
+                            <p style="display:block;width:80%;margin:0px;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;z-index: 20;">{$news.title}</p>
+                            <span style="position: absolute;right: 5px;top: 0px;z-index: 30;">{$news.ctime}</span>
+                        </a>
+                        {assign name="var" value="$var+1" /}
+                        {/if}
+                        {/if}
+                        {/volist}
+                    </div>
+                    {/volist}
+                </div>
+                <div class="moblie btn_box">
+                    {volist name="linkList" id="vo"}
+                    {if condition=" $vo.platform == 2 "}
+                    <a href="{$vo.url|default='javascript:void(0)'}" class="switch_block">
+                        <div><img src="{$vo.image_url}"></div>
+                        <p>{$vo.name}</p>
+                    </a>
+                    {/if}
+                    {/volist}
+                </div>
+                <div class="moblie btn_big_box">
+                    {volist name="bannerList" id="vo"}
+                    {if condition=" $vo.type == 3 "}
+                    <a href="{$vo.url|default='javascript:void(0)'}">
+                        <img src="{$vo.image_url}">
+                    </a>
+                    {/if}
+                    {/volist}
+                </div>
+                <div class="moblie index_tit">
+                    Đặc sắc Game
+                </div>
+                <div class="moblie caroursel_box" style="height: 185px;">
+                    <div class = "caroursel poster-main moblie" data-setting = '{
+	                "width":690,
+	                "height":185,
+	                "posterWidth":360,
+	                "posterHeight":185,
+	                "scale":0.8,
+	                "dealy":"5000",
+	                "algin":"middle"
+	            }'>
+                        <ul class = "poster-list">
+                        {volist name="bannerList" id="vo"}
+                            {if condition=" $vo.type == 2 "}
+                            <li class = "poster-item">
+                            <a href="{if condition="($vo.url neq null) and ($vo.url != '')"}javascript:openImg("{$vo.url}");{else/}javascript:void(0);{/if}" alt="{$vo.name}">
+                            <img src="{$vo.image_url}" width = "100%" height="100%">
+                            </a>
+                            </li>
+                            {/if}                    
+                        {/volist}
+                        </ul>
+                        <div class = "poster-btn poster-prev-btn" style="left: 50px;"></div>
+                        <div class = "poster-btn poster-next-btn" style="right: 50px;"></div>
+                    </div>
+                </div>
+                <!--<div class="moblie btn_link">
+                    <a id="weixinAt" href="javascript:void(0)">
+                        <img src="__static__/pokemon/img/vietnam/btn_m_wx.png">
+                        <p>关注微信公众号</p>
+                        <h1>口袋妖怪VS游戏</h1>
+                    </a>
+                    <a href="javascript:joinQQ();">
+                        <img src="__static__/pokemon/img/vietnam/btn_m_qq.png">
+                        <p>官方QQ</p>
+                        <h1>一键加入</h1>
+                    </a>
+                    <a href="javascript:followWB();">
+                        <img src="__static__/pokemon/img/vietnam/btn_m_wb.png">
+                        <p>关注微博</p>
+                        <h1>互动爆料</h1>
+                    </a>
+                </div>-->
+                <div class="bottom_tel">
+                    <img class="tel_moblie" src="__static__/pokemon/img/vietnam/tel_11.png?t=123">
+                    <div class="serive">Điện thoại</div>
+                    <div class="number">{$service_phone.value}</div>
+                    <img class="starSky" src="__static__/pokemon/img/vietnam/bottom_bg.png">
+                </div>
+                {include file="footer_mobile_vn" /}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="cover">
+    <div id="imageQrDiv"><img src="{$qrcode_wechart.value}" /></div>
+    <img class="close-cover" src="__static__/pokemon/img/vietnam/close_1.png">
+    <div class="cover-text">
+        <p>长按二维码保存图片</p>
+        <p>关注口袋妖怪VS游戏官方公众号</p>
+    </div>
+</div>
+{load href="__static__/pokemon/js/jquery.js" /}
+{load href="__static__/pokemon/js/jquery.qrcode.min.js" /}
+{load href="__static__/pokemon/js/jquery.easings.min.js" /}
+{load href="__static__/pokemon/js/scrolloverflow.min.js" /}
+{load href="__static__/pokemon/js/jquery.fullpage.js" /}
+{load href="__static__/pokemon/dist/owl.carousel.js" /}
+{load href="__static__/pokemon/js/jquery.carousel.js" /}
+<script>
+	<!--获取屏幕宽度-->
+	<!--轮播图变化函数-->
+	function carouselChanges(){
+	var Mw = $('body').width() - 15;
+	var Mh = Mw/1.625;
+	var C = $(".caroursel.poster-main.moblie").attr("data-setting");
+	$(".moblie.caroursel_box").height(Mh);
+	C = JSON.parse(C);
+	C.posterWidth = Mw;
+	C.height = Mh;
+	C.posterHeight = Mh;
+	C = JSON.stringify(C);
+	$(".caroursel.poster-main.moblie").attr("data-setting",C);
+	}
+	carouselChanges();
+	
+    var newsUrl="{:url('News/news')}";
+    var detailUrl="{:url('News/detail')}";
+    Caroursel.init($('.caroursel'));
+    $(function(){
+        $('#fullpage').fullpage({
+            scrollOverflow: true,
+        });
+    });
+    var owl = $('.owl-carousel');
+    $(document).ready(function(){
+        owl.owlCarousel({
+            items:1,
+            loop:true,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:false,
+            nav:false,
+        });
+    });
+    owl.mouseenter(function(){
+        owl.trigger('stop.owl.autoplay')
+    }).mouseleave(function(){
+        owl.trigger('play.owl.autoplay',[1000])
+    });
+    $(".list_tit li").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var i=$(this).index();
+        $("#list_"+i).show().siblings(".list_block").hide()
+    })
+
+    function downLoadApp(){
+        if(navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)){
+            location.href = "{$pokemon.apple_url}";
+        }else if(navigator.userAgent.match(/android/i)){
+            location.href = "{$pokemon.android_url}";//android 下载地址
+        }
+    }
+
+    function openNews(id){
+        if(id){
+            location.href=newsUrl.substr(0,newsUrl.length-5)+"/channel/mobile/typeId/"+id;
+        }else{
+            location.href=newsUrl.substr(0,newsUrl.length-5)+"/channel/mobile";
+        }
+    }
+
+    function openDetail(id){
+        location.href=detailUrl.substr(0,detailUrl.length-5)+"/channel/mobile/id/"+id;
+    }
+    
+    function openImg(url){
+    	var url = url.split('id');
+    	url = url[0]+"channel/mobile/id"+url[1];
+    	location.href=url;
+    }
+</script>
+<script>
+    function followWX(){
+        /*var url="{$link_wechart.value}";
+        if(!isWeixin()){
+            alert("请在微信客户端打开此页面后点击该按钮进行关注");
+            return false;
+        }
+        if(url&&url!=''){
+            location.href="{$link_wechart.value}";
+        }*/   
+    }
+
+    function joinQQ(){
+        var url="{$link_qq.value}";
+        if(!isQQ()){
+            alert("请在QQ客户端打开此页面后点击该按钮加入");
+            return false;
+        }
+        if(url&&url!=''){
+            location.href="{$link_qq.value}";
+        } 
+    }
+
+    function followWB(){
+        var url="{$link_wb.value}";
+        if(url&&url!=''){
+            location.href="{$link_wb.value}";
+        } 
+    }
+
+    isWeixin = function (){
+        return deviceDetect('MicroMessenger');
+    }
+
+    isQQ = function (){
+        return deviceDetect('QQ');
+    }
+
+    /**
+    * 设备检测函数
+    * @param  {String} needle [特定UA标识]
+    * @return {Boolean}
+    */
+    var detectorUA = navigator.userAgent.toLowerCase();
+    deviceDetect = function(needle) {
+        needle = needle.toLowerCase();
+        return detectorUA.indexOf(needle) !== -1;
+    }
+
+    $("#weixinAt").click(function(){
+        $("#cover").show();
+    });
+    $(".close-cover").click(function(){
+        $("#cover").hide();
+    })
+</script>
+</body>
+</html>

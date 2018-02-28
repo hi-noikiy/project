@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Important Owl stylesheet -->
+    <!-- Default Theme -->
+    {load href="__static__/index/css/style.css" /}
+    {load href="__static__/index/css/about_us.css" /}
+    {load href="__static__/index/css/service_center.css" /}
+	<!--南美-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-1');
+	</script>
+	
+	
+	<!--越南-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-2"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-2');
+	</script>
+	
+	
+	<!--俄文-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-3');
+	</script>
+	
+	<!--国内-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-4"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-4');
+	</script>
+    <title>海牛游戏</title>
+</head>
+<body>
+{include file="header" /}
+<div class="photo_show">
+    <div class="pic">
+        <img src="__static__/index/img/business_pic.jpg" alt="business">
+    </div>
+</div>
+<div class="content">
+    <div class="con_body cn" style="display: none;">
+        <div class="line"></div>
+        <div class="ser_con">
+            {$webInfo.content|htmlspecialchars_decode}
+        </div>
+        <div class="line line_bottom"></div>
+    </div>
+    <div class="con_body en" style="display: none;">
+        <div class="line"></div>
+        <div class="ser_con">
+            {$webInfo.content_en|htmlspecialchars_decode}
+        </div>
+        <div class="line line_bottom"></div>
+    </div>
+</div>
+{include file="footer" /}
+{load href="__static__/index/js/jquery.js" /}
+{load href="__static__/index/js/language.js" /}
+</body>
+</html>

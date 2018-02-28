@@ -1,37 +1,76 @@
 <?php
 error_reporting(0);
+ini_set('memory_limit', '1024M');
 $act = $_GET['act'];
+session_start();
 if($act){
 	$act();
 }
-function getemploy(){
+function getrand(){
+	$nper = $_GET['nper'];
+	$i=0;
+	while($i++<4){
+		$showlog = 0;
+		$j = 0;
+		while($j++<10){
+			test($nper,$i,$j);
+		}
+	}
+	
+}
+/**
+ * 获取中奖者信息
+ */
+function getinfo(){
+	$nper = $_SESSION['nper'];
 	try{
 		$con = mysqli_connect("localhost","root","root",'redpeck');
 		if (!$con)
 		{
 			die('Could not connect: ' . mysqli_error());
 		}
+		$config = include dirname(__FILE__).'/../config/config.php';
+		$querysql = "SELECT redlevel,GROUP_CONCAT(CONCAT('(',department,') ',name)) info FROM `redpack` where nper='$nper' GROUP BY redlevel desc";
+// 		echo $querysql;die;
+		$result = mysqli_query($con,$querysql);
+		$data = array();
+		while($row=@mysqli_fetch_assoc($result)){
+			$data[$row['redlevel']] = $config[$row['redlevel']].'获得者：'.$row['info'];
+		}
+		// 释放资源
+		$result->close();
+		// 关闭连接
+		$con->close();
+		if(!$data){
+			$resultencode['code'] = 1;
+			$resultencode['data'] = '';
+		}else{
+			$resultencode['code'] = 0;
+			$resultencode['data'] = $data;
+		}
+		echo json_encode($resultencode);
+		// some code
+	}catch (Exception $e){}
+}
+function getemploy(){
+	$nper = $_SESSION['nper'];
+	try{
+		$con = mysqli_connect("localhost","root","root",'redpeck');
+		if (!$con)
+		{
+			die('Could not connect: ' . mysqli_error());
+		}
+		$config = include dirname(__FILE__).'/../config/config.php';
 		$querysql = 'select count(*) c from redpack';
 		$result1 = mysqli_query($con,$querysql);
 		$row=mysqli_fetch_assoc($result1);
 		$result1->close();
-		if($row['c']<6){
-			$redlevel = 3;
-		}elseif($row['c']<10){
-			$redlevel = 2;
-		}elseif($row['c']<12){
-			$redlevel = 1;
-		}elseif($row['c']<22){
-			$redlevel = 4; //特等奖
-		}else{
-			$resultencode['code'] = 1;
-			$resultencode['data'] = '抽奖已结束';
-			echo json_encode($resultencode);die;
-		}
-		//mysqli_query("set names 'utf8'"); //数据库输出编码 应该与你的数据库编码保持一致.南昌网站建设公司百恒网络PHP工程师建议用UTF-8 国际标准编码.
+		$redlevel = $_GET['type'];
 		$sql ="select e.name ename,d.name dname from employ e,department d where e.depId=d.id"; //SQL语句
-		if($redlevel == 4){
-			$sql .= ' and isSpecial=1';
+		if($redlevel!='0'){
+			$sql .= " and e.id not in(select employid as id from redpack where redlevel!='0' and nper='$nper' )";
+		}else{
+			$sql .= " and isSpecial=1 and e.id not in(select employid as id from redpack where redlevel='0' and nper='$nper' )";
 		}
 		$result = mysqli_query($con,$sql);
 		$data= array();
@@ -43,8 +82,13 @@ function getemploy(){
 		$result->close();
 		// 关闭连接
 		$con->close();
-		$resultencode['code'] = 0;
-		$resultencode['data'] = $data;
+		if(!$data){
+			$resultencode['code'] = 1;
+			$resultencode['data'] = '员工数据获取失败';
+		}else{
+			$resultencode['code'] = 0;
+			$resultencode['data'] = $data;
+		}
 		echo json_encode($resultencode);
 		// some code
 	}catch (Exception $e){}
@@ -53,7 +97,7 @@ function getemploy(){
 	 * 抽奖
 	 */
 	function start(){
-		//echo dirname(__FILE__).'/../config/config.php';die;
+		$nper = $_SESSION['nper'];
 		$config = include dirname(__FILE__).'/../config/config.php'; 
 		try{
 			$con = mysqli_connect("localhost","root","root",'redpeck');
@@ -63,49 +107,35 @@ function getemploy(){
 			}
 			$querysql = 'select count(*) c from redpack';
 			$result1 = mysqli_query($con,$querysql);
-			$row=mysqli_fetch_assoc($result1);
+			$row=@mysqli_fetch_assoc($result1);
 			$result1->close();
-			if($row['c']<6){
-				$redlevel = 3;
-				$prizeid = $row['c'];
-			}elseif($row['c']<10){
-				$redlevel = 2;
-				$prizeid = $row['c']-6;
-			}elseif($row['c']<12){
-				$redlevel = 1;
-				$prizeid = $row['c']-10;
-			}elseif($row['c']<22){
-				$redlevel = 4; //特等奖
-				$prizeid = $row['c']-12;
-			}else{
-				$resultencode['code'] = 1;
-				$resultencode['data'] = '抽奖已结束';
-				echo json_encode($resultencode);die;
-			}
-			$prizename = $config[$redlevel]['prize'][$prizeid];
+			$redlevel = $_GET['type'];
 			$sql ="select e.id,e.name ename,d.name dname from employ e,department d where e.depId=d.id"; //SQL语句
-			if($redlevel!=4){
-				$sql .= ' and e.id not in(select employid as id from redpack where redlevel!=4)';
+			if($redlevel!='0'){
+				$sql .= " and e.id not in(select employid as id from redpack where redlevel!='0' and nper='$nper' )";
 			}else{
-				$sql .= ' and isSpecial=1 and e.id not in(select employid as id from redpack where redlevel=4)';
+				$sql .= " and isSpecial=1 and e.id not in(select employid as id from redpack where redlevel='0' and nper='$nper')";
 			}
 			$result = mysqli_query($con,$sql);
 			$data= array();
 			$datas= array();
+			$datass= array();
 			while ($row=mysqli_fetch_assoc($result))
 			{
-				$row['levelname'] = $config[$redlevel]['name'];
-				$row['prizename'] = $prizename;
-				$row['curid'] = $prizeid+1;
+				$row['levelname'] = $config[$redlevel];
 				$datas[] = $row;
 			}
-			$data[] = $datas[rand(0,count($datas)-1)];
+			$datass[] = $datas[rand(0,count($datas)-1)];
+			$datass[] = $datas[rand(0,count($datas)-1)];
+			$datass[] = $datas[rand(0,count($datas)-1)];
+			$datass[] = $datas[rand(0,count($datas)-1)];
+			$datass[] = $datas[rand(0,count($datas)-1)];
+			$data[] = $datass[rand(0,count($datass)-1)];
 			$result->close();
-			//print_r($data);die;
 			$time = time();
-			$insertsql = "insert into redpack(name,department,redlevel,time,isGetStatus,prize,employid)values";
+			$insertsql = "insert into redpack(name,department,redlevel,time,isGetStatus,prize,employid,nper)values";
 			foreach ($data as $v){
-				$insertsql .= "('{$v['ename']}','{$v['dname']}',{$redlevel},{$time},0,'{$prizename}',{$v['id']}),";
+				$insertsql .= "('{$v['ename']}','{$v['dname']}',{$redlevel},{$time},0,'{$prizename}',{$v['id']},'$nper'),";
 			}
 			$insertsql = rtrim($insertsql, ',');
 			$result2 = mysqli_query($con,$insertsql);
@@ -118,4 +148,52 @@ function getemploy(){
 		}catch (Exception $e){}
 	}
 
+	function test($nper=1,$redlevel=1,$showlog=0){
+		$config = include dirname(__FILE__).'/../config/config.php';
+		echo $showlog.PHP_EOL;
+		try{
+			$con = mysqli_connect("localhost","root","root",'redpeck');
+			if (!$con)
+			{
+				die('Could not connect: ' . mysqli_error());
+			}
+			echo $showlog.PHP_EOL;
+			$querysql = 'select count(*) c from redpack';
+			$result1 = mysqli_query($con,$querysql);
+			$row=@mysqli_fetch_assoc($result1);
+			$result1->close();
+			$sql ="select e.id,e.name ename,d.name dname from employ e,department d where e.depId=d.id"; //SQL语句
+			if($redlevel!='0'){
+				$sql .= " and e.id not in(select employid as id from redpack where redlevel!='0' and nper='$nper' )";
+			}else{
+				$sql .= " and isSpecial=1 and e.id not in(select employid as id from redpack where redlevel='0' and nper='$nper')";
+			}
+			$result = mysqli_query($con,$sql);
+			$data= array();
+			$datas= array();
+			$datass= array();
+			while ($row=mysqli_fetch_assoc($result))
+			{
+				$row['levelname'] = $config[$redlevel];
+				$datas[] = $row;
+			}
+			$datass[] = $datas[rand(0,count($datas)-1)];
+			$datass[] = $datas[rand(0,count($datas)-1)];
+			$datass[] = $datas[rand(0,count($datas)-1)];
+			$datass[] = $datas[rand(0,count($datas)-1)];
+			$datass[] = $datas[rand(0,count($datas)-1)];
+			$data[] = $datass[rand(0,count($datass)-1)];
+			$result->close();
+			$time = time();
+			$insertsql = "insert into redpack(name,department,redlevel,time,isGetStatus,prize,employid,nper)values";
+			foreach ($data as $v){
+				$insertsql .= "('{$v['ename']}','{$v['dname']}',{$redlevel},{$time},0,'{$prizename}',{$v['id']},'$nper'),";
+			}
+			$insertsql = rtrim($insertsql, ',');
+			$result2 = mysqli_query($con,$insertsql);
+			// 关闭连接
+			$con->close();
+			// some code
+		}catch (Exception $e){}
+	}
 

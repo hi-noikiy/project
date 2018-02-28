@@ -6,7 +6,7 @@
         <div id="legend" class="">
             <legend>欢迎使用</legend>
         </div>
-            <table class="table table-hover">
+            <!-- <table class="table table-hover">
                 <tr>
                     <th style="width:130px;line-height:30px;text-align:right">技术支持:</th>
                     <td style="line-height:30px;"><?=$name?></td>
@@ -23,7 +23,7 @@
                     <th style="width:130px;line-height:30px;text-align:right">&nbsp;</th>
                     <td style="line-height:30px;">&nbsp;</td>
                 </tr>
-            </table>
+            </table> -->
     </div>
 </body>
 </html>

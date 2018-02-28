@@ -20,7 +20,7 @@ class WxPayNotify extends WxPayNotifyReply {
             return false;
         $xml = $GLOBALS['HTTP_RAW_POST_DATA'];
         $arr = $this->FromXml($xml);
-        $fenbaoId = $arr['attach'];
+        $fenbaoId = explode('_', $arr['attach'])[1];
         if(!isset($values[$fenbaoId]['appkey']))
             return false;
         $this->key = $values[$fenbaoId]['appkey'];

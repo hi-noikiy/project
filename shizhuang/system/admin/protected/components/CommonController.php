@@ -29,7 +29,7 @@ class CommonController extends Controller{
     	$length = strlen($string);
     	$result = 0;
     	for($i=0;$i<$length;$i++){
-    		$result = $result*397+ ord($string[$i]);
+    		$result = bcadd(bcmul($result,397), ord($string[$i]));
     	}
     	return $result;
     }
@@ -52,19 +52,11 @@ class CommonController extends Controller{
     }
 
     protected function getGoodsType($gameId = 8){
-        if($gameId == 8){
-            return array(
-                '' =>'请选择', 0=>'物品', 1=>'体力', 2=>'金钱',
-                3=>'钻石', 7=>'VIP等级',
+         return array(
+                '' =>'请选择', 0=>'物品', 1=>'体力', 2=>'金币',
+                3=>'钻石', 4=>'玫瑰币', 5=>'百合币', 6=>'水仙币',
+                7=>'VIP等级'
             );
-        } else {
-            return array(
-                '' =>'请选择', 0=>'物品', 1=>'金钱', 2=>'vip经验',
-                6=>'精灵', 7=>'钻石', 8=>'活跃度', 9=>'体力', 10=>'学习机碎片',
-                11=>'抽奖积分', 12=>'暂未使用', 14=>'精力', 15=>'联盟币',
-                16=>'冠军币', 17=>'全球币', 18=>'努力点'
-            );
-        }
     }
 
     protected function getStatusArr(){

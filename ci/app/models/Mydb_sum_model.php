@@ -185,5 +185,49 @@ class Mydb_sum_model extends CI_Model
     	}
     	return array();
     }
+
+        /*
+     *
+     */
+        /*
+     * 新设备使用旧账号登录数量              安装新包使用旧账号登录数量 zzl 20171018
+     */
+    public function accountDevice($assign_date)
+    {
+        if(!empty($assign_date)){            
+           $date = $assign_date;            
+           $date2 = date('Ymd', strtotime($assign_date)+86400);
+            
+        } else {
+            
+          $date = date('Ymd', strtotime('-1 days'));            
+           $date2 = date('Ymd', time());
+            
+        }
+        
+       echo $date;
+        $unix_time1 = strtotime($date);
+        $unix_time2 = strtotime($date2);
+        
+        $dbsdk = $this->load->database('sdk', true);
+        
+        $sql_1 = " SELECT COUNT(*) as device_old_account  FROM u_login_{$date} a,(SELECT mac FROM `u_device_unique` WHERE created_at>={$unix_time1} and created_at<{$unix_time2} and mac not in (SELECT mac FROM u_register WHERE reg_date={$date})) b WHERE a.mac=b.mac";
+        
+        $result_1 = $dbsdk->query($sql_1);
+        if ($result_1) {
+            $result_1_data = $result_1->result_array();
+        }
+        
+        $sql_2 = " SELECT COUNT(*) as install_old_account  FROM u_login_{$date} a,(SELECT mac FROM `u_device_active` WHERE created_at>={$unix_time1} and created_at<{$unix_time2} and mac not in (SELECT mac FROM u_register WHERE reg_date={$date})) b WHERE a.mac=b.mac";
+        
+        $result_2 = $dbsdk->query($sql_2);
+        if ($result_2) {
+            $result_2_data = $result_2->result_array();
+        }
+        
+        $sql = "UPDATE sum_summary set  device_old_account={$result_1_data[0][device_old_account]} , install_old_account={$result_2_data[0][install_old_account]}  WHERE date={$date}";
+        $result = $this->db->query($sql);
+    }
+    
     
 }

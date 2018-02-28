@@ -41,8 +41,8 @@
                 <tr>
                     <th style="width:130px;line-height:30px;text-align:right">搜索类型</th>
                     <td>
-                    	<?=CHtml::dropDownList('type', $type, array('账号', '角色名'), array('class'=>'input-small'))?>
-                    	<input type="text" placeholder="账号或者角色名" name="username" value="<?=isset($_POST['username'])  ? $_POST['username'] : '';?>" class="input-xlarge" required>
+                    	<?=CHtml::dropDownList('type', $type, array('角色名'), array('class'=>'input-small'))?>
+                    	<input type="text" placeholder="角色名" name="username" value="<?=isset($_POST['username'])  ? $_POST['username'] : '';?>" class="input-xlarge" required>
                           	
                     </td>
                 </tr>

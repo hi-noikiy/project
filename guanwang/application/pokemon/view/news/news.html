@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>精灵世界VS</title>
+    {load href="__static__/pokemon/css/pmstyle.css" /}
+</head>
+<body>
+{include file="header" /}
+<div class="news_block1">
+    <img class="show" src="__static__/pokemon/img/news_top.jpg">
+    <div class="news_nav">
+        <div class="content clearfix news">
+            <a id="new_0" href="javascript:void(0)" class="new_nav_block active">
+                <span>最新</span>
+                <img class="selected_fish" src="__static__/pokemon/img/selected.png">
+                <div class="selected_line"></div>
+            </a>
+            {volist name="newsTypeList" id="vo"}
+            <a id="new_{$vo.id}" href="javascript:void(0)" class="new_nav_block">
+                <span>{$vo.name}</span>
+                <img class="selected_fish" src="__static__/pokemon/img/selected.png">
+                <div class="selected_line"></div>
+            </a>
+            {/volist}
+        </div>
+    </div>
+</div>
+<div id="list_new_0" style="display: block;" class="list_page">
+    {volist name="newsList" id="news"}
+        <div class="news_list">
+        <div class="content list_line clearfix">
+            <div class="time_box">
+                {$news.create_time|mb_substr=5,5}
+            </div>
+            <div class="list_content">
+                <a href="javascript:openDetail({$news.id})" class="tit">
+                    <p>{$news.title}</p><img class="selected_img" src="__static__/pokemon/img/pokeball.png">
+                </a>
+                <div class="text">
+                    {$news.description}
+                </div>
+            </div>
+        </div>
+        </div>
+    {/volist}
+</div>
+<div id="page_new_0" class="page_btn" style="display: block;">
+    <a name="prev_btn" href="javascript:void(0)" class="{if condition=" $hasPrevPage == 1 "}prev_btn{/if}">上一页</a>
+    <span>第<span class="pages">1</span>页</span>
+    <a name="next_btn" href="javascript:void(0)" class="{if condition=" $hasNextPage == 1 "}next_btn{/if}">下一页</a>
+</div>
+{volist name="newsTypeList" id="vo" key="k"}
+    <div id="list_new_{$vo.id}" style="{if condition="($typeId==$vo.id) or (($typeId == -1) and ($k == 1))"}display: block;{else/}display: none;{/if}" class="list_page">
+    {if condition="($typeId==$vo.id) or (($typeId == -1) and ($k == 1))"}
+    {volist name="newsList" id="news"}
+        {if condition=" $news.type_id == $vo.id "}
+        <div class="news_list">
+        <div class="content list_line clearfix">
+            <div class="time_box">
+                {$news.create_time|mb_substr=5,5}
+            </div>
+            <div class="list_content">
+                <a href="javascript:openDetail({$news.id})" class="tit">
+                    <p>{$news.title}</p><img class="selected_img" src="__static__/pokemon/img/pokeball.png">
+                </a>
+                <div class="text">
+                    {$news.description}
+                </div>
+            </div>
+        </div>
+        </div>
+        {/if}
+    {/volist}
+    {/if}
+    </div>
+    <div id="page_new_{$vo.id}" class="page_btn" style="{if condition="($typeId==$vo.id) or (($typeId == -1) and ($k == 1))"}display: block;{else/}display: none;{/if}">
+        <a name="prev_btn" href="javascript:void(0)" class="{if condition="$hasPrevPage == 1"}prev_btn{/if}">上一页</a>
+        <span>第<span class="pages">1</span>页</span>
+        <a name="next_btn" href="javascript:void(0)" class="{if condition="$hasNextPage == 1"}next_btn{/if}">下一页</a>
+    </div>
+{/volist}
+{include file="footer" /}
+{load href="__static__/pokemon/js/jquery.js" /}
+{load href="__static__/pokemon/js/top_nav.js" /}
+</body>
+<script>
+    var page=1;
+    var num=5;
+    var typeId=0;
+    var newsUrl="{:url('News/news')}";
+    var detailUrl="{:url('News/detail')}";
+    newsUrl=newsUrl.substr(0,newsUrl.length-9);
+    var basePath='__static__';
+    $(".new_nav_block").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var idx=$(this).attr("id");
+        typeId=idx.substr(4,1);
+        page=1;
+        loadDatas();
+        $("#list_"+idx).show().siblings(".list_page").hide();
+        $("[id^=page_]").hide();
+        $("#page_"+idx).show();
+    })
+
+    $("[name=prev_btn]").click(function(){
+        if($(this).attr("class")!=''){
+            loadDatas('prev');
+        }
+    })
+
+    $("[name=next_btn]").click(function(){
+        if($(this).attr("class")!=''){
+            loadDatas('next');
+        }
+    })
+
+    function loadDatas(opt){
+        var needPage=page;
+        if(opt=='prev'){
+            needPage--;
+        }else if(opt=='next'){
+            needPage++;
+        }
+        $.ajax({
+            type : "get",
+            url : newsUrl+"newsAjax/typeId/"+typeId+"/page/"+needPage+"/num/"+num,
+            dataType:'json',
+            success : function(datas) {
+                var dataListHTML="";
+                for (var i = 0; i<datas.newsList.length; i++) {
+                    var data=datas.newsList[i];
+                    var timeHTML='<div class="time_box">'+data['create_time'].substr(5,5)+'</div>';
+                    var dataHTML='<div class="news_list"><div class="content list_line clearfix">'+timeHTML+'<div class="list_content"><a href="javascript:openDetail('+data['id']+')" class="tit"><p>'+data['title']+'</p><img class="selected_img" src="'+basePath+'/pokemon/img/pokeball.png"></a><div class="text">'+data['description']+'</div></div></div></div>';
+                    dataListHTML+=dataHTML;
+                }
+                if(datas.hasPrevPage==1){
+                    $("#page_new_"+typeId).children().first().addClass("prev_btn");
+                }else{
+                	$("#page_new_"+typeId).children().first().removeClass();
+                }
+                if(datas.hasNextPage==1){
+                    $("#page_new_"+typeId+" [name=next_btn]").addClass("next_btn");
+                }else{
+                    $("#page_new_"+typeId+" [name=next_btn]").removeClass();
+                }
+                $("#list_new_"+typeId).html(dataListHTML);
+                if(opt=='prev'){
+                    page--;
+                }else if(opt=='next'){
+                    page++;
+                }
+                $('.pages').text(page);
+            }
+        });
+    }
+
+    function openDetail(id){
+        location.href=detailUrl.substr(0,detailUrl.length-5)+"/id/"+id;
+    }
+</script>
+</html>

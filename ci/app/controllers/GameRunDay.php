@@ -25,6 +25,82 @@ class GameRunDay extends CI_Controller{
     }
     
     /**
+     * 获取精灵数据
+     */
+    public function getelves()
+    {
+    	$temid = $this->input->get ( 'temid' ); // 精灵组
+    	$date = $this->input->get ( 'date' ); // 日期
+    	if(!$temid || !$date){
+    		exit(0);
+    	}
+    	$dbsdk = $this->load->database('sdk',true);
+    	$delsql = "delete from game_elves where template_id in ($temid)";
+    	$dbsdk->query($delsql);
+    	$date = date('Ymd',strtotime($date));
+    	$data = $this->common->getDbData();
+    	foreach ($data as $v){
+    		$this->getTemplate($v[0],$v[1],$v[2],$v[3],$temid,$date);
+    	}
+    }
+    private  function getTemplate($database,$start,$num,$pre,$temid,$date){
+    	$data = [];
+    	$database->reconnect();
+    	$now = date('YmdHis');
+    	for($i=$start;$i<=$num;$i++){
+    		$preser = str_pad($i,3,0,STR_PAD_LEFT);
+    		$serverid = $pre.$preser;
+    		echo $serverid.PHP_EOL;
+    		$sql = "SELECT $date as logindate,$now as logdate,s.player_id,s.template_id,t.`level` as lev,t.vip_level,intimacy_level,t.server_id,(hp_ex2+atk_ex2+def_ex2+spatk_ex2+spdef_ex2+speed_ex2) as ex2 FROM u_eudemon$preser s,
+    		(SELECT b.id,a.vip_level,server_id,`level` FROM u_gift_recharge$preser a,(SELECT id,account_id,serverid,`level` FROM u_player$preser WHERE from_unixtime(`login_time`, '%Y%m%d')>=$date) b
+    		WHERE a.account_id=b.account_id) t WHERE s.template_id in($temid) and s.player_id=t.id";
+    		$query = $database->query($sql);
+    		if($query){
+    			$data = $query->result_array();
+    			if(!empty($data)){
+    				$this->insert_batch("game_elves", $data);
+    				unset($data);
+    			}
+    		}
+    	}
+    }
+    
+    /**
+     * 获得坐骑数据
+     * cli模式运行
+     *
+     * @author 王涛 20170921
+     */
+    public function horse()
+    {
+    	$data = $this->common->getDbData();;
+    	foreach ($data as $v){
+    		$this->gethorse($v[0],$v[1],$v[2],$v[3]);
+    	}
+    }
+    private  function gethorse($database,$start,$num,$pre){
+    	$data = [];
+    	$database->reconnect();
+    	$now = date('Ymd',strtotime('-1 days'));
+    	$begintime = strtotime($now);
+    	for($i=$start;$i<=$num;$i++){
+    		$preser = str_pad($i,3,0,STR_PAD_LEFT);
+    		$serverid = $pre.$preser;
+    		echo $serverid.PHP_EOL;
+    		$sql = "SELECT t.vip_level,horse_id,COUNT(*) horse_num,$now as logdate,$serverid as serverid FROM `u_player_rider$preser` a,
+(SELECT b.id,vip_level FROM u_player$preser b,u_gift_recharge$preser c WHERE b.account_id=c.account_id AND from_unixtime(b.login_time, '%Y%m%d')>$now) t
+WHERE a.player_id=t.id GROUP BY t.vip_level,a.horse_id";
+    		$query = $database->query($sql);
+    		if($query){
+    			$data = $query->result_array();
+    			if(!empty($data)){
+    			$this->insert_batch("game_horse", $data);
+    				unset($data);
+    			}
+    		}
+		}
+	}
+    /**
      * 获得月卡数据
      * cli模式运行
      *
@@ -337,8 +413,9 @@ and floor(a.template_id/10)=c.ngroup ";
     			if($query){
     				$edata = $query->result_array();
     			}
-    			$this->insert_batch("game_world_user_$now", $data);
-    			$this->insert_batch("game_world_eudemon_$now", $edata);
+    			$this->insert_batch("game_world_user_$now", $data);    		
+    			$this->insert_batch("game_world_eudemon_$now", $edata);    		
+    			
     		}else{
     			continue;
     		}
@@ -731,6 +808,49 @@ GROUP BY c.vip_level";
     		}
 
     	}
+    }
+    
+    
+    /**
+     * 获得社团争霸完整信息
+     * cli模式运行
+     *
+     * @author zzl 20170927
+     */
+    public function synHistory()
+    {
+        $data = $this->common->getDbData(); 
+        foreach ($data as $v){
+            $this->getsynHistory($v[0],$v[1],$v[2],$v[3]);
+        }
+    }
+    private  function getsynHistory($database,$start,$num,$pre){    
+       /*  $start=1;
+        $num=1000; */        
+        $data = [];
+        $database->reconnect();
+        $now = date('Ymd',strtotime('-1 days'));
+        $begintime = strtotime($now);
+        for($i=$start;$i<=$num;$i++){
+            $preser = str_pad($i,3,0,STR_PAD_LEFT);
+            $serverid = $pre.$preser;
+            echo $serverid.PHP_EOL;
+        
+// echo    $sql="(SELECT s.pk_th,s.atk_player_id as player_id,s.atk_player_name as player_name,s.atk_game_server as game_server,s.atk_syn_id as syn_id,s.atk_syn_name as syn_name,g.vip_level from u_synpkgame_history$preser as  s INNER JOIN u_player$preser as p on p.id=s.atk_player_id INNER JOIN u_gift_recharge$preser as g on g.account_id=p.account_id GROUP BY atk_player_id)  union (SELECT s.pk_th,s.def_player_id as player_id,s.def_player_name as player_name,s.def_game_server as game_server,s.def_syn_id as syn_id,s.def_syn_name as syn_name,g.vip_level from u_synpkgame_history$preser as  s INNER JOIN u_player$preser as p on p.id=s.atk_player_id INNER JOIN u_gift_recharge$preser as g on g.account_id=p.account_id  GROUP BY def_player_id)";     
+
+
+            echo    $sql="(SELECT s.pk_th,s.atk_player_id as player_id,s.atk_player_name as player_name,s.atk_game_server as game_server,s.atk_syn_id as syn_id,s.atk_syn_name as syn_name,g.vip_level from u_synpkgame_history$preser as  s left JOIN u_player$preser as p on p.id=s.atk_player_id left JOIN u_gift_recharge$preser as g on g.account_id=p.account_id GROUP BY atk_player_id)  union (SELECT s.pk_th,s.def_player_id as player_id,s.def_player_name as player_name,s.def_game_server as game_server,s.def_syn_id as syn_id,s.def_syn_name as syn_name,g.vip_level from u_synpkgame_history$preser as  s left JOIN u_player$preser as p on p.id=s.atk_player_id left JOIN  u_gift_recharge$preser as g on g.account_id=p.account_id  GROUP BY def_player_id)";
+             
+            
+            $query = $database->query($sql);
+            if($query){
+                $data = $query->result_array();
+                if(!empty($data)){
+                    $this->insert_batch("synpkgame_history", $data);
+                    unset($data);
+                }
+            }
+        }
     }
     
     

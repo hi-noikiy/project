@@ -237,11 +237,12 @@ SQL;
 		elseif (is_array ( $channel ) && count ( $channel ) > 0)
 			$sql .= " AND channel IN(" . implode ( ',', $channel ) . ")";
 		$sql .= " GROUP BY $grp";
-		return $this->db->query ( $sql, [ 
+	return 	 $this->db->query ( $sql, [ 
 				$appid,
 				$date1,
 				$date2 
 		] )->result_array ();
+		
 	}
 	/**
 	 * 统计新注册的数据
@@ -318,9 +319,10 @@ SELECT $grp, sum(usercount) as usercount, sum(day1) as day1, sum(day2) as day2, 
   sum(day30) as day30 FROM sum_reserveusers_daily_new
   WHERE appid=? AND sday BETWEEN ? AND ?
 SQL;
-		if (! $type && ! $channel) {
+		$sql .= " AND channel>0";
+		/*if (! $type && ! $channel) {
 			$sql .= " AND channel=0";
-		}
+		}*/
 		if (is_numeric ( $serverid ) && $serverid > 0)
 			$sql .= " AND serverid=$serverid";
 		elseif (is_array ( $serverid ) && count ( $serverid ) > 0)
@@ -938,6 +940,145 @@ SQL;
       
       
   }
+  /*
+   * 当天的总账号数 & 前一天的总账号数 20170915 zzl
+   */
+  public function totalAccount($table, $where, $field, $group, $order, $limit){
+      if (! $field) {
+          $field = '*';
+      }      
+   
+      $sql="select count(DISTINCT accountid) as total,channel from u_register where reg_date<={$where['date1']} GROUP BY channel";
+      $this->db_sdk = $this->load->database('sdk', TRUE);
+      $query = $this->db_sdk->query ( $sql );
+      
+      $result = array ();
+      if ($query) {
+          $result['date1'] = $query->result_array ();
+      }
+      
+      $sql2="select count(DISTINCT accountid) as total,channel from u_register where reg_date<={$where['date_pre']} GROUP BY channel";
+      $query2 = $this->db_sdk->query ( $sql2 );
+      if ($query2) {
+          $result['date_pre'] = $query2->result_array ();
+      }
+      
+      return $result;
+      
+  }
   
+  /*
+   * 得到 一天的 android与ios的dau      20170915
+   */
+  public function getRealDau($appid, $where,$group) {
+      $sql="SELECT sum(wau) AS wau,sum(clean_dau) as clean_dau,sday,channel FROM sum_real_au
+      WHERE appid={$appid} AND sday={$where['date1']} group by channel";
+    
+      
+     $query= $this->db->query ( $sql);
+      $result = array ();
+      if ($query) {
+          $result = $query->result_array ();
+      }      
+    return $result;
+  }
+  
+  
+//  典型玩家数据 zzl  20171025
+  public function tipical($table, $where, $field, $group, $order, $limit) {
+    
+      if (! $field) {
+          $field = '*';
+      }
+  
+      
+      $sql = "select $field from u_userinfo   where 1=1";      
+   
+      if ($where ['serverids']) {
+          $sql .= " AND serverid IN(" . implode ( ',', $where ['serverids'] ) . ")";
+      }
+      if( $where ['date']){
+          $sql .= " and  logdate={$where ['date']}";
+      }
+      if( $where ['days']){
+          $sql .= " and total_days>={$where ['days']}";
+      }
+      if( $where ['days']){
+          $sql .= " and total_days<={$where ['days2']}";
+      }
+      if( $where ['vip_level']){
+          $sql .= " and vip_level={$where ['vip_level']}";
+      }
+      if ($where ['channels']) {
+          $sql .= " AND channel IN(" . implode ( ',', $where ['channels'] ) . ")";
+      }
+      
+      
+      if ($group) {
+          $sql .= " group by $group";
+      }
+      if ($order) {
+          $sql .= " order by $order";
+      }
+      if ($limit) {
+          $sql .= " limit $limit";
+      }
+ 
+      $this->db_sdk = $this->load->database('sdk', TRUE);
+      $query = $this->db_sdk->query ( $sql );
+      
+      
+      
+      $sql_2="SELECT sum(money) as sum_money,AVG(money) avg_money,count(*) as total,count(DISTINCT(u.accountid)) cnt,p.id,p.accountid,u.total_days from u_userinfo u  inner JOIN u_paylog p on  u.accountid=p.accountid  where 1=1 "; 
+     
+     if( $where ['date']){
+          $sql_2 .= " and  u.logdate={$where ['date']}";
+      }
+      if ($where ['channels']) {
+          $sql_2 .= " AND u.channel IN(" . implode ( ',', $where ['channels'] ) . ")";
+      }
+      if( $where ['vip_level']){
+          $sql_2 .= " and vip_level={$where ['vip_level']}";
+      }
+      if( $where ['days'] && $where ['days2']  ){
+          $sql_2 .= " and u.total_days>={$where ['days']} and u.total_days<={$where ['days2']} group by u.total_days order by u.total_days";
+      }
+ 
+      
+      $sql_3 = "SELECT c.total_days,d.id,d.accountid,d.vip_level,d.item_num,AVG(d.item_num) as consume from u_userinfo c,(select a.id,a.accountid,a.vip_level,item_num from   u_behavior_{$where ['date']} a  inner join item_trading_{$where ['date']} b 
+      on a.id=b.behavior_id  and b.item_id=3 and b.type=1)d WHERE c.accountid=d.accountid ";
+      
+     
+      if( $where ['days']  && $where ['days2']){
+          $sql_3 .= " and total_days>={$where ['days']} and total_days<={$where ['days2']}";
+      }
+      
+      if( $where ['vip_level']){
+          $sql_3 .= " and  c.vip_level={$where ['vip_level']}";
+      }
+      if( $where ['channels']){
+       $sql_3 .= " and  a.channels={$where ['channels']} ";
+      }
+     
+        $sql_3 .= " and  c.logdate={$where ['date']} group by c.total_days order by c.total_days";
+    
+
+      if ($query) {
+          $result = $query->result_array ();
+      }
+      
+      $query_2 = $this->db_sdk->query ( $sql_2 );
+      if ($query_2) {
+          $result['data2'] = $query_2->result_array ();
+      }
+      
+      $query_3 = $this->db_sdk->query ( $sql_3 );
+      if ($query_3) {
+          $result['data3'] = $query_3->result_array ();
+      }
+        return $result;
+      
+      
+  }
   
 }

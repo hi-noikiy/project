@@ -10,8 +10,6 @@
 	<table class="table table-hover table-striped">
 	    <thead>
 	        <tr>
-	            <th>游戏</th>
-	            <th style="width:350px;display:inline-block;word-wrap: break-word; overflow:hidden; text-overflow:ellipsis;">区服</th>
 				<th>物品</th>
 	            <th>录入时间</th>
 	            <th>操作者</th>
@@ -31,9 +29,7 @@
 	    <tbody>
 	       	<?php foreach($info as $v){ ?>
 	        <tr>
-	            <td><?=isset($gameInfo[$v->game_id]) ? $gameInfo[$v->game_id] : $v->game_id; ?></td>
-				<td style="width:350px;display:inline-block; word-wrap: break-word; overflow:hidden; text-overflow:ellipsis;"><?=isset($gameServer[$v->game_id][$v->server_id]) ? $gameServer[$v->game_id][$v->server_id] : $v->server_id; ?></td>
-				<td>
+					<td>
 					<?=$goodsType[$v->type1].':'; ?><?=!$v->type1 ? getAddGoodName($v->param1).' ': $v->param1;?>
 					<?=$v->param2 ? $goodsType[$v->type2].':' .(!$v->type2 ? getAddGoodName($v->param2):$v->param2): ''; ?>
 					<?=$v->param3 ? $goodsType[$v->type3].':' .(!$v->type3 ? getAddGoodName($v->param3):$v->param3): ''; ?>

@@ -23,8 +23,9 @@ if(!$body || !$bizContent || !$amount){
     exit();
 }
 $bizContentArr = json_decode($bizContent, true);
-$gameId = $bizContentArr['game_id'];
-$serverId = $bizContentArr['player_id'];
+$gameId = 9;
+$playerId = $bizContentArr['player_id'];
+$serverId = $bizContentArr['server_id'];
 $accountId = $bizContentArr['account_id'];
 $fenbaoId = $bizContentArr['fenbao_id'];
 
@@ -46,10 +47,11 @@ $obj->setAppId($appId);
 $obj->setMCHID($MCHID);
 $obj->setReportLevel($reportLevel);
 //定义支付参数
-$outTradeNo = $gameId.'_'.$serverId.'_'.$accountId.'_'.time().substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 2);
+$outTradeNo = $serverId.'_'.$accountId.'_'.time();
+//.substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 2);
 
 $obj->setBody($body);
-$obj->setAttach($fenbaoId);
+$obj->setAttach("{$playerId}_{$fenbaoId}");
 $obj->setOutTradeNo($outTradeNo);
 $obj->setAmont($amount);
 $obj->setTimeStart();

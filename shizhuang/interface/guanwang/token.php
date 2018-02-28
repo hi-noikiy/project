@@ -3,7 +3,7 @@
 * ==============================================
 * Copyright (c) 2015 All rights reserved.
 * ----------------------------------------------
-* ERP管理系统
+* 新增返回is_new字段
 * ==============================================
 * @date: 2016-7-14
 * @author: luoxue
@@ -14,115 +14,115 @@ include_once 'myEncrypt.php';
 global $mdString;
 $post = serialize($_POST);
 write_log(ROOT_PATH."log","guanwang_token_log_","post=$post, ".date("Y-m-d H:i:s")."\r\n");
+
 $array = array();
 $username = trim($_POST['username']);
-$pass = trim($_POST['password']);
-
-$code = trim($_POST['code']);
-if(!empty($code)){
-	$array['code'] = $code;
-	if (eregi('^[_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3}$', $username)){
-		//邮箱登陆
-	} else if(strlen($username) == 11 && preg_match('/^1[34578]{1}\d{9}$/', $username)){
-		//手机登陆
-	} else 
-		exit(json_encode(array('status'=>2, 'msg'=>'手机格式错误.')));
-}
-$sign = trim($_POST['sign']);
-
-$params = array(
-		'username',
-		'game_id',
-		'sign'
-);
-for ($i = 0; $i< count($params); $i++){
-	if (!isset($_POST[$params[$i]])) {
-		exit(json_encode(array('status'=>1, 'msg'=>'缺失参数'.$params[$i])));
-	} else {
-		if(empty($_POST[$params[$i]]))
-			exit(json_encode(array('status'=>1, 'msg'=>$params[$i].'参数不能为空.')));
-	}
-}
 if(!empty($username))
 	$array['username'] = $username;
+$pass = trim($_POST['password']);
 if(!empty($pass))
 	$array['password'] = $pass;
-
+$code = trim($_POST['code']);
+$bindtable = $bindwhere = '';
+if(!empty($code)){
+	$array['code'] = $code;
+}
+if(!empty($code) || !empty($pass)){
+	if (eregi('^[_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3}$', $username)){
+		//邮箱登陆
+		$bindtable = getAccountTable($username,'mail_bind');
+		$bindwhere = 'mail';
+	} else if(strlen($username) == 11 && preg_match('/^1[34578]{1}\d{9}$/', $username)){
+		//手机登陆
+		$bindtable = getAccountTable($username,'mobile_bind');
+		$bindwhere = 'mobile';
+	} else
+		exit(json_encode(array('status'=>2, 'msg'=>'phone or email error.')));
+}else{
+	$username = $username.'@u591';
+	$bindtable = getAccountTable($username,'token_bind');
+	$bindwhere = 'token';
+}
+$sign = trim($_POST['sign']);
 $gameId = intval($_POST['game_id']);
 $array['game_id'] = $gameId;
-$accountConn = $accountServer[$gameId];
-if(empty($accountConn))
-	exit(json_encode(array('status'=>1, 'msg'=>'gameId or account conn error.')));
+if(empty($gameId) || empty($gameId))
+	exit(json_encode(array('status'=>2, 'msg'=>'game id error.')));
 if(empty($array))
-	exit(json_encode(array('status'=>1, 'msg'=>'params error.')));
+	exit(json_encode(array('status'=>2, 'msg'=>'param error.')));
 $appKey = $key_arr['appKey'];
 $appSecret = $key_arr['appSecret'];
 if(!$appKey)
-	exit(json_encode(array('status'=>1, 'msg'=>'appKey error.')));
+	exit(json_encode(array('status'=>2, 'msg'=>'appKey error.')));
 if(!$appSecret)
-	exit(json_encode(array('status'=>1, 'msg'=>'appSecret error.')));
+	exit(json_encode(array('status'=>2, 'msg'=>'appSecret error.')));
 ksort($array);
 $md5Str = http_build_query($array);
 $mySign = md5(urldecode($md5Str).$appKey);
 if($mySign != $sign)
-	exit(json_encode(array('status'=>2, 'msg'=>'验证错误.')));
-$insert_id = '';
+	exit(json_encode(array('status'=>2, 'msg'=>'sign error.')));
+
+$isNew = 0;
 if(isset($code) && !empty($code)){
+	$myconn = SetConn('88');
 	//手机验证码登陆
-	$conn = SetConn('88');
-	$sql = "select addtime from web_message where username='$username' and code='$code'  order by id desc limit 1";
-	if(false == $query = mysqli_query($conn,$sql))
+	$sql = "select addtime from web_message where username='$username' and code='$code' and game_id='$gameId'  order by id desc limit 1";
+	if(false == $query = mysqli_query($myconn,$sql)){
 		exit(json_encode(array('status'=>1, 'msg'=>'web server sql error.')));
-	$rs = @mysqli_fetch_assoc($query);
-	if(empty($rs) || (time()-$rs['addtime'] > 900))
-		exit(json_encode(array('status'=>2, 'msg'=>'手机验证码不存在或已失效.')));
-	$conn = SetConn($accountConn);
-	$sql = "select id from account where NAME = '$username' limit 1";
-	if(false == $query = mysqli_query($conn,$sql))
-		exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
-	$result = @mysqli_fetch_assoc($query);
-	if(isset($result['id'])){
-		$insert_id = intval($result['id']);
-	} else {
-		$password = random_common();
-		$reg_time=date("ymdHi");
-		$sql_game = "insert into account (NAME, phone, password, reg_date) VALUES ('$username', '$username', '$password', '$reg_time')";
-		if(false == mysqli_query($conn,$sql_game)){
-			exit(json_encode(array('status'=>1, 'msg'=>'insert account error.')));
-		}
-		$insert_id = mysqli_insert_id($conn);
 	}
+	$rs = @mysqli_fetch_assoc($query);
+	if(empty($rs)){
+		exit(json_encode(array('status'=>2, 'msg'=>'verification code does not exist.')));
+	}
+	if(time()-$rs['addtime'] > 900){
+		exit(json_encode(array('status'=>2, 'msg'=>'verification failed.')));
+	}
+	$insertinfo = insertaccount($username,$bindtable,$bindwhere,$gameId);
+	if($insertinfo['status'] == '1'){
+		write_log(ROOT_PATH."log","guanwang_token_error_",json_encode($insertinfo).", ".date("Y-m-d H:i:s")."\r\n");
+		exit(json_encode($insertinfo));
+	}else{
+		$insert_id = $insertinfo['data'];
+		$isNew = 1;
+	}
+
 }  else if(isset($pass) && !empty($pass)){
 	//账号密码错误
-	$conn = SetConn($accountConn);
+	$snum = giQSAccountHash($username);
+	$conn = SetConn($gameId,$snum);
 	$password = md5($pass.$mdString);
-	$sql = "select id from account where NAME = '$username' and password='$password' limit 1";
+	$selectsql = "select accountid from $bindtable where $bindwhere = '$username' and gameid='$gameId' limit 1";
+	if(false == $query = mysqli_query($conn,$selectsql))
+		exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
+	$result = @mysqli_fetch_assoc($query);
+	if(!$result){
+		exit(json_encode(array('status'=>2, 'msg'=>'Account error, please enter again!')));
+	}
+	$accountid = $result['accountid'];
+	$snum = giQSModHash($accountid);
+	$conn = SetConn($gameId,$snum,1);//account分表
+	$acctable = betaSubTable($accountid,'account',999);
+	$sql = "select id, password from $acctable where id = '$accountid' limit 1";
 	if(false == $query = mysqli_query($conn,$sql)){
 		exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
 	}
-
 	$result = @mysqli_fetch_assoc($query);
-	if($result){
-		$insert_id = intval($result['id']);
+	if(!$result){
+		exit(json_encode(array('status'=>2, 'msg'=>'Account error, please enter again!')));
 	}
-
+	if($result['password'] != $password){
+		exit(json_encode(array('status'=>2, 'msg'=>'Wrong password, please enter again!')));
+	}
+	$insert_id = intval($result['id']);
 } else {
 	//快速登陆
-	$conn = SetConn($accountConn);
-	$channel_account = $username.'@u591';
-	$sql = " select id from account where channel_account = '$channel_account'";
-	if(false == $query = mysqli_query($conn,$sql))
-		exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
-	$result = @mysqli_fetch_assoc($query);
-	if($result){
-		$insert_id = intval($result['id']);
-	} else {
-		$password = random_common();
-		$reg_time=date("ymdHi");
-		$sql_game = "insert into account (NAME,password,reg_date,channel_account) VALUES ('$channel_account','$password','$reg_time','$channel_account')";
-		if(false == mysqli_query($conn,$sql_game))
-			exit(json_encode(array('status'=>1, 'msg'=>'insert account error.')));
-		$insert_id = mysqli_insert_id($conn);
+	$insertinfo = insertaccount($username,$bindtable,$bindwhere,$gameId);
+	if($insertinfo['status'] == '1'){
+		write_log(ROOT_PATH."log","guanwang_token_error_",json_encode($insertinfo).", ".date("Y-m-d H:i:s")."\r\n");
+		exit(json_encode($insertinfo));
+	}else{
+		$insert_id = $insertinfo['data'];
+		$isNew = 1;
 	}
 }
 if($pass)
@@ -130,7 +130,7 @@ if($pass)
 if($code)
 	unset($array['code']);
 if(!$insert_id)
-	exit(json_encode(array('status'=>2, 'msg'=>'账号或密码有误.')));
+	exit(json_encode(array('status'=>1, 'msg'=>'account id error.')));
 $array['account_id'] = $insert_id;
 $addtime = time();
 $array['expired'] = $addtime;
@@ -143,6 +143,8 @@ write_log(ROOT_PATH."log","guanwang_token_log_","sql=$sql, ".date("Y-m-d H:i:s")
 
 if(mysqli_query($conn,$sql)){
 	$data['token'] = $token;
+    $data['is_new'] = $isNew;
+    $data['account_id'] = $insert_id;
 	exit(json_encode(array('status'=>0, 'msg'=>'success', 'data'=>$data)));
 }
-exit(json_encode(array('status'=>1, 'msg'=>'token error.')));
+exit(json_encode(array('status'=>2, 'msg'=>'token error.')));

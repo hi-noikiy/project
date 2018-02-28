@@ -11,20 +11,20 @@ $result = $alipaySevice->check($arr);
 if($result) {//验证成功
 	$out_trade_no = $_POST['out_trade_no'];
 	$outTradeNoArr = explode('_', $out_trade_no);
-	$server_id = 0;
-	$game_id = $outTradeNoArr[0];
+	$game_id = 9;
+	$server_id= $outTradeNoArr[0];
 	$player_id = $outTradeNoArr[1];
 	$account_id = $outTradeNoArr[2];
 	$trade_status = $_POST['trade_status'];
 	if ($_POST['trade_status'] == 'TRADE_SUCCESS') {
 		//获取账号信息
 		$money = intval($_POST['total_amount']);
-		global $accountServer;
-		$accountConn = $accountServer[$game_id];
-		$conn = SetConn($accountConn);
-		$sql_account = "select NAME,dwFenBaoID,clienttype from account where id = '$account_id' limit 1";
-		$query_account = mysqli_query($conn,$sql_account);
-		$result_account = mysqli_fetch_assoc($query_account);
+		$snum = giQSModHash($account_id);
+		$conn = SetConn($game_id,$snum,1);//account分表
+		$acctable = betaSubTable($account_id,'account',999);
+		$sql = "select NAME,dwFenBaoID,clienttype from $acctable where id=$account_id limit 1;";
+		$query = mysqli_query($conn, $sql);
+		$result_account = @mysqli_fetch_array($query);
 		if(!$result_account['NAME']){
 			write_log(ROOT_PATH."log","alipay_wap_callback_error_", "account is not exist! post=$post,get=$get,".date("Y-m-d H:i:s")."\r\n");
 			exit("fail");//账号不存在
@@ -33,6 +33,7 @@ if($result) {//验证成功
 			$dwFenBaoID = $result_account['dwFenBaoID'];
 			$clienttype = $result_account['clienttype'];
 		}
+		
 		$conn = SetConn(88);
 		//判断订单id情况
 		$sql = "select id,rpCode from web_pay_log where OrderID ='$out_trade_no' limit 1";
@@ -43,13 +44,13 @@ if($result) {//验证成功
 			exit("success");//订单已存在
 		}
 		$Add_Time=date('Y-m-d H:i:s');
-		$sql="insert into web_pay_log (CPID,PayID,PayName,PlayerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,rpCode)";
-		$sql=$sql." VALUES (163,$account_id,'$PayName','$player_id','$money','$out_trade_no','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype',1)";
+		$sql="insert into web_pay_log (CPID,ServerID,PayID,PayName,PlayerID,PayMoney,data,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,rpCode)";
+		$sql=$sql." VALUES (163,$server_id,$account_id,'$PayName','$player_id','$money','$money','$out_trade_no','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype',1)";
 		if (mysqli_query($conn,$sql) == False){
 			write_log(ROOT_PATH."log","alipay_wap_callback_error_", $sql." ".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
 			exit("fail");
 		}
-		WriteCard_money(1,$server_id, $money,$player_id, $out_trade_no,8,0,1);
+		WriteCard_money(1,$server_id, $money,$player_id, $out_trade_no);
 		//统计数据
 		global $tongjiServer;
 		$tjAppId = $tongjiServer[$game_id];

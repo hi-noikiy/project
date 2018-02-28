@@ -1,0 +1,11 @@
+{
+    "require" : {
+        "paypal/rest-api-sdk-php" : "1.7.4"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}

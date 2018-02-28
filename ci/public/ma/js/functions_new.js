@@ -538,6 +538,13 @@ $(document).ready(function(){
     	    format: 'YYYY-MM-DD'
     	});
     }
+    
+    //Date
+    if ($('.date-picker-month')[0]) {
+    	$('.date-picker-month').datetimepicker({
+    	    format: 'YYYY-MM'
+    	});
+    }
 
     /*
      * Form Wizard

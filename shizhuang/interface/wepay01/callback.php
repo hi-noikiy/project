@@ -23,28 +23,28 @@ class PayNotifyCallBack extends WxPayNotify {
         write_log(ROOT_PATH."log","wepay_callback_log_","query=".json_encode($result).", ".date("Y-m-d H:i:s")."\r\n");
         if(array_key_exists("return_code", $result) && array_key_exists("result_code", $result) && $result["return_code"] == "SUCCESS" && $result["result_code"] == "SUCCESS")
         {
-        	$server_id = 0;
             $out_trade_no = $result['out_trade_no'];
             $outTradeNoArr = explode('_', $out_trade_no);
-            $game_id = $outTradeNoArr[0];
-            $player_id = $outTradeNoArr[1];
-            $account_id = $outTradeNoArr[2];
-
+            $game_id = 9;
+            $server_id = $outTradeNoArr[0];
+            $account_id = $outTradeNoArr[1];
+            $player_id = explode('_', $result['attach'])[0];
             $money = intval($result['total_fee']/100);
-            global $accountServer;
-            $accountConn = $accountServer[$game_id];
-            $conn = SetConn($accountConn);
-            $sql_account = "select NAME,dwFenBaoID,clienttype from account where id = '$account_id' limit 1";
-            $query_account = @mysqli_query($conn,$sql_account);
-            $result_account = @mysqli_fetch_assoc($query_account);
+            $snum = giQSModHash($account_id);
+            $conn = SetConn($game_id,$snum,1);//account分表
+            $acctable = betaSubTable($account_id,'account',999);
+            $sql = "select NAME,dwFenBaoID,clienttype from $acctable where id=$account_id limit 1;";
+            $query = mysqli_query($conn, $sql);
+            $result_account = @mysqli_fetch_array($query);
             if(!$result_account['NAME']){
-                write_log(ROOT_PATH."log","wepay_callback_error_","account is not exist. accountId=$account_id, ".date("Y-m-d H:i:s")."\r\n");
-                return false;
+            	write_log(ROOT_PATH."log","wepay_callback_error_","account is not exist. accountId=$account_id, ".date("Y-m-d H:i:s")."\r\n");
+            	return false;
             }else{
-                $PayName = $result_account['NAME'];
-                $dwFenBaoID = $result_account['dwFenBaoID'];
-                $clienttype = $result_account['clienttype'];
+            	$PayName = $result_account['NAME'];
+            	$dwFenBaoID = $result_account['dwFenBaoID'];
+            	$clienttype = $result_account['clienttype'];
             }
+           
             $conn = SetConn(88);
             //判断订单id情况
             $sql = "select id,rpCode from web_pay_log where OrderID ='$out_trade_no' limit 1";
@@ -55,8 +55,8 @@ class PayNotifyCallBack extends WxPayNotify {
                 return false;
             }
             $Add_Time=date('Y-m-d H:i:s');
-            $sql="insert into web_pay_log (CPID,PayID,PayName,PlayerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,rpCode)";
-            $sql=$sql." VALUES (129,$account_id,'$PayName','$player_id','$money','$out_trade_no','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype',1)";
+            $sql="insert into web_pay_log (CPID,ServerID,PayID,PayName,PlayerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,rpCode)";
+            $sql=$sql." VALUES (129,$server_id,$account_id,'$PayName','$player_id','$money','$out_trade_no','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype',1)";
             if (mysqli_query($conn,$sql) == False){
                 write_log(ROOT_PATH."log","wepay_callback_error_","sql=$sql,mysql error:".mysqli_error($conn).", ".date("Y-m-d H:i:s")."\r\n");
                 return false;

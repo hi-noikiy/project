@@ -340,7 +340,7 @@ class AutoRunBak extends CI_Controller{
     	$dbsdk = $this->load->database('sdk', true);
     	$sql = '';
     	$count = 0;
-    	$handle = fopen("/data/log/site/api/Register_20170904.log", "r"); 
+    	$handle = fopen("/data/log/site/api/Register_20170912.log", "r"); 
     	$i = 0;
     	if ($handle) {
     		while (!feof($handle)) {
@@ -476,7 +476,7 @@ SQL;
     			$dbsdk = $this->load->database('sdk', true);
     			$sql = '';
     			$count = 0;
-    			$handle = fopen("/data/log/site/api/DeviceActive_20170911.log", "r");    		                                
+    			$handle = fopen("/data/log/site/api/DeviceActive_20171024.log", "r");    		                                
     			$i = 0;
     			if ($handle) {
     				while (!feof($handle)) {
@@ -513,11 +513,7 @@ SQL;
     				$res = $this->db->insert('u_device_active', $this->data);
     				//echo json_encode($this->db->error());
     				//写入数据到唯一的设备激活表
-    				$chk = "select id from u_device_unique WHERE appid={$this->data['appid']} AND mac='{$this->data['mac']}' LIMIT 1";
-    				$qr  = $this->db->query($chk);
-    				if (!$qr || !$qr->result()) {
-    					$this->db->insert( 'u_device_unique', $this->data);    			
-    				}
+    				$this->db->insert('u_device_unique', $this->data);
     			}
     			
     			
@@ -563,6 +559,34 @@ SQL;
     			
     				unset($dbsdk);
     			}
-   
+    			
+    			public function bakeDeviceActive()
+    			{
+    			    $i=0;
+    			   echo 'kaishi';
+    			    $this->db = $this->load->database('sdk', true);
+    			    //$this->save($this->config->item(__FUNCTION__));
+    			  //  $chk = "select * from u_device_active WHERE appid=10002 order by id limit 600000,230000";
+    			    $chk = "select * from u_device_active WHERE appid=10002 and created_at>1508255999";
+    			
+    			    $qr  = $this->db->query($chk);
+    			    print_r($this->db->error());
+    			    if($qr){
+    			        $result = $qr->result_array();
+    			        foreach ($result as $v){
+    			            $res = $this->db->insert('u_device_unique', $v);
+    			            if( $res){
+    			                echo $i++;
+    			            }
+    			        }
+    			    }
+    			    
+    			}
+    			
+  
+    	
+    			
 
 }
+
+

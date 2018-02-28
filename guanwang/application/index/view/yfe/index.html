@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="keywords" content="衣范儿,eshow,时尚,换装,换装游戏,搭配手游,时尚社区,DIOR,香奈儿,阿玛尼,时装,美颜,女神,衣范儿下载,衣范儿官网" /> 
+  <meta name="description" content="《衣范儿》是一款全新时尚服饰搭配游戏，顶级时尚品牌、上万种服饰任意搭配，与现实品牌服饰同步更新换季，大牌时尚穿起来！明星时尚、潮流资讯实时更新，以独到犀利的时尚敏锐度，挖掘一线国际时尚新闻，做到游戏时尚完美融合！" /> 
+  <title>衣范儿官网_eShow Fashion_做最好的时尚导师_海牛网络</title> 
+	{load href="__static__/index/dist/assets/owl.carousel.css" /}
+	{load href="__static__/index/dist/assets/owl.theme.default.css" /}
+	{load href="__static__/index/css/yfestyle.css" /}
+	{load href="__static__/index/js/jquery.js" /}
+    {load href="__static__/index/dist/owl.carousel.js" /}
+</head>
+<body>
+    <header>
+        <a href="###">
+            <img id="logo" src="__static__/index/img/logo.png">
+            <!-- <span class="hide-logo">ESHOW FASHION</span> -->
+			<span class="hide-logo">ESHOW FASHION</span>
+        </a>
+    </header>
+    <div id="top" class="banner">
+        <img src="__static__/index/img/tou.png">
+    </div>
+    <div class="dl-box">
+        <a href="{$ios}" target="_blank">
+            <img src="__static__/index/img/ios-dl.png">
+        </a>
+        <a href="{$android}" target="_blank">
+            <img src="__static__/index/img/and-dl.png">
+        </a>
+    </div>
+    <div class="banner2">
+        <img src="__static__/index/img/banner2.jpg">
+    </div>
+    <a href="##" class="auto_play_box">
+        <div id="owl-demo" class="owl-carousel owl-theme">
+		 {volist name="banner" id="vo"}
+            <div class="item"><img src="{$vo.image_url}" alt="{$vo.name}"></div>
+		 {/volist}
+        </div>
+    </a>
+    <div class="line"></div>
+    <div class="video-title">
+        关于衣范儿
+    </div>
+    <div class="movie">
+        <video id="movie" src="/public/static/index/video/aaa.mp4"></video>
+        <a class="play" href="javascript:void(0)"><img src="__static__/index/img/play.png"></a>
+    </div>
+    <div class="toggle-text">
+        <div>
+            {$video['title']}
+        </div>
+    </div>
+    <a class="toggle-btn" href="javascript:void(0)"></a>
+    <div class="line"></div>
+    <div class="video-title">
+        {$infospan['title']}
+    </div>
+    <div class="show-box">
+		{volist name="infoList" id="vo"}
+			<a href="{$vo.url}" class="pic"><img src="{$vo.image_url}"></a>
+		{/volist}
+    </div>
+    <a id="back-top" href="javascript:void(0)">
+        <img src="__static__/index/img/top-fix.png">
+    </a>
+</body>
+<footer>
+    <img src="__static__/index/img/logo_btm.png">
+    <p>Copyright@2010-2015 福州海牛网络技术有限公司 All Right Reserved.</p>
+    <p>公司简介 联系我们 电话：0591-87678008</p>
+</footer>
+<script>
+    var owl = $('.owl-carousel');
+    $(document).ready(function(){
+        owl.owlCarousel({
+            items:1,
+            loop:true,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:false,
+            nav:true,
+            navText:["",""],
+            dots:false
+        });
+    });
+    $(window).scroll(function(){
+        var top=$(this).scrollTop();
+        $(".banner").css({"opacity":1-top/400});
+        if(top>300){
+            $("#logo").hide(160,function(){
+                $("header").css({height:100});
+                $(".hide-logo").show()
+            });
+            $(".dl-box").css({"margin-top":0})
+        }else if(top<=300){
+            $(".hide-logo").hide(160,function(){
+                $("header").css({height:210});
+                $("#logo").show();
+            });
+            $(".dl-box").css({"margin-top":58})
+        }
+    });
+    //展开文案
+
+    $(".toggle-btn").click(function(){
+        var h=$(".toggle-text div").height();
+        var _h=$(".toggle-text").height();
+        if(_h===54){
+            $(".toggle-text").css({"height":h})
+            setTimeout(function(){
+                $(".toggle-btn").addClass("top")
+            },1000)
+        }else{
+            $(".toggle-text").css({"height":54})
+            setTimeout(function(){
+                $(".toggle-btn").removeClass("top")
+            },1000)
+        }
+    });
+    //图片放大
+    /*$(".show-box .pic").mouseenter(function(){
+        var text=$(this).find("img").attr("src");
+        var _src=text.substr(0,text.length-4);
+        console.log(_src);
+        $(".position-img img").show().attr("src",_src+"_big.jpg")
+    })*/
+    $("#back-top").click(function(){
+        console.log(111)
+        $("html,body").animate({
+            scrollTop:0
+        })
+    })
+</script>
+<script>
+    //视频控制
+    var video=document.getElementById("movie");
+    $("#movie").click(function(){
+        if(video.paused){
+            video.play();
+            $(".play").hide()
+        }else if(!video.paused){
+            video.pause();
+            $(".play").show()
+        }
+    })
+	$(".play").click(function(){
+        if(video.paused){
+            video.play();
+            $(this).hide()
+        }
+    })
+</script>
+</html>
