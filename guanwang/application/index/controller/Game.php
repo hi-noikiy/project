@@ -16,7 +16,12 @@ class Game extends Common
         $where['lang'] = '';
         $gameList = $game->where($where)->order('sorts asc')->select();
         $this->assign('gameList', $gameList);
-        return $this->fetch();
+        if($result = checkMobile()){
+        	$html = 'game_mobile';
+        }else{
+        	$html = 'game';
+        }
+        return $this->fetch($html);
     }
     
 }

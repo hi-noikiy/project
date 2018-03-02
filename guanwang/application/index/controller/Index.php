@@ -17,7 +17,12 @@ class Index extends Common
         $gwhere['recommend'] = ['in', '1,2'];
         $gameList = $game->where($gwhere)->order('sorts asc')->select();
         $this->assign('gameList', $gameList);
-        return $this->fetch();
+		if($result = checkMobile()){
+        	$html = 'mobile';
+        }else{
+        	$html = 'index';
+        }
+        return $this->fetch($html);
     }
     
 }

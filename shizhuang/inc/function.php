@@ -19,7 +19,7 @@ function insertaccount($username,$bindtable,$bindwhere,$gameId,$passwd=''){
 		return array('status'=>1, 'msg'=>"$selectsql,". mysqli_error($conn));
 	$result = @mysqli_fetch_assoc($query);
 	if($result){
-		return array('status'=>0, 'data'=>intval($result['accountid']));
+		return array('status'=>0, 'data'=>intval($result['accountid']),'isNew'=>'0');
 	}
 	$reg_time = date("ymdHi");
 	$bind_time=date('Y-m-d H:i:s');
@@ -40,7 +40,7 @@ function insertaccount($username,$bindtable,$bindwhere,$gameId,$passwd=''){
 	if(false == mysqli_query($conn,$accountInsert)){
 		return  array('status'=>1, 'msg'=>"$accountInsert,". mysqli_error($conn));
 	}
-	return array('status'=>0,'msg'=>'success', 'data'=>$accountid);
+	return array('status'=>0,'msg'=>'success', 'data'=>$accountid,'isNew'=>'1');
 }
 // 获取ip
 function getIP_front() {

@@ -32,7 +32,12 @@ class Join extends Common
         $this->assign('hasPrevPage', $hasPrevPage);
         $this->assign('hasNextPage', $hasNextPage);
         $this->assign('jobList', $jobList);
-        return $this->fetch();
+        if($result = checkMobile()){
+        	$html = 'join_mobile';
+        }else{
+        	$html = 'join';
+        }
+        return $this->fetch($html);
     }
     
     public function jobInfo($id=1){

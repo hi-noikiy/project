@@ -25,9 +25,9 @@ class PayNotifyCallBack extends WxPayNotify {
         {
             $out_trade_no = $result['out_trade_no'];
             $outTradeNoArr = explode('_', $out_trade_no);
-            $game_id = 9;
-            $server_id = $outTradeNoArr[0];
-            $account_id = $outTradeNoArr[1];
+            $game_id = $outTradeNoArr[0];
+            $server_id = $outTradeNoArr[1];
+            $account_id = $outTradeNoArr[2];
             $player_id = explode('_', $result['attach'])[0];
             $money = intval($result['total_fee']/100);
             $snum = giQSModHash($account_id);
@@ -55,8 +55,8 @@ class PayNotifyCallBack extends WxPayNotify {
                 return false;
             }
             $Add_Time=date('Y-m-d H:i:s');
-            $sql="insert into web_pay_log (CPID,ServerID,PayID,PayName,PlayerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,rpCode)";
-            $sql=$sql." VALUES (129,$server_id,$account_id,'$PayName','$player_id','$money','$out_trade_no','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype',1)";
+            $sql="insert into web_pay_log (CPID,ServerID,PayID,PayName,PlayerID,PayMoney,data,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,rpCode)";
+            $sql=$sql." VALUES (129,$server_id,$account_id,'$PayName','$player_id','$money','$money','$out_trade_no','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype',1)";
             if (mysqli_query($conn,$sql) == False){
                 write_log(ROOT_PATH."log","wepay_callback_error_","sql=$sql,mysql error:".mysqli_error($conn).", ".date("Y-m-d H:i:s")."\r\n");
                 return false;

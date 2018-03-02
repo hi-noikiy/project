@@ -17,13 +17,33 @@ class WebsiteInfo extends Common
         $webInfo = $websiteInfo->where($where)->find();
         $this->assign('webInfo', $webInfo);
         if($type==1){
-            return $this->fetch('about_us');
+        	if($result = checkMobile()){
+	        	$html = 'about_us_mobile';
+	        }else{
+	        	$html = 'about_us';
+	        }
+	        return $this->fetch($html);
         }else if($type==2){
-            return $this->fetch('service_center');
+        	if($result = checkMobile()){
+	        	$html = 'service_center_mobile';
+	        }else{
+	        	$html = 'service_center';
+	        }
+            return $this->fetch($html);
         }else if($type==3){
-            return $this->fetch('contact_us');
+        	if($result = checkMobile()){
+	        	$html = 'contact_us_mobile';
+	        }else{
+	        	$html = 'contact_us';
+	        }
+            return $this->fetch($html);
         }else if($type==4){
-            return $this->fetch('business');
+        	if($result = checkMobile()){
+	        	$html = 'business_mobile';
+	        }else{
+	        	$html = 'business';
+	        }
+            return $this->fetch($html);
         }
         
     }

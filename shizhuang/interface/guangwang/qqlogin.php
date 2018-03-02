@@ -31,28 +31,17 @@ if($sign != $mysign){
 }
 $username=$openid.'@qq';
 
-$snum = giQSAccountHash($username);
-$conn = SetConn($gameId,$snum);
 $bindtable = getAccountTable($username,'token_bind');
 $bindwhere = 'token';
-$selectsql = "select accountid from $bindtable where $bindwhere = '$username' and gameid='$gameId' limit 1";
-if(false == $query = mysqli_query($conn,$selectsql)){
-	write_log(ROOT_PATH."log","qq_login_error_log_","sql error! , sql=$selectsql, ".date("Y-m-d H:i:s")."\r\n");
-	exit('3 0');                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-}
-$result = @mysqli_fetch_assoc($query);
-if($result){
-	$insert_id = $result['id'];
-	exit("0 $insert_id");
-}
 $insertinfo = insertaccount($username,$bindtable,$bindwhere,$gameId);
 if($insertinfo['status'] == '1'){
-	write_log(ROOT_PATH."log","qq_login_error_log_",json_encode($insertinfo).", ".date("Y-m-d H:i:s")."\r\n");
+	write_log(ROOT_PATH."log","qq_login_error_log_",json_encode($insertinfo).",post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
 	exit('3 0');
+}else{
+	$insert_id = $insertinfo['data'];
+	if($insertinfo['isNew'] == '1'){
+		exit("1 $insert_id");
+	}else{
+		exit("0 $insert_id");
+	}
 }
-$insert_id = $insertinfo['data'];
-if($insert_id){
-	write_log(ROOT_PATH."log","new_account_qq_login_log_","post=$post, get=$get, return=1 $insert_id, ".date("Y-m-d H:i:s")."\r\n");
-	exit("1 $insert_id");
-}
-exit("999 0");

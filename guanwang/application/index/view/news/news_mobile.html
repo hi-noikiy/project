@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    {load href="__static__/index/css/style_mobile.css" /}
+    {load href="__static__/index/css/about_us_mobile.css" /}
+    {load href="__static__/index/css/game_mobile.css" /}
+	<!--南美-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-1');
+	</script>
+	
+	
+	<!--越南-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-2"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-2');
+	</script>
+	
+	
+	<!--俄文-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-3');
+	</script>
+	
+	<!--国内-->
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-112166484-4"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'UA-112166484-4');
+	</script>
+    <title>海牛游戏</title>
+</head>
+<body>
+{include file="header_mobile" /}
+<div class="photo_show">
+    <div class="pic">
+        <img src="__static__/index/img/news_mobile.jpg" alt="game">
+    </div>
+</div>
+<div class="content cn" style="display: none;">
+    <div class="con_body">
+        {volist name="newsList" id="vo"}
+        <div class="news_border">
+            <div class="news_block clearfix">
+                <div class="news_pic">
+                    <img src="{$vo.image_url}">
+                </div>
+                <div class="news_con">
+                    <div class="text_tit clearfix">
+                        {$vo.title}
+                        <span class="time">{$vo.create_time}</span>
+                    </div>
+                    <div class="news_text">
+                        {$vo.description}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {/volist}
+        <div class="border_bottom"></div>
+        <div class="prev">
+            <span>第{$nowPage}页</span>
+            {if condition=" $hasPrevPage == 1 "}
+            <a href="javascript:turnPage({$prevPage});"> 上一页 </a>
+            {/if}
+            {if condition=" $hasNextPage == 1 "}
+            <a href="javascript:turnPage({$nextPage});"> 下一页 </a>
+            {/if}
+             全部: <span> {$pageNum} </span> 页,记录: <span> {$count} </span>
+            <div>跳转到:
+            <select name="pageSelect">
+                {for start="1" end="$pageNum" comparison="elt"}
+                <option {if condition=" $i==$nowPage "}selected="selected"{/if}>{$i}</option>
+                {/for}
+            </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content en" style="display: none;">
+    <div class="con_body">
+        {volist name="newsList" id="vo"}
+        <div class="news_border">
+            <div class="news_block clearfix">
+                <div class="news_pic">
+                    <img src="{$vo.image_url}">
+                </div>
+                <div class="news_con">
+                    <div class="text_tit clearfix">
+                        {$vo.title_en}
+                        <span class="time">{$vo.create_time}</span>
+                    </div>
+                    <div class="news_text">
+                        {$vo.description_en}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {/volist}
+        <div class="border_bottom"></div>
+        <div class="prev">
+            <span>Page {$nowPage}</span>
+            {if condition=" $hasPrevPage == 1 "}
+            <a href="javascript:turnPage({$prevPage});"> Previous </a>
+            {/if}
+            {if condition=" $hasNextPage == 1 "}
+            <a href="javascript:turnPage({$nextPage});"> Next </a>
+            {/if}
+             Total: <span> {$pageNum} </span> page,Record: <span> {$count} </span>
+             <div>
+             GOTO:
+            <select name="pageSelect">
+                {for start="1" end="$pageNum" comparison="elt"}
+                <option {if condition=" $i==$nowPage "}selected="selected"{/if}>{$i}</option>
+                {/for}
+            </select>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="footer_mobile" /}
+{load href="__static__/index/js/jquery.js" /}
+{load href="__static__/index/js/language.js" /}
+<script type="text/javascript">
+var num=5;
+function turnPage(page){
+    location.href="news?page="+page+"&num="+num;
+}
+
+$("select[name='pageSelect']").change(function(){
+    var page=$(this).val();
+    if(page!="{$nowPage}"){
+        turnPage(page);
+    }
+});
+</script>
+</body>
+</html>

@@ -32,7 +32,12 @@ class News extends Common
         $this->assign('hasPrevPage', $hasPrevPage);
         $this->assign('hasNextPage', $hasNextPage);
         $this->assign('newsList', $newsList);
-        return $this->fetch();
+        if($result = checkMobile()){
+        	$html = 'news_mobile';
+        }else{
+        	$html = 'news';
+        }
+        return $this->fetch($html);
     }
     
 }

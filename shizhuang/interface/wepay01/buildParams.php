@@ -23,7 +23,7 @@ if(!$body || !$bizContent || !$amount){
     exit();
 }
 $bizContentArr = json_decode($bizContent, true);
-$gameId = 9;
+$gameId = $bizContentArr['game_id'];
 $playerId = $bizContentArr['player_id'];
 $serverId = $bizContentArr['server_id'];
 $accountId = $bizContentArr['account_id'];
@@ -47,7 +47,7 @@ $obj->setAppId($appId);
 $obj->setMCHID($MCHID);
 $obj->setReportLevel($reportLevel);
 //定义支付参数
-$outTradeNo = $serverId.'_'.$accountId.'_'.time();
+$outTradeNo = $gameId.'_'.$serverId.'_'.$accountId.'_'.time();
 //.substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 2);
 
 $obj->setBody($body);
