@@ -176,6 +176,19 @@ class Config extends Common
     	$this->assign('type', $system);
     	return $this->fetch($type);
     }
+	
+	/**
+     * 魔兽官网站点配置
+     */
+    public function war()
+    {
+    	$system = ACTION_NAME;
+    	$where = ['system' => $system];
+    	$data = $this->cModel->where($where)->order('sorts ASC,id ASC')->select();
+    	$this->assign('data', $data);
+    	$this->assign('type', $system);
+    	return $this->fetch($type);
+    }
 
     /**
      * 系统配置

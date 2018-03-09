@@ -25,6 +25,7 @@ class Common extends Controller
         if(isset($_REQUEST['cn'])) $countrycode = 'cn';
         if(isset($_REQUEST['vn'])) $countrycode = 'vn';
         if(isset($_REQUEST['ru'])) $countrycode = 'ru';
+        if(isset($_REQUEST['ar'])) $countrycode = 'ar';
         if($countrycode){
         	 $_SESSION['lang']=$countrycode;
         }

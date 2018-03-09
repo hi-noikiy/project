@@ -61,21 +61,15 @@ foreach($valueMap as $key=>$value)
 	}
 	$i++;
 }
-/*$filename = dirname(__FILE__)."/payPublicKey1.pem";
 
-if(!file_exists($filename))
-{
-	write_log(ROOT_PATH."log","huawei_callback_error_","file is not exit, post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
-	exit($fail);
-}
-$pubKey = @file_get_contents($filename);*/
 $extendsInfo = $valueMap["requestId"];
 $extendsInfoArr = explode('_', $extendsInfo);
 $gameId = $extendsInfoArr[0];
 $serverId = $extendsInfoArr[1];
-$accountId = $extendsInfoArr[2];
-$type = $extendsInfoArr[3];
-$isgoods = $extendsInfoArr[4];
+$playerId = $extendsInfoArr[2];
+$accountId = $extendsInfoArr[3];
+$type = $extendsInfoArr[4];
+$isgoods = $extendsInfoArr[5];
 $pubKey = $key_arr[$gameId][$type]['appKey'];
 $openssl_public_key = @openssl_get_publickey($pubKey);
 write_log(ROOT_PATH."log","huawei_callback_result_","content={$content},sign={$sign},openssl_public_key={$pubKey},post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
@@ -97,10 +91,10 @@ if($ok)
 	}
 	$payMoney = intval($valueMap['amount']);
 	if(!$result){
-		global $accountServer;
-		$accountConn = $accountServer[$gameId];
-		$conn = SetConn($accountConn);
-		$sql_account = "select  NAME,dwFenBaoID,clienttype  from account where id = '$accountId'";
+		$snum = giQSModHash($accountId);
+		$conn = SetConn($gameId,$snum,1);//account分表
+		$acctable = betaSubTableNew($accountId,'account',999);
+		$sql_account = "select NAME,dwFenBaoID,clienttype from $acctable where id=$accountId limit 1;";
 		$query_account = mysqli_query($conn, $sql_account);
 		$result_account = @mysqli_fetch_assoc($query_account);
 		if(!$result_account['NAME']){
@@ -113,18 +107,16 @@ if($ok)
 		}
 		$conn = SetConn(88);
 		$Add_Time=date('Y-m-d H:i:s');
-		$sql="insert into web_pay_log (CPID,PayID,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype, rpCode,packageName)";
-		$sql=$sql." VALUES (172, $accountId,'$PayName','$serverId','$payMoney','$orderId','$dwFenBaoID','$Add_Time','1','$gameId','$clienttype', '1','$isgoods')";
+		$sql="insert into web_pay_log (CPID,PayID,PlayerID,PayName,ServerID,PayMoney,data,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype, rpCode,packageName)";
+		$sql=$sql." VALUES (172, $accountId,'$playerId','$PayName','$serverId','$payMoney','$payMoney','$orderId','$dwFenBaoID','$Add_Time','1','$gameId','$clienttype', '1','$isgoods')";
 		if (mysqli_query($conn,$sql) == False){
 			write_log(ROOT_PATH."log","huawei_callback_error_","sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
 			exit($fail);
 		}
 		//write_log(ROOT_PATH."log","huawei_callback_info_","OK".date("Y-m-d H:i:s")."\r\n");
-		WriteCard_money(1,$serverId, $payMoney,$accountId, $orderId,8,0,0,$isgoods);
+		WriteCard_money(1,$serverId, $payMoney,$playerId, $orderId,8,0,0,$isgoods);
 		//统计数据
-		global $tongjiServer;
-		$tjAppId = $tongjiServer[$gameId];
-		sendTongjiData($gameId,$accountId,$serverId,$dwFenBaoID,0,$payMoney,$orderId,1,$tjAppId);
+		sendTongjiData($gameId,$accountId,$serverId,$dwFenBaoID,0,$payMoney,$orderId);
 		exit($success);
 	}
 	exit($success);

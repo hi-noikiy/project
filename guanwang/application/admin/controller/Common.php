@@ -39,6 +39,7 @@ class Common extends Controller
         		'us'=>'口袋英文',
         		'vn'=>'口袋越南',
         		'ru'=>'口袋俄语',
+        		'ar'=>'口袋阿拉伯',
         		'war'=>'魔兽中文',
         );
         $this->assign('langarr', $langarr);
