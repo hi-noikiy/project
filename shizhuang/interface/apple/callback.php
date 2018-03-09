@@ -93,7 +93,7 @@ foreach ($orderInfo as $v){
         if(mysqli_query($conn, $insert_sql)){
             WriteCard_money(1,$server_id, $yuanbao,$player_id, $orderId,8,0,0,$isgoods);//写入游戏库
             //统计数据
-            sendTongjiData($game_id,$account_id,$server_id,$dwFenBaoID,0,$money,$orderId,1);
+            sendTongjiData($game_id,$account_id,$server_id,$dwFenBaoID,0,$money,$orderId);
             appData(array('accountid'=>$account_id,'serverid'=>$server_id,'channel'=>$dwFenBaoID,'money'=>$money,'orderid'=>$orderId,'created_at'=>time(),'mac'=>$mac,'gameid'=>$game_id));
             $returnMsg = 'success';
         }else{

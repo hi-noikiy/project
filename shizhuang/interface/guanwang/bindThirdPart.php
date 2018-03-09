@@ -51,12 +51,8 @@ for ($i = 0; $i< count($params); $i++){
 if(!preg_match("/^[A-Za-z0-9]{6,13}$/", $password))
 	exit(json_encode(array('status'=>2, 'msg'=>'密码格式为字母数字且6-13位之间.')));
 
-$accountConn = $accountServer[$gameId];
-if(empty($gameId) || empty($accountConn))
-	exit(json_encode(array('status'=>1, 'msg'=>'gameId or conn config should not empty.')));
-
 $conn = SetConn('88');
-$sql = "select addtime from web_message where username='$username' and code='$code'  order by id desc limit 1";
+$sql = "select addtime from web_message where username='$username' and code='$code' and game_id=$gameId  order by id desc limit 1";
 if(false == $query = mysqli_query($conn,$sql))
 	exit(json_encode(array('status'=>1, 'msg'=>'web server sql error.')));
 $rs = @mysqli_fetch_assoc($query);
@@ -76,28 +72,15 @@ $mySign = md5(urldecode($md5Str).$appKey);
 if($mySign != $sign)
 	exit(json_encode(array('status'=>2, 'msg'=>'验证错误.')));
 
-$conn = SetConn($accountConn);
-$sql = "select id from account where NAME = '$username' limit 1";
-if(false == $query = mysqli_query($conn,$sql))
-	exit(json_encode(array('status'=>1, 'msg'=>'check account is exists  sql error.')));
-
-$rs = mysqli_fetch_assoc($query);
-if(isset($rs['id'])) 
-	exit(json_encode(array('status'=>2, 'msg'=>'账号已存在.')));
-
-$sql2 = "select id,NAME, phone from account where id='$accountId' limit 1";
-if(false == $query2 = mysqli_query($conn,$sql2))
-	exit(json_encode(array('status'=>1, 'msg'=>'sql error.')));
-$rs2 = mysqli_fetch_assoc($query2);
-if(empty($rs2))
-	exit(json_encode(array('status'=>1, 'msg'=>'account does not exist.')));
-
-if($rs['phone'])
-	exit(json_encode(array('status'=>2, 'msg'=>'账号已绑定.')));
-$accountId = $rs2['id'];
+$bindtable = getAccountTable($username,'mobile_bind');
+$bindwhere = 'mobile';
 $password = md5($password.$mdString);
-$update_sql = "update account set NAME='$username', phone='$phone', password='$password' where id ='$accountId'";
-if(false == mysqli_query($conn,$update_sql))
-	exit(json_encode(array('status'=>1, 'msg'=>'fail')));
-exit(json_encode(array('status'=>0, 'msg'=>'success')));
+$result = bindaccount($username,$bindtable,$bindwhere,$gameId,$accountId,'phone',$password);
+if($result['status'] == '0'){
+	write_log(ROOT_PATH.'log','guanwang_bindThirdPart_success_',"result=".json_encode($result).date('Y-m-d H:i:s')."\r\n");
+	exit(json_encode($result));
+}else{
+	write_log(ROOT_PATH.'log','guanwang_bindThirdPart_error_',"{$result['msg']} , ".date('Y-m-d H:i:s')."\r\n");
+	exit(json_encode($result));
+}
 ?>

@@ -20,8 +20,6 @@ try{
     $sidInfo = SDKServerService::verifySession($sid);
     $ucid = $sidInfo->accountId;
     $creator = $sidInfo->creator;
-    $jsonData = json_encode($sidInfo);
-    write_log(ROOT_PATH."log","uc_new_result_log_","result=$jsonData, ".date("Y-m-d H:i:s")."\r\n");
     if($creator == 'PP'){
         //pp助手
         $ucid .='@pp';
@@ -35,31 +33,23 @@ try{
         //阿里 未接过
         $ucid .='@ali';
     }
-    $accountConn = $accountServer[$gameId];
-    $conn = SetConn($accountConn);
-    $channel_account = mysqli_real_escape_string($conn,$ucid);
-    $sql = "select id from account where channel_account='$channel_account' limit 1";
-    if(false == $query = mysqli_query($conn,$sql)){
-        write_log(ROOT_PATH."log","uc_new_login_error_","$accountConn, sql=$sql, mysql error, ".mysqli_error($conn)." ".date("Y-m-d H:i:s")."\r\n");
-        exit('3 0');
-    }
-    $result = @mysqli_fetch_assoc($query);
-    if($result){
-        $insert_id = $result['id'];
-        exit("0 $insert_id");
-    }
-    $insert_id = '';
-    $password = random_common();
-    $reg_time = date("ymdHi");
-    $sql_game = "insert into account (NAME,password,reg_date, channel_account) VALUES ('$channel_account','$password','$reg_time', '$channel_account')";
-    mysqli_query($conn, $sql_game);
-    $insert_id = mysqli_insert_id($conn);
-    if($insert_id){
-        write_log(ROOT_PATH."log","new_account_uc_new_log_","return=1 $insert_id,post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
-        exit("1 $insert_id");
+    $username = $ucid;
+    $bindtable = getAccountTable($username,'token_bind');
+    $bindwhere = 'token';
+    $insertinfo = insertaccount($username,$bindtable,$bindwhere,$gameId);
+    if($insertinfo['status'] == '1'){
+    	write_log(ROOT_PATH."log","uc_new_login_error_",json_encode($insertinfo).",post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
+    	exit('3 0');
+    }else{
+    	$insert_id = $insertinfo['data'];
+    	if($insertinfo['isNew'] == '1'){
+    		exit("1 $insert_id");
+    	}else{
+    		exit("0 $insert_id");
+    	}
     }
 } catch (SDKException $e){
     $msg = $e->getCode().' '.$e->getMessage();
-    write_log(ROOT_PATH."log","uc_new_login_error_","result=$msg ".date("Y-m-d H:i:s")."\r\n");
+    write_log(ROOT_PATH."log","uc_new_result_log_","result=$msg ".date("Y-m-d H:i:s")."\r\n");
     exit('4 0');
 }

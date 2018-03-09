@@ -26,7 +26,8 @@ class Activity extends Common
             $activityList[$k]['end_time']=date('Y-m-d', $v['end_time']);
         }
         $this->assign('activityList', $activityList);
-        if($result = checkMobile()){
+		
+        if(checkMobile()){
        		$html = 'activity_mobile';
         }else{
         	$html = 'activity';

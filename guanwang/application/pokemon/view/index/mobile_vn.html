@@ -13,8 +13,9 @@
     {load href="__static__/pokemon/css/pmstyle.css" /}
 </head>
 <body>
-<div id="fullpage">
+<div id="fullpage" lang="{$lang}">
     <div class="section" style="background:url('__static__/pokemon/img/vietnam/moblie_indexBg.png') center center no-repeat;background-size: 100% 100%;" id="index_1">
+    	{include file="header_mobile_lang" /}
         {include file="header_mobile_vn" /}
         <a id="load" href="javascript:downLoadApp();">
             <img src="__static__/pokemon/img/vietnam/down_load.png">
@@ -152,6 +153,7 @@
 {load href="__static__/pokemon/js/jquery.fullpage.js" /}
 {load href="__static__/pokemon/dist/owl.carousel.js" /}
 {load href="__static__/pokemon/js/jquery.carousel.js" /}
+{load href="__static__/pokemon/js/jquery.lang.js" /}
 <script>
 	<!--获取屏幕宽度-->
 	<!--轮播图变化函数-->
@@ -224,6 +226,7 @@
     	url = url[0]+"channel/mobile/id"+url[1];
     	location.href=url;
     }
+     
 </script>
 <script>
     function followWX(){

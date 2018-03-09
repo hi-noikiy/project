@@ -12,8 +12,10 @@ $post = serialize($_POST);
 $get = serialize($_GET);
 $gameId = $_REQUEST['game_id'];
 $serverId = $_REQUEST['server_id'];
+$playerId = $_REQUEST['player_id'];
 $accountId = $_REQUEST['account_id'];
 $amount = $_REQUEST['amount'];
+$giftId = $_REQUEST['gift_id'];
 $callbackInfo = $_REQUEST['callbackInfo'];
 
 write_log(ROOT_PATH."log","uc_orderQuery_info_","post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
@@ -22,29 +24,27 @@ if(!$serverId || !$gameId || !$accountId || !$amount || !$callbackInfo){
     echo json_encode(array('status'=>'1','msg'=>'参数错误.'));
     exit();
 }
-$accountConn = $accountServer[$gameId];
-$conn = SetConn($accountConn);
-if($conn == false){
-    echo json_encode(array('status'=>'1','msg'=>'数据库异常.'));
-    exit();
-}
 
-$sql = "select channel_account from account where id='$accountId' limit 1";
+$accountid = $accountId;
+$snum = giQSModHash($accountid);
+$conn = SetConn($gameId,$snum,1);//account分表
+$acctable = betaSubTableNew($accountid,'account',999);
+$sql = "select NAME from $acctable where id = '$accountid' limit 1";
 $query = @mysqli_query($conn, $sql);
 $result = @mysqli_fetch_assoc($query);
-if(!isset($result['channel_account'])){
+if(!isset($result['NAME'])){
     echo json_encode(array('status'=>'1','msg'=>'账号不存在.'));
     exit();
 }
 
-$appAccountId = mb_substr($result['channel_account'], 0, stripos($result['channel_account'],'@'));
+$appAccountId = mb_substr($result['NAME'], 0, stripos($result['NAME'],'@'));
 
-$cpOrderId = $gameId.'_'.$serverId.'_'.$accountId.'_'.date('Ymd').substr(implode(NULL, array_map('ord', str_split(substr(uniqid(), 7, 13), 1))), 0, 8);
+$cpOrderId = $gameId.'_'.$serverId.'_'.$playerId.'_'.$accountId.'_'.$giftId.'_'.time();
 
 $param = array(
     'callbackInfo'=>$callbackInfo,
     'amount'=>$amount,
-    'notifyUrl'=>'http://gunweb.u591.com:83/interface/uc/callback.php',
+    'notifyUrl'=>'http://fhweb.u776.com:86/interface/uc_new/callback.php',
     'cpOrderId'=>$cpOrderId,
     'accountId'=>$appAccountId,
 );

@@ -9,6 +9,39 @@
  * @author: Administrator
  * @return:
  */
+//帐号绑定
+function bindaccount($username,$bindtable,$bindwhere,$gameId,$accountId,$type='channel_account',$passwd=''){
+	$snum = giQSAccountHash($username);
+	$conn = SetConn($gameId,$snum);
+	$bind_time=date('Y-m-d H:i:s');
+	$selectsql = "select accountid from $bindtable where $bindwhere='$username' and gameid='$gameId' limit 1";
+	if(false == $query = mysqli_query($conn,$selectsql))
+		return array('status'=>1, 'msg'=>'account server sql error,'.mysqli_error($conn));
+	$result = @mysqli_fetch_assoc($query);
+	if($result){
+		return  array('status'=>0, 'data'=>$result['accountid'],'noNew'=>'1','msg'=>'success');
+	}
+	$sql_game = "insert into $bindtable ($bindwhere,accountid,bindtime,gameid) VALUES ('$username','$accountId', '$bind_time','$gameId')";
+	if(false == mysqli_query($conn,$sql_game)){
+		return  array('status'=>1, 'msg'=>'insert account error,'.mysqli_error($conn));
+	}
+	$insert_id = mysqli_insert_id($conn);
+	if($insert_id){
+		$snum = giQSModHash($accountId);
+		$myconn = SetConn($gameId,$snum,1);//account分表
+		$acctable = betaSubTable($accountId,'account',999);
+		$accountInsert = "update $acctable set $type='$username'".upsql." where id='$accountId';";
+		if($passwd){
+			$accountInsert = "update $acctable set $type='$username',password='$passwd' where id='$accountId';";
+		}
+		if(false ==mysqli_query($myconn,$accountInsert)){
+			return array('status'=>1, 'msg'=>$accountInsert.",".mysqli_error($myconn));
+		}
+		return array('status'=>0, 'noNew'=>'0','data'=>$accountId,'msg'=>'success');
+	}
+	else
+		return array('status'=>1, 'msg'=>'fail');
+}
 //帐号插入
 function insertaccount($username,$bindtable,$bindwhere,$gameId,$passwd=''){
 	!$passwd && $passwd = random_common();
@@ -37,7 +70,7 @@ function insertaccount($username,$bindtable,$bindwhere,$gameId,$passwd=''){
 	$myconn = SetConn($gameId,$snum,1);//account分表
 	$acctable = betaSubTable($accountid,'account',999);
 	$accountInsert = "insert into $acctable (id,NAME,reg_date,gameid,password) VALUES ('$accountid','$username', '$reg_time', '$gameId','$passwd');";
-	if(false == mysqli_query($conn,$accountInsert)){
+	if(false == mysqli_query($myconn,$accountInsert)){
 		return  array('status'=>1, 'msg'=>"$accountInsert,". mysqli_error($conn));
 	}
 	return array('status'=>0,'msg'=>'success', 'data'=>$accountid,'isNew'=>'1');
@@ -241,6 +274,13 @@ function betaSubTable($account_id, $table, $sum=200){
     $suffix = ($account_id%$sum)+1;
     $s = sprintf('%03d', $suffix);
     return $table.$s;
+}
+
+//游戏库分表
+function betaSubTableNew($account_id, $table, $sum=200){
+	$suffix = ($account_id%$sum)+1;
+	$s = sprintf('%03d', $suffix);
+	return $table.$s;
 }
 
 //统计数据处理

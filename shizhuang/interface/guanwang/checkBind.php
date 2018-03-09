@@ -31,10 +31,6 @@ for ($i = 0; $i< count($params); $i++){
 	}
 }
 
-$accountConn = $accountServer[$gameId];
-if(empty($accountConn))
-	exit(json_encode(array('status'=>1, 'msg'=>'gameId or conn config should not empty.')));
-
 $array['game_id'] = $gameId;
 $array['username'] = $username;
 ksort($array);
@@ -44,19 +40,23 @@ $mySign = md5(urldecode($md5Str).$appKey);
 if($mySign != $sign)
 	exit(json_encode(array('status'=>2, 'msg'=>'验证错误.')));
 
-$conn = SetConn($accountConn);
-$sql = "select id,NAME from account where channel_account='$username' limit 1";
-if(false == $query = mysqli_query($conn,$sql))
-	exit(json_encode(array('status'=>1, 'msg'=>'check account is exists  sql error.')));
 
-$rs = @mysqli_fetch_assoc($query);
-
-if(!isset($rs['id']))
-	exit(json_encode(array('status'=>2, 'msg'=>'账号不存在.')));
-$nameArr = explode('@', $rs['NAME']);
-if(isset($nameArr[1]) && ($nameArr[1] != 'u591' || $nameArr[1] !='weixin' || $nameArr[1] != 'qq'))
+$accountid = $username;
+$snum = giQSModHash($accountid);
+$conn = SetConn($gameId,$snum,1);//account分表
+$acctable = betaSubTable($accountid,'account',999);
+$sql = "select phone from $acctable where id = '$accountid' limit 1";
+if(false == $query = mysqli_query($conn,$sql)){
+	exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
+}
+$result = @mysqli_fetch_assoc($query);
+if(!$result){
+	exit(json_encode(array('status'=>2, 'msg'=>'Account error, please enter again!')));
+}
+if($result['phone']){
+	$data = array('username'=>$result['phone']);
+	exit(json_encode(array('status'=>0, 'msg'=>'registered', 'data'=>$data)));
+}else{
 	exit(json_encode(array('status'=>0, 'msg'=>'unregistered.')));
-
-$data = array('username'=>$rs['NAME']);
-exit(json_encode(array('status'=>0, 'msg'=>'registered', 'data'=>$data)));
+}
 ?>

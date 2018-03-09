@@ -54,8 +54,8 @@ class Index extends Common
         $lwhere['lang'] = _LATER;
         $linkList = $link->where($lwhere)->order('sorts asc')->select();
         $this->assign('linkList', $linkList);
-
-        if($result = checkMobile()){
+		
+        if(checkMobile()){
         	$html = 'mobile';
         }else{
         	$html = 'index';

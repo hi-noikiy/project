@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:82:"F:\wamp\www\project\guanwang\public/../application/admin\view\login\restlogin.html";i:1515641079;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:82:"F:\wamp\www\project\guanwang\public/../application/admin\view\login\restlogin.html";i:1516329961;}*/ ?>
 <form action="<?php echo url('Login/checkLogin'); ?>" method="POST" onsubmit="return false" >
     <div class="form-group has-feedback">
         <input type="text" class="form-control" name="username" placeholder="用户名">

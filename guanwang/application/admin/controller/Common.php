@@ -35,10 +35,11 @@ class Common extends Controller
         $treeMenu = $this->treeMenu();
         $this->assign('treeMenu', $treeMenu);
         $langarr =  array(
-        		''=>'中文',
-        		'us'=>'英文',
-        		'vn'=>'越南',
-        		'ru'=>'俄语'
+        		''=>'口袋中文',
+        		'us'=>'口袋英文',
+        		'vn'=>'口袋越南',
+        		'ru'=>'口袋俄语',
+        		'war'=>'魔兽中文',
         );
         $this->assign('langarr', $langarr);
         //加载多语言相应控制器对应字段

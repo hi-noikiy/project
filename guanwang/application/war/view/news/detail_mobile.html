@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>精灵世界VS</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no" />
+    {load href="__static__/war/css/pmstyle.css" /}
+</head>
+<body>
+{include file="header_mobile" /}
+<div class="bread">
+    <div class="moblie_content moblie_nav">
+        <a href="javascript:openIndex()">官网首页</a><a href="javascript:openNews()">新闻资讯</a><a href="javascript:void(0)">正文</a>
+    </div>
+</div>
+<div style="width: 100%;overflow: hidden;">
+<div class="detail_tit_m">
+    <div class="moblie_content">
+        <div class="tit">
+            {$data.title}
+        </div>
+        <div class="mess clearfix">
+            <div class="l">作者：<span>{$data.author}</span></div>
+            <div class="r">{$data.create_time}</div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+	.detail_content_m img{
+		width: 100%!important;
+		height: auto!important;
+	}
+	.detail_content_m p{
+		font-size: 1rem!important;
+		line-height: 2rem!important;
+	}
+</style>
+<div class="detail_content_m" style="width: 100%;overflow: hidden;">
+    {$data.content|htmlspecialchars_decode}
+    <div class="share_heart">
+        <a href="javascript:void(0)" class="heart" id="heart">
+            <div class="beat"></div> <span>{$data.thumb_up}</span>
+        </a>
+        <a href="javascript:void(0)" class="heart share" id="share">
+            <div class="share_icon"></div> <span>分享</span>
+        </a>
+    </div>
+</div>
+<div class="moblie_content moblie btn_link">
+    <a id="weixinAt" href="javascript:void(0)">
+        <img src="__static__/war/img/btn_m_wx.png">
+        <p style="color: #000;">关注微信公众号</p>
+        <h1 style="color: #000;">口袋妖怪VS游戏</h1>
+    </a>
+    <a href="javascript:joinQQ();">
+        <img src="__static__/war/img/btn_m_qq.png">
+        <p style="color: #000;">官方QQ</p>
+        <h1 style="color: #000;">一键加入</h1>
+    </a>
+    <a href="javascript:followWB();">
+        <img src="__static__/war/img/btn_m_wb.png">
+        <p style="color: #000;">关注微博</p>
+        <h1 style="color: #000;">互动爆料</h1>
+    </a>
+</div>
+<div class="bottom_tel">
+    <img class="tel_moblie" src="__static__/war/img/tel_1.png?t=123">
+    <div class="serive">客服电话</div>
+    <div class="number">0591-87688008</div>
+    <img class="starSky" src="__static__/war/img/bottom_bg.png">
+</div>
+</div>
+<div id="cover">
+    <div id="imageQrDiv"><img src="{$qrcode_wechart.value}" /></div>
+    <img class="close-cover" src="__static__/war/img/close_1.png">
+    <div class="cover-text">
+        <p>长按二维码保存图片</p>
+        <p>关注口袋妖怪VS游戏官方公众号</p>
+    </div>
+</div>
+<div style="width: 100%;overflow: hidden;">
+{include file="footer_mobile" /}
+</div>
+{load href="__static__/war/js/jquery.js" /}
+{load href="__static__/war/plugin/soshm-master/dist/soshm.js" /}
+</body>
+<script>
+    var newsUrl="{:url('News')}";
+    $("#heart").click(function(){
+        $(this).find(".beat").toggleClass("active");
+        thumbUp($(this).find(".beat").hasClass("active"));
+    })
+
+    function openIndex(){
+        location.href="{:url('Index/index')}";
+    }
+
+    function openNews(){
+        location.href=newsUrl.substr(0,newsUrl.length-5)+"/channel/mobile";
+    }
+
+    function thumbUp(isUp){
+        var thumbUp=0;
+        if(isUp){
+            thumbUp=1;
+        }
+        $.ajax({
+            type : "post",
+            url : newsUrl.substr(0,newsUrl.length-10)+"/thumbUp/id/{$data.id}/thumbUp/"+thumbUp,
+            dataType:'json',
+            success : function(datas) {
+                var upNum=$(".heart").find("span").text();
+                if(isUp){
+                    $("#heart").find("span").text(parseInt(upNum)+1);
+                }else{
+                    $("#heart").find("span").text(parseInt(upNum)-1);
+                }
+            }
+        })
+    }
+
+    $("#share").click(function(){
+        soshm.popIn({
+          title: '{$data.title}',
+          sites: ['weixin', 'weixintimeline', 'weibo', 'qzone', 'qq']
+        });
+    });
+</script>
+<script>
+    function followWX(){
+        var url="{$link_wechart.value}";
+        if(!isWeixin()){
+            alert("请在微信客户端点击此按钮进行关注");
+            return false;
+        }
+        if(url&&url!=''){
+            location.href="{$link_wechart.value}";
+        }   
+    }
+
+    function joinQQ(){
+        var url="{$link_qq.value}";
+        if(!isQQ()){
+            alert("请在QQ客户端点击此按钮加入");
+            return false;
+        }
+        if(url&&url!=''){
+            location.href="{$link_qq.value}";
+        } 
+    }
+
+    function followWB(){
+        var url="{$link_wb.value}";
+        if(url&&url!=''){
+            location.href="{$link_wb.value}";
+        } 
+    }
+
+    isWeixin = function (){
+        return deviceDetect('MicroMessenger');
+    }
+
+    isQQ = function (){
+        return deviceDetect('QQ');
+    }
+
+    /**
+    * 设备检测函数
+    * @param  {String} needle [特定UA标识]
+    * @return {Boolean}
+    */
+    var detectorUA = navigator.userAgent.toLowerCase();
+    deviceDetect = function(needle) {
+        needle = needle.toLowerCase();
+        return detectorUA.indexOf(needle) !== -1;
+    }
+    $("#weixinAt").click(function(){
+        $("#cover").show();
+    });
+    $(".close-cover").click(function(){
+        $("#cover").hide();
+    })
+</script>
+</html>

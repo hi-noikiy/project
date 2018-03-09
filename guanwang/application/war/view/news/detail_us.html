@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elf world VS</title>
+    {load href="__static__/war/css/pmstyle.css" /}
+    <style type="text/css">
+    .bd_weixin_popup{position: fixed;left: 50%;padding:15px;margin-left: -150px;top: 50%;margin-top: -150px;z-index: 1000;width:280px !important;height:330px !important;background:#fff;border:solid 1px #d8d8d8;z-index:11001;font-size:16px;display: none;}.bd_weixin_popup .bd_weixin_popup_head{font-size:16px;font-weight:bold;text-align:left;line-height:20px;height:20px;position:relative;color:#000}.bd_weixin_popup .bd_weixin_popup_head .bd_weixin_popup_close{width:16px;height:16px;position:absolute;right:0;top:0;color:#999;text-decoration:none;font-size:16px}.bd_weixin_popup .bd_weixin_popup_head .bd_weixin_popup_close:hover{text-decoration:none}.bd_weixin_popup .bd_weixin_popup_main{padding:30px 40px;min-height:150px;_height:150px}.bd_weixin_popup .bd_weixin_popup_foot{font-size:14px;text-align:left;line-height:22px;color:#666} 
+    </style>
+</head>
+<body>
+{include file="header_us" /}
+<div class="detail_top">
+    <img src="__static__/war/img/english/detail_top.jpg">
+</div>
+<div class="detail_tit">
+    <div class="content">
+        <a class="arrow_back" href="javascript:history.go(-1)"></a>
+        <div class="tit">{$data.title}</div>
+        <p>
+            <span>author：{$data.author}</span>
+            <span>{$data.create_time}</span>
+            <span>FB Page: <a href="https://business.facebook.com/LegendsofMonsters/" target="_blank">https://business.facebook.com/LegendsofMonsters/</a></span>
+        </p>
+    </div>
+</div>
+<div class="content detail_txt">
+    {$data.content|htmlspecialchars_decode}
+    <a href="javascript:void(0)" class="heart">
+        <div class="beat"></div> <span>{$data.thumb_up}</span>
+    </a>
+    <a class="back_top" href="#top"><img src="__static__/war/img/top_btn.png"></a>
+</div>
+<div id="weixinQrcodeDiv" class="bd_weixin_popup">
+    <div class="bd_weixin_popup_head">
+        <span>分享到微信朋友圈</span><a href="javascript:closeQrcodeDiv();" class="bd_weixin_popup_close">×</a>
+    </div>
+    <div id="bdshare_weixin_qrcode_dialog_qr" class="bd_weixin_popup_main">
+        <div id="weixin_qrcode"></div>
+    </div>
+    <div class="bd_weixin_popup_foot">
+        打开微信，点击底部的“发现”，<br>使用“扫一扫”即可将网页分享至朋友圈。
+    </div>
+</div>
+{include file="footer_us" /}
+{load href="__static__/war/js/jquery.js" /}
+{load href="__static__/war/js/top_nav.js" /}
+{load href="__static__/war/js/jquery.qrcode.min.js" /}
+<script>
+    var shareUrl="http://fhweb.u776.com:88/public/index.php/war/news/detail/id/"+{$data.id};
+    var newsUrl="{:url('News')}";
+    jQuery('#weixin_qrcode').qrcode({width:200,height: 200,text: shareUrl});
+
+    $(".heart").click(function(){
+        $(this).find(".beat").toggleClass("active");
+        thumbUp($(this).find(".beat").hasClass("active"));
+    })
+
+    $(window).scroll(function(){
+        if($(this).scrollTop()>400){
+            $(".back_top").css({"position":"fixed","bottom":"255px","top":"auto"})
+        }else{
+            $(".back_top").css({"position":"absolute","bottom":"auto","top":"400px"})
+        }
+    })
+    function openQrcodeDiv(){
+        $("#weixinQrcodeDiv").show();
+    }
+
+    function closeQrcodeDiv(){
+        $("#weixinQrcodeDiv").hide();
+    }
+
+    function thumbUp(isUp){
+        var thumbUp=0;
+        if(isUp){
+            thumbUp=1;
+        }
+        $.ajax({
+            type : "post",
+            url : newsUrl.substr(0,newsUrl.length-10)+"/thumbUp/id/{$data.id}/thumbUp/"+thumbUp,
+            dataType:'json',
+            success : function(datas) {
+                var upNum=$(".heart").find("span").text();
+                if(isUp){
+                    $(".heart").find("span").text(parseInt(upNum)+1);
+                }else{
+                    $(".heart").find("span").text(parseInt(upNum)-1);
+                }
+            }
+        })
+    }
+
+    function openShare(type){
+        if(type=='kj'){
+            shareToQzone();
+        }else if(type=='wb'){
+            shareToSinaWB();
+        }else if(type=='qq'){
+            shareToQQ();
+        }
+    }
+
+    //分享到新浪微博     
+    function shareToSinaWB(){  
+        var _shareUrl ='http://v.t.sina.com.cn/share/share.php?&appkey=895033136';    //真实的appkey，必选参数   
+        _shareUrl +='&url='+ encodeURIComponent(shareUrl);     //参数url设置分享的内容链接|默认当前页location，可选参数  
+        _shareUrl +='&title=' + encodeURIComponent('{$data.title}');    //参数title设置分享的标题|默认当前页标题，可选参数  
+       //_shareUrl +='&pic='+ encodeURIComponent('http://fhweb.u776.com:88/public/static/index/img/LOGO_color.png');  //参数pic设置图片链接|默认为空，可选参数 
+        _shareUrl +='&content=' + 'utf-8';   //参数content设置页面编码gb2312|utf-8，可选参数    
+       window.open(_shareUrl);  
+    }  
+      
+      
+    //分享到QQ空间  
+    function shareToQzone(){  
+        var _shareUrl ='http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?';  
+        _shareUrl += 'url=' +encodeURIComponent(shareUrl);   //参数url设置分享的内容链接|默认当前页location  
+        _shareUrl +='&showcount=' + 1;      //参数showcount是否显示分享总数,显示：'1'，不显示：'0'，默认不显示  
+        //_shareUrl +='&desc=' + encodeURIComponent('分享的描述111');   //参数desc设置分享的描述，可选参数  
+        _shareUrl +='&summary=' + encodeURIComponent('{$data.description}');   //参数summary设置分享摘要，可选参数  
+        _shareUrl +='&title=' + encodeURIComponent('{$data.title}');    //参数title设置分享标题，可选参数  
+        _shareUrl +='&site=' + encodeURIComponent('海牛游戏');   //参数site设置分享来源，可选参数  
+        //_shareUrl += '&pics='+ encodeURIComponent('http://fhweb.u776.com:88/public/static/index/img/LOGO_color.png');   //参数pics设置分享图片的路径，多张图片以＂|＂隔开，可选参数 
+       window.open(_shareUrl);
+    }  
+      
+      
+    //分享到QQ  
+    function shareToQQ(){  
+        var _shareUrl ='http://connect.qq.com/widget/shareqq/index.html?';  
+        _shareUrl +='url=' + encodeURIComponent(shareUrl);  //分享的链接
+        _shareUrl +='&title=' + encodeURIComponent('{$data.title}');    //参数title设置分享标题，可选参数    
+        _shareUrl +='&summary=' + encodeURIComponent('{$data.description}');   //参数summary设置分享摘要，可选参数 
+        _shareUrl +='&site=' + encodeURIComponent('海牛游戏');   //参数site设置分享来源，可选参数  
+        //_shareUrl +='&pics=' + encodeURIComponent('http://fhweb.u776.com:88/public/static/index/img/LOGO_color.png');    //分享的图片  
+       window.open(_shareUrl);
+    }  
+</script>
+</body>
+</html>

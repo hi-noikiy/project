@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Эльфы  мира  VS</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no" />
+    {load href="__static__/war/css/pmstyle.css" /}
+</head>
+<body>
+{include file="header_mobile_ru" /}
+<div class="bread">
+    <div class="moblie_content moblie_nav">
+        <a href="javascript:openIndex()">Новости</a><a href="javascript:void(0)">деятельность центра</a>
+    </div>
+</div>
+<div class="selected_card clearfix">
+    <a href="javascript:void(0)" class="card active">активность</a>
+    <a href="javascript:void(0)" class="card">последние мероприятия</a>
+</div>
+<div class="card_box">
+    <div class="moblie_content">
+        {volist name="activityList" id="vo"}
+            {if condition=" $vo.type == 1 "}
+            <div class="card_list">
+                <div class="top_block clearfix">
+                    <img src="{$vo.image_url}">
+                    <div class="right">
+                        <h1>{$vo.title}</h1>
+                        <p>времени действия：<span>{$vo.begin_time}</span>—<span>{$vo.end_time}</span></p>
+                    </div>
+                </div>
+                <div class="tips">
+                    {$vo.description}
+                </div>
+                <a href="javascript:{if condition=" $vo.url == '' "}void(0);{else/}window.open('{$vo.url}'){/if}" class="hide">
+                    <div class="tit">
+                        деятельность
+                    </div>
+                    <p>
+                        {$vo.content|htmlspecialchars_decode}
+                    </p>
+                </a>
+            </div>
+            {/if}
+        {/volist}
+        <!--<div class="moblie btn_link color_b">
+            <a name="weixinAt" href="javascript:void(0)">
+                <img src="__static__/war/img/russia/btn_m_wx.png">
+                <p>关注微信公众号</p>
+                <h1>口袋妖怪VS游戏</h1>
+            </a>
+            <a href="javascript:joinQQ();">
+                <img src="__static__/war/img/russia/btn_m_qq.png">
+                <p>官方QQ</p>
+                <h1>一键加入</h1>
+            </a>
+            <a href="javascript:followWB();">
+                <img src="__static__/war/img/russia/btn_m_wb.png">
+                <p>关注微博</p>
+                <h1>互动爆料</h1>
+            </a>
+        </div>-->
+        <div class="bottom_tel">
+            <img class="tel_moblie" src="__static__/war/img/russia/tel_1.png?t=123">
+            <div class="serive">телефон</div>
+            <div class="number">{$service_phone.value}</div>
+            <img class="starSky" src="__static__/war/img/russia/bottom_bg.png">
+        </div>
+    </div>
+</div>
+<div class="card_box endness">
+    <div class="moblie_content">
+        {volist name="activityList" id="vo" key="k"}
+            {if condition=" $vo.type == 2 "}
+            <div class="card_list">
+                <div class="top_block clearfix">
+                    <img src="{$vo.image_url}">
+                    <div class="right">
+                        <h1>{$vo.title}</h1>
+                        <p>времени действия：<span>{$vo.begin_time}</span>—<span>{$vo.end_time}</span></p>
+                    </div>
+                    <img class="m_end" src="__static__/war/img/russia/end.png">
+                </div>
+                <div class="tips">
+                    {$vo.description}
+                </div>
+                <a href="javascript:{if condition=" $vo.url == '' "}void(0);{else/}window.open('{$vo.url}'){/if}" class="hide">
+                    <div class="tit">
+                        деятельность
+                    </div>
+                    <p>
+                        {$vo.content|htmlspecialchars_decode}
+                    </p>
+                </a>
+            </div>
+            {/if}
+        {/volist}
+        <!--<div class="moblie btn_link color_b">
+            <a name="weixinAt" href="javascript:void(0)">
+                <img src="__static__/war/img/russia/btn_m_wx.png">
+                <p style="color: #000;">关注微信公众号</p>
+                <h1 style="color: #000;">口袋妖怪VS游戏</h1>
+            </a>
+            <a href="javascript:joinQQ();">
+                <img src="__static__/war/img/russia/btn_m_qq.png">
+                <p style="color: #000;">官方QQ</p>
+                <h1 style="color: #000;">一键加入</h1>
+            </a>
+            <a href="javascript:followWB();">
+                <img src="__static__/war/img/russia/btn_m_wb.png">
+                <p style="color: #000;">关注微博</p>
+                <h1 style="color: #000;">互动爆料</h1>
+            </a>
+        </div>-->
+        <div class="bottom_tel">
+            <img class="tel_moblie" src="__static__/war/img/russia/tel_1.png?t=123">
+            <div class="serive">телефон</div>
+            <div class="number">{$service_phone.value}</div>
+            <img class="starSky" src="__static__/war/img/russia/bottom_bg.png">
+        </div>
+    </div>
+</div>
+<!--<div id="cover">
+    <div id="imageQrDiv"><img src="{$qrcode_wechart.value}" /></div>
+    <img class="close-cover" src="__static__/war/img/russia/close_1.png">
+    <div class="cover-text">
+        <p>长按二维码保存图片</p>
+        <p>关注口袋妖怪VS游戏官方公众号</p>
+    </div>
+</div>-->
+<div style="width: 100%;overflow: hidden;">
+{include file="footer_mobile_ru" /}
+</div>
+{load href="__static__/war/js/jquery.js" /}
+<script>
+    $(".card_list").click(function(){
+        $(this).addClass("active");
+    });
+    $(".card").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        idx=$(this).index();
+        $(".card_box").eq(idx).show().siblings(".card_box").hide();
+    })
+
+    function openIndex(){
+        location.href="{:url('Mobile/index')}";
+    }
+</script>
+<script>
+    function followWX(){
+        var url="{$link_wechart.value}";
+        if(!isWeixin()){
+            alert("请在微信客户端点击此按钮进行关注");
+            return false;
+        }
+        if(url&&url!=''){
+            location.href="{$link_wechart.value}";
+        }   
+    }
+
+    function joinQQ(){
+        var url="{$link_qq.value}";
+        if(!isQQ()){
+            alert("请在QQ客户端点击此按钮加入");
+            return false;
+        }
+        if(url&&url!=''){
+            location.href="{$link_qq.value}";
+        } 
+    }
+
+    function followWB(){
+        var url="{$link_wb.value}";
+        if(url&&url!=''){
+            location.href="{$link_wb.value}";
+        } 
+    }
+
+    isWeixin = function (){
+        return deviceDetect('MicroMessenger');
+    }
+
+    isQQ = function (){
+        return deviceDetect('QQ');
+    }
+
+    /**
+    * 设备检测函数
+    * @param  {String} needle [特定UA标识]
+    * @return {Boolean}
+    */
+    var detectorUA = navigator.userAgent.toLowerCase();
+    deviceDetect = function(needle) {
+        needle = needle.toLowerCase();
+        return detectorUA.indexOf(needle) !== -1;
+    }
+
+    $("a[name='weixinAt']").click(function(){
+        $("#cover").show();
+    });
+    $(".close-cover").click(function(){
+        $("#cover").hide();
+    })
+</script>
+</body>
+</html>

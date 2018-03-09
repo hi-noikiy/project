@@ -4,12 +4,12 @@
   RewriteCond %{HTTP_HOST} ^pokemon.u776.com [NC]
   RewriteCond %{REQUEST_URI} (.*)/index.html$ [OR]
   RewriteCond %{REQUEST_URI} !(.*)$
-  RewriteRule ^(.*) http://www.u776.com/pokemon [P,L]
+  RewriteRule ^(.*) http://pokemon.u776.com/pokemon [P,L]
 
   RewriteCond %{HTTP_HOST} ^fh.u776.com [NC]
   RewriteCond %{REQUEST_URI} (.*)/index.html$ [OR]
   RewriteCond %{REQUEST_URI} !(.*)$
-  RewriteRule ^(.*) http://www.u776.com/index/yfe [P,L]
+  RewriteRule ^(.*) http://fh.u776.com/index/yfe [P,L]
   
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME} !-f

@@ -63,9 +63,7 @@ class PayNotifyCallBack extends WxPayNotify {
             }
             WriteCard_money(1,$server_id, $money,$player_id, $out_trade_no);
             //统计数据
-            global $tongjiServer;
-            $tjAppId = $tongjiServer[$game_id];
-            sendTongjiData($game_id,$account_id,$server_id,$dwFenBaoID,0,$money,$out_trade_no,1,$tjAppId);
+            sendTongjiData($game_id,$account_id,$server_id,$dwFenBaoID,0,$money,$out_trade_no);
             return true;
         }
         return false;

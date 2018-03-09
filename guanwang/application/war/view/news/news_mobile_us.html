@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Elf world VS</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+        <meta name="format-detection" content="telephone=no" />
+    {load href="__static__/war/css/mui.min.css" /}
+    {load href="__static__/war/css/applist.css" /}
+    {load href="__static__/war/css/pmstyle.css" /}
+    <style>
+        .mui-scroll-wrapper{
+            top:134px;
+        }
+    </style>
+</head>
+<body>
+    {include file="header_mobile_us" /}
+    <div class="bread">
+        <div class="moblie_content moblie_nav">
+            <a href="javascript:openIndex()">Website home</a><a href="javascript:void(0)">News information</a>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="selection" id="sss">
+            {volist name="newsTypeList" id="vo"}
+            <div class="selection-title">
+                {if condition=" ($typeId == $vo.id) or ($typeId == -1 and $key==0) "}
+                <div class="underline"></div>
+                {else/}
+                <div></div>
+                {/if}
+                <a href="javascript:openNews({$vo.id});" class="option">{$vo.name}</a>
+            </div>
+            {/volist}
+        </div>
+        <div id="pullrefresh" class="mui-content mui-scroll-wrapper padding-fix bar">
+            <div class="obj">
+                <div id="dataList" class="mui-table-view mui-table-view-chevron">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="up" class="top">
+        <img src="__static__/war/img/english/top.png">
+    </div>
+    {include file="footer_mobile_us" /}
+{load href="__static__/war/js/jquery.js" /}
+{load href="__static__/war/js/lib/jquery.fullPage.js" /}
+{load href="__static__/war/js/lib/jquery-ui.min.js" /}
+{load href="__static__/war/js/lib/mui.js" /}
+<script>
+    var newsUrl="{:url('News/news')}";
+    var detailUrl="{:url('News/detail')}";
+    var page=1;
+    var num=5;
+    var hasMoreData=true;
+    var pullUpFlag=false;
+    var pullDownFlag=false;
+    $(function(){
+        loadDatas(page,'up');
+    })
+
+    $("#up").click(function(){
+        $(".obj").css({
+            "transform":"translate3d(0px, 0px, 0px)",
+            "transition-duration":"500ms"
+        })
+    })
+
+    mui.init({
+      pullRefresh : {
+        container:"#pullrefresh",//下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+/*        down : {
+          callback :pullfreshDown //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+        },*/
+        up : {
+          contentrefresh:'Load up...',
+          contentnomore:'There\'s no more data',//可选，请求完毕若没有更多数据时显示的提醒内容；
+          callback :pullfreshUp //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+        }
+      }
+    });
+    mui('body').on('tap','a',function(){document.location.href=this.href;});
+    function pullfreshUp(){
+        mui('#pullrefresh').pullRefresh().endPullupToRefresh(!hasMoreData); //参数为true代表没有更多数据了。
+        if(pullUpFlag){
+            return false;
+        }
+        pullUpFlag=true;
+        if(hasMoreData){
+            setTimeout(function() {
+                loadDatas(page,'up');
+            },1000);
+        }
+    }
+
+    function pullfreshDown(){
+        console.log(pullDownFlag);
+        if(pullDownFlag){
+            return false;
+        }
+        pullDownFlag=true;
+        setTimeout(function() {
+            page=1;
+            hasMoreData=true;
+            loadDatas(page,'down');
+            mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+            mui('#pullrefresh').pullRefresh().refresh(true);
+        },1000);
+    }
+
+    function loadDatas(pageI,opt){
+        var async=true;
+        if(opt=='down'){
+            async=false;
+        }
+        $.ajax({
+            type : "get",
+            url : newsUrl.substr(0,newsUrl.length-9)+"newsAjax/typeId/{$typeId}/page/"+page+"/num/"+num,
+            async:async,
+            dataType:'json',
+            success : function(datas) {
+                var dataListHTML="";
+                if(datas.hasNextPage==0){
+                    hasMoreData=false;
+                }else{
+                    page++;
+                }
+                for (var i = 0; i<datas.newsList.length; i++) {
+                    var data=datas.newsList[i];
+                    var imgHTML='';
+                    var containerStyle='';
+                    if(data['image_url']&&data['image_url']!=''){
+                       imgHTML='<div class="container-img"><img src="'+data['image_url']+'"></div>'; 
+                    }else{
+                        containerStyle='style="width:95%;"';
+                    }
+                    var dataHTML='<a href="javascript:openDetail('+data['id']+');" class="container">'+imgHTML+'<div class="container-text" '+containerStyle+'><div class="text-title">'+data['title']+'</div><div class="text-con">'+data['description']+'</div><div class="text-date clearfix">'+data['create_time'].substr(5,5)+'</div></div></a>';
+                    dataListHTML+=dataHTML;
+                }
+                if(opt=='up'){
+                    dataListHTML=$("#dataList").html()+dataListHTML;
+                }
+                $("#dataList").html(dataListHTML);
+                if(opt=='up'){
+                    pullUpFlag=false;
+                }else if(opt=='down'){
+                    pullDownFlag=false;
+                }
+            }
+        });
+    }
+
+    function openIndex(){
+        location.href="{:url('Index/index')}";
+    }
+
+    function openNews(id){
+        location.href=newsUrl.substr(0,newsUrl.length-5)+"/channel/mobile/typeId/"+id;
+    }
+
+    function openDetail(id){
+//  	alert(detailUrl.substr(0,detailUrl.length-5)+"/channel/mobile/id/"+id)
+        location.href=detailUrl.substr(0,detailUrl.length-5)+"/channel/mobile/id/"+id;
+        
+    }
+</script>
+</body>
+</html>

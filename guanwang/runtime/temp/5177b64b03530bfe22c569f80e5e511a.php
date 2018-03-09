@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:78:"F:\wamp\www\project\guanwang\public/../application/index\view\index\index.html";i:1516183809;s:73:"F:\wamp\www\project\guanwang\public/../application/index\view\header.html";i:1516183830;s:73:"F:\wamp\www\project\guanwang\public/../application/index\view\footer.html";i:1516180793;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:78:"F:\wamp\www\project\guanwang\public/../application/index\view\index\index.html";i:1520389109;s:73:"F:\wamp\www\project\guanwang\public/../application/index\view\header.html";i:1519984368;s:73:"F:\wamp\www\project\guanwang\public/../application/index\view\footer.html";i:1516180793;}*/ ?>
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,19 +58,27 @@
 </head>
 <body>
 <header>
-    <div class="language clearfix">
+    <!--<div class="language clearfix">
         <a id="english" class="" href="javascript:void(0)"><img src="__static__/index/img/English.png"></a>
         <a id="chinese" class="active" href="javascript:void(0)"><img src="__static__/index/img/chinese.png"></a>
-        <!--<a id="vietnam" class="" href="javascript:void(0)"><img src="__static__/index/img/Vietnam.png"></a>
-        <a id="russia" class="" href="javascript:void(0)"><img src="__static__/index/img/Russia.png"></a>-->
-    </div>
+        <a id="vietnam" class="" href="javascript:void(0)"><img src="__static__/index/img/Vietnam.png"></a>
+        <a id="russia" class="" href="javascript:void(0)"><img src="__static__/index/img/Russia.png"></a>
+    </div>-->
+    <div class="langage">
+			<p>CN</p>
+			<img src="__static__/pokemon/img/blue_triangle.png"/>
+		</div>
+		<ul class="langage_ul">
+			<a><li>CN</li></a>
+			<a><li style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border-bottom: 1px solid #ACACAC;">EN</li></a>
+		</ul>
     <div class="navBox">
         <img id="logo" src="__static__/index/img/LOGO_color.png"/>
         <ul class="topNav cn" style="display: none;">
             <li><a href="<?php echo url('Index/index'); ?>">首页</a></li>
             <li><a href="<?php echo url('Game/game'); ?>">游戏</a></li>
             <li><a href="<?php echo url('News/news'); ?>">新闻</a></li>
-            <li><a href="http://www.u591.com/newpay/all.php">充值中心</a></li>
+            <!--<li><a href="http://www.u591.com/newpay/all.php">充值中心</a></li>-->
         </ul>
         <ul class="topNav en" style="display: none;">
             <li><a href="<?php echo url('Index/index'); ?>">HOME</a></li>
@@ -92,8 +100,8 @@
                 <dl class="btnBox">
                 	<!--<a class="cn" href="/pokemon?cn" style="position:relative;top:-30px;color: #EDDE34;font-size: 16px;margin-right: 30px;display: none;" target="_blank">进入官网</a>
                 	<a class="en" href="/pokemon?us" style="position:relative;top:-30px;color: #EDDE34;font-size: 16px;margin-right: 30px;display: none;" target="_blank">Access to the official network</a>-->
-                    <dt class="cn" style="display: none;"><a href="/pokemon?cn" target="_blank"><img src="__static__/index/img/official.png"></a></dt>
-                    <dt class="en" style="display: none;"><a href="/pokemon?us" target="_blank"><img src="__static__/index/img/official.png"></a></dt>
+                    <dt class="cn" style="display: none;"><a href="http://pokemon.u776.com?cn" target="_blank"><img src="__static__/index/img/official.png"></a></dt>
+                    <dt class="en" style="display: none;"><a href="http://pokemon.u776.com?us" target="_blank"><img src="__static__/index/img/official.png"></a></dt>
                     <dt><a href="<?php echo $vo['apple_url']; ?>" target="_blank"><img src="__static__/index/img/ios.png"></a></dt>
                     <dt><a href="<?php echo $vo['android_url']; ?>" target="_blank"><img src="__static__/index/img/android.png"></a></dt>
                 </dl>

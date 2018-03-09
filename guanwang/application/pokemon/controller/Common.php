@@ -26,19 +26,20 @@ class Common extends Controller
         if(isset($_REQUEST['vn'])) $countrycode = 'vn';
         if(isset($_REQUEST['ru'])) $countrycode = 'ru';
         if($countrycode){
-        	session('lang',$countrycode);
+        	 $_SESSION['lang']=$countrycode;
         }
-        $lang = session('lang');
+        $lang = $_SESSION['lang'];
         if($lang){
         	$countrycode = $lang;
         }else{
         	if(!$countrycode) $countrycode= strtolower(ip_info($ip,'countrycode'));
-        	session('lang',$countrycode);
+        	$_SESSION['lang']=$countrycode;
         }
         if(!$countrycode || $countrycode=='cn') $countrycode='';
         define('_LATER', $countrycode);
         $later = $countrycode?'_'.$countrycode:'';
         define('_LATERS', $later);
+		$this->assign('lang', $countrycode);
         $cwhere['system'] = 'pokemon'._LATERS;
         $configList = $config->where($cwhere)->select();
         foreach ($configList as $val){

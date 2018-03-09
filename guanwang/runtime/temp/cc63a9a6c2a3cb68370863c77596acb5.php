@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:80:"F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index.html";i:1516183966;s:75:"F:\wamp\www\project\guanwang\public/../application/pokemon\view\header.html";i:1516183848;s:75:"F:\wamp\www\project\guanwang\public/../application/pokemon\view\footer.html";i:1516180798;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:3:{s:80:"F:\wamp\www\project\guanwang\public/../application/pokemon\view\index\index.html";i:1519364446;s:75:"F:\wamp\www\project\guanwang\public/../application/pokemon\view\header.html";i:1519984369;s:75:"F:\wamp\www\project\guanwang\public/../application/pokemon\view\footer.html";i:1516330657;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,8 +21,8 @@
 		<ul class="langage_ul">
 			<a href="/pokemon?cn"><li>CN</li></a>
 			<a href="/pokemon?ru"><li>RU</li></a>
-			<a href="/pokemon?vn"><li>YN</li></a>
-			<a href="/pokemon?us"><li>EN</li></a>
+			<a href="/pokemon?vn"><li>VN</li></a>
+			<a href="/pokemon?us"><li style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">EN</li></a>
 		</ul>
 	<!--<div class="language clearfix" style="z-index: 900;">
         <a id="english" class="" href="/pokemon?us"><img src="__static__/index/img/English.png"></a>
@@ -31,10 +31,10 @@
         <a id="russia" class="active" href="/pokemon?ru"><img src="__static__/index/img/Russia.png"></a>
     </div>-->
     <img class="top_bg" src="__static__/pokemon/img/top_bg.png">
-    <div class="content clearfix">
+    <div class="content contentB clearfix">
         <div class="nav">
             <div class="nav_line"></div>
-            <a class="nav_btn" href="<?php echo url('Index/index'); ?>">官网首页<p>HOME</p></a>
+            <a class="nav_btn" href="/pokemon">官网首页<p>HOME</p></a>
         </div>
         <div class="nav">
             <div class="nav_line"></div>
@@ -131,7 +131,7 @@
         </div>
     </div>
     <img class="index_1_bg" src="__static__/pokemon/img/bg.jpg"/>
-    <div class="index_1_content">
+    <div class="index_1_content ">
         <div class="position_fix_btm">
             <div class="content clearfix">
                 <div class="auto_play_box">
@@ -155,9 +155,9 @@
                             <img class="bird" src="__static__/pokemon/img/nan_bird.png">
                         </div>
                         <?php $var = '1'; if(is_array($newsList) || $newsList instanceof \think\Collection || $newsList instanceof \think\Paginator): $i = 0; $__LIST__ = $newsList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$news): $mod = ($i % 2 );++$i;if($news['type_id'] == $vo['id']): if($var <= 3): ?>
-                        <a href="javascript:openDetail(<?php echo $news['id']; ?>)" class="list">
-                            <?php echo $news['title']; ?>
-                            <span><?php echo $news['ctime']; ?></span>
+                         <a href="javascript:openDetail(<?php echo $news['id']; ?>)" style="position: relative;" class="list">
+                            <p style="display:block;width:80%;margin:0px;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;z-index: 20;"><?php echo $news['title']; ?></p>
+                            <span style="position: absolute;right: 10px;top: 0px;z-index: 30;"><?php echo $news['ctime']; ?></span>
                         </a>
                         <?php $var = $var+1; endif; endif; endforeach; endif; else: echo "" ;endif; ?>
                     </div>

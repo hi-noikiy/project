@@ -1,0 +1,21 @@
+<div class="top_down">
+            <div class="moblie_content">
+                <img class="ball" src="__static__/war/img/vietnam/ball.png">
+                <div class="moblie_top_text">
+                    <h1>《Túi quái vật VS》</h1>
+                    <p>3D tiên nặng chế thú cưng</p>
+                </div>
+                <a class="down_load" href="javascript:downLoadApp();">
+                    <img src="__static__/war/img/vietnam/download_btn.png">
+                </a>
+            </div>
+        </div>
+        <script type="text/javascript">
+            function downLoadApp(){
+                if(navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)){
+                    location.href = "{$pokemon.apple_url}";
+                }else if(navigator.userAgent.match(/android/i)){
+                    location.href = "{$pokemon.android_url}";//android 下载地址
+                }
+            }
+        </script>

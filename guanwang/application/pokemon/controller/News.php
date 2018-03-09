@@ -22,7 +22,7 @@ class News extends Common
         $news = new \app\pokemon\model\VsNews();
         $where['status'] = 1;
         $where['lang'] = _LATER;
-        if($channel=='pc'){
+        if(checkMobile()){
             if($typeId!=0){
                 $where['type_id'] = $typeId;
             }
@@ -42,7 +42,8 @@ class News extends Common
             $this->assign('newsList', $newsList);
         }
         $this->assign('typeId', $typeId);
-        if($result = checkMobile()){
+		
+        if(checkMobile()){
         	$html = 'news_mobile';
         }else{
         	$html = 'news';
@@ -84,10 +85,11 @@ class News extends Common
         $data['click']=$data['click']+1;
         $news->where('id', $id)->update(['click' => $data['click']]);
         $this->assign('data', $data);
-        if($channel=='pc'){
-        	$html = 'detail';
+		
+		if(checkMobile()){
+       		$html = 'detail_mobile';
         }else{
-        	$html = 'detail_mobile';
+        	$html = 'detail';
         }
         $html .= _LATERS;
         return $this->fetch($html);

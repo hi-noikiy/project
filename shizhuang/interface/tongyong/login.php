@@ -20,7 +20,7 @@ $p = $_REQUEST ['p'];
 $gameId = intval ( $_REQUEST ['game_id'] );
 $webHost = 'http://fhweb.u776.com:86';
 switch ($sdkType) {
-	case 125 : //qq
+	case 125 : // qq
 		$url = $webHost . '/interface/guangwang/qqlogin.php';
 		$data ['openid'] = $token;
 		$data ['sign'] = $p;
@@ -28,7 +28,7 @@ switch ($sdkType) {
 		$rs = https_post ( $url, $data );
 		echo $rs;
 		break;
-	case 126 : //微信
+	case 126 : // 微信
 		$url = $webHost . '/interface/guangwang/weixinlogin.php';
 		$data ['openid'] = $token;
 		$data ['sign'] = $p;
@@ -36,9 +36,32 @@ switch ($sdkType) {
 		$rs = https_post ( $url, $data );
 		echo $rs;
 		break;
+	case 213 : // 阿里uc
+		$url = $webHost . '/interface/uc_new/login.php';
+		$data ['sid'] = $p;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 237 : // 华为
+		$url = $webHost . "/interface/huawei/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
 	case 700 :
 		$url = $webHost . '/interface/guanwang/login.php';
 		$data ['token'] = $p;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 701 :
+		$url = $webHost . '/interface/autologin/login.php';
+		$data ['token'] = $token;
+		$data ['channel'] = $p;
 		$data ['game_id'] = $gameId;
 		$rs = https_post ( $url, $data );
 		echo $rs;

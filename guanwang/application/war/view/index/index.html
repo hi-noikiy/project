@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <meta name="keywords" content="口袋妖怪,口袋妖怪VS,精灵世界,精灵宝可梦,宠物小精灵,手游,游戏,免费手游,养成,收集" /> 
+  <meta name="description" content="口袋妖怪VS新世代《精灵世界》完美重置复刻童年经典养成路线，是一款精灵收集养成、GBA策略对战、RPG角色冒险的手机游戏。" /> 
+  <title>精灵世界官网_口袋妖怪VS新世代_海牛网络</title> 
+    {load href="__static__/war/dist/assets/owl.carousel.css" /}
+    {load href="__static__/war/dist/assets/owl.theme.default.css" /}
+    {load href="__static__/war/css/carousel_pc.css" /}
+    {load href="__static__/war/css/pmstyle.css" /}
+    {load href="__static__/war/css/switch.css" /}
+</head>
+<body>
+{include file="header" /}
+<div class="index_1">
+    <div class="dl_block">
+        <div class="tips_text">
+            宠物收集养成、GBA策略对战、RPG角色冒险
+        </div>
+        <div class="dl">
+            <span>扫描关注微信公众号</span>
+            <img class="dl_code" src="{$qrcode_wechart.value}">
+            <div class="dl_btn">
+                <a class="ios" href="{$pokemon.apple_url}" target="_blank">
+                    <img style="left:18px;top:11px;" src="__static__/war/img/ios.png">IOS下载
+                </a>
+                <a class="adr" href="{$pokemon.android_url}" target="_blank">
+                    <img style="left:12px;top:10px;" src="__static__/war/img/adr.png">安卓下载
+                </a>
+            </div>
+            <a class="dl_gift" href="javascript:;">
+                <img src="__static__/war/img/gift.png">
+                <div class="gift">领取礼包</div>
+            </a>
+
+        </div>
+    </div>
+    <img class="index_1_bg" src="__static__/war/img/bg.jpg"/>
+    <div class="index_1_content ">
+        <div class="position_fix_btm">
+            <div class="content clearfix">
+                <div class="auto_play_box">
+                    <div id="owl-demo" class="owl-carousel owl-theme">
+                    {volist name="bannerList" id="vo"}
+                        {if condition=" $vo.type == 1 "}
+                        <div class="item"><a href="{if condition="($vo.url neq null) and ($vo.url != '')"}{$vo.url}{else/}javascript:void(0);{/if}" alt="{$vo.name}"><img src="{$vo.image_url}" alt="{$vo.name}" style="width: 520px;height: 300px;"></a></div>
+                        {/if}
+                    {/volist}
+                    </div>
+                </div>
+                <div class="list_box">
+                    <ul class="list_tit clearfix">
+                        {volist name="newsTypeList" id="vo"}
+                            <li {if condition=" $key == 0 "}class="active"{/if}><a href="javascript:void(0)">{$vo.name}</a><img class="triangle" src="__static__/war/img/blue_triangle.png"></li>
+                        {/volist}
+                        <a class="more" href="{:url('News/news')}">more+</a>
+                    </ul>
+                    {volist name="newsTypeList" id="vo"}
+                    <div class="list_block" id="list_{$key}" {if condition=" $key > 0 "}style="display: none;"{/if}>
+                        <div class="list_first">
+                            <a href="javascript:openNews({$vo.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$vo.description}</span></a>
+                            <img class="bird" src="__static__/war/img/nan_bird.png">
+                        </div>
+                        {assign name="var" value="1" /}
+                        {volist name="newsList" id="news"}
+                        {if condition=" $news.type_id == $vo.id "}
+                        {if condition=" $var <= 3 "}
+                         <a href="javascript:openDetail({$news.id})" style="position: relative;" class="list">
+                            <p style="display:block;width:80%;margin:0px;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;z-index: 20;">{$news.title}</p>
+                            <span style="position: absolute;right: 10px;top: 0px;z-index: 30;">{$news.ctime}</span>
+                        </a>
+                        {assign name="var" value="$var+1" /}
+                        {/if}
+                        {/if}
+                        {/volist}
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+            <div class="content clearfix" style="margin-top:70px">
+                {volist name="linkList" id="vo"}
+                {if condition=" $vo.platform == 1 "}
+                <a href="{$vo.url|default='javascript:void(0)'}" class="switch_block">
+                    <img style="left:20px;top:0;" src="{$vo.image_url}">
+                    <div class="switch"><div class="switch_content"></div></div>
+                    <div class="switch_text">{$vo.name}</div>
+                </a>
+                {/if}
+                {/volist}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="index_2">
+    <img class="index_2bg" src="__static__/war/img/index_2.png">
+    <div class="content">
+        <div class="index_2_tit">
+            游戏特色
+        </div>
+        <div class="caroursel_box">
+            <div class = "caroursel poster-main" data-setting = '{
+	        "width":1100,
+	        "height":500,
+	        "posterWidth":780,
+	        "posterHeight":480,
+	        "scale":0.8,
+	        "dealy":"5000",
+	        "algin":"middle"
+	    }'>
+                <ul class = "poster-list">
+                {volist name="bannerList" id="vo"}
+                    {if condition=" $vo.type == 2 "}
+                    <li class = "poster-item">
+                    <a href="{if condition="($vo.url neq null) and ($vo.url != '')"}{$vo.url}{else/}javascript:void(0);{/if}" alt="{$vo.name}">
+                    <img src="{$vo.image_url}" width = "100%" height="100%">
+                    </a>
+                    </li>
+                    {/if}                    
+                {/volist}
+                </ul>
+                <div class = "poster-btn poster-prev-btn"></div>
+                <div class = "poster-btn poster-next-btn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="alert-win" style="display: none">
+    <img class="close" src="__static__/war/img/close.png">
+    <div class="item"><span>恭喜你！</span>获得</div>
+    <div class="item">《精灵世界》官网特权礼包</div>
+    <div class="item"><input id="privilegeCode" type="text" value="{$privilege_code.value}"><a href="javascript:copyCode();">复制</a> </div>
+</div>
+{include file="footer" /}
+{load href="__static__/war/js/jquery.js" /}
+{load href="__static__/war/dist/owl.carousel.js" /}
+{load href="__static__/war/js/top_nav.js" /}
+{load href="__static__/war/js/jquery.carousel.js" /}
+</body>
+<script>
+    Caroursel.init($('.caroursel'));
+</script>
+<script>
+    var newsUrl="{:url('News/news')}";
+    var detailUrl="{:url('News/detail')}";
+    var owl = $('.owl-carousel');
+    $(document).ready(function(){
+        owl.owlCarousel({
+            items:1,
+            loop:true,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:false,
+            nav:true,
+            navText:["<",">"]
+        });
+    });
+    owl.mouseenter(function(){
+        owl.trigger('stop.owl.autoplay')
+    }).mouseleave(function(){
+        owl.trigger('play.owl.autoplay',[1000])
+    });
+    $(".close").click(function(){
+        $(this).parent(".alert-win").hide()
+    });
+    $(".dl_gift").click(function(){
+        $(".alert-win").show()
+    })
+
+    function copyCode(){   
+        var e=document.getElementById("privilegeCode");//对象是contents 
+        e.select(); //选择对象 
+        document.execCommand("Copy"); 
+        alert("复制成功");
+    }   
+
+    $(".list_tit li").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var i=$(this).index();
+        $("#list_"+i).show().siblings(".list_block").hide()
+    })
+
+    function openNews(id){
+        location.href=newsUrl.substr(0,newsUrl.length-5)+"/typeId/"+id;
+    }
+
+    function openDetail(id){
+        location.href=detailUrl.substr(0,detailUrl.length-5)+"/id/"+id;
+    }
+</script>
+</html>

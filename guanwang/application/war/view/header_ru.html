@@ -1,0 +1,107 @@
+<header id="top">
+	<div class="langage">
+			<p>RU</p>
+			<img src="__static__/war/img/blue_triangle.png"/>
+		</div>
+		<ul class="langage_ul">
+			<a href="/war?cn"><li>CN</li></a>
+			<a href="/war?ru"><li>RU</li></a>
+			<a href="/war?vn"><li>VN</li></a>
+			<a href="/war?us"><li style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;">EN</li></a>
+		</ul>
+	<!--<div class="language clearfix" style="z-index: 900;">
+        <a id="english" class="" href="/war?us"><img src="__static__/index/img/English.png"></a>
+        <a id="chinese" class="active" href="/war?cn"><img src="__static__/index/img/chinese.png"></a>
+        <a id="vietnam" class="" href="/war?vn"><img src="__static__/index/img/Vietnam.png"></a>
+        <a id="russia" class="active" href="/war?ru"><img src="__static__/index/img/Russia.png"></a>
+    </div>-->
+    <img class="top_bg" src="__static__/war/img/russia/top_bg.png">
+    <div class="content contentB clearfix" style="width: 1460px;">
+        <div class="nav" style="width: 200px;">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="{:url('Index/index')}">Главная</a>
+        </div>
+        <div class="nav" style="width: 200px;">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="{:url('News/news')}">Новости</a>
+        </div>
+        <div class="nav" style="width: 200px;">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="{:url('Activity/activity')}">Центр акции</a>
+        </div>
+        <img id="logo" src="__static__/war/img/russia/logo.png">
+        <div class="nav" style="width: 200px;">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="{$fuli_url.value}">Подарочный центр</a>
+        </div>
+        <div class="nav" style="width: 200px;" id="community">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="javascript:void(0)">Сообщество</a>
+        </div>
+        <div class="nav" style="width: 200px;" id="contact">
+            <div class="nav_line"></div>
+            <a class="nav_btn" style="padding-top: 10px;" href="javascript:void(0)">Поддержка</a>
+        </div>
+    </div>
+    <div class="nav_hover community">
+        <img class="hover_bg" src="__static__/war/img/russia/top_nav_bg.png">
+        <div class="content clearfix">
+        	 <div class="hover_block">
+                <div class="box">
+                    <img class="code" src="/public/static/war/img/russia/code.png">
+                    <p style="font-size: 14px;">сканирование здесь VK</p>
+                </div>
+            </div>
+            <!--<div class="hover_block">
+                <a href="{$baidu_bbs.value}" class="box">
+                    <img class="baidu" src="__static__/war/img/russia/baidu.png">
+                    <p>{$baidu_bbs.desc}</p>
+                </a>
+            </div>
+            <div class="hover_block">
+                <div class="box">
+                    <img class="code" src="{$qrcode_wechart.value}">
+                    <p>{$qrcode_wechart.desc}</p>
+                </div>
+            </div>
+            <div class="hover_block">
+                <div class="box">
+                    <img class="code" src="{$qrcode_wb.value}">
+                    <p>{$qrcode_wb.desc}</p>
+                </div>
+            </div>-->
+            <div class="community_block" style="width: 600px;">
+            	<p style="margin-top: 40px;">VK Page: <a href="https://vk.com/club152369645" target="_blank">https://vk.com/club152369645</a></p>
+            <!--{volist name="qq_group" id="vo"}
+                <p>{$vo.desc}：{$vo.value}</p>
+            {/volist}-->
+            </div>
+        </div>
+    </div>
+    <div class="nav_hover contact">
+        <img class="hover_bg" src="__static__/war/img/russia/top_nav_bg.png">
+        <div class="content clearfix">
+            <!--<div class="contact_block">
+                <img src="__static__/war/img/russia/QQ.png">
+                <div class="text_block">
+                {volist name="qq_service" id="vo"}
+                    <p>{$vo.desc}：{$vo.value}</p>
+                {/volist}
+                </div>
+            </div>
+            <div class="contact_block long_fix">
+                <img src="__static__/war/img/russia/tel_nav.png">
+                <div class="text_block">
+                    <h1>{$service_phone.desc}：{$service_phone.value}</h1>
+                    <p>{$service_online.desc}：{$service_online.value}</p>
+                </div>
+            </div>-->
+            <div class="contact_block long_fix" style="width: 100%;">
+                <img src="__static__/war/img/russia/tel_nav.png">
+                <div class="text_block">
+                    <h1 style="margin-top: 30px;">{$service_online.desc}：{$service_online.value}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

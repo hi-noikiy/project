@@ -84,13 +84,15 @@
             {if condition=" $hasNextPage == 1 "}
             <a href="javascript:turnPage({$nextPage});"> 下一页 </a>
             {/if}
-             全部: <span> {$pageNum} </span> 页,记录: <span> {$count} </span>,
-             跳转到:
+             全部: <span> {$pageNum} </span> 页,记录: <span> {$count} </span>
+      		<div> 
+           	 跳转到:
             <select name="pageSelect">
                 {for start="1" end="$pageNum" comparison="elt"}
                 <option {if condition=" $i==$nowPage "}selected="selected"{/if}>{$i}</option>
                 {/for}
             </select>
+            </div>
         </div>
     </div>
 </div>
@@ -118,13 +120,15 @@
             {if condition=" $hasNextPage == 1 "}
             <a href="javascript:turnPage({$nextPage});"> Next </a>
             {/if}
-             Total: <span> {$pageNum} </span> page,Record: <span> {$count} </span>,
+             Total: <span> {$pageNum} </span> page,Record: <span> {$count} </span>
+             <div>
              GOTO:
             <select name="pageSelect">
                 {for start="1" end="$pageNum" comparison="elt"}
                 <option {if condition=" $i==$nowPage "}selected="selected"{/if}>{$i}</option>
                 {/for}
             </select>
+            </div>
         </div>
     </div>
 </div>

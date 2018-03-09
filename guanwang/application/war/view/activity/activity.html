@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>精灵世界VS</title>
+    {load href="__static__/war/css/pmstyle.css" /}
+</head>
+<body>
+{include file="header" /}
+<div class="news_block1">
+    <img class="show" src="__static__/war/img/activity_center.jpg">
+    <div class="news_nav">
+        <div class="content clearfix activity">
+            <a href="javascript:void(0)" class="new_nav_block active">
+                <span>当前活动</span>
+                <img class="selected_fish" src="__static__/war/img/selected.png">
+                <div class="selected_line"></div>
+            </a>
+            <a href="javascript:void(0)" class="new_nav_block">
+                <span>往期活动</span>
+                <img class="selected_fish" src="__static__/war/img/selected.png">
+                <div class="selected_line"></div>
+            </a>
+        </div>
+    </div>
+</div>
+<div id="block_0" class="activity_content">
+    <div class="content clearfix">
+    {volist name="activityList" id="vo"}
+        {if condition=" $vo.type == 1 "}
+        <div class="activity_block">
+            <div class="hover_content">
+                <div class="hover_txt">
+                	<div class="hover_txt_box">
+	                    <div>活动奖励：</div>
+	                    <p>
+	                        {$vo.content|htmlspecialchars_decode}
+	                    </p>
+	                    <a href="javascript:{if condition=" $vo.url == '' "}void(0);{else/}window.open('{$vo.url}'){/if}">》查看详细《</a>
+	                </div>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="detail_btn">查看详情</a>
+            <div class="block_img">
+                <img src="{$vo.image_url}">
+            </div>
+            <div class="block_text">
+                <h1>{$vo.title}</h1>
+                <p>活动时间:<span>{$vo.begin_time}——{$vo.end_time}</span></p>
+                <div>{$vo.description}</div>
+            </div>
+        </div>
+        {/if}
+    {/volist}
+    </div>
+</div>
+
+<div id="block_1" class="activity_content end">
+    <div class="content clearfix">
+    {volist name="activityList" id="vo"}
+        {if condition=" $vo.type == 2 "}
+        <div class="activity_block">
+            <div class="hover_content">
+                <div class="hover_txt">
+                	<div class="hover_txt_box">
+	                    <div>活动奖励：</div>
+	                    <p>
+	                        {$vo.content|htmlspecialchars_decode}
+	                    </p>
+	                    <a href="javascript:void(0)">已结束</a>
+	                </div>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="end_img"><img src="__static__/war/img/end.png"></a>
+            <div class="block_img">
+                <img src="{$vo.image_url}">
+            </div>
+            <div class="block_text">
+                <h1>{$vo.title}</h1>
+                <p>活动时间:<span>{$vo.begin_time}——{$vo.end_time}</span></p>
+                <div>{$vo.description}</div>
+            </div>
+        </div>
+        {/if}
+    {/volist}
+    </div>
+</div>
+<div class="activity_bottom">
+    <img style="margin-left:30px;" src="__static__/war/img/pose2.png"><img class="activity_code" src="{$qrcode_game_wechart.value}"><img src="__static__/war/img/pose1.png">
+    <p>扫码关注口袋妖怪VS游戏公众号</p>
+    <p>了解最新福利活动资讯</p>
+</div>
+{include file="footer" /}
+{load href="__static__/war/js/jquery.js" /}
+{load href="__static__/war/js/top_nav.js" /}
+<script>
+    $(".new_nav_block").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        idx=$(this).index();
+        $("#block_"+idx).show().siblings(".activity_content").hide();
+    });
+    $(".activity_block").mouseenter(function(){
+        $(this).toggleClass("mouse_enter")
+    }).mouseleave(function(){
+        $(this).toggleClass("mouse_enter")
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tiên trên thế giới VS</title>
+    {load href="__static__/war/css/pmstyle.css" /}
+</head>
+<body>
+{include file="header_vn" /}
+<div class="news_block1">
+    <img class="show" src="__static__/war/img/vietnam/activity_center.jpg">
+    <div class="news_nav">
+        <div class="content clearfix activity">
+            <a href="javascript:void(0)" class="new_nav_block active">
+                <span style="padding-left: 55px;">Hoạt động hiện thời</span>
+                <img class="selected_fish" src="__static__/war/img/vietnam/selected.png">
+                <div class="selected_line" style="margin-left: -10px;"></div>
+            </a>
+            <a href="javascript:void(0)" class="new_nav_block">
+                <span style="padding-left: 120px;">Các hoạt động</span>
+                <img class="selected_fish" style="margin-left: 90px;" src="__static__/war/img/vietnam/selected.png">
+                <div class="selected_line" style="margin-left: 50px;"></div>
+            </a>
+        </div>
+    </div>
+</div>
+<div id="block_0" class="activity_content">
+    <div class="content clearfix">
+    {volist name="activityList" id="vo"}
+        {if condition=" $vo.type == 1 "}
+        <div class="activity_block">
+            <div class="hover_content">
+                <div class="hover_txt">
+                	<div class="hover_txt_box">
+	                    <div>Hoạt động giải thưởng：</div>
+	                    <p>
+	                        {$vo.content|htmlspecialchars_decode}
+	                    </p>
+	                    <a href="javascript:{if condition=" $vo.url == '' "}void(0);{else/}window.open('{$vo.url}'){/if}">》Xem chi tiết《</a>
+	                </div>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="detail_btn">Xem chi tiết</a>
+            <div class="block_img">
+                <img src="{$vo.image_url}">
+            </div>
+            <div class="block_text">
+                <h1>{$vo.title}</h1>
+                <p>Thời gian hoạt động:<span>{$vo.begin_time}——{$vo.end_time}</span></p>
+                <div>{$vo.description}</div>
+            </div>
+        </div>
+        {/if}
+    {/volist}
+    </div>
+</div>
+
+<div id="block_1" class="activity_content end">
+    <div class="content clearfix">
+    {volist name="activityList" id="vo"}
+        {if condition=" $vo.type == 2 "}
+        <div class="activity_block">
+            <div class="hover_content">
+                <div class="hover_txt">
+                	<div class="hover_txt_box">
+	                    <div>Hoạt động giải thưởng：</div>
+	                    <p>
+	                        {$vo.content|htmlspecialchars_decode}
+	                    </p>
+	                    <a href="javascript:void(0)">Đã kết thúc</a>
+	                </div>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="end_img"><img src="__static__/war/img/vietnam/end.png"></a>
+            <div class="block_img">
+                <img src="{$vo.image_url}">
+            </div>
+            <div class="block_text">
+                <h1>{$vo.title}</h1>
+                <p>Thời gian hoạt động:<span>{$vo.begin_time}——{$vo.end_time}</span></p>
+                <div>{$vo.description}</div>
+            </div>
+        </div>
+        {/if}
+    {/volist}
+    </div>
+</div>
+<div class="activity_bottom">
+    <img style="margin-left:30px;" src="__static__/war/img/vietnam/pose2.png"><img class="activity_code" src="__static__/war/img/vietnam/code.png"><img src="__static__/war/img/vietnam/pose1.png">
+    <p>Quét đến trang FB</p>
+</div>
+{include file="footer_vn" /}
+{load href="__static__/war/js/jquery.js" /}
+{load href="__static__/war/js/top_nav.js" /}
+<script>
+    $(".new_nav_block").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        idx=$(this).index();
+        $("#block_"+idx).show().siblings(".activity_content").hide();
+    });
+    $(".activity_block").mouseenter(function(){
+        $(this).toggleClass("mouse_enter")
+    }).mouseleave(function(){
+        $(this).toggleClass("mouse_enter")
+    })
+</script>
+</body>
+</html>

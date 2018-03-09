@@ -13,8 +13,9 @@
     {load href="__static__/pokemon/css/pmstyle.css" /}
 </head>
 <body>
-<div id="fullpage">
+<div id="fullpage" lang="{$lang}">
     <div class="section" style="background:url('__static__/pokemon/img/english/moblie_indexBg.png') center center no-repeat;background-size: 100% 100%;" id="index_1">
+    	{include file="header_mobile_lang" /}
         {include file="header_mobile_us" /}
         <a id="load" href="javascript:downLoadApp();">
             <img src="__static__/pokemon/img/english/down_load.png">
@@ -51,7 +52,7 @@
                         {volist name="newsList" id="news"}
                         {if condition=" $news.type_id == $vo.id "}
                         {if condition=" $var <= 3 "}
-                         <a href="javascript:openDetail({$news.id})" style="position: relative;" class="list">
+                        <a href="javascript:openDetail({$news.id})" style="position: relative;" class="list">
                             <p style="display:block;width:80%;margin:0px;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;z-index: 20;">{$news.title}</p>
                             <span style="position: absolute;right: 5px;top: 0px;z-index: 30;">{$news.ctime}</span>
                         </a>
@@ -82,13 +83,13 @@
                     {/volist}
                 </div>
                 <div class="moblie index_tit" style="font-size: 18px;">
-                    Game features
+                   Game features
                 </div>
                 <div class="moblie caroursel_box" style="height: 185px;">
                     <div class = "caroursel poster-main moblie" data-setting = '{
 	                "width":690,
 	                "height":185,
-	                "posterWidth":300,
+	                "posterWidth":360,
 	                "posterHeight":185,
 	                "scale":0.8,
 	                "dealy":"5000",
@@ -109,14 +110,14 @@
                         <div class = "poster-btn poster-next-btn" style="right: 50px;"></div>
                     </div>
                 </div>
-                <!--<div class="moblie btn_link">
+                <div class="moblie btn_link">
                     <a id="weixinAt" href="javascript:void(0)">
-                        <img src="__static__/pokemon/img/english/btn_m_wx.png">
+                        <img src="__static__/pokemon/img/btn_m_wx.png">
                         <p>Focus on WeChat public</p>
                         <h1>Pokemon VS game</h1>
                     </a>
                     <a href="javascript:joinQQ();">
-                        <img src="__static__/pokemon/img/english/btn_m_qq.png">
+                        <img src="__static__/pokemon/img/btn_m_qq.png">
                         <p>official QQ</p>
                         <h1>A key to join</h1>
                     </a>
@@ -125,7 +126,7 @@
                         <p>Focus on weibo</p>
                         <h1>Interactive revealed</h1>
                     </a>
-                </div>-->
+                </div>
                 <div class="bottom_tel">
                     <a href="https://business.facebook.com/LegendsofMonsters/"><img class="tel_moblie" src="__static__/pokemon/img/english/facebook.jpg?t=123"></a>
                     <!--<div class="serive">Telephone</div>
@@ -152,6 +153,7 @@
 {load href="__static__/pokemon/js/jquery.fullpage.js" /}
 {load href="__static__/pokemon/dist/owl.carousel.js" /}
 {load href="__static__/pokemon/js/jquery.carousel.js" /}
+{load href="__static__/pokemon/js/jquery.lang.js" /}
 <script>
 	<!--获取屏幕宽度-->
 	<!--轮播图变化函数-->
@@ -225,6 +227,7 @@
     	url = url[0]+"channel/mobile/id"+url[1];
     	location.href=url;
     }
+   
 </script>
 <script>
     function followWX(){
