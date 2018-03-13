@@ -19,7 +19,7 @@ function bindaccount($username,$bindtable,$bindwhere,$gameId,$accountId,$type='c
 		return array('status'=>1, 'msg'=>'account server sql error,'.mysqli_error($conn));
 	$result = @mysqli_fetch_assoc($query);
 	if($result){
-		return  array('status'=>0, 'data'=>$result['accountid'],'noNew'=>'1','msg'=>'success');
+		return  array('status'=>1, 'data'=>$result['accountid'],'noNew'=>'1','msg'=>"$username 已被注册活绑定");
 	}
 	$sql_game = "insert into $bindtable ($bindwhere,accountid,bindtime,gameid) VALUES ('$username','$accountId', '$bind_time','$gameId')";
 	if(false == mysqli_query($conn,$sql_game)){
@@ -37,7 +37,7 @@ function bindaccount($username,$bindtable,$bindwhere,$gameId,$accountId,$type='c
 		if(false ==mysqli_query($myconn,$accountInsert)){
 			return array('status'=>1, 'msg'=>$accountInsert.",".mysqli_error($myconn));
 		}
-		return array('status'=>0, 'noNew'=>'0','data'=>$accountId,'msg'=>'success');
+		return array('status'=>0, 'noNew'=>'0','data'=>$accountId,'msg'=>"$username");
 	}
 	else
 		return array('status'=>1, 'msg'=>'fail');

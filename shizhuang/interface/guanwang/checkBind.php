@@ -45,7 +45,7 @@ $accountid = $username;
 $snum = giQSModHash($accountid);
 $conn = SetConn($gameId,$snum,1);//account分表
 $acctable = betaSubTable($accountid,'account',999);
-$sql = "select phone from $acctable where id = '$accountid' limit 1";
+$sql = "select id,phone from $acctable where id = '$accountid' limit 1";
 if(false == $query = mysqli_query($conn,$sql)){
 	exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
 }

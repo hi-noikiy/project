@@ -12,10 +12,8 @@ $post = serialize($_POST);
 $get = serialize($_GET);
 $gameId = $_REQUEST['game_id'];
 $serverId = $_REQUEST['server_id'];
-$playerId = $_REQUEST['player_id'];
 $accountId = $_REQUEST['account_id'];
 $amount = $_REQUEST['amount'];
-$giftId = $_REQUEST['gift_id'];
 $callbackInfo = $_REQUEST['callbackInfo'];
 
 write_log(ROOT_PATH."log","uc_orderQuery_info_","post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
@@ -39,7 +37,7 @@ if(!isset($result['NAME'])){
 
 $appAccountId = mb_substr($result['NAME'], 0, stripos($result['NAME'],'@'));
 
-$cpOrderId = $gameId.'_'.$serverId.'_'.$playerId.'_'.$accountId.'_'.$giftId.'_'.time();
+$cpOrderId = $gameId.'_'.$serverId.'_'.$accountId.'_'.time();
 
 $param = array(
     'callbackInfo'=>$callbackInfo,

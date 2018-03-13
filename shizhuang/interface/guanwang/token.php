@@ -96,7 +96,7 @@ if(isset($code) && !empty($code)){
 		exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
 	$result = @mysqli_fetch_assoc($query);
 	if(!$result){
-		exit(json_encode(array('status'=>2, 'msg'=>'Account error, please enter again!')));
+		exit(json_encode(array('status'=>2, 'msg'=>'帐号不存在!')));
 	}
 	$accountid = $result['accountid'];
 	$snum = giQSModHash($accountid);
@@ -108,10 +108,10 @@ if(isset($code) && !empty($code)){
 	}
 	$result = @mysqli_fetch_assoc($query);
 	if(!$result){
-		exit(json_encode(array('status'=>2, 'msg'=>'Account error, please enter again!')));
+		exit(json_encode(array('status'=>2, 'msg'=>'帐号不存在')));
 	}
 	if($result['password'] != $password){
-		exit(json_encode(array('status'=>2, 'msg'=>'Wrong password, please enter again!')));
+		exit(json_encode(array('status'=>2, 'msg'=>'密码错误')));
 	}
 	$insert_id = intval($result['id']);
 } else {

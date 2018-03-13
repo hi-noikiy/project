@@ -12,7 +12,7 @@
          		'accept-charset'=>'utf-8',	
 			));?>   
             <table class="table table-hover">
-            	<!--  <tr>
+            	  <tr>
                     <th style="width:130px;line-height:30px;text-align:right">游戏</th>
                     <td>
                     	<select name="gameid" id="gameId" class="input-medium" required="required">
@@ -37,11 +37,11 @@
                                 ?>
                             </select>
                     </td>
-                </tr>-->
+                </tr>
                 <tr class="controller">
                     <th style="width:130px;line-height:30px;text-align:right">搜索类型</th>
                     <td>
-                    	<?=CHtml::dropDownList('type', $type, array('角色名', '角色ID', '账号名', '账号ID'), array('class'=>'input-small'))?>
+                    	<?=CHtml::dropDownList('type', $type, $typeList, array('class'=>'input-small'))?>
                     	<input type="text" placeholder="" name="name" value="<?=(isset($_POST['name']) && !empty($_POST['name'])) ? $_POST['name'] : '' ?>" class="input-medium" required="required">
                     </td>
                 </tr>     

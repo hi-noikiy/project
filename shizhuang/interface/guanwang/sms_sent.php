@@ -45,6 +45,20 @@ $my_sign = md5($md5Str.$appKey);
 
 if($sign != $my_sign)
 	exit(json_encode(array('status'=>2, 'msg'=>'验证错误.')));
+$snum = giQSAccountHash($phone);
+$conn = SetConn($game_id,$snum);
+$bindtable = getAccountTable($phone,'mobile_bind');
+$bindwhere = 'mobile';
+$selectsql = "select accountid from $bindtable where $bindwhere = '$phone' and gameid='$game_id' limit 1";
+if(false == $query = mysqli_query($conn,$selectsql)){
+	write_log(ROOT_PATH."log","duanxin_error_",$selectsql.",post=$post, ".date("Y-m-d H:i:s")."\r\n");
+	exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
+}
+$result = @mysqli_fetch_assoc($query);
+if($result){
+	exit(json_encode(array('status'=>7, 'msg'=>'手机已注册帐号')));
+}
+
 
 $OperID = "hainwl";
 $OperPass = "hnsy47";
@@ -56,7 +70,7 @@ $sql = "select count(id) as count from web_message where game_id='$game_id' and 
 if(false ==$query = mysqli_query($conn,$sql))
     exit(json_encode(array('status'=>1, 'msg'=>'web server sql error.')));
 $row = @mysqli_fetch_assoc($query);
-if($row['count'] >= 15)
+if($row['count'] >= 5)
 	exit(json_encode(array('status'=>2, 'msg'=>'短信发送次数不能超过5次.')));
 
 $sql = "select * from web_message where game_id='$game_id' and username='$phone' limit 1";
