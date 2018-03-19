@@ -123,10 +123,10 @@ function WriteCard_money($tabType, $ServerID, $money, $PayID, $OrderID, $type=8,
 			$sql .= ',wap_flag';
 			$mysql .= ",'$wap'";
 		}
-		if($id_buygoods){
+		/*if($id_buygoods){
 			$sql .= ',id_buygoods';
 			$mysql .= ",'$id_buygoods'";
-		}
+		}*/
 		$sql .= ')';
 		$mysql .= ')';
 		$sql = $sql . $mysql;

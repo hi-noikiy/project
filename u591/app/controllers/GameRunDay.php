@@ -25,8 +25,8 @@ class GameRunDay extends CI_Controller{
     }
     
     public function run_test(){
-    	$temid = '130524';
-    	$date = '20171212';
+    	$temid = '101533';
+    	$date = '20180225';
     	$this->getelves($temid,$date);
     }
     /**
@@ -52,6 +52,7 @@ class GameRunDay extends CI_Controller{
     private  function getTemplate($database,$start,$num,$pre,$temid,$date){
     	$data = [];
     	$database->reconnect();
+    	
     	$now = date('YmdHis');
     	for($i=$start;$i<=$num;$i++){
     		$preser = str_pad($i,3,0,STR_PAD_LEFT);
@@ -70,6 +71,170 @@ class GameRunDay extends CI_Controller{
     		}
     	}
     }
+    
+    
+    
+    public function getelvesNew()
+    {  
+    	ignore_user_abort(TRUE);
+    	$temid = $this->input->get ( 'temid' )?$this->input->get ( 'temid' ):$temid; // 精灵组
+    	$date = $this->input->get ( 'date' )?$this->input->get ( 'date' ):$date; // 日期
+   
+    	$servertype = $this->input->get('servertype')?$this->input->get ('servertype'):'';
+    	if(!$temid || !$date || !$servertype){
+    		exit(0);
+    	}
+    	$date = date('Ymd',strtotime($date));
+    	
+    	$dbsdk = $this->load->database('sdk',true);
+    	$delsql = "delete from game_elves where template_id in ($temid) and (logindate>$date and logindate<$date)";
+    	$dbsdk->query($delsql);
+    
+    //	$data = $this->common->getDbData();
+    	
+    	
+    	$sql = 'select DBName,idserver1 from g_dbconfig';
+    	if ($servertype==8){//hun
+    		$pokegame1 = $this->load->database('hun1',true);
+    		$pokegame2 = $this->load->database('hun2',true);
+    		
+    		//混服
+    		$query = $pokegame1->query($sql);
+    		$data = $query->result_array();
+    		foreach ($data as $v){
+    			if(empty($v['DBName'])){ //第一个库
+    				$v['DBName'] = 'pokegame1';
+    			}
+    			$myservers = explode(',', $v['idserver1']);
+    			foreach ($myservers as $value){
+    				if(substr($value, 1,1) == 9){ //pk服
+    					continue;
+    				}
+    				$myserver = explode('-', $value);
+    				$myserver[0] = intval(substr($myserver[0] , 1));
+    				if(!isset($myserver[1])){
+    					$myserver[1] = $myserver[0];
+    				}else{
+    					$myserver[1] = intval(substr($myserver[1] , 1));
+    				}
+    				$newdata[] = array($$v['DBName'],$myserver[0],$myserver[1],8);
+    				$showdata[] = array($myserver[0],$myserver[1],8);
+    			}
+    		}
+    		
+    		if(empty($newdata)){
+    			$newdata= array($pokegame1,1,10,8);
+    		}
+    		
+    		foreach ($newdata as $v){
+    			$this->getTemplateNew($v[0],$v[1],$v[2],$v[3],$temid,$date);
+    		}
+    		 
+    	}elseif ($servertype==6){//yinhe
+    		$pokegame1mha = $this->load->database('yinghe',true);
+    		$pokegame2mha = $this->load->database('yinghe2',true);
+    		
+    		
+    		$query = $pokegame1mha->query($sql);
+    		$data = $query->result_array();
+    		foreach ($data as $v){
+    			if(empty($v['DBName'])){ //第一个库
+    				$v['DBName'] = 'pokegame1mha';
+    			}
+    			$myservers = explode(',', $v['idserver1']);
+    			foreach ($myservers as $value){
+    				if(substr($value, 1,1) == 9){ //pk服
+    					continue;
+    				}
+    				$myserver = explode('-', $value);
+    				$myserver[0] = intval(substr($myserver[0] , 1));
+    				if(!isset($myserver[1])){
+    					$myserver[1] = $myserver[0];
+    				}else{
+    					$myserver[1] = intval(substr($myserver[1] , 1));
+    				}
+    				$newdata[] = array($$v['DBName'],$myserver[0],$myserver[1],6);
+    				$showdata[] = array($myserver[0],$myserver[1],6);
+    			}
+    		}
+    		if(empty($newdata)){
+    			$newdata=array($pokegame1mha,1,10,6);
+    		}
+    		
+    		foreach ($newdata as $v){
+    			$this->getTemplateNew($v[0],$v[1],$v[2],$v[3],$temid,$date);
+    		}
+    		 
+    	}elseif ($servertype==3){//yinyongbao
+    		$yingyongbao = $this->load->database('yingyongbao',true);
+    		$newdata[] = array($yingyongbao,1,90,3);
+    		foreach ($newdata as $v){
+    			$this->getTemplateNew($v[0],$v[1],$v[2],$v[3],$temid,$date);
+    		}
+    	}elseif ($servertype==15){//p8 andro
+    		
+    		
+    		$p8android = $this->load->database('p8android',true);
+    		$newdata[] = array($p8android,1,2,15);
+    		foreach ($newdata as $v){
+    			$this->getTemplateNew($v[0],$v[1],$v[2],$v[3],$temid,$date);
+    		}
+    		
+    
+    		
+    		 
+    	}elseif ($servertype==5){//p8ios
+    		$pokegame1p800 = $this->load->database('p8ios1',true);
+    		$pokegame2p800 = $this->load->database('p8ios2',true);
+    		$pokegame3p800 = $this->load->database('p8ios3',true);
+    		
+    		$newdata[]=array($pokegame1p800,1,370,5);
+    		foreach ($newdata as $v){
+    			$this->getTemplateNew($v[0],$v[1],$v[2],$v[3],$temid,$date);
+    		}
+    		 
+    		$newdata2[]=array($pokegame2p800,1,370,5);
+    		foreach ($newdata2 as $v){
+    			$this->getTemplateNew($v[0],$v[1],$v[2],$v[3],$temid,$date);
+    		}
+    		
+    		$newdata3[]=array($pokegame3p800,1,370,5);
+    		foreach ($newdata3 as $v){
+    			$this->getTemplateNew($v[0],$v[1],$v[2],$v[3],$temid,$date);
+    		}
+    		
+    		
+    	}elseif ($servertype==14){// 虎牙  14
+    	   
+    	}
+    	
+    
+   
+    }
+    public  function getTemplateNew($database,$start,$num,$pre,$temid,$date){
+    	$data = [];
+    	$database->reconnect();
+    	 
+    	$now = date('YmdHis');
+    	for($i=$start;$i<=$num;$i++){
+    		$preser = str_pad($i,3,0,STR_PAD_LEFT);
+    		$serverid = $pre.$preser;
+    		echo $serverid.PHP_EOL;
+    		$sql = "SELECT $date as logindate,$now as logdate,s.player_id,s.template_id,t.`level` as lev,t.vip_level,intimacy_level,t.server_id,(hp_ex2+atk_ex2+def_ex2+spatk_ex2+spdef_ex2+speed_ex2) as ex2 FROM u_eudemon$preser s,
+    		(SELECT b.id,a.vip_level,server_id,`level` FROM u_gift_recharge$preser a,(SELECT id,account_id,serverid,`level` FROM u_player$preser WHERE from_unixtime(`login_time`, '%Y%m%d')>=$date) b
+    		WHERE a.account_id=b.account_id) t WHERE s.template_id in($temid) and s.player_id=t.id";
+    		$query = $database->query($sql);
+    	
+    		if($query){
+    			$data = $query->result_array();
+    			if(!empty($data)){
+    				$this->insert_batch("game_elves", $data);
+    				unset($data);
+    			}
+    		}
+    	}
+    }
+    
     
     /**
      * 获得坐骑数据

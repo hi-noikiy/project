@@ -50,11 +50,12 @@ $bindtable = getAccountTable($username,'token_bind');
 $bindwhere = 'token';
 $insertinfo = insertaccount($username,$bindtable,$bindwhere,$gameId);
 if($insertinfo['status'] == '1'){
-	write_log(ROOT_PATH."log","huawei_login_error_",json_encode($insertinfo).",post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");
+	write_log(ROOT_PATH."log","huawei_login_error_",json_encode($insertinfo).",post=$post,get=$get,$HTTP_RAW_POST_DATA,file_in=$file_in, ".date("Y-m-d H:i:s")."\r\n");
 	exit('3 0');
 }else{
 	$insert_id = $insertinfo['data'];
 	if($insertinfo['isNew'] == '1'){
+		write_log(ROOT_PATH."log","new_account_huawei_log_","oppo new account login , post=$post,get=$get,$HTTP_RAW_POST_DATA,file_in=$file_in, "."return= 1 $insert_id  ".date("Y-m-d H:i:s")."\r\n");
 		exit("1 $insert_id");
 	}else{
 		exit("0 $insert_id");

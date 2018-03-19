@@ -524,6 +524,7 @@ class Frame extends CI_Controller {
 	public function joinDetail() {
 		if ($this::isAjax ()) {
 			$date1 = $this->input->get ( 'date1' ) ? $this->input->get ( 'date1', true ) : date ( 'Y-m-d', strtotime ( '-1 days' ) );
+			$where ['merge_server'] = $this->input->get ( 'merge_server' )? $this->input->get ( 'merge_server' ):0;
 			$type = $this->input->get ( 'type' );
 			$fg = 'vip_level';
 			$day = 7; // 默认显示天数
@@ -560,6 +561,68 @@ class Frame extends CI_Controller {
 				$where ['enddate'] = date ( 'Ymd', strtotime ( $date1 ) );
 			}
 			$data = $this->Sdk_sum_model->sumJoin ( $where, $field, $group );
+			
+			
+			
+			
+			
+			if($where ['merge_server']==1){
+					
+				$this->load->model ( 'Data_analysis_model' );
+				$id_serverlist = $this->Data_analysis_model->idServerlist( $table, $where, $field, $group, $order, $limit);
+					
+				foreach ($id_serverlist as $v){
+						
+					$idserver_list_all.=$v['idserverlist'].',';
+					$idserver_title_all.=$v['id'].',';
+				}
+				$idserver_list_all=rtrim($idserver_list_all,',');
+				$idserver_title_all=rtrim($idserver_title_all,',');
+					
+					
+				$idserver_list_all_new=explode(',',$idserver_list_all);
+				$idserver_title_all_new=explode(',',$idserver_title_all);
+					
+				$data_chang=$data;
+				$data_new=array();
+					
+				foreach ($data_chang  as $k=>$v){
+			
+					if(in_array($v['serverid'], $idserver_list_all_new) ){ 
+							
+						foreach ($id_serverlist  as $k2=>$v2){
+							$idserverlist=explode(',',$v2['idserverlist']);  
+								
+							if(in_array($v['serverid'], $idserverlist)){  
+									
+								foreach ($data_chang as $k3=>$v3){
+										
+									if($v2['id']==$v3['serverid']){ 
+											
+										$data_new[$k3]['allcount']+=$v['allcount'];
+										$data_new[$k3]['allaccount']+=$v['allaccount'];
+									}
+										
+								}
+							}
+								
+						}
+							
+							
+					} else {
+							
+						$data_new[$k]=$v;
+							
+					}
+						
+						
+						
+				}
+					
+				$data=$data_new;
+			}
+	
+	
 			foreach ( $data as $v ) {
 				if (! isset ( $newdata [$v [$fg]] )) {
 					$newdata [$v [$fg]] [$fg] = $v [$fg];
@@ -569,6 +632,11 @@ class Frame extends CI_Controller {
 				$dates [$v ['logdate']] = $v ['logdate'];
 			}
 			ksort ( $dates );
+			
+			
+			
+			
+			
 			if (! empty ( $newdata ))
 				echo json_encode ( [ 
 						'status' => 'ok',
@@ -1272,6 +1340,7 @@ class Frame extends CI_Controller {
 	public function serverDistribute() {
 		if ($this::isAjax ()) {
 			$where ['day'] = $this->input->get ( 'day' );
+			$channelId = $this->input->get ( 'show' );
 			$json_data = $outputData = $legend = $xAxis = [ ];
 			$bt = strtotime ( $this->input->get ( 'day' ) );
 			$et = strtotime ( $this->input->get ( 'day' ) );
@@ -1541,6 +1610,7 @@ class Frame extends CI_Controller {
 	        $date2 = $this->input->get ( 'date2' );
 	        $where['serverid']= $this->input->get ( 'serverid' );
 	        $where['date']= date( 'Ymd',strtotime ( $date) );
+	        $where['merge_server'] = $this->input->get('merge_server' )? $this->input->get('merge_server'):0;
 	
 	        $field="accountid";
 	        $group="";
@@ -1851,7 +1921,7 @@ class Frame extends CI_Controller {
 	
 			 
 			$where['date']=strtotime ( $date );
-			$where['date_table']=date('Ym',time());
+			$where ['date_table'] = date ( 'Ym', strtotime($date));
 			$where['date2']=strtotime ( $date2 );
 			
 	    	$where ['mac'] = $this->input->get ( 'para' ) ? $this->input->get ( 'para', true ) : '';

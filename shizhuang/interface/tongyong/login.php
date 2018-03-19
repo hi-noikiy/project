@@ -20,6 +20,14 @@ $p = $_REQUEST ['p'];
 $gameId = intval ( $_REQUEST ['game_id'] );
 $webHost = 'http://fhweb.u776.com:86';
 switch ($sdkType) {
+	case 99 : // oppo
+		$url = $webHost . '/interface/oppo/login.php';
+		$data ['token'] = $token;
+		$data ['fileid'] = $p;
+		$data ['gameid'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
 	case 125 : // qq
 		$url = $webHost . '/interface/guangwang/qqlogin.php';
 		$data ['openid'] = $token;
@@ -36,6 +44,14 @@ switch ($sdkType) {
 		$rs = https_post ( $url, $data );
 		echo $rs;
 		break;
+	case 129 : // 应用宝
+		$url = $webHost . '/interface/ysdk/login.php';
+		$data ['access_token'] = $token;
+		$data ['type'] = $p;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
 	case 213 : // 阿里uc
 		$url = $webHost . '/interface/uc_new/login.php';
 		$data ['sid'] = $p;
@@ -45,6 +61,14 @@ switch ($sdkType) {
 		break;
 	case 237 : // 华为
 		$url = $webHost . "/interface/huawei/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 239 : // vivo
+		$url = $webHost . "/interface/vivo/login.php";
 		$data ['user_token'] = $p;
 		$data ['uid'] = $token;
 		$data ['game_id'] = $gameId;

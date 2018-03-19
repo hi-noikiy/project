@@ -133,7 +133,7 @@ class AutoRunBak extends CI_Controller{
     {
     	$sql = '';
     	$count = 0;
-    	$handle = fopen("/data/log/site/api/index_20180102.log", "r");
+    	$handle = fopen("/data/log/site/api/index_20180130.log", "r");
     	$i = 0;
     	if ($handle) {
     		while (!feof($handle)) {
@@ -505,7 +505,7 @@ SQL;
     			$dbsdk = $this->load->database('sdk', true);
     			$sql = '';
     			$count = 0;
-    			$handle = fopen("/data/log/site/api/DeviceActive_20180117.log", "r");    		                                
+    			$handle = fopen("/data/log/site/api/DeviceActive_20180308.log", "r");    		                                
     			$i = 0;
     			if ($handle) {
     				while (!feof($handle)) {

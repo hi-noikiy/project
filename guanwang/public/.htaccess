@@ -5,6 +5,11 @@
   RewriteCond %{REQUEST_URI} (.*)/index.html$ [OR]
   RewriteCond %{REQUEST_URI} !(.*)$
   RewriteRule ^(.*) http://pokemon.u776.com/pokemon [P,L]
+  
+  RewriteCond %{HTTP_HOST} ^msxcw.u776.com [NC]
+  RewriteCond %{REQUEST_URI} (.*)/index.html$ [OR]
+  RewriteCond %{REQUEST_URI} !(.*)$
+  RewriteRule ^(.*) http://msxcw.u776.com/war [P,L]
 
   RewriteCond %{HTTP_HOST} ^fh.u776.com [NC]
   RewriteCond %{REQUEST_URI} (.*)/index.html$ [OR]

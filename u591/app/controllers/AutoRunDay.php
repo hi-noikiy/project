@@ -292,7 +292,7 @@ class AutoRunDay extends CI_Controller{
         }
     }
     
-    /**
+    /** 
      * 每日统计前7日行为表数据
      * cli模式运行
      *
@@ -543,9 +543,9 @@ class AutoRunDay extends CI_Controller{
     }
     function run_action()
     {
-    	$begin = strtotime('2018-01-01 00:00:00');
-        $end   = strtotime('2018-01-02 23:59:59');
-        $diff =1;//floor( ($end - $begin ) / 86400) ;// 1;
+    	$begin = strtotime('2018-01-27 00:00:00');
+        $end   = strtotime('2018-01-30 23:59:59');
+        $diff =3;//floor( ($end - $begin ) / 86400) ;// 1;
 
         for ($i=0; $i<$diff; $i ++) {
             $now = strtotime("+$i days", $begin);
@@ -564,12 +564,12 @@ usleep(1000);
     {
         $this->load->database();
         //$begin = strtotime('2016-11-29 00:00:00');
-        $begin = strtotime('2018-01-19 00:00:00');
+        $begin = strtotime('2018-03-08 00:00:00');
      //   $end   = strtotime('2017-04-10 23:59:59');
         //$begin = strtotime('2016-07-13 00:00:00');
         $_d['appid'] = $this->appids[0]['appid'];
         //$end  = time();
-        $diff =1;//floor( ($end - $begin ) / 86400) ;// 1;
+        $diff =5;//floor( ($end - $begin ) / 86400) ;// 1;
 
 
         for ($i=0; $i<$diff; $i ++) {
@@ -579,30 +579,29 @@ usleep(1000);
             echo $date, PHP_EOL;
             //continue;
             $t1=strtotime(date('Y-m-d 00:00:00', $now));
-            $t2=strtotime(date('Y-m-d 23:59:00', $now));
-            
+            $t2=strtotime(date('Y-m-d 23:59:00', $now)); 
        
-            
-          /*      $this->OnlineTime($t1, $t2);
-            $this->SystemAnalysis($t1, $t2);  */  
+            /* 
+              $this->OnlineTime($t1, $t2);
+            $this->SystemAnalysis($t1, $t2); 
 
-   /*   $this->NewPlayerCal($_d['appid'], $date);
+    $this->NewPlayerCal($_d['appid'], $date);
             $this->ActiveAccountCount( $now);
-            $this->UserRemainNew($now);    */
-           
+            $this->UserRemainNew($now);    
+           */
          $this->run_summary($date); 
        //     $this->UserLost( $date);
 
-  $this->au( $now);
-        
+ // $this->au( $now);
+         
 
- //   echo    $date = date('Ymd', $bt);
+/*    echo    $date = date('Ymd', $bt);
             //echo $date, '<br/>';
-/*           $this->OnlineCal($_d['appid'],$date);
+         $this->OnlineCal($_d['appid'],$date);
            $this->DeviceCal($_d['appid'], $date);
             $this->NewPlayerCal($_d['appid'], $date);
-         $this->LoginCal($_d['appid'],$date);    */
-    
+         $this->LoginCal($_d['appid'],$date);    
+     */
     
          
          

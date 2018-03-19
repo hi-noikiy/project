@@ -367,7 +367,8 @@ class PayAnalysis extends MY_Controller {
 	}
 	private function getData($model, $serverId, $channelId) {
         $json_data = $outputData = $legend = $xAxis = [];
-    
+   
+      
         //获取激活数据和获取新增数据
         $bt = strtotime($this->bt);
         $et = strtotime($this->et);
@@ -409,7 +410,6 @@ class PayAnalysis extends MY_Controller {
         $output = $this->Mydb_sum_model->summarybychannel($where,$field,$group,'date');
         
 
-        
         foreach ($tableData as $k => $v){
         	$dauSum = $outputData[$v['day']]['dau'];        	
          	$day=date("Ymd",strtotime($v['day']));
@@ -440,20 +440,27 @@ class PayAnalysis extends MY_Controller {
         } else {
         	$tableData[$k]['arpu'] = round($v['allmoney']/$tableData[$k]['dau'],2);
         }
+        	if($channelId[0]){
+        		$tableData[$k]['text'] =" <a href='javascript:serverDistribute($day,$channelId[0])'>服务器分布</a> ";
+        	} else {
+        		$tableData[$k]['text'] =" <a href='javascript:serverDistribute($day,0)'>服务器分布</a> ";
+        	}
         	
-        	$tableData[$k]['text'] =" <a href='javascript:serverDistribute($day,0)'>服务器分布</a> ";
         } 
-        
+
         if($serverId || $channelId){           
-            foreach ($tableData as $k=>$v){            
+            foreach ($tableData as $k=>$v){   
+            	$tableData[$k]['payRate']=$tableData[$k]['dau']?round($tableData[$k]['countAccountid']/$tableData[$k]['dau'],4)*100:0;
                 foreach ($data3 as $v3) {
                     $sday = date('Y-m-d', strtotime($v3['sday']));            
                     if($v['day']==$sday){            
                         if($v3['dau']==0){
-                            $tableData[$k]['payRate']=0;
+                         //   $tableData[$k]['payRate']=0;
                         }else {
-                            $tableData[$k]['payRate']=$tableData[$k]['countAccountid']?round($tableData[$k]['countAccountid']/$v3['dau'],4)*100:0;
-                                $tableData[$k]['dau']=$v3['dau'];
+                        //    $tableData[$k]['payRate']=$tableData[$k]['countAccountid']?round($tableData[$k]['countAccountid']/$v3['dau'],4)*100:0;
+                            //    $tableData[$k]['dau']=$v3['dau'];
+                        
+                        	
                         }
          
                      
@@ -573,12 +580,6 @@ class PayAnalysis extends MY_Controller {
 
 			$this->load->model ( 'Pay_analysis_model' );
 			$data = $this->Pay_analysis_model->getGearPosition($begindate, $enddate);
-			if (empty($data)) {
-				echo json_encode ( [
-					'status' => 'fail',
-					'info' => '未查到数据'
-				] );
-			}
 
 			foreach ( $data as $k => &$v ) {
 				$res[$v['money']][] = $v;
@@ -633,12 +634,6 @@ class PayAnalysis extends MY_Controller {
 			$this->load->model ( 'Pay_analysis_model' );
 			$data = $this->Pay_analysis_model->getFirstRecord($begindate, $enddate);
 
-			if (empty($data)) {
-				echo json_encode ( [
-					'status' => 'fail',
-					'info' => '未查到数据'
-				] );
-			}
 
 			if (! empty ($data)) {
                 foreach ($data as $key => $val) {
@@ -673,23 +668,30 @@ class PayAnalysis extends MY_Controller {
 		if (parent::isAjax ()) {
 			$date = $this->input->get ( 'date1' ) ? $this->input->get ( 'date1', true ) : date ( 'Y-m-d' );
 			$date2 = $this->input->get ( 'date2' ) ? $this->input->get ( 'date2', true ) : date ( 'Y-m-d' );
-
 			$begin = str_replace("-","",$date);
 			$end = str_replace("-","",$date2);
 
 			$begindate =strtotime ( $date.' 00:00:00' ) ;
 			$enddate = strtotime ( $date2.' 23:59:59' );
-			$this->load->model ( 'Pay_analysis_model' );
-			$data = $this->Pay_analysis_model->getPayNew($begin, $end);
-			$total = $this->Pay_analysis_model->getPayNewTotal($begindate, $enddate);
-
-			if (empty($data)) {
-
-				echo json_encode ( [
-					'status' => 'fail',
-					'info' => '未查到数据'
-				] );
+			
+			// 渠道选择
+    		$channels = $this->input->get('channel_id');
+			$html = '';
+			// 遍历渠道
+			if($channels){
+				$html = ' and a.channel in('.implode(',', $channels).')';
+				$html2 = ' and u_register.channel in('.implode(',', $channels).')';
 			}
+			
+			$this->load->model ( 'Pay_analysis_model' );
+			$data = $this->Pay_analysis_model->getPayNew($begin, $end,$html);
+			$total = $this->Pay_analysis_model->getPayNewTotal($begindate, $enddate,$html2);
+	
+			
+			$where['begindate'] = date('Ymd', strtotime($date));
+			$where['enddate'] = date('Ymd', strtotime($date2));
+			$this->load->model('Mydb_sum_model');
+			$output = $this->Mydb_sum_model->summary($where);
 
 			if (! empty ($data)) {
 				foreach($total as $key => $val) {
@@ -697,7 +699,13 @@ class PayAnalysis extends MY_Controller {
 				}
 
 				foreach($data as $key => &$val) {
-					$val['total'] = $res[$val['date']]['total'];
+					//$val['total'] = $res[$val['date']]['total'];
+					foreach ($output as $v2){
+						if($val['date']==$v2['date']){
+						$val['total']=$v2['reg'];
+					
+						}
+					}
 				}
 
                 echo json_encode([
@@ -714,7 +722,6 @@ class PayAnalysis extends MY_Controller {
 		} else {
 			$this->data ['type_list'] = $types;
 			$this->data ['hide_server_list'] = true;
-			$this->data ['hide_channel_list'] = true;
 //
 			$this->body = $this->viewFile.'payNewAccount';
 			$this->layout ();

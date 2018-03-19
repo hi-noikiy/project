@@ -1307,12 +1307,79 @@ class DataAnalysis extends MY_Controller {
 			$where ['serverids'] = $this->input->get ( 'server_id' );
 			$where ['channels'] = $this->input->get ( 'channel_id' );
 			$where ['type_id'] = $this->input->get ( 'type_id' );
-
+			$where ['merge_server'] = $this->input->get ( 'merge_server' )? $this->input->get ( 'merge_server' ):0;
+			
 			$table = '';
 			$group="serverid";
 			$field="serverid,count(if(viplev=0,true,null)) as v0,count(if(viplev=1,true,null)) as v1,count(if(viplev=2,true,null)) as v2,count(if(viplev=3,true,null)) as v3,count(if(viplev=4,true,null)) as v4,count(if(viplev=5,true,null)) as v5,count(if(viplev=6,true,null)) as v6,count(if(viplev=7,true,null)) as v7,count(if(viplev=8,true,null)) as v8,count(if(viplev=9,true,null)) as v9,count(if(viplev=10,true,null)) as v10,count(if(viplev=11,true,null)) as v11,count(if(viplev=12,true,null)) as v12";
 			$this->load->model ( 'Data_analysis_model' );
 			$data = $this->Data_analysis_model->activeVip( $table, $where, $field, $group, $order, $limit);
+			
+			if($where ['merge_server']==1){
+			$id_serverlist = $this->Data_analysis_model->idServerlist( $table, $where, $field, $group, $order, $limit);
+			
+		 foreach ($id_serverlist as $v){		 	
+	
+		  $idserver_list_all.=$v['idserverlist'].',';
+		 	 $idserver_title_all.=$v['id'].','; 
+		 }
+		 $idserver_list_all=rtrim($idserver_list_all,',');
+		 $idserver_title_all=rtrim($idserver_title_all,',');
+
+			
+			$idserver_list_all_new=explode(',',$idserver_list_all);
+			$idserver_title_all_new=explode(',',$idserver_title_all);
+			
+			$data_chang=$data;
+			
+	   foreach ($data_chang  as $k=>$v){	 	
+	 	
+	 		if(in_array($v['serverid'], $idserver_list_all_new) ){ 	
+	 			
+	 			foreach ($id_serverlist  as $k2=>$v2){
+	 				$idserverlist=explode(',',$v2['idserverlist']);
+	 				
+	 				if(in_array($v['serverid'], $idserverlist)){  
+	 					
+	 					foreach ($data_chang as $k3=>$v3){
+	 						
+	 						if($v2['id']==$v3['serverid']){   
+	 							
+	 							$data_new[$k3]['v0']+=$v3['v0'];
+	 							$data_new[$k3]['v1']+=$v3['v1'];
+	 							$data_new[$k3]['v2']+=$v3['v2'];
+	 							$data_new[$k3]['v3']+=$v3['v3'];
+	 							$data_new[$k3]['v4']+=$v3['v4'];
+	 							$data_new[$k3]['v5']+=$v3['v5'];
+	 							$data_new[$k3]['v6']+=$v3['v6'];
+	 							$data_new[$k3]['v7']+=$v3['v7'];
+	 							$data_new[$k3]['v8']+=$v3['v8'];
+	 							$data_new[$k3]['v9']+=$v3['v9'];
+	 							$data_new[$k3]['v10']+=$v3['v10'];
+	 							$data_new[$k3]['v11']+=$v3['v11'];
+	 							$data_new[$k3]['v12']+=$v3['v12'];								
+	 							
+	 							
+	 						} 						
+	 						
+	 					}	 					
+	 				}			
+	 				
+	 			}
+	 			
+	 			
+	 		} else {
+	 			
+	 		$data_new[$k]=$v;
+	 			
+	 		}
+				
+				
+		
+		}   	
+ 			
+		$data=$data_new;
+			}
 
 			if (! empty ( $data))
 				echo json_encode ( [
@@ -1325,6 +1392,8 @@ class DataAnalysis extends MY_Controller {
 					'info' => '未查到数据'
 				] );
 		} else {
+			
+			$this->data ['merge_server'] = true;
 			$this->data ['type_list'] = $types;
 			$this->data ['hide_server_list'] = true;
 			$this->data ['hide_channel_list'] = true;
@@ -1335,6 +1404,328 @@ class DataAnalysis extends MY_Controller {
 
 
 	}
-
+	/*
+	 * 御魂系统统计  zzl 20180129
+	 */
+	public function soul() {
+		if (parent::isAjax ()) {
+			$date = $this->input->get ( 'date1' ) ? $this->input->get ( 'date1', true ) : date ( 'Y-m-d' );
+			$date2 = $this->input->get ( 'date2' ) ? $this->input->get ( 'date2', true ) : date ( 'Y-m-d' );
+			$date3 = $this->input->get ( 'date3' ) ? $this->input->get ( 'date3', true ) : '';
+			$date4 = $this->input->get ( 'date4' ) ? $this->input->get ( 'date4', true ) : '';
+			$level_vip = $this->input->get ( 'level_vip' ) ? $this->input->get ( 'level_vip', true ) : '1';
+			
+			$where ['Ym'] = date ( 'Ym', strtotime ( $date ) );
+			$where ['date'] = date ( 'Ymd', strtotime ( $date ) );
+			$where ['begindate'] = date ( 'Ymd', strtotime ( $date ) );
+			$where ['enddate'] = date ( 'Ymd', strtotime ( $date2 ) );
+			$where ['serverids'] = $this->input->get ( 'server_id' );
+			$where ['channels'] = $this->input->get ( 'channel_id' );
+			$where ['type_id'] = $this->input->get ( 'type_id' );
+			
+			$table = '';
+			$group = "vip_level,user_level";
+		  $field = "vip_level,user_level,sum(equipsouledu_num) s1,sum(soulaverage_level) s2,sum(orangesoul_num) s3,sum(purplesoul_num) s4,sum(bluesoul_num) s5,sum(greensoul_num) s6,sum(two_suit) s7,sum(four_suit) s8";
+			$this->load->model ( 'Data_analysis_model' );
+			$data = $this->Data_analysis_model->soul ( $table, $where, $field, $group, $order, $limit );
+			
+			if ($level_vip == 1) {
+				
+				$data_new = array (
+						array (
+								'vip_level' => 0,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 1,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 2,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 3,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 4,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 5,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 6,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 7,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 8,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 9,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 10,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 11,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 12,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 13,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 14,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						),
+						array (
+								'vip_level' => 15,
+								's1' => 0,
+								's2' => 0,
+								's3' => 0,
+								's4' => 0,
+								's5' => 0,
+								's6' => 0,
+								's7' => 0,
+								's8' => 0 
+						) 
+				);
+				
+				foreach ( $data_new as $k => &$v ) {
+					
+					foreach ( $data as $k2 => $v2 ) {
+						
+						if ($v ['vip_level'] == $v2 ['vip_level']) {
+							
+							$v ['s1'] += $v2 ['s1'];
+							$v ['s2'] += $v2 ['s2'];
+							$v ['s3'] += $v2 ['s3'];
+							$v ['s4'] += $v2 ['s4'];
+							$v ['s5'] += $v2 ['s5'];
+							$v ['s6'] += $v2 ['s6'];
+							$v ['s7'] += $v2 ['s7'];
+							$v ['s8'] += $v2 ['s8'];
+						}
+					}
+				}
+			} else {
+				
+				foreach ( $data as $k2 => $v2 ) {
+					
+					if ($v2 ['user_level'] <= 50) {
+						$data_new [1] ['vip_level'] = '1-50';
+						$data_new [1] ['s1'] += $v2 ['s1'];
+						$data_new [1] ['s2'] += $v2 ['s2'];
+						$data_new [1] ['s3'] += $v2 ['s3'];
+						$data_new [1] ['s4'] += $v2 ['s4'];
+						$data_new [1] ['s5'] += $v2 ['s5'];
+						$data_new [1] ['s6'] += $v2 ['s6'];
+						$data_new [1] ['s7'] += $v2 ['s7'];
+						$data_new [1] ['s8'] += $v2 ['s8'];
+					} elseif ($v2 ['user_level'] >= 51 && $v2 ['user_level'] <= 60) {
+						$data_new [2] ['vip_level'] = '51-60';
+						$data_new [2] ['s1'] += $v2 ['s1'];
+						$data_new [2] ['s2'] += $v2 ['s2'];
+						$data_new [2] ['s3'] += $v2 ['s3'];
+						$data_new [2] ['s4'] += $v2 ['s4'];
+						$data_new [2] ['s5'] += $v2 ['s5'];
+						$data_new [2] ['s6'] += $v2 ['s6'];
+						$data_new [2] ['s7'] += $v2 ['s7'];
+						$data_new [2] ['s8'] += $v2 ['s8'];
+					} elseif ($v2 ['user_level'] >= 61 && $v2 ['user_level'] <= 70) {
+						$data_new [3] ['vip_level'] = '51-60';
+						$data_new [3] ['s1'] += $v2 ['s1'];
+						$data_new [3] ['s2'] += $v2 ['s2'];
+						$data_new [3] ['s3'] += $v2 ['s3'];
+						$data_new [3] ['s4'] += $v2 ['s4'];
+						$data_new [3] ['s5'] += $v2 ['s5'];
+						$data_new [3] ['s6'] += $v2 ['s6'];
+						$data_new [3] ['s7'] += $v2 ['s7'];
+						$data_new [3] ['s8'] += $v2 ['s8'];
+					} elseif ($v2 ['user_level'] >= 71 && $v2 ['user_level'] <= 80) {
+						$data_new [4] ['vip_level'] = '71-80';
+						$data_new [4] ['s1'] += $v2 ['s1'];
+						$data_new [4] ['s2'] += $v2 ['s2'];
+						$data_new [4] ['s3'] += $v2 ['s3'];
+						$data_new [4] ['s4'] += $v2 ['s4'];
+						$data_new [4] ['s5'] += $v2 ['s5'];
+						$data_new [4] ['s6'] += $v2 ['s6'];
+						$data_new [4] ['s7'] += $v2 ['s7'];
+						$data_new [4] ['s8'] += $v2 ['s8'];
+					} elseif ($v2 ['user_level'] >= 81 && $v2 ['user_level'] <= 90) {
+						$data_new [5] ['vip_level'] = '81-90';
+						$data_new [5] ['s1'] += $v2 ['s1'];
+						$data_new [5] ['s2'] += $v2 ['s2'];
+						$data_new [5] ['s3'] += $v2 ['s3'];
+						$data_new [5] ['s4'] += $v2 ['s4'];
+						$data_new [5] ['s5'] += $v2 ['s5'];
+						$data_new [5] ['s6'] += $v2 ['s6'];
+						$data_new [5] ['s7'] += $v2 ['s7'];
+						$data_new [5] ['s8'] += $v2 ['s8'];
+					} elseif ($v2 ['user_level'] >= 91 && $v2 ['user_level'] <= 95) {
+						$data_new [6] ['vip_level'] = '91-95';
+						$data_new [6] ['s1'] += $v2 ['s1'];
+						$data_new [6] ['s2'] += $v2 ['s2'];
+						$data_new [6] ['s3'] += $v2 ['s3'];
+						$data_new [6] ['s4'] += $v2 ['s4'];
+						$data_new [6] ['s5'] += $v2 ['s5'];
+						$data_new [6] ['s6'] += $v2 ['s6'];
+						$data_new [6] ['s7'] += $v2 ['s7'];
+						$data_new [6] ['s8'] += $v2 ['s8'];
+					} elseif ($v2 ['user_level'] >= 96 && $v2 ['user_level'] <= 100) {
+						$data_new [7] ['vip_level'] = '96-100';
+						$data_new [7] ['s1'] += $v2 ['s1'];
+						$data_new [7] ['s2'] += $v2 ['s2'];
+						$data_new [7] ['s3'] += $v2 ['s3'];
+						$data_new [7] ['s4'] += $v2 ['s4'];
+						$data_new [7] ['s5'] += $v2 ['s5'];
+						$data_new [7] ['s6'] += $v2 ['s6'];
+						$data_new [7] ['s7'] += $v2 ['s7'];
+						$data_new [7] ['s8'] += $v2 ['s8'];
+					}
+				}
+			}
+			
+			if (! empty ( $data ))
+				echo json_encode ( [ 
+						'status' => 'ok',
+						'data' => $data_new 
+				] );
+			else
+				echo json_encode ( [ 
+						'status' => 'fail',
+						'info' => '未查到数据' 
+				] );
+		} else {
+			
+			$this->data ['level_vip'] = true;
+			$this->data ['type_list'] = $types;
+			// $this->data ['hide_server_list'] = true;
+			$this->data ['hide_channel_list'] = true;
+			$this->data ['hide_end_time'] = true;
+			$this->body = 'DataAnalysis/soul';
+			$this->layout ();
+		}
+	}
+   
 
 }

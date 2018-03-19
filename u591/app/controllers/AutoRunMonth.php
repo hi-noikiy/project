@@ -33,8 +33,8 @@ class AutoRunMonth extends CI_Controller{
     		$dbsdk->query($sql);
     		$sql = "drop table `u_login_".$Ym.str_pad($i,2,0,STR_PAD_LEFT)."`";
     		$dbsdk->query($sql);
-    		$sql = "drop table `u_register_process_".$Ym.str_pad($i,2,0,STR_PAD_LEFT)."`";
-    		$dbsdk->query($sql);
+    		//$sql = "drop table `u_register_process_".$Ym.str_pad($i,2,0,STR_PAD_LEFT)."`";
+    	//	$dbsdk->query($sql);
     		$sql = "drop table `game_user_eudemon_".$Ym.str_pad($i,2,0,STR_PAD_LEFT)."`";
     		$dbsdk->query($sql);
     		$sql = "drop table `game_world_eudemon_".$Ym.str_pad($i,2,0,STR_PAD_LEFT)."`";

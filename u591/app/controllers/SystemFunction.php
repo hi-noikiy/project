@@ -2905,6 +2905,7 @@ HTML;
 	        $where ['typeids'] = $this->input->get ( 'type_id' );
 	        $where ['pk_th'] = $this->input->get ( 'pk_th' );
 	        $where ['group'] = $this->input->get ( 'group' );
+	        $where ['merge_server'] = $this->input->get ( 'merge_server' )? $this->input->get ( 'merge_server' ):0;
 	     
 	        if ($date) {
 	            $where ['begintime'] = substr(date ( 'Ymd', strtotime ( $date ) ), 2,7) ;
@@ -2931,6 +2932,74 @@ HTML;
 	                
 	            }
 	             
+	            
+	            if($where ['merge_server']==1){
+	            	$this->load->model ( 'Data_analysis_model' );
+	            	$id_serverlist = $this->Data_analysis_model->idServerlist( $table, $where, $field, $group, $order, $limit);
+	            		
+	            	foreach ($id_serverlist as $v){
+	            
+	            		$idserver_list_all.=$v['idserverlist'].',';
+	            		$idserver_title_all.=$v['id'].',';
+	            	}
+	            	$idserver_list_all=rtrim($idserver_list_all,',');
+	            	$idserver_title_all=rtrim($idserver_title_all,',');
+	            
+	            		
+	            	$idserver_list_all_new=explode(',',$idserver_list_all);
+	            	$idserver_title_all_new=explode(',',$idserver_title_all);
+	            		
+	            	$data_chang=$data;
+	            		
+	            	foreach ($data_chang  as $k=>$v){
+	            		 
+	            		if(in_array($v['serverid'], $idserver_list_all_new) ){
+	            				
+	            			foreach ($id_serverlist  as $k2=>$v2){
+	            				$idserverlist=explode(',',$v2['idserverlist']);
+	            
+	            				if(in_array($v['serverid'], $idserverlist)){
+	            						
+	            					foreach ($data_chang as $k3=>$v3){
+	            
+	            						if($v2['id']==$v3['serverid']){
+	            								
+	            							$data_new[$k3]['total']+=$v3['total'];
+	            							$data_new[$k3]['vip0']+=$v3['vip0'];
+	            							$data_new[$k3]['vip1']+=$v3['vip1'];
+	            							$data_new[$k3]['vip2']+=$v3['vip2'];
+	            							$data_new[$k3]['vip3']+=$v3['vip3'];
+	            							$data_new[$k3]['vip4']+=$v3['vip4'];
+	            							$data_new[$k3]['vip5']+=$v3['vip5'];
+	            							$data_new[$k3]['vip6']+=$v3['vip6'];
+	            							$data_new[$k3]['vip7']+=$v3['vip7'];
+	            							$data_new[$k3]['vip8']+=$v3['vip8'];
+	            							$data_new[$k3]['vip9']+=$v3['vip9'];
+	            							$data_new[$k3]['vip10']+=$v3['vip10'];
+	            							$data_new[$k3]['vip11']+=$v3['vip11'];
+	            							$data_new[$k3]['vip12']+=$v3['vip12'];
+	            								
+	            								
+	            						}
+	            
+	            					}
+	            				}
+	            
+	            			}
+	            				
+	            				
+	            		} else {
+	            				
+	            			$data_new[$k]=$v;
+	            				
+	            		}
+	            
+	            
+	            
+	            	}
+	            
+	            	$data=$data_new;
+	            }
 	             
 	             
 	            $field = "syn_id,count(*) as total,game_server as serverid";
@@ -2939,7 +3008,73 @@ HTML;
 	            $data2 = $this->SystemFunction_model->hegemonyGroup ($where, $field  ,$group,$order,$limit );
 	            
 	            
-
+	            if($where ['merge_server']==1){
+	            	$this->load->model ( 'Data_analysis_model' );
+	            	$id_serverlist = $this->Data_analysis_model->idServerlist( $table, $where, $field, $group, $order, $limit);
+	            	 
+	            	foreach ($id_serverlist as $v){
+	            		 
+	            		$idserver_list_all.=$v['idserverlist'].',';
+	            		$idserver_title_all.=$v['id'].',';
+	            	}
+	            	$idserver_list_all=rtrim($idserver_list_all,',');
+	            	$idserver_title_all=rtrim($idserver_title_all,',');
+	            	 
+	            	 
+	            	$idserver_list_all_new=explode(',',$idserver_list_all);
+	            	$idserver_title_all_new=explode(',',$idserver_title_all);
+	            	 
+	            	$data_chang=$data2;
+	            	 
+	            	foreach ($data_chang  as $k=>$v){
+	            
+	            		if(in_array($v['serverid'], $idserver_list_all_new) ){
+	            			 
+	            			foreach ($id_serverlist  as $k2=>$v2){
+	            				$idserverlist=explode(',',$v2['idserverlist']);
+	            				 
+	            				if(in_array($v['serverid'], $idserverlist)){
+	            					 
+	            					foreach ($data_chang as $k3=>$v3){
+	            	      
+	            						if($v2['id']==$v3['serverid']){
+	            							 
+	            							$data_new[$k3]['total']+=$v3['total'];
+	            							$data_new[$k3]['vip0']+=$v3['vip0'];
+	            							$data_new[$k3]['vip1']+=$v3['vip1'];
+	            							$data_new[$k3]['vip2']+=$v3['vip2'];
+	            							$data_new[$k3]['vip3']+=$v3['vip3'];
+	            							$data_new[$k3]['vip4']+=$v3['vip4'];
+	            							$data_new[$k3]['vip5']+=$v3['vip5'];
+	            							$data_new[$k3]['vip6']+=$v3['vip6'];
+	            							$data_new[$k3]['vip7']+=$v3['vip7'];
+	            							$data_new[$k3]['vip8']+=$v3['vip8'];
+	            							$data_new[$k3]['vip9']+=$v3['vip9'];
+	            							$data_new[$k3]['vip10']+=$v3['vip10'];
+	            							$data_new[$k3]['vip11']+=$v3['vip11'];
+	            							$data_new[$k3]['vip12']+=$v3['vip12'];
+	            							 
+	            							 
+	            						}
+	            	      
+	            					}
+	            				}
+	            				 
+	            			}
+	            			 
+	            			 
+	            		} else {
+	            			 
+	            			$data_new[$k]=$v;
+	            			 
+	            		}
+	            		 
+	            		 
+	            		 
+	            	}
+	            	 
+	            	$data2=$data_new;
+	            }
 
 	         
 	         
@@ -2950,7 +3085,7 @@ HTML;
 	            'cgid' => $cgid
 	        ] ) );
 	    } else {
-	        
+	    	$this->data ['merge_server'] = true;
 	        $this->data ['show_group'] = true;
 	        $this->data ['hide_server_list'] = true;
 	        $this->data ['show_syn_id'] = true;	        
@@ -4152,6 +4287,7 @@ HTML;
 
             $where ['serverids'] = $this->input->get ( 'server_id' );
             $where ['typeids'] = $this->input->get ( 'type_id' );
+            $where ['merge_server'] = $this->input->get ( 'merge_server' )? $this->input->get ( 'merge_server' ):0;
      
       
             $this->load->model ( 'SystemFunction_model' );
@@ -4168,10 +4304,7 @@ HTML;
                 foreach ($data['more'] as $v2){              
                 
                 if($v['serverid']==$v2['serverid']){                    
-               /*      $v['total_16']+= $v2['total_16'];
-                    $v['total_8']+= $v2['total_8'];
-                    $v['total_4']+= $v2['total_4'];
-                    $v['total_1']+= $v2['total_1']; */       
+           
                     if($v2['param1']==16){
                         $v['total_16']= $v2['total'];
                     }
@@ -4195,6 +4328,75 @@ HTML;
              
    
         
+          
+                
+
+
+                if($where ['merge_server']==1){
+                	$this->load->model ( 'Data_analysis_model' );
+                	$id_serverlist = $this->Data_analysis_model->idServerlist( $table, $where, $field, $group, $order, $limit);
+                	$data=$data_new;
+               
+                		
+                	foreach ($id_serverlist as $v){
+                
+                		$idserver_list_all.=$v['idserverlist'].',';
+                		$idserver_title_all.=$v['id'].',';
+                	}
+                	$idserver_list_all=rtrim($idserver_list_all,',');
+                	$idserver_title_all=rtrim($idserver_title_all,',');
+                
+                		
+                	$idserver_list_all_new=explode(',',$idserver_list_all);
+                	$idserver_title_all_new=explode(',',$idserver_title_all);
+                		
+                	$data_chang=$data;
+                	$data_new=array();
+                		
+                	foreach ($data_chang  as $k=>$v){
+                		 
+                		if(in_array($v['serverid'], $idserver_list_all_new) ){
+                				
+                			foreach ($id_serverlist  as $k2=>$v2){
+                				$idserverlist=explode(',',$v2['idserverlist']);
+                
+                				if(in_array($v['serverid'], $idserverlist)){
+                						
+                					foreach ($data_chang as $k3=>$v3){
+                
+                						if($v2['id']==$v3['serverid']){
+                								
+                							$data_new[$k3]['total']+=$v3['total'];
+                							$data_new[$k3]['total_16']+=$v3['total_16'];
+                							$data_new[$k3]['total_8']+=$v3['total_8'];
+                							$data_new[$k3]['total_4']+=$v3['total_4'];
+                							$data_new[$k3]['total_1']+=$v3['total_1'];
+                							
+                								
+                						}
+                
+                					}
+                				}
+                
+                			}
+                				
+                				
+                		} else {
+                				
+                			$data_new[$k]=$v;
+                				
+                		}
+                
+                
+                
+                	}
+                
+                	//$data=$data_new;
+                }
+                
+                
+                
+                
         
             $this->output->set_content_type ( 'application/json' )->set_output ( json_encode ( [
                 'status' => 'ok',
@@ -4203,7 +4405,7 @@ HTML;
             ] ) );
         } else {
              
-             
+        	$this->data ['merge_server'] = true;
           //  $this->data ['hide_server_list'] = true;
         
             $this->data ['hide_end_time'] = true;

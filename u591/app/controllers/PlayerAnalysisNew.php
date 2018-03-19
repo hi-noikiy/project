@@ -275,11 +275,18 @@ class PlayerAnalysisNew extends MY_Controller {
     {
         if (parent::isAjax()) {
     
-            $date = $this->input->get('date1');
+           $date = $this->input->get('date1');
             $date2 = $this->input->get('date2');
     
             $viplev_min = $this->input->get('viplev_min');
             $viplev_max = $this->input->get('viplev_max');
+            
+        
+            $server_start = $this->input->get('server_start')? $this->input->get('server_start'):'';
+            $server_end= $this->input->get('server_end')?$this->input->get('server_end'):'';        
+     
+            $where['server_start']=$server_start?date ( 'Ymd', strtotime ( $server_start ) ):'';      
+            $where['server_end']=$server_end?date ( 'Ymd', strtotime ( $server_end ) ):'';
     
             $where['date'] = date('Ymd', strtotime($date));
             $where['date2'] = date('Ymd', strtotime($date2));
@@ -291,7 +298,11 @@ class PlayerAnalysisNew extends MY_Controller {
     
             $where['serverids'] = $this->input->get('server_id');
             $this->load->model('Player_analysis_new_model');
-            $data_result = $this->Player_analysis_new_model->everyAdventure($table, $where, $field, $group, $order, $limit);         
+            $data_result = $this->Player_analysis_new_model->everyAdventure($table, $where, $field, $group, $order, $limit);  
+            
+            $data_result_Behavior = $this->Player_analysis_new_model->everyAdventureBehavior($table, $where, $field, $group, $order, $limit);
+            
+            
             
             
             
@@ -334,6 +345,21 @@ class PlayerAnalysisNew extends MY_Controller {
                
                }
                
+               foreach ($data_result_Behavior as $v4){
+                       if($v['vip_level']==$v4['vip_level']){
+                       	
+                       $v['p1']=$v4['p1'];
+                       $v['p2']=$v4['p2'];
+                       $v['p3']=$v4['p3'];
+                       $v['p4']=$v4['p4'];
+                       $v['cnt']=$v4['cnt'];
+                       $v['total']=$v4['total'];
+                      
+                   
+                   }
+               }
+        
+               
                
                
            }
@@ -355,7 +381,7 @@ class PlayerAnalysisNew extends MY_Controller {
     
             $this->data['page_title'] = "玩家分析-每日冒险称号统计 ";
             $this->data ['hide_end_time'] = true;
-            $this->body = 'PlayerAnalysis/everyAdventure';
+            $this->body = 'PlayerAnalysis/everyAdventure';         
             $this->layout();
         }
     }

@@ -92,6 +92,10 @@ return array(
             	[
             		'title'     =>'VIP人数统计',
             		'controller'=>'Home/vip',
+            	],
+            	[
+            		'title'     =>'VIP人数流失统计',
+            		'controller'=>'Home/vip_loss',
             	]
             ]
         ],
@@ -534,6 +538,10 @@ return array(
     						'title'     =>'精灵冒险每日冒险称号统计',
     						'controller'=>'PlayerAnalysisNew/everyAdventure',
     			],
+    				[
+    				'title'     =>'御魂系统统计',
+    				'controller'=>'DataAnalysis/soul',
+    				],
 
 			]
     	],

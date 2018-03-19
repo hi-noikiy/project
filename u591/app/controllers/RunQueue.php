@@ -729,9 +729,8 @@ class RunQueue Extends CI_Controller
             $ret = ['errcode'=>0,'errmsg'=>'success'];
             $this->set_response($ret);
         }
-        elseif(!empty($this->data)) {
-            echo 333;
-            var_dump($data['created_at']);
+        elseif(!empty($this->data)) {           
+       
             $this->data['created_at']= $this->data['created_at']?$this->data['created_at']:time();
          
         	$Ym = date('Ym',$this->data['created_at']);
@@ -1779,12 +1778,19 @@ class RunQueue Extends CI_Controller
      */
     public function Login()
     {
+ 
         if (isset($this->data['ip']) && $this->data['ip']) {
             $ip = $this->data['ip'];
         } else {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
         $this->data['ip']  =  ip2long($ip);
+        if(!isset($this->data['created_at'])){
+        	$this->data['created_at']=time();
+        }
+        if(!isset($this->data['appid'])){
+        	$this->data['appid']=0;
+        }
         $this->data['logindate']  =  date('Ymd', $this->data['created_at']);
         //$this->save($this->config->item(__FUNCTION__));
          //parent::BetterLog('queue_login',"data:".json_encode( $this->data).';error:'.json_encode( $this->db->error()));
@@ -1794,7 +1800,7 @@ class RunQueue Extends CI_Controller
         	'username' => 	$this->data['username'],
         		'userid' => 	$this->data['userid'],
         		'accountid' => 	$this->data['accountid'],
-        		'serverid' => 	$this->data['serverid'],
+        		'serverid' => 	$this->data['serverid'], 
         		'channel' => 	$this->data['channel'],
         		'viplev' => 	$this->data['viplev'],
         		'lev' => 	$this->data['lev'],
@@ -1812,8 +1818,11 @@ ON DUPLICATE KEY UPDATE `channel`=VALUES(channel),`viplev`=VALUES(viplev),`lev`=
 `created_at`=VALUES(created_at),`mac`=VALUES(mac),`username`=VALUES(username),`trainer_lev`=VALUES(trainer_lev),`client_version`=VALUES(client_version),`userid`=VALUES(userid),`communityid`=VALUES(communityid)
 ";
         //parent::BetterLog('queue_login_test',$sql);
-        $this->db->reconnect();
-        $this->db->query($sql);
+      
+    
+      $this->db->reconnect();
+      $this->db->query($sql);
+   
         $result = $this->db->error();
         if($result['code'] ==  2006){ //数据库中断
         	$client = new HttpSQSClient('127.0.0.1', 1218, 'u591');
@@ -1828,7 +1837,8 @@ ON DUPLICATE KEY UPDATE `channel`=VALUES(channel),`viplev`=VALUES(viplev),`lev`=
 `last_login_time`=VALUES(last_login_time),`last_login_mac`=VALUES(last_login_mac),`username`=VALUES(username),`communityid`=VALUES(communityid)
 SQL;
         $this->db->reconnect();
-        $this->db->query($sql);
+        $this->db->query($sql);     
+     
     }
 
     /**
@@ -2145,6 +2155,9 @@ ON DUPLICATE KEY UPDATE `login_time`=VALUES(login_time),`devicetype`=VALUES(devi
         ,`userid`=VALUES(userid),`serverid`=VALUES(serverid),`accountid`=VALUES(accountid),`ip`=VALUES(ip),`role_create_time`=VALUES(role_create_time),`game_id`=VALUES(game_id)
 SQL;
       }else{
+      		if(empty($this->data['created_at'])){
+      			$this->data['created_at']=time();
+      		}
       	$sql = <<<SQL
 INSERT INTO push_regid(`last_login_mac`, `login_time`, `devicetype`, `regid`, `logdate`,userid,serverid,accountid,ip,role_create_time)
 VALUES ("{$this->data['mac']}",{$this->data['created_at']},"{$this->data['devicetype']}","{$this->data['regid']}","{$this->data['logindate']}","{$this->data['userid']}"
@@ -2152,9 +2165,9 @@ VALUES ("{$this->data['mac']}",{$this->data['created_at']},"{$this->data['device
 ON DUPLICATE KEY UPDATE `login_time`=VALUES(login_time),`devicetype`=VALUES(devicetype),`regid`=VALUES(regid),`logdate`=VALUES(logdate)
         ,`userid`=VALUES(userid),`serverid`=VALUES(serverid),`accountid`=VALUES(accountid),`ip`=VALUES(ip),`role_create_time`=VALUES(role_create_time)
 SQL;
-      }
-        
+      }        
         $this->db->query($sql);
+ 
     }
 
         /*
@@ -2162,6 +2175,7 @@ SQL;
      */
  public function UserInfo()
     {
+
         $this->data['logdate'] = date('Ymd', $this->data['client_time']);
         unset($this->data['appid']);
         
@@ -2170,18 +2184,53 @@ SQL;
             $sql = "select id from u_userinfo where accountid={$this->data['accountid']} and serverid={$this->data['serverid']} limit 1";
         }
         
-        $query = $this->db->query($sql);
-        parent::log($this->db->last_query(),LOG_PATH . '/UserInfo2.log');
-        $result = $query->result_array();
+        $query = $this->db->query($sql);  
+    
+        $result = $query->result_array();        
+ $this->data['channel']=$this->data['channel']?$this->data['channel']:0;
+$this->data['vip_level']=$this->data['vip_level']?$this->data['vip_level']:0;
+$this->data['client_time']=$this->data['client_time']?$this->data['client_time']:0;
+$this->data['user_level']=$this->data['user_level']?$this->data['user_level']:0;
+$this->data['create_time']=$this->data['create_time']?$this->data['create_time']:0;
+$this->data['total_days']=$this->data['total_days']?$this->data['total_days']:0;
+$this->data['prestige']=$this->data['prestige']?$this->data['prestige']:0;
+$this->data['synscience_avg']=$this->data['synscience_avg']?$this->data['synscience_avg']:0;
+$this->data['godstep']=$this->data['godstep']?$this->data['godstep']:0;
+$this->data['stonestep_avg']=$this->data['stonestep_avg']?$this->data['stonestep_avg']:0;
+$this->data['stonelevel_avg']=$this->data['stonelevel_avg']?$this->data['stonelevel_avg']:0;
+$this->data['level_avg']=$this->data['level_avg']?$this->data['level_avg']:0;
+$this->data['intimacy_avg']=$this->data['intimacy_avg']?$this->data['intimacy_avg']:0;
+$this->data['individual_avg']=$this->data['individual_avg']?$this->data['individual_avg']:0;
+$this->data['effort_avg']=$this->data['effort_avg']?$this->data['effort_avg']:0;
+$this->data['baofen_avg']=$this->data['baofen_avg']?$this->data['baofen_avg']:0;
+$this->data['prestige_avg']=$this->data['prestige_avg']?$this->data['prestige_avg']:0;
+$this->data['handbook_avg']=$this->data['handbook_avg']?$this->data['handbook_avg']:0;
+$this->data['adventure_max']=$this->data['adventure_max']?$this->data['adventure_max']:0;
+$this->data['adventure_lev']=$this->data['adventure_lev']?$this->data['adventure_lev']:0;
+$this->data['adventure_num']=$this->data['adventure_num']?$this->data['adventure_num']:0;
+$this->data['equipsouledu_num']=$this->data['equipsouledu_num']?$this->data['equipsouledu_num']:0;
+$this->data['soulaverage_level']=$this->data['soulaverage_level']?$this->data['soulaverage_level']:0;
+$this->data['two_suit']=$this->data['two_suit']?$this->data['two_suit']:0;
+$this->data['four_suit']=$this->data['four_suit']?$this->data['four_suit']:0;
+$this->data['orangesoul_num']=$this->data['orangesoul_num']?$this->data['orangesoul_num']:0;
+$this->data['purplesoul_num']=$this->data['purplesoul_num']?$this->data['purplesoul_num']:0;
+$this->data['bluesoul_num']=$this->data['bluesoul_num']?$this->data['bluesoul_num']:0;
+$this->data['greensoul_num']=$this->data['greensoul_num']?$this->data['bluesoul_num']:0;
+       
+       
         
         if (!empty($result[0])) {  
      	$sql = "update u_userinfo set userid={$this->data['userid']},channel={$this->data['channel']},vip_level={$this->data['vip_level']},client_time={$this->data['client_time']},user_level={$this->data['user_level']},create_time={$this->data['create_time']},total_days={$this->data['total_days']},prestige={$this->data['prestige']},synscience_avg={$this->data['synscience_avg']},godstep={$this->data['godstep']},stonestep_avg={$this->data['stonestep_avg']},stonelevel_avg={$this->data['stonelevel_avg']},level_avg={$this->data['level_avg']},intimacy_avg={$this->data['intimacy_avg']},individual_avg={$this->data['individual_avg']},effort_avg={$this->data['effort_avg']},baofen_avg={$this->data['baofen_avg']},prestige_avg={$this->data['prestige_avg']},handbook_avg={$this->data['handbook_avg']},logdate={$this->data['logdate']},adventure_max={$this->data['adventure_max']},adventure_lev={$this->data['adventure_lev']},adventure_num={$this->data['adventure_num']},equipsouledu_num={$this->data['equipsouledu_num']},soulaverage_level={$this->data['soulaverage_level']},two_suit={$this->data['two_suit']},four_suit={$this->data['four_suit']},orangesoul_num={$this->data['orangesoul_num']},purplesoul_num={$this->data['purplesoul_num']},bluesoul_num={$this->data['bluesoul_num']},greensoul_num={$this->data['greensoul_num']} WHERE accountid={$this->data['accountid']} and serverid={$this->data['serverid']}";
             $query = $this->db->query($sql);   
-            parent::log($this->db->last_query(),LOG_PATH . '/UserInfo2.log');
+     
         } else {
             
             $this->save('u_userinfo');
+        
         }
+     
+    //    parent::log(json_encode($this->data), LOG_PATH . '/SkillRateLog.log');
+     //   parent::log($this->db->last_query(),LOG_PATH . '/SkillRateLog.log');
     }
     
     
@@ -2305,12 +2354,11 @@ SQL;
     public  function  SkillRate(){
     
     	$this->data['logdate'] =$this->data['created_at']? date('Ymd', $this->data['created_at']):date("Ymd",time());
-    	unset($this->data['appid']);
-    
+    	unset($this->data['appid']); 
+    	
     	$this->save('skill_rate');
-    
-    	parent::log($this->db->last_query(), LOG_PATH . '/SkillRate.log');
-    	parent::log(json_encode($this->db->last_query()),LOG_PATH . '/SkillRate.log');
+
+
     
     }
    

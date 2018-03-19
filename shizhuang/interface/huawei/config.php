@@ -5,7 +5,7 @@ include_once ROOT_PATH.'inc/config_account.php';
 include_once ROOT_PATH."inc/function.php";
 
 $key_arr = array(
-    12=>array(
+    9=>array(
     		'android'=>array(
     				'appKey'    =>'-----BEGIN PUBLIC KEY-----
 MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOAZ4rFUbVmfeoLvy7Fv6rQfo8Mqg7mE

@@ -1,0 +1,41 @@
+---------------------------------------------------------------
+[ 2018-03-17T17:24:32+08:00 ] 127.0.0.1 127.0.0.1 GET /
+[ info ] 127.0.0.1:81/ [运行时间：1.061000s][吞吐率：0.94req/s] [内存消耗：2,310.57kb] [文件加载：59]
+[ info ] [ LANG ] F:\wamp\www\project\guanwang\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => '__guid=96992031.842065311214650400.1509439091390.038; _ga=GA1.1.410614121.1509614278; monitor_count=3',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'accept-encoding' => 'gzip, deflate, sdch, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => '127.0.0.1:81',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ F:\wamp\www\project\guanwang\application\index\controller\Index.php ]
+[ info ] [ VIEW ] F:\wamp\www\project\guanwang\public/../application/index\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.020000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.087000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `type` = 'index' [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.078000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `lang` = ''  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.006000s ]

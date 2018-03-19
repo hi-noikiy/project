@@ -135,6 +135,8 @@ echo preg_match("/[^\.]+\.kpzs\.com$/", $host); die;*/
     		$field = 'act_id,param,logdate,sum(act_count) as allcount,sum(act_account) as allaccount';
     		$group = 'logdate,act_id,param';
     		$params = include APPPATH .'/config/param_type.php'; //商店类型字典
+    		$where ['merge_server'] = $this->input->get ( 'merge_server' )? $this->input->get ( 'merge_server' ):0;
+    		
     		
     		$d = date('d', strtotime("$date1"));
     		$newdata = array();
@@ -195,7 +197,7 @@ echo preg_match("/[^\.]+\.kpzs\.com$/", $host); die;*/
     		else echo json_encode(['info'=>'无数据']);
     	}
     	else {
-    		
+    		$this->data ['merge_server'] = true;
     		$this->data['play_pay'] = true;
     		$this->data['hide_type_list'] = 1;
     		$this->data['hide_end_time'] = true;
@@ -1047,7 +1049,11 @@ echo preg_match("/[^\.]+\.kpzs\.com$/", $host); die;*/
             		$v['remain_7']   = isset($data[$v['date']]['remain_7']) ? $data[$v['date']]['remain_7'] . '|' .($v['reg']>0 ? round(($data[$v['date']]['remain_7'] / $v['reg']),2)*100  : 0) . '%' : 0;
             		$v['remain_15']   = isset($data[$v['date']]['remain_15']) ? $data[$v['date']]['remain_15'] . '|' .($v['reg']>0 ? round(($data[$v['date']]['remain_15'] / $v['reg']),2)*100  : 0) . '%' : 0;
             		$v['remain_30']   = isset($data[$v['date']]['remain_30']) ? $data[$v['date']]['remain_30'] . '|' .($v['reg']>0 ? round(($data[$v['date']]['remain_30'] / $v['reg']),2)*100  : 0) . '%' : 0;
-            		$v['reg_rate'] =  $output[$k-1]['reg']?round(($v['reg']-$output[$k-1]['reg'])/$output[$k-1]['reg'],4)*100:0;
+            		
+            		$v['reg'] = $v['reg']?$v['reg']:$v['macregister'];
+            		$v['reg_rate'] =  $output[$k-1]['macregister']?round(($v['macregister']-$output[$k-1]['macregister'])/$output[$k-1]['macregister'],4)*100:0;
+            		
+            		//$v['reg_rate'] =  $output[$k-1]['reg']?round(($v['reg']-$output[$k-1]['reg'])/$output[$k-1]['reg'],4)*100:0;
             		$v['dau_rate'] =  $output[$k-1]['dau']?round(($v['dau']-$output[$k-1]['dau'])/$output[$k-1]['dau'],4)*100:0;
             		$v['text'] = "<a href='javascript:showdetail({$v['date']},2)'>vip</a>";
           	}
@@ -2120,7 +2126,7 @@ echo preg_match("/[^\.]+\.kpzs\.com$/", $host); die;*/
 			
 			
 			// 查询总人数
-	$sql1 = "SELECT viplev,COUNT(*) zc FROM u_last_login where accountid>1000 AND 1=1 $html GROUP BY viplev";
+			$sql1 = "SELECT viplev,COUNT(*) zc FROM u_last_login where accountid>1000 AND 1=1 $html GROUP BY viplev";
 			$query = $this->load->database ( 'sdk', TRUE )->query ($sql1);
 			if ($query) $asr[1] =  $query->result_array();
 			// 查询活跃人数
@@ -2143,6 +2149,85 @@ echo preg_match("/[^\.]+\.kpzs\.com$/", $host); die;*/
             $this->data['hide_end_time'] = true;
             $this->data['bt'] = date('Y-m-d', strtotime('-1 days'));
             $this->body = 'Home/vip';
+            $this->layout();
+        }
+        //$this->data['data'] = $data;
+
+        //print_r($data);
+    }
+
+    /**
+     * VIP人数流失统计
+	 * @author 陈威 --20180131
+     */
+     public function SELECT_u_last_login($where){
+    		$sql = "SELECT viplev,COUNT(*) conts FROM u_last_login WHERE  1=1 AND accountid > 1000 ".$where." GROUP BY viplev";
+			$query = $this->load->database ( 'sdk', TRUE )->query ($sql);
+			if ($query) $row =  $query->result_array();
+			return $row;
+    }
+    
+    public function vip_loss()
+    {
+        if (parent::isAjax()) {
+        	// 时间选择
+        	$date1 = $this->input->get('date1').' 24:00:00';
+			$date1 = strtotime($date1);
+			
+			// 渠道选择
+    		$channels = $this->input->get('channel_id');
+			// 区服选择
+			$serveid = $this->input->get('server_id');
+			// 遍历区服
+			if($serveid){
+				$html .= ' and serverid in('.implode(',', $serveid).')';
+			}
+			
+			// 遍历渠道
+			if($channels){
+				$html .= ' and channel in('.implode(',', $channels).')';
+			}
+			
+			$btype = $this->input->get ( 'btype' );
+			
+			if($btype == 0){
+				// 所有的
+				$output = $this->SELECT_u_last_login($html);
+				if(!$output){
+					echo json_encode(array('code'=>'fail','info'=>'未查到数据'));die;
+				}
+			}elseif($btype == 1){
+				// 超过15天
+				$sql = 'and '.$date1.' - last_login_time > 1296000'.$html;
+				$output = $this->SELECT_u_last_login($sql);
+			}elseif($btype == 2){
+				// 超过30天
+				$sql = 'and '.$date1.' - last_login_time > 2592000'.$html;
+				$output = $this->SELECT_u_last_login($sql);
+			}elseif($btype == 3){
+				// 超过40天
+				$sql = 'and '.$date1.' - last_login_time > 3456000'.$html;
+				$output = $this->SELECT_u_last_login($sql);
+			}elseif($btype == 4){
+				// 超过50天
+				$sql = 'and '.$date1.' - last_login_time > 4320000'.$html;
+				$output = $this->SELECT_u_last_login($sql);
+			}elseif($btype == 5){
+				// 超过60天
+				$sql = 'and '.$date1.' - last_login_time > 5184000'.$html;
+				$output = $this->SELECT_u_last_login($sql);
+			}
+			 
+			$this->output->set_content_type ( 'application/json' )->set_output ( json_encode ( [ 
+					'status' => 'ok',
+					'data' => $output 
+			] ) );
+			
+        }
+        else {
+            $this->data['hide_end_time'] = true;
+            $this->data['bt'] = date('Y-m-d', strtotime('-1 days'));
+            $this->body = 'Home/vip_loss';
             $this->layout();
         }
         //$this->data['data'] = $data;

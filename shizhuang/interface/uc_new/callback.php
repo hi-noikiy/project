@@ -45,7 +45,7 @@ if($sign != $sign_check){
 }
 
 $conn = SetConn(88);
-$sql = "select rpCode from web_pay_log where OrderID = '$orderId' limit 1;";
+$sql = "select rpCode from web_pay_log where OrderID = '$orderId' and game_id='$game_id' limit 1;";
 $query = mysqli_query($conn, $sql);
 $result = @mysqli_fetch_array($query);
 

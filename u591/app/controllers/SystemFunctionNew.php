@@ -11,7 +11,7 @@ class SystemFunctionNew extends MY_Controller {
 	public $SystemFunctionNew_model;
 	public function __construct() {
 		parent::__construct ();
-		 $this->load->model('player_analysis_new_model');
+		 $this->load->model('Player_analysis_new_model');
 		$this->load->model ( 'SystemFunctionNew_model' );
 		$this->SystemFunctionNew_model->setAppid ( $this->appid );
 	}
@@ -237,7 +237,7 @@ class SystemFunctionNew extends MY_Controller {
     }
 		
 		/*
-	 * 黑卡查询 zzl 20180109
+	 * 黑卡查询 zzl 20180109   
 	 */
 	public function blackCard() {
 		if (parent::isAjax ()) {
@@ -246,7 +246,7 @@ class SystemFunctionNew extends MY_Controller {
 			$where ['mac'] = $this->input->get ( 'mac' );
 			
 			$where ['date'] = strtotime ( $date );
-			$where ['date_table'] = date ( 'Ym', time () );
+			$where ['date_table'] = date ( 'Ym', strtotime($date));
 			$where ['date2'] = strtotime ( $date2 );
 			
 			$group = "";
@@ -268,7 +268,8 @@ class SystemFunctionNew extends MY_Controller {
 	         			
 	         		if($v['mac']==$v2['mac'] && $v2['total']<10 ){
 	         			$v ['text'] = "<a href='javascript:vipDetail($v[id], $v[id])'>查询</a>";
-	         			$data[$k]=$v;break;
+	         			//$data[$k]=$v;break;
+	         			$data[$k]=$v;
 	         		}
 	         		
 	         	}
@@ -305,63 +306,106 @@ class SystemFunctionNew extends MY_Controller {
 	 * 系统功能统计-全球技能使用率   zzl 
 	 */
 	public function skillRate() {
-
-          
-            $skill_type=array(1=>"物理",2=>"特殊",3=>"变化");
-            $target_type=array(1=>"敌方单体",2=>"自身",3=>"敌方场地",4=>"我方场地",5=>"天气",6=>"我方单体",7=>"敌方全体",8=>"我方全体",9=>"全体",10=>"全场地");
-        
-        
-        if (parent::isAjax()) {
-            $date = $this->input->get('date1') ;
-            $date2 = $this->input->get('date2');
-            $dan_s = $this->input->get('dan_s');
-            $dan_e = $this->input->get('dan_e');
-            $combattype = $this->input->get('combattype');
-             
-            
-            $viplev_min= $this->input->get('viplev_min');
-            $viplev_max= $this->input->get('viplev_max');
-            
-            $where['viplev_min']=$viplev_min;
-            $where['viplev_max']=$viplev_max;
-        
-            $where['date']=date('Ymd',strtotime ( $date ));
-            $where['date2']=date('Ymd',strtotime ( $date2 ));
-             
-             
-            $group="skillid";
-            $order="";
-            $field="*";
-            $where['serverids'] = $this->input->get('server_id');
-            $this->load->model ( 'SystemFunctionNew_model' );
-            $data = $this->SystemFunctionNew_model->skillRate($table , $where, $field, $group, $order, $limit);
-            
-            foreach ($data as &$v){
-                $v['rate']=100*(round($v['total']/($v['bout']*2),4)).'%';
-               
-                
-            }
-        
-        
-        
-        
-            if (!empty($data)) echo json_encode(['status'=>'ok', 'data'=>$data]);
-            else echo json_encode(['status'=>'fail','info'=>'未查到数据']);
-        }else{
-        
-            $this->data['page_title']="全球对战-技能使用率统计";   
-            
-            $this->data ['show_dan_list'] = true;            
-            $this->data ['hide_server_list'] = true;
-            $this->data ['show_combat_type'] = true;
-            $this->data ['hide_server_list'] = true;
-          //  $this->data ['viplev_filter'] = true;
-            $this->data ['hide_channel_list'] = true;
-            $this->body = 'SystemFunction/skillRate';
-            $this->layout();
-        }
-       
-    }
+		$skill_type = array (
+				1 => "物理",
+				2 => "特殊",
+				3 => "变化" 
+		);
+		$target_type = array (
+				1 => "敌方单体",
+				2 => "自身",
+				3 => "敌方场地",
+				4 => "我方场地",
+				5 => "天气",
+				6 => "我方单体",
+				7 => "敌方全体",
+				8 => "我方全体",
+				9 => "全体",
+				10 => "全场地" 
+		);
+		
+		if (parent::isAjax ()) {
+			$date = $this->input->get ( 'date1' );
+			$date2 = $this->input->get ( 'date2' );
+			$where ['dan_s'] = $this->input->get ( 'dan_s' ) ? $this->input->get ( 'dan_s' ) : 1;
+			$where ['dan_e'] = $this->input->get ( 'dan_e' ) ? $this->input->get ( 'dan_e' ) : 10;
+			
+			$where ['combattype'] = $this->input->get ( 'combattype' );
+			
+			$viplev_min = $this->input->get ( 'viplev_min' );
+			$viplev_max = $this->input->get ( 'viplev_max' );
+			
+			$where ['viplev_min'] = $viplev_min;
+			$where ['viplev_max'] = $viplev_max;
+			
+			$where ['date'] = date ( 'Ymd', strtotime ( $date ) );
+			$where ['date2'] = date ( 'Ymd', strtotime ( $date2 ) );
+			
+			$group = "skillid";
+			$order = "";
+			$field = "*";
+			$where ['serverids'] = $this->input->get ( 'server_id' );
+			$this->load->model ( 'SystemFunctionNew_model' );
+			
+			$magic_type = $this->SystemFunctionNew_model->magicType ();
+			
+			$data = $this->SystemFunctionNew_model->skillRate ( $table, $where, $field, $group, $order, $limit );
+			
+			$result_data = array_merge ( $data [1], $data [2], $data [3], $data [4], $data [5], $data [6], $data [7], $data [8], $data [9], $data [10] );
+			
+			$result_swap = $result_data;
+			
+			$newArr = array ();
+			foreach ( $result_data as $v ) {
+				$total_bout += $v ['bout'];
+				if (array_key_exists ( $v ['skillid'], $newArr )) {
+					$newArr [$v ['skillid']] ['bout'] += $v ['bout'];
+					$newArr [$v ['skillid']] ['total'] += $v ['total'];
+				} else {
+					$newArr [$v ['skillid']] = $v;
+				}
+			}
+			
+			$data = $newArr;
+			$total_bout *= 2;
+			foreach ( $data as $k => &$v ) {
+				$v ['rate'] = 100 * (round ( $v ['total'] / ($total_bout), 4 )) . '%';
+				foreach ( $magic_type as $v2 ) {
+					
+					if ($v ['skillid'] == $v2 ['id']) {
+						$v ['skillid'] = $v2 ['name'];
+					}
+				}
+				
+				$rating [$k] = $v ['rate'];
+			}
+			
+			array_multisort ( $rating,SORT_DESC,$data );
+			
+			if (! empty ( $data ))
+				echo json_encode ( [ 
+						'status' => 'ok',
+						'data' => $data 
+				] );
+			else
+				echo json_encode ( [ 
+						'status' => 'fail',
+						'info' => '未查到数据' 
+				] );
+		} else {
+			
+			$this->data ['page_title'] = "全球对战-技能使用率统计";
+			
+			$this->data ['show_dan_list'] = true;
+			$this->data ['hide_server_list'] = true;
+			$this->data ['show_combat_type'] = true;
+			$this->data ['hide_server_list'] = true;
+			// $this->data ['viplev_filter'] = true;
+			$this->data ['hide_channel_list'] = true;
+			$this->body = 'SystemFunction/skillRate';
+			$this->layout ();
+		}
+	}
     
     
     public function transcript() {
@@ -473,6 +517,7 @@ class SystemFunctionNew extends MY_Controller {
 			$where ['viplev_max'] = $this->input->get ( 'viplev_max' );
 			$this->load->model ( 'GameServerData' );
 			
+		
 			$this->load->model ( 'SystemFunctionNew_model' );
 			
 			if ($type == 1) { // 普通
@@ -510,7 +555,7 @@ class SystemFunctionNew extends MY_Controller {
 						if ($v2 ['ranklev'] == 1) {
 							$v ['total1'] += $v2 ['cnt'];
 						}
-						if ($v2 ['ranklev'] >= 1 && $v2 ['ranklev'] <= 5) {
+						if ($v2 ['ranklev'] > 1 && $v2 ['ranklev'] <= 5) {
 							$v ['total2'] += $v2 ['cnt'];
 						}
 						if ($v2 ['ranklev'] >= 6 && $v2 ['ranklev'] <= 10) {
@@ -525,6 +570,7 @@ class SystemFunctionNew extends MY_Controller {
 						if ($v2 ['ranklev'] >= 21 && $v2 ['ranklev'] <= 24) {
 							$v ['total6'] += $v2 ['cnt'];
 						}
+					
 					}
 				}
 			}
@@ -532,6 +578,7 @@ class SystemFunctionNew extends MY_Controller {
 			unset ( $data ['more'] );
 			
 			foreach ( $more_data as $k => &$v ) {
+				$v['total_cnt']=$v['total1']+$v['total2']+$v['total3']+$v['total4']+$v['total5']+$v['total6'];
 				if (empty ( $v ['total1'] )) {
 					$v ['total1'] = 0;
 				}
@@ -558,12 +605,12 @@ class SystemFunctionNew extends MY_Controller {
 						$v ['p5'] = $v2 ['total5'];
 						$v ['p6'] = $v2 ['total6'];
 						
-						$v ['total1'] = 100 * (round ( $v2 ['total1'] / $v ['cnt'], 4 )) . '%';
-						$v ['total2'] = 100 * (round ( $v2 ['total2'] / $v ['cnt'], 4 )) . '%';
-						$v ['total3'] = 100 * (round ( $v2 ['total3'] / $v ['cnt'], 4 )) . '%';
-						$v ['total4'] = 100 * (round ( $v2 ['total4'] / $v ['cnt'], 4 )) . '%';
-						$v ['total5'] = 100 * (round ( $v2 ['total5'] / $v ['cnt'], 4 )) . '%';
-						$v ['total6'] = 100 * (round ( $v2 ['total6'] / $v ['cnt'], 4 )) . '%';
+						$v ['total1'] = 100 * (round ( $v2 ['total1'] / $v2 ['total_cnt'], 4 )) . '%';
+						$v ['total2'] = 100 * (round ( $v2 ['total2'] / $v2 ['total_cnt'], 4 )) . '%';
+						$v ['total3'] = 100 * (round ( $v2 ['total3'] / $v2 ['total_cnt'], 4 )) . '%';
+						$v ['total4'] = 100 * (round ( $v2 ['total4'] / $v2 ['total_cnt'], 4 )) . '%';
+						$v ['total5'] = 100 * (round ( $v2 ['total5'] / $v2 ['total_cnt'], 4 )) . '%';
+						$v ['total6'] = 100 * (round ( $v2 ['total6'] / $v2 ['total_cnt'], 4 )) . '%';
 					}
 				}
 			}
@@ -575,32 +622,91 @@ class SystemFunctionNew extends MY_Controller {
 			}
 			
 			$data_group = $this->SystemFunctionNew_model->danGradingGroup ( $table, $where, $field2, $group, $order, $limit );
+			
+			$dan_days = $this->SystemFunctionNew_model->danDays( $table, $where, $field2, $group, $order, $limit );
+			
+			
 			$group = array ();
+			
+			$group[3]['total_days_1']=0;
+			$group[3]['total_days_2']=0;
+			$group[3]['total_days_3']=0;
+			$group[3]['total_days_4']=0;
+			$group[3]['total_days_5']=0;
+			$group[3]['total_days_6']=0;
+			
+			
+	
+			foreach ( $dan_days as $v2 ) {
+			
+				if ($v2['ranklev'] == 1) {
+					$group[3]['total_days_1'] += $v2['active'];
+					$group[3]['total_days_p1']+=1;
+				
+				}
+				if ($v2['ranklev'] >= 1 && $v2 ['ranklev'] <= 5) {
+						$group[3]['total_days_2'] += $v2['active'];
+						$group[3]['total_days_p2']+=1;
+				}
+				if ($v2['ranklev'] >= 6 && $v2 ['ranklev'] <= 10) {
+						$group [3]['total_days_3'] += $v2 ['active'];
+						$group[3]['total_days_p3']+=1;
+				}
+				if ($v2['ranklev'] >= 11 && $v2 ['ranklev'] <= 15) {
+					$group[3]['total_days_4'] += $v2['active'];
+					$group[3]['total_days_p4']+=1;
+				}
+				if ($v2['ranklev'] >= 16 && $v2 ['ranklev'] <= 20) {
+					$group [3]['total_days_5'] += $v2['active'];
+					$group[3]['total_days_p5']+=1;
+				}
+				if ($v2['ranklev'] >= 21 && $v2 ['ranklev'] <= 24) {
+					$group[3]['total_days_6']+=$v2['active'];
+					$group[3]['total_days_p6']+=1;
+				}
+			}
+			
+			
+			
+			
+		
 			foreach ( $data_group as $v2 ) {
 				
 				if ($v2 ['ranklev'] == 1) {
 					$group [1] ['total1'] += $v2 ['vip_level'];
 					$group [2] ['total1'] += $v2 ['level'];
+					$group [1] ['people1'] +=1;
+					$group [2] ['people1'] +=1;
 				}
 				if ($v2 ['ranklev'] >= 1 && $v2 ['ranklev'] <= 5) {
 					$group [1] ['total2'] += $v2 ['vip_level'];
 					$group [2] ['total2'] += $v2 ['level'];
+					$group [1] ['people2'] +=1;
+					$group [2] ['people2'] +=1;
 				}
 				if ($v2 ['ranklev'] >= 6 && $v2 ['ranklev'] <= 10) {
 					$group [1] ['total3'] += $v2 ['vip_level'];
 					$group [2] ['total3'] += $v2 ['level'];
+					$group [1] ['people3'] +=1;
+					$group [2] ['people3'] +=1;
 				}
 				if ($v2 ['ranklev'] >= 11 && $v2 ['ranklev'] <= 15) {
 					$group [1] ['total4'] += $v2 ['vip_level'];
 					$group [2] ['total4'] += $v2 ['level'];
+					$group [1] ['people4'] +=1;
+					$group [2] ['people4'] +=1;
 				}
 				if ($v2 ['ranklev'] >= 16 && $v2 ['ranklev'] <= 20) {
 					$group [1] ['total5'] += $v2 ['vip_level'];
 					$group [2] ['total5'] += $v2 ['level'];
+					$group [1] ['people5'] +=1;
+					$group [2] ['people5'] +=1;
 				}
 				if ($v2 ['ranklev'] >= 21 && $v2 ['ranklev'] <= 24) {
 					$group [1] ['total6'] += $v2 ['vip_level'];
 					$group [2] ['total6'] += $v2 ['level'];
+					$group [1] ['people6'] +=1;
+					$group [2] ['people6'] +=1;
 				}
 			}
 			
@@ -609,19 +715,19 @@ class SystemFunctionNew extends MY_Controller {
 			$group [3] ['title'] = "天数";
 			$total_people = $data_group ['more'] [0] ['total'];
 			
-			$group [1] ['value1'] = 100 * (round ( $group [1] ['total1'] / $total_people, 4 ));
-			$group [1] ['value2'] = 100 * (round ( $group [1] ['total2'] / $total_people, 4 ));
-			$group [1] ['value3'] = 100 * (round ( $group [1] ['total3'] / $total_people, 4 ));
-			$group [1] ['value4'] = 100 * (round ( $group [1] ['total4'] / $total_people, 4 ));
-			$group [1] ['value5'] = 100 * (round ( $group [1] ['total5'] / $total_people, 4 ));
-			$group [1] ['value6'] = 100 * (round ( $group [1] ['total6'] / $total_people, 4 ));
+			$group [1] ['value1'] = (round ( $group [1] ['total1'] / $group [1] ['people1'], 4 ));
+			$group [1] ['value2'] = (round ( $group [1] ['total2'] / $group [1] ['people2'], 4 ));
+			$group [1] ['value3'] =  (round ( $group [1] ['total3'] / $group [1] ['people3'], 4 ));
+			$group [1] ['value4'] =(round ( $group [1] ['total4'] / $group [1] ['people4'], 4 ));
+			$group [1] ['value5'] =  (round ( $group [1] ['total5'] / $group [1] ['people5'], 4 ));
+			$group [1] ['value6'] = (round ( $group [1] ['total6'] / $group [1] ['people6'], 4 ));
 			
-			$group [2] ['value1'] = 100 * (round ( $group [2] ['total1'] / $total_people, 4 ));
-			$group [2] ['value2'] = 100 * (round ( $group [2] ['total2'] / $total_people, 4 ));
-			$group [2] ['value3'] = 100 * (round ( $group [2] ['total3'] / $total_people, 4 ));
-			$group [2] ['value4'] = 100 * (round ( $group [2] ['total4'] / $total_people, 4 ));
-			$group [2] ['value5'] = 100 * (round ( $group [2] ['total5'] / $total_people, 4 ));
-			$group [2] ['value6'] = 100 * (round ( $group [2] ['total6'] / $total_people, 4 ));
+			$group [2] ['value1'] =(round ( $group [2] ['total1'] / $group [2] ['people1'], 4 ));
+			$group [2] ['value2'] = (round ( $group [2] ['total2'] / $group [2] ['people2'], 4 ));
+			$group [2] ['value3'] = (round ( $group [2] ['total3'] / $group [2] ['people3'], 4 ));
+			$group [2] ['value4'] = (round ( $group [2] ['total4'] / $group [2] ['people4'], 4 ));
+			$group [2] ['value5'] =  (round ( $group [2] ['total5'] / $group [2] ['people5'], 4 ));
+			$group [2] ['value6'] =  (round ( $group [2] ['total6'] / $group [2] ['people6'], 4 ));
 			
 			foreach ( $data_group ['more3'] as $v2 ) {
 				
@@ -645,12 +751,13 @@ class SystemFunctionNew extends MY_Controller {
 				}
 			}
 			
-			$group [3] ['value1'] = 100 * (round ( ($group [3] ['total1'] / 86400) / $total_people, 4 ));
-			$group [3] ['value2'] = 100 * (round ( ($group [3] ['total2'] / 86400) / $total_people, 4 ));
-			$group [3] ['value3'] = 100 * (round ( ($group [3] ['total3'] / 86400) / $total_people, 4 ));
-			$group [3] ['value4'] = 100 * (round ( ($group [3] ['total4'] / 86400) / $total_people, 4 ));
-			$group [3] ['value5'] = 100 * (round ( ($group [3] ['total5'] / 86400) / $total_people, 4 ));
-			$group [3] ['value6'] = 100 * (round ( ($group [3] ['total6'] / 86400) / $total_people, 4 ));
+
+			 $group [3] ['value1'] = (round ( ($group[3]['total_days_1'] )/$group[3]['total_days_p1'],4 ));
+			 $group [3] ['value2'] =  (round ( ($group [3] ['total_days_2'] ) / $group[3]['total_days_p2'], 4 ));
+			 $group [3] ['value3'] = (round ( ($group [3] ['total_days_3'] )  / $group[3]['total_days_p3'], 4 ));
+			 $group [3] ['value4'] = (round ( ($group [3] ['total_days_4'] ) / $group[3]['total_days_p4'], 4 ));
+			 $group [3] ['value5'] =  (round ( ($group [3] ['total_days_5'] ) / $group[3]['total_days_p5'], 4 ));
+			 $group [3] ['value6'] = (round ( ($group [3] ['total_days_6'] ) / $group[3]['total_days_p6'], 4 ));
 			
 			$this->output->set_content_type ( 'application/json' )->set_output ( json_encode ( [ 
 					'status' => 'ok',
@@ -705,32 +812,38 @@ class SystemFunctionNew extends MY_Controller {
 		//	var_dump($data);
 			
 			foreach ($data as  $v2){
-				$data2['total']+=$v2['total'];
+				
 			
 			
 			
 			if ($v2 ['dan'] == 1) {
 				$data2['value1'] += $v2 ['total'];
+				$data2['total']+=$v2['total'];
 				
 			}
 			if ($v2 ['dan'] >= 1 && $v2 ['dan'] <= 5) {
 				$data2['value2'] += $v2 ['total'];
+				$data2['total']+=$v2['total'];
 				
 			}
 			if ($v2 ['dan'] >= 6 && $v2 ['dan'] <= 10) {
 				$data2['value3'] += $v2 ['total'];
+				$data2['total']+=$v2['total'];
 				
 			}
 			if ($v2 ['dan'] >= 11 && $v2 ['dan'] <= 15) {
 				$data2['value4'] += $v2 ['total'];
+				$data2['total']+=$v2['total'];
 				
 			}
 			if ($v2 ['dan'] >= 16 && $v2 ['dan'] <= 20) {
 				$data2['value5'] += $v2 ['total'];
+				$data2['total']+=$v2['total'];
 				
 			}
 			if ($v2 ['dan'] >= 21 && $v2 ['dan'] <= 24) {
 				$data2['value6'] += $v2 ['total'];
+				$data2['total']+=$v2['total'];
 			
 			}	
 			
@@ -767,7 +880,27 @@ class SystemFunctionNew extends MY_Controller {
 	}
 	
 	
-    
+	public function serverStart(){
+		
+		$server_start = $this->input->post ( 'server_start' ) ? $this->input->post ( 'server_start', true ) : '';
+		$server_end = $this->input->post ( 'server_end' ) ? $this->input->post ( 'server_end', true ) :'';
+
+		
+		 $where['server_start']=$server_start?date ( 'Ymd', strtotime ( $server_start ) ): '';
+		 $where['server_end']=$server_end?date ( 'Ymd', strtotime ( $server_end ) ):'';
+		
+		$this->load->model ( 'SystemFunctionNew_model' );	
+		$data = $this->SystemFunctionNew_model->serverStart( $table, $where, $field, $group, $order, $limit );
+	
+		foreach ($data as $k=>$v){
+			$tt .=$v['serverid'].',';
+		}
+		$tt=rtrim($tt,',');
+		
+		echo $tt;
+
+	}
+	
     
     
 }

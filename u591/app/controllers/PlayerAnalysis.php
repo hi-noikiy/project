@@ -439,17 +439,39 @@ class PlayerAnalysis extends MY_Controller {
             //$outputData['day7'][$_data['sday']] = $_data['day7'] / $_data['usercount'];
             //$outputData['day30'][$_data['sday']] = $_data['day30'] / $_data['usercount'];
             $outputData['day1'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day1'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day2'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day2'] / $_data['usercount'], 2) * 100 ;
             $outputData['day3'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day3'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day4'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day4'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day5'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day5'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day6'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day6'] / $_data['usercount'], 2) * 100 ;          
             $outputData['day7'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day7'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day8'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day8'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day9'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day9'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day10'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day10'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day11'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day11'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day12'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day12'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day13'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day13'] / $_data['usercount'], 2) * 100 ;
+            $outputData['day14'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day14'] / $_data['usercount'], 2) * 100 ;
             $outputData['day15'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day15'] / $_data['usercount'], 2) * 100 ;
             $outputData['day30'][$_data['sday']] = $_data['usercount']==0 ?0:number_format($_data['day30'] / $_data['usercount'], 2) * 100 ;
 
             $raw[$_data['sday']]['role']        = $_data['usercount'];
             $raw[$_data['sday']]['day1']        = $_data['day1'];
         //    $raw[$_data['sday']]['day1_rate']   = $_data['usercount']==0 ?0:number_format($_data['day1'] / $_data['usercount'], 2) * 100 ;
+            $raw[$_data['sday']]['day2']        = $_data['day2'];
             $raw[$_data['sday']]['day3']        = $_data['day3'];
+            $raw[$_data['sday']]['day4']        = $_data['day4'];
+            $raw[$_data['sday']]['day5']        = $_data['day5'];
+            $raw[$_data['sday']]['day6']        = $_data['day6'];
        //     $raw[$_data['sday']]['day3_rate']   = $_data['usercount']==0 ?0:number_format($_data['day3'] / $_data['usercount'], 2) * 100 ;
             $raw[$_data['sday']]['day7']        = $_data['day7'];
+            $raw[$_data['sday']]['day8']        = $_data['day8'];
+            $raw[$_data['sday']]['day9']        = $_data['day9'];
+            $raw[$_data['sday']]['day10']        = $_data['day10'];
+            $raw[$_data['sday']]['day11']        = $_data['day11'];
+            $raw[$_data['sday']]['day12']        = $_data['day12'];
+            $raw[$_data['sday']]['day13']        = $_data['day13'];
+            $raw[$_data['sday']]['day14']        = $_data['day14'];
        //      $raw[$_data['sday']]['day7_rate']   = $_data['usercount']==0 ?0:number_format($_data['day7'] / $_data['usercount'], 2) * 100 ;
             $raw[$_data['sday']]['day15']        = $_data['day15'];
          //   $raw[$_data['sday']]['day15_rate']   = $_data['usercount']==0 ?0:number_format($_data['day15'] / $_data['usercount'], 2) * 100 ;
@@ -461,14 +483,38 @@ class PlayerAnalysis extends MY_Controller {
             	if($v2['reg_date']==$_data['sday']){
             	  $raw[$_data['sday']]['role']=$v2['new_user'];            		
             	  $raw[$_data['sday']]['day1_rate']   = $_data['usercount']==0 ?0:number_format($_data['day1'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day2_rate']   = $_data['usercount']==0 ?0:number_format($_data['day2'] / $v2['new_user'], 2) * 100 ;
             	  $raw[$_data['sday']]['day3_rate']   = $_data['usercount']==0 ?0:number_format($_data['day3'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day4_rate']   = $_data['usercount']==0 ?0:number_format($_data['day4'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day5_rate']   = $_data['usercount']==0 ?0:number_format($_data['day5'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day6_rate']   = $_data['usercount']==0 ?0:number_format($_data['day6'] / $v2['new_user'], 2) * 100 ;
             	  $raw[$_data['sday']]['day7_rate']   = $_data['usercount']==0 ?0:number_format($_data['day7'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day8_rate']   = $_data['usercount']==0 ?0:number_format($_data['day8'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day9_rate']   = $_data['usercount']==0 ?0:number_format($_data['day9'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day10_rate']   = $_data['usercount']==0 ?0:number_format($_data['day10'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day11_rate']   = $_data['usercount']==0 ?0:number_format($_data['day11'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day12_rate']   = $_data['usercount']==0 ?0:number_format($_data['day12'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day13_rate']   = $_data['usercount']==0 ?0:number_format($_data['day13'] / $v2['new_user'], 2) * 100 ;
+            	  $raw[$_data['sday']]['day14_rate']   = $_data['usercount']==0 ?0:number_format($_data['day14'] / $v2['new_user'], 2) * 100 ;
             	  $raw[$_data['sday']]['day15_rate']   = $_data['usercount']==0 ?0:number_format($_data['day15'] /$v2['new_user'], 2) * 100 ;
             	  $raw[$_data['sday']]['day30_rate']  = $_data['usercount']==0 ?0:number_format($_data['day30'] / $v2['new_user'], 2) * 100 ;  
             		
             	}
               	
             }
+        }
+        
+        foreach ($raw as &$v){
+        	if(empty($v['day9'])){$v['day9']=0;}
+        	if(empty($v['day10'])){$v['day10']=0;}
+        	if(empty($v['day11'])){$v['day11']=0;}
+        	if(empty($v['day12'])){$v['day12']=0;}
+        	if(empty($v['day13'])){$v['day13']=0;}
+        	if(empty($v['day14'])){$v['day14']=0;}
+        	if(empty($v['day15'])){$v['day15']=0;}
+        	
+        	
+        	
         }
         $xAxis = array_unique($date);
         $dt = [
