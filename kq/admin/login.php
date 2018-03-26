@@ -1,5 +1,5 @@
 <?php
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 $noLocation=true;
 include_once('common.inc.php');
 $_SESSION["ADMIN_ID"]="";
@@ -17,7 +17,6 @@ if($_POST['username'] && $_POST['pass']){
 	 * 检查用户合法性
 	 */   
 	 $reInt=$userClass->check($_POST['username'],$_POST['pass']);
-        
      //   print_r($_SESSION);exit;
     
 	if($reInt>0){      //       Header("Location: unread.php"); exit;////

@@ -2649,6 +2649,16 @@ HTML;
 	 *  精灵推荐配招
 	 */
 	public function recommend(){
+		
+		
+		$item_types = include APPPATH . '/config/item_types.php'; // 统计类型字典
+		
+		$elf_equip = include APPPATH . '/config/elf_equip.php';
+		$elf_feature = include APPPATH . '/config/elf_feature.php';
+		$elf_fruit = include APPPATH . '/config/elf_fruit.php';
+		$elf_trait = include APPPATH . '/config/elf_trait.php';
+		
+	
 	    
 
 	    if (parent::isAjax ()) {
@@ -2696,8 +2706,81 @@ HTML;
 	        $order = 'gu.accountid,gu.dan';
 	        $data = $this->SystemFunction_model->recommend ($where, $field  ,$group,$order,$limit );
 	        
+	        
+	        $this->load->model ( 'SystemFunctionNew_model' );
+	        $magic_type = $this->SystemFunctionNew_model->magicType ();
+	        
+	        
+	        foreach ($data as &$v){
+	        	
+	        	
+	        	
+	        	foreach ($item_types as $k2=>$v2){
+	        	if($v['eudemon']==$k2){
+	        		$v['eudemon']=$v2;
+	        	}
+	        	
+	        	
+	        	}
+	        	
+	        	
+	        	foreach ($magic_type as $k3=>$v3){
+	        	
+	        	
+	        		if($v['skills1']==$v3['id']){
+	        			$v['skills1']=$v3['name'];
+	        		}
+	        		if($v['skills2']==$v3['id']){
+	        			$v['skills2']=$v3['name'];
+	        		}
+	        		if($v['skills3']==$v3['id']){
+	        			$v['skills3']=$v3['name'];
+	        		}
+	        		if($v['skills4']==$v3['id']){
+	        			$v['skills4']=$v3['name'];
+	        		}
+	        	
+	        	}
+	        	
+	        	
+	        	foreach ($elf_equip as $k4=>$v4){
+	        	
+	        		if($v['equip']==$k4){
+	        			$v['equip']=$v4;
+	        		}
+	        	
+	        	}
+	        	foreach ($elf_feature as $k5=>$v5){
+	        		if($v['abilities']==$k5){
+	        			$v['abilities']=$v5;
+	        		}
+	        	
+	        	
+	        	}
+	        	foreach ($elf_fruit as $k6=>$v6){
+	        	
+	        		if($v['fruit']==$k6){
+	        			$v['fruit']=$v6;
+	        		}
+	        		
+	        	
+	        	}
+	        	foreach ($elf_trait as $k7=>$v7){
+	        	
+	        		
+	        		
+	        		if($v['kidney']==$k7){
+	        			$v['kidney']=$v7;
+	        		}
+	        	
+	        	}
+	        	
 	
-	       
+	        	
+	        	
+	        }
+	        
+	     
 	        $this->output->set_content_type ( 'application/json' )->set_output ( json_encode ( [
 	            'status' => 'ok',
 	            'data' => $data,

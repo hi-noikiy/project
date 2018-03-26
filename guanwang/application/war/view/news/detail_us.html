@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Elf world VS</title>
-    {load href="__static__/war/css/pmstyle.css" /}
+    {load href="__static__/pokemon/css/pmstyle.css" /}
     <style type="text/css">
     .bd_weixin_popup{position: fixed;left: 50%;padding:15px;margin-left: -150px;top: 50%;margin-top: -150px;z-index: 1000;width:280px !important;height:330px !important;background:#fff;border:solid 1px #d8d8d8;z-index:11001;font-size:16px;display: none;}.bd_weixin_popup .bd_weixin_popup_head{font-size:16px;font-weight:bold;text-align:left;line-height:20px;height:20px;position:relative;color:#000}.bd_weixin_popup .bd_weixin_popup_head .bd_weixin_popup_close{width:16px;height:16px;position:absolute;right:0;top:0;color:#999;text-decoration:none;font-size:16px}.bd_weixin_popup .bd_weixin_popup_head .bd_weixin_popup_close:hover{text-decoration:none}.bd_weixin_popup .bd_weixin_popup_main{padding:30px 40px;min-height:150px;_height:150px}.bd_weixin_popup .bd_weixin_popup_foot{font-size:14px;text-align:left;line-height:22px;color:#666} 
     </style>
@@ -11,11 +11,11 @@
 <body>
 {include file="header_us" /}
 <div class="detail_top">
-    <img src="__static__/war/img/english/detail_top.jpg">
+    <img src="__static__/pokemon/img/english/detail_top.jpg">
 </div>
 <div class="detail_tit">
     <div class="content">
-        <a class="arrow_back" href="javascript:history.go(-1)"></a>
+        <a class="arrow_back" href="http://msxcw.u776.com/public/index.php/war/news/news.html"></a>
         <div class="tit">{$data.title}</div>
         <p>
             <span>author：{$data.author}</span>
@@ -29,7 +29,7 @@
     <a href="javascript:void(0)" class="heart">
         <div class="beat"></div> <span>{$data.thumb_up}</span>
     </a>
-    <a class="back_top" href="#top"><img src="__static__/war/img/top_btn.png"></a>
+    <a class="back_top" href="#top"><img src="__static__/pokemon/img/top_btn.png"></a>
 </div>
 <div id="weixinQrcodeDiv" class="bd_weixin_popup">
     <div class="bd_weixin_popup_head">
@@ -43,11 +43,11 @@
     </div>
 </div>
 {include file="footer_us" /}
-{load href="__static__/war/js/jquery.js" /}
-{load href="__static__/war/js/top_nav.js" /}
-{load href="__static__/war/js/jquery.qrcode.min.js" /}
+{load href="__static__/pokemon/js/jquery.js" /}
+{load href="__static__/pokemon/js/top_nav.js" /}
+{load href="__static__/pokemon/js/jquery.qrcode.min.js" /}
 <script>
-    var shareUrl="http://fhweb.u776.com:88/public/index.php/war/news/detail/id/"+{$data.id};
+    var shareUrl="http://fhweb.u776.com:88/public/index.php/pokemon/news/detail/id/"+{$data.id};
     var newsUrl="{:url('News')}";
     jQuery('#weixin_qrcode').qrcode({width:200,height: 200,text: shareUrl});
 

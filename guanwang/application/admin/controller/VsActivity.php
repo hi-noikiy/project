@@ -20,6 +20,7 @@ class VsActivity extends Common
         if (input('get.search')){
             $where['title'] = ['like', '%'.input('get.search').'%'];
         }
+		$where['lang'] = input('get.play')?input('get.play'):'';
         if (input('get._sort')){
             $order = explode(',', input('get._sort'));
             $order = $order[0].' '.$order[1];

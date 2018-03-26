@@ -18,8 +18,8 @@ $post = serialize($_POST);
 $get = serialize($_GET);
 write_log(ROOT_PATH."log","ysdk_login_all_log_"," post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
 
-$channel = trim($_REQUEST['channel']);
-$token = trim($_REQUEST['token']);
+$channel = trim($_REQUEST['access_token']);
+$token = trim($_REQUEST['type']);
 $gameId = intval($_REQUEST['game_id']);
 
 $chn = explode('_', $channel);

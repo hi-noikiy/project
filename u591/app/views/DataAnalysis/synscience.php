@@ -39,21 +39,21 @@
                     </div>
                     
                     
-              <div class="col-sm-2">
-                <div class="form-group">
-                    <div class="fg-line">
-                        <input  title="开服开始时间" type="text" name="date3" value="<?php echo $btserver?>" class="form-control <?php echo isset($date_time_picker) ? 'date-time-picker' :'date-picker'?>" placeholder="开服开始时间">
+                    <div class="col-sm-2">                   
+                        <div class="form-group">
+                            <div class="fg-line">
+                 <input title="注册开始时间" type="text" name="server_start" id="server_start" value="" class="form-control <?php echo isset($date_time_picker) ? 'date-time-picker' :'date-picker'?>" placeholder="开服时间">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>            
-           
-            <div class="col-sm-2">
-                <div class="form-group">
-                    <div class="fg-line">
-                        <input  title="开服结束时间" type="text" name="date4" value="<?php echo $etserver?>" class="form-control <?php echo isset($date_time_picker) ? 'date-time-picker' :'date-picker'?>" placeholder="开服结束时间">
+                    <div class="col-sm-2" style="display:none;">
+                                       开服结束时间：：
+                        <div class="form-group">
+                            <div class="fg-line">
+                                <input  title="注册结束时间" type="text" name="server_end" value="" id="server_end" onchange="serverendfunction()"  class="form-control <?php echo isset($date_time_picker) ? 'date-time-picker' :'date-picker'?>" placeholder="开服结束时间">
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div> 
                     
                             <div class="col-sm-3">
                                 <div class="form-group">
@@ -89,6 +89,44 @@
 </section>
 <script src="<?=base_url()?>public/ma/js/layer.js"></script>
 <script>
+$('input[name="server_start"]').blur(function(){
+	 var server_start=  $("input[ name='server_start']").val();
+	 var server_end=  $("input[ name='server_end']").val();
+	 var dataString = 'flid=2&server_start='+ server_start+'&server_end='+server_end; 
+	 $.ajax ({    
+	     type: "POST",    
+	     url: "<?php echo site_url('SystemFunctionNew/serverStart');?>",    
+	     data: dataString,    
+	     cache: false,    
+	     success: function(data)  {   
+		    	var myarray=data.split(',');	    		
+	    		var ids = [];
+	    	$("#server_id_mul").parent().find('input[name="server_id[]"]').each(function(i){
+	    	
+	    		for(j=0;j<myarray.length;j++){
+	    		
+	    			if($(this).attr('value')==myarray[j]){
+	    				$(this).attr('checked',true);
+	    				ids.push($(this).attr('value'));
+	    			}else{
+	    				$(this).attr('checked',false);
+	    			}
+	    		}
+
+	    		});			
+	    		$("select#server_id_mul").val(ids);
+	    		$("select#server_id_mul").multiselect('refresh');
+
+	        }     
+	 });     
+
+});
+
+</script>
+
+<script>
+
+
 
     var dataOption = {
         autoload: false,

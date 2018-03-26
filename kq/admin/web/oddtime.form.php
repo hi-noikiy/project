@@ -51,7 +51,7 @@ if ($_GET ['id']) {
 <tr>
 	<td class="N_title">原由：</td>
 	<td class="N_title" colspan="7">
-        <?=htmlEdit('reason',$info['reason'])?>
+        <?=htmlEdit1('reason',$info['reason'])?>
     </td>
 </tr>
 <tr>
@@ -185,7 +185,7 @@ if ($_GET ['id']) {
 <tr>
 	<td class="N_title">原由：</td>
 	<td class="N_title" colspan="7">
-		<?=htmlEdit('reason',$info['reason'])?>
+		<?=htmlEdit1('reason',$info['reason'])?>
 	</td>
 </tr>
 <?php
@@ -238,8 +238,9 @@ function checkForm(c_date){
             }
         }*/
 
-        if(GetContents('reason')==''){
-            alert(msg);
+        var reason = $('#box').html().trim();
+        if(reason==''){
+            alert('请输入事由');
             return false;
         }
     }

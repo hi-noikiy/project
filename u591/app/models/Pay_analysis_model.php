@@ -155,27 +155,16 @@ class Pay_analysis_model extends CI_Model {
 	/*
 	 * 新增账号付费 chenyanbin 2017/11/21
 	 */
-	public function getPayNew($bengin, $end)
+	public function getPayNew($bengin, $end,$where="")
 	{
-		$bengin_new=strtotime($bengin);
-		$end_new=strtotime($end);
-		$sql = "SELECT
-				u_register.`reg_date` as date,
-				count(distinct(u_paylog.`accountid`)) as ctotal,
-				sum(u_paylog.money) as money
+		$sql = "SELECT a.reg_date as date,COUNT(DISTINCT a.accountid) as ctotal,sum(b.money) as money from 
+(SELECT reg_date,accountid,channel from u_register WHERE reg_date>=$bengin and reg_date<=$end) a,
+(SELECT from_unixtime(`created_at`, '%Y%m%d') s,accountid,money FROM u_paylog 
+WHERE from_unixtime(`created_at`, '%Y%m%d')>=$bengin and from_unixtime(`created_at`, '%Y%m%d')<=$end) b
 
-			FROM
-				u_register
-			LEFT JOIN u_paylog ON (
-				u_register.accountid = u_paylog.accountid
-			)
-			WHERE
-				u_register.`reg_date`
-					between $bengin and $end and u_paylog.created_at between $bengin_new and $end_new
+WHERE a.reg_date=b.s and a.accountid=b.accountid $where
 
-			GROUP BY
-			u_register.`reg_date`
-			ORDER BY u_register.`reg_date` DESC ";
+GROUP BY a.reg_date";
 		$this->db_sdk = $this->load->database ( 'sdk', TRUE );
 		$query = $this->db_sdk->query ( $sql );
 		if ($query) {
@@ -187,17 +176,15 @@ class Pay_analysis_model extends CI_Model {
 	/*
 	 * 日期 付费总数 chenyanbin 2017/11/21
 	 */
-	public function getPayNewTotal($bengin, $end)
+	public function getPayNewTotal($bengin, $end,$where="")
 	{
-		$bengin_new=strtotime($bengin);
-		$end_new=strtotime($end);
 		$sql = "SELECT
 					count(distinct(`accountid`)) AS total,
 					FROM_UNIXTIME(created_at, '%Y%m%d') AS date
 				FROM
 					u_register
 				WHERE
-					created_at BETWEEN $bengin AND $end
+					created_at BETWEEN $bengin AND $end $where
 				GROUP BY
 					FROM_UNIXTIME(created_at, '%Y%m%d')
 				";

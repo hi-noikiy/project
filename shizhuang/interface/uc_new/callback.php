@@ -71,6 +71,12 @@ if(!$result){
         $dwFenBaoID = $result_account['dwFenBaoID'];
         $clienttype = $result_account['clienttype'];
     }
+    $ch = explode('@', $PayName);
+    $chname = $ch[count($ch)-1];
+    if(!in_array($chname, array('pp','ali','wdj','uc'))){
+    	write_log(ROOT_PATH."log","name_ali_", "account is $PayName ! post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
+    	exit("SUCCESS");
+    }
     $conn = SetConn(88);
     $Add_Time=date('Y-m-d H:i:s');
     $sql="insert into web_pay_log (CPID,PayID,PlayerID,PayName,ServerID,PayMoney,data,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,packageName,rpCode)";

@@ -589,7 +589,7 @@ usleep(1000);
             $this->ActiveAccountCount( $now);
             $this->UserRemainNew($now);    
            */
-         $this->run_summary($date); 
+         $this->run_summary($date);
        //     $this->UserLost( $date);
 
  // $this->au( $now);

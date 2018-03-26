@@ -458,8 +458,10 @@ echo $sql;
 			$field = '*';
 		}
 
-		$sql = "select id,count(if(stonestep=0,true,null)) as stonestep0,count(if(stonestep=1,true,null)) as stonestep1,count(if(stonestep=2,true,null)) as stonestep2,count(if(stonestep=3,true,null)) as stonestep3,count(if(stonestep=4,true,null)) as stonestep4,count(if(stonestep=5,true,null)) as stonestep5,count(if(stonestep=6,true,null)) as stonestep6,count(if(stonestep=7,true,null)) as stonestep7,count(if(stonestep=8,true,null)) as stonestep8,count(if(stonestep=9,true,null)) as stonestep9,count(if(stonestep=10,true,null)) as stonestep10,stonetype,count(*) as total,sum(stonestep) as total_stonestep,stonestep,logdate,vip_level,account_id from game_stone where logdate>={$where['begindate']} and logdate<={$where['enddate']} and account_id>1000 and stonetype=0 and 1=1";
-
+	$sql = "select id,count(if(stonestep=0,true,null)) as stonestep0,count(if(stonestep=1,true,null)) as stonestep1,count(if(stonestep=2,true,null)) as stonestep2,count(if(stonestep=3,true,null)) as stonestep3,count(if(stonestep=4,true,null)) as stonestep4,count(if(stonestep=5,true,null)) as stonestep5,count(if(stonestep=6,true,null)) as stonestep6,count(if(stonestep=7,true,null)) as stonestep7,count(if(stonestep=8,true,null)) as stonestep8,count(if(stonestep=9,true,null)) as stonestep9,count(if(stonestep=10,true,null)) as stonestep10,stonetype,count(*) as total,sum(stonestep) as total_stonestep,stonestep,logdate,vip_level,account_id from
+	    (select id,stonetype,account_id,stonestep,logdate,vip_level from game_stone where logdate>={$where['begindate']} and logdate<={$where['enddate']} and account_id>1000 and stonetype=0 GROUP BY account_id) g2 where 1=1";
+		
+		
 		if ($where ['serverids']) {
 			$sql .= " AND serverid IN(" . implode ( ',', $where ['serverids'] ) . ")";
 		}
@@ -474,6 +476,7 @@ echo $sql;
 			$sql .= " limit $limit";
 		}
 
+	
 		$query = $this->db_sdk->query ( $sql );
 
 		$result = array ();
@@ -729,4 +732,50 @@ echo $sql;
 		return $data;
 	}
 
+	
+	public function soul($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '') {
+		$sql = "SELECT $field FROM u_userinfo  WHERE 1=1 "; // 当天登录数
+		
+		if ($where ['begindate'] && $where ['enddate']) {
+			
+			$sql .= " AND (logdate>={$where ['begindate']} and logdate<={$where ['enddate']})";
+		}
+		
+		if ($where ['serverids']) {
+			$sql .= " AND serverid IN(" . implode ( ',', $where ['serverids'] ) . ")";
+		}
+		
+		if ($where ['channels']) {
+			$sql .= " AND channel IN(" . implode ( ',', $where ['channels'] ) . ")";
+		}
+		
+		if ($group) {
+			$sql .= " group by $group";
+		}
+		
+		$result = $this->db_sdk->query ( $sql );
+		
+		if ($result) {
+			$data = $result->result_array ();
+		}
+		
+		return $data;
+	}
+	
+	/*
+	 * g_servermerge
+	 */
+	public function idServerlist($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '') {
+		$sql = "SELECT id,idserverlist	FROM g_servermerge  WHERE 1=1 "; 
+	
+
+		$result = $this->db_sdk->query ( $sql );
+	
+		if ($result) {
+			$data = $result->result_array ();
+		}
+	
+		return $data;
+	}
+	
 }

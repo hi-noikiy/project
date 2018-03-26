@@ -263,7 +263,7 @@ class SystemFunctionNew_model  extends CI_Model
    	
 		$this->db_sdk = $this->load->database ( 'sdk', TRUE );
 	
-		//echo $sql;
+	
 		$query = $this->db_sdk->query ( $sql );
 		
 		if ($query) {
@@ -307,7 +307,7 @@ class SystemFunctionNew_model  extends CI_Model
 		GROUP BY  a.mac,a.accountid ORDER BY total";
 		
 	
-	
+
 		$this->db_sdk = $this->load->database ( 'sdk', TRUE );
 	
 		$query = $this->db_sdk->query ( $sql );
@@ -342,65 +342,405 @@ class SystemFunctionNew_model  extends CI_Model
 		}
 		return array();
 	}
+	public function skillRate($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '') {
+		if (! $field) {
+			$field = '*';
+		}
+		
+		$this->db_sdk = $this->load->database ( 'sdk', TRUE );
+		
+		for($i = 1; $i < 11; $i ++) {
+			
+			$sql = "SELECT sum(bout_num) as bout,magictype{$i} as skillid,sum(used_times{$i}) as total from skill_rate WHERE magictype{$i} is not null  ";
+			
+			if ($where ['date'] && $where ['date2']) {
+				$sql .= " AND (logdate>={$where ['date']} and logdate<={$where ['date2']})";
+			}
+			
+			if ($where ['combattype']) {
+				$sql .= " AND type={$where ['combattype']}";
+			}
+			
+			if ($where ['dan_s']) {
+				$sql .= " AND (atkRank>={$where ['dan_s']} and atkRank<={$where ['dan_e']})";
+			}
+			
+			$sql .= " group by magictype{$i}";
+			
+			$query = $this->db_sdk->query ( $sql );
+			if ($query) {
+				$result [$i] = $query->result_array ();
+			}
+		}
+		
+		if ($result) {
+			return $result;
+		} else {
+			
+			return array ();
+		}
+	}
 	
 	
-	public function skillRate($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '')
-	{
+	public function skillRateTotalBoul($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '') {
 		if (! $field) {
 			$field = '*';
 		}
 	
-		$sql = "SELECT skillid,count(*) as total,bout  from skill_rate where 1=1";
-	
-	
-	
-		if( $where['date'] &&  $where['date2'] ){
-			$sql .= " AND (logdate>={$where ['date']} and logdate<={$where ['date2']})";
-		}
-	
-		if ($group) {
-			$sql .= " group by $group";
-		}
-		if ($order) {
-			$sql .= " order by $order";
-		}
-	
-		//echo $sql;
 		$this->db_sdk = $this->load->database ( 'sdk', TRUE );
-		$query = $this->db_sdk->query ( $sql );
-		if ($query) {
-			return $query->result_array ();
-		}
-		return array();
-	}
 	
+	
+				
+			$sql = "SELECT sum(bout_num) as total from skill_rate WHERE 1=1 ";
+				
+			if ($where ['date'] && $where ['date2']) {
+				$sql .= " AND (logdate>={$where ['date']} and logdate<={$where ['date2']})";
+			}
+				
+			if ($where ['combattype']) {
+				$sql .= " AND type={$where ['combattype']}";
+			}
+				
+			if ($where ['dan_s']) {
+				$sql .= " AND (atkRank>={$where ['dan_s']} and atkRank<={$where ['dan_e']})";
+			}
+				
+			$query = $this->db_sdk->query ( $sql );
+			if ($query) {
+				$result = $query->result_array ();
+			}
+	
+	
+		if ($result) {
+			return $result;
+		} else {
+				
+			return array ();
+		}
+	}
 	
 	
 	public function transcript($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '')
 	{
 		if (! $field) {
 			$field = '*';
-		}
-	
+		}	
 		$sql = "SELECT count(DISTINCT accountid) cnt,vip_level,param,count(if(param1=0,true,null)) total_success,count(*) total,left(param,1) type,sum(right(param,1)) total_storey from u_behavior_{$where['date']} WHERE act_id=115 and left(param,1)={$where['behavior_type']}";
-	
-	
-	
-	
+
 		if ($group) {
 			$sql .= "  GROUP BY  vip_level";
 		}
 		if ($order) {
 			$sql .= " order by $order";
 		}
-	
-		//echo $sql;
+
+		
+	    $sql2="SELECT vip_level,accountid,right(param,1) cnt  from u_behavior_{$where['date']} WHERE act_id=115 GROUP BY accountid";
+		
 		$this->db_sdk = $this->load->database ( 'sdk', TRUE );
 		$query = $this->db_sdk->query ( $sql );
 		if ($query) {
-			return $query->result_array ();
+			$result= $query->result_array ();
+		}		
+		
+		$query2 = $this->db_sdk->query ( $sql2 );
+		if ($query2) {
+			$result['more']= $query2->result_array ();
 		}
-		return array();
+		
+		return $result;
 	}
 	
+	
+	public function danGrading($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '')
+	{
+    	$sql = "select $field from game_world_user_{$where['date']} where 1=1";
+    
+    	if($where['serverids']){
+    		$sql .= " AND serverid IN(".implode(',', $where['serverids']).")";
+    	}
+    	if($where['season']){
+    		$sql .= " AND season ={$where['season']}";
+    	}
+    	if($where['viplev_min']){
+    		$sql .= " and vip_level>={$where['viplev_min']}";
+    	}
+    	if($where['viplev_max']){
+    		$sql .= " and vip_level<={$where['viplev_max']}";
+    	}
+    	if($group ){
+    		$sql .= " group by vip_level";
+    	}
+    	if($where['ranklev']){
+    		$sql .= " having ranklev ={$where['ranklev']}";
+    	}
+  // echo $sql;	  	
+    	
+    	$sql2="select $field,com_ranklev from game_world_user_{$where['date']} where 1=1 group by $group";
+    	
+    	$query = $this->db_sdk->query($sql);
+    	if ($query) {
+    		$result= $query->result_array();
+    	}
+    	
+    	$query2 = $this->db_sdk->query($sql2);
+    	if ($query2) {
+    		$result['more']= $query2->result_array();
+    	}
+    	 
+    	
+    	
+    	return $result;
+    }
+    
+    public function danGradingGroup($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '')
+    {
+    	$sql = "select $field,level from game_world_user_{$where['date']} group by account_id";
+    
+
+    	$sql2="select COUNT(DISTINCT account_id) total from game_world_user_{$where['date']} ";
+    	
+  	$sql3="SELECT $field,UNIX_TIMESTAMP(NOW())-created_at as day_number from game_world_user_{$where['date']} g INNER JOIN u_register r on g.account_id=r.accountid GROUP BY g.account_id";
+    	 
+    	$query = $this->db_sdk->query($sql);
+    	if ($query) {
+    		$result= $query->result_array();
+    	}
+    	 
+     	$query2 = $this->db_sdk->query($sql2);
+    	if ($query2) {
+    		$result['more']= $query2->result_array();
+    	} 
+    
+    	$query3 = $this->db_sdk->query($sql3);
+    	if ($query3) {
+    		$result['more3']= $query3->result_array();
+    	}    	 
+    	return $result;
+    }
+    
+    
+    public function danDays($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '')
+    {
+    	$where['date_1']= strtotime($where ['date']);
+    	
+    	$where['date_2']= strtotime($where ['date'])+86400;
+    
+    	$sql = "SELECT $field,p.active from game_world_user_{$where['date']} g,(SELECT * from u_player_active WHERE log_date>={$where['date']}) p WHERE p.accountid=g.account_id ";
+     
+    	$query = $this->db_sdk->query($sql);
+     
+    	if ($query) {
+    		$result= $query->result_array();
+    	}
+       return $result;
+
+    }
+    
+    public function danSearch($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = '')
+    {
+    	$where['date_1']=	$where ['date'].'01';
+        $where['date_2']=$where ['date'].'31';
+     	$sql = "SELECT p.viplev,p.lev,p.active,COUNT(DISTINCT p.accountid) total,g.dan from game_user_{$where['date_table']} g,(SELECT * from u_player_active WHERE log_date>={$where['date_1']} and log_date<={$where['date_2']}) p WHERE p.accountid=g.accountid ";
+    
+    
+     	if(	$where ['viplev_min'] && 	$where ['viplev_max']){
+     		
+     		$sql.=" and (p.viplev>={$where ['viplev_min']} and  p.viplev<={$where ['viplev_min']})";
+     	}
+     	
+     	
+     if($where ['lev_min'] && 	$where ['lev_max']){
+     		
+     		$sql.=" and (p.lev>={$where ['lev_min']} and  p.lev<={$where ['lev_max']})";
+     	}
+     	
+  
+     	if($where ['days']){
+     		 
+     		$sql.=" and p.active<={$where ['days']} ";
+     	}
+     	
+     	
+     	
+     	
+     	$sql .= "  GROUP BY g.dan";
+   
+    	$query = $this->db_sdk->query($sql);
+    	
+    	$this->db_sdk->last_query();
+    	if ($query) {
+    		$result= $query->result_array();
+    	}
+    
+
+    	return $result;
+    }
+    
+    
+    public function serverStart($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = ''){
+    	
+    	$sql="select serverid,serverdate  from server_date where 1=1";
+    
+        if($where['server_start']){
+        	
+        	$sql.=" and serverdate>={$where['server_start']}";
+        	
+        }
+        if($where['server_end']){
+        	 
+        	$sql.=" and serverdate<={$where['server_end']}";
+        	 
+        }
+        
+        $query = $this->db_sdk->query($sql);
+
+   
+        if ($query) {
+        	$result= $query->result_array();
+        }
+        
+        
+        return $result;
+    }
+    
+    
+    public function wowPet($table = '', $where = array(), $field = '*', $group = '', $order = '', $limit = ''){
+    	 
+
+    	if($where ['statistics_type']==1){
+    		 
+    		$sql_1="SELECT sum(star) as total_level,star as name,template_id,exp_group,star,count(*) total,count(if(vip_level=0,true,null)) vip_level0,count(if(vip_level=1,true,null)) vip_level1,
+count(if(vip_level=2,true,null)) vip_level2,count(if(vip_level=3,true,null)) vip_level3,count(if(vip_level=4,true,null)) vip_level4,
+count(if(vip_level=5,true,null)) vip_level5,count(if(vip_level=6,true,null)) vip_level6,count(if(vip_level=7,true,null)) vip_level7,
+count(if(vip_level=8,true,null)) vip_level8,count(if(vip_level=9,true,null)) vip_level9,
+count(if(vip_level=10,true,null)) vip_level10,count(if(vip_level=11,true,null)) vip_level11,count(if(vip_level=12,true,null)) vip_level12,sum(if(vip_level=0,vip_level,null)) s0,sum(if(vip_level=1,vip_level,null)) s1,sum(if(vip_level=2,vip_level,null)) s2,sum(if(vip_level=3,vip_level,null)) s3,sum(if(vip_level=4,vip_level,null)) s4,sum(if(vip_level=5,vip_level,null)) s5,sum(if(vip_level=6,vip_level,null)) s6,sum(if(vip_level=7,vip_level,null)) s7,sum(if(vip_level=8,vip_level,null)) s8,sum(if(vip_level=9,vip_level,null)) s9,sum(if(vip_level=10,vip_level,null)) s10,sum(if(vip_level=11,vip_level,null)) s11,sum(if(vip_level=12,vip_level,null)) s12 from wow_pet where logdate>={$where ['date']} 
+    		and logdate<={$where ['date2']} ";
+    		
+    		if($where['eudemon']){
+    			$sql_1.=" and template_id={$where['eudemon']} ";
+    		}
+    		
+    	    $sql_1.=" GROUP BY star";
+    		
+    		
+    		$sql_2="SELECT star as name,template_id,exp_group,star,count(*) total,count(if(vip_level=0,true,null)) vip_level0,count(if(vip_level=1,true,null)) vip_level1,
+    		count(if(vip_level=2,true,null)) vip_level2,count(if(vip_level=3,true,null)) vip_level3,count(if(vip_level=4,true,null)) vip_level4,
+    		count(if(vip_level=5,true,null)) vip_level5,count(if(vip_level=6,true,null)) vip_level6,count(if(vip_level=7,true,null)) vip_level7,
+    		count(if(vip_level=8,true,null)) vip_level8,count(if(vip_level=9,true,null)) vip_level9,
+    		count(if(vip_level=10,true,null)) vip_level10,count(if(vip_level=11,true,null)) vip_level11,count(if(vip_level=12,true,null)) vip_level12,sum(if(vip_level=0,vip_level,null)) s0,sum(if(vip_level=1,vip_level,null)) s1,sum(if(vip_level=2,vip_level,null)) s2,sum(if(vip_level=3,vip_level,null)) s3,sum(if(vip_level=4,vip_level,null)) s4,sum(if(vip_level=5,vip_level,null)) s5,sum(if(vip_level=6,vip_level,null)) s6,sum(if(vip_level=7,vip_level,null)) s7,sum(if(vip_level=8,vip_level,null)) s8,sum(if(vip_level=9,vip_level,null)) s9,sum(if(vip_level=10,vip_level,null)) s10,sum(if(vip_level=11,vip_level,null)) s11,sum(if(vip_level=12,vip_level,null)) s12 from wow_pet where logdate>={$where ['date']}
+    		and logdate<={$where ['date2']} ";
+    		
+    		
+    		if($where['eudemon']){
+    			$sql_2.=" and template_id={$where['eudemon']} ";
+    		}
+    		
+    		$sql_2.=" GROUP BY exp_group,star";
+    		
+    	//echo $sql_1;
+    		$query_1 = $this->db_sdk->query($sql_1);    		
+    		if ($query_1) {
+    			$result['star']= $query_1->result_array();
+    		}
+    		
+    		
+    		$query_2 = $this->db_sdk->query($sql_2);
+    		if ($query_2) {
+    			$result['exp_group']= $query_2->result_array();
+    		}
+    		
+    		
+    		
+    		
+    		return $result;
+    	}
+ 
+    	
+    	if($where ['statistics_type']==2){
+    		 
+    		$sql_1="SELECT sum(strengthen_lev) as total_level,strengthen_lev as name,template_id,exp_group,star,count(*) total,count(if(vip_level=0,true,null)) vip_level0,count(if(vip_level=1,true,null)) vip_level1,
+    		count(if(vip_level=2,true,null)) vip_level2,count(if(vip_level=3,true,null)) vip_level3,count(if(vip_level=4,true,null)) vip_level4,
+    		count(if(vip_level=5,true,null)) vip_level5,count(if(vip_level=6,true,null)) vip_level6,count(if(vip_level=7,true,null)) vip_level7,
+    		count(if(vip_level=8,true,null)) vip_level8,count(if(vip_level=9,true,null)) vip_level9,
+    		count(if(vip_level=10,true,null)) vip_level10,count(if(vip_level=11,true,null)) vip_level11,count(if(vip_level=12,true,null)) vip_level12,sum(if(vip_level=0,vip_level,null)) s0,sum(if(vip_level=1,vip_level,null)) s1,sum(if(vip_level=2,vip_level,null)) s2,sum(if(vip_level=3,vip_level,null)) s3,sum(if(vip_level=4,vip_level,null)) s4,sum(if(vip_level=5,vip_level,null)) s5,sum(if(vip_level=6,vip_level,null)) s6,sum(if(vip_level=7,vip_level,null)) s7,sum(if(vip_level=8,vip_level,null)) s8,sum(if(vip_level=9,vip_level,null)) s9,sum(if(vip_level=10,vip_level,null)) s10,sum(if(vip_level=11,vip_level,null)) s11,sum(if(vip_level=12,vip_level,null)) s12 from wow_pet where logdate>={$where ['date']}
+    		and logdate<={$where ['date2']}";
+    	
+    		if($where['eudemon']){
+    			$sql_1.=" and template_id={$where['eudemon']} ";
+    		}
+    		
+    		$sql_1.=" GROUP BY strengthen_lev";
+    		
+    	
+    	
+    		$query_1 = $this->db_sdk->query($sql_1);
+    		if ($query_1) {
+    			$result['total1']= $query_1->result_array();
+    		}
+    	
+    	
+    	
+    	
+    	
+    	
+    		return $result;
+    	}
+    
+    	
+    	if($where ['statistics_type']==3){
+    		 
+    		$sql_1="SELECT sum(upclass_lev) as total_level,upclass_lev as name,template_id,exp_group,star,count(*) total,count(if(vip_level=0,true,null)) vip_level0,count(if(vip_level=1,true,null)) vip_level1,
+    		count(if(vip_level=2,true,null)) vip_level2,count(if(vip_level=3,true,null)) vip_level3,count(if(vip_level=4,true,null)) vip_level4,
+    		count(if(vip_level=5,true,null)) vip_level5,count(if(vip_level=6,true,null)) vip_level6,count(if(vip_level=7,true,null)) vip_level7,
+    		count(if(vip_level=8,true,null)) vip_level8,count(if(vip_level=9,true,null)) vip_level9,
+    		count(if(vip_level=10,true,null)) vip_level10,count(if(vip_level=11,true,null)) vip_level11,count(if(vip_level=12,true,null)) vip_level12,sum(if(vip_level=0,vip_level,null)) s0,sum(if(vip_level=1,vip_level,null)) s1,sum(if(vip_level=2,vip_level,null)) s2,sum(if(vip_level=3,vip_level,null)) s3,sum(if(vip_level=4,vip_level,null)) s4,sum(if(vip_level=5,vip_level,null)) s5,sum(if(vip_level=6,vip_level,null)) s6,sum(if(vip_level=7,vip_level,null)) s7,sum(if(vip_level=8,vip_level,null)) s8,sum(if(vip_level=9,vip_level,null)) s9,sum(if(vip_level=10,vip_level,null)) s10,sum(if(vip_level=11,vip_level,null)) s11,sum(if(vip_level=12,vip_level,null)) s12	 from wow_pet where logdate>={$where ['date']}
+    		and logdate<={$where ['date2']}";
+    		 
+    		 
+    		if($where['eudemon']){
+    			$sql_1.=" and template_id={$where['eudemon']} ";
+    		}
+    		
+    		$sql_1.=" GROUP BY upclass_lev";
+    		 
+    		$query_1 = $this->db_sdk->query($sql_1);
+    		if ($query_1) {
+    			$result['total1']= $query_1->result_array();
+    		}
+    		 
+    		 
+    		 
+    		 
+    		 
+    		 
+    		return $result;
+    	}
+    
+   
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+ public function   magicType(){
+   	$sql="SELECT id,type,name from s_magic_type";
+   	$query = $this->db_sdk->query($sql);
+   	if ($query) {
+   	return 	$result= $query->result_array();
+   	} else {
+   		
+   		return array();
+   	}
+   	
+   }
+    
 }

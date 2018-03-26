@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
 * ==============================================
 * Copyright (c) 2015 All rights reserved.
@@ -45,9 +45,9 @@ class leave extends getList {
          *早上09:00~12:00
          *下午13:30~18:30
          */
-        $startTime_09 = strtotime('09:00:00');
+        $startTime_09 = strtotime('08:00:00');
         $endTime_12 = strtotime('12:00:00');
-        $startTime_13 = strtotime('13:30:00');
+        $startTime_13 = strtotime('13:00:00');
         $entime_18 = strtotime('18:30:00');
         
         $userStart = strtotime($array['hour_s'].":".$array['minute_s'].":00");
@@ -181,9 +181,10 @@ class leave extends getList {
         if($this->editData($array,$id)){ // 处理成功后更改年假数据
 			$result2 = $webdb->getValue("select * from ".$this->tableName." where id='$id' limit 1");   
 			if($result2['leaveType'] == '年假' && 
-			($array['depTag'] == 1 || $array['perTag'] == 1 || $array['manTag'] == 1 || ($array['available'] == 0 && 
+			($array['depTag'] == '1' || $array['perTag'] == '1' || $array['manTag'] == '1' || $array['available'] == '0')){ //不通过或者作废回退年假时长
+			/*($array['available'] == 0 && 
 			($result2['depTag'] == 0 || ($result2['depTag'] == 2 && $result2['perTag'] == 0) ||
-			($result2['depTag'] == 2 && $result2['perTag'] == 2 && $result2['manTag'] == 0))))){ //不通过或者作废回退年假时长
+			($result2['depTag'] == 2 && $result2['perTag'] == 2 && $result2['manTag'] == 0)))*/
 				$uid = $result2['uid'];
 				$totaltime = explode('_',$result2['timeDetail']);
 				$ny = isset($totaltime[0])?$totaltime[0]:0;//回退今年时长

@@ -28,6 +28,7 @@ return [
     'click_val'             => '点击数必须为大于等于0数字整数',
     'create_time_val'       => '创建时间不能为空',
     'status_val'            => '状态必须为数字整数（0,1）',
+    'search'=>'描述',
     
     //其他
     'preview'               => '预览',

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>تحدي الوحوش</title> 
+    {load href="__static__/pokemon/dist/assets/owl.carousel.css" /}
+    {load href="__static__/pokemon/dist/assets/owl.theme.default.css" /}
+    {load href="__static__/pokemon/css/carousel_pc.css" /}
+    {load href="__static__/pokemon/css/pmstyle.css" /}
+    {load href="__static__/pokemon/css/switch.css" /}
+</head>
+<body>
+{include file="header_ar" /}
+<div class="index_1">
+    <div class="dl_block">
+        <div class="tips_text" style="font-size: 20px;">
+            جمع البوكيمون وتربيته ،معركة استراتيجية GBA، مغارمة البوكيمون RPG
+        </div>
+        <div class="dl">
+            <p style="text-indent: 1em;">مسح الرمز للإنتباع  الفيسبوك</p>
+            <img class="dl_code" style="width: 145px;" src="__static__/pokemon/img/arab/code.png">
+            <div class="dl_btn">
+                <a class="ios" style="font-size: 28px;" href="{$pokemon.apple_url}" target="_blank">
+                    <img style="left:18px;top:11px;" src="__static__/pokemon/img/arab/ios.png">تحميل IOS
+                </a>
+                <a class="adr" style="font-size: 28px;" href="{$pokemon.android_url}" target="_blank">
+                    <img style="left:12px;top:10px;" src="__static__/pokemon/img/arab/adr.png">تحميل AN
+                </a>
+            </div>
+            <a class="dl_gift" href="javascript:;">
+                <img src="__static__/pokemon/img/arab/gift.png">
+                <div class="gift">تسلم الهدية</div>
+            </a>
+
+        </div>
+    </div>
+    <img class="index_1_bg" src="__static__/pokemon/img/arab/bg.jpg"/>
+    <div class="index_1_content ">
+        <div class="position_fix_btm">
+            <div class="content clearfix">
+                <div class="auto_play_box">
+                    <div id="owl-demo" class="owl-carousel owl-theme">
+                    {volist name="bannerList" id="vo"}
+                        {if condition=" $vo.type == 1 "}
+                        <div class="item"><a href="{if condition="($vo.url neq null) and ($vo.url != '')"}{$vo.url}{else/}javascript:void(0);{/if}" alt="{$vo.name}" target="_blank"><img src="{$vo.image_url}" alt="{$vo.name}" style="width: 520px;height: 300px;"></a></div>
+                        {/if}
+                    {/volist}
+                    </div>
+                </div>
+                <div class="list_box">
+                    <ul class="list_tit clearfix">
+                    	<li class="active"><a href="javascript:void(0)">أحدث</a><img class="triangle" src="__static__/pokemon/img/arab/blue_triangle.png"></li>
+                        {volist name="newsTypeList" id="vo"}
+                            <li><a href="javascript:void(0)">{$vo.name}</a><img class="triangle" src="__static__/pokemon/img/arab/blue_triangle.png"></li>
+                        {/volist}
+                        <a class="more" href="{:url('News/news')}">المزيد+</a>
+                    </ul>
+                    <div class="list_block" id="list_0">
+                    	{assign name="var" value="1" /}
+                        	{volist name="topNews" id="tops"}
+                        {if condition=" $var <= 1 "}
+                        <div class="list_first">
+                            <a href="javascript:openDetail({$tops.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$tops.title}</span></a>
+                            <img class="bird" src="__static__/pokemon/img/arab/nan_bird.png">
+                        </div>
+                        {assign name="var" value="$var+1" /}
+                            	{/if}
+                        {/volist}
+                        {assign name="var" value="1" /}
+                        {volist name="newsList" id="news"}
+                        {if condition=" $var <= 3 "}
+                         <a href="javascript:openDetail({$news.id})" style="position: relative;" class="list">
+                            <p style="display:block;width:80%;margin:0px;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;z-index: 20;">{$news.title}</p>
+                            <span style="position: absolute;right: 10px;top: 0px;z-index: 30;">{$news.ctime}</span>
+                        </a>
+                        {assign name="var" value="$var+1" /}
+                        {/if}
+                        {/volist}
+                    </div>
+                    {volist name="newsTypeList" id="vo"}
+                    <div class="list_block" id="list_{$key+1}"style="display: none;">
+                    	{assign name="var" value="1" /}
+                        	{volist name="topNews" id="tops"}
+                        {if condition=" $var <= 1 and $tops.type_id == $vo.id"}
+                        <div class="list_first">
+                            <a href="javascript:openDetail({$tops.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$tops.title}</span></a>
+                            <img class="bird" src="__static__/pokemon/img/arab/nan_bird.png">
+                        </div>
+                        {assign name="var" value="$var+1" /}
+                            	{/if}
+                        {/volist}
+                        {assign name="var" value="1" /}
+                        {volist name="newsList" id="news"}
+                        {if condition=" $news.type_id == $vo.id "}
+                        {if condition=" $var <= 3 "}
+                         <a href="javascript:openDetail({$news.id})" style="position: relative;" class="list">
+                            <p style="display:block;width:80%;margin:0px;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;z-index: 20;">{$news.title}</p>
+                            <span style="position: absolute;right: 10px;top: 0px;z-index: 30;">{$news.ctime}</span>
+                        </a>
+                        {assign name="var" value="$var+1" /}
+                        {/if}
+                        {/if}
+                        {/volist}
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+            <div class="content clearfix" style="margin-top:70px">
+                {volist name="linkList" id="vo"}
+                {if condition=" $vo.platform == 1 "}
+                <a href="{$vo.url|default='javascript:void(0)'}" target="_blank" class="switch_block">
+                    <img style="left:20px;top:0;" src="{$vo.image_url}">
+                    <div class="switch"><div class="switch_content"></div></div>
+                    <div class="switch_text">{$vo.name}</div>
+                </a>
+                {/if}
+                {/volist}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="index_2">
+    <img class="index_2bg" src="__static__/pokemon/img/arab/index_2.png">
+    <div class="content">
+        <div class="index_2_tit">
+            ميزات اللعبة 
+        </div>
+        <div class="caroursel_box">
+            <div class = "caroursel poster-main" data-setting = '{
+	        "width":1100,
+	        "height":500,
+	        "posterWidth":780,
+	        "posterHeight":480,
+	        "scale":0.8,
+	        "dealy":"5000",
+	        "algin":"middle"
+	    }'>
+                <ul class = "poster-list">
+                {volist name="bannerList" id="vo"}
+                    {if condition=" $vo.type == 2 "}
+                    <li class = "poster-item">
+                    <a href="{if condition="($vo.url neq null) and ($vo.url != '')"}{$vo.url}{else/}javascript:void(0);{/if}" alt="{$vo.name}">
+                    <img src="{$vo.image_url}" width = "100%" height="100%">
+                    </a>
+                    </li>
+                    {/if}                    
+                {/volist}
+                </ul>
+                <div class = "poster-btn poster-prev-btn"></div>
+                <div class = "poster-btn poster-next-btn"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="alert-win" style="display: none">
+    <img class="close" src="__static__/pokemon/img/arab/close.png">
+    <div class="item"><span>مبروك عليك !</span>الحصول علي</div>
+    <div class="item">باقة </div>
+    <div class="item"><input id="privilegeCode" type="text" value="{$privilege_code.value}"><a href="javascript:copyCode();">نسخة</a> </div>
+</div>
+{include file="footer_ar" /}
+{load href="__static__/pokemon/js/jquery.js" /}
+{load href="__static__/pokemon/dist/owl.carousel.js" /}
+{load href="__static__/pokemon/js/top_nav.js" /}
+{load href="__static__/pokemon/js/jquery.carousel.js" /}
+</body>
+<script>
+    Caroursel.init($('.caroursel'));
+</script>
+<script>
+    var newsUrl="{:url('News/news')}";
+    var detailUrl="{:url('News/detail')}";
+    var owl = $('.owl-carousel');
+    $(document).ready(function(){
+        owl.owlCarousel({
+            items:1,
+            loop:true,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:false,
+            nav:true,
+            navText:["<",">"]
+        });
+    });
+    owl.mouseenter(function(){
+        owl.trigger('stop.owl.autoplay')
+    }).mouseleave(function(){
+        owl.trigger('play.owl.autoplay',[1000])
+    });
+    $(".close").click(function(){
+        $(this).parent(".alert-win").hide()
+    });
+    $(".dl_gift").click(function(){
+        $(".alert-win").show()
+    })
+
+    function copyCode(){   
+        var e=document.getElementById("privilegeCode");//对象是contents 
+        e.select(); //选择对象 
+        document.execCommand("Copy"); 
+        alert("تكرار النجاح");
+    }   
+
+    $(".list_tit li").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        var i=$(this).index();
+        $("#list_"+i).show().siblings(".list_block").hide()
+    })
+
+    function openNews(id){
+        //location.href=newsUrl.substr(0,newsUrl.length-5)+"/typeId/"+id;
+        window.open(newsUrl.substr(0,newsUrl.length-5)+"/typeId/"+id);
+    }
+
+    function openDetail(id){
+        //location.href=detailUrl.substr(0,detailUrl.length-5)+"/id/"+id;
+        window.open(detailUrl.substr(0,detailUrl.length-5)+"/id/"+id);
+    }
+</script>
+</html>

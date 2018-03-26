@@ -44,24 +44,53 @@
                     <div id="owl-demo" class="owl-carousel owl-theme">
                     {volist name="bannerList" id="vo"}
                         {if condition=" $vo.type == 1 "}
-                        <div class="item"><a href="{if condition="($vo.url neq null) and ($vo.url != '')"}{$vo.url}{else/}javascript:void(0);{/if}" alt="{$vo.name}"><img src="{$vo.image_url}" alt="{$vo.name}" style="width: 520px;height: 300px;"></a></div>
+                        <div class="item"><a href="{if condition="($vo.url neq null) and ($vo.url != '')"}{$vo.url}{else/}javascript:void(0);{/if}" alt="{$vo.name}" target="_blank"><img src="{$vo.image_url}" alt="{$vo.name}" style="width: 520px;height: 300px;"></a></div>
                         {/if}
                     {/volist}
                     </div>
                 </div>
                 <div class="list_box">
                     <ul class="list_tit clearfix">
+                    	<li class="active"><a href="javascript:void(0)">最新</a><img class="triangle" src="__static__/pokemon/img/blue_triangle.png"></li>
                         {volist name="newsTypeList" id="vo"}
-                            <li {if condition=" $key == 0 "}class="active"{/if}><a href="javascript:void(0)">{$vo.name}</a><img class="triangle" src="__static__/pokemon/img/blue_triangle.png"></li>
+                            <li><a href="javascript:void(0)">{$vo.name}</a><img class="triangle" src="__static__/pokemon/img/blue_triangle.png"></li>
                         {/volist}
                         <a class="more" href="{:url('News/news')}">more+</a>
                     </ul>
-                    {volist name="newsTypeList" id="vo"}
-                    <div class="list_block" id="list_{$key}" {if condition=" $key > 0 "}style="display: none;"{/if}>
+                    <div class="list_block" id="list_0">
+                    	{assign name="var" value="1" /}
+                        	{volist name="topNews" id="tops"}
+                        {if condition=" $var <= 1 "}
                         <div class="list_first">
-                            <a href="javascript:openNews({$vo.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$vo.description}</span></a>
+                            <a href="javascript:openDetail({$tops.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$tops.title}</span></a>
                             <img class="bird" src="__static__/pokemon/img/nan_bird.png">
                         </div>
+                        {assign name="var" value="$var+1" /}
+                            	{/if}
+                        {/volist}
+                        {assign name="var" value="1" /}
+                        {volist name="newsList" id="news"}
+                        {if condition=" $var <= 3 "}
+                         <a href="javascript:openDetail({$news.id})" style="position: relative;" class="list">
+                            <p style="display:block;width:80%;margin:0px;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;z-index: 20;">{$news.title}</p>
+                            <span style="position: absolute;right: 10px;top: 0px;z-index: 30;">{$news.ctime}</span>
+                        </a>
+                        {assign name="var" value="$var+1" /}
+                        {/if}
+                        {/volist}
+                    </div>
+                    {volist name="newsTypeList" id="vo"}
+                    <div class="list_block" id="list_{$key+1}"style="display: none;">
+                    	{assign name="var" value="1" /}
+                        	{volist name="topNews" id="tops"}
+                        {if condition=" $var <= 1 and $tops.type_id == $vo.id"}
+                        <div class="list_first">
+                            <a href="javascript:openDetail({$tops.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$tops.title}</span></a>
+                            <img class="bird" src="__static__/pokemon/img/nan_bird.png">
+                        </div>
+                        {assign name="var" value="$var+1" /}
+                            	{/if}
+                        {/volist}
                         {assign name="var" value="1" /}
                         {volist name="newsList" id="news"}
                         {if condition=" $news.type_id == $vo.id "}
@@ -81,7 +110,7 @@
             <div class="content clearfix" style="margin-top:70px">
                 {volist name="linkList" id="vo"}
                 {if condition=" $vo.platform == 1 "}
-                <a href="{$vo.url|default='javascript:void(0)'}" class="switch_block">
+                <a href="{$vo.url|default='javascript:void(0)'}" target="_blank" class="switch_block">
                     <img style="left:20px;top:0;" src="{$vo.image_url}">
                     <div class="switch"><div class="switch_content"></div></div>
                     <div class="switch_text">{$vo.name}</div>
@@ -181,11 +210,13 @@
     })
 
     function openNews(id){
-        location.href=newsUrl.substr(0,newsUrl.length-5)+"/typeId/"+id;
+       // window.location=newsUrl.substr(0,newsUrl.length-5)+"/typeId/"+id;
+        window.open(newsUrl.substr(0,newsUrl.length-5)+"/typeId/"+id);
     }
 
     function openDetail(id){
-        location.href=detailUrl.substr(0,detailUrl.length-5)+"/id/"+id;
+       // window.location=detailUrl.substr(0,detailUrl.length-5)+"/id/"+id;
+        window.open(detailUrl.substr(0,detailUrl.length-5)+"/id/"+id);
     }
 </script>
 </html>

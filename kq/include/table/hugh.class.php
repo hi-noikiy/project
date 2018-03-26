@@ -41,6 +41,7 @@ class hugh extends getList {
 			exit ();
 		}
 		//判断调休时间是否在此日期之前有充值充值的时间
+		if(date('m',strtotime($array['fromTime'])) != '02')
 		if($this->getOverTime($array ['uid'], $array ['totalTime'], $result_check ['reserve'], $array ['fromTime'])){
 			echo "<script>alert('调休日期之前加班时间不足！')</script>";
 			go ('index.php?type=web&do=info&cn=hugh');
@@ -86,15 +87,15 @@ class hugh extends getList {
 				foreach ($filingArr as $v){
 					$fStartTime=strtotime($v['fromTime'] . " " . $v ['hour_s'] . ":" . $v ['minute_s'] . ":00");
 					$fEndTime=strtotime($v ['toTime'] . " " . $v ['hour_e'] . ":" . $v ['minute_e'] . ":00");
-					if($sttime==$fStartTime  && $entime<=$fEndTime){
+					if($sttime>=$fStartTime  && $entime<=$fEndTime){
 						$filingFlag=true;
 						break;
 					}
-				}
+				}	
 				//找不到记录只能9：00-9：30可以调
-				$startTime=strtotime($array ['fromTime'].' 09:00:00');
+				$startTime=strtotime($array ['fromTime'].' 08:00:00');
 				$endTime  =strtotime($array ['toTime'].' 09:30:00');
-				if($sttime==$startTime && $entime==$endTime )
+				if($sttime>=$startTime && $entime<=$endTime )
 					$filingFlag=true;
 				//还有一种情况，昨天加班21点以后，早上9.30之后才来，下午又请假报备，有时间完善
 				if($filingFlag){
@@ -103,8 +104,7 @@ class hugh extends getList {
 					$this->dure($array['uid']);
 					exit();
 				}
-			}
-			
+			} 
 				$record= new record();
 				//没有报备，查询是否有凌晨加班
 				$recordRow=$record->getOneRow($array['name'], $fromTime);
@@ -193,9 +193,9 @@ class hugh extends getList {
 							}
 						} else {
 							//只能9：00-9：30可以调
-							$startTime=strtotime($array ['fromTime'].' 09:00:00');
+							$startTime=strtotime($array ['fromTime'].' 08:00:00');
 							$endTime  =strtotime($array ['toTime'].' 09:30:00');
-							if($sttime!=$startTime || $entime!=$endTime ){
+							if($sttime<$startTime || $entime>$endTime ){
 								echo "<script>alert('~~只能调休9：00-9：30！如有问题，请咨询管理员！')</script>";
 								go('index.php?type=web&do=info&cn=hugh');
 								exit();
@@ -203,9 +203,9 @@ class hugh extends getList {
 						}
 					} else{
 						//找不到记录只能9：00-9：30可以调
-						$startTime=strtotime($array ['fromTime'].' 09:00:00');
+						$startTime=strtotime($array ['fromTime'].' 08:00:00');
 						$endTime  =strtotime($array ['toTime'].' 09:30:00');
-						if($sttime!=$startTime || $entime!=$endTime ){
+						if($sttime<$startTime || $entime>$endTime ){
 							echo "<script>alert('只能调休9：00-9：30！如有问题，请咨询管理员！')</script>";
 							go('index.php?type=web&do=info&cn=hugh');
 							exit();
@@ -226,6 +226,7 @@ class hugh extends getList {
 		$overtime=$hughtime=0;
 		//统计今天之前有多少加班时间
 		$sql="select sum(totalTime) as overtime from _web_overtime where depTag='2' and perTag='2' and manTag='2' and uid=$uid and fromTime<='$fromTime'";
+
 	    $query1=mysql_query($sql);
 	    $overResult=mysql_fetch_row($query1);
 	    if(!empty($overResult[0]))
@@ -241,12 +242,16 @@ class hugh extends getList {
 	    if($uid=='330')
 	    	$overtime+=0.5;
 	    //统计已经调休了多少时间
+		//$sql="select sum(totalTime) as hughtime from _web_hugh where depTag='2' and perTag='2' and manTag='2' and uid=$uid and addDate<='$fromTime'";
 		$sql="select sum(totalTime) as hughtime from _web_hugh where depTag !='1' and perTag !='1' and manTag !='1' and uid=$uid and addDate<='$fromTime' and available='1'";
 		$query2=mysql_query($sql);
 		$hughResult=mysql_fetch_row($query2);
 		if(!empty($hughResult[0]))
 			$hughtime=$hughResult[0];
 		//小时转化为分钟
+		/*echo $totalTime.'_'.$reserve.'_'.$hughtime.'_'.$overtime;
+		print_r($sql);die;*/
+		//if($totalTime*60+$reserve+$hughtime*60>$overtime*60)
 		if($totalTime*60+$hughtime*60>$overtime*60)
 			return true;
 		return false;

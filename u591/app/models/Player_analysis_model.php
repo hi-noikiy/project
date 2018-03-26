@@ -116,7 +116,7 @@ SQL;
 				$appid,
 				$date1,
 				$date2 
-		] );
+		] );		
 		if ($query) {
 			return $query->result_array ();
 		}
@@ -315,7 +315,7 @@ SQL;
 		$sql = <<<SQL
 SELECT $grp, sum(usercount) as usercount, sum(day1) as day1, sum(day2) as day2, sum(day3) as day3,
  sum(day4) as day4, sum(day5) as day5, sum(day6) as day6,
- sum(day7) as day7 , sum(day8) as day8, sum(day14) as day14,sum(day15) as day15,
+ sum(day7) as day7 , sum(day8) as day8,sum(day9) as day9,sum(day10) as day10,sum(day11) as day11,sum(day12) as day12,sum(day13) as day13,sum(day14) as day14,sum(day15) as day15,
   sum(day30) as day30 FROM sum_reserveusers_daily_new
   WHERE appid=? AND sday BETWEEN ? AND ?
 SQL;

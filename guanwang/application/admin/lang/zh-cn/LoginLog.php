@@ -11,6 +11,7 @@ return [
     'status'            => '状态',
     'create_time'       => '创建时间',
     'update_time'       => '编辑时间',
+    'search'=>'IP',
     
     'user'              => '登录用户',
 ];

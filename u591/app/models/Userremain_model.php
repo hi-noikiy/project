@@ -176,7 +176,7 @@ SQL;
     {
     	//获取N天前注册的人
     	//$Ym = substr($loginDate, 0,6);
-    	$sql = "select count(*) as cnt,channel,appid from (SELECT accountid,channel,appid FROM u_register WHERE reg_date=$sday) a,(SELECT accountid FROM u_login_{$loginDate}) b
+   echo 	$sql = "select count(*) as cnt,channel,appid from (SELECT accountid,channel,appid FROM u_register WHERE reg_date=$sday) a,(SELECT accountid FROM u_login_{$loginDate}) b
     	 where  a.accountid = b.accountid group by channel";
     	$query = $this->db_sdk->query($sql);
     	$data = array();
@@ -294,7 +294,8 @@ SQL;
     		echo 'rowCount:' . $rowCount . PHP_EOL;
     
     	}
-    	$dayList = array(1, 2, 3, 4, 5, 6, 7, 15, 30);
+    	//$dayList = array(1, 2, 3, 4, 5, 6, 7, 15, 30);
+    	$dayList = array(1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15, 30);
     	//        foreach ($dayList as $i) {
     	foreach ( $dayList as $i){
     		//if($i>8 && $i<15) continue;

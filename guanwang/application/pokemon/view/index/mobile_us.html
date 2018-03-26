@@ -44,10 +44,20 @@
                     </ul>
                     {volist name="newsTypeList" id="vo"}
                     <div class="list_block" id="list_{$key}" {if condition=" $key > 0 "}style="display: none;"{/if}>
+                        {assign name="var" value="1" /}
+                        	{volist name="topNews" id="tops"}
+                        {if condition=" $var <= 1 "}
                         <div class="list_first">
+                            <a href="javascript:openDetail({$tops.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$tops.title}</span></a>
+                            <img class="bird" src="__static__/pokemon/img/nan_bird.png">
+                        </div>
+                        {assign name="var" value="$var+1" /}
+                            	{/if}
+                        {/volist}
+                        <!--<div class="list_first">
                             <a href="javascript:openNews({$vo.id})" style="color: #fff;display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$vo.description}</a>
                             <img class="bird" src="__static__/pokemon/img/english/nan_bird.png">
-                        </div>
+                        </div>-->
                         {assign name="var" value="1" /}
                         {volist name="newsList" id="news"}
                         {if condition=" $news.type_id == $vo.id "}
@@ -283,7 +293,7 @@
     });
     $(".close-cover").click(function(){
         $("#cover").hide();
-    })
+    });
 </script>
 </body>
 </html>

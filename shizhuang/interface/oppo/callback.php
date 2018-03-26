@@ -27,10 +27,12 @@ if($re==1){
     $playerId = intval($attachArr[2]);
     $account_id = intval($attachArr[3]);
     $isgoods = intval($attachArr[5]);
-    global $accountServer;
-    $accountConn = $accountServer[$game_id];
-    $conn = SetConn($accountConn);
-    $sql_account = "select NAME,dwFenBaoID,clienttype from account where id = '$account_id' limit 1;";
+    $accountId= $account_id;
+	$gameId = $game_id;
+	$snum = giQSModHash($accountId);
+	$conn = SetConn($gameId,$snum,1);//account分表
+	$acctable = betaSubTableNew($accountId,'account',999);
+	$sql_account = "select NAME,dwFenBaoID,clienttype from $acctable where id=$accountId limit 1;";
     $query_account= @mysqli_query($conn, $sql_account);
     $result_account= @mysqli_fetch_assoc($query_account);
 
@@ -41,6 +43,11 @@ if($re==1){
         $PayName = $result_account['NAME'];
         $dwFenBaoID = $result_account['dwFenBaoID'];
         $clienttype = $result_account['clienttype'];
+    }
+    $loginname = 'oppo';
+    if(isOwnWay($PayName,$loginname)){
+    	write_log(ROOT_PATH."log","name_{$loginname}_", "account is $PayName ! post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
+    	exit("OK");
     }
     $loginname = 'oppo';
     if(isOwnWay($PayName,$loginname)){
@@ -58,7 +65,7 @@ if($re==1){
     }
     $Add_Time=date('Y-m-d H:i:s');
     $sql="insert into web_pay_log (CPID,PayID,PlayerID,data,PayName,ServerID,PayMoney,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype, rpCode,packageName)";
-    $sql=$sql." VALUES (35,$account_id,'$playerId','$payMoney','$PayName','$server_id','$PayMoney','$order_id','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype', '1','$isgoods')";
+    $sql=$sql." VALUES (35,$account_id,'$playerId','$PayMoney','$PayName','$server_id','$PayMoney','$order_id','$dwFenBaoID','$Add_Time','1','$game_id','$clienttype', '1','$isgoods')";
     if (mysqli_query($conn,$sql) == False){
         write_log(ROOT_PATH."log","oppo_callback_error_", "sql error! $sql,".mysqli_error($conn)."  ".date("Y-m-d H:i:s")."\r\n");
         exit("f");
@@ -67,7 +74,7 @@ if($re==1){
     sendTongjiData($game_id,$account_id,$server_id,$dwFenBaoID,0,$PayMoney,$order_id);
     exit("OK");
 }else{
-    write_log(ROOT_PATH."log","oppo_callback_error_","sign error! post=$post, get=$get, $sign_basestring".date("Y-m-d H:i:s")."\r\n");
+    write_log(ROOT_PATH."log","oppo_callback_error_","$re , sign error! post=$post, get=$get, $sign_basestring".date("Y-m-d H:i:s")."\r\n");
     exit("f");
 }
 ?>

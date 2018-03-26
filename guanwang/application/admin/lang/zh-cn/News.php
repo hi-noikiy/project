@@ -15,6 +15,7 @@ return [
  
     'status0'           => '下架',
     'status1'           => '上架',
+    'search'=>'新闻标题',
 
     //数据验证提示
     'title_val'           => '新闻标题不能为空',

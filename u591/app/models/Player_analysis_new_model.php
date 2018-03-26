@@ -369,6 +369,28 @@ count(if(number2=2,true,null)) p43,count(if(number2=2 || number2=4,true,null)) p
 	    return false;	    
 	}
 	
+	public function everyAdventureBehavior($table, $where, $field, $group, $order, $limit) {
+	
+		$date = $where['date'];
+		$itable   = "item_trading_$date";
+		$utable   = "u_behavior_$date";
+		$sql = "SELECT $field,count(DISTINCT accountid) cnt,count(*) total FROM  $utable u where act_id=99";
+		 
+		
+		
+		
+		$sql .= " group by vip_level;";
+	
+		if($order){
+			$sql .= " order by $order";
+		}
+	
+		$query = $this->db->query($sql);
+		 
+		if ($query) return $query->result_array();
+		return false;
+	}
+	
 	/*
 	 * 冒险奖励结果统计
 	 */

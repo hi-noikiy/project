@@ -1,7 +1,7 @@
 <?php
 
 $host =	array(
-    'host'=> 'localhost:3316',
+    'host'=> 'localhost:3306',
     'database'=> 'kq',
     'user'=> 'root',
     'pass'=> 'root'

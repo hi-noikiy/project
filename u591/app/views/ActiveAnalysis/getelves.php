@@ -24,6 +24,24 @@
                             		</div>
                         		</div>
                     		</div>
+                    		
+                    		     
+              
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <div class="fg-line">
+                                    <select  id="servertype" name="servertype" class="form-control">
+                                        <option value="0">未选择</option>
+                                        <?php foreach($big_server_list as $k=>$v){ ?>
+                                            <option value="<?php echo $k;?>"><?php echo $v;?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                 
+                    		
+                    		
                             <div class="col-sm-2">
                                 <button type="button" id="submit" class="btn btn-primary btn-sm m-t-10 waves-effect">获取</button>
                             </div>
@@ -40,7 +58,7 @@
     var dataOption = {
         title:'',
         autoload: false,
-        request_url:'<?php echo site_url('GameRunDay/getelves');?>',
+        request_url:'<?php echo site_url('GameRunDay/getelvesNew');?>',
         callback: function (result) {
             if (result) {
                 if (result.status!='ok') {

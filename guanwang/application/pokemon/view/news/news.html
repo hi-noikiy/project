@@ -11,13 +11,13 @@
     <img class="show" src="__static__/pokemon/img/news_top.jpg">
     <div class="news_nav">
         <div class="content clearfix news">
-            <a id="new_0" href="javascript:void(0)" class="new_nav_block active">
+        	<a id="new_0" href="javascript:void(0)" class="new_nav_block">
                 <span>最新</span>
                 <img class="selected_fish" src="__static__/pokemon/img/selected.png">
                 <div class="selected_line"></div>
             </a>
             {volist name="newsTypeList" id="vo"}
-            <a id="new_{$vo.id}" href="javascript:void(0)" class="new_nav_block">
+            <a id="new_{$vo.id}" href="javascript:void(0)" class="new_nav_block {if condition="($typeId==$vo.id) or (($typeId == -1) and ($k == 1))"}active{else/}{/if}">
                 <span>{$vo.name}</span>
                 <img class="selected_fish" src="__static__/pokemon/img/selected.png">
                 <div class="selected_line"></div>
@@ -26,30 +26,37 @@
         </div>
     </div>
 </div>
-<div id="list_new_0" style="display: block;" class="list_page">
+<div id="list_new_0" style="{if condition="($typeId==$vo.id) or (($typeId == -1) and ($k == 1))"}display: block;{else/}display: none;{/if}" class="list_page">
+    {if condition="($typeId==$vo.id) or (($typeId == -1) and ($k == 1))"}
     {volist name="newsList" id="news"}
+        {if condition=" $news.type_id == $vo.id "}
         <div class="news_list">
         <div class="content list_line clearfix">
             <div class="time_box">
                 {$news.create_time|mb_substr=5,5}
             </div>
             <div class="list_content">
-                <a href="javascript:openDetail({$news.id})" class="tit">
-                    <p>{$news.title}</p><img class="selected_img" src="__static__/pokemon/img/pokeball.png">
+            	<a href="javascript:openDetail({$news.id})" class="tit">
+                	<p>{$news.title}</p><img class="selected_img" src="__static__/pokemon/img/pokeball.png">
                 </a>
-                <div class="text">
-                    {$news.description}
-                </div>
+                <a href="javascript:openDetail({$news.id})" class="tit">
+	                <div class="text">
+	                    {$news.description}
+	                </div>
+                </a>
             </div>
+            
         </div>
         </div>
+        {/if}
     {/volist}
-</div>
-<div id="page_new_0" class="page_btn" style="display: block;">
-    <a name="prev_btn" href="javascript:void(0)" class="{if condition=" $hasPrevPage == 1 "}prev_btn{/if}">上一页</a>
-    <span>第<span class="pages">1</span>页</span>
-    <a name="next_btn" href="javascript:void(0)" class="{if condition=" $hasNextPage == 1 "}next_btn{/if}">下一页</a>
-</div>
+    {/if}
+    </div>
+    <div id="page_new_0" class="page_btn" style="{if condition="($typeId==$vo.id) or (($typeId == -1) and ($k == 1))"}display: block;{else/}display: none;{/if}">
+        <a name="prev_btn" href="javascript:void(0)" class="{if condition="$hasPrevPage == 1"}prev_btn{/if}">上一页</a>
+        <span>第<span class="pages">1</span>页</span>
+        <a name="next_btn" href="javascript:void(0)" class="{if condition="$hasNextPage == 1"}next_btn{/if}">下一页</a>
+    </div>
 {volist name="newsTypeList" id="vo" key="k"}
     <div id="list_new_{$vo.id}" style="{if condition="($typeId==$vo.id) or (($typeId == -1) and ($k == 1))"}display: block;{else/}display: none;{/if}" class="list_page">
     {if condition="($typeId==$vo.id) or (($typeId == -1) and ($k == 1))"}
@@ -87,15 +94,27 @@
 <script>
     var page=1;
     var num=5;
-    var typeId=0;
+    var typeId=1;
     var newsUrl="{:url('News/news')}";
     var detailUrl="{:url('News/detail')}";
     newsUrl=newsUrl.substr(0,newsUrl.length-9);
     var basePath='__static__';
+    if(!$('.new_nav_block').hasClass('active')){
+    	$('.new_nav_block').eq(0).addClass('active');
+    	$('.list_page').eq(0).css('display','block');
+    	$('.page_btn').eq(0).css('display','block');
+    }
+    var idx=$(".new_nav_block.active").attr("id");
+	    typeId=idx.split("_")[1];
+        loadDatas();
+        $("#list_"+idx).show().siblings(".list_page").hide();
+        $("[id^=page_]").hide();
+        $("#page_"+idx).show();
+    
     $(".new_nav_block").click(function(){
         $(this).addClass("active").siblings().removeClass("active");
         var idx=$(this).attr("id");
-        typeId=idx.substr(4,1);
+        typeId=idx.split("_")[1];
         page=1;
         loadDatas();
         $("#list_"+idx).show().siblings(".list_page").hide();
@@ -131,7 +150,7 @@
                 for (var i = 0; i<datas.newsList.length; i++) {
                     var data=datas.newsList[i];
                     var timeHTML='<div class="time_box">'+data['create_time'].substr(5,5)+'</div>';
-                    var dataHTML='<div class="news_list"><div class="content list_line clearfix">'+timeHTML+'<div class="list_content"><a href="javascript:openDetail('+data['id']+')" class="tit"><p>'+data['title']+'</p><img class="selected_img" src="'+basePath+'/pokemon/img/pokeball.png"></a><div class="text">'+data['description']+'</div></div></div></div>';
+                    var dataHTML='<div class="news_list"><div class="content list_line clearfix">'+timeHTML+'<div class="list_content"><a href="javascript:openDetail('+data['id']+')" class="tit"><p>'+data['title']+'</p><img class="selected_img" src="'+basePath+'/pokemon/img/pokeball.png"></a><a href="javascript:openDetail('+data['id']+')" class="tit"><div class="text">'+data['description']+'</div></a></div></div></div>';
                     dataListHTML+=dataHTML;
                 }
                 if(datas.hasPrevPage==1){

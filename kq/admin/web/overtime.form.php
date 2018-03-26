@@ -65,7 +65,7 @@ if($_GET['id']){
     <tr>
       <td class="N_title">事由：</td>
       <td class="N_title" colspan="7">
-        <?=htmlEdit('reason',$info['reason'])?>
+        <?=htmlEdit1('reason',$info['reason'])?>
       </td>
     </tr>
     <tr>
@@ -200,7 +200,7 @@ if($_GET['id']){
      </tr>
      <tr>
          <td class="N_title">事由：</td><td class="N_title" colspan="7">
-         	<?=htmlEdit('reason',$info['reason'])?>
+         	<?=htmlEdit1('reason',$info['reason'])?>
          </td>
      </tr>
 <?php
@@ -246,8 +246,9 @@ function checkForm(c_date,class_name){
     	var   day=time_start_date.getDay();
     	var   time_minute=nowdate.getTime()-time_start_date.getTime();
         var   time = Math.floor(time_minute / (1000 * 60 * 60 * 24));
-        if(GetContents('reason')==''){
-            alert(msg);
+        var reason = $('#box').html().trim();
+        if(reason==''){
+            alert('请输入事由');
             return false;
         }
         //alert(class_name);

@@ -43,10 +43,10 @@ if($result['rpCode']==1 || $result['rpCode']==10){
 }
 $payMoney = intval($data['orderAmount']/100);
 if(!$result){
-	global $accountServer;
-	$accountConn = $accountServer[$gameId];
-	$conn = SetConn($accountConn);
-    $sql_account = "select  NAME,dwFenBaoID,clienttype  from account where id = '$accountId'";
+	$snum = giQSModHash($accountId);
+	$conn = SetConn($gameId,$snum,1);//account分表
+	$acctable = betaSubTableNew($accountId,'account',999);
+	$sql_account = "select NAME,dwFenBaoID,clienttype from $acctable where id=$accountId limit 1;";
     $query_account = mysqli_query($conn, $sql_account);
     $result_account = @mysqli_fetch_assoc($query_account);
     if(!$result_account['NAME']){
@@ -56,6 +56,11 @@ if(!$result){
         $PayName = $result_account['NAME'];
         $dwFenBaoID = $result_account['dwFenBaoID'];
         $clienttype = $result_account['clienttype'];
+    }
+    $loginname = 'vivo';
+    if(isOwnWay($PayName,$loginname)){
+    	write_log(ROOT_PATH."log","name_{$loginname}_", "account is $PayName ! post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
+    	exit("success");
     }
     $conn = SetConn(88);
     $Add_Time=date('Y-m-d H:i:s');

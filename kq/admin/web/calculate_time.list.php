@@ -32,7 +32,7 @@ if (!empty ( $_POST )) {
 	
 	totaltime ( $last2day, $yestoday, '' ); // 计算上班有效时间
 	                                   // 计算上班总时间
-	$startday = date ( 'Y-m-d', strtotime ( "-2 days" ) );
+	/*$startday = date ( 'Y-m-d', strtotime ( "-2 days" ) );
 	$endday = date ( 'Y-m-d', strtotime ( "-1 days" ) );
 	
 	$starttime = strtotime ( $startday . " 00:00:00" );
@@ -49,7 +49,7 @@ if (!empty ( $_POST )) {
 			$to = date ( 'Y-m-d', $t );
 			acAllTotalTime ( $ad ['card_id'], $to );
 		}
-	}
+	}*/
 	
 	$workClass = new workday ();
 	for($i = 1; $i < 2; $i ++) 	// 定制下$i个月的工作日

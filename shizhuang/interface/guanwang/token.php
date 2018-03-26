@@ -83,7 +83,7 @@ if(isset($code) && !empty($code)){
 		exit(json_encode($insertinfo));
 	}else{
 		$insert_id = $insertinfo['data'];
-		$isNew = 1;
+		$isNew = $insertinfo['isNew'];
 	}
 
 }  else if(isset($pass) && !empty($pass)){
@@ -122,7 +122,7 @@ if(isset($code) && !empty($code)){
 		exit(json_encode($insertinfo));
 	}else{
 		$insert_id = $insertinfo['data'];
-		$isNew = 1;
+		$isNew = $insertinfo['isNew'];
 	}
 }
 if($pass)
@@ -138,7 +138,7 @@ $array['expired'] = $addtime;
 $newMd5Str = http_build_query($array);
 $token = myEncrypt::encrypt($newMd5Str, $appSecret);
 $conn = SetConn(88);
-$sql = "insert into web_token (account_id, game_id, token, addtime) values ('$insert_id', '$gameId', '$token', '$addtime')";
+$sql = "insert into web_token (account_id, game_id, token, addtime,isnew) values ('$insert_id', '$gameId', '$token', '$addtime',$isNew)";
 write_log(ROOT_PATH."log","guanwang_token_log_","sql=$sql, ".date("Y-m-d H:i:s")."\r\n");
 
 if(mysqli_query($conn,$sql)){

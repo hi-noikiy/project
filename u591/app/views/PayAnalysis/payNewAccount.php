@@ -49,7 +49,11 @@
         request_url:'<?php echo site_url('PayAnalysis/PayNewAccounts');?>',
         callback: function (result) {
             if (result) {
-
+            	if(result.status != 'ok') {
+					$("#dataTable").html('');
+					notify("客官,不好意思，没有查到数据!");
+					return false;
+				}
                 var table_html = '',
                     len = result.data.length;
                 for (var i in result.data) {

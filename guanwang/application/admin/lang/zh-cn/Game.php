@@ -18,6 +18,7 @@ return [
     'status'            => '状态',
     'sorts'       => '排序',
     'update_time'       => '更新时间',
+    'search'=>'游戏名称',
     
     'status0'           => '下架',
     'status1'           => '上架',

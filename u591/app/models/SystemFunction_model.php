@@ -2131,7 +2131,7 @@ if($where ['group']==1){
         
 
           $sql = "select count(DISTINCT accountid) as total,serverid from u_behavior_{$where['date']}  where act_id=108 and param>0  and 1=1";
-    //    $sql = "select $field from u_behavior_{$where['date']}  where act_id=108 and 1=1";
+ 
    
         if ($where ['serverids']) {
             $sql .= " AND serverid IN(" . implode ( ',', $where ['serverids'] ) . ")";

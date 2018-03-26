@@ -56,7 +56,7 @@ if($_POST){
     if($depId)
     	$adminList->wheres .=" and depId='$depId'";
     if($uid)
-        $adminList->wheres .=" and id='$uid'";   
+        $adminList->wheres .=" and id='$uid'";  
     $adminList->pageReNum = "500";
     $adminres = $adminList->getArray("pass");
    	
@@ -82,7 +82,7 @@ if($_POST){
 			$annual = $webdb->getValue("select sum(totalTime) as leaves from _web_leave  where  available='1' and manTag='2' and uid='".$admin['id']."' and fromTime>='".$vd['workday']."' and toTime<='".$vd['workday']."' and leaveType = '年假'",'leaves');
 			$admin['annual'] += $annual;
             
-			$tmp = 480 - $reshugh - $res - $resout - $annual;
+			$tmp = 480 - $reshugh - $res - $resout - $annual*60;
             if($tmp>0)
             	$admin['dis'] += $tmp;
         }
@@ -109,7 +109,6 @@ if($_POST){
         //计算请假时间
         $resleave = $webdb->getValue("select sum(totalTime) as leaves from _web_leave  where  available='1' and manTag='2' and uid='".$admin['id']."' and fromTime>='$from' and toTime<='$to' and leaveType != '年假'",'leaves');
         $admin['leaves'] = $resleave;
-		
 		//计算年假时间
         /*$annual = $webdb->getValue("select sum(totalTime) as leaves from _web_leave  where  available='1' and manTag='2' and uid='".$admin['id']."' and fromTime>='$from' and toTime<='$to' and leaveType = '年假'",'leaves');
         $admin['annual'] = $annual;*/

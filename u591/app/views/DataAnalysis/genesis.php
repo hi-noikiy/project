@@ -99,7 +99,7 @@ color: red
                         <tr>
                            
                             <th class='cur'><span id='3'>vip等级</span></th>
-                             <th>活跃人数 </th>
+                            <!--  <th>活跃人数 </th> -->
                             <th> 平均等级</th>
                             <th>0级人数</th>
                             <th>1级人数</th>
@@ -154,7 +154,7 @@ var name;
                     table_html += '<tr>' +
                     '<td>'+result['data'][i]['viplev']+'</td>' +
                     //   '<td>'+i+'</td>' +
-                       '<td>'+result['data'][i]['c']+'</td>' +
+                    //   '<td>'+result['data'][i]['c']+'</td>' +
                        '<td>'+result['data'][i]['avg_stonestep']+'</td>' +
                        '<td>'+result['data'][i]['stonestep0']+'</td>' +
                        '<td>'+result['data'][i]['stonestep1']+'</td>' +

@@ -16,6 +16,8 @@ return [
 
     'status0'           => '下架',
     'status1'           => '上架',
+    'lang' =>'游戏',
+    'search'=>'活动标题',
 
     //数据验证提示
     'title_val'           => '活动标题不能为空',

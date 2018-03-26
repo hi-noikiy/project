@@ -15,6 +15,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border">
                     {include file="public/top_action" /}
+                    {include file="public/search_vs" /}
                     {include file="public/search" /}
                 </div>
                 <div class="box-body table-responsive">
@@ -23,6 +24,7 @@
                             <th width="35"><input type="checkbox" class="minimal checkbox-toggle"></th>
                             <th>{$Think.lang.id}{:table_sort('id')}</th>
                             <th>{$Think.lang.title}{:table_sort('title')}</th>
+                            <th>{$Think.lang.lang}</th>
                             <th>{$Think.lang.writer}</th>
                             <th>{$Think.lang.begin_time}{:table_sort('begin_time')}</th>
                             <th>{$Think.lang.end_time}{:table_sort('end_time')}</th>
@@ -35,6 +37,7 @@
                             <td><input type="checkbox" name="id[]" value="{$vo.id}" class="minimal"></td>
                             <td>{$vo.id}</td>
                             <td><span class="editable" data-pk="{$vo.id}" data-name="title" data-url="{:url(CONTROLLER_NAME.'/edit', 'id='.$vo['id'])}" >{$vo.title}</span></td>
+                            <td>{$langarr[$vo.lang]}</td>
                             <td>{$vo.User.name}</td>
                             <td>{$vo.begin_time}</td>
                             <td>{$vo.end_time}</td>

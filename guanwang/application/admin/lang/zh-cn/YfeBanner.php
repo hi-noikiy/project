@@ -12,6 +12,7 @@ return [
 
     'status0'           => '下架',
     'status1'           => '上架',
+    'search'=>'名称',
 
     'type1'           => '头图',
     'type2'           => '轮播图',

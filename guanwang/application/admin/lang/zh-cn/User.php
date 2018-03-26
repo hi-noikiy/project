@@ -19,6 +19,7 @@ return [
     'last_time'         => '最后登录时间',
     'last_ip'           => '最后登录IP',
     'status'            => '状态',
+    'search'=>'用户名|姓名|手机号码',
     
     //数据验证提示
     'username_require'      => '用户名不能为空',

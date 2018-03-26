@@ -6,7 +6,7 @@ $filename = dirname(__FILE__)."/payPublicKey.pem";
 	@chmod($filename, 0777);
 	@unlink($filename);
 
-$devPubKey = "MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAOAZ4rFUbVmfeoLvy7Fv6rQfo8Mqg7mEZnF5v0jq8MNOQ1YFqISUFoMQM6Z+zbJYJUFWBGv8Qd0R/js24wrExOECAwEAAQ==";
+$devPubKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkf62tdKJiRWvxZTC2y6TwCFEf+wYET4GyMsUn/4cvdBmSKS03mb29uv6OXj4JUsOifNWMkGrGZ7RC4D9FHGA0A2SaK2NDjyHtINVqkV/ocMqZWvHpvPzYHIl316DObnDYx/tTIWEi7GaCBVp9zwHLORndFZoeMHiQ7tvjW0E4aAfmN36BXEed1RMVZSjjkBZiLN+8nKUJEfI7n3XQJWxytIxfETarurEVCvmj6nIGbTzI04R3pSC0E2XPvCktPFLcDHRhrSIoqbFVjru5p7E3VIjfIwHi3oCesKX0Ptghyawt4jlKu+U0iVx6Vy/hev0tKhT4XW4U3PvnHcYlC2fqwIDAQAB";
 $begin_public_key = "-----BEGIN PUBLIC KEY-----\r\n";
 $end_public_key = "-----END PUBLIC KEY-----\r\n";
 /*$begin_public_key = "-----BEGIN RSA PRIVATE KEY-----\r\n";

@@ -22,7 +22,16 @@
                         <div class="tab-pane active" id="tab1">
                             <input type="hidden" name="id" value="{$data.id}" />
                             <input type="hidden" name="subType" value="form" />
-                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">游戏</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control select2" name="lang" style="width:100%;">
+                                    {volist name="langarr" id="vo"}
+                                    <option value="{$key}" {if condition="$data.lang eq $key"}selected="selected"{/if} >{$vo}</option>
+                    				{/volist}
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">{$Think.lang.title}</label>
                                 <div class="col-sm-7">
@@ -84,16 +93,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">语言</label>
-                                <div class="col-sm-7">
-                                    <select class="form-control select2" name="lang" style="width:100%;">
-                                    {volist name="langarr" id="vo"}
-                                    <option value="{$key}" {if condition="$data.lang eq $key"}selected="selected"{/if} >{$vo}</option>
-                    				{/volist}
-                                    </select>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="box-footer">

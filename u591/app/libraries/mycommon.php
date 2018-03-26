@@ -34,6 +34,35 @@ class MyCommon extends CI_Controller
     	$newdata = $showdata =array();
     	$sql = 'select DBName,idserver1 from g_dbconfig';
     	
+    	//应用宝
+    	$newdata[] = array($yingyongbao,1,90,3);
+    	
+    	
+    	//硬核
+    	$query = $pokegame1mha->query($sql);
+    	$data = $query->result_array();
+    	foreach ($data as $v){
+    		if(empty($v['DBName'])){ //第一个库
+    			$v['DBName'] = 'pokegame1mha';
+    		}
+    		$myservers = explode(',', $v['idserver1']);
+    		foreach ($myservers as $value){
+    			if(substr($value, 1,1) == 9){ //pk服
+    				continue;
+    			}
+    			$myserver = explode('-', $value);
+    			$myserver[0] = intval(substr($myserver[0] , 1));
+    			if(!isset($myserver[1])){
+    				$myserver[1] = $myserver[0];
+    			}else{
+    				$myserver[1] = intval(substr($myserver[1] , 1));
+    			}
+    			$newdata[] = array($$v['DBName'],$myserver[0],$myserver[1],6);
+    			$showdata[] = array($myserver[0],$myserver[1],6);
+    		}
+    	}
+    	 
+    	
     	//p8ios
     	$query = $pokegame1p800->query($sql);
     	$data = $query->result_array();
@@ -87,32 +116,9 @@ class MyCommon extends CI_Controller
     		}
     	}
     	
-    	//硬核
-    	$query = $pokegame1mha->query($sql);
-    	$data = $query->result_array();
-    	foreach ($data as $v){
-    		if(empty($v['DBName'])){ //第一个库
-    			$v['DBName'] = 'pokegame1mha';
-    		}
-    		$myservers = explode(',', $v['idserver1']);
-    		foreach ($myservers as $value){
-    			if(substr($value, 1,1) == 9){ //pk服
-    				continue;
-    			}
-    			$myserver = explode('-', $value);
-    			$myserver[0] = intval(substr($myserver[0] , 1));
-    			if(!isset($myserver[1])){
-    				$myserver[1] = $myserver[0];
-    			}else{
-    				$myserver[1] = intval(substr($myserver[1] , 1));
-    			}
-    			$newdata[] = array($$v['DBName'],$myserver[0],$myserver[1],6);
-    			$showdata[] = array($myserver[0],$myserver[1],6);
-    		}
-    	}
+    
+  
     	
-    	//应用宝
-    	$newdata[] = array($yingyongbao,1,90,3);
     	$_SESSION['gameserver'] = serialize($newdata);
     	$_SESSION['gameservertime'] = time()+60*60;
     	return $newdata;

@@ -22,9 +22,9 @@ $webHost = 'http://fhweb.u776.com:86';
 switch ($sdkType) {
 	case 99 : // oppo
 		$url = $webHost . '/interface/oppo/login.php';
-		$data ['token'] = $token;
-		$data ['fileid'] = $p;
-		$data ['gameid'] = $gameId;
+		$data ['fileid'] = $token;
+		$data ['token'] = $p;
+		$data ['game_id'] = $gameId;
 		$rs = https_post ( $url, $data );
 		echo $rs;
 		break;

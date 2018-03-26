@@ -80,8 +80,33 @@
                                 <?php endforeach;?>
                             </select>
                         </div>
+                    </div>                    
+                    
+           
+                    
+                    
+                          <div class="col-sm-2">                   
+                        <div class="form-group">
+                            <div class="fg-line">
+                 <input title="注册开始时间" type="text" name="server_start" id="server_start" value="" class="form-control <?php echo isset($date_time_picker) ? 'date-time-picker' :'date-picker'?>" placeholder="开服时间">
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-sm-2" style="display:none;">
+                                       开服结束时间：：
+                        <div class="form-group">
+                            <div class="fg-line">
+                                <input  title="注册结束时间" type="text" name="server_end" value="" id="server_end" onchange="serverendfunction()"  class="form-control <?php echo isset($date_time_picker) ? 'date-time-picker' :'date-picker'?>" placeholder="开服结束时间">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                 <?php endif;?>
+                
+                
+                
+          
 
 
                 <?php if(isset($show_server_date) || $show_server_date==true):?>
@@ -94,7 +119,7 @@
                     </div>
 
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-2" style="display:none;">
                         <div class="form-group">
                             <div class="fg-line">
                                 <input  title="开服结束时间" type="text" name="date4" value="<?php echo $etserver?>" class="form-control <?php echo isset($date_time_picker) ? 'date-time-picker' :'date-picker'?>" placeholder="开服结束时间">
@@ -526,7 +551,7 @@
                     <div class="col-sm-2">
                         <div class="form-group">
                             <div class="fg-line">
-                                <input title="dan" type="text" name="eudemon" class="form-control" placeholder="精灵id">
+                                <input title="eudemon" type="text" name="eudemon" class="form-control" placeholder="精灵id(必填)">
                             </div>
                         </div>
                     </div>
@@ -564,6 +589,67 @@
                         </div>
                     </div>
                 <?php endif;?>
+                
+                
+                
+                
+                              <?php if(isset($level_vip) && $level_vip===true):?>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="fg-line">
+                                <select   name="level_vip" class="form-control" id='btype'>
+                                    <option value="1" selected="selected">vip</option>
+                                    <option value="2" >玩家等级</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;?>
+                
+                
+                        
+                   <?php if(isset($merge_server) && $merge_server===true):?>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="fg-line">
+                                <select   name="merge_server" class="form-control" id='btype'>
+                                    <option value="0" selected="selected">未合并server</option>
+                                    <option value="1" >合并server</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif;?>
+                
+                
+                
+                    <?php if($server_start_time):?>
+  
+                <?php endif;?>
+                
+                
+                 <?php if(isset($statistics_type) && $statistics_type===true):?>
+                 
+                               <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class="fg-line">
+                                <select  name="statistics_type" class="form-control" id='statistics_type'>
+                                  
+                                    <option value="1" selected="selected">宠物升星</option>
+                                    <option value="2">宠物强化</option>
+                                    <option value="3">宠物觉醒</option>
+                                   
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                 
+                 
+                 
+                <?php endif;?>
+                
+                           
+                
 
                 <div class="col-sm-2">
                     <button type="button" id="submit" class="btn btn-primary btn-sm m-t-10 waves-effect">查询</button>
@@ -573,3 +659,39 @@
         </form>
     </div>
 </div>
+
+<script>
+$('input[name="server_start"]').blur(function(){
+	 var server_start=  $("input[ name='server_start']").val();
+	 var server_end=  $("input[ name='server_end']").val();
+	 var dataString = 'flid=2&server_start='+ server_start+'&server_end='+server_end; 
+	 $.ajax ({    
+	     type: "POST",    
+	     url: "<?php echo site_url('SystemFunctionNew/serverStart');?>",    
+	     data: dataString,    
+	     cache: false,    
+	     success: function(data)  {   
+		    	var myarray=data.split(',');	    		
+	    		var ids = [];
+	    	$("#server_id_mul").parent().find('input[name="server_id[]"]').each(function(i){
+	    	
+	    		for(j=0;j<myarray.length;j++){
+	    		
+	    			if($(this).attr('value')==myarray[j]){
+	    				$(this).attr('checked',true);
+	    				ids.push($(this).attr('value'));
+	    			}else{
+	    				$(this).attr('checked',false);
+	    			}
+	    		}
+
+	    		});			
+	    		$("select#server_id_mul").val(ids);
+	    		$("select#server_id_mul").multiselect('refresh');
+
+	        }     
+	 });     
+
+});
+
+</script>

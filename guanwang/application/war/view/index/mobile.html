@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no" />
-    <title>精灵世界VS</title>
+    <title>魔兽小宠物官网_海牛网络</title>
     {load href="__static__/war/css/jquery.fullpage.css" /}
     {load href="__static__/war/dist/assets/owl.carousel.css" /}
     {load href="__static__/war/dist/assets/owl.theme.default.css" /}
@@ -40,14 +40,24 @@
                         {volist name="newsTypeList" id="vo"}
                             <li {if condition=" $key == 0 "}class="active"{/if}><a href="javascript:void(0)">{$vo.name}</a><img class="triangle" src="__static__/war/img/blue_triangle.png"></li>
                         {/volist}
-                        <a class="more" href="javascript:openNews()">more+</a>
+                        <a class="more" href="javascript:openNews()">+</a>
                     </ul>
                     {volist name="newsTypeList" id="vo"}
                     <div class="list_block" id="list_{$key}" {if condition=" $key > 0 "}style="display: none;"{/if}>
+                    	{assign name="var" value="1" /}
+                        	{volist name="topNews" id="tops"}
+                        {if condition=" $var <= 1 and $tops.type_id == $vo.id"}
                         <div class="list_first">
-                            <a href="javascript:openNews({$vo.id})" style="color: #fff;display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$vo.description}</a>
+                            <a href="javascript:openDetail({$tops.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$tops.title}</span></a>
                             <img class="bird" src="__static__/war/img/nan_bird.png">
                         </div>
+                        {assign name="var" value="$var+1" /}
+                            	{/if}
+                        {/volist}
+                        <!--<div class="list_first">
+                            <a href="javascript:openNews({$vo.id})" style="color: #fff;display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$vo.description}</a>
+                            <img class="bird" src="__static__/war/img/nan_bird.png">
+                        </div>-->
                         {assign name="var" value="1" /}
                         {volist name="newsList" id="news"}
                         {if condition=" $news.type_id == $vo.id "}
@@ -114,7 +124,7 @@
                     <a id="weixinAt" href="javascript:void(0)">
                         <img src="__static__/war/img/btn_m_wx.png">
                         <p>关注微信公众号</p>
-                        <h1>口袋妖怪VS游戏</h1>
+                        <h1>魔兽小宠物</h1>
                     </a>
                     <a href="javascript:joinQQ();">
                         <img src="__static__/war/img/btn_m_qq.png">
@@ -143,7 +153,7 @@
     <img class="close-cover" src="__static__/war/img/close_1.png">
     <div class="cover-text">
         <p>长按二维码保存图片</p>
-        <p>关注口袋妖怪VS游戏官方公众号</p>
+        <p>关注魔兽小宠物官方公众号</p>
     </div>
 </div>
 {load href="__static__/war/js/jquery.js" /}
@@ -282,7 +292,7 @@
     });
     $(".close-cover").click(function(){
         $("#cover").hide();
-    })
+    });
 </script>
 </body>
 </html>

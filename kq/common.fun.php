@@ -120,6 +120,76 @@ function go($url){
  * @param $Lang 语言,可选值 zh-cn zh e
  *
  */
+function htmlEdit1($name,$value,$height=220,$width=640){
+	$url = 'http://'.$_SERVER['HTTP_HOST'].'/';
+	if(strpos($_SERVER['REQUEST_URI'],'kq/' )){
+		$url .= 'kq/';
+	}
+	$url .= 'admin/saveImg.php';
+	echo <<<EDO
+	<div id="box" style="width:{$width}px;height:{$height}px;border:1px solid;"contenteditable>
+			$value
+</div>
+<input type=hidden id='mycontent' name='$name' value='$value'/>
+<script>
+//查找box元素,检测当粘贴时候,
+document.querySelector('#box').addEventListener('paste', function(e) {
+ 
+//判断是否是粘贴图片
+ if (e.clipboardData && e.clipboardData.items[0].type.indexOf('image') > -1) 
+{
+var that = this,
+reader = new FileReader();
+file = e.clipboardData.items[0].getAsFile();
+//ajax上传图片
+ reader.onload = function(e) 
+{
+ var xhr = new XMLHttpRequest(),
+ fd = new FormData();
+
+ xhr.open('POST', '$url', true);
+ xhr.onload = function () 
+{
+ var img = new Image();
+ img.src = xhr.responseText;
+ 
+  that.innerHTML += '<img src="'+img.src+'"/>';
+ 	document.getElementById("mycontent").value = that.innerHTML;
+}
+ 
+ // this.result得到图片的base64 (可以用作即时显示)
+ fd.append('file', this.result); 
+ //that.innerHTML += '<img src="'+this.result+'"/>';
+xhr.send(fd);
+}
+reader.readAsDataURL(file);
+}
+}, false);
+var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
+var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器  
+    var wrap =document.querySelector('#box');
+    if(isIE){
+        /*
+        对于低版本的IE浏览器因为他们不支持事件捕获，而他们支持focusin、focusout事件
+        使用该事件加事件委托能解决低版本IE的focus、blur事件委托的问题
+         */
+        wrap.addEventListener('focusout',handler);
+    }else{
+        /*
+            高版本的IE浏览器以及主流标准浏览器则可以利用事件捕获机制来解决
+         */
+        wrap.addEventListener('blur',handler,true);
+    }
+    function handler(event){
+       document.getElementById("mycontent").value = wrap.innerHTML;
+    }
+
+// document.querySelector('#box').addEventListener('blur', function(e) {
+//  		document.getElementById("mycontent").value = this.innerHTML;
+//  		})
+</script>
+EDO;
+} 
 function htmlEdit($name,$value,$height=220,$width=640,$toolbar='Default',$skin='office2003',$Lang='zh'){
 	global $rootpath,$rooturl;
 	include($rootpath."fckeditor/fckeditor.php") ;
@@ -459,6 +529,7 @@ function getPageInfoHTMLForRecord($ary=array(),$page = 0,$url='',$pageReNum='15'
 //$id 为record表ID
 function totaltime($fromtime='',$totime='',$id='')
 {
+	//$id = 291128;
     $workClass = new workday();
     if(!$fromtime)
     $fromtime = date("Y-m-d",strtotime("-2 days"));
@@ -475,7 +546,7 @@ function totaltime($fromtime='',$totime='',$id='')
     $recordClass->pageReNum = "10000";
     foreach($timelist as $val)
     {
-        $recordClass->wheres = " recorddate='".$val['workday']."' and gong_id!='0' ";
+        $recordClass->wheres = " recorddate='".$val['workday']."' and gong_id!='0' and card_id!=0 ";
         $recordClass->orders = " recorddate desc";
         $recordlist = $recordClass->getList();
         foreach($recordlist as $recordval)
@@ -523,7 +594,10 @@ function getTotalTime($ary,$id,$date,$menka)
 
     if($new_ary){
     	foreach ($new_ary as $key=>$val){
-    		if($new_ary[$key+1]!=''&&$new_ary[$key+1]-$val<=5 && !($val == '1200' && $new_ary[$key+1] =='1200') && !($val == '1830' && $new_ary[$key+1] =='1830')){
+    		if($new_ary[$key+1]!=''&&$new_ary[$key+1]-$val<=5){
+				if(($new_ary[$key+1] == '1200' && $val == '1200') ||  ($val == '1830' && $new_ary[$key+1] =='1830')){
+					continue;
+				}
     			$unset_ary[]=substr($new_ary[$key+1],0,2).':'.substr($new_ary[$key+1],-2);
     		}
     	}
@@ -573,7 +647,6 @@ function getTotalTime($ary,$id,$date,$menka)
                 $dstart = $thistime;
                 elseif($thistime>=$time18)
                 $estart = $thistime;
-
                 $thattime = strtotime($date." ".$ary[$i+1].":00");
                 //确定出门时间在哪个范围
                 if($thattime<$time09)
@@ -717,10 +790,11 @@ function getTotalTime($ary,$id,$date,$menka)
             }
         }
     }
-   
+
     $totaltime = $total/60;
     $latetime = 480 - $totaltime;
     $recordC = new record();
+	
     $recordC->edit(array('latetime'=>$latetime,'totaltime'=>$totaltime), $id);
 }
 //判断第一点进出情况

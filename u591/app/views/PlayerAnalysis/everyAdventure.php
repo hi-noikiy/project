@@ -43,9 +43,12 @@
     </div>
 </section>
 <script>
-  
+
+
+
+
     var dataOption = {
-        autoload: true,
+        autoload: false,
         request_url:'<?php echo site_url($_request_method);?>',
         callback: function (result) {
             if (result) {

@@ -117,6 +117,11 @@ if($ret['ret'] == 0){
 			$dwFenBaoID = $result['dwFenBaoID'];
 			$clienttype = $result['clienttype'];
 		}
+		$loginname = 'ysdk';
+		if(isOwnWay($PayName,$loginname)){
+			write_log(ROOT_PATH."log","name_{$loginname}_", "account is $PayName ! post=$post, get=$get, ".date("Y-m-d H:i:s")."\r\n");
+			exit("success");
+		}
 		$gamePlayerInfo = getGamePlayerField($accountId, $serverId, 'id');
 		$playerId = $gamePlayerInfo['id'];
  		$conn = SetConn(88);

@@ -505,7 +505,7 @@ SQL;
     			$dbsdk = $this->load->database('sdk', true);
     			$sql = '';
     			$count = 0;
-    			$handle = fopen("/data/log/site/api/DeviceActive_20180308.log", "r");    		                                
+    			$handle = fopen("/data/log/site/api/DeviceActive_20180311.log", "r");    		                                
     			$i = 0;
     			if ($handle) {
     				while (!feof($handle)) {

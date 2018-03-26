@@ -1105,7 +1105,120 @@ GROUP BY c.vip_level";
     
    
     
+ public function    blackCard(){
+ 	
+ 	
+ 	$date = date("Ymd",strtotime("-1 days"));
+   // $sql_1="SELECT serverid,mac,accountid from u_apple_paylog group by serverid ";
     
+ 	
+ 	
+  $sql_2="SELECT serverid,mac  from u_apple_paylog where created_at>=".strtotime($date)."  and created_at<=".(strtotime($date)+86499)." GROUP BY  serverid,mac";
     
+    $sql_3="SELECT serverid,mac,accountid from u_apple_paylog where created_at>=".strtotime($date)."  and created_at<=".(strtotime($date)+86499)."  group by serverid,mac,accountid";
+ 
+ 	
+ /* 	$sql_2="SELECT serverid,mac  from u_apple_paylog GROUP BY  serverid,mac";
+ 	
+ 	$sql_3="SELECT serverid,mac,accountid from u_apple_paylog  group by serverid,mac,accountid"; */
+ 	
+    
+ 	$db = $this->load->database('sdk',true);
+ 	
+
+ 	
+ 	$query2=$db->query($sql_2);
+ 	
+ 	$query3=$db->query($sql_3);
+ 	
+ 
+ 	$data2 = $query2->result_array();
+ 	$data3 = $query3->result_array();
+ 	
+ 	
+ 		foreach ($data2 as $k2=>&$v2){
+ 			foreach ($data3 as $v3){
+ 				
+ 				if($v2['mac']==$v3['mac'] && $v2['serverid']==$v3['serverid']){
+ 					$v2['total']=$v2['total']+1;
+ 					//$data2[$k2]['total_2']=$data2[$k2]['total_2']+1;
+ 				}
+ 					
+ 			}	
+ 		}
+ 			
+
+ 	
+ 		
+ 		foreach ($data2 as $k2=>&$v2){
+ 			foreach ($data3 as $k3=>$v3){
+ 					
+ 				if($v2['total']>=4 && $v2['mac']==$v3['mac'] && $v2['serverid']==$v3['serverid']){
+ 					
+ 				
+ 					
+ 					$sql_4="SELECT id from u_black_card WHERE serverid={$v3['serverid']} and accountid={$v3['accountid']} limit 1";
+ 					
+ 			
+ 					$query4=$db->query($sql_4);
+ 					
+ 					if($query4){
+ 						$data4 = $query4->result_array();
+ 					}
+ 				
+ 					$create=time();
+ 					if(empty($data4)){ 
+ 						$sql_5="INSERT INTO u_black_card(serverid,mac,accountid,created_at) VALUES({$v3['serverid']},'{$v3['mac']}',{$v3['accountid']},$create)";
+ 						echo $sql_5;
+ 						$query5=$db->query($sql_5);
+ 						
+ 						$url="http://pokeweb.u776.com/interface/guanwang/closeAcc.php?accountid=?&serverid=?";
+ 					}
+ 				
+ 					
+ 				}
+ 		
+ 			}
+ 		}
+ 	 
+ 	
+ }
+    /*
+     * 魔兽备库宠物数据  zzl 20180319
+     */
+public  function wowPet(){
+
+    $data=date("Ymd",time());
+     $start=strtotime(date("Ymd",strtotime("-1 days")));    
+     $end=$start+86399;
+	$db = $this->load->database('gamedata',true);	
+	for ($i=001;$i<1000;$i++){
+		if($i>0 && $i<10){
+			$i = str_pad($i,3,0,STR_PAD_LEFT);
+		} elseif ($i>=10 && $i<100){
+			$i = str_pad($i,2,0,STR_PAD_LEFT);
+		}
+	
+	$sql="SELECT {$data} as logdate,a.serverid,b.player_id,a.account_id,c.vip_level,template_id,upclass_lev,strengthen_lev,star,exp_group,a.create_time
+FROM 
+`u_player{$i}` a,
+(SELECT player_id,template_id,upclass_lev,strengthen_lev,star FROM u_eudemon{$i}) b,
+(SELECT account_id,server_id,vip_level from u_gift_recharge{$i}) c,
+(SELECT id,exp_group from s_eudemon_template) d
+
+WHERE a.id=b.player_id  and a.account_id=c.account_id and a.serverid=c.server_id and d.id=b.template_id and (a.create_time>={$start} and a.create_time<={$end})";
+
+	echo $sql.PHP_EOL;
+$query = $db->query($sql);
+if($query){
+	$data = $query->result_array();
+	if(!empty($data)){
+		$this->insert_batch("wow_pet", $data);
+		unset($data);
+	}
+}
+	
+}
+	}
 
 }

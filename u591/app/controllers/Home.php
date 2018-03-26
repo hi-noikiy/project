@@ -1884,6 +1884,7 @@ echo preg_match("/[^\.]+\.kpzs\.com$/", $host); die;*/
             if ($item['type_id']==0) $total[$item['hour']] += $item['cnt'];
         }
         //print_r($total);exit;
+        var_dump($output);
 
         foreach ($output as $item) {
             $data[$item['hour']][$item['type_id']] = array(

@@ -77,8 +77,7 @@ $('#btype').change(function(){
                 if(result['data']!='')
                 for(var i in result['data']){
                     if(!isNaN(i)){
-                    	  if(typeof(result['data'][i]['used_times'])=='undefined'){result['data'][i]['used_times']=0;}
-                    	  if(typeof(result['data'][i]['total'])=='undefined'){result['data'][i]['total']=0;}
+                    	
                               
                     	table_html += '<tr>' +
                         '<td>'+result['data'][i]['skillid']+'</td>' +

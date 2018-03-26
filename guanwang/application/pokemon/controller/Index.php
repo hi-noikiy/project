@@ -28,23 +28,24 @@ class Index extends Common
         // 新闻
         $news = new \app\pokemon\model\VsNews();
         $nwhere['status'] = 1;
-        $nwhere['top'] = 0;
         $nwhere['lang'] = _LATER;
         $newsList = $news->where($nwhere)->order('create_time desc')->field('id,type_id,title,create_time')->select();
         foreach ($newsList as $k=>$v){
         	$newsList[$k]['ctime'] = substr($v['create_time'], 0,10);
         }
+//		dump($newsList);
         $this->assign('newsList', $newsList);
 
         // 置顶新闻
         $vsNews = new \app\pokemon\model\VsNews();
         $pwhere['status'] = 1;
-        $nwhere['lang'] = _LATER;
+        $pwhere['lang'] = _LATER;
         $pwhere['top'] = 1;
-        $topNews = $vsNews->where($pwhere)->find();
+        $topNews = $vsNews->where($pwhere)->order('create_time desc')->select();
         foreach ($topNews as $k=>$v){
             $topNews[$k]['ctime'] = substr($v['create_time'], 0,10);
         }
+		//dump($topNews);
         $this->assign('topNews', $topNews);
 
 

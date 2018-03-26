@@ -16,13 +16,13 @@ return [
     'top'            => '置顶',
     'create_time'              => '创建时间',
     'update_time'       => '更新时间',
-
+	'search'=>'新闻标题',
     'top0'           => '否',
     'top1'           => '是',
 
     'status0'           => '下架',
     'status1'           => '上架',
-
+	'lang'           => '游戏',
     //数据验证提示
     'title_val'           => '新闻标题不能为空',
     'status_val'            => '状态必须为数字整数（0,1）',

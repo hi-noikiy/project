@@ -1,0 +1,22 @@
+
+<div class="top_down">
+    <div class="moblie_content">
+        <img class="ball" src="__static__/pokemon/img/arab/ball.png">
+        <div class="moblie_top_text">
+            <h1>《تحدي الوحوش》</h1>
+            <p>اليوكيمون لثلاثة أبعاد</p>
+        </div>
+        <a class="down_load" href="javascript:downLoadApp();">
+            <img src="__static__/pokemon/img/arab/download_btn.png">
+        </a>
+    </div>
+</div>
+<script type="text/javascript">
+    function downLoadApp(){
+        if(navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)){
+            location.href = "{$pokemon.apple_url}";
+        }else if(navigator.userAgent.match(/android/i)){
+            location.href = "{$pokemon.android_url}";//android 下载地址
+        }
+    }
+</script>

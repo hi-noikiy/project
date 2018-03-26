@@ -1,0 +1,44 @@
+<style type="text/css">
+	.search_vs{
+		position: absolute;
+		top: 10px;
+		right: 200px;
+	}
+	#search_p{
+		width: 120px;
+		height: 30px;
+	}
+</style>
+<form class="search_vs" action="/public/index.php{:search_url('play')}" method="GET" pjax-search="">
+        <div class="input-group input-group-sm" style="width:150px;">
+        	<select id="search_p" name="play">
+        		<option value="">{$langarr[""]}</option>
+        		<option value="us">{$langarr["us"]}</option>
+        		<option value="war">{$langarr["war"]}</option>
+        		<option value="ar">{$langarr["ar"]}</option>
+        		<option value="ru">{$langarr["ru"]}</option>
+        	</select>
+            <div class="input-group-btn"><button type="submit" class="btn btn-default sreachs"><i class="fa fa-search"></i></button></div>
+        </div>
+</form>
+<script type="text/javascript">
+	//获取url中的参数
+    function getUrlParam(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+        var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+        if (r != null) return unescape(r[2]); return null; //返回参数值
+    }
+    if(getUrlParam('play')==null||getUrlParam('play')==''){
+    	$('#search_p option[value=""]').attr('selected',true);
+    }else if(getUrlParam('play')=='us'){
+    	$('#search_p option[value="us"]').attr('selected',true);
+    }else if(getUrlParam('play')=='ar'){
+    	$('#search_p option[value="ar"]').attr('selected',true);
+    }else if(getUrlParam('play')=='ru'){
+    	$('#search_p option[value="ru"]').attr('selected',true);
+    }else if(getUrlParam('play')=='war'){
+    	$('#search_p option[value="war"]').attr('selected',true);
+    }else if(getUrlParam('play')=='vn'){
+    	$('#search_p option[value="vn"]').attr('selected',true);
+    }
+</script>

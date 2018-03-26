@@ -58,8 +58,29 @@ class Frame_model extends CI_Model
 
     public function sixteen($where, $field = '', $group = 'date', $order = "date")
     {
+    if($where['merge_server'] ==1){
+    	$this->load->model ( 'Data_analysis_model' );
+    	$id_serverlist = $this->Data_analysis_model->idServerlist( $table, $where, $field, $group, $order, $limit);
+    		
+    	foreach ($id_serverlist as $v){
+    	
+    		if($v['id']==$where['serverid']){
+    			
+    			$idserver_list=$v['idserverlist'];
+    			
+    			$sql = "SELECT u.accountid,u.param1,u.serverid,l.username,u.vip_level,u.user_level FROM u_behavior_{$where['date']} u inner join  u_login_{$where['date']} l where act_id=108 and u.param>0 and u.accountid=l.accountid and u.serverid in ({$idserver_list})";
+    			
+    		}
+    	
+    	}
+
+    	
+    	
+    } else {
+    	
+    	
     $sql = "SELECT u.accountid,u.param1,u.serverid,l.username,u.vip_level,u.user_level FROM u_behavior_{$where['date']} u inner join  u_login_{$where['date']} l where act_id=108 and u.param>0 and u.accountid=l.accountid and u.serverid={$where['serverid']}";
-  
+    }
         
         $query = $this->db->query($sql);
         if ($query)

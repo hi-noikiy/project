@@ -3,6 +3,29 @@
 {block name="title"}<title>{if condition="$data"}{$Think.lang.edit}{else /}{$Think.lang.create}{/if}</title>{/block}
 
 {block name="pjax_container"}
+<style type="text/css">
+	.opcn{
+		display: none;
+	}
+	.opvn{
+		display: none;
+	}
+	.opus{
+		display: none;
+	}
+	.opar{
+		display: none;
+	}
+	.opwar{
+		display: none;
+	}
+	.opru{
+		display: none;
+	}
+	.opk{
+		display: none;
+	}
+</style>
 <section class="content-header">
     <h1>新闻信息</h1>
     <ol class="breadcrumb">
@@ -22,7 +45,16 @@
                         <div class="tab-pane active" id="tab1">
                             <input type="hidden" name="id" value="{$data.id}" />
                             <input type="hidden" name="subType" value="form" />
-                            
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">游戏</label>
+                                <div class="col-sm-7">
+                                    <select id="sePlay" class="form-control select2" name="lang" style="width:100%;">
+                                                                            {volist name="langarr" id="vo"}
+                                    <option value="{$key}" {if condition="$data.lang eq $key"}selected="selected"{/if} >{$vo}</option>
+                    				{/volist}
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">{$Think.lang.title}</label>
                                 <div class="col-sm-7">
@@ -52,12 +84,43 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">{$Think.lang.type_name}</label>
                                 <div class="col-sm-7">
-                                    <select class="form-control select2" name="type_id" style="width:100%;">
+                                    <select id="opLx" class="form-control select2" name="type_id" style="width:100%;">
                                         {volist name="vsNewsTypeList" id="vo"}
-                                        <option value="{$vo.id}" {if condition=" ($vo.id eq $data.type_id) and ($data.type_id neq -1) "}selected="selected"{/if}>
+                                        <!--<option value="{$vo.id}" {if condition=" ($vo.id eq $data.type_id) and ($data.type_id neq -1) "}selected="selected"{/if}>
+                                            {$vo.name}
+                                        </option>-->
+                                        {if $vo.lang=='cn' || $vo.lang==''}
+                                        <option class="opcn" value="{$vo.id}">
                                             {$vo.name}
                                         </option>
+                                        {/if}
+                                        {if $vo.lang=='us'}
+                                        <option class="opus" value="{$vo.id}">
+                                            {$vo.name}
+                                        </option>
+                                        {/if}
+                                        {if $vo.lang=='vn'}
+                                        <option class="opvn" value="{$vo.id}">
+                                            {$vo.name}
+                                        </option>
+                                        {/if}
+                                        {if $vo.lang=='ar'}
+                                        <option class="opar" value="{$vo.id}">
+                                            {$vo.name}
+                                        </option>
+                                        {/if}
+                                        {if $vo.lang=='ru'}
+                                        <option class="opru" value="{$vo.id}">
+                                            {$vo.name}
+                                        </option>
+                                        {/if}
+                                        {if $vo.lang=='war'}
+                                        <option class="opwar" value="{$vo.id}">
+                                            {$vo.name}
+                                        </option>
+                                        {/if}
                                         {/volist}
+                                        <option class="opk"></option>
                                     </select>
                                 </div>
                             </div>
@@ -87,16 +150,6 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">语言</label>
-                                <div class="col-sm-7">
-                                    <select class="form-control select2" name="lang" style="width:100%;">
-                                                                            {volist name="langarr" id="vo"}
-                                    <option value="{$key}" {if condition="$data.lang eq $key"}selected="selected"{/if} >{$vo}</option>
-                    				{/volist}
-                                    </select>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="box-footer">
@@ -113,6 +166,71 @@
     </div>
 </section>
 <script type="text/javascript">
+	function myOption(){
+		var sePlay = $("#sePlay option:selected").val();
+		$('.opcn').css('display','none');
+		$('.opus').css('display','none');
+		$('.opvn').css('display','none');
+		$('.opar').css('display','none');
+		$('.opru').css('display','none');
+		$('.opwar').css('display','none');
+		$('.opk').css('display','none');
+		$('#opLx option').removeAttr('selected');
+		if(sePlay=='' || sePlay=='cn'){
+			if($('.opcn').length!=0){
+				$('.opcn').eq(0).attr('selected',true);
+				$('.opcn').css('display','block');
+			}else{
+				$('.opk').eq(0).attr('selected',true);
+				$('.opk').css('display','block');
+			}
+		}else if(sePlay=='us'){
+			if($('.opus').length!=0){
+				$('.opus').eq(0).attr('selected',true);
+				$('.opus').css('display','block');
+			}else{
+				$('.opk').eq(0).attr('selected',true);
+				$('.opk').css('display','block');
+			}
+		}else if(sePlay=='vn'){
+			if($('.opvn').length!=0){
+				$('.opvn').eq(0).attr('selected',true);
+				$('.opvn').css('display','block');
+			}else{
+				$('.opk').eq(0).attr('selected',true);
+				$('.opk').css('display','block');
+			}
+		}else if(sePlay=='ar'){
+			if($('.opar').length!=0){
+				$('.opar').eq(0).attr('selected',true);
+				$('.opar').css('display','block');
+			}else{
+				$('.opk').eq(0).attr('selected',true);
+				$('.opk').css('display','block');
+			}
+		}else if(sePlay=='ru'){
+			if($('.opru').length!=0){
+				$('.opru').eq(0).attr('selected',true);
+				$('.opru').css('display','block');
+			}else{
+				$('.opk').eq(0).attr('selected',true);
+				$('.opk').css('display','block');
+			}
+		}else if(sePlay=='war'){
+			if($('.opwar').length!=0){
+				$('.opwar').eq(0).attr('selected',true);
+				$('.opwar').css('display','block');
+			}else{
+				$('.opk').eq(0).attr('selected',true);
+				$('.opk').css('display','block');
+			}
+		}
+	}
+	myOption();
+	$('#sePlay').on('change',function(){
+		myOption();
+	});
+	
 $(function(){
     var button = document.getElementById( 'image_urlBtn' );
     button.onclick = function() {

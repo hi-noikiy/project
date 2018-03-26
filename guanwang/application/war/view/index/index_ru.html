@@ -5,11 +5,11 @@
   <meta name="keywords" content="Покемон  ,  Покемон  vs  ,  эльфы  мира  покемонов  ,  домашних животных  ,  эльф  ,  тур,  игры,  бесплатный  тур,  опеку  ,  сбор" /> 
   <meta name="description" content="Покемон  vs  нового поколения  "  эльфов  "  идеальный  мир  детства  опеку  сбросить  сложный момент  классический  маршрут  , это  эльфы  стратегии  сбора  опеку  ,  га  для  войны  ,  РПГ  роль  приключения  мобильных игр  . " /> 
   <title>Эльфы  мира  официальный сайт  _  Покемон  vs  сети  нового поколения  _  ламантин</title> 
-    {load href="__static__/war/dist/assets/owl.carousel.css" /}
-    {load href="__static__/war/dist/assets/owl.theme.default.css" /}
-    {load href="__static__/war/css/carousel_pc.css" /}
-    {load href="__static__/war/css/pmstyle.css" /}
-    {load href="__static__/war/css/switch.css" /}
+    {load href="__static__/pokemon/dist/assets/owl.carousel.css" /}
+    {load href="__static__/pokemon/dist/assets/owl.theme.default.css" /}
+    {load href="__static__/pokemon/css/carousel_pc.css" /}
+    {load href="__static__/pokemon/css/pmstyle.css" /}
+    {load href="__static__/pokemon/css/switch.css" /}
 </head>
 <body>
 {include file="header_ru" /}
@@ -21,16 +21,16 @@
         </div>
         <div class="dl">
             <p style="text-indent: 1em;">сканирование здесь VK</p>
-            <img class="dl_code" style="width: 145px;" src="__static__/war/img/russia/code.png">
+            <img class="dl_code" style="width: 145px;" src="__static__/pokemon/img/russia/code.png">
             <div class="dl_btn">
                 <a class="ios" href="" style="font-size: 15px;width: 245px;" target="_blank">
-                    <img style="left:18px;top:11px;" src="__static__/war/img/russia/ios.png">Загрузите на IOS
+                    <img style="left:18px;top:11px;" src="__static__/pokemon/img/russia/ios.png">Загрузите на IOS
                 </a>
                 <a class="adr" href="" style="font-size: 15px;width: 245px;" target="_blank">
-                    <img style="left:12px;top:10px;" src="__static__/war/img/russia/adr.png">Загрузите на андроид</a>
+                    <img style="left:12px;top:10px;" src="__static__/pokemon/img/russia/adr.png">Загрузите на андроид</a>
             </div>
             <a class="dl_gift" href="javascript:;">
-                <img src="__static__/war/img/russia/gift.png">
+                <img src="__static__/pokemon/img/russia/gift.png">
                 <div class="gift" style="font-size: 12px;">Подарки</div>
             </a>
 
@@ -38,7 +38,7 @@
     </div>
     <!---->
     <!--英文-->
-    <img class="index_1_bg" src="__static__/war/img/russia/bg.jpg"/>
+    <img class="index_1_bg" src="__static__/pokemon/img/russia/bg.jpg"/>
     <!---->
     <!--英文-->
     <div class="index_1_content ">
@@ -48,24 +48,53 @@
                     <div id="owl-demo" class="owl-carousel owl-theme">
                     {volist name="bannerList" id="vo"}
                         {if condition=" $vo.type == 1 "}
-                        <div class="item"><a href="{if condition="($vo.url neq null) and ($vo.url != '')"}{$vo.url}{else/}javascript:void(0);{/if}" alt="{$vo.name}"><img src="{$vo.image_url}" alt="{$vo.name}" style="width: 520px;height: 300px;"></a></div>
+                        <div class="item"><a href="{if condition="($vo.url neq null) and ($vo.url != '')"}{$vo.url}{else/}javascript:void(0);{/if}" alt="{$vo.name}" target="_blank"><img src="{$vo.image_url}" alt="{$vo.name}" style="width: 520px;height: 300px;"></a></div>
                         {/if}
                     {/volist}
                     </div>
                 </div>
                 <div class="list_box">
                     <ul class="list_tit clearfix">
+                    	<li class="active"><a href="javascript:void(0)">самый  новый</a><img class="triangle" src="__static__/pokemon/img/russia/blue_triangle.png"></li>
                         {volist name="newsTypeList" id="vo"}
-                            <li {if condition=" $key == 0 "}class="active"{/if}><a href="javascript:void(0)">{$vo.name}</a><img class="triangle" src="__static__/war/img/russia/blue_triangle.png"></li>
+                            <li><a href="javascript:void(0)">{$vo.name}</a><img class="triangle" src="__static__/pokemon/img/russia/blue_triangle.png"></li>
                         {/volist}
                         <a class="more" href="{:url('News/news')}">more+</a>
                     </ul>
-                    {volist name="newsTypeList" id="vo"}
-                    <div class="list_block" id="list_{$key}" {if condition=" $key > 0 "}style="display: none;"{/if}>
+                    <div class="list_block" id="list_0">
+                    	{assign name="var" value="1" /}
+                        	{volist name="topNews" id="tops"}
+                        {if condition=" $var <= 1 "}
                         <div class="list_first">
-                            <a href="javascript:openNews({$vo.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$vo.description}</span></a>
-                            <img class="bird" src="__static__/war/img/russia/nan_bird.png">
+                            <a href="javascript:openDetail({$tops.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$tops.title}</span></a>
+                            <img class="bird" src="__static__/pokemon/img/russia/nan_bird.png">
                         </div>
+                        {assign name="var" value="$var+1" /}
+                            	{/if}
+                        {/volist}
+                        {assign name="var" value="1" /}
+                        {volist name="newsList" id="news"}
+                        {if condition=" $var <= 3 "}
+                         <a href="javascript:openDetail({$news.id})" style="position: relative;" class="list">
+                            <p style="display:block;width:80%;margin:0px;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;z-index: 20;">{$news.title}</p>
+                            <span style="position: absolute;right: 10px;top: 0px;z-index: 30;">{$news.ctime}</span>
+                        </a>
+                        {assign name="var" value="$var+1" /}
+                        {/if}
+                        {/volist}
+                    </div>
+                    {volist name="newsTypeList" id="vo"}
+                    <div class="list_block" id="list_{$key+1}"style="display: none;">
+                    	{assign name="var" value="1" /}
+                        	{volist name="topNews" id="tops"}
+                        {if condition=" $var <= 1 and $tops.type_id == $vo.id"}
+                        <div class="list_first">
+                            <a href="javascript:openDetail({$tops.id})" style="color: #fff;"><span style="display:block;width:100%;overflow:hidden;white-space: nowrap;text-overflow:ellipsis;">{$tops.title}</span></a>
+                            <img class="bird" src="__static__/pokemon/img/russia/nan_bird.png">
+                        </div>
+                        {assign name="var" value="$var+1" /}
+                            	{/if}
+                        {/volist}
                         {assign name="var" value="1" /}
                         {volist name="newsList" id="news"}
                         {if condition=" $news.type_id == $vo.id "}
@@ -85,7 +114,7 @@
             <div class="content clearfix" style="margin-top:70px">
                 {volist name="linkList" id="vo"}
                 {if condition=" $vo.platform == 1 "}
-                <a href="{$vo.url|default='javascript:void(0)'}" class="switch_block">
+                <a href="{$vo.url|default='javascript:void(0)'}" target="_blank" class="switch_block">
                     <img style="left:20px;top:0;" src="{$vo.image_url}">
                     <div class="switch"><div class="switch_content"></div></div>
                     <div class="switch_text">{$vo.name}</div>
@@ -95,10 +124,9 @@
             </div>
         </div>
     </div>
-    <!---->
 </div>
 <div class="index_2">
-    <img class="index_2bg" src="__static__/war/img/russia/index_2.png">
+    <img class="index_2bg" src="__static__/pokemon/img/russia/index_2.png">
     <div class="content">
         <!--英文-->
         <div class="index_2_tit" style="font-size: 25px;">
@@ -133,16 +161,16 @@
     </div>
 </div>
 <div class="alert-win" style="display: none">
-    <img class="close" src="__static__/war/img/russia/close.png">
+    <img class="close" src="__static__/pokemon/img/russia/close.png">
     <div class="item"><span>Поздравляю！</span>получить</div>
     <div class="item">официальный сайт  пакет  привилегии.</div>
     <div class="item"><input id="privilegeCode" type="text" value="{$privilege_code.value}"><a style="width: 50px;" href="javascript:copyCode();">копия</a> </div>
 </div>
 {include file="footer_ru" /}
-{load href="__static__/war/js/jquery.js" /}
-{load href="__static__/war/dist/owl.carousel.js" /}
-{load href="__static__/war/js/top_nav.js" /}
-{load href="__static__/war/js/jquery.carousel.js" /}
+{load href="__static__/pokemon/js/jquery.js" /}
+{load href="__static__/pokemon/dist/owl.carousel.js" /}
+{load href="__static__/pokemon/js/top_nav.js" /}
+{load href="__static__/pokemon/js/jquery.carousel.js" /}
 </body>
 <script>
     Caroursel.init($('.caroursel'));
@@ -188,11 +216,13 @@
     })
 
     function openNews(id){
-        location.href=newsUrl.substr(0,newsUrl.length-5)+"/typeId/"+id;
+        //location.href=newsUrl.substr(0,newsUrl.length-5)+"/typeId/"+id;
+        window.open(newsUrl.substr(0,newsUrl.length-5)+"/typeId/"+id);
     }
 
     function openDetail(id){
-        location.href=detailUrl.substr(0,detailUrl.length-5)+"/id/"+id;
+        //location.href=detailUrl.substr(0,detailUrl.length-5)+"/id/"+id;
+        window.open(detailUrl.substr(0,detailUrl.length-5)+"/id/"+id);
     }
 </script>
 </html>

@@ -38,7 +38,6 @@ class record extends getList {
     public function getOneRow($name, $recorddate){
     	global $webdb;
     	$sql="select addtime, addtime_ex from $this->tableName where name='$name' and recorddate='$recorddate' limit 1";
-    	
     	return $webdb->getList($sql);
     }
 }

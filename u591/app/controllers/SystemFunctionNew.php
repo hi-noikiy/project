@@ -350,6 +350,7 @@ class SystemFunctionNew extends MY_Controller {
 			$magic_type = $this->SystemFunctionNew_model->magicType ();
 			
 			$data = $this->SystemFunctionNew_model->skillRate ( $table, $where, $field, $group, $order, $limit );
+		   $total_boul=$this->SystemFunctionNew_model->skillRateTotalBoul ( $table, $where, $field, $group, $order, $limit );
 			
 			$result_data = array_merge ( $data [1], $data [2], $data [3], $data [4], $data [5], $data [6], $data [7], $data [8], $data [9], $data [10] );
 			
@@ -357,7 +358,7 @@ class SystemFunctionNew extends MY_Controller {
 			
 			$newArr = array ();
 			foreach ( $result_data as $v ) {
-				$total_bout += $v ['bout'];
+			//	$total_bout += $v ['bout'];
 				if (array_key_exists ( $v ['skillid'], $newArr )) {
 					$newArr [$v ['skillid']] ['bout'] += $v ['bout'];
 					$newArr [$v ['skillid']] ['total'] += $v ['total'];
@@ -367,7 +368,8 @@ class SystemFunctionNew extends MY_Controller {
 			}
 			
 			$data = $newArr;
-			$total_bout *= 2;
+			$total_bout=$total_boul[0]['total']*2;
+			
 			foreach ( $data as $k => &$v ) {
 				$v ['rate'] = 100 * (round ( $v ['total'] / ($total_bout), 4 )) . '%';
 				foreach ( $magic_type as $v2 ) {
@@ -902,5 +904,289 @@ class SystemFunctionNew extends MY_Controller {
 	}
 	
     
+	
+	/*
+	 * 魔兽 	宠物升星zzl 20180319
+	 */
+	public function wowPet() {
+		if (parent::isAjax ()) {
+			$date = $this->input->get ( 'date1' );
+			$date2 = $this->input->get ( 'date2' );
+			$where ['mac'] = $this->input->get ( 'mac' );
+				
+			$where ['date'] = strtotime ( $date );
+			$where ['date_table'] = date ( 'Ym', strtotime($date));
+			$where ['date2'] = strtotime ( $date2 );
+			$where ['statistics_type']= $this->input->get ( 'statistics_type' );
+			$where ['eudemon']= $this->input->get ( 'eudemon' );
+		/* 	if(empty($where ['eudemon'])){
+				return 0;
+			}
+			 */
+			
+			$where['date']=date("Ymd",strtotime($date));
+			$where['date2']=date("Ymd",strtotime($date2));
+			
+				
+			$group = "";
+			$order = "";
+			$field = "";
+			$where ['serverids'] = $this->input->get ( 'server_id' );
+			$this->load->model ( 'SystemFunctionNew_model' );
+			$data = $this->SystemFunctionNew_model->wowPet ( $table, $where, $field, $group, $order, $limit );
+				//exp_group
+        
+			if($where ['statistics_type']==1){
+				foreach ($data['star'] as &$v){
+					$v['name']=$v['name']."星宠物数量";
+					
+					
+					$total[1]['vip_level0']+=$v['vip_level0'];
+					$total[1]['vip_level1']+=$v['vip_level1'];
+					$total[1]['vip_level2']+=$v['vip_level2'];
+					$total[1]['vip_level3']+=$v['vip_level3'];
+					$total[1]['vip_level4']+=$v['vip_level4'];
+					$total[1]['vip_level5']+=$v['vip_level5'];
+					$total[1]['vip_level6']+=$v['vip_level6'];
+					$total[1]['vip_level7']+=$v['vip_level7'];
+					$total[1]['vip_level8']+=$v['vip_level8'];
+					$total[1]['vip_level9']+=$v['vip_level9'];
+					$total[1]['vip_level10']+=$v['vip_level10'];
+					$total[1]['vip_level11']+=$v['vip_level11'];
+					$total[1]['vip_level12']+=$v['vip_level12'];
+					
+					$total[3]['s0']+=$v['s0'];
+					$total[3]['s1']+=$v['s1'];
+					$total[3]['s2']+=$v['s2'];
+					$total[3]['s3']+=$v['s3'];
+					$total[3]['s4']+=$v['s4'];
+					$total[3]['s5']+=$v['s5'];
+					$total[3]['s6']+=$v['s6'];
+					$total[3]['s7']+=$v['s7'];
+					$total[3]['s8']+=$v['s8'];
+					$total[3]['s9']+=$v['s9'];
+					$total[3]['s10']+=$v['s10'];
+					$total[3]['s11']+=$v['s11'];
+					$total[3]['s12']+=$v['s12'];
+					
+					$total_count=$total_count+$v['total'];
+				
+					
+					
+				}
+				
+		
+	
+					$total[2]['vip_level0']=$total[1]['vip_level0']?round($total[3]['s0']/$total[1]['vip_level0'],2):0;
+					$total[2]['vip_level1']=$total[1]['vip_level1']?round($total[3]['s1']/$total[1]['vip_level1'],2):0;
+					$total[2]['vip_level2']=$total[1]['vip_level2']?round($total[3]['s2']/$total[1]['vip_level2'],2):0;
+					$total[2]['vip_level3']=$total[1]['vip_level3']?round($total[3]['s3']/$total[1]['vip_level3'],2):0;
+					$total[2]['vip_level4']=$total[1]['vip_level4']?round($total[3]['s4']/$total[1]['vip_level4'],2):0;
+					$total[2]['vip_level5']=$total[1]['vip_level5']?round($total[3]['s5']/$total[1]['vip_level5'],2):0;
+					$total[2]['vip_level6']=$total[1]['vip_level6']?round($total[3]['s6']/$total[1]['vip_level6'],2):0;
+					$total[2]['vip_level7']=$total[1]['vip_level7']?round($total[3]['s7']/$total[1]['vip_level7'],2):0;
+					$total[2]['vip_level8']=$total[1]['vip_level8']?round($total[3]['s8']/$total[1]['vip_level8'],2):0;
+					$total[2]['vip_level9']=$total[1]['vip_level9']?round($total[3]['s9']/$total[1]['vip_level9'],2):0;
+					$total[2]['vip_level10']=$total[1]['vip_level10']?round($total[3]['s10']/$total[1]['vip_level10'],2):0;
+					$total[2]['vip_level11']=$total[1]['vip_level11']?round($total[3]['s11']/$total[1]['vip_level11'],2):0;
+					$total[2]['vip_level12']=$total[1]['vip_level12']?round($total[3]['s12']/$total[1]['vip_level12'],2):0;
+					$total[2]['name']='平均等级';
+				
+				unset($total[3]);
+				
+				foreach ($data['exp_group'] as &$v){
+				//	$v['name']=$v['exp_group'].'级'.$v['name']."星宠物数量";
+				if($v['exp_group']==1001){
+					$v['name']='R级'.$v['name']."星宠物数量";
+				}elseif($v['exp_group']==1002){
+					$v['name']='SR级'.$v['name']."星宠物数量";
+				}elseif($v['exp_group']==1003){
+					$v['name']='SR级'.$v['name']."星宠物数量";
+				}
+						
+				}
+				$total[1]['name']='宠物总数';
+				
+				$data=array_merge_recursive($total,$data['star'],$data['exp_group']);
+			}
+				
+			
+			if($where ['statistics_type']==2){
+				$total_count=0;
+				$total=array();
+				foreach ($data['total1'] as $k=>&$v){
+					$total[1]['vip_level0']+=$v['vip_level0'];
+					$total[1]['vip_level1']+=$v['vip_level1'];
+					$total[1]['vip_level2']+=$v['vip_level2'];
+					$total[1]['vip_level3']+=$v['vip_level3'];
+					$total[1]['vip_level4']+=$v['vip_level4'];
+					$total[1]['vip_level5']+=$v['vip_level5'];
+					$total[1]['vip_level6']+=$v['vip_level6'];
+					$total[1]['vip_level7']+=$v['vip_level7'];
+					$total[1]['vip_level8']+=$v['vip_level8'];
+					$total[1]['vip_level9']+=$v['vip_level9'];					
+					$total[1]['vip_level10']+=$v['vip_level10'];
+					$total[1]['vip_level11']+=$v['vip_level11'];
+					$total[1]['vip_level12']+=$v['vip_level12'];
+					$total_count=$total_count+$v['total'];
+					
+					
+					$total[3]['s0']+=$v['s0'];
+					$total[3]['s1']+=$v['s1'];
+					$total[3]['s2']+=$v['s2'];
+					$total[3]['s3']+=$v['s3'];
+					$total[3]['s4']+=$v['s4'];
+					$total[3]['s5']+=$v['s5'];
+					$total[3]['s6']+=$v['s6'];
+					$total[3]['s7']+=$v['s7'];
+					$total[3]['s8']+=$v['s8'];
+					$total[3]['s9']+=$v['s9'];
+					$total[3]['s10']+=$v['s10'];
+					$total[3]['s11']+=$v['s11'];
+					$total[3]['s12']+=$v['s12'];
+					
+					$v['name']='强化'.$v['name']."级宠物数量";
+						
+					
+						
+				}
+				
+
+				$total[2]['vip_level0']=$total[1]['vip_level0']?round($total[3]['s0']/$total[1]['vip_level0'],2):0;
+				$total[2]['vip_level1']=$total[1]['vip_level1']?round($total[3]['s1']/$total[1]['vip_level1'],2):0;
+				$total[2]['vip_level2']=$total[1]['vip_level2']?round($total[3]['s2']/$total[1]['vip_level2'],2):0;
+				$total[2]['vip_level3']=$total[1]['vip_level3']?round($total[3]['s3']/$total[1]['vip_level3'],2):0;
+				$total[2]['vip_level4']=$total[1]['vip_level4']?round($total[3]['s4']/$total[1]['vip_level4'],2):0;
+				$total[2]['vip_level5']=$total[1]['vip_level5']?round($total[3]['s5']/$total[1]['vip_level5'],2):0;
+				$total[2]['vip_level6']=$total[1]['vip_level6']?round($total[3]['s6']/$total[1]['vip_level6'],2):0;
+				$total[2]['vip_level7']=$total[1]['vip_level7']?round($total[3]['s7']/$total[1]['vip_level7'],2):0;
+				$total[2]['vip_level8']=$total[1]['vip_level8']?round($total[3]['s8']/$total[1]['vip_level8'],2):0;
+				$total[2]['vip_level9']=$total[1]['vip_level9']?round($total[3]['s9']/$total[1]['vip_level9'],2):0;
+				$total[2]['vip_level10']=$total[1]['vip_level10']?round($total[3]['s10']/$total[1]['vip_level10'],2):0;
+				$total[2]['vip_level11']=$total[1]['vip_level11']?round($total[3]['s11']/$total[1]['vip_level11'],2):0;
+				$total[2]['vip_level12']=$total[1]['vip_level12']?round($total[3]['s12']/$total[1]['vip_level12'],2):0;
+				$total[2]['name']='平均等级';
+				
+				unset($total[3]);
+				
+			/* 		$total[2]['vip_level0']=$total[1]['vip_level0']/$total_count;
+					$total[2]['vip_level1']+=$total[1]['vip_level1'];
+					$total[2]['vip_level2']+=$total[1]['vip_level2'];
+					$total[1]['vip_level3']+=$total[1]['vip_level3'];
+					$total[1]['vip_level4']+=$total[1]['vip_level4'];
+					$total[1]['vip_level5']+=$total[1]['vip_level5'];
+					$total[1]['vip_level6']+=$total[1]['vip_level6'];
+					$total[1]['vip_level7']+=$total[1]['vip_level7'];
+					$total[1]['vip_level8']+=$total[1]['vip_level8'];
+					$total[1]['vip_level9']+=$total[1]['vip_level9'];					
+					$total[1]['vip_level10']+=$total[1]['vip_level10'];
+					$total[1]['vip_level11']+=$total[1]['vip_level11'];
+					$total[1]['vip_level12']+=$total[1]['vip_level12']; */
+	
+				$total[1]['name']='宠物总数';
+				$data=array_merge_recursive($total,$data['total1']);
+			}
+				
+			
+			
+			if($where ['statistics_type']==3){
+				$total=array();
+			$total_count=0;
+				$total=array();
+				foreach ($data['total1'] as $k=>&$v){
+					$total[1]['vip_level0']+=$v['vip_level0'];
+					$total[1]['vip_level1']+=$v['vip_level1'];
+					$total[1]['vip_level2']+=$v['vip_level2'];
+					$total[1]['vip_level3']+=$v['vip_level3'];
+					$total[1]['vip_level4']+=$v['vip_level4'];
+					$total[1]['vip_level5']+=$v['vip_level5'];
+					$total[1]['vip_level6']+=$v['vip_level6'];
+					$total[1]['vip_level7']+=$v['vip_level7'];
+					$total[1]['vip_level8']+=$v['vip_level8'];
+					$total[1]['vip_level9']+=$v['vip_level9'];
+					$total[1]['vip_level10']+=$v['vip_level10'];
+					$total[1]['vip_level11']+=$v['vip_level11'];
+					$total[1]['vip_level12']+=$v['vip_level12'];
+					$total_count=$total_count+$v['total'];
+						
+					
+					
+
+					$total[3]['s0']+=$v['s0'];
+					$total[3]['s1']+=$v['s1'];
+					$total[3]['s2']+=$v['s2'];
+					$total[3]['s3']+=$v['s3'];
+					$total[3]['s4']+=$v['s4'];
+					$total[3]['s5']+=$v['s5'];
+					$total[3]['s6']+=$v['s6'];
+					$total[3]['s7']+=$v['s7'];
+					$total[3]['s8']+=$v['s8'];
+					$total[3]['s9']+=$v['s9'];
+					$total[3]['s10']+=$v['s10'];
+					$total[3]['s11']+=$v['s11'];
+					$total[3]['s12']+=$v['s12'];
+						
+					$v['name']='觉醒'.$v['name']."级宠物数量";
+			
+						
+			
+				}
+				
+
+				$total[2]['vip_level0']=$total[1]['vip_level0']?round($total[3]['s0']/$total[1]['vip_level0'],2):0;
+				$total[2]['vip_level1']=$total[1]['vip_level1']?round($total[3]['s1']/$total[1]['vip_level1'],2):0;
+				$total[2]['vip_level2']=$total[1]['vip_level2']?round($total[3]['s2']/$total[1]['vip_level2'],2):0;
+				$total[2]['vip_level3']=$total[1]['vip_level3']?round($total[3]['s3']/$total[1]['vip_level3'],2):0;
+				$total[2]['vip_level4']=$total[1]['vip_level4']?round($total[3]['s4']/$total[1]['vip_level4'],2):0;
+				$total[2]['vip_level5']=$total[1]['vip_level5']?round($total[3]['s5']/$total[1]['vip_level5'],2):0;
+				$total[2]['vip_level6']=$total[1]['vip_level6']?round($total[3]['s6']/$total[1]['vip_level6'],2):0;
+				$total[2]['vip_level7']=$total[1]['vip_level7']?round($total[3]['s7']/$total[1]['vip_level7'],2):0;
+				$total[2]['vip_level8']=$total[1]['vip_level8']?round($total[3]['s8']/$total[1]['vip_level8'],2):0;
+				$total[2]['vip_level9']=$total[1]['vip_level9']?round($total[3]['s9']/$total[1]['vip_level9'],2):0;
+				$total[2]['vip_level10']=$total[1]['vip_level10']?round($total[3]['s10']/$total[1]['vip_level10'],2):0;
+				$total[2]['vip_level11']=$total[1]['vip_level11']?round($total[3]['s11']/$total[1]['vip_level11'],2):0;
+				$total[2]['vip_level12']=$total[1]['vip_level12']?round($total[3]['s12']/$total[1]['vip_level12'],2):0;
+				$total[2]['name']='平均等级';
+				
+					unset($total[3]);
+			
+				
+			
+				$total[1]['name']='宠物总数';
+				$data=array_merge_recursive($total,$data['total1']);
+			}
+			
+	
+		
+				
+	
+			if (! empty ( $data ))
+				echo json_encode ( [
+						'status' => 'ok',
+						'data' => $data
+				] );
+				else
+					echo json_encode ( [
+							'status' => 'fail',
+							'info' => '未查到数据'
+					] );
+		} else {
+				
+			$this->data ['page_title'] = "系统功能统计>魔兽宠物升星";
+			//$this->data ['hide_server_list'] = true;
+			// $this->data ['hide_end_time'] = true;
+			// $this->data ['hide_start_time'] = true;
+				
+			//$this->data ['show_mac'] = true;
+			$this->data ['show_eudemonr'] = true;
+			$this->data ['statistics_type'] = true;
+			
+			
+				
+			//$this->data ['hide_channel_list'] = true;
+			$this->body = 'SystemFunction/wowPet';
+			$this->layout ();
+		}
+	}
     
 }
