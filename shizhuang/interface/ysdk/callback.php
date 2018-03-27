@@ -22,7 +22,7 @@ $orderId = $_POST['order_id'];
 $serverId = $_POST['server_id'];
 $chn = explode('_', $channel);
 $channel = $chn[0];
-$type = isset($chn[1])?$chn[1]:'android';
+$type = isset($chn[1])?$chn[1]:'android1';
 $isgoods = isset($chn[2])?$chn[2]:'0';
 global $key_arr;
 $appid = $key_arr[$gameId][$type][$channel]['appId'];
@@ -35,7 +35,8 @@ $pay_appkey = $key_arr[$gameId][$type]['pay']['appKey'];
 // 调试环境: ysdktest.qq.com
 // 正式环境: ysdk.qq.com
 // 调试环境仅供调试时调用，调试完成发布至现网环境时请务必修改为正式环境域名
-$server_name = 'ysdk.qq.com';
+//$server_name = 'ysdk.qq.com';
+$server_name = 'ysdktest.qq.com';
 
 // 用户的OpenID，从客户端YSDK登录返回的LoginRet获取
 $openid = $_POST['openid'];
