@@ -20,11 +20,22 @@ $key_arr = array (
 );
 $share_url = array (
 		'1' => 'http://fh.u776.com:88/public/index.php/index/yfe/index',
-		'SDK_UC' => 'http://fh.u776.com:88/public/index.php/index/yfe/index',
-		'SDK_OPPO' => 'https://store.oppomobile.com/',
-		'SDK_VIVO' => 'http://fh.u776.com:88/public/index.php/index/yfe/index',
-		'SDK_TENCENT' => 'http://fh.u776.com:88/public/index.php/index/yfe/index',
-		'SDK_HUAWEI' => 'http://fh.u776.com:88/public/index.php/index/yfe/index' 
+		'SDK_HN' => 'https://www.taptap.com/',
+		'SDK_UC' => 'http://www.9game.cn/',
+		'SDK_OPPO' => 'https://www.oppomobile.com/',
+		'SDK_VIVO' => 'http://zs.vivo.com.cn/',
+		'SDK_TENCENT' => 'http://android.myapp.com/',
+		'SDK_HUAWEI' => 'http://appstore.huawei.com/' ,
+		'SDK_XMLYFM' => 'http://game.ximalaya.com/games-operation/v1/games/list' ,
+		'SDK_DANGLE' => 'http://www.d.cn/' ,
+		'SDK_BAIDU' => 'http://rj.baidu.com/soft/detail/30712.html' ,
+		'SDK_360' => 'http://www.360.cn/download/' ,
+		'SDK_XIAOMI' => 'http://app.mi.com/' ,
+		'SDK_JINLI' => 'http://game.gionee.com/Front/Index/index/?intersrc=mobilewe' ,
+		'SDK_LIANXIANG' => 'http://apps.lenovo.com.cn/' ,
+		'SDK_KUPAI' => 'http://app.coolpad.com/' ,
+		'SDK_MEIZU' => 'http://app.meizu.com/' ,
+		'SDK_MEITU' => 'https://www.meitu.com/' ,
 );
 function httpBuidQuery($array, $appKey) {
 	if (! is_array ( $array ))

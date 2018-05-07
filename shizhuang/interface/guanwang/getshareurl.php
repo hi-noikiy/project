@@ -12,6 +12,8 @@
 */
 include_once 'config.php';
 $id = $_REQUEST['id'];
+$ids = explode('_', $id);
+$id = 'SDK_'.$ids[1];
 $url = $share_url[$id]?$share_url[$id]:$share_url[1];
 header("Location:$url");
 exit();
