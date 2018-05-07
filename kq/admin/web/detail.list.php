@@ -86,7 +86,7 @@ foreach($recordlist as $val){
 	      <th scope="col" class="N_title">扣考勤</th>
 	      <th scope="col" class="N_title">调休</th>
 	      <th scope="col" class="N_title">请假</th>
-		  <th scope="col" class="N_title">年假</th>
+		  <th scope="col" class="N_title">年假/哺乳假</th>
 	      <th scope="col" class="N_title">公出</th>
 	      <th scope="col" class="N_title">实际扣考勤</th>
 	    </tr>
@@ -133,13 +133,13 @@ foreach($recordlist as $val){
 	        </td>
 	        <td class="N_title">
 	            <?//请假
-	                $le = $webdb->getValue("select sum(totalTime) as le from _web_leave where uid='$adid' and available='1' and manTag='2' and fromTime='".$val['recorddate']."' and leaveType!='年假'",'le');
+	                $le = $webdb->getValue("select sum(totalTime) as le from _web_leave where uid='$adid' and available='1' and manTag='2' and fromTime='".$val['recorddate']."' and leaveType not in ('年假','哺乳假')",'le');
 	                echo $le>0?"<font color='red'>$le 小时</font>":'&nbsp;';
 	            ?>
 	        </td>
 			<td class="N_title">
-	            <?//年假
-	                $ld = $webdb->getValue("select sum(totalTime) as le from _web_leave where uid='$adid' and available='1' and manTag='2' and fromTime='".$val['recorddate']."' and leaveType='年假'",'le');
+	            <?//年假/哺乳假
+	                $ld = $webdb->getValue("select sum(totalTime) as le from _web_leave where uid='$adid' and available='1' and manTag='2' and fromTime='".$val['recorddate']."' and leaveType in ('年假','哺乳假')",'le');
 	                echo $ld>0?"<font color='red'>$ld 小时</font>":'&nbsp;';
 	            ?>
 	        </td>
@@ -187,13 +187,13 @@ foreach($recordlist as $val){
 	        </td>
 	        <td class="N_title">
 	            <?//请假
-	                $le = $webdb->getValue("select sum(totalTime) as le from _web_leave where uid='$adid' and available='1' and manTag='2' and fromTime='".$key."' and leaveType!='年假'",'le');
+	                $le = $webdb->getValue("select sum(totalTime) as le from _web_leave where uid='$adid' and available='1' and manTag='2' and fromTime='".$key."' and leaveType not in ('年假','哺乳假')",'le');
 	                echo $le>0?"<font color='red'>$le 小时</font>":'&nbsp;';
 	            ?>
 	        </td>
 			<td class="N_title">
 	            <?//年假
-	                $ld = $webdb->getValue("select sum(totalTime) as le from _web_leave where uid='$adid' and available='1' and manTag='2' and fromTime='".$key."' and leaveType='年假'",'le');
+	                $ld = $webdb->getValue("select sum(totalTime) as le from _web_leave where uid='$adid' and available='1' and manTag='2' and fromTime='".$key."' and leaveType in ('年假','哺乳假')",'le');
 	                echo $ld>0?"<font color='red'>$ld 小时</font>":'&nbsp;';
 	            ?>
 	        </td>

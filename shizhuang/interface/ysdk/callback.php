@@ -35,8 +35,8 @@ $pay_appkey = $key_arr[$gameId][$type]['pay']['appKey'];
 // 调试环境: ysdktest.qq.com
 // 正式环境: ysdk.qq.com
 // 调试环境仅供调试时调用，调试完成发布至现网环境时请务必修改为正式环境域名
-//$server_name = 'ysdk.qq.com';
-$server_name = 'ysdktest.qq.com';
+$server_name = 'ysdk.qq.com';
+// $server_name = 'ysdktest.qq.com';
 
 // 用户的OpenID，从客户端YSDK登录返回的LoginRet获取
 $openid = $_POST['openid'];
@@ -131,7 +131,7 @@ if($ret['ret'] == 0){
  		$sql="insert into web_pay_log (CPID,PayID,PlayerID,PayName,ServerID,PayMoney,data,OrderID,dwFenBaoID,Add_Time,SubStat,game_id,clienttype,rpCode,packageName)";
  		$sql=$sql." VALUES (114,$accountId,'$playerId','$PayName','$serverId','$payMoney','$payMoney','$orderId','$dwFenBaoID','$Add_Time','1','$gameId','$clienttype',1,'$isgoods')";
 		if(mysqli_query($conn,$sql)){
-			WriteCard_money(1, $serverId, $payMoney, $accountId, $orderId,8,0,0,$isgoods);
+			WriteCard_money(1, $serverId, $payMoney, $playerId, $orderId,8,0,0,$isgoods);
             sendTongjiData($gameId,$accountId,$serverId,$dwFenBaoID,0,$payMoney,$orderId);
 			exit('success');
 		} else

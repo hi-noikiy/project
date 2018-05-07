@@ -42,7 +42,7 @@ if (eregi('^[_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3}$', $username)){
 	//邮箱登陆
 	$bindtable = getAccountTable($username,'mail_bind');
 	$bindwhere = 'mail';
-} else if(strlen($username) == 11 && preg_match('/^1[34578]{1}\d{9}$/', $username)){
+} else if(strlen($username) == 11 && preg_match('/^1\d{10}$/', $username)){
 	//手机登陆
 	$bindtable = getAccountTable($username,'mobile_bind');
 	$bindwhere = 'mobile';

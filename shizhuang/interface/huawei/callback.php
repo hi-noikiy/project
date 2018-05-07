@@ -69,7 +69,7 @@ $serverId = $extendsInfoArr[1];
 $playerId = $extendsInfoArr[2];
 $accountId = $extendsInfoArr[3];
 $type = $extendsInfoArr[4];
-$isgoods = $extendsInfoArr[5];
+$isgoods = 0;
 $pubKey = $key_arr[$gameId][$type]['appKey'];
 $openssl_public_key = @openssl_get_publickey($pubKey);
 write_log(ROOT_PATH."log","huawei_callback_result_","content={$content},sign={$sign},openssl_public_key={$pubKey},post=$post,get=$get, ".date("Y-m-d H:i:s")."\r\n");

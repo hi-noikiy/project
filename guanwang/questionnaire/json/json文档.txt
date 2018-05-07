@@ -1,0 +1,9 @@
+{
+		"type":"radio",// radio 单选 | checkbox 多选 | proposal 建议
+		"option":["12-13局","13-20局","20-100局","#其他"],//选题内容 如果选项是其他要玩家输入的请前面加#号 
+		"title":"1.第一题<span>红色的内容</span>是?",//题目标题   需要标注红色：用<span></span>包起来
+		"inputTitle":"建议",//输入框标题
+		"choice":"choice",// choice 必选 | Nchoice 非必选
+		"input":"n",//是否有输入框 n|y
+		"inputTxt":""//输入框内容
+}

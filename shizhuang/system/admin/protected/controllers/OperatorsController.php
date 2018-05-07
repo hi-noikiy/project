@@ -42,8 +42,8 @@ private function updateAccount($accountid, $operate, $gameId){
         return $rs;
 	}
 	
-	private function gameAccountLimit($playerId, $accountId){
-		$conn = SetConn(0);//根据SvrID连接服务器
+	private function gameAccountLimit($playerId, $accountId,$serverId){
+		$conn = SetConn($serverId);//根据SvrID连接服务器
         $table = subTable($accountId, 'u_accountlimit', 200);
 		$sql = "select count(*) as count from $table where account_id='$accountId'";
 		$query = @mysqli_query($conn,$sql);
@@ -109,7 +109,6 @@ private function updateAccount($accountid, $operate, $gameId){
 		$gameServer = GameServer::model()->getInfo();
 		$info = '';
 		if(!empty($_POST)){
-			$type = intval($_POST['type']);
 			$name = $_POST['name'];
 			$operate = intval($_POST['operate']);
 			$reason = trim($_POST['reason']);
@@ -121,7 +120,7 @@ private function updateAccount($accountid, $operate, $gameId){
 				$this->display('请填写账号或者账号ID', 0);
 			if($operate !=2 && $reason == '')
 				$this->display('请填写封号/解号原因', 0);	
-			$info = $this->checkAccount($name, $type, $gameId);
+			$info = $this->checkAccount($name, $gameId);
 			if($info == false)
 				$this->display('账号或者账号ID有误！', 0);
 				
@@ -143,7 +142,7 @@ private function updateAccount($accountid, $operate, $gameId){
 				$command->execute();
 				//写入下架标识
 				if($operate == 1){
-					$this->gameAccountLimit($gamePlayerId, $accountId);
+					$this->gameAccountLimit($gamePlayerId, $accountId,$serverId);
 				}
 				if($this->updateAccount($accountId, $operate, $gameId) == false)
 					$this->display('执行失败，请重试！', 0);
@@ -334,7 +333,7 @@ private function updateAccount($accountid, $operate, $gameId){
 	}
 	//账号信息查询
 	public function actionAccountInfo(){
-		$typeList = array('角色名');
+		$typeList = array('角色名','帐号ID','帐号','手机号','邮箱');
 		$info = array();
         $gameId = isset($_POST['gameid']) ? intval($_POST['gameid']) : $this->mangerInfo['game_id'];
 		if(!empty($_POST)){
@@ -342,24 +341,62 @@ private function updateAccount($accountid, $operate, $gameId){
 			$name = trim($_POST['name']);
 			$serverId = intval($_POST['serverid']);
 			if(!$name)
-				$this->display('请输入查询的角色！', 0);
-	       $rs_player = $this->selectByName($name,$serverId);
-	       if(!$rs_player){
-	       		$this->display('角色不存在！', 0);
-	       }
-	        $info['server_id'] = $serverId;
-	        $info['name'] = $rs_player['name'];
-	        $info['user_id'] = $rs_player['id'];
-	        $accountId = intval($rs_player['account_id']);
-	        $field = 'id,NAME,dwFenBaoID,channel_account,limitType,dwFenBaoUserID';
-	        $result = $this->getAccountInfo($accountId, $gameId, $field);
-	        $accountId                  = intval($result['id']);
-	        $info['id']                 = $accountId;
-	        $info['NAME']               = $result['NAME'];
-	        $info['dwFenBaoID']         = $result['dwFenBaoID'];
-	        $info['channel_account']    = $result['channel_account'];
-	        $info['limitType']	        = $result['limitType'];
-	        $info['dwFenBaoUserID']     = $result['dwFenBaoUserID'];
+				$this->display('请输入查询的条件！', 0);
+			if($type == 0){
+				$rs_player = $this->selectByName($name,$serverId);
+				if(!$rs_player){
+					$this->display('角色不存在！', 0);
+				}
+				$accountId = intval($rs_player['account_id']);
+			}else{
+				if($type == 1){
+					$accountId = $name;
+				}else{
+					if($type  == 2){
+						$bindtable = getAccountTable($name,'token_bind');
+						$bindwhere = 'token';
+					}elseif($type  == 3){
+						$bindtable = getAccountTable($name,'mobile_bind');
+						$bindwhere = 'mobile';
+					}else{
+						$bindtable = getAccountTable($name,'mail_bind');
+						$bindwhere = 'mail';
+					}
+					$snum = giQSAccountHash($name);
+					$conn = SetConn($gameId,$snum);//绑定分表
+					$selectsql = "select accountid from $bindtable where $bindwhere = '$name' and gameid='$gameId' limit 1";
+					if(false == $query = mysqli_query($conn,$selectsql))
+						$this->display('account server sql error！', 0);
+					$result = @mysqli_fetch_assoc($query);
+					if(!$result){
+						$this->display('帐号不存在！', 0);
+					}
+					$accountId = $result['accountid'];
+				}
+			}
+			$conn = SetConn($serverId);
+			$table = 'u_player';
+			$table = betaSubTable($accountId, $table, 200);
+			$sql = "select id,account_id,name from $table where  account_id='$accountId' limit 1";
+			$query = @mysqli_query($conn,$sql);
+			$playerList = @mysqli_fetch_array($query);
+			if(!isset($playerList['id'])){
+				$this->display('角色不存在！', 0);
+			}
+			$info['server_id'] = $serverId;
+			$info['name'] = $playerList['name'];
+			$info['user_id'] = $playerList['id'];
+			
+			$field = 'id,NAME,dwFenBaoID,channel_account,limitType,dwFenBaoUserID';
+			$result = $this->getAccountInfo($accountId, $gameId, $field);
+			$accountId                  = intval($result['id']);
+			$info['id']                 = $accountId;
+			$info['NAME']               = $result['NAME'];
+			$info['dwFenBaoID']         = $result['dwFenBaoID'];
+			$info['channel_account']    = $result['NAME'];
+			$info['limitType']	        = $result['limitType'];
+			$info['dwFenBaoUserID']     = $result['dwFenBaoUserID'];
+	       
 		}	
 		$this->renderPartial('accountInfo', array(
 		    'title'=>'账号信息查询','gameId'=>$gameId,'info'=>$info,'type'=>$type,'typeList'=>$typeList,

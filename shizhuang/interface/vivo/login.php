@@ -37,7 +37,7 @@ if($rdata){
         }else{
         	$insert_id = $insertinfo['data'];
         	if($insertinfo['isNew'] == '1'){
-        		write_log(ROOT_PATH."log","new_account_vivo_log_","oppo new account login , post=$post,get=$get, "."return= 1 $insert_id  ".date("Y-m-d H:i:s")."\r\n");
+        		write_log(ROOT_PATH."log","new_account_vivo_log_","vivo new account login , post=$post,get=$get, "."return= 1 $insert_id  ".date("Y-m-d H:i:s")."\r\n");
         		exit("1 $insert_id");
         	}else{
         		exit("0 $insert_id");

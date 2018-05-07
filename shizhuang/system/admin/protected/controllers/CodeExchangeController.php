@@ -104,6 +104,7 @@ class CodeExchangeController extends Controller{
 				$comma = ($key+1 == $num) ? ';' : ',';
 				$values .= "('$code', 1, '$param',$time_stamp, $time_limit, $game_type, $register_type, $register_time, '$type', $used_type, $is_limit_one, $number)$comma";
 			}
+// 			print_r($sql.$values);die;
 			$connection = Yii::app()->db;
 			$command = $connection->createCommand($sql.$values);
 			$result = $command->execute();

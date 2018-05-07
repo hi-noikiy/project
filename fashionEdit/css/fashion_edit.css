@@ -1,0 +1,304 @@
+@charset "UTF-8";
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
+	text-decoration: none;
+}
+
+body,
+html {
+	width: 100%;
+	height: 100%;
+}
+
+.clearfix {
+	clear: both!important;
+	margin: 0px!important;
+	padding: 0px!important;
+	width: 0px!important;
+	height: 0px!important;
+	border: none!important;
+	float: none!important;
+}
+
+.display {
+	display: none!important;
+}
+
+.admin_box {
+	width: 100%;
+	height: 100%;
+}
+
+.admin_son_active {
+	background-color: #01abff;
+}
+
+.admin_box .admin_menu {
+	width: 200px;
+	height: 100%;
+	float: left;
+	background-color: #01abff;
+	padding: 8px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral {
+	width: 100%;
+	height: 100%;
+	background-color: #93d8ff;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	padding: 30px 8px;
+	position: relative;
+	behavior: url(htc/ie-css3.htc);
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within {
+	width: 100%;
+	height: 100%;
+	background-color: #b4e3fd;
+	border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	position: relative;
+	behavior: url(htc/ie-css3.htc);
+	padding: 7px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content {
+	/*width: calc(100% + 17px);
+	width: -moz-calc(100% + 17px);
+	width: -webkit-calc(100% + 17px);*/
+	height: 100%;
+	background-color: white;
+	border-radius: 8px;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	position: relative;
+	behavior: url(htc/ie-css3.htc);
+	overflow: auto;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content .admin_menu_box {
+	width: 100%;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content .admin_menu_box .admin_menu_main {
+	width: 100%;
+	height: 25px;
+	line-height: 25px;
+	background-image: url(../img/main.png);
+	background-size: 155px 100%;
+	behavior: url(htc/backgroundsize.htc);
+	background-repeat: no-repeat;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content .admin_menu_box .admin_menu_main p {
+	font-size: 14px;
+	padding-left: 10px;
+	cursor: pointer;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content .admin_menu_box .admin_menu_son {
+	width: 100%;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content .admin_menu_box .admin_menu_son p {
+	font-size: 10px;
+	margin: 4px 0px;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content .admin_menu_box .admin_menu_son .admin_menu_system {
+	width: 100%;
+	text-align: center;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content .admin_menu_box .admin_menu_son .admin_menu_system a {
+	color: #000099;
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content .admin_menu_box .admin_menu_son .admin_menu_aggregate {
+	position: relative;
+	width: 100%;
+	height: 30px;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content .admin_menu_box .admin_menu_son .admin_menu_aggregate img {
+	position: absolute;
+	left: 0px;
+	top: 10px;
+}
+
+.admin_box .admin_menu .admin_menu_peripheral .admin_menu_within .admin_menu_hidden .admin_menu_content .admin_menu_box .admin_menu_son .admin_menu_aggregate p {
+	position: absolute;
+	top: 5px;
+	margin: 0px;
+	font-size: 10px;
+	left: 20px;
+	cursor: pointer;
+}
+
+.admin_box .admin_content {
+	/*width: calc(100% -200px);
+	width: -moz-calc(100% - 200px);
+	width: -webkit-calc(100% - 200px);*/
+	position: relative;
+	height: 100%;
+	float: left;
+	background-color: white;
+	overflow: hidden;
+}
+
+.admin_content_title {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	overflow: auto;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.admin_content_title .admin_X {
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	behavior: url(htc/ie-css3.htc);
+	top: 2px;
+	right: 2px;
+	background-color: white;
+	border: 1px solid #000000;
+	cursor: pointer;
+	z-index: 200;
+}
+
+.admin_content_title .admin_content_h1 {
+	position: relative;
+	width: 100%;
+	padding: 2px;
+	border: 2px solid #6595d6;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	background-color: #ececed;
+}
+
+.admin_content_title .admin_content_h1 h1 {
+	position: relative;
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 18px;
+	background-color: #9fcde7;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}

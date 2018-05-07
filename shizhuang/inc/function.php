@@ -9,6 +9,16 @@
  * @author: Administrator
  * @return:
  */
+//获取帐号信息
+function getaccountinfo($gameId,$accountId,$field = 'NAME,dwFenBaoID,clienttype'){
+	$snum = giQSModHash($accountId);
+	$conn = SetConn($gameId,$snum,1);//account分表
+	$acctable = betaSubTableNew($accountId,'account',999);
+	$sql = "select $field from $acctable where id=$accountId limit 1;";
+	$query = mysqli_query($conn, $sql);
+	$result_account = @mysqli_fetch_array($query);
+	return $result_account;
+}
 //帐号绑定
 function bindaccount($username,$bindtable,$bindwhere,$gameId,$accountId,$type='channel_account',$passwd=''){
 	$snum = giQSAccountHash($username);
@@ -19,7 +29,7 @@ function bindaccount($username,$bindtable,$bindwhere,$gameId,$accountId,$type='c
 		return array('status'=>1, 'msg'=>'account server sql error,'.mysqli_error($conn));
 	$result = @mysqli_fetch_assoc($query);
 	if($result){
-		return  array('status'=>1, 'data'=>$result['accountid'],'noNew'=>'1','msg'=>"$username 已被注册活绑定");
+		return  array('status'=>2, 'data'=>$result['accountid'],'noNew'=>'1','msg'=>"$username 已被注册或绑定");
 	}
 	$sql_game = "insert into $bindtable ($bindwhere,accountid,bindtime,gameid) VALUES ('$username','$accountId', '$bind_time','$gameId')";
 	if(false == mysqli_query($conn,$sql_game)){
@@ -29,7 +39,7 @@ function bindaccount($username,$bindtable,$bindwhere,$gameId,$accountId,$type='c
 	if($insert_id){
 		$snum = giQSModHash($accountId);
 		$myconn = SetConn($gameId,$snum,1);//account分表
-		$acctable = betaSubTable($accountId,'account',999);
+		$acctable = betaSubTableNew($accountId,'account',999);
 		$accountInsert = "update $acctable set $type='$username'".upsql." where id='$accountId';";
 		if($passwd){
 			$accountInsert = "update $acctable set $type='$username',password='$passwd' where id='$accountId';";

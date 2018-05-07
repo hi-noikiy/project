@@ -18,7 +18,7 @@ $sign = trim($_POST['sign']);
 $phone = $_POST['phone'];
 $appKey = $key_arr['appKey'];
 
-if(strlen($phone) != 11 || !preg_match('/^1[34578]{1}\d{9}$/', $phone))
+if(strlen($phone) != 11 || !preg_match('/^1\d{10}$/', $phone))
 	exit(json_encode(array('status'=>2, 'msg'=>'手机格式错误.')));
 
 $params = array(
@@ -45,7 +45,7 @@ $my_sign = md5($md5Str.$appKey);
 
 if($sign != $my_sign)
 	exit(json_encode(array('status'=>2, 'msg'=>'验证错误.')));
-$snum = giQSAccountHash($phone);
+/*$snum = giQSAccountHash($phone);
 $conn = SetConn($game_id,$snum);
 $bindtable = getAccountTable($phone,'mobile_bind');
 $bindwhere = 'mobile';
@@ -57,7 +57,7 @@ if(false == $query = mysqli_query($conn,$selectsql)){
 $result = @mysqli_fetch_assoc($query);
 if($result){
 	exit(json_encode(array('status'=>7, 'msg'=>'手机已注册帐号')));
-}
+}*/
 
 
 $OperID = "hainwl";
@@ -90,7 +90,7 @@ $content = "【海牛网络】衣范儿验证码：".$code."。有效期15分钟
 
 $content = iconv("UTF-8","GBK",$content);
 $content = urlencode($content);
-$url = "http://221.179.180.158:9007/QxtSms/QxtFirewall?OperID=$OperID&OperPass=$OperPass&SendTime=&ValidTime=&AppendID=&DesMobile=$phone&Content=$content&ContentType=8";
+$url = "http://124.251.7.68:8000/QxtSms/QxtFirewall?OperID=$OperID&OperPass=$OperPass&SendTime=&ValidTime=&AppendID=&DesMobile=$phone&Content=$content&ContentType=8";
 $data = array();
 $result =  https_post($url, $data);
 write_log(ROOT_PATH."log","duanxin_sent_result_log_"," result=$result, post=$post, ".date("Y-m-d H:i:s")."\r\n");

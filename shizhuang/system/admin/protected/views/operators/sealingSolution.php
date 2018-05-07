@@ -64,7 +64,6 @@
                     <th style="width:130px;line-height:30px;text-align:right">账号类型</th>
                     <td>
                     	<select name="type" class="input-small">
-                    		<option value="1" <?=(isset($_POST['type']) && $_POST['type'] == 1) ? 'selected' : ''?>>账号</option>
                     		<option value="2" <?=(isset($_POST['type']) && $_POST['type'] == 2) ? 'selected' : ''?>>账号ID</option>
                     	</select>
                     	<input type="text" placeholder="账号或者账号ID" name="name" value="<?=isset($_POST['name']) ? $_POST['name'] : '';?>" class="input-medium" required="required">

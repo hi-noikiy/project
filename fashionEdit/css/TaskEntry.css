@@ -1,0 +1,58 @@
+.admin_content_TaskEntry .TaskEntry_queryBox {
+	width: 100%;
+}
+
+.admin_content_TaskEntry .TaskEntry_queryBox .TaskEntry_condition .TaskEntryF {
+	position: relative;
+	background-color: #ececed;
+	border: 2px solid white;
+	box-sizing: border-box;
+	font-size: 10px;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	height: 35px;
+	float: left;
+}
+
+.admin_content_TaskEntry .TaskEntry_queryBox .TaskEntry_condition .TaskEntryF span {
+	color: red;
+}
+
+.admin_content_TaskEntry .TaskEntry_queryBox .TaskEntry_condition .TaskEntryF:nth-of-type(1) {
+	width: 20%;
+}
+
+.admin_content_TaskEntry .TaskEntry_queryBox .TaskEntry_condition .TaskEntryF:nth-of-type(1) p {
+	height: 30px;
+	padding: 0px;
+	line-height: 30px;
+	text-align: right;
+}
+
+.admin_content_TaskEntry .TaskEntry_queryBox .TaskEntry_condition .TaskEntryF:nth-of-type(2) {
+	width: 80%;
+}
+
+.admin_content_TaskEntry .TaskEntry_queryBox .TaskEntry_condition .TaskEntryF:nth-of-type(2) input {
+	position: relative;
+	top: 2px;
+	width: 300px;
+	height: 22px;
+	margin-left: 5px;
+}
+
+.admin_content_TaskEntry .TaskEntry_queryBox .TaskEntry_condition .TaskEntryF:nth-of-type(2) select {
+	position: relative;
+	top: 2px;
+	height: 25px;
+	margin-left: 5px;
+}
+
+.admin_content_TaskEntry .TaskEntry_queryBox .TaskEntry_condition .TaskEntryF:nth-of-type(2) button {
+	position: relative;
+	top: 2px;
+	width: 60px;
+	height: 25px;
+	margin-left: 40%;
+	cursor: pointer;
+}

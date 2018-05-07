@@ -1,0 +1,1586 @@
+---------------------------------------------------------------
+[ 2018-03-22T10:52:49+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] localhost/favicon.ico [运行时间：0.500029s][吞吐率：2.00req/s] [内存消耗：1,456.00kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T10:52:49+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] www.localhost/favicon.ico [运行时间：0.077005s][吞吐率：12.99req/s] [内存消耗：1,455.86kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T10:54:04+08:00 ] ::1 ::1 GET /war
+[ info ] localhost/war [运行时间：0.930053s][吞吐率：1.08req/s] [内存消耗：3,259.55kb] [文件加载：65]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'bannerList',
+  18 => 'newsTypeList',
+  19 => 'newsList',
+  20 => 'topNews',
+  21 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.031001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.061004s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.050003s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.054003s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.031002s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `top` = 0  AND `lang` = 'war' ORDER BY create_time desc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `top` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.035002s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-22T10:54:04+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.089005s][吞吐率：11.24req/s] [内存消耗：1,457.41kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/war',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T10:54:04+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] localhost/favicon.ico [运行时间：0.053003s][吞吐率：18.87req/s] [内存消耗：1,456.59kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://localhost/war',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T10:54:06+08:00 ] ::1 ::1 GET /public/index.php/war/news/news.html
+[ info ] localhost/public/index.php/war/news/news.html [运行时间：0.164010s][吞吐率：6.10req/s] [内存消耗：3,236.05kb] [文件加载：66]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'news',
+    2 => 'news',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/war',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\News->news[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\News.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\news\news.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'newsTypeList',
+  18 => 'typeId',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `lang` = 'war'  AND `status` = 1 ORDER BY sorts asc [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:145]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:147]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:170]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:172]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:170]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:172]
+[ error ] [8]未定义变量: news[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:243]
+---------------------------------------------------------------
+[ 2018-03-22T10:54:06+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.059003s][吞吐率：16.95req/s] [内存消耗：1,457.55kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T10:54:07+08:00 ] ::1 ::1 GET /public/index.php/war/news/newsAjax/typeId/0/page/1/num/5
+[ info ] localhost/public/index.php/war/news/newsAjax/typeId/0/page/1/num/5 [运行时间：0.187011s][吞吐率：5.35req/s] [内存消耗：2,995.25kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '0',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-22T10:54:08+08:00 ] ::1 ::1 GET /public/index.php/war/news/newsAjax/typeId/16/page/1/num/5
+[ info ] localhost/public/index.php/war/news/newsAjax/typeId/16/page/1/num/5 [运行时间：0.139008s][吞吐率：7.19req/s] [内存消耗：2,996.06kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '16',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `type_id` = 16 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `type_id` = 16 ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-22T10:54:10+08:00 ] ::1 ::1 GET /public/index.php/war/news/newsAjax/typeId/0/page/1/num/5
+[ info ] localhost/public/index.php/war/news/newsAjax/typeId/0/page/1/num/5 [运行时间：0.147008s][吞吐率：6.80req/s] [内存消耗：2,995.25kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '0',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-22T10:54:11+08:00 ] ::1 ::1 GET /public/index.php/war/index/index.html
+[ info ] localhost/public/index.php/war/index/index.html [运行时间：0.191011s][吞吐率：5.24req/s] [内存消耗：3,095.57kb] [文件加载：63]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'bannerList',
+  18 => 'newsTypeList',
+  19 => 'newsList',
+  20 => 'topNews',
+  21 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.014000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.014000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.014000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `top` = 0  AND `lang` = 'war' ORDER BY create_time desc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `top` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-22T10:54:11+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.052003s][吞吐率：19.23req/s] [内存消耗：1,457.47kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/index/index.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T11:04:12+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] localhost/favicon.ico [运行时间：0.059004s][吞吐率：16.95req/s] [内存消耗：1,456.24kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T11:04:12+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] www.localhost/favicon.ico [运行时间：0.065004s][吞吐率：15.38req/s] [内存消耗：1,456.09kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=ugki5o8h67b70gddebcqku8jk7',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T11:04:15+08:00 ] ::1 ::1 GET /war
+[ info ] localhost/war [运行时间：0.164009s][吞吐率：6.10req/s] [内存消耗：3,095.23kb] [文件加载：63]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'bannerList',
+  18 => 'newsTypeList',
+  19 => 'newsList',
+  20 => 'topNews',
+  21 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `top` = 0  AND `lang` = 'war' ORDER BY create_time desc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `top` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-22T11:04:15+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.053003s][吞吐率：18.87req/s] [内存消耗：1,457.40kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/war',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T11:04:17+08:00 ] ::1 ::1 GET /public/index.php/war/index/index.html
+[ info ] localhost/public/index.php/war/index/index.html [运行时间：0.164009s][吞吐率：6.10req/s] [内存消耗：3,095.38kb] [文件加载：63]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'bannerList',
+  18 => 'newsTypeList',
+  19 => 'newsList',
+  20 => 'topNews',
+  21 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `top` = 0  AND `lang` = 'war' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `top` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-22T11:04:17+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.075004s][吞吐率：13.33req/s] [内存消耗：1,457.47kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/index/index.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T11:04:19+08:00 ] ::1 ::1 GET /public/index.php/war/index/index.html
+[ info ] localhost/public/index.php/war/index/index.html [运行时间：0.157009s][吞吐率：6.37req/s] [内存消耗：3,095.60kb] [文件加载：63]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/war',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'bannerList',
+  18 => 'newsTypeList',
+  19 => 'newsList',
+  20 => 'topNews',
+  21 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `top` = 0  AND `lang` = 'war' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `top` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-22T11:04:19+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.054003s][吞吐率：18.52req/s] [内存消耗：1,457.47kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/index/index.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T11:04:23+08:00 ] ::1 ::1 GET /public/index.php/war/news/news.html
+[ info ] localhost/public/index.php/war/news/news.html [运行时间：0.123007s][吞吐率：8.13req/s] [内存消耗：3,077.16kb] [文件加载：64]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'news',
+    2 => 'news',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/index/index.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\News->news[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\News.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\news\news.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'newsTypeList',
+  18 => 'typeId',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `lang` = 'war'  AND `status` = 1 ORDER BY sorts asc [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:145]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:147]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:170]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:172]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:170]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:172]
+[ error ] [8]未定义变量: news[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:243]
+---------------------------------------------------------------
+[ 2018-03-22T11:04:23+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.046002s][吞吐率：21.74req/s] [内存消耗：1,457.55kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T11:04:23+08:00 ] ::1 ::1 GET /public/index.php/war/news/newsAjax/typeId/0/page/1/num/5
+[ info ] localhost/public/index.php/war/news/newsAjax/typeId/0/page/1/num/5 [运行时间：0.169010s][吞吐率：5.92req/s] [内存消耗：2,995.25kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '0',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-22T11:04:24+08:00 ] ::1 ::1 GET /public/index.php/war/index/index.html
+[ info ] localhost/public/index.php/war/index/index.html [运行时间：0.157009s][吞吐率：6.37req/s] [内存消耗：3,095.57kb] [文件加载：63]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'bannerList',
+  18 => 'newsTypeList',
+  19 => 'newsList',
+  20 => 'topNews',
+  21 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `top` = 0  AND `lang` = 'war' ORDER BY create_time desc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `top` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-22T11:04:24+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.066004s][吞吐率：15.15req/s] [内存消耗：1,457.47kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/index/index.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T11:04:25+08:00 ] ::1 ::1 GET /public/index.php/war/news/news.html
+[ info ] localhost/public/index.php/war/news/news.html [运行时间：0.133008s][吞吐率：7.52req/s] [内存消耗：3,077.16kb] [文件加载：64]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'news',
+    2 => 'news',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/index/index.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\News->news[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\News.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\news\news.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'newsTypeList',
+  18 => 'typeId',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `lang` = 'war'  AND `status` = 1 ORDER BY sorts asc [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:145]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:147]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:170]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:172]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:170]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:172]
+[ error ] [8]未定义变量: news[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\d06311d93dae1203162261a0ac39a69d.php:243]
+---------------------------------------------------------------
+[ 2018-03-22T11:04:25+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.045002s][吞吐率：22.22req/s] [内存消耗：1,457.55kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T11:04:25+08:00 ] ::1 ::1 GET /public/index.php/war/news/newsAjax/typeId/0/page/1/num/5
+[ info ] localhost/public/index.php/war/news/newsAjax/typeId/0/page/1/num/5 [运行时间：0.133007s][吞吐率：7.52req/s] [内存消耗：2,995.25kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '0',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-22T11:04:26+08:00 ] ::1 ::1 GET /public/index.php/war/index/index.html
+[ info ] localhost/public/index.php/war/index/index.html [运行时间：0.207011s][吞吐率：4.83req/s] [内存消耗：3,095.57kb] [文件加载：63]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'bannerList',
+  18 => 'newsTypeList',
+  19 => 'newsList',
+  20 => 'topNews',
+  21 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.014001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `top` = 0  AND `lang` = 'war' ORDER BY create_time desc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `top` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-22T11:04:26+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.057003s][吞吐率：17.54req/s] [内存消耗：1,457.47kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/war/index/index.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T15:47:46+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] localhost/favicon.ico [运行时间：0.502029s][吞吐率：1.99req/s] [内存消耗：1,456.24kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T15:47:46+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] www.localhost/favicon.ico [运行时间：0.069004s][吞吐率：14.49req/s] [内存消耗：1,456.09kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=ugki5o8h67b70gddebcqku8jk7',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T16:17:25+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] localhost/favicon.ico [运行时间：0.257015s][吞吐率：3.89req/s] [内存消耗：1,456.24kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152; PHPSESSID=do3ameae7lht0qfk8ek6unkq92',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T16:17:25+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] www.localhost/favicon.ico [运行时间：0.084005s][吞吐率：11.90req/s] [内存消耗：1,456.09kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'PHPSESSID=ugki5o8h67b70gddebcqku8jk7',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T18:00:20+08:00 ] ::1 ::1 GET /war
+[ info ] localhost/war [运行时间：0.174009s][吞吐率：5.75req/s] [内存消耗：3,095.02kb] [文件加载：63]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'bannerList',
+  18 => 'newsTypeList',
+  19 => 'newsList',
+  20 => 'topNews',
+  21 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY create_time desc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `top` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-22T18:00:20+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.060004s][吞吐率：16.67req/s] [内存消耗：1,457.44kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/war',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=4a6r0imft4067tvv3n6s9kh3m4',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T18:00:20+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] localhost/favicon.ico [运行时间：0.058003s][吞吐率：17.24req/s] [内存消耗：1,456.66kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://localhost/war',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=4a6r0imft4067tvv3n6s9kh3m4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T18:00:39+08:00 ] ::1 ::1 GET /public/static/pokemon/img/war/blue_triangle.png
+[ info ] localhost/public/static/pokemon/img/war/blue_triangle.png [运行时间：0.069004s][吞吐率：14.49req/s] [内存消耗：1,457.31kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'static',
+    1 => 'pokemon',
+    2 => 'img',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/war',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=4a6r0imft4067tvv3n6s9kh3m4',
+)
+[ info ] [ PARAM ] array (
+  'war' => 'blue_triangle.png',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-22T18:11:40+08:00 ] ::1 ::1 GET /war
+[ info ] localhost/war [运行时间：0.401023s][吞吐率：2.49req/s] [内存消耗：3,259.55kb] [文件加载：65]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'war',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=4a6r0imft4067tvv3n6s9kh3m4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\war\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\war\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/war\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'service_phone',
+  2 => 'service_online',
+  3 => 'baidu_bbs',
+  4 => 'qrcode_wechart',
+  5 => 'qrcode_wb',
+  6 => 'copyright',
+  7 => 'contact_us',
+  8 => 'fuli_url',
+  9 => 'qrcode_game_wechart',
+  10 => 'privilege_code',
+  11 => 'link_wechart',
+  12 => 'link_qq',
+  13 => 'link_wb',
+  14 => 'pokemon',
+  15 => 'qq_group',
+  16 => 'qq_service',
+  17 => 'bannerList',
+  18 => 'newsTypeList',
+  19 => 'newsList',
+  20 => 'topNews',
+  21 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'war' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'War' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY create_time desc [ RunTime:0.067004s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = 'war'  AND `top` = 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = 'war' ORDER BY sorts asc [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-22T18:11:40+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.078004s][吞吐率：12.82req/s] [内存消耗：1,457.60kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/war',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=4a6r0imft4067tvv3n6s9kh3m4',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File

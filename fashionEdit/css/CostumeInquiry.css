@@ -1,0 +1,161 @@
+.admin_content_CostumeInquiry .CostumeInquiry_queryBox {
+	width: 100%;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_queryBox .CostumeInquiry_condition .CostumeInquiryF {
+	position: relative;
+	background-color: #ececed;
+	border: 2px solid white;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	font-size: 10px;
+	height: 35px;
+	float: left;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_queryBox .CostumeInquiry_condition .CostumeInquiryF span {
+	color: red;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_queryBox .CostumeInquiry_condition .CostumeInquiryF:nth-of-type(1) {
+	width: 20%;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_queryBox .CostumeInquiry_condition .CostumeInquiryF:nth-of-type(1) p {
+	height: 30px;
+	padding: 0px;
+	line-height: 30px;
+	text-align: right;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_queryBox .CostumeInquiry_condition .CostumeInquiryF:nth-of-type(2) {
+	width: 80%;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_queryBox .CostumeInquiry_condition .CostumeInquiryF:nth-of-type(2) input {
+	position: relative;
+	top: 2px;
+	width: 300px;
+	height: 22px;
+	margin-left: 5px;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_queryBox .CostumeInquiry_condition .CostumeInquiryF:nth-of-type(2) select {
+	position: relative;
+	top: 2px;
+	height: 25px;
+	margin-left: 5px;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_queryBox .CostumeInquiry_condition .CostumeInquiryF:nth-of-type(2) button {
+	position: relative;
+	top: 2px;
+	width: 60px;
+	height: 25px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content {
+	position: relative;
+	width: 100%;
+	margin-top: 40px;
+	border: 2px solid #6595d6;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	overflow: hidden;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_auto {
+	position: relative;
+	width: 100%;
+	white-space: nowrap;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_title {
+	width: 100%;
+	text-align: center;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_title .CostumeInquiry_titleF {
+	position: relative;
+	background-color: #9fcde7;
+	float: left;
+	border: 1px solid white;
+	font-size: 12px;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_text {
+	width: 100%;
+	background-color: #ececed;
+	text-align: center;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_text .text_left {
+	text-align: left;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_text .CostumeInquiry_textF {
+	position: relative;
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	white-space: normal;
+	word-wrap: break-word;
+	word-break: break-all;
+	border: 1px solid white;
+	font-size: 12px;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_text .CostumeInquiry_textF span {
+	color: #000099;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_news {
+	width: 50px;
+	height: 25px;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_page {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_page .CostumeInquiry_strip {
+	color: red;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_page .CostumeInquiry_flip {
+	color: red;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_page .CostumeInquiry_pageSet span {
+	color: #000099;
+	cursor: pointer;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_page .CostumeInquiry_selectP {
+	color: #000000!important;
+	cursor: default!important;
+}
+
+.admin_content_CostumeInquiry .CostumeInquiry_content .CostumeInquiry_page .CostumeInquiry_shadowe {
+	color: #000099;
+	cursor: pointer;
+}

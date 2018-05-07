@@ -19,12 +19,6 @@ $code = $_POST['code'];
 $pass = trim($_POST['password']);
 $gameId = intval($_POST['game_id']);
 $sign = trim($_POST['sign']);
-$appSecret = $key_arr['appSecret'];
-$accountConn = $accountServer[$gameId];
-if(!$appSecret)
-	exit(json_encode(array('status'=>1, 'msg'=>'appSecret error.')));
-if(!$accountConn)
-	exit(json_encode(array('status'=>1, 'msg'=>'gameId error.')));
 
 $params = array(
 		'username',
@@ -41,17 +35,17 @@ for ($i = 0; $i< count($params); $i++){
 	}
 }
 
-if (eregi('^[_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3}$', $username)){
-	//邮箱绑定
-	$email = $username;
-} else if(strlen($username) == 11 && preg_match('/^1[34578]{1}\d{9}$/', $username)){
-	//手机手机绑定
-	$phone = $username;
-} else
-	exit(json_encode(array('status'=>2, 'msg'=>'手机格式错误.')));
+if(strlen($username) == 11 && preg_match('/^1\d{10}$/', $username)){
+	$bindtable = getAccountTable($username,'mobile_bind');
+	$bindwhere = 'mobile';
+} else{
+	exit(json_encode(array('status'=>1, 'msg'=>'手机格式不正确')));
+}
 
-if(!preg_match("/^[A-Za-z0-9]{6,13}$/", $pass))
+if(!preg_match("/^[A-Za-z0-9]{6,13}$/", $pass)){
 	exit(json_encode(array('status'=>2, 'msg'=>'密码格式为字母数字且6-13位之间.')));
+}
+
 
 $array['game_id'] = $gameId;
 $array['username'] = $username;
@@ -62,30 +56,52 @@ ksort($array);
 $appKey = $key_arr['appKey'];
 $md5Str = http_build_query($array);
 $mySign = md5(urldecode($md5Str).$appKey);
-if($mySign != $sign)
+if($mySign != $sign){
+	write_log(ROOT_PATH."log","editpass_error_","签名错误，post=$post, ".date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>2, 'msg'=>'验证错误.')));
+}
+
 
 $conn = SetConn('88');
 $sql = "select addtime from web_message where username='$username' and code='$code'  order by id desc limit 1";
 if(false == $query = mysqli_query($conn,$sql))
 	exit(json_encode(array('status'=>1, 'msg'=>'web server sql error.')));
 $rs = @mysqli_fetch_assoc($query);
-if(empty($rs) || (time()-$rs['addtime'] > 900))
+if(empty($rs) || (time()-$rs['addtime'] > 900)){
+	write_log(ROOT_PATH."log","editpass_error_","验证码不存在或已失效，post=$post, ".date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>2, 'msg'=>'验证码不存在或已失效.')));
+}
 
-$conn = SetConn($accountConn);
-$sql = "select id from account where NAME = '$username' limit 1";
-if(false == $query = mysqli_query($conn,$sql))
+
+$conn = SetConn($gameId);
+$selectsql = "select accountid from $bindtable where $bindwhere = '$username' and gameid='$gameId' limit 1";
+if(false == $query = mysqli_query($conn,$selectsql))
+	exit(json_encode(array('status'=>1, 'msg'=>'account server sql error.')));
+$result = @mysqli_fetch_assoc($query);
+if(!$result){
+	write_log(ROOT_PATH."log","editpass_error_","帐号不存在，post=$post, ".date("Y-m-d H:i:s")."\r\n");
+	exit(json_encode(array('status'=>2, 'msg'=>'Account error, please enter again!')));
+}
+$accountid = $result['accountid'];
+$acctable = betaSubTableNew($accountid,'account',999);
+$sql = "select id, password from $acctable where id = '$accountid' limit 1";
+if(false == $query = mysqli_query($conn,$sql)){
+	write_log(ROOT_PATH."log","editpass_error_","帐号查询失败，post=$post, ".date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>1, 'msg'=>'check account is exists  sql error.')));
+}
+
 
 $rs = mysqli_fetch_assoc($query);
-if(!isset($rs['id']))
+if(!isset($rs['id'])){
+	write_log(ROOT_PATH."log","editpass_error_","帐号id不存在，post=$post, ".date("Y-m-d H:i:s")."\r\n");
 	exit(json_encode(array('status'=>2, 'msg'=>'账号不存在.')));
+}
 
-$accountId = $rs['id'];
 $password = md5($pass.$mdString);
-$update_sql = "update account set password='$password' where id ='$accountId'";
-if(false == mysqli_query($conn,$update_sql))
-	exit(json_encode(array('status'=>1, 'msg'=>'fail')));
+$accountUpdate = "update $acctable set password='$password' where id='$accountid';";
+if(false ==mysqli_query($conn,$accountUpdate)){
+	write_log(ROOT_PATH."log","eidtpass_error_","$accountUpdate, ".mysqli_error($conn).date("Y-m-d H:i:s")."\r\n");
+	exit(json_encode(array('status'=>2, 'msg'=>'修改失败!')));
+}
 exit(json_encode(array('status'=>0, 'msg'=>'success')));
 ?>

@@ -9,22 +9,30 @@
 * @author: luoxue
 * @version:
 */
-define('ROOT_PATH', str_replace('interface/guanwang/config.php', '', str_replace('\\', '/', __FILE__)));
-include_once ROOT_PATH.'inc/config.php';
-include_once ROOT_PATH.'inc/config_account.php';
-include_once ROOT_PATH."inc/function.php";
+define ( 'ROOT_PATH', str_replace ( 'interface/guanwang/config.php', '', str_replace ( '\\', '/', __FILE__ ) ) );
+include_once ROOT_PATH . 'inc/config.php';
+include_once ROOT_PATH . 'inc/config_account.php';
+include_once ROOT_PATH . "inc/function.php";
 
-$key_arr = array(
-		'appKey'			=>'0dbddcc74ed6e1a3c3b9708ec32d0532',
-		'appSecret' 		=>'074092074142feb68cf2d0dd35d5997a',
+$key_arr = array (
+		'appKey' => '0dbddcc74ed6e1a3c3b9708ec32d0532',
+		'appSecret' => '074092074142feb68cf2d0dd35d5997a' 
 );
-
-function httpBuidQuery($array, $appKey){
-	if(!is_array($array))
+$share_url = array (
+		'1' => 'http://fh.u776.com:88/public/index.php/index/yfe/index',
+		'SDK_UC' => 'http://fh.u776.com:88/public/index.php/index/yfe/index',
+		'SDK_OPPO' => 'https://store.oppomobile.com/',
+		'SDK_VIVO' => 'http://fh.u776.com:88/public/index.php/index/yfe/index',
+		'SDK_TENCENT' => 'http://fh.u776.com:88/public/index.php/index/yfe/index',
+		'SDK_HUAWEI' => 'http://fh.u776.com:88/public/index.php/index/yfe/index' 
+);
+function httpBuidQuery($array, $appKey) {
+	if (! is_array ( $array ))
 		return false;
-	if(!$appKey) return false;
-	ksort($array);
-	$md5Str = http_build_query($array);
-	$mySign = md5(urldecode($md5Str).$appKey);
+	if (! $appKey)
+		return false;
+	ksort ( $array );
+	$md5Str = http_build_query ( $array );
+	$mySign = md5 ( urldecode ( $md5Str ) . $appKey );
 	return $mySign;
 }

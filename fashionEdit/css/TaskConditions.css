@@ -1,0 +1,144 @@
+.TaskConditions .TaskConditions_queryBox {
+	width: 100%;
+}
+
+.TaskConditions .TaskConditions_queryBox .TaskConditions_condition div {
+	position: relative;
+	background-color: #ececed;
+	border: 2px solid white;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	height: 35px;
+	font-size: 10px;
+	float: left;
+}
+
+.TaskConditions .TaskConditions_queryBox .TaskConditions_condition div:nth-of-type(1) {
+	width: 20%;
+}
+
+.TaskConditions .TaskConditions_queryBox .TaskConditions_condition div:nth-of-type(1) p {
+	height: 30px;
+	padding: 0px;
+	line-height: 30px;
+	text-align: right;
+}
+
+.TaskConditions .TaskConditions_queryBox .TaskConditions_condition div:nth-of-type(2) {
+	width: 80%;
+}
+
+.TaskConditions .TaskConditions_queryBox .TaskConditions_condition div:nth-of-type(2) input {
+	position: relative;
+	top: 2px;
+	width: 300px;
+	height: 22px;
+	margin-left: 5px;
+}
+
+.TaskConditions .TaskConditions_queryBox .TaskConditions_condition div:nth-of-type(2) button {
+	position: relative;
+	top: 2px;
+	width: 60px;
+	height: 25px;
+	margin-left: 5px;
+	margin-right: 40px;
+	cursor: pointer;
+}
+
+.TaskConditions .TaskConditions_content {
+	position: relative;
+	width: 100%;
+	margin-top: 40px;
+	border: 2px solid #6595d6;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_title {
+	width: 100%;
+	text-align: center;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_title .TaskConditions_titleF {
+	position: relative;
+	background-color: #9fcde7;
+	float: left;
+	border: 1px solid white;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	font-size: 12px;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_text {
+	width: 100%;
+	background-color: #ececed;
+	text-align: center;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_text .text_left {
+	text-align: left;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_text .TaskConditions_textF {
+	position: relative;
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	white-space: normal;
+	word-wrap: break-word;
+	word-break: break-all;
+	border: 1px solid white;
+	font-size: 10px;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_text .TaskConditions_textF span {
+	color: #000099;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_news {
+	width: 50px;
+	height: 25px;
+	cursor: pointer;
+	margin: 2px;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_page {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_page .TaskConditions_strip {
+	color: red;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_page .TaskConditions_flip {
+	color: red;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_page .TaskConditions_pageSet span {
+	color: #000099;
+	cursor: pointer;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_page .TaskConditions_selectP {
+	color: #000000!important;
+	cursor: default!important;
+}
+
+.TaskConditions .TaskConditions_content .TaskConditions_page .TaskConditions_shadowe {
+	color: #000099;
+	cursor: pointer;
+}

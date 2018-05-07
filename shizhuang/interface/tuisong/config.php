@@ -8,6 +8,11 @@ include_once ROOT_PATH."inc/function.php";
 $key_arr = array(
     	'android'=>array('apiKey'=>'a7f532eb89e0569adc6bddb2','secret'=>'4a500fb687db6727315250eb'),
 		'android1'=>array('apiKey'=>'693f84f4edc3b6f8303d1581','secret'=>'f7a7afac7343d187cf7a2de6'),
+		'androiduc'=>array('apiKey'=>'64f40dd1c9c31005d861297d','secret'=>'ad8d9399ec4f872c5acca3d6'),
+		'androidoppo'=>array('apiKey'=>'cf21fa7b1e20f305c6c4c748','secret'=>'a29c38bad20e65922aef30c3'),
+		'androidvivo'=>array('apiKey'=>'f94be4789686a67727f9998e','secret'=>'0855f44c14dd8d66f47dc43a'),
+		'androidhuawei'=>array('apiKey'=>'1fcea600343a6b214568627f','secret'=>'2c1766181bb6c2f4e68005e6'),
+		'androidyyb'=>array('apiKey'=>'2240fa6e867a597665d6aa36','secret'=>'91db26ec1034484d072ddf53'),
     	'ios'=>array('apiKey'=>'pem/ios.pem'),
 );
 

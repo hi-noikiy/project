@@ -2215,7 +2215,7 @@ $this->data['four_suit']=$this->data['four_suit']?$this->data['four_suit']:0;
 $this->data['orangesoul_num']=$this->data['orangesoul_num']?$this->data['orangesoul_num']:0;
 $this->data['purplesoul_num']=$this->data['purplesoul_num']?$this->data['purplesoul_num']:0;
 $this->data['bluesoul_num']=$this->data['bluesoul_num']?$this->data['bluesoul_num']:0;
-$this->data['greensoul_num']=$this->data['greensoul_num']?$this->data['bluesoul_num']:0;
+$this->data['greensoul_num']=$this->data['greensoul_num']?$this->data['greensoul_num']:0;
        
        
         

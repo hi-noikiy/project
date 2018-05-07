@@ -103,6 +103,7 @@ class Controller extends CController{
 	}
 	
 	public function _list($model,$condition){
+		ini_set('memory_limit', '2000M');
 		$criteria = new CDbCriteria;
 		if(!empty($condition)){
 			if(isset($condition['param'])){

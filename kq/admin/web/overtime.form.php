@@ -251,6 +251,8 @@ function checkForm(c_date,class_name){
             alert('请输入事由');
             return false;
         }
+        reason.replace('<', '&lt;');
+        reason.replace('>', '&gt;');
         //alert(class_name);
         //这个判断顺序影响程序
         if(class_name!=''){      

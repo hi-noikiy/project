@@ -19,7 +19,7 @@ $phone = $_POST['phone'];
 $appKey = $key_arr['appKey'];
 $accountConn = $game_id;
 
-if(strlen($phone) != 11 || !preg_match('/^1[34578]{1}\d{9}$/', $phone))
+if(strlen($phone) != 11 || !preg_match('/^1\d{10}$/', $phone))
 	exit(json_encode(array('status'=>2, 'msg'=>'手机格式错误.')));
 
 $params = array(

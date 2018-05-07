@@ -37,7 +37,8 @@ if(!$message){
 }
 //获取合服[区服]
 $sid = togetherServer($serverid);
-$table = betaSubTable($sid, 'u_gmtool', 1000);
+$table = 'u_gmtool';
+//$table = betaSubTable($sid, 'u_gmtool', 1000);
 $conn = SetConn($sid);
 
 $sql = "insert into $table(type, serverid, param, message) values('$type', '$serverid', '$playerId', '$message')";

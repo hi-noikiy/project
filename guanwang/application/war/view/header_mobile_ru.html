@@ -1,21 +1,23 @@
-<div class="top_down">
-            <div class="moblie_content">
-                <img class="ball" src="__static__/war/img/russia/ball.png">
-                <div class="moblie_top_text">
-                    <h1>《Покемон VS》</h1>
-                    <p>3D -  ремейк  Покемон</p>
-                </div>
-                <a class="down_load" href="javascript:downLoadApp();">
-                    <img src="__static__/war/img/russia/download_btn.png">
-                </a>
-            </div>
-        </div>
-        <script type="text/javascript">
-            function downLoadApp(){
-                if(navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)){
-                    location.href = "{$pokemon.apple_url}";
-                }else if(navigator.userAgent.match(/android/i)){
-                    location.href = "{$pokemon.android_url}";//android 下载地址
-                }
-            }
-        </script>
+<div class="top_BgImg">
+	<div class="top_down">
+	    <div class="moblie_content">
+	        <img class="ball" src="__static__/pokemon/img/russia/ball.png">
+	        <div class="moblie_top_text">
+	            <h1>《Покемон VS》</h1>
+	            <p>3D -  ремейк  Покемон</p>
+	        </div>
+	        <a class="down_load" href="javascript:downLoadApp();">
+	            <img src="__static__/pokemon/img/russia/download_btn.png">
+	        </a>
+	    </div>
+	</div>
+</div>
+<script type="text/javascript">
+    function downLoadApp(){
+        if(navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)){
+            location.href = "{$pokemon.apple_url}";
+        }else if(navigator.userAgent.match(/android/i)){
+            location.href = "{$pokemon.android_url}";//android 下载地址
+        }
+    }
+</script>

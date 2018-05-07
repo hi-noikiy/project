@@ -1,0 +1,1462 @@
+---------------------------------------------------------------
+[ 2018-03-21T10:06:13+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] localhost/favicon.ico [运行时间：0.097006s][吞吐率：10.31req/s] [内存消耗：1,456.00kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => '_ga=GA1.1.1389814477.1521183152',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T10:06:13+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] www.localhost/favicon.ico [运行时间：0.137008s][吞吐率：7.30req/s] [内存消耗：1,455.57kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'www.localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:24:35+08:00 ] ::1 ::1 GET /pokemon
+[ info ] localhost/pokemon [运行时间：1.824104s][吞吐率：0.55req/s] [内存消耗：3,482.38kb] [文件加载：68]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/pokemon\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'lang',
+  2 => 'service_phone',
+  3 => 'service_online',
+  4 => 'baidu_bbs',
+  5 => 'qrcode_wechart',
+  6 => 'qrcode_wb',
+  7 => 'copyright',
+  8 => 'contact_us',
+  9 => 'fuli_url',
+  10 => 'qrcode_game_wechart',
+  11 => 'privilege_code',
+  12 => 'link_wechart',
+  13 => 'link_qq',
+  14 => 'link_wb',
+  15 => 'pokemon',
+  16 => 'qq_group',
+  17 => 'qq_service',
+  18 => 'bannerList',
+  19 => 'newsTypeList',
+  20 => 'newsList',
+  21 => 'topNews',
+  22 => 'linkList',
+) ]
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: lang[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\Common.php:32]
+[ error ] [8]未定义变量: ip[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\Common.php:36]
+[ error ] [8]未定义数组索引: HTTP_X_FORWARDED_FOR[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\common.php:49]
+[ error ] [8]未定义数组索引: HTTP_CLIENT_IP[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\common.php:51]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.375022s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.029002s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_banner` [ RunTime:0.028002s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_banner` WHERE  `status` = 1  AND `lang` = '' ORDER BY sorts asc [ RunTime:0.003000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `status` = 1  AND `lang` = '' ORDER BY sorts asc [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `top` = 0  AND `lang` = '' ORDER BY create_time desc [ RunTime:0.001001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = ''  AND `top` = 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_link` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_link` WHERE  `status` = 1  AND `lang` = '' ORDER BY sorts asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:24:36+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/40DBAE4A07858833E3268543296B858E.jpg
+[ info ] localhost/public/userfiles/images/vs/40DBAE4A07858833E3268543296B858E.jpg [运行时间：0.141008s][吞吐率：7.09req/s] [内存消耗：1,456.67kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/pokemon',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:24:36+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.062004s][吞吐率：16.13req/s] [内存消耗：1,457.17kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/pokemon',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:24:36+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/9AB71AD3AB12DDF94C2B277A82654D3F.jpg
+[ info ] localhost/public/userfiles/images/vs/9AB71AD3AB12DDF94C2B277A82654D3F.jpg [运行时间：0.101006s][吞吐率：9.90req/s] [内存消耗：1,456.71kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/pokemon',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:24:36+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/80A18F80F2ABEDEC3B4594DE8AF37FE6.jpg
+[ info ] localhost/public/userfiles/images/vs/80A18F80F2ABEDEC3B4594DE8AF37FE6.jpg [运行时间：0.071004s][吞吐率：14.08req/s] [内存消耗：1,456.71kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/pokemon',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:24:36+08:00 ] ::1 ::1 GET /favicon.ico
+[ info ] localhost/favicon.ico [运行时间：0.047003s][吞吐率：21.28req/s] [内存消耗：1,456.77kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'favicon.ico',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'accept' => '*/*',
+  'referer' => 'http://localhost/pokemon',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:24:36+08:00 ] ::1 ::1 GET /
+[ info ] localhost/ [运行时间：0.111006s][吞吐率：9.01req/s] [内存消耗：2,908.06kb] [文件加载：59]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'accept' => '*/*',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\index\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/index\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `type` = 'index' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `lang` = ''  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:24:36+08:00 ] 127.0.0.1 127.0.0.1 GET /
+[ info ] test.u776.com/ [运行时间：0.120006s][吞吐率：8.33req/s] [内存消耗：2,908.03kb] [文件加载：59]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.u776.com',
+  'accept' => '*/*',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\index\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/index\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `type` = 'index' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.011001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `lang` = ''  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:24:37+08:00 ] ::1 ::1 GET /public/index.php
+[ info ] localhost/public/index.php [运行时间：0.128007s][吞吐率：7.81req/s] [内存消耗：2,905.52kb] [文件加载：59]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'accept-encoding' => 'compress,gzip',
+  'connection' => 'Close',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\index\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/index\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.013001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `type` = 'index' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `lang` = ''  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.004000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:24:37+08:00 ] ::1 ::1 GET /public/index.php
+[ info ] localhost/public/index.php [运行时间：0.190011s][吞吐率：5.26req/s] [内存消耗：2,905.52kb] [文件加载：59]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'accept-encoding' => 'compress,gzip',
+  'connection' => 'Close',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\index\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/index\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.064004s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `type` = 'index' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `lang` = ''  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:24:37+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/news.html
+[ info ] localhost/public/index.php/pokemon/news/news.html [运行时间：0.145009s][吞吐率：6.90req/s] [内存消耗：3,248.51kb] [文件加载：66]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'news',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/pokemon',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->news[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/pokemon\view\news\news.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'lang',
+  2 => 'service_phone',
+  3 => 'service_online',
+  4 => 'baidu_bbs',
+  5 => 'qrcode_wechart',
+  6 => 'qrcode_wb',
+  7 => 'copyright',
+  8 => 'contact_us',
+  9 => 'fuli_url',
+  10 => 'qrcode_game_wechart',
+  11 => 'privilege_code',
+  12 => 'link_wechart',
+  13 => 'link_qq',
+  14 => 'link_wb',
+  15 => 'pokemon',
+  16 => 'qq_group',
+  17 => 'qq_service',
+  18 => 'newsTypeList',
+  19 => 'typeId',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `lang` = ''  AND `status` = 1 ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:144]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:146]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+---------------------------------------------------------------
+[ 2018-03-21T11:24:37+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.043003s][吞吐率：23.25req/s] [内存消耗：1,457.63kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:24:38+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5
+[ info ] localhost/public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5 [运行时间：0.182011s][吞吐率：5.49req/s] [内存消耗：3,001.45kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '0',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' LIMIT 1 [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:24:38+08:00 ] ::1 ::1 GET /public/index.php
+[ info ] localhost/public/index.php [运行时间：0.151009s][吞吐率：6.62req/s] [内存消耗：2,905.52kb] [文件加载：59]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'accept-encoding' => 'compress,gzip',
+  'connection' => 'Close',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\index\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/index\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.007000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `type` = 'index' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `lang` = ''  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:24:39+08:00 ] 127.0.0.1 127.0.0.1 GET HTTP://test.u776.com/
+[ info ] test.u776.comHTTP://test.u776.com/ [运行时间：0.139008s][吞吐率：7.19req/s] [内存消耗：2,908.40kb] [文件加载：59]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'test.u776.com',
+  'accept' => '*/*',
+  'proxy-connection' => 'Keep-Alive',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\index\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/index\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `type` = 'index' [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `lang` = ''  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:24:41+08:00 ] ::1 ::1 GET /public/index.php
+[ info ] localhost/public/index.php [运行时间：0.148009s][吞吐率：6.76req/s] [内存消耗：2,907.05kb] [文件加载：59]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'accept-encoding' => 'compress,gzip',
+  'connection' => 'Close',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\index\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/index\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `type` = 'index' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `lang` = ''  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:25:01+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/news.html
+[ info ] localhost/public/index.php/pokemon/news/news.html [运行时间：0.130008s][吞吐率：7.69req/s] [内存消耗：3,088.55kb] [文件加载：64]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'news',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/pokemon',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->news[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/pokemon\view\news\news.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'lang',
+  2 => 'service_phone',
+  3 => 'service_online',
+  4 => 'baidu_bbs',
+  5 => 'qrcode_wechart',
+  6 => 'qrcode_wb',
+  7 => 'copyright',
+  8 => 'contact_us',
+  9 => 'fuli_url',
+  10 => 'qrcode_game_wechart',
+  11 => 'privilege_code',
+  12 => 'link_wechart',
+  13 => 'link_qq',
+  14 => 'link_wb',
+  15 => 'pokemon',
+  16 => 'qq_group',
+  17 => 'qq_service',
+  18 => 'newsTypeList',
+  19 => 'typeId',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `lang` = ''  AND `status` = 1 ORDER BY sorts asc [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:144]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:146]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+---------------------------------------------------------------
+[ 2018-03-21T11:25:01+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.197011s][吞吐率：5.08req/s] [内存消耗：1,457.84kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:25:01+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5
+[ info ] localhost/public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5 [运行时间：0.166010s][吞吐率：6.02req/s] [内存消耗：3,001.61kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '0',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' LIMIT 1 [ RunTime:0.003001s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.009000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:25:38+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/news.html
+[ info ] localhost/public/index.php/pokemon/news/news.html [运行时间：0.175010s][吞吐率：5.71req/s] [内存消耗：3,248.76kb] [文件加载：66]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'news',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/pokemon',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->news[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/pokemon\view\news\news.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'lang',
+  2 => 'service_phone',
+  3 => 'service_online',
+  4 => 'baidu_bbs',
+  5 => 'qrcode_wechart',
+  6 => 'qrcode_wb',
+  7 => 'copyright',
+  8 => 'contact_us',
+  9 => 'fuli_url',
+  10 => 'qrcode_game_wechart',
+  11 => 'privilege_code',
+  12 => 'link_wechart',
+  13 => 'link_qq',
+  14 => 'link_wb',
+  15 => 'pokemon',
+  16 => 'qq_group',
+  17 => 'qq_service',
+  18 => 'newsTypeList',
+  19 => 'typeId',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `lang` = ''  AND `status` = 1 ORDER BY sorts asc [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:144]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:146]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+---------------------------------------------------------------
+[ 2018-03-21T11:25:38+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.082005s][吞吐率：12.19req/s] [内存消耗：1,457.84kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:25:39+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5
+[ info ] localhost/public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5 [运行时间：0.145008s][吞吐率：6.90req/s] [内存消耗：3,001.61kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '0',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:25:42+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/newsAjax/typeId/1/page/1/num/5
+[ info ] localhost/public/index.php/pokemon/news/newsAjax/typeId/1/page/1/num/5 [运行时间：0.127007s][吞吐率：7.87req/s] [内存消耗：3,002.45kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '1',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = ''  AND `type_id` = 1 LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = ''  AND `type_id` = 1 ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:26:41+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5
+[ info ] localhost/public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5 [运行时间：0.135007s][吞吐率：7.41req/s] [内存消耗：3,001.45kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '0',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:26:41+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/newsAjax/typeId/1/page/1/num/5
+[ info ] localhost/public/index.php/pokemon/news/newsAjax/typeId/1/page/1/num/5 [运行时间：0.140008s][吞吐率：7.14req/s] [内存消耗：3,002.45kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '1',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = ''  AND `type_id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = ''  AND `type_id` = 1 ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:26:42+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/newsAjax/typeId/2/page/1/num/5
+[ info ] localhost/public/index.php/pokemon/news/newsAjax/typeId/2/page/1/num/5 [运行时间：0.138008s][吞吐率：7.25req/s] [内存消耗：3,001.18kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '2',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.011000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = ''  AND `type_id` = 2 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = ''  AND `type_id` = 2 ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.002001s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:26:43+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/newsAjax/typeId/3/page/1/num/5
+[ info ] localhost/public/index.php/pokemon/news/newsAjax/typeId/3/page/1/num/5 [运行时间：0.143008s][吞吐率：6.99req/s] [内存消耗：3,001.49kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '3',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.012001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = ''  AND `type_id` = 3 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = ''  AND `type_id` = 3 ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:28:50+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/news.html
+[ info ] localhost/public/index.php/pokemon/news/news.html [运行时间：0.141008s][吞吐率：7.09req/s] [内存消耗：3,248.74kb] [文件加载：66]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'news',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/pokemon',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->news[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/pokemon\view\news\news.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'lang',
+  2 => 'service_phone',
+  3 => 'service_online',
+  4 => 'baidu_bbs',
+  5 => 'qrcode_wechart',
+  6 => 'qrcode_wb',
+  7 => 'copyright',
+  8 => 'contact_us',
+  9 => 'fuli_url',
+  10 => 'qrcode_game_wechart',
+  11 => 'privilege_code',
+  12 => 'link_wechart',
+  13 => 'link_qq',
+  14 => 'link_wb',
+  15 => 'pokemon',
+  16 => 'qq_group',
+  17 => 'qq_service',
+  18 => 'newsTypeList',
+  19 => 'typeId',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `lang` = ''  AND `status` = 1 ORDER BY sorts asc [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:144]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:146]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:169]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:171]
+---------------------------------------------------------------
+[ 2018-03-21T11:28:50+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.061003s][吞吐率：16.39req/s] [内存消耗：1,457.84kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:28:50+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5
+[ info ] localhost/public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5 [运行时间：0.153009s][吞吐率：6.54req/s] [内存消耗：3,001.61kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '0',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' LIMIT 1 [ RunTime:0.004000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T11:30:26+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/news.html
+[ info ] localhost/public/index.php/pokemon/news/news.html [运行时间：0.154009s][吞吐率：6.49req/s] [内存消耗：3,248.97kb] [文件加载：66]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'news',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/pokemon',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->news[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/pokemon\view\news\news.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'lang',
+  2 => 'service_phone',
+  3 => 'service_online',
+  4 => 'baidu_bbs',
+  5 => 'qrcode_wechart',
+  6 => 'qrcode_wb',
+  7 => 'copyright',
+  8 => 'contact_us',
+  9 => 'fuli_url',
+  10 => 'qrcode_game_wechart',
+  11 => 'privilege_code',
+  12 => 'link_wechart',
+  13 => 'link_qq',
+  14 => 'link_wb',
+  15 => 'pokemon',
+  16 => 'qq_group',
+  17 => 'qq_service',
+  18 => 'newsTypeList',
+  19 => 'typeId',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.009001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news_type` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_vs_news_type` WHERE  `lang` = ''  AND `status` = 1 ORDER BY sorts asc [ RunTime:0.001000s ]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:147]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:149]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:172]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:174]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:172]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:174]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:172]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:174]
+[ error ] [8]未定义变量: hasPrevPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:172]
+[ error ] [8]未定义变量: hasNextPage[C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\runtime\temp\51ec52efa1d56b5351bc5e2f8cf2188a.php:174]
+---------------------------------------------------------------
+[ 2018-03-21T11:30:27+08:00 ] ::1 ::1 GET /public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg
+[ info ] localhost/public/userfiles/images/vs/CN/22DEB9752BE8663D6A1DE1AD42AD90F9.jpg [运行时间：0.060003s][吞吐率：16.67req/s] [内存消耗：1,457.86kb] [文件加载：40]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'userfiles',
+    1 => 'images',
+    2 => 'vs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'image/webp,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'CN' => '22DEB9752BE8663D6A1DE1AD42AD90F9.jpg',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-03-21T11:30:27+08:00 ] ::1 ::1 GET /public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5
+[ info ] localhost/public/index.php/pokemon/news/newsAjax/typeId/0/page/1/num/5 [运行时间：0.387022s][吞吐率：2.58req/s] [内存消耗：3,001.61kb] [文件加载：60]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'pokemon',
+    1 => 'news',
+    2 => 'newsAjax',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'localhost',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+  'referer' => 'http://localhost/public/index.php/pokemon/news/news.html',
+  'accept-encoding' => 'gzip, deflate, sdch',
+  'accept-language' => 'zh-CN,zh;q=0.8',
+  'cookie' => 'language=CN; _ga=GA1.1.631076625.1520494891; PHPSESSID=nv5udrclotv64rshglto8067l4',
+)
+[ info ] [ PARAM ] array (
+  'typeId' => '0',
+  'page' => '1',
+  'num' => '5',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\pokemon\controller\News->newsAjax[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\pokemon\controller\News.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002001s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.009000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `system` = 'pokemon' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.008001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `name_en` = 'Pokemon' LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_vs_news` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT `id`,`type_id`,`title`,`description`,`image_url`,`create_time` FROM `hn_vs_news` WHERE  `status` = 1  AND `lang` = '' ORDER BY create_time desc LIMIT 0,5 [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T14:24:20+08:00 ] 192.168.1.44 192.168.1.171 GET /
+[ info ] 192.168.1.44/ [运行时间：0.145008s][吞吐率：6.90req/s] [内存消耗：2,909.00kb] [文件加载：59]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 5.1; Trident/5.0)',
+  'host' => '192.168.1.44',
+  'accept' => '*/*',
+  'accept-encoding' => 'gzip, deflate',
+  'pragma' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\index\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/index\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.013000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `type` = 'index' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.014000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `lang` = ''  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.001000s ]
+---------------------------------------------------------------
+[ 2018-03-21T15:01:24+08:00 ] 192.168.1.44 192.168.1.171 GET /
+[ info ] 192.168.1.44/ [运行时间：0.139008s][吞吐率：7.19req/s] [内存消耗：2,909.00kb] [文件加载：59]
+[ info ] [ LANG ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'user-agent' => 'Mozilla/4.0 (compatible; MSIE 9.0; Windows NT 5.1; Trident/5.0)',
+  'host' => '192.168.1.44',
+  'accept' => '*/*',
+  'accept-encoding' => 'gzip, deflate',
+  'pragma' => 'no-cache',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Index->index[ C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\application\index\controller\Index.php ]
+[ info ] [ VIEW ] C:\Users\Administrator\AppData\Roaming\HBuilder\userprofiles\offline\game\public/../application/index\view\index\index.html [ array (
+  0 => 'box_is_pjax',
+  1 => 'copyright',
+  2 => 'approve',
+  3 => 'copyright_en',
+  4 => 'approve_en',
+  5 => 'gameList',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.011000s ] mysql:dbname=guanwang;host=127.0.0.1;port=3306;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_config` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_config` WHERE  `type` = 'index' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `hn_game` [ RunTime:0.010001s ]
+[ sql ] [ SQL ] SELECT * FROM `hn_game` WHERE  `status` = 1  AND `lang` = ''  AND `recommend` IN (1,2) ORDER BY sorts asc [ RunTime:0.001000s ]

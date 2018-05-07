@@ -16,6 +16,8 @@ class PlayergoodsLog extends CActiveRecord{
 
     public function rules(){
         return array(
+        		array('game_id', 'required','message'=>'游戏ID必须.'),
+        	array('server_id','required','message'=>'区服ID必须.'),
         	array('type','required','message'=>'搜索类型必须.'),
         	array('name','required','message'=>'角色名或角色ID必须.'),
             array('mailtype', 'required','message'=>'邮件类型必须.'),
@@ -29,6 +31,8 @@ class PlayergoodsLog extends CActiveRecord{
 
     public function attributeLabels(){
         return array(
+        		'game_id'      				=>'游戏',
+        		'server_id'      			=>'区服',
             'type'				        =>'搜索类型',
             'status'                    =>'状态',//0可用 1作废 2 结束
         );

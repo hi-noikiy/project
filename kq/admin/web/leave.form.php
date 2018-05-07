@@ -32,9 +32,13 @@
 				$msg .= ",去年剩余{$ny1}小时年假,将于今年3月1日凌晨失效";
 			}
 		}
-		
-		
-		
+		$by = 0;
+		$bresult = $leaveclass->getBAnnual($uid);//哺乳假
+		$bmsg = '';
+		if($bresult){
+			$by = $bresult['allTime']-$bresult['useTime'];
+			$bmsg = "还剩余{$by}小时哺乳假";
+		}
     ?>
 <?php
     if($_GET['id']){
@@ -78,7 +82,8 @@
               <option value="丧假" <?php echo $info['leaveType']=='丧假'?'selected':'' ?>>丧假</option>
               <option value="产假" <?php echo $info['leaveType']=='产假'?'selected':'' ?>>产假</option>
 			  <option value="年假" <?php echo $info['leaveType']=='年假'?'selected':'' ?>>年假</option>
-          </select><?=$msg?>
+			  <option value="哺乳假" <?php echo $info['leaveType']=='哺乳假'?'selected':'' ?>>哺乳假</option>
+          </select><?=$msg?><?=$bmsg?>
       </td>
     </tr>
     <tr>
@@ -187,8 +192,9 @@
                       <option value="婚假" <?php $info['leaveType']=='婚假'?'selected':'' ?>>婚假</option>
                       <option value="丧假" <?php $info['leaveType']=='丧假'?'selected':'' ?>>丧假</option>
                       <option value="产假" <?php $info['leaveType']=='产假'?'selected':'' ?>>产假</option>
-					  <option value="年假" <?php echo $info['leaveType']=='年假'?'selected':'' ?>>年假</option>
-				</select><span style='color:red'><?=$msg?>
+					  <option value="年假" <?php $info['leaveType']=='年假'?'selected':'' ?>>年假</option>
+					  <option value="哺乳假" <?php $info['leaveType']=='哺乳假'?'selected':'' ?>>哺乳假</option>
+				</select><span style='color:red'><?=$msg?><?=$bmsg?>
               </td>
             </tr>
             <tr>
@@ -249,6 +255,11 @@ function checkForm(c_date){
 		var nselect = $('select[name=leaveType]').val();
 		if(nselect == '年假' && ny<totalTime){
 			alert('年假时长不足');
+            return false;
+		}
+		var by = "<?=$by?>";
+		if(nselect == '哺乳假' && by<totalTime){
+			alert('哺乳假时长不足');
             return false;
 		}
         if(GetContents('reason')=='')

@@ -1,0 +1,84 @@
+[
+	{
+		"type": "radio",
+		"option": [
+			"半小时",
+			"1~3小时",
+			"3小时以上"
+		],
+		"title": "1.您平常全球对战花费的时间",
+		"choice": "choice",
+		"inputTitle": "",
+		"input": "n",
+		"inputTxt": ""
+	}, {
+		"type": "radio",
+		"option": [
+			"黄金",
+			"钻石",
+			"大师",
+			"黄金以下"
+		],
+		"title": "2.您全球对战最高段位",
+		"choice": "choice",
+		"inputTitle": "",
+		"input": "n",
+		"inputTxt": ""
+	}, {
+		"type": "radio",
+		"option": ["土豪玩的游戏，不感兴趣",
+		"很棒，非常期待","#其它建议"],
+		"title": "3.对现有巅峰赛事赛制的看法",
+		"inputTitle": "其它建议",
+		"choice": "choice",
+		"input": "y",
+		"inputTxt": ""
+	}, {
+		"type": "radio",
+		"option": ["每周一次",
+		"每月一次","#其它建议"],
+		"title": "4.如果开放巅峰赛事，您希望多久开一次",
+		"inputTitle": "其它建议",
+		"choice": "choice",
+		"input": "y",
+		"inputTxt": ""
+	}, {
+		"type": "radio",
+		"option": ["晚上七点半~晚上八点半",
+		"晚上八点~晚上十点","下午三点~下午五点"],
+		"title": "5.巅峰赛事您希望几点投放",
+		"inputTitle": "",
+		"choice": "choice",
+		"input": "n",
+		"inputTxt": ""
+	}, {
+		"type": "radio",
+		"option": ["周一",
+		"周二","周三","周四","周五","周六","周天"],
+		"title": "6.巅峰赛事您希望周几开启",
+		"inputTitle": "",
+		"choice": "choice",
+		"input": "n",
+		"inputTxt": ""
+	}, {
+		"type": "radio",
+		"option": ["竞技moba类：如王者荣耀，吃鸡",
+		"休闲类：如开心消消乐，斗地主","回合策略类：如口袋妖怪，梦幻西游",
+		"即时战斗类：楚留香，诛仙","#其它"],
+		"title": "7.您平常玩什么类型游戏比较多?",
+		"inputTitle": "其他",
+		"choice": "choice",
+		"input": "y",
+		"inputTxt": ""
+	}, {
+		"type": "radio",
+		"option": ["0~100",
+		"100-1000","1000~5000",
+		"5000~10000","10000以上"],
+		"title": "8.您每月在游戏中大概花费多少人民币？",
+		"inputTitle": "其他",
+		"choice": "choice",
+		"input": "n",
+		"inputTxt": ""
+	}
+]

@@ -13,6 +13,23 @@
 				'onsubmit' => "getElementById('submitButton').disabled=true;return true;",
 			));?>
             <table class="table table-hover">
+            <tr>
+                    <th style="width:130px;line-height:30px;text-align:right">游戏</th>     
+                    <td>
+                    	<?=CHtml::activeDropDownList($model, 'game_id', $game, array('class'=>'input-medium','id'=>'gameId','required'=>'required')); ?>
+					  	<select name="PlayergoodsLog[server_id]" id="serverId" class="input-medium" required="required">
+							<option value="">区服</option>
+							<?php
+								if(isset($gameId) && !empty($gameId)){
+									foreach ($gameServer[$gameId] as $k => $v) {
+										$selected = (isset($model->server_id) && $model->server_id == $k) ? 'selected' : '';
+										echo "<option value='$k' $selected>$v</option>";
+									}
+								}
+							?>
+						</select>
+                    </td>
+               	</tr>
                	<tr class="controller">
                     <th style="width:130px;line-height:30px;text-align:right">角色名</th>
                     <td>

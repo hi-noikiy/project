@@ -13,12 +13,11 @@ $table = 'web_code_exchange';
 $tableLog = 'web_code_exchange_log';
 include("./inc/config.php");
 include("./inc/function.php");
-define('ROOT_PATH', str_replace('\\', '/', __FILE__));
 set_time_limit(10);
 $post = serialize($_POST);
 $get = serialize($_GET);
 $ip = getIP_front();
-write_log(ROOT_PATH."log","exchange_code_all_log_"," post=$post, get=$get, ip=$ip, ".date("Y-m-d H:i:s")."\r\n");
+write_log("log","exchange_code_all_log_"," post=$post, get=$get, ip=$ip, ".date("Y-m-d H:i:s")."\r\n");
 
 $codeid = trim($_REQUEST['code_id']);
 $account = trim($_REQUEST['account_id']);

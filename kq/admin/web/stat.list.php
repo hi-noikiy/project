@@ -78,8 +78,8 @@ if($_POST){
             $resout = $webdb->getValue("select sum(totalM) as outs from _web_outrecord  where  available='1' and manTag='2' and uid='".$admin['id']."' and fromTime>='".$vd['workday']."' and toTime<='".$vd['workday']."' ",'outs');
             $admin['outs'] += $resout;
             
-            //计算年假时间
-			$annual = $webdb->getValue("select sum(totalTime) as leaves from _web_leave  where  available='1' and manTag='2' and uid='".$admin['id']."' and fromTime>='".$vd['workday']."' and toTime<='".$vd['workday']."' and leaveType = '年假'",'leaves');
+            //计算年假/哺乳假时间
+			$annual = $webdb->getValue("select sum(totalTime) as leaves from _web_leave  where  available='1' and manTag='2' and uid='".$admin['id']."' and fromTime>='".$vd['workday']."' and toTime<='".$vd['workday']."' and leaveType in ('年假','哺乳假')",'leaves');
 			$admin['annual'] += $annual;
             
 			$tmp = 480 - $reshugh - $res - $resout - $annual*60;
@@ -107,7 +107,7 @@ if($_POST){
       * 
       */
         //计算请假时间
-        $resleave = $webdb->getValue("select sum(totalTime) as leaves from _web_leave  where  available='1' and manTag='2' and uid='".$admin['id']."' and fromTime>='$from' and toTime<='$to' and leaveType != '年假'",'leaves');
+        $resleave = $webdb->getValue("select sum(totalTime) as leaves from _web_leave  where  available='1' and manTag='2' and uid='".$admin['id']."' and fromTime>='$from' and toTime<='$to' and leaveType not in ('年假','哺乳假')",'leaves');
         $admin['leaves'] = $resleave;
 		//计算年假时间
         /*$annual = $webdb->getValue("select sum(totalTime) as leaves from _web_leave  where  available='1' and manTag='2' and uid='".$admin['id']."' and fromTime>='$from' and toTime<='$to' and leaveType = '年假'",'leaves');
@@ -157,7 +157,7 @@ if($_POST){
       	<th scope="col" class="N_title">加班时间</th>
       	<th scope="col" class="N_title">调休时间</th>
       	<th scope="col" class="N_title">请假时间</th>
-		<th scope="col" class="N_title">年假时间</th>
+		<th scope="col" class="N_title">年假/哺乳假时间</th>
       	<th scope="col" class="N_title">公出时间</th>
       	<th scope="col" class="N_title">扣考勤</th>
       	<th scope="col" class="N_title">操作</th>

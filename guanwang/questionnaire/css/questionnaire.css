@@ -1,0 +1,287 @@
+@charset "UTF-8";
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
+	text-decoration: none;
+}
+
+body {
+	width: 100%;
+	background-color: #f5f5f5;
+}
+
+@media screen and (orientation: portrait) {
+	html {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	body {
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	.print {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+	}
+}
+
+@media screen and (orientation: landscape) {
+	html {
+		width: 100%;
+		height: 100%;
+	}
+	body {
+		width: 100%;
+		height: 100%;
+	}
+	.print {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+
+header {
+	position: relative;
+	text-align: center;
+	height: 3.125rem;
+	border-bottom: 0.125rem solid #e9e9e9;
+	background-color: #000000;
+	line-height: 3.125rem;
+}
+
+header p {
+	color: #ffffff;
+	font-size: 1.125rem;
+	font-weight: bold;
+}
+
+.Qtxt {
+	width: 100%;
+	padding: 30px;
+	box-sizing: border-box;
+}
+
+.Qtxt p span {
+	position: relative;
+	top: -2px;
+	font-size: 12px;
+	color: red;
+}
+
+.Qb {
+	width: 100%;
+	text-align: center;
+}
+
+.Qb a {
+	display: inline-block;
+	width: 130px;
+	height: 40px;
+	border-radius: 5px;
+	background-color: #88b436;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	line-height: 40px;
+}
+
+.Qb p {
+	margin-top: 5px;
+	font-size: 12px;
+}
+
+.FOqBox {
+	width: 100%;
+	padding: 0 10px;
+	box-sizing: border-box;
+}
+
+.FOqBox .FOqcontent {
+	width: 100%;
+}
+
+.FOqBox .FOqcontent h1 {
+	margin: 15px 0;
+	font-weight: bold;
+}
+
+.FOqBox .FOqcontent div {
+	width: 100%;
+	padding: 5px 0;
+}
+
+.FOqBox .FOqcontent div:nth-child(2n+1) {
+	background-color: #CCCCCC;
+}
+
+.FOqBox .FOqcontent div label {
+	display: inline-block;
+	width: 90%;
+}
+
+.FOqBox .FOqcontent div textarea {
+	display: inline-block;
+	width: 98%;
+}
+
+.FOqBox .FOqcontent h1 span.tit span {
+	color: red;
+}
+
+.FOqSub {
+	padding: 20px 0;
+	width: 100%;
+	text-align: center;
+}
+
+.FOqSub a {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	border-radius: 5px;
+	background-color: #88b436;
+	color: white;
+	font-weight: bold;
+	font-size: 15px;
+	line-height: 40px;
+	color: white;
+}
+
+.FOqBox .FOqcontent .FOinput {
+	background-color: white!important;
+}
+
+#msg {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+#msg .model{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+}
+#msg .content{
+	position: absolute;
+	top: 40%;
+	left: calc(50% - 100px);
+	left: -moz-calc(50% - 100px);
+	left: -webkit-calc(50% - 100px);
+	width: 200px;
+	background-color: #CCCCCC;
+	border-radius: 8px;
+	text-align: center;
+	padding: 10px;
+	border: 1px solid #000000;
+}
+#msg .content p:nth-of-type(1){
+	color: white;
+	border-bottom: 1px solid #000000;
+	padding-bottom: 10px;
+}
+
+#msg .content p:nth-of-type(2){
+	padding: 10px;
+	border-bottom: 1px solid #000000;
+	box-sizing: border-box;
+}
+#msg .content button{
+	margin-top: 10px;
+	height: 35px;
+	width: 100px;
+	border-radius: 5px;
+}

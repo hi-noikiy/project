@@ -126,7 +126,7 @@
 					$banTime.parents("tr").hide();
 				} else if(val == 6 || val == 66){
 					$banTime.parents("tr").show();
-					$bulletinEndtime.parents("tr").hide();
+					$bulletinEndtime.parents("tr").show();
 					$(this).parents("tr").next(".controller").hide();
 					$message.parents("tr").show();
 					if(val == 66){

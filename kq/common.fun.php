@@ -133,7 +133,7 @@ function htmlEdit1($name,$value,$height=220,$width=640){
 <input type=hidden id='mycontent' name='$name' value='$value'/>
 <script>
 //查找box元素,检测当粘贴时候,
-document.querySelector('#box').addEventListener('paste', function(e) {
+document.getElementById('box').onpaste= function(e) {
  
 //判断是否是粘贴图片
  if (e.clipboardData && e.clipboardData.items[0].type.indexOf('image') > -1) 
@@ -153,7 +153,7 @@ file = e.clipboardData.items[0].getAsFile();
  var img = new Image();
  img.src = xhr.responseText;
  
-  that.innerHTML += '<img src="'+img.src+'"/>';
+  that.innerHTML += '<img src="'+img.src+'" style="max-width:600px;"/>';
  	document.getElementById("mycontent").value = that.innerHTML;
 }
  
@@ -164,16 +164,17 @@ xhr.send(fd);
 }
 reader.readAsDataURL(file);
 }
-}, false);
+}
 var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
 var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器  
-    var wrap =document.querySelector('#box');
+    var wrap =document.getElementById('box');
     if(isIE){
         /*
         对于低版本的IE浏览器因为他们不支持事件捕获，而他们支持focusin、focusout事件
         使用该事件加事件委托能解决低版本IE的focus、blur事件委托的问题
          */
-        wrap.addEventListener('focusout',handler);
+ 		wrap.onfocusout = handler;
+       // wrap.addEventListener('focusout',handler);
     }else{
         /*
             高版本的IE浏览器以及主流标准浏览器则可以利用事件捕获机制来解决
@@ -181,7 +182,11 @@ var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -
         wrap.addEventListener('blur',handler,true);
     }
     function handler(event){
-       document.getElementById("mycontent").value = wrap.innerHTML;
+ 		var html = wrap.innerHTML;
+ 		html.replace('<', '&lt;');
+ 		html.replace('>', '&gt;');
+ 		
+       document.getElementById("mycontent").value = html;
     }
 
 // document.querySelector('#box').addEventListener('blur', function(e) {
@@ -582,6 +587,22 @@ function getTotalTime($ary,$id,$date,$menka)
     $new_ary=array();//找出上班时间内的指纹时间数组
     $unset_ary=array();//删除的指纹时间数组
     //$ary= array_flip(array_flip($ary));
+    /*if($ary){ //连续打卡无效判断
+    	foreach ($ary as $key=>$val){
+    		$time=str_replace(':','',$val);
+    		$arys[] = $time;
+    	}
+    	foreach ($arys as $key=>$val){
+    		if($arys[$key+1]!=''&&$arys[$key+1]-$val<=5){
+    			if($time>='1200'&&$time<='1330'){
+    				continue;
+    			}
+    			$unset_ary[]=substr($arys[$key+1],0,2).':'.substr($arys[$key+1],-2);
+    		}
+    	}
+    	$ary=array_diff($arys,$unset_ary);
+    	unset($arys,$unset_ary);
+    }*/
     if($ary){
     	foreach ($ary as $key=>$val){
 	    	$time=str_replace(':','',$val);

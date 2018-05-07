@@ -24,7 +24,7 @@ $mySign = httpBuidQuery($array, $appKey);
 if($mySign != $sign)
     exit(json_encode(array('status'=>1, 'msg'=>'验证失败.')));
 $conn = SetConn($serverid);
-// $table = 'u_player';
+$table = 'u_player';
 $table = betaSubTable($account_id, $table, 200);
 $sql = "select id,account_id,name from $table where id='$player_id' and account_id='$account_id' limit 1";
 $query = @mysqli_query($conn,$sql);

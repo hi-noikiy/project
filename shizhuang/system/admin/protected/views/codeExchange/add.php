@@ -55,7 +55,7 @@
                   
                   <tr>
                     <th style="width:130px;line-height:30px;text-align:right"><?=CHtml::activeLabel($model, 'param'); ?></th>     
-                    <td><?=CHtml::activeTextField($model, 'param',array('placeholder'=>'物品ID', 'class'=> 'input-medium', 'required'=>'required')); ?></td>
+                    <td><?=CHtml::activeTextField($model, 'param',array('placeholder'=>'掉落ID', 'class'=> 'input-medium', 'required'=>'required')); ?></td>
                   </tr>
           
                 <tr class="action">

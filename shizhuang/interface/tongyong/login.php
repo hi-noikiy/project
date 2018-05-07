@@ -20,6 +20,22 @@ $p = $_REQUEST ['p'];
 $gameId = intval ( $_REQUEST ['game_id'] );
 $webHost = 'http://fhweb.u776.com:86';
 switch ($sdkType) {
+	case 7 : // 当乐
+		$url = $webHost . '/interface/dangle/login.php';
+		$data ['token'] = $p;
+		$data ['mid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 32 : // 联想
+		$url = $webHost . '/interface/lenovo/login.php';
+		$data ['token'] = $p;
+		$data ['realm'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
 	case 99 : // oppo
 		$url = $webHost . '/interface/oppo/login.php';
 		$data ['fileid'] = $token;
@@ -59,6 +75,14 @@ switch ($sdkType) {
 		$rs = https_post ( $url, $data );
 		echo $rs;
 		break;
+	case 226 : // 游戏fan
+		$url = $webHost . "/interface/gamefan/login.php";
+		$data ['jsondata'] = $p;
+		// $data['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
 	case 237 : // 华为
 		$url = $webHost . "/interface/huawei/login.php";
 		$data ['user_token'] = $p;
@@ -67,8 +91,80 @@ switch ($sdkType) {
 		$rs = https_post ( $url, $data );
 		echo $rs;
 		break;
+	case 238 : // 百度
+		$url = $webHost . "/interface/baidu/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
 	case 239 : // vivo
 		$url = $webHost . "/interface/vivo/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 243 : // 小米
+		$url = $webHost . "/interface/xiaomi/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 244 : // 360
+		$url = $webHost . "/interface/360/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 245 : // 魅族
+		$url = $webHost . "/interface/meizu/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 250 : // 金立
+		$url = $webHost . "/interface/jinli/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 251 : // 酷派
+		$url = $webHost . "/interface/kupai/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 252 : // 美图
+		$url = $webHost . "/interface/meitu/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 253 : // 咪咕
+		$url = $webHost . "/interface/migu/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 254 : // 喜马拉雅
+		$url = $webHost . "/interface/ximalaya/login.php";
 		$data ['user_token'] = $p;
 		$data ['uid'] = $token;
 		$data ['game_id'] = $gameId;

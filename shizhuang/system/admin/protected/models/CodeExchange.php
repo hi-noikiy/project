@@ -34,7 +34,7 @@ class CodeExchange extends CActiveRecord{
 				'time_stamp'   					=>'生成时间',
 				'time_limit'      				=>'过期时间',
 				'dwFenBaoID'                   	=>'所属平台',
-				'param'							=>'物品ID',
+				'param'							=>'掉落ID',
 				'register_time'					=>'注册时间限制',
 				'used_type'						=>'批次',
 				'used'							=>'使用状态', //1已使用、0未使用

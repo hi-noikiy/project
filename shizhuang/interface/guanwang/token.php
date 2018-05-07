@@ -32,7 +32,7 @@ if(!empty($code) || !empty($pass)){
 		//邮箱登陆
 		$bindtable = getAccountTable($username,'mail_bind');
 		$bindwhere = 'mail';
-	} else if(strlen($username) == 11 && preg_match('/^1[34578]{1}\d{9}$/', $username)){
+	} else if(strlen($username) == 11 && preg_match('/^1\d{10}$/', $username)){
 		//手机登陆
 		$bindtable = getAccountTable($username,'mobile_bind');
 		$bindwhere = 'mobile';
@@ -56,6 +56,9 @@ if(!$appKey)
 	exit(json_encode(array('status'=>2, 'msg'=>'appKey error.')));
 if(!$appSecret)
 	exit(json_encode(array('status'=>2, 'msg'=>'appSecret error.')));
+if(isset($_POST['isnew'])){
+	$array['isnew'] = $_POST['isnew'];
+}
 ksort($array);
 $md5Str = http_build_query($array);
 $mySign = md5(urldecode($md5Str).$appKey);
@@ -138,7 +141,7 @@ $array['expired'] = $addtime;
 $newMd5Str = http_build_query($array);
 $token = myEncrypt::encrypt($newMd5Str, $appSecret);
 $conn = SetConn(88);
-if($_POST['is_new']){
+if($_POST['isnew']){
 	$isNew = 1;
 }
 $sql = "insert into web_token (account_id, game_id, token, addtime,isnew) values ('$insert_id', '$gameId', '$token', '$addtime',$isNew)";
@@ -148,6 +151,9 @@ if(mysqli_query($conn,$sql)){
 	$data['token'] = $token;
     $data['is_new'] = $isNew;
     $data['account_id'] = $insert_id;
+    if($isNew == '1'){
+    	write_log(ROOT_PATH."log","new_account_guanwang_log_","guanwang new account login , "."return= 1 $insert_id  ".date("Y-m-d H:i:s")."\r\n");
+    }
 	exit(json_encode(array('status'=>0, 'msg'=>'success', 'data'=>$data)));
 }
 exit(json_encode(array('status'=>2, 'msg'=>'token error.')));

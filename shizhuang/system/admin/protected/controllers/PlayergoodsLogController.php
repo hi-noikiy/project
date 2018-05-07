@@ -22,8 +22,8 @@ class PlayergoodsLogController extends CommonController{
         $condition[] = "status='$status'";
 
         $condition['param'] = array(
-            'dwInfo'=>$this->getFenbao(),'status'=>$status,
-            'statusArr'=>$statusArr,'typeArr'=>$typeArr
+            'dwInfo'=>$this->getFenbao(),'goodsType'=>$this->getGoodsType(),'status'=>$status,
+            'statusArr'=>$statusArr,'typeArr'=>$typeArr,'gameInfo'=>$this->getGame(),'gameServer'=>$this->getServer()
         );
 
     }
@@ -55,7 +55,7 @@ class PlayergoodsLogController extends CommonController{
             $this->display('获取流程等级出错.', 0);
         $msg = '';
         if($maxLevel == $this->mangerInfo['level']){
-            $serverId = 0;
+            $serverId = $rs->server_id;
             $playerIdArr = explode(';', $rs->player_id);
             $playerNameArr = explode(';', $rs->name);
             //由于合服
@@ -97,57 +97,49 @@ class PlayergoodsLogController extends CommonController{
         $maxLevel = $erpLevel->getMaxLevel();
         if($maxLevel != $this->mangerInfo['level'])
             $this->display('你没有该权限.', 0);
-        foreach ($info as $v){
-            $serverId = $v->server_id;
-            $playerIdArr = explode(';', $v->player_id);
-            $playerNameArr = explode(';', $v->name);
-            //合服
+        foreach ($info as $rs){
+            $serverId = $rs->server_id;
+            $playerIdArr = explode(';', $rs->player_id);
+            $playerNameArr = explode(';', $rs->name);
+            //由于合服
             $sid = togetherServer($serverId);
             $table = $this->gmtoolTable;
             $conn = SetConn($sid);
-
             if($conn == false)
                 $this->display('链接游服数据库失败.', 0);
-            $message = $v->message;
-            $type1 = intval($v->type1);
-            $param1 = intval($v->param1);
-            $amount1 = intval($v->amount1);
-            $type2 = intval($v->type2);
-            $param2 = intval($v->param2);
-            $amount2 = intval($v->amount2);
-            $type3 = intval($v->type3);
-            $param3 = intval($v->param3);
-            $amount3 = intval($v->amount3);
-            $type4 = intval($v->type4);
-            $param4 = intval($v->param4);
-            $amount4 = intval($v->amount4);
+			$time = time();
             foreach ($playerIdArr as $key => $userId){
-                $playerName = $playerNameArr[$key];
-                $sql = "insert into $table(type, serverid, param, message, award_type1, award_param1, award_amount1, award_type2, award_param2, award_amount2,  award_type3, award_param3, award_amount3,  award_type4, award_param4, award_amount4)";
-                $sql .= " values(8, '$sid', '$userId' ,'$message', '$type1', '$param1', '$amount1', '$type2', '$param2', '$amount2', '$type3', '$param3', '$amount3', '$type4', '$param4', '$amount4') ";
-                if(false == mysqli_query($conn, $sql)){
-                    echo "<script>alert('角色：".$playerName."发放物品失败！');</script>";
-                    write_log(ROOT_PATH.'log', 'add_good_fail_', "player=$userId($playerName),sql=$sql".date('Y-m-d H:i:s')."\r\n");
-                }
-                write_log(ROOT_PATH.'log', 'add_good_success_', "player=$userId($playerName),sql=$sql".date('Y-m-d H:i:s')."\r\n");
+            	$playerName = $playerNameArr[$key];
+            	$sql = "insert into $table(mail_time,player_id, awardmoney, awardemoney, awardtired, awardrose, awardlily, awardnarcissus,
+            	awarditemtype1, awarditemtype2, awarditemtype3,  awarditemtype4, mailtype, mail_theme, mail_describe)";
+            	$sql .= " values('$time','$userId', '{$rs->awardmoney}', '{$rs->awardemoney}' ,'{$rs->awardtired}', '{$rs->awardrose}', '{$rs->awardlily}', '{$rs->awardnarcissus}',
+            	'{$rs->awarditemtype1}', '{$rs->awarditemtype2}', '{$rs->awarditemtype3}', '{$rs->awarditemtype4}', '{$rs->mailtype}', '{$rs->mail_theme}', '{$rs->mail_describe}') ";
+            	if(false == mysqli_query($conn, $sql)){
+            		echo "<script>alert('角色：".$playerName."发放物品失败！');</script>";
+            		write_log(ROOT_PATH.'log', 'add_good_fail_', "player=$userId($playerName),sql=$sql".date('Y-m-d H:i:s')."\r\n");
+            	}
+            	write_log(ROOT_PATH.'log', 'add_good_success_', "player=$userId($playerName),sql=$sql".date('Y-m-d H:i:s')."\r\n");
             }
-            $model->updateByPk($v->id, array('status'=>2));
-            $erpLogModel->saveData($this->getId(), '流程结束', $v->id);
+            $model->updateByPk($rs->id, array('status'=>2));
+            $erpLogModel->saveData($this->getId(), '流程结束', $rs->id);
         }
         $this->display('一键审核通过.',1);
     }
 
     public function actionAdd(){
+    	$gameId = isset($_POST['PlayergoodsLog']['game_id']) ? intval($_POST['PlayergoodsLog']['game_id']) : $this->mangerInfo['game_id'];
+    	$goodsType = $this->getGoodsType($gameId);
         $model = new PlayergoodsLog;
 
         if(isset($_POST["PlayergoodsLog"])){
             $type = intval($_POST['PlayergoodsLog']['type']);
             $name = trim($_POST['PlayergoodsLog']['name']);
+            $serverId = intval($_POST['PlayergoodsLog']['server_id']);
             $nameArr = explode(';', $name);
             //先循环判断角色是否都正常
             $playerIdArr = $playerNameArr = array();
             foreach ($nameArr as $k => $name){
-                $playerInfo = $this->checkPlayer($name, $type , 0);
+                $playerInfo = $this->checkPlayer($name, $type , $serverId);
                 if(!$playerInfo)
                     $this->display($name.'角色不存在！', 0);
                 $playerIdArr[] = $playerInfo['id'];
@@ -167,7 +159,8 @@ class PlayergoodsLogController extends CommonController{
             $this->display('发放物品添加失败！'.CHtml::errorSummary($model), 0);
         }
         $this->renderPartial('add', array(
-            'title'=>'添加物品','model'=>$model,
+            'title'=>'添加物品','model'=>$model,'gameId'=>$gameId,'goodsType'=>$goodsType,
+            'game' => $this->getGame(),'gameServer' =>$this->getServer(),
         ));
     }
 
@@ -178,8 +171,7 @@ class PlayergoodsLogController extends CommonController{
         if(isset($_POST["PlayergoodsLog"])){
             $type = intval($_POST['PlayergoodsLog']['type']);
             $name = trim($_POST['PlayergoodsLog']['name']);
-            //$serverId = intval($_POST['PlayergoodsLog']['server_id']);
-            $serverId = 0;
+            $serverId = intval($_POST['PlayergoodsLog']['server_id']);
             $nameArr = explode(';', $name);
             //先循环判断角色是否都正常
             $playerIdArr = $playerNameArr = array();

@@ -41,7 +41,9 @@ if (isset ( $parseArr ['username'] ) && isset ( $parseArr ['account_id'] ) && is
 	if ($rs) {
 		if ($rs ['token'] == $token) {
 			if ($rs ['isnew'] == 1) {
+				write_log ( ROOT_PATH . "log", "guanwang_new_account_", "sql=$sql, " . date ( "Y-m-d H:i:s" ) . "\r\n" );
 				$upsql = "update web_token set isnew=0 where id='{$rs['id']}'";
+				mysqli_query($conn,$upsql);
 			}
 			exit ( "{$rs['isnew']} $accountId" );
 		}

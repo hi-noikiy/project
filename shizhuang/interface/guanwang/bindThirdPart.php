@@ -26,7 +26,7 @@ if(!empty($code)){
 	if (eregi('^[_\.0-9a-z-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,3}$', $username)){
 		//邮箱绑定
 		$email = $username;
-	} else if(strlen($username) == 11 && preg_match('/^1[34578]{1}\d{9}$/', $username)){
+	} else if(strlen($username) == 11 && preg_match('/^1\d{10}$/', $username)){
 		//手机手机绑定
 		$phone = $username;
 	} else

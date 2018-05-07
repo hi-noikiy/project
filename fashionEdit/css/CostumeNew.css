@@ -1,0 +1,91 @@
+.admin_content_CostumeNew .CostumeNew_queryBox {
+	width: 100%;
+}
+
+.admin_content_CostumeNew .CostumeNew_queryBox .CostumeNew_condition .CostumeNewF {
+	position: relative;
+	background-color: #ececed;
+	border: 2px solid white;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	font-size: 10px;
+	height: 35px;
+	float: left;
+}
+
+.admin_content_CostumeNew .CostumeNew_queryBox .CostumeNew_condition .CostumeNewF span {
+	color: red;
+}
+
+.admin_content_CostumeNew .CostumeNew_queryBox .CostumeNew_condition .CostumeNewF:nth-of-type(1) {
+	width: 20%;
+}
+
+.admin_content_CostumeNew .CostumeNew_queryBox .CostumeNew_condition .CostumeNewF:nth-of-type(1) p {
+	height: 30px;
+	padding: 0px;
+	line-height: 30px;
+	text-align: right;
+}
+
+.admin_content_CostumeNew .CostumeNew_queryBox .CostumeNew_condition .CostumeNewF:nth-of-type(2) {
+	width: 80%;
+}
+
+.admin_content_CostumeNew .CostumeNew_queryBox .CostumeNew_condition .CostumeNewF:nth-of-type(2) input {
+	position: relative;
+	top: 2px;
+	width: 300px;
+	height: 22px;
+	margin-left: 5px;
+}
+
+.admin_content_CostumeNew .CostumeNew_queryBox .CostumeNew_condition .CostumeNewF:nth-of-type(2) select {
+	position: relative;
+	top: 2px;
+	height: 25px;
+	margin-left: 5px;
+}
+
+.admin_content_CostumeNew .CostumeNew_queryBox .CostumeNew_condition .CostumeNewF:nth-of-type(2) button {
+	position: relative;
+	top: 2px;
+	width: 60px;
+	height: 25px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+.CostumeNew_imgBox{
+	position: relative;
+	font-size: 12px;
+	width: 100%;
+}
+.CostumeNew_imgBox .CostumeNew_imgFragment{
+	width: 100%;
+}
+.CostumeNew_imgBox .CostumeNew_imgFragment .CostumeNew_imgFragmentContent{
+	width: 25%;
+	padding: 10px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	float: left;
+}
+
+.CostumeNew_imgBox .CostumeNew_imgFragment .CostumeNew_imgFragmentContent img{
+	height: 200px;
+}
+
+.CostumeNew_imgBox .CostumeNew_imgIcon{
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+.CostumeNew_imgBox .CostumeNew_imgIcon img{
+	height: 200px;
+}

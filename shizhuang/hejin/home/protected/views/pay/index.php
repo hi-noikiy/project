@@ -20,14 +20,23 @@
 	.pagetop dt h1{
 		left: 0.84rem!important;
 	}
+	.pagetitle{
+		margin: .754rem .2rem 0 0;
+	}
 	.pagetitle h2 strong{
 		font-size: 0.1466rem!important;
 		font-weight: bold!important;
 		color: #CCCCCC!important;
 	}
+	.formline{
+		margin: 0px;
+	}
 	.formline li{
+		padding: 0.213rem;
+		margin: 0px!important;
 		font-size: 0.1466rem!important;
 		color: #a2873d!important;
+		background-color: #0d0d0d;
 	}
 	.selected{
 		margin-left: 0.213rem!important;
@@ -35,6 +44,13 @@
 	}
 	.payway{
 		padding-left: 0.46rem!important;
+	}
+	.selectlist{
+		margin-top: 0px;
+		background-color: #1b1b1b;
+	}
+	.selectlist dl{
+		margin: 13px 0;
 	}
 	.selectlist .selected dt{
 		font-size: 0.1466rem!important;
@@ -78,25 +94,30 @@
 		font-size: 0.2rem!important;
 		color: #fefefe!important;
 	}
+	body,html{
+		background-color: #424242!important;
+	}
 </style>
 </head><body style="visibility: visible;">
-<dl class="pagetop">
- <dt><img src="webpay/recharge/icon.png" alt="衣范儿用户平台">
-    <h1>衣范儿</h1>
+<dl class="pagetop" style="background-image: url(webpay/recharge/Bg.jpg);background-size: 100% 100%;">
+ <dt><img style="height: 50px;width: auto;" src="webpay/recharge/icon.png" alt="衣范儿用户平台">
+    <!--<h1>衣范儿</h1>-->
     </dt>
   <!-- <dd><a class="b2" href="http://recharge.iwantang.com/">返回</a></dd> -->
 </dl>
-<div id="container">
-  <dl class="pagetitle">
-    <dt></dt>
-    <dd>
-      <h2><strong>充值</strong></h2>
-    </dd>
-    <dd>&nbsp;</dd>
-  </dl>
-  <ul class="formline">
-    <li><?=$player_name;?></li>
-  </ul>
+<div id="container" style="padding-bottom: 0px;">
+	<div style="background-color: #0d0d0d;height: 65px;">
+	  <dl class="pagetitle">
+	    <dt></dt>
+	    <dd style="margin-top: 5px;">
+	      <h2><strong>充值</strong></h2>
+	    </dd>
+	    <dd>&nbsp;</dd>
+	  </dl>
+	  <ul class="formline">
+	    <li style="padding: 0px 0.15rem;"><?=$player_name;?></li>
+	  </ul>
+  </div>
   <ul class="selectlist" id="payWayList">
         <!-- <li id="weixinpay" class="selected" payway="微信">
       <dl class="payway weixinpay">
@@ -112,7 +133,7 @@
     </li>
           </ul>
   <ul class="formline">
-    <li style="margin: 0.213rem;font-size: 0.1466rem;color: #a2873d;">充值金额</li>
+    <li style="margin: 0.213rem;font-size: 0.1466rem;color: #a2873d;padding: 0.18rem 0.213rem;">充值金额</li>
   </ul>
 <ul class="selectlist" id="packageList">
 			<?php foreach($menu as $k=>$v){ ?>
@@ -132,9 +153,9 @@
             </ul>
   <form action="" method="get">
     <ul class="formline">
-      <li>
-        <div class="inputbutton">
-          <input type="button" value="确定" id="paysubmit">
+      <li style="padding: 0px;">
+        <div class="inputbutton" style="width: 100%;height: 68px;">
+          <input type="button" style="box-sizing: border-box;width: 100%;position: relative;" value="确定" id="paysubmit">
         </div>
       </li>
     </ul>

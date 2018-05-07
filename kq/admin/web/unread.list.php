@@ -287,7 +287,7 @@ function goth(id,perTag){
 	        <td class="N_title"><?=$dep->getInfo($val['depId'],'name','pass')?></td>
 	      	<td><?=$val['fromTime'].' '.$val['hour_s'].':'.$val['minute_s']."~".$val['toTime'].' '.$val['hour_e'].':'.$val['minute_e']?></td>
 	      	<td><?php echo searzhiwentime($val['fromTime'],$val['toTime'],$val['uid']);?></td>
-			<td><?=mb_substr($val['reason'],0,10)?></td>
+			<td><?=$val['reason']?></td>
 	      	<td><?=$val['available']=='1'?'有效':'<font color="red">无效</font>'?></td>
 	      	<td class="E_bd">
 			<?php
