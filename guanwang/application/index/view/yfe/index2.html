@@ -58,20 +58,23 @@
     <div class="video-title">
         {$infospan['title']}
     </div>
-    <div class="show-box">
+    <div class="show-box" style="margin-bottom: 0px;">
 		{volist name="infoList" id="vo"}
 			<a href="{$vo.url}" class="pic"><img src="{$vo.image_url}"></a>
 		{/volist}
+		<p style="font-size: 20px;text-align: center;padding: 40px 0px;margin: 0 auto;">北京爱游盟信息科技有限公司 京ICP备17024188号-1</p>
     </div>
     <a id="back-top" href="javascript:void(0)">
         <img src="__static__/index/img/top-fix.png">
     </a>
+    
 </body>
-<footer>
+<!--<footer>
+<p>北京爱游盟信息科技有限公司 京ICP备17024188号-1</p>
     <img src="__static__/index/img/logo_btm.png">
     <p>Copyright@2010-2015 福州海牛网络技术有限公司 All Right Reserved.</p>
     <p>公司简介 联系我们 电话：0591-87678008</p>
-</footer>
+</footer>-->
 <script>
     var owl = $('.owl-carousel');
     $(document).ready(function(){

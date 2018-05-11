@@ -40,6 +40,7 @@ if (isset ( $parseArr ['username'] ) && isset ( $parseArr ['account_id'] ) && is
 	$rs = @mysqli_fetch_assoc ( $query );
 	if ($rs) {
 		if ($rs ['token'] == $token) {
+			toNewCharge($username,$accountId);
 			if ($rs ['isnew'] == 1) {
 				write_log ( ROOT_PATH . "log", "guanwang_new_account_", "sql=$sql, " . date ( "Y-m-d H:i:s" ) . "\r\n" );
 				$upsql = "update web_token set isnew=0 where id='{$rs['id']}'";
@@ -53,4 +54,41 @@ if (isset ( $parseArr ['username'] ) && isset ( $parseArr ['account_id'] ) && is
 	exit ( '4 0' );
 }
 exit ( '0 999' );
+
+function toNewCharge($phone,$accountid){
+	write_log ( ROOT_PATH . "log", "guanwang_tocharge_log_", "$accountid , $phone". date ( "Y-m-d H:i:s" ) . "\r\n" );
+	if(!(strlen($phone) == 11 && preg_match('/^1\d{10}$/', $phone))){
+		return false;
+	}
+	$conn = SetConn('88');
+	$sql = "select money from old_phone where phone='$phone' and status=0 limit 1";
+	if(false == $query = mysqli_query($conn,$sql)){
+		write_log ( ROOT_PATH . "log", "guanwang_tocharge_error_", "sql=$sql, ".mysqli_error($conn) . date ( "Y-m-d H:i:s" ) . "\r\n" );
+		return false;
+	}
+		
+	$rs = @mysqli_fetch_assoc($query);
+	if($rs && $rs['money']>0){
+		$usql = "update old_phone set status=1 where phone='$phone'";
+		if(false == $query = mysqli_query($conn,$usql)){
+			write_log ( ROOT_PATH . "log", "guanwang_tocharge_error_", "sql=$usql, ".mysqli_error($conn) . date ( "Y-m-d H:i:s" ) . "\r\n" );
+			return false;
+		}
+			
+		$mconn = SetConn('0');
+		$msql = "insert into u_alpha_recharge003(account_id,rmb) values('$accountid','{$rs['money']}')";
+		if(false == $query = mysqli_query($mconn,$msql)){
+			write_log ( ROOT_PATH . "log", "guanwang_tocharge_error_", "sql=$msql, ".mysqli_error($mconn) . date ( "Y-m-d H:i:s" ) . "\r\n" );
+			$usql = "update old_phone set status=0 where phone='$phone'";
+			$conn = SetConn('88');
+			if(false == $query = mysqli_query($conn,$usql)){
+				write_log ( ROOT_PATH . "log", "guanwang_tocharge_error_", "sql=$usql, ".mysqli_error($conn) . date ( "Y-m-d H:i:s" ) . "\r\n" );
+				return false;
+			}
+		}
+		write_log ( ROOT_PATH . "log", "guanwang_tocharge_success_", "sql=$msql ". date ( "Y-m-d H:i:s" ) . "\r\n" );
+		return true;
+	}
+	return false;
+}
 ?>

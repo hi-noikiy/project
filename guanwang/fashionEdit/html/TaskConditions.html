@@ -1,0 +1,71 @@
+<div class="TaskConditions admin_content_title">
+	<div class="admin_content_h1">
+		<h1>任务条件管理</h1>
+		<div class="TaskConditions_queryBox">
+			<div class="TaskConditions_condition">
+				<div>
+					<p>任务条件名称：</p>
+				</div>
+				<div>
+					<input type="text" />
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="TaskConditions_condition">
+				<div></div>
+				<div>
+					<button>搜索</button>
+					<button>清除</button>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<div class="TaskConditions_content">
+		<div class="TaskConditions_title">
+			<div class="TaskConditions_titleF">编号</div>
+			<div class="TaskConditions_titleF">名称</div>
+			<div class="TaskConditions_titleF">参数1</div>
+			<div class="TaskConditions_titleF">参数2</div>
+			<div class="TaskConditions_titleF">参数3</div>
+			<div class="TaskConditions_titleF">参数4</div>
+			<div class="TaskConditions_titleF">参数5</div>
+			<div class="TaskConditions_titleF">参数6</div>
+			<div class="TaskConditions_titleF">操作</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="TaskConditions_text">
+			<div class="TaskConditions_textF">101</div>
+			<div class="TaskConditions_textF text_left">数据</div>
+			<div class="TaskConditions_textF text_left">数据</div>
+			<div class="TaskConditions_textF text_left">数据</div>
+			<div class="TaskConditions_textF text_left">数据</div>
+			<div class="TaskConditions_textF text_left">数据</div>
+			<div class="TaskConditions_textF text_left">数据</div>
+			<div class="TaskConditions_textF text_left">数据</div>
+			<div class="TaskConditions_textF text_left"><span>编辑</span><span>删除</span></div>
+			<div class="clearfix"></div>
+		</div>
+		<button class="TaskConditions_news">添加</button>
+		<div class="TaskConditions_page">
+			<span>共<span class="TaskConditions_strip">105</span>条，</span>
+			<span>第<span class="TaskConditions_flip">1</span>/<span class="TaskConditions_total">8</span>页</span>
+			<span class="TaskConditions_pageSet">
+								<span class="TaskConditions_selectP">1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+			<span>5</span>
+			<span>6</span>
+			<span>7</span>
+			<span>8</span>
+			</span>
+			<span class="TaskConditions_shadowe">尾页</span>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var len = $(".TaskConditions_title .TaskConditions_titleF").length;
+	$(".TaskConditions_title .TaskConditions_titleF").css("width", 100 / len + "%");
+	$(".TaskConditions_text .TaskConditions_textF").css("width", 100 / len + "%");
+</script>

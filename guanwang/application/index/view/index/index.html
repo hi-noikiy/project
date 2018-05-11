@@ -99,8 +99,10 @@
 <div class="imgBox">
     <img class="showImg" src="{$vo.image_url}">
     <dl class="imgBtnBox">
-        <dt><a href="{$vo.apple_url}"><img src="__static__/index/img/ios.png"></a></dt>
-        <dt><a href="{$vo.android_url}"><img src="__static__/index/img/android.png"></a></dt>
+        <dt><a class="cn" style="display: none;" href="{$vo.website}?cn" target="_blank"><img src="__static__/index/img/official.png"></a></dt>
+        <dt class="en" style="display: none;"><a href="{$vo.website}?us" target="_blank"><img src="__static__/index/img/official.png"></a></dt>
+        <dt><a href="{$vo.apple_url}" target="_blank"><img src="__static__/index/img/ios.png"></a></dt>
+        <dt><a href="{$vo.android_url}" target="_blank"><img src="__static__/index/img/android.png"></a></dt>
     </dl>
     <p class="imgTextBox cn" style="display: none;">
         <span class="title">{$vo.name}</span>

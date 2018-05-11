@@ -34,11 +34,11 @@ class CommonController extends Controller{
     	return $result;
     }
 
-    protected function selectByName($name){
+    protected function selectByName($name,$serverid = 0){
     	$nameacc = $this->giQSAccountHash( $name );
     	$table = subTable($nameacc, 'u_playername', 200);
     	$sql = "select user_id as id,name,account_id from $table where name='$name' limit 1";
-    	$conn = SetConn(99);
+    	$conn = SetConn($serverid);
     	$query = @mysqli_query($conn,$sql);
     	$rows = @mysqli_fetch_assoc($query);
     	$rs = array();
@@ -48,7 +48,7 @@ class CommonController extends Controller{
     	return $rs;
     }
     protected function checkPlayer($player, $type, $serverId){
-        return $this->selectByName($player);
+        return $this->selectByName($player,$serverId);
     }
 
     protected function getGoodsType($gameId = 8){
@@ -63,20 +63,17 @@ class CommonController extends Controller{
         return array('-1'=>'退回','0'=>'有效','1'=>'作废','2'=>'结束');
     }
 
-    protected function checkAccount($username, $field = false, $gameId = 8){
-        global $accountServer;
-        $accountConn = $accountServer[$gameId];
-        $conn = SetConn($accountConn);
-        if($conn == false)
-            return false;
-        $where = ($field == false) ? "NAME='$username'" : "id='$username'";
-        $sql = "select id,NAME,dwFenBaoID from account where $where limit 1";
-        $msg = false;
-        if(false != $query = mysqli_query($conn,$sql)){
-            $rs = @mysqli_fetch_array($query);
-            $msg =  !empty($rs) ? $rs : false;
-        }
-        @mysqli_close($conn);
-        return $msg;
+    protected function checkAccount($accountid, $field = false, $gameId = 9){
+        $snum = giQSModHash($accountid);
+		$conn = SetConn($gameId,$snum,1);//account分表
+		$acctable = betaSubTableNew($accountid,'account',999);
+		$sql = "select * from $acctable where id = '$accountid' limit 1";
+		$rs = false;
+		$query = @mysqli_query($conn,$sql);
+		$rows = @mysqli_fetch_assoc($query);
+		if($rows)
+			$rs = $rows;
+		mysqli_close($conn);
+		return $rs;
     }
 }

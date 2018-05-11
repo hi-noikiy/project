@@ -6,7 +6,8 @@ include_once ROOT_PATH."inc/function.php";
 
 $key_arr = array(
     9=>array(
-    		'android'=>array('app_key'=>'b2c0e9cd9fcd64e7e978dbf2a4b18012','app_secret'=>'d15f417fc84df718fc261c133b31ca5c')
+    		//'android'=>array('app_key'=>'b2c0e9cd9fcd64e7e978dbf2a4b18012','app_secret'=>'d15f417fc84df718fc261c133b31ca5c'),
+    		'android'=>array('app_key'=>'82aaf30aecefea29cc2247dc3fe7bf03','app_secret'=>'0f08cffc1a1d2851a1d5cc77c1c92523')
     		
     ),
 );

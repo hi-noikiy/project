@@ -38,6 +38,7 @@ if($insertinfo['status'] == '1'){
 	exit('3 0');
 }else{
 	$insert_id = $insertinfo['data'];
+	toNewCharge($username,$insert_id);
 	if($insertinfo['isNew'] == '1'){
 		exit("1 $insert_id");
 	}else{

@@ -39,44 +39,15 @@
 //				$("#msg .content").css('transform', 'rotate('+Orientation+'deg)');
 //				$("#msg .content").css('transform-origin', '50% 50%');
 			}
-			// 手机重力感应
-//			if (window.DeviceMotionEvent) { 
-//               window.addEventListener('devicemotion',deviceMotionHandler, false);  
-//	        } 
-//	        var speed = 30;//speed
-//	        var x = y = z = lastX = lastY = lastZ = 0;
-//	        function deviceMotionHandler(eventData) {  
-//	          var acceleration =eventData.accelerationIncludingGravity;
-//	                x = acceleration.x;
-//	                y = acceleration.y;
-//	                z = acceleration.z;
-//	                if(x>5&&y<5){
-//	                	Alert("左横屏");
-//	                }else if(x<-5&&y>-5){
-//	                	Alert("右横屏");
-//	                }else{
-//	                	Alert("竖屏");
-//	                }
-//	                if(Math.abs(x-lastX) > speed || Math.abs(y-lastY) > speed || Math.abs(z-lastZ) > speed) {
-//	                    //简单的摇一摇触发代码
-//	                    alert(1);
-//	                }
-//	                lastX = x;
-//	                lastY = y;
-//	                lastZ = z;
-//	        }
-	        
-	        // 手机旋转检测
 			var evt = "onorientationchange" in window ? "orientationchange" : "resize";
 			// 旋转角度
-			var Orientation = "0";
-			
-			window.addEventListener(evt, function() {
-				//console.log(evt);
-				var width = document.documentElement.clientWidth;
-				var height = document.documentElement.clientHeight;
-				var print = $('.print');
-//				Alert(window.orientation);
+//			var Orientation = "0";
+//			window.addEventListener(evt, function() {
+//				//console.log(evt);
+//				var width = document.documentElement.clientWidth;
+//				var height = document.documentElement.clientHeight;
+//				var print = $('.print');
+//				//console.log(window.orientation);
 //				if(window.orientation != undefined){
 //					if(width > height) {
 //						Orientation = window.orientation;
@@ -118,7 +89,7 @@
 //					$("#msg .content").css('transform', 'rotate('+Orientation+'deg)');
 //					$("#msg .content").css('transform-origin', '50% 50%');
 //				}
-			}, false);
+//			}, false);
 			// 获取请求单个请求数据
 			function GetQueryString(name) {
 				var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -149,7 +120,7 @@
 				if(GetQueryString("serverid")==""||GetQueryString("userid")==""||GetQueryString("nper")==""){
 					Alert("参数获取失败！");
 				}else{
-					window.location.href="FOquestionnaire.html?serverid="+GetQueryString("serverid")+"&userid="+GetQueryString("userid")+"&nper="+GetQueryString("nper");
+					window.location.href="FOquestionnaire.php?serverid="+GetQueryString("serverid")+"&userid="+GetQueryString("userid")+"&nper="+GetQueryString("nper");
 				}
 			});
 		</script>

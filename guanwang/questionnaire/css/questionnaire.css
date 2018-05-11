@@ -257,7 +257,7 @@ header p {
 }
 #msg .content{
 	position: absolute;
-	top: 40%;
+	top: 35%;
 	left: calc(50% - 100px);
 	left: -moz-calc(50% - 100px);
 	left: -webkit-calc(50% - 100px);

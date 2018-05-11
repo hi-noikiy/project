@@ -99,8 +99,8 @@ class ManualLogController extends CommonController{
         if(!empty($_POST)){
             if(empty($gameId))
                 $this->display('游戏ID不能为空！', 0);
-            /*if(empty($serverId))
-                $this->display('服务器ID不能为空！', 0);*/
+            if(empty($serverId))
+                $this->display('服务器ID不能为空！', 0);
             if(empty($username))
                 $this->display('角色名不能为空！', 0);
 

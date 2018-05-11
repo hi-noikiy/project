@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <meta name="keywords" content="衣范儿,eshow,时尚,换装,换装游戏,搭配手游,时尚社区,DIOR,香奈儿,阿玛尼,时装,美颜,女神,衣范儿下载,衣范儿官网" /> 
+  <meta name="description" content="《衣范儿》是一款全新时尚服饰搭配游戏，顶级时尚品牌、上万种服饰任意搭配，与现实品牌服饰同步更新换季，大牌时尚穿起来！明星时尚、潮流资讯实时更新，以独到犀利的时尚敏锐度，挖掘一线国际时尚新闻，做到游戏时尚完美融合！" />
+	{load href="__static__/index/dist/assets/owl.carousel.css" /}
+	{load href="__static__/index/dist/assets/owl.theme.default.css" /}
+	{load href="__static__/index/css/yfestyle.css" /}
+	{load href="__static__/index/css/mobile.css" /}
+	{load href="__static__/index/js/jquery.js" /}
+    {load href="__static__/index/dist/owl.carousel.js" /}
+    <title>衣范儿官网_eShow Fashion_做最好的时尚导师_海牛网络</title>
+    <style type="text/css">
+    #test {
+    width:100%;
+    height:100%;
+    background-image:url(__static__/index/img/hide.png);
+    background-size: 100% 100%;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:2;
+    /*兼容IE8及以下版本浏览器*/
+    display:none;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img src="__static__/index/img/h501.png">
+        <a href="{$down}" id="download" target="_blank"></a>
+    </header>
+    <div class="banner2">
+        <img src="__static__/index/img/banner2.png">
+    </div>
+    <a href="##" class="auto_play_box">
+        <div id="owl-demo" class="owl-carousel owl-theme">
+			{volist name="banner" id="vo"}
+				<div class="item"><img src="{$vo.image_url}" alt="{$vo.name}"></div>
+			{/volist}
+        </div>
+    </a>
+    <div class="line"></div>
+
+    <div class="video-title">
+        关于衣范儿
+    </div>
+    <div class="movie">
+        <video id="movie" src="/public/static/index/video/aaa.mp4"></video>
+        <a class="play" href="javascript:void(0)"><img src="__static__/index/img/play.png"></a>
+    </div>
+    <div class="toggle-text">
+        <div>
+            {$video['title']}
+        </div>
+    </div>
+    <a class="toggle-btn" href="javascript:void(0)"></a>
+    <div class="line"></div>
+    <div class="video-title">
+        {$infospan['title']}
+    </div>
+    <div class="show-box" style="margin-bottom: 0px;">
+		{volist name="infoList" id="vo"}
+			<a href="{$vo.url}" class="pic"><img src="{$vo.image_url}"></a>
+		{/volist}
+		<p style="font-size: 20px;text-align: center;padding: 40px 0px;margin: 0 auto;">北京爱游盟信息科技有限公司 京ICP备17024188号-1</p>
+    </div>
+    <div id='test'></div>
+</body>
+<script>
+    function ismobile(test){
+        var u = navigator.userAgent, app = navigator.appVersion;
+        if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+            if(window.location.href.indexOf("?mobile")<0){
+                try{
+                    if(/iPhone|mac|iPod|iPad/i.test(navigator.userAgent)){
+                        return '0';
+                    }else{
+                        return '1';
+                    }
+                }catch(e){}
+            }
+        }else if( u.indexOf('iPad') > -1){
+            return '0';
+        }else{
+            return '1';
+        }
+    };
+   /* $("#download").click(function(){
+        if(ismobile(1)==1){
+            //安卓
+            window.location.href="http://www.baidu.com" 
+        }else{
+            //IOS
+            window.location.href="https://tieba.baidu.com/index.html" 
+        }
+    })*/
+    function showdiv(){
+        var s = document.getElementById("test");
+        s.style.display = "block";
+   }
+    $(document).ready(function() {
+        downloaded();
+     }); 
+    $('#test').click(function(){
+    	$(this).css('display','none');
+    });
+  function downloaded(){
+         var ua = navigator.userAgent.toLowerCase();
+        if(ua.match(/MicroMessenger/i)=="micromessenger") {
+             $('#download').attr('href','javascript:showdiv()');
+         }
+
+     }
+
+    var owl = $('.owl-carousel');
+    $(document).ready(function(){
+        owl.owlCarousel({
+            items:1,
+            loop:true,
+            autoplay:true,
+            autoplayTimeout:2000,
+            autoplayHoverPause:false,
+            nav:true,
+            navText:["",""],
+            dots:false
+        });
+    });
+    var video=document.getElementById("movie");
+    $("#movie").click(function(){
+        if(video.paused){
+            video.play();
+            $(".play").hide()
+        }else if(!video.paused){
+            video.pause();
+            $(".play").show()
+        }
+    })
+	$(".play").click(function(){
+        if(video.paused){
+            video.play();
+            $(this).hide()
+        }
+    })
+
+    $(".toggle-btn").click(function(){
+        var h=$(".toggle-text div").height();
+        var _h=$(".toggle-text").height();
+        if(_h===36){
+            $(".toggle-text").css({"height":h});
+            setTimeout(function(){
+                $(".toggle-btn").addClass("top")
+            },1000)
+        }else{
+            $(".toggle-text").css({"height":36})
+            setTimeout(function(){
+                $(".toggle-btn").removeClass("top")
+            },1000)
+        }
+    });
+</script>
+</html>

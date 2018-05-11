@@ -44,6 +44,14 @@ switch ($sdkType) {
 		$rs = https_post ( $url, $data );
 		echo $rs;
 		break;
+	case 123 : // 果盘
+		$url = $webHost . '/interface/guopan/login.php';
+		$data ['game_uin'] = $token;
+		$data ['token'] = $p;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
 	case 125 : // qq
 		$url = $webHost . '/interface/guangwang/qqlogin.php';
 		$data ['openid'] = $token;
@@ -79,6 +87,14 @@ switch ($sdkType) {
 		$url = $webHost . "/interface/gamefan/login.php";
 		$data ['jsondata'] = $p;
 		// $data['uid'] = $token;
+		$data ['game_id'] = $gameId;
+		$rs = https_post ( $url, $data );
+		echo $rs;
+		break;
+	case 236 : // 锤子
+		$url = $webHost . "/interface/smartisan/login.php";
+		$data ['user_token'] = $p;
+		$data ['uid'] = $token;
 		$data ['game_id'] = $gameId;
 		$rs = https_post ( $url, $data );
 		echo $rs;
