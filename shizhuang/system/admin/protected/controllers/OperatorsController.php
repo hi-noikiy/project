@@ -798,6 +798,7 @@ private function updateAccount($accountid, $operate, $gameId){
     }
     private function  giQSAccountHash1( $string )
     {
+    	$string = strtolower($string);
     	$length = strlen($string);
     	$result = 0;
     	for($i=0;$i<$length;$i++){
